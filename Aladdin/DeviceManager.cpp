@@ -81,6 +81,11 @@ void DeviceManager::ClearScreen()
 	this->_directDevice->ColorFill(_surface, NULL, D3DCOLOR_XRGB(0, 0, 0));
 }
 
+LPDIRECT3D9 DeviceManager::getDirect()
+{
+	return _direct;
+}
+
 LPDIRECT3DDEVICE9 DeviceManager::getDevice()
 {
 	return _directDevice;

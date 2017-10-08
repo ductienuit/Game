@@ -21,6 +21,7 @@ public:
 	//Initilize direct device and surface
 	bool				     Init(pGraphics);  
 
+	LPDIRECT3D9			     getDirect();
 	LPDIRECT3DDEVICE9		 getDevice();
 	LPDIRECT3DSURFACE9		 getSurface();
 

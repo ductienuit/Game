@@ -20,10 +20,9 @@ void Game::InIt()
 	gameTime->InIt();
 	deviceManager->Init(graphics);
 
+	D3DXCreateSprite(deviceManager->getDevice(), &this->spriteHandler);
 	//this->InitDevice();
 	this->LoadResource();
-
-	gameTime->InIt();
 }
 
 
@@ -42,7 +41,7 @@ Game::Game(HINSTANCE hInstance,
 	graphics = new Graphics(hInstance, name, width, height, fps, isFullScreen);
 	deviceManager = DeviceManager::getInstance();
 	gameTime = GameTime::getInstance();
-	spriteHandle = NULL;
+	spriteHandler = NULL;
 }
 
 void Game::Release()
@@ -87,17 +86,17 @@ void Game::Run()
 			//this->render();
 
             #pragma region Code test man hinh
-			/*if (Engine::GetDirectDevice()->BeginScene())
+			if (deviceManager->getDevice()->BeginScene())
 			{
-			Engine::GetSpriteHandler()->Begin(D3DXSPRITE_ALPHABLEND);
-			Engine::GetDirectDevice()->ColorFill(
-			Engine::GetBackBuffer(),
+			this->spriteHandler->Begin(D3DXSPRITE_ALPHABLEND);
+			deviceManager->getDevice()->ColorFill(
+			deviceManager->getSurface(),
 			NULL,
 			D3DCOLOR_XRGB((int)deltaTime, 0, 0));
-			Engine::GetSpriteHandler()->End();
-			Engine::GetDirectDevice()->EndScene();
+			this->spriteHandler->End();
+			deviceManager->getDevice()->EndScene();
 			}
-			Engine::GetDirectDevice()->Present(NULL, NULL, NULL, NULL);*/
+			deviceManager->getDevice()->Present(NULL, NULL, NULL, NULL);
             #pragma endregion
 		}
 		else

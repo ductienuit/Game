@@ -25,13 +25,13 @@ public:
 	static  int     isFullScreen;	
 protected:
 	virtual void    InIt();
-	//virtual bool	InitWindows();
+	//virtual bool	  InitWindows();
 	//virtual bool    InitDevice();
 	virtual bool	LoadResource();
 	pGameTime       gameTime;
 	pGraphics       graphics;
 	pDeviceManager  deviceManager;
-	LPD3DXSPRITE    spriteHandle;
+	LPD3DXSPRITE    spriteHandler;
 private:
 	float			frameRate;			// time for 1 frame, milisecond
 	float			oldTime;
