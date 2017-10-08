@@ -43,3 +43,4 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	system("pause");
 	return 1;
 }
+//Test
