@@ -3,6 +3,8 @@
 #define	__TIMESPAN_H__
 
 #include "define.h"
+GAME_FRAMEWORK
+GAME_FRAMEWORK_BEGIN
 
 class TimeSpan
 {
@@ -25,7 +27,7 @@ private:
 	UINT64 _ticks;
 
 };
-
+GAME_FRAMEWORK_END
 #endif // !__TIMESPAN_H__
 
 

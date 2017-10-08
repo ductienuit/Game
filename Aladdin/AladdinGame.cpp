@@ -1,5 +1,5 @@
 ﻿#include "AladdinGame.h"
-
+USEGAME_FRAMEWORK
 
 
 AladdinGame::AladdinGame(HINSTANCE hInstance, LPCSTR Name) :Game(hInstance, Name)

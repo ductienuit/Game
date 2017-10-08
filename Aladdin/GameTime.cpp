@@ -1,4 +1,5 @@
-#include "GameTime.h"
+﻿#include "GameTime.h"
+USEGAME_FRAMEWORK
 
 GameTime* GameTime::_instance = nullptr;
 
@@ -22,39 +23,42 @@ GameTime* GameTime::getInstance()
 	return _instance;
 }
 
-void GameTime::release()
+void GameTime::Release()
 {
 	delete _instance;
 	_instance = NULL;
 }
 
-void GameTime::init()
+void GameTime::InIt()
 {
+	
 	QueryPerformanceFrequency(&this->_Query);
 
 	this->_freQuery = (float)_Query.QuadPart / 10000000;
-	//10000000 mean use microsecond.
-	// if want to use milisecond use 1000
-	// if want to use second use 1
+	// 10000000 nghĩa là dùng microsecond.
+	// nếu dùng milisecond thì 1000
+	// nếu dùng second     thì 1
 
+	//Lấy thời gian hiện tại
 	QueryPerformanceCounter(&_Query);
-	startTicks = lastTicks = _Query.QuadPart;
+	lastTicks = _Query.QuadPart;
 	_totalGameTime = (TimeSpan)0;
 }
 
-void GameTime::resetLastTick()
+void GameTime::ResetLastTick()
 {
 	lastTicks = 0;
 	curTicks = 0;
 	_totalGameTime = (TimeSpan)0;
 }
 
-void GameTime::updateGameTime()
+void GameTime::UpdateGameTime()
 {
 	QueryPerformanceCounter(&_Query);
 	curTicks = _Query.QuadPart;
-	if ((UINT64)((float)(curTicks - lastTicks) / _freQuery)   <  TimeSpan::TicksPerMilisecond * 16)
+	if ((UINT64)((float)(curTicks - lastTicks) / _freQuery)   <  TimeSpan::TicksPerMilisecond * Engine::GetFrameRate())
 	{
+		//Cập nhật các hiệu ứng không yêu cầu nhiều fps
 		return;
 	}
 	auto gt = ((float)(curTicks - lastTicks)) / _freQuery;
@@ -63,14 +67,13 @@ void GameTime::updateGameTime()
 		TimeSpan((UINT64)gt)
 	);
 	lastTicks = curTicks;
-
 }
 
-float GameTime::getElapsedGameTime()
+float GameTime::GetElapsedGameTime()
 {
 	return this->_elapsedGameTime.getMiliSeconds();
 }
-float GameTime::getTotalGameTime()
+float GameTime::GetTotalGameTime()
 {
 	return this->_totalGameTime.getMiliSeconds();
 }

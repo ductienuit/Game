@@ -1,7 +1,13 @@
 ﻿#include "Game.h"
 
+USEGAME_FRAMEWORK
+using namespace std;
 
 bool Game::isExit = false;
+
+//Sẽ phát triển thay vì dùng này
+#define KEY_DOWN(code) ( IsKeyDown(code) )
+#define KEYBOARD_BUFFER_SIZE	1024
 
 void Game::Exit()
 {
@@ -13,7 +19,7 @@ void Game::Init()
 	this->InitDevice();
 	this->LoadResource();
 
-	gameTime->init();
+	gameTime->InIt();
 }
 
 
@@ -44,7 +50,7 @@ void Game::Release()
 	if (Engine::GetSpriteHandler() != NULL)
 		Engine::GetSpriteHandler()->Release();
 	if (gameTime != nullptr)
-		gameTime->release();
+		gameTime->Release();
 	//Chua xoa cua so hwnd, name and sth
 }
 
@@ -60,8 +66,8 @@ void Game::Run()
 			TranslateMessage(&msg);
 			DispatchMessage(&msg);
 		}
-		gameTime->updateGameTime();							// gametime isn't run if dont call updateGameTime
-		deltaTime = gameTime->getTotalGameTime() - oldTime;
+		gameTime->UpdateGameTime();							// gametime isn't run if dont call updateGameTime
+		deltaTime = gameTime->GetTotalGameTime() - oldTime;
 
 		if (deltaTime >= frameRate)
 		{
@@ -139,8 +145,6 @@ Khởi tạo sprite vẽ lên surface
 */
 bool Game::InitDevice()
 {
-
-
 	Engine::SetDirect(Direct3DCreate9(D3D_SDK_VERSION));
 	if (Engine::GetDirect() == NULL)
 	{

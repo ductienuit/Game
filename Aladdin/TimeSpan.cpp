@@ -1,5 +1,5 @@
 #include "TimeSpan.h"
-
+USEGAME_FRAMEWORK
 TimeSpan::TimeSpan(void)
 {
 }

@@ -5,10 +5,14 @@
 #include<Windows.h>
 #include<d3d9.h>
 #include<d3dx9.h>
+#include"define.h"
 
 using namespace std;
 
 #define NUMBEROFSPRITE 10
+
+GAME_FRAMEWORK
+GAME_FRAMEWORK_BEGIN
 
 class Engine
 {
@@ -41,7 +45,7 @@ public:
 	static void SetGameName(LPCSTR nameOfGame) { Engine::_gameName = nameOfGame; }
 
 	static int GetFrameRate() { return Engine::_fPS; }
-	static void SetFrameRate(int FPS) { Engine::_fPS = FPS; }
+	static void SetFrameRate(int Fps) { Engine::_fPS = Fps; }
 
 	static int GetCurrentFrame() { return Engine::_currentFrame; }
 	static void SetCurrentFrame(int currentFrame) { Engine::_currentFrame = (_currentFrame >= NUMBEROFSPRITE) ? 1 : ++_currentFrame; }
@@ -62,6 +66,7 @@ private:
 	static	int								_currentFrame;
 
 };
+GAME_FRAMEWORK_END
 #endif _ENGINE_H_
 
 
