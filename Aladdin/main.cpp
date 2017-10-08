@@ -5,7 +5,7 @@
 #include"Engine.h"
 
 using namespace std;
-
+//OK
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
