@@ -30,6 +30,8 @@ using namespace std;
 //Nếu có thì click vào coi thử đã rồi mới sync về
 //Ví dụ cho coi: Coi kĩ.
 //Bước 1: t vào Changes rồi commit code này.
+//Nhan Home
+//Nhan Sync, nhan Fetch
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
