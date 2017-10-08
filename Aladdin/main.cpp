@@ -32,7 +32,7 @@ using namespace std;
 //Bước 1: t vào Changes rồi commit code này.
 //Nhan Home
 //Nhan Sync, nhan Fetch
-//.
+//...
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
