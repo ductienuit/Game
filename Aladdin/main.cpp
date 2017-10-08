@@ -5,6 +5,9 @@
 #include"Engine.h"
 
 using namespace std;
+
+#pragma region HowToUseGithub
+
 //OK
 //m thấy cái ổ khóa ko, nó có nghĩa là chưa chỉnh sửa j trong đó
 //Dấu tích màu đỏ, nghĩa là t vừa chỉnh sửa nó mà chưa up lên github
@@ -33,6 +36,7 @@ using namespace std;
 //Nhan Home
 //Nhan Sync, nhan Fetch
 //...
+#pragma endregion
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
@@ -44,4 +48,3 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	system("pause");
 	return 1;
 }
-//Test

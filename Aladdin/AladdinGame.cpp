@@ -12,7 +12,7 @@ AladdinGame::~AladdinGame()
 
 void AladdinGame::InIt()
 {
-	Game::Init();
+	Game::InIt();
 }
 
 void AladdinGame::Run()

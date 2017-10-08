@@ -56,7 +56,7 @@ void GameTime::UpdateGameTime()
 {
 	QueryPerformanceCounter(&_Query);
 	curTicks = _Query.QuadPart;
-	if ((UINT64)((float)(curTicks - lastTicks) / _freQuery)   <  TimeSpan::TicksPerMilisecond * Engine::GetFrameRate())
+	if ((UINT64)((float)(curTicks - lastTicks) / _freQuery)   <  TimeSpan::TicksPerMilisecond * FPS)
 	{
 		//Cập nhật các hiệu ứng không yêu cầu nhiều fps
 		return;
