@@ -4,6 +4,8 @@ USEGAME_FRAMEWORK
 using namespace std;
 
 bool Game::isExit = false;
+Graphics* Game::_graphics = NULL;
+
 
 //Sẽ phát triển thay vì dùng này
 #define KEY_DOWN(code) ( IsKeyDown(code) )
@@ -11,18 +13,32 @@ bool Game::isExit = false;
 
 void Game::Exit()
 {
+	isExit = 1;
 }
+
+Graphics * Game::getWindow()
+{
+	return _graphics;
+}
+
+
 
 void Game::InIt()
 {
-	//this->InitWindows();
-	graphics->InItWindow();
-	gameTime->InIt();
-	deviceManager->Init(graphics);
+	if (this->_graphics==NULL)
+		//MessageBox(NULL, TEXT("hWnd requires error "),"Error Aladdin",);
+		throw;
+	_graphics->InItWindow();
+	_gameTime->InIt();
+	_deviceManager->Init(_graphics);
+	_input->InIt(_graphics);
+	this->_frameRate = 1000.0f / _graphics->getFrameRate();
 
-	D3DXCreateSprite(deviceManager->getDevice(), &this->spriteHandler);
-	//this->InitDevice();
-	this->LoadResource();
+	D3DXCreateSprite(_deviceManager->getDevice(), &this->_spriteHandler);
+	//this->LoadResource();
+
+	_oldTime = _gameTime->getTotalGameTime();
+	_deltaTime = 0.0f;
 }
 
 
@@ -33,15 +49,11 @@ Game::Game(HINSTANCE hInstance,
 	int fps,
 	int isFullScreen)
 {
-	//Engine::SethInstance(hInstance);
-	//Engine::SetWindowWidth(width);
-	//Engine::SetWindowHeight(height);
-	//Engine::SetGameName(name);
-	//Engine::SetFrameRate(fps);
-	graphics = new Graphics(hInstance, name, width, height, fps, isFullScreen);
-	deviceManager = DeviceManager::getInstance();
-	gameTime = GameTime::getInstance();
-	spriteHandler = NULL;
+	_graphics = new Graphics(hInstance, name, width, height, fps, isFullScreen);
+	_gameTime = GameTime::getInstance(); 
+	_deviceManager = DeviceManager::getInstance();
+	_input = InputController::getInstance();
+	_spriteHandler = NULL;
 }
 
 void Game::Release()
@@ -54,14 +66,29 @@ void Game::Release()
 	//	Engine::GetBackBuffer()->Release();
 	//if (Engine::GetSpriteHandler() != NULL)
 	//	Engine::GetSpriteHandler()->Release();
-	if (gameTime != nullptr)
-		gameTime->Release();
-	if (deviceManager != NULL)
-		deviceManager->Release();
-	if (graphics != NULL)
-		delete graphics;
-	graphics = NULL;
+	if (_gameTime != nullptr)
+		_gameTime->Release();
+	if (_deviceManager != NULL)
+		_deviceManager->Release();
+	if (_graphics != NULL)
+		delete _graphics;
+	_graphics = NULL;
 	//Chua xoa cua so hwnd, name and sth
+}
+
+void Game::UpdateInput(float deltatime)
+{
+	//Chưa code
+}
+
+void Game::Update(float deltatime)
+{
+	//Chưa code
+}
+
+void Game::Draw()
+{
+	//Chưa code
 }
 
 void Game::Run()
@@ -76,34 +103,60 @@ void Game::Run()
 			TranslateMessage(&msg);
 			DispatchMessage(&msg);
 		}
-		gameTime->UpdateGameTime();							// gametime isn't run if dont call updateGameTime
-		deltaTime = gameTime->GetTotalGameTime() - oldTime;
+		_gameTime->UpdateGameTime();							// gametime isn't run if dont call updateGameTime
+		_deltaTime = _gameTime->getTotalGameTime() - _oldTime;
 
-		if (deltaTime >= frameRate)
+		if (_deltaTime >= _frameRate)
 		{
-			oldTime += frameRate;
+			_oldTime += _frameRate;
 			//input->update();
 			//this->render();
 
             #pragma region Code test man hinh
-			if (deviceManager->getDevice()->BeginScene())
+			/*if (_deviceManager->getDevice()->BeginScene())
 			{
-			this->spriteHandler->Begin(D3DXSPRITE_ALPHABLEND);
-			deviceManager->getDevice()->ColorFill(
-			            deviceManager->getSurface(),
-			            NULL,
-			            D3DCOLOR_XRGB((int)deltaTime, 0, 0));
-
-			this->spriteHandler->End();
-			deviceManager->getDevice()->EndScene();
+			this->_spriteHandler->Begin(D3DXSPRITE_ALPHABLEND);
+			_deviceManager->getDevice()->ColorFill(
+			_deviceManager->getSurface(),
+			NULL,
+			D3DCOLOR_XRGB((int)_deltaTime, (int)_deltaTime, 0));
+			this->_spriteHandler->End();
+			_deviceManager->getDevice()->EndScene();
 			}
-			deviceManager->getDevice()->Present(NULL, NULL, NULL, NULL);
+			_deviceManager->getDevice()->Present(NULL, NULL, NULL, NULL);*/
             #pragma endregion
 		}
 		else
-			Sleep(frameRate - deltaTime);						//sleep every frame for high performance		
+			Sleep(_frameRate - _deltaTime);						//sleep every frame for high performance		
 	}
 
+}
+
+//Draw after updated
+void Game::Render()
+{
+	//Kiểm tra nếu cửa sổ đang focus không phải game thì không cập nhật
+	if (GetActiveWindow() != _graphics->getHwnd())
+	   return;
+	auto device = _deviceManager->getInstance();
+	float time = _gameTime->getElapsedGameTime();   //Thời gian 1 vòng lặp
+
+	//xử lí không dồn frame
+	//thời gian vòng lặp cao hơn dự tính thì set
+	//cứng nó bằng fps để không đồn frame
+	if (time > this->_frameRate * 2)
+		time = _frameRate;
+
+	if (device->getDevice()->BeginScene() != DI_OK)
+		return;
+
+	device->ClearScreen();
+	UpdateInput(time);
+	Update(time);
+	Draw();
+
+	device->getDevice()->EndScene();
+	device->Present();
 }
 
 /*Khởi tạo các giá trị trong Engine

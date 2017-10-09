@@ -45,6 +45,5 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	myGame->Run();
 	myGame->Release();
 	delete myGame;
-	system("pause");
 	return 1;
 }

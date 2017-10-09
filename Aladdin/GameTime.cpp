@@ -69,11 +69,12 @@ void GameTime::UpdateGameTime()
 	lastTicks = curTicks;
 }
 
-float GameTime::GetElapsedGameTime()
+float GameTime::getElapsedGameTime()
 {
 	return this->_elapsedGameTime.getMiliSeconds();
 }
-float GameTime::GetTotalGameTime()
+
+float GameTime::getTotalGameTime()
 {
 	return this->_totalGameTime.getMiliSeconds();
 }

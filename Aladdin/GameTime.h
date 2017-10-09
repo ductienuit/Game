@@ -32,8 +32,8 @@ public:
 	void			 InIt();
 	void			 ResetLastTick();
 	void			 UpdateGameTime();
-	float			 GetElapsedGameTime();		// Tổng thời gian trôi qua kể từ lần cuối gọi update
-	float			 GetTotalGameTime();		// Tổng thời gian trôi qua kể từ lúc gọi Init
+	float			 getElapsedGameTime();		// Tổng thời gian trôi qua kể từ lần cuối gọi update
+	float			 getTotalGameTime();		// Tổng thời gian trôi qua kể từ lúc gọi Init
 private:
 	static GameTime* _instance;                  // static singleton
 	TimeSpan		 _elapsedGameTime;           // Tổng thời gian trôi qua kể từ lần cuối gọi update

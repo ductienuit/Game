@@ -2,8 +2,7 @@
 USEGAME_FRAMEWORK
 
 
-
-AladdinGame::AladdinGame(HINSTANCE hInstance, LPCSTR Name) :Game(hInstance, Name)
+AladdinGame::~AladdinGame()
 {
 }
 
@@ -14,6 +13,11 @@ AladdinGame::~AladdinGame()
 void AladdinGame::InIt()
 {
 	Game::InIt();
+}
+
+void AladdinGame::Release()
+{
+	Game::Release();
 }
 
 void AladdinGame::Run()

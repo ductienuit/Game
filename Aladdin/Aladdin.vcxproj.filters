@@ -19,6 +19,12 @@
     <Filter Include="Source Files\FrameWork">
       <UniqueIdentifier>{d3500dac-b58e-402f-8130-dd2c59bf7f3c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Object">
+      <UniqueIdentifier>{da8a7723-e96f-4522-8638-d429a2c5182a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Object">
+      <UniqueIdentifier>{43115d9e-ec2f-427a-a130-f7ef67bad1e6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -48,11 +54,14 @@
     <ClCompile Include="AladdinGame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="AladdinCharacter.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Event.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\FrameWork</Filter>
+    </ClCompile>
+    <ClCompile Include="InputController.cpp">
+      <Filter>Source Files\FrameWork</Filter>
+    </ClCompile>
+    <ClCompile Include="AladdinCharacter.cpp">
+      <Filter>Source Files\Object</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -77,11 +86,14 @@
     <ClInclude Include="AladdinGame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="AladdinCharacter.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Event.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\FrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="InputController.h">
+      <Filter>Header Files\FrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="AladdinCharacter.h">
+      <Filter>Header Files\Object</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

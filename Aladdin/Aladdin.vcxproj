@@ -133,6 +133,7 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameTime.cpp" />
     <ClCompile Include="Graphics.cpp" />
+    <ClCompile Include="InputController.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="TimeSpan.cpp" />
   </ItemGroup>
@@ -145,6 +146,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameTime.h" />
     <ClInclude Include="Graphics.h" />
+    <ClInclude Include="InputController.h" />
     <ClInclude Include="TimeSpan.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

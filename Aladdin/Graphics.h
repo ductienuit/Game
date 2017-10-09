@@ -8,7 +8,7 @@
 
 GAME_FRAMEWORK
 GAME_FRAMEWORK_BEGIN
-//Con trỏ hInstance và hWnd
+
 class Graphics
 {
 public:
@@ -39,7 +39,7 @@ protected:
 	Graphics();
 };
 
-//Pointer to a Windows object
+//Pointer to a Windows object, pointer hInstance and hWnd
 typedef Graphics* pGraphics;
 
 GAME_FRAMEWORK_END
