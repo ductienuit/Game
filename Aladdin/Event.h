@@ -55,9 +55,9 @@ class Event
 public:
 	Event();
 	~Event();
-	virtual void fireEvent(EventArg* e);     //Thực hiện event
-	void operator+=(EventFuntion pFuntion);  // Đăng ký sự kiện
-	void operator-=(EventFuntion pFuntion);  // Hủy sự kiện
+	virtual void fireEvent(EventArg* e);		//Thực hiện event
+	void operator+=(EventFuntion pFuntion);		 // Đăng ký sự kiện
+	void operator-=(EventFuntion pFuntion);		 // Hủy sự kiện
 private:
 	vector<EventFuntion> _listaction;
 };
