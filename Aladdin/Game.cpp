@@ -90,9 +90,10 @@ void Game::Run()
 			{
 			this->spriteHandler->Begin(D3DXSPRITE_ALPHABLEND);
 			deviceManager->getDevice()->ColorFill(
-			deviceManager->getSurface(),
-			NULL,
-			D3DCOLOR_XRGB((int)deltaTime, 0, 0));
+			            deviceManager->getSurface(),
+			            NULL,
+			            D3DCOLOR_XRGB((int)deltaTime, 0, 0));
+
 			this->spriteHandler->End();
 			deviceManager->getDevice()->EndScene();
 			}

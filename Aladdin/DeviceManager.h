@@ -12,7 +12,6 @@ GAME_FRAMEWORK_BEGIN
 class DeviceManager
 {
 public:
-
 	~DeviceManager(void);
 	static DeviceManager*    getInstance();
 	static void				 Release();
