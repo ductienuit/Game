@@ -2,9 +2,6 @@
 USEGAME_FRAMEWORK
 
 
-AladdinGame::~AladdinGame()
-{
-}
 
 AladdinGame::~AladdinGame()
 {
@@ -20,9 +17,22 @@ void AladdinGame::Release()
 	Game::Release();
 }
 
-void AladdinGame::Run()
+void AladdinGame::UpdateInput(float deltatime)
 {
-	Game::Run();
 }
+
+void AladdinGame::Update(float deltatime)
+{
+}
+
+void AladdinGame::Draw()
+{
+}
+
+void AladdinGame::LoadResourse()
+{
+}
+
+
 
 
