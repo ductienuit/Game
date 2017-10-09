@@ -1,4 +1,4 @@
-
+﻿
 
 #ifndef __GRAPHICS_H__
 #define __GRAPHICS_H__
@@ -8,7 +8,7 @@
 
 GAME_FRAMEWORK
 GAME_FRAMEWORK_BEGIN
-
+//Con trỏ hInstance và hWnd
 class Graphics
 {
 public:
