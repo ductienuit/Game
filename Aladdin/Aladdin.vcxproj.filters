@@ -27,9 +27,6 @@
     <ClCompile Include="Engine.cpp">
       <Filter>Source Files\FrameWork</Filter>
     </ClCompile>
-    <ClCompile Include="AladdinGame.cpp">
-      <Filter>Source Files\FrameWork</Filter>
-    </ClCompile>
     <ClCompile Include="Game.cpp">
       <Filter>Source Files\FrameWork</Filter>
     </ClCompile>
@@ -48,12 +45,18 @@
     <ClCompile Include="Graphics.cpp">
       <Filter>Source Files\FrameWork</Filter>
     </ClCompile>
+    <ClCompile Include="AladdinGame.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AladdinCharacter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Event.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h">
-      <Filter>Header Files\FrameWork</Filter>
-    </ClInclude>
-    <ClInclude Include="AladdinGame.h">
       <Filter>Header Files\FrameWork</Filter>
     </ClInclude>
     <ClInclude Include="Game.h">
@@ -70,6 +73,15 @@
     </ClInclude>
     <ClInclude Include="Graphics.h">
       <Filter>Header Files\FrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="AladdinGame.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AladdinCharacter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Event.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

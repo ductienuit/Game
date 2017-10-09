@@ -17,6 +17,11 @@
 #include <map>
 #include <vector>
 
+enum eStateAladdin
+{
+	WALK,
+	JUMP
+};
 
 //enum StateGame
 //{	
