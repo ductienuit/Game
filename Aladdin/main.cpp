@@ -7,7 +7,7 @@
 using namespace std;
 
 #pragma region HowToUseGithub
-
+//1
 //OK
 //m thấy cái ổ khóa ko, nó có nghĩa là chưa chỉnh sửa j trong đó
 //Dấu tích màu đỏ, nghĩa là t vừa chỉnh sửa nó mà chưa up lên github
