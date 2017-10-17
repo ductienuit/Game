@@ -32,16 +32,16 @@ void InputController::Release()
 	_instance = nullptr;
 }
 
-bool InputController::InIt(Graphics *window)
+bool InputController::InIt(HWND hwnd, HINSTANCE hInstance)
 {
-	this->_hWnd = window->getHwnd();
+	this->_hWnd =hwnd;
 	HRESULT directInput;
 	//Init DirectInput
 	directInput = DirectInput8Create(
-		window->gethInstance(),              //Trường hợp ứng dụng tạo DirectInput object
+		hInstance,							 //Trường hợp ứng dụng tạo DirectInput object
 		DIRECTINPUT_VERSION,				 //Số phiên bản DirectInput
 		IID_IDirectInput8,					 //Định dạng giao diện cần thiết, cho giá trị mặc định luôn
-		(void**)&_input,					 //con trỏ chứa directinput được tạo
+		(void**)&_input,					 //Con trỏ chứa directinput được tạo
 		NULL);								 //không quan tâm - chí dân
 
 	if (directInput != DI_OK)
@@ -57,7 +57,7 @@ bool InputController::InIt(Graphics *window)
 		return false;
 
 	//Cài đặt truy cập	độc quyền hoặc truy cập không độc quyền.
-	directInput = _keyboard->SetCooperativeLevel(window->getHwnd(), DISCL_BACKGROUND | DISCL_NONEXCLUSIVE);//
+	directInput = _keyboard->SetCooperativeLevel(hwnd, DISCL_BACKGROUND | DISCL_NONEXCLUSIVE);//
 	if (directInput != DI_OK)
 		return false;
 

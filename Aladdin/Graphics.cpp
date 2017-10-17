@@ -53,28 +53,30 @@ bool Graphics::InItWindow()
 		style = WS_EX_TOPMOST | WS_VISIBLE | WS_POPUP;
 	else
 		style = WS_OVERLAPPEDWINDOW;
+
 	this->_hWnd = CreateWindow(
-		this->_gameName, //Tên lớp đã khai báo và đăng ký
+		this->_gameName,		 //Tên lớp đã khai báo và đăng ký
 		this->_gameName,
-		style,//Loại cửa số
-		CW_USEDEFAULT, // Tọa độ X cửa số trên màn hình
-		CW_USEDEFAULT,//Tọa độ Y
+		style,					//Loại cửa số
+		CW_USEDEFAULT,			// Tọa độ X cửa số trên màn hình
+		CW_USEDEFAULT,			//Tọa độ Y
 		this->getWindowWidth(),
 		this->getWindowHeight(),
-		NULL, //NULL là không sử dụng
+		NULL,					//NULL là không sử dụng
 		NULL,
 		this->_hInstance,
 		NULL);
-		if (_hWnd==NULL)
-		{
-			MessageBox(NULL, TEXT("Create window error"), "Aladdin", MB_ICONERROR);
-			return false;
-		}
-		MessageBox(this->_hWnd, TEXT("Create window error"), "Aladdin", MB_ICONERROR);
 
-		ShowWindow(this->_hWnd, SW_SHOWNORMAL);
-		UpdateWindow(this->_hWnd);
-		return true;
+	if (_hWnd==NULL)
+	{
+		MessageBox(NULL, TEXT("Create window error"), "Aladdin", MB_ICONERROR);
+		return false;
+	}
+
+	//Dùng thư viện direct show các màn hình đã khởi tạo xong
+	ShowWindow(this->_hWnd, SW_SHOWNORMAL);
+	UpdateWindow(this->_hWnd);
+	return true;
 }
 
 

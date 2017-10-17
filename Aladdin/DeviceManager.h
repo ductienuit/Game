@@ -21,15 +21,14 @@ public:
 	//Initilize direct device and surface
 	bool				     Init(pGraphics);  
 
-	LPDIRECT3D9			     getDirect();
 	LPDIRECT3DDEVICE9		 getDevice();
 	LPDIRECT3DSURFACE9		 getSurface();
 
 private:
-	static DeviceManager*   _instance;
-	LPDIRECT3D9			    _direct;
-	LPDIRECT3DDEVICE9	    _directDevice;
-	LPDIRECT3DSURFACE9	    _surface;
+	static DeviceManager*    _instance;
+	LPDIRECT3D9			     _direct;
+	LPDIRECT3DDEVICE9	     _directDevice;
+	LPDIRECT3DSURFACE9	     _surface;
 	DeviceManager(void);
 };
 typedef DeviceManager *pDeviceManager;

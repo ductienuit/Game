@@ -135,10 +135,12 @@
     <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="InputController.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Scene.cpp" />
     <ClCompile Include="TimeSpan.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AladdinCharacter.h" />
+    <ClInclude Include="debug.h" />
     <ClInclude Include="DeviceManager.h" />
     <ClInclude Include="Engine.h" />
     <ClInclude Include="AladdinGame.h" />
@@ -147,6 +149,7 @@
     <ClInclude Include="GameTime.h" />
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="InputController.h" />
+    <ClInclude Include="Scene.h" />
     <ClInclude Include="TimeSpan.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

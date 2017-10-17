@@ -5,9 +5,9 @@ DeviceManager* DeviceManager::_instance = nullptr;
 
 DeviceManager::DeviceManager(void)
 {
-	_direct = NULL;
+	_direct		  = NULL;
 	_directDevice = NULL;
-	_surface = NULL;
+	_surface	  = NULL;
 }
 
 bool DeviceManager::Init(pGraphics window)
@@ -79,11 +79,6 @@ void DeviceManager::Present()
 void DeviceManager::ClearScreen()
 {
 	this->_directDevice->ColorFill(_surface, NULL, D3DCOLOR_XRGB(0, 0, 0));
-}
-
-LPDIRECT3D9 DeviceManager::getDirect()
-{
-	return _direct;
 }
 
 LPDIRECT3DDEVICE9 DeviceManager::getDevice()

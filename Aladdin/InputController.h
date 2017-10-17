@@ -96,7 +96,7 @@ public:
 	static InputController* getInstance();
 	static void             Release();
 
-	bool	InIt(Graphics*);                
+	bool	InIt(HWND, HINSTANCE);
 	void	Update();
 	int		isKeyDown(int keycode);             //Check if keycode is down
 	bool	isKeyPressed(int keycode);

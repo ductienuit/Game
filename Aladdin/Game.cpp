@@ -1,5 +1,7 @@
 ﻿#include "Game.h"
-
+#if _DEBUG
+#include "debug.h"	// for print to output. call: __debugoutput()
+#endif // _DEBUG
 USEGAME_FRAMEWORK
 using namespace std;
 
@@ -31,11 +33,11 @@ void Game::InIt()
 	_graphics->InItWindow();
 	_gameTime->InIt();
 	_deviceManager->Init(_graphics);
-	_input->InIt(_graphics);
+	_input->InIt(_graphics->getHwnd(),_graphics->gethInstance());
 	this->_frameRate = 1000.0f / _graphics->getFrameRate();
 
 	D3DXCreateSprite(_deviceManager->getDevice(), &this->_spriteHandler);
-	//this->LoadResource();
+	this->LoadResource();
 
 	_oldTime = _gameTime->getTotalGameTime();
 	_deltaTime = 0.0f;
@@ -58,37 +60,10 @@ Game::Game(HINSTANCE hInstance,
 
 void Game::Release()
 {
-	//if (Engine::GetDirect() != NULL)
-	//	Engine::GetDirect()->Release();
-	//if (Engine::GetDirectDevice() != NULL)
-	//	Engine::GetDirectDevice()->Release();
-	//if (Engine::GetBackBuffer() != NULL)
-	//	Engine::GetBackBuffer()->Release();
-	//if (Engine::GetSpriteHandler() != NULL)
-	//	Engine::GetSpriteHandler()->Release();
 	if (_gameTime != nullptr)
 		_gameTime->Release();
 	if (_deviceManager != NULL)
 		_deviceManager->Release();
-	if (_graphics != NULL)
-		delete _graphics;
-	_graphics = NULL;
-	//Chua xoa cua so hwnd, name and sth
-}
-
-void Game::UpdateInput(float deltatime)
-{
-	//Chưa code
-}
-
-void Game::Update(float deltatime)
-{
-	//Chưa code
-}
-
-void Game::Draw()
-{
-	//Chưa code
 }
 
 void Game::Run()
@@ -109,11 +84,11 @@ void Game::Run()
 		if (_deltaTime >= _frameRate)
 		{
 			_oldTime += _frameRate;
-			//input->update();
-			//this->render();
+			_input->Update();
+			this->Render();
 
             #pragma region Code test man hinh
-			/*if (_deviceManager->getDevice()->BeginScene())
+		/*	if (_deviceManager->getDevice()->BeginScene())
 			{
 			this->_spriteHandler->Begin(D3DXSPRITE_ALPHABLEND);
 			_deviceManager->getDevice()->ColorFill(
@@ -151,6 +126,8 @@ void Game::Render()
 		return;
 
 	device->ClearScreen();
+
+	//Main game, nơi mọi tác động đến game được xử lí
 	UpdateInput(time);
 	Update(time);
 	Draw();
@@ -159,29 +136,23 @@ void Game::Render()
 	device->Present();
 }
 
-/*Khởi tạo các giá trị trong Engine
-Khởi tạo môi trường vẽ  Engine::SetDirect(Direct3DCreate9(D3D_SDK_VERSION));
-Khởi tạo thiết bị để vẽ (CreateDevice)
-Khởi tạo surface
-Khởi tạo sprite vẽ lên surface
-*/
-//bool Game::InitDevice()
-//{
-//	////Sprite
-//
-//	//LPD3DXSPRITE sprite;
-//
-//	//if (D3DXCreateSprite(Engine::GetDirectDevice(), &sprite) != D3D_OK)
-//	//{
-//	//	MessageBox(NULL, "Can't create sprite in hwnd", "Error", MB_OK | MB_ERR_INVALID_CHARS);
-//	//	return false;
-//	//}
-//	//Engine::SetSpriteHandler(sprite);
-//
-//	//return true;
-//}
+void Game::UpdateInput(float deltatime)
+{
+	//Chưa code, override 
+}
+
+void Game::Update(float deltatime)
+{
+	//Chưa code
+}
+
+void Game::Draw()
+{
+	//Chưa code, override
+}
 
 bool Game::LoadResource()
 {
+	//override
 	return true;
 }

@@ -40,7 +40,7 @@ using namespace std;
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
-	AladdinGame* myGame = new AladdinGame(hInstance, "ALADDIN");
+	Game* myGame = new AladdinGame(hInstance, "ALADDIN");
 	myGame->InIt();
 	myGame->Run();
 	myGame->Release();
