@@ -1,0 +1,40 @@
+﻿
+Convention:
+	Tên hàm viết thường chữ cái đầu, viết hoa các chữ cái đầu từ tiếp theo
+	Tên biến thành viên thêm "_" ở đầu, viết hoa các chữ cái đầu từ tiếp theo
+	Tên biến cục bộ, tên tham số viết thường chữ cái đầu
+	Tên enum thêm e đầu tên, ví dụ eStatus, định nghĩa bên trong biết hoa tất cả chữ cái
+	Tên kiểu dữ liệu được định nghĩa lại thêm G đầu từ, nếu là con trỏ thì thêm p
+		ví dụ typedef D3DXVECTOR2 GVector2;
+
+	định nghĩa các thành phần toàn cục trong file define.h
+
+Khi commit project không commit các file vcxproj, file sdf, các file trong thư mục debug, release.
+Khi update project nhớ kiểm tra các file được load về, nếu có file mới cần add vào project, với filter giống với thư mục
+
+* Các công thức áp dụng lên ảnh
+Chi tiết:
+	https://www.stdio.vn/articles/read/401/xu-ly-anh-voi-opencv-phong-to-thu-nho-va-xoay-anh
+* Cách dùng github
+ Sync
+ Outgoing commit là code mà m code xong, nhấn change rồi commit nó. Nhưng nó mới chỉ là commit
+ Chưa push lên github
+ Incoming Commits là code của người trong nhóm đăng lên github, m chưa sync về máy
+
+ Branch
+ Branch nó rất khó, nhưng t sẽ chỉ sau cho. Khi code hai người đang thay đổi cấu trúc quá nhiều
+ thì mới tạo Branch sau đó gộp n cái Branch này với nhau.
+
+ master là nhánh branch chính.
+ Ghi code trong này.
+ Sau khi code xong, nhấn View->Team-> Change
+
+ Nó hoạt động thế nào?
+ Mỗi ngày của m sẽ thế nào ?
+ Bật visual rồi nhấn nhấn View->Team-> Sync. Nhấn Fetch coi có thằng nào commit code ko
+ Chú ý: Phải commit code của mình trước rồi mới có thể tải code về (Pull)
+ Nếu có thì click vào coi thử đã rồi mới sync về
+ Ví dụ cho coi: Coi kĩ.
+ Bước 1: t vào Changes rồi commit code này.
+ Nhan Home
+ Nhan Sync, nhan Fetch

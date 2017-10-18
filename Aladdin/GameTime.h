@@ -18,7 +18,6 @@ chậm hơn một nửa so với bình thường, kết quả bạn sẽ có t�
 */
 #include "define.h"
 #include "TimeSpan.h"
-#include"Engine.h"
 
 GAME_FRAMEWORK
 GAME_FRAMEWORK_BEGIN

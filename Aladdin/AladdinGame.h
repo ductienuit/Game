@@ -1,7 +1,6 @@
 ﻿#pragma once
 #ifndef  _GameALADDIN_H_
 #define _GameALADDIN_H
-#include"Engine.h"
 #include"Game.h"
 
 using namespace std;

@@ -1,6 +1,5 @@
 ﻿#ifndef _CGAME_H_
 #define _CGAME_H_
-#include"Engine.h"
 #include"GameTime.h"
 #include"define.h"
 #include"Graphics.h"
