@@ -12,6 +12,10 @@ Convention:
 Khi commit project không commit các file vcxproj, file sdf, các file trong thư mục debug, release.
 Khi update project nhớ kiểm tra các file được load về, nếu có file mới cần add vào project, với filter giống với thư mục
 
+
+window 640x450
+view port 320x230
+
 * Các công thức áp dụng lên ảnh
 Chi tiết:
 	https://www.stdio.vn/articles/read/401/xu-ly-anh-voi-opencv-phong-to-thu-nho-va-xoay-anh

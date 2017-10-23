@@ -102,6 +102,43 @@ void Sprite::Render(LPD3DXSPRITE spriteHandle)
 //	);
 //}
 
+void Sprite::Render(LPD3DXSPRITE spriteHandle, Viewport* viewport)
+{
+	_texture.Render(
+		spriteHandle,
+		&_frameRect,
+		*viewport,
+		_position,
+		_scale,
+		_rotate,
+		_origin,
+		_zIndex
+	);
+
+	//Vẽ bounding để xem
+	if (_surface == nullptr || _isDrawBounding == false)
+	{
+		return;
+	}
+
+	RECT r;
+	r.top = WINDOWS_HEIGHT - _bound.top;
+	r.left = _bound.left;
+	r.bottom = WINDOWS_HEIGHT - _bound.bottom;
+	r.right = _bound.right;
+
+	DeviceManager::getInstance()->getDevice()->ColorFill(_surface, NULL, D3DXCOLOR(1.0f, 0.0f, 1.0f, 1.0f));
+
+	DeviceManager::getInstance()->getDevice()->StretchRect(
+		_surface,
+		NULL,
+		DeviceManager::getInstance()->getSurface(),
+		&r,
+		D3DTEXF_NONE
+	);
+}
+
+
 void Sprite::setPosition(float x, float y, float z)
 {
 	Vector3 v(x, y, z);

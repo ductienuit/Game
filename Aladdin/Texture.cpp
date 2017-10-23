@@ -103,13 +103,13 @@ void Texture::Render(LPD3DXSPRITE spriteHandle, RECT * srcRect, Vector2 position
 	spriteHandle->End();
 }
 
-/*void Texture::Render(LPD3DXSPRITE spriteHandle, RECT * srcRect, Viewport viewport, Vector2 position, Vector2 scale, float rotate, Vector2 origin, float zIndex)
+void Texture::Render(LPD3DXSPRITE spriteHandle, RECT * srcRect, Viewport viewport, Vector2 position, Vector2 scale, float rotate, Vector2 origin, float zIndex)
 {
 	Vector3 positionViewport;
 	positionViewport = viewport.getPositionInViewport(&Vector3(position.x, position.y, zIndex));
-	// ver 05/10/2015 - 7ung : ép kiêu về int. để tránh trường hợp bị hụt pixel 
-	render(spriteHandle, srcRect, Vector2((int)positionViewport.x, (int)positionViewport.y), scale, rotate, origin, positionViewport.z);
-}*/
+	//ép kiêu về int. để tránh trường hợp bị hụt pixel 
+	Render(spriteHandle, srcRect, Vector2((int)positionViewport.x, (int)positionViewport.y), scale, rotate, origin, positionViewport.z);
+}
 
 void Texture::setColor(D3DXCOLOR color)
 {

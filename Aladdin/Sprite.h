@@ -6,7 +6,7 @@
 #include "DeviceManager.h"
 #include "Texture.h"
 #include "Transformable.h"
-//#include "Viewport.h"
+#include "Viewport.h"
 
 
 
@@ -37,6 +37,10 @@ public:
 	vẽ hình
 	*/
 	void Render(LPD3DXSPRITE spriteHandle);
+	/*
+	vẽ hình với viewport
+	*/
+	void Render(LPD3DXSPRITE spriteHandle, Viewport* viewport);
 
 	void setPosition(float x, float y, float z = 1);
 	void setPosition(Vector3 vector);

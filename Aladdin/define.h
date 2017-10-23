@@ -19,10 +19,15 @@
 #include"debug.h"
 
 
-enum eStateAladdin
+enum eState
 {
 	WALK,
 	JUMP
+};
+
+enum eID
+{
+	ALADDIN
 };
 
 #define C_WHITE D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f)				// màu trắnng
