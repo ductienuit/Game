@@ -1,9 +1,9 @@
 ﻿#ifndef __SCENE_MANAGER_H__
 #define __SCENE_MANAGER_H__
 
-#include"define.h"
+#include"../define.h"
 #include<vector>
-#include"Scene.h"
+#include"../Scene.h"
 
 GAME_FRAMEWORK
 GAME_FRAMEWORK_BEGIN

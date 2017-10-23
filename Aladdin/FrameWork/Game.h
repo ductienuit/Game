@@ -3,7 +3,7 @@
 #include"GameTime.h"
 #include"define.h"
 #include"Graphics.h"
-#include"DeviceManager.h"
+#include"../FrameWork/Manager/DeviceManager.h"
 #include"InputController.h"
 
 GAME_FRAMEWORK

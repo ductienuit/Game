@@ -9,7 +9,7 @@
 #include"define.h"
 #include"Sprite.h"
 #include"IComponent.h"
-#include"SpriteManager.h"
+#include"../FrameWork/Manager/SpriteManager.h"
 
 USEGAME_FRAMEWORK
 

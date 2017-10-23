@@ -2,8 +2,8 @@
 #ifndef __DEVICE_MANAGER_H__
 #define __DEVICE_MANAGER_H__
 
-#include "define.h"
-#include "Graphics.h"
+#include "../define.h"
+#include "../Graphics.h"
 
 GAME_FRAMEWORK
 GAME_FRAMEWORK_BEGIN

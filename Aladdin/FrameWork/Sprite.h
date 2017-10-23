@@ -3,7 +3,7 @@
 
 #include <list>
 #include "define.h"
-#include "DeviceManager.h"
+#include "../FrameWork/Manager/DeviceManager.h"
 #include "Texture.h"
 #include "Transformable.h"
 #include "Viewport.h"

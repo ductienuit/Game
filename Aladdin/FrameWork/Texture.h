@@ -10,7 +10,7 @@ call release before delete to avoid LEAK
 #define __texture_H__
 
 #include "define.h"
-#include "DeviceManager.h"
+#include "../FrameWork/Manager/DeviceManager.h"
 #include"ViewPort.h"
 
 GAME_FRAMEWORK

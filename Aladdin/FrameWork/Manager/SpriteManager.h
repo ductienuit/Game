@@ -4,8 +4,8 @@
 #include<map>
 #include<fstream>
 
-#include"define.h"
-#include"Sprite.h"
+#include"../define.h"
+#include"../Sprite.h"
 
 GAME_FRAMEWORK
 GAME_FRAMEWORK_BEGIN

@@ -75,31 +75,22 @@
     <ClCompile Include="FrameWork\ViewPort.cpp">
       <Filter>Source Files\FrameWork</Filter>
     </ClCompile>
-    <ClCompile Include="FrameWork\DeviceManager.cpp">
-      <Filter>Source Files\FrameWork\Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="FrameWork\SceneManager.cpp">
-      <Filter>Source Files\FrameWork\Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="FrameWork\SpriteManager.cpp">
-      <Filter>Source Files\FrameWork\Manager</Filter>
-    </ClCompile>
     <ClCompile Include="Objects\AladdinCharacter.cpp">
       <Filter>Source Files\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="FrameWork\Manager\DeviceManager.cpp">
+      <Filter>Source Files\FrameWork\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="FrameWork\Manager\SceneManager.cpp">
+      <Filter>Source Files\FrameWork\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="FrameWork\Manager\SpriteManager.cpp">
+      <Filter>Source Files\FrameWork\Manager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AladdinGame.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FrameWork\DeviceManager.h">
-      <Filter>Header Files\FrameWork\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="FrameWork\SceneManager.h">
-      <Filter>Header Files\FrameWork\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="FrameWork\SpriteManager.h">
-      <Filter>Header Files\FrameWork\Manager</Filter>
     </ClInclude>
     <ClInclude Include="FrameWork\Animation.h">
       <Filter>Header Files\FrameWork</Filter>
@@ -148,6 +139,15 @@
     </ClInclude>
     <ClInclude Include="Objects\AladdinCharacter.h">
       <Filter>Header Files\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameWork\Manager\DeviceManager.h">
+      <Filter>Header Files\FrameWork\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameWork\Manager\SceneManager.h">
+      <Filter>Header Files\FrameWork\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameWork\Manager\SpriteManager.h">
+      <Filter>Header Files\FrameWork\Manager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

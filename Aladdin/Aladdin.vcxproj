@@ -126,16 +126,16 @@
   <ItemGroup>
     <ClCompile Include="AladdinGame.cpp" />
     <ClCompile Include="FrameWork\Animation.cpp" />
-    <ClCompile Include="FrameWork\DeviceManager.cpp" />
+    <ClCompile Include="FrameWork\Manager\DeviceManager.cpp" />
     <ClCompile Include="FrameWork\Event.cpp" />
     <ClCompile Include="FrameWork\Game.cpp" />
     <ClCompile Include="FrameWork\GameTime.cpp" />
     <ClCompile Include="FrameWork\Graphics.cpp" />
     <ClCompile Include="FrameWork\InputController.cpp" />
     <ClCompile Include="FrameWork\Scene.cpp" />
-    <ClCompile Include="FrameWork\SceneManager.cpp" />
+    <ClCompile Include="FrameWork\Manager\SceneManager.cpp" />
     <ClCompile Include="FrameWork\Sprite.cpp" />
-    <ClCompile Include="FrameWork\SpriteManager.cpp" />
+    <ClCompile Include="FrameWork\Manager\SpriteManager.cpp" />
     <ClCompile Include="FrameWork\Texture.cpp" />
     <ClCompile Include="FrameWork\TimeSpan.cpp" />
     <ClCompile Include="FrameWork\Transformable.cpp" />
@@ -148,7 +148,7 @@
     <ClInclude Include="FrameWork\Animation.h" />
     <ClInclude Include="FrameWork\debug.h" />
     <ClInclude Include="FrameWork\define.h" />
-    <ClInclude Include="FrameWork\DeviceManager.h" />
+    <ClInclude Include="FrameWork\Manager\DeviceManager.h" />
     <ClInclude Include="FrameWork\Event.h" />
     <ClInclude Include="FrameWork\Game.h" />
     <ClInclude Include="FrameWork\GameTime.h" />
@@ -156,9 +156,9 @@
     <ClInclude Include="FrameWork\IComponent.h" />
     <ClInclude Include="FrameWork\InputController.h" />
     <ClInclude Include="FrameWork\Scene.h" />
-    <ClInclude Include="FrameWork\SceneManager.h" />
+    <ClInclude Include="FrameWork\Manager\SceneManager.h" />
     <ClInclude Include="FrameWork\Sprite.h" />
-    <ClInclude Include="FrameWork\SpriteManager.h" />
+    <ClInclude Include="FrameWork\Manager\SpriteManager.h" />
     <ClInclude Include="FrameWork\Texture.h" />
     <ClInclude Include="FrameWork\TimeSpan.h" />
     <ClInclude Include="FrameWork\Transformable.h" />
