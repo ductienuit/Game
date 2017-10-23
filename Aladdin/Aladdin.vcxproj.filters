@@ -28,123 +28,126 @@
     <Filter Include="Header Files\FrameWork\Manager">
       <UniqueIdentifier>{c600e0a8-c5ca-4025-b5e6-99102ce7793b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\FrameWork\Manager">
+      <UniqueIdentifier>{00c9ff95-1729-4b4f-967b-44e834287eda}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Game.cpp">
-      <Filter>Source Files\FrameWork</Filter>
-    </ClCompile>
-    <ClCompile Include="define.h">
-      <Filter>Header Files\FrameWork</Filter>
-    </ClCompile>
-    <ClCompile Include="GameTime.cpp">
-      <Filter>Source Files\FrameWork</Filter>
-    </ClCompile>
-    <ClCompile Include="TimeSpan.cpp">
-      <Filter>Source Files\FrameWork</Filter>
-    </ClCompile>
-    <ClCompile Include="DeviceManager.cpp">
-      <Filter>Source Files\FrameWork</Filter>
-    </ClCompile>
-    <ClCompile Include="Graphics.cpp">
-      <Filter>Source Files\FrameWork</Filter>
-    </ClCompile>
     <ClCompile Include="AladdinGame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Event.cpp">
+    <ClCompile Include="FrameWork\Animation.cpp">
       <Filter>Source Files\FrameWork</Filter>
     </ClCompile>
-    <ClCompile Include="InputController.cpp">
+    <ClCompile Include="FrameWork\Event.cpp">
       <Filter>Source Files\FrameWork</Filter>
     </ClCompile>
-    <ClCompile Include="AladdinCharacter.cpp">
+    <ClCompile Include="FrameWork\Game.cpp">
+      <Filter>Source Files\FrameWork</Filter>
+    </ClCompile>
+    <ClCompile Include="FrameWork\GameTime.cpp">
+      <Filter>Source Files\FrameWork</Filter>
+    </ClCompile>
+    <ClCompile Include="FrameWork\Graphics.cpp">
+      <Filter>Source Files\FrameWork</Filter>
+    </ClCompile>
+    <ClCompile Include="FrameWork\InputController.cpp">
+      <Filter>Source Files\FrameWork</Filter>
+    </ClCompile>
+    <ClCompile Include="FrameWork\Scene.cpp">
+      <Filter>Source Files\FrameWork</Filter>
+    </ClCompile>
+    <ClCompile Include="FrameWork\Sprite.cpp">
+      <Filter>Source Files\FrameWork</Filter>
+    </ClCompile>
+    <ClCompile Include="FrameWork\Texture.cpp">
+      <Filter>Source Files\FrameWork</Filter>
+    </ClCompile>
+    <ClCompile Include="FrameWork\TimeSpan.cpp">
+      <Filter>Source Files\FrameWork</Filter>
+    </ClCompile>
+    <ClCompile Include="FrameWork\Transformable.cpp">
+      <Filter>Source Files\FrameWork</Filter>
+    </ClCompile>
+    <ClCompile Include="FrameWork\ViewPort.cpp">
+      <Filter>Source Files\FrameWork</Filter>
+    </ClCompile>
+    <ClCompile Include="FrameWork\DeviceManager.cpp">
+      <Filter>Source Files\FrameWork\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="FrameWork\SceneManager.cpp">
+      <Filter>Source Files\FrameWork\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="FrameWork\SpriteManager.cpp">
+      <Filter>Source Files\FrameWork\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\AladdinCharacter.cpp">
       <Filter>Source Files\Object</Filter>
-    </ClCompile>
-    <ClCompile Include="Animation.cpp">
-      <Filter>Source Files\FrameWork</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneManager.cpp">
-      <Filter>Source Files\FrameWork</Filter>
-    </ClCompile>
-    <ClCompile Include="Sprite.cpp">
-      <Filter>Source Files\FrameWork</Filter>
-    </ClCompile>
-    <ClCompile Include="Texture.cpp">
-      <Filter>Source Files\FrameWork</Filter>
-    </ClCompile>
-    <ClCompile Include="Transformable.cpp">
-      <Filter>Source Files\FrameWork</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene.cpp">
-      <Filter>Source Files\FrameWork</Filter>
-    </ClCompile>
-    <ClCompile Include="SpriteManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ViewPort.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Game.h">
-      <Filter>Header Files\FrameWork</Filter>
-    </ClInclude>
-    <ClInclude Include="GameTime.h">
-      <Filter>Header Files\FrameWork</Filter>
-    </ClInclude>
-    <ClInclude Include="TimeSpan.h">
-      <Filter>Header Files\FrameWork</Filter>
-    </ClInclude>
-    <ClInclude Include="Graphics.h">
-      <Filter>Header Files\FrameWork</Filter>
-    </ClInclude>
     <ClInclude Include="AladdinGame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Event.h">
+    <ClInclude Include="FrameWork\DeviceManager.h">
+      <Filter>Header Files\FrameWork\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameWork\SceneManager.h">
+      <Filter>Header Files\FrameWork\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameWork\SpriteManager.h">
+      <Filter>Header Files\FrameWork\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameWork\Animation.h">
       <Filter>Header Files\FrameWork</Filter>
     </ClInclude>
-    <ClInclude Include="InputController.h">
+    <ClInclude Include="FrameWork\debug.h">
       <Filter>Header Files\FrameWork</Filter>
     </ClInclude>
-    <ClInclude Include="AladdinCharacter.h">
+    <ClInclude Include="FrameWork\define.h">
+      <Filter>Header Files\FrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameWork\Event.h">
+      <Filter>Header Files\FrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameWork\Game.h">
+      <Filter>Header Files\FrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameWork\GameTime.h">
+      <Filter>Header Files\FrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameWork\Graphics.h">
+      <Filter>Header Files\FrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameWork\IComponent.h">
+      <Filter>Header Files\FrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameWork\InputController.h">
+      <Filter>Header Files\FrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameWork\Scene.h">
+      <Filter>Header Files\FrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameWork\Sprite.h">
+      <Filter>Header Files\FrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameWork\Texture.h">
+      <Filter>Header Files\FrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameWork\TimeSpan.h">
+      <Filter>Header Files\FrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameWork\Transformable.h">
+      <Filter>Header Files\FrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameWork\ViewPort.h">
+      <Filter>Header Files\FrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\AladdinCharacter.h">
       <Filter>Header Files\Object</Filter>
-    </ClInclude>
-    <ClInclude Include="debug.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene.h">
-      <Filter>Header Files\FrameWork</Filter>
-    </ClInclude>
-    <ClInclude Include="Animation.h">
-      <Filter>Header Files\FrameWork</Filter>
-    </ClInclude>
-    <ClInclude Include="Sprite.h">
-      <Filter>Header Files\FrameWork</Filter>
-    </ClInclude>
-    <ClInclude Include="Texture.h">
-      <Filter>Header Files\FrameWork</Filter>
-    </ClInclude>
-    <ClInclude Include="Transformable.h">
-      <Filter>Header Files\FrameWork</Filter>
-    </ClInclude>
-    <ClInclude Include="IComponent.h">
-      <Filter>Header Files\FrameWork</Filter>
-    </ClInclude>
-    <ClInclude Include="DeviceManager.h">
-      <Filter>Header Files\FrameWork\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneManager.h">
-      <Filter>Header Files\FrameWork\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="SpriteManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ViewPort.h">
-      <Filter>Header Files\FrameWork</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

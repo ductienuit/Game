@@ -1,7 +1,7 @@
 ﻿#pragma once
 #ifndef  _GameALADDIN_H_
 #define _GameALADDIN_H
-#include"Game.h"
+#include"../Aladdin/FrameWork/Game.h"
 
 using namespace std;
 USEGAME_FRAMEWORK

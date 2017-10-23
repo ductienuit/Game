@@ -1,4 +1,4 @@
-﻿#include"define.h"
+﻿#include"../Aladdin/FrameWork/define.h"
 #include"AladdinGame.h"
 
 using namespace std;

@@ -124,46 +124,46 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="AladdinCharacter.cpp" />
-    <ClCompile Include="Animation.cpp" />
-    <ClCompile Include="define.h" />
-    <ClCompile Include="DeviceManager.cpp" />
     <ClCompile Include="AladdinGame.cpp" />
-    <ClCompile Include="Event.cpp" />
-    <ClCompile Include="Game.cpp" />
-    <ClCompile Include="GameTime.cpp" />
-    <ClCompile Include="Graphics.cpp" />
-    <ClCompile Include="InputController.cpp" />
+    <ClCompile Include="FrameWork\Animation.cpp" />
+    <ClCompile Include="FrameWork\DeviceManager.cpp" />
+    <ClCompile Include="FrameWork\Event.cpp" />
+    <ClCompile Include="FrameWork\Game.cpp" />
+    <ClCompile Include="FrameWork\GameTime.cpp" />
+    <ClCompile Include="FrameWork\Graphics.cpp" />
+    <ClCompile Include="FrameWork\InputController.cpp" />
+    <ClCompile Include="FrameWork\Scene.cpp" />
+    <ClCompile Include="FrameWork\SceneManager.cpp" />
+    <ClCompile Include="FrameWork\Sprite.cpp" />
+    <ClCompile Include="FrameWork\SpriteManager.cpp" />
+    <ClCompile Include="FrameWork\Texture.cpp" />
+    <ClCompile Include="FrameWork\TimeSpan.cpp" />
+    <ClCompile Include="FrameWork\Transformable.cpp" />
+    <ClCompile Include="FrameWork\ViewPort.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Scene.cpp" />
-    <ClCompile Include="SceneManager.cpp" />
-    <ClCompile Include="Sprite.cpp" />
-    <ClCompile Include="SpriteManager.cpp" />
-    <ClCompile Include="Texture.cpp" />
-    <ClCompile Include="TimeSpan.cpp" />
-    <ClCompile Include="Transformable.cpp" />
-    <ClCompile Include="ViewPort.cpp" />
+    <ClCompile Include="Objects\AladdinCharacter.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AladdinCharacter.h" />
-    <ClInclude Include="Animation.h" />
-    <ClInclude Include="debug.h" />
-    <ClInclude Include="DeviceManager.h" />
     <ClInclude Include="AladdinGame.h" />
-    <ClInclude Include="Event.h" />
-    <ClInclude Include="Game.h" />
-    <ClInclude Include="GameTime.h" />
-    <ClInclude Include="Graphics.h" />
-    <ClInclude Include="IComponent.h" />
-    <ClInclude Include="InputController.h" />
-    <ClInclude Include="Scene.h" />
-    <ClInclude Include="SceneManager.h" />
-    <ClInclude Include="Sprite.h" />
-    <ClInclude Include="SpriteManager.h" />
-    <ClInclude Include="Texture.h" />
-    <ClInclude Include="TimeSpan.h" />
-    <ClInclude Include="Transformable.h" />
-    <ClInclude Include="ViewPort.h" />
+    <ClInclude Include="FrameWork\Animation.h" />
+    <ClInclude Include="FrameWork\debug.h" />
+    <ClInclude Include="FrameWork\define.h" />
+    <ClInclude Include="FrameWork\DeviceManager.h" />
+    <ClInclude Include="FrameWork\Event.h" />
+    <ClInclude Include="FrameWork\Game.h" />
+    <ClInclude Include="FrameWork\GameTime.h" />
+    <ClInclude Include="FrameWork\Graphics.h" />
+    <ClInclude Include="FrameWork\IComponent.h" />
+    <ClInclude Include="FrameWork\InputController.h" />
+    <ClInclude Include="FrameWork\Scene.h" />
+    <ClInclude Include="FrameWork\SceneManager.h" />
+    <ClInclude Include="FrameWork\Sprite.h" />
+    <ClInclude Include="FrameWork\SpriteManager.h" />
+    <ClInclude Include="FrameWork\Texture.h" />
+    <ClInclude Include="FrameWork\TimeSpan.h" />
+    <ClInclude Include="FrameWork\Transformable.h" />
+    <ClInclude Include="FrameWork\ViewPort.h" />
+    <ClInclude Include="Objects\AladdinCharacter.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Cach code.txt" />
