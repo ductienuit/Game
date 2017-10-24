@@ -145,6 +145,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Objects\GameObjects\Aladdin.cpp" />
     <ClCompile Include="PlayScene.cpp" />
+    <ClCompile Include="FrameWork\StopWatch.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AladdinGame.h" />
@@ -170,6 +171,7 @@
     <ClInclude Include="FrameWork\ViewPort.h" />
     <ClInclude Include="Objects\GameObjects\Aladdin.h" />
     <ClInclude Include="PlayScene.h" />
+    <ClInclude Include="FrameWork\StopWatch.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Cach code.txt" />

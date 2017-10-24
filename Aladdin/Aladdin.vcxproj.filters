@@ -117,8 +117,11 @@
     <ClCompile Include="Objects\GameObjects\Aladdin.cpp">
       <Filter>Source Files\Object\GameObjects</Filter>
     </ClCompile>
+    <ClCompile Include="FrameWork\StopWatch.cpp">
+      <Filter>Source Files\FrameWork</Filter>
+    </ClCompile>
     <ClCompile Include="PlayScene.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Object\Scenes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -190,6 +193,9 @@
     </ClInclude>
     <ClInclude Include="PlayScene.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameWork\StopWatch.h">
+      <Filter>Header Files\FrameWork</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
