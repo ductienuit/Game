@@ -5,7 +5,7 @@ Convention:
 	Tên biến cục bộ, tên tham số viết thường chữ cái đầu
 	Tên enum thêm e đầu tên, ví dụ eStatus, định nghĩa bên trong biết hoa tất cả chữ cái
 	Tên kiểu dữ liệu được định nghĩa lại thêm G đầu từ, nếu là con trỏ thì thêm p
-		ví dụ typedef D3DXVECTOR2 GVector2;
+		ví dụ typedef D3DXVECTOR2 Vector2;
 
 	định nghĩa các thành phần toàn cục trong file define.h
 

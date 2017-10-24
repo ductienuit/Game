@@ -31,6 +31,30 @@
     <Filter Include="Source Files\FrameWork\Manager">
       <UniqueIdentifier>{00c9ff95-1729-4b4f-967b-44e834287eda}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Object\Enemies">
+      <UniqueIdentifier>{2b0f8715-1b22-4cc0-a57b-aca8e7861ce3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Object\GameObjects">
+      <UniqueIdentifier>{85eb93d2-958c-4834-9deb-161af68ff242}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Object\Scenes">
+      <UniqueIdentifier>{39e7ce3d-1743-485d-b8c9-37d4468eda5f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Object\Weapons">
+      <UniqueIdentifier>{4e9ab0a8-a469-4cfa-be71-76d1eec01e1a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Object\Enemies">
+      <UniqueIdentifier>{7ce271ae-e355-4e53-84fa-858c72537736}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Object\GameObjects">
+      <UniqueIdentifier>{b4a8e1bd-e358-40fd-b44c-c0406668fc6c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Object\Weapons">
+      <UniqueIdentifier>{a87368fc-23ed-4536-bedb-baa171c713f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Object\Scenes">
+      <UniqueIdentifier>{dcf85cb3-9864-438f-8fc5-6dea9f61c150}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -75,9 +99,6 @@
     <ClCompile Include="FrameWork\ViewPort.cpp">
       <Filter>Source Files\FrameWork</Filter>
     </ClCompile>
-    <ClCompile Include="Objects\AladdinCharacter.cpp">
-      <Filter>Source Files\Object</Filter>
-    </ClCompile>
     <ClCompile Include="FrameWork\Manager\DeviceManager.cpp">
       <Filter>Source Files\FrameWork\Manager</Filter>
     </ClCompile>
@@ -86,6 +107,18 @@
     </ClCompile>
     <ClCompile Include="FrameWork\Manager\SpriteManager.cpp">
       <Filter>Source Files\FrameWork\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseEnemy.cpp">
+      <Filter>Source Files\Object\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\GameObjects\BaseObject.cpp">
+      <Filter>Source Files\Object\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\GameObjects\Aladdin.cpp">
+      <Filter>Source Files\Object\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayScene.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -113,9 +146,6 @@
     <ClInclude Include="FrameWork\Graphics.h">
       <Filter>Header Files\FrameWork</Filter>
     </ClInclude>
-    <ClInclude Include="FrameWork\IComponent.h">
-      <Filter>Header Files\FrameWork</Filter>
-    </ClInclude>
     <ClInclude Include="FrameWork\InputController.h">
       <Filter>Header Files\FrameWork</Filter>
     </ClInclude>
@@ -137,9 +167,6 @@
     <ClInclude Include="FrameWork\ViewPort.h">
       <Filter>Header Files\FrameWork</Filter>
     </ClInclude>
-    <ClInclude Include="Objects\AladdinCharacter.h">
-      <Filter>Header Files\Object</Filter>
-    </ClInclude>
     <ClInclude Include="FrameWork\Manager\DeviceManager.h">
       <Filter>Header Files\FrameWork\Manager</Filter>
     </ClInclude>
@@ -148,6 +175,21 @@
     </ClInclude>
     <ClInclude Include="FrameWork\Manager\SpriteManager.h">
       <Filter>Header Files\FrameWork\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\GameObjects\IComponent.h">
+      <Filter>Header Files\FrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseEnemy.h">
+      <Filter>Header Files\Object\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\GameObjects\BaseObject.h">
+      <Filter>Header Files\Object\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\GameObjects\Aladdin.h">
+      <Filter>Header Files\Object\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayScene.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -19,15 +19,27 @@
 #include"debug.h"
 
 
-enum eState
+enum eStatus
 {
 	WALK,
-	JUMP
+	JUMP,
+	NORMAL,
+	THROW
 };
 
 enum eID
 {
 	ALADDIN
+};
+
+enum eDirection
+{
+	NONE = 0,
+	TOP = 1,
+	BOTTOM = 2,
+	LEFT = 4,
+	RIGHT = 8,
+	ALL = (TOP | BOTTOM | LEFT | RIGHT),
 };
 
 #define C_WHITE D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f)				// màu trắnng

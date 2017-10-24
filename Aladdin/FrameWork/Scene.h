@@ -2,7 +2,7 @@
 #define __SCENE_H__
 
 #include"define.h"
-//#include "../../FrameWork/Viewport.h"
+#include "../../FrameWork/Viewport.h"
 
 GAME_FRAMEWORK
 GAME_FRAMEWORK_BEGIN
@@ -18,9 +18,9 @@ public:
 	void virtual Draw(LPD3DXSPRITE spriteHandle) = 0;
 	void virtual Release() = 0;
 
-	//Viewport*  getViewport();
+	Viewport*  getViewport();
 protected:
-	//Viewport* _viewport;
+	Viewport* _viewport;
 private:
 
 };
