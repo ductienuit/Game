@@ -159,7 +159,6 @@
     <ClInclude Include="FrameWork\Game.h" />
     <ClInclude Include="FrameWork\GameTime.h" />
     <ClInclude Include="FrameWork\Graphics.h" />
-    <ClInclude Include="Objects\GameObjects\IComponent.h" />
     <ClInclude Include="FrameWork\InputController.h" />
     <ClInclude Include="FrameWork\Scene.h" />
     <ClInclude Include="FrameWork\Manager\SceneManager.h" />

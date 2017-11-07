@@ -7,7 +7,6 @@ Scene::Scene()
 {
 }
 
-
 Scene::~Scene()
 {
 }

@@ -1,12 +1,12 @@
 frame_name	left	top	right	bottom
 
-normal_0		2	7	41	59
-normal_1		46	7	87	59
-normal_2		93	5	136	59
-normal_3		140	2	187	59
-normal_4		196	4	239	59
-normal_5		248	3	292	59
-normal_6		303	0	348	59
+standing_0		2	7	41	59
+standing_1		46	7	87	59
+standing_2		93	5	136	59
+standing_3		140	2	187	59
+standing_4		196	4	239	59
+standing_5		248	3	292	59
+standing_6		303	0	348	59
 free_0		5	81	47	135
 free_1		51	83	111	135
 free_2		114	78	179	132

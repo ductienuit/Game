@@ -4,8 +4,8 @@
 
 #include "GameTime.h"
 
-NS_FRAMEWORK
-NS_FRAMEWORK_BEGIN
+GAME_FRAMEWORK
+GAME_FRAMEWORK_BEGIN
 
 /*
 now we have a type are called pFunction. It's just a type stores address of function.
@@ -36,6 +36,6 @@ private:
 	bool	_isFinish;
 };
 
-NS_FRAMEWORK_END
+GAME_FRAMEWORK_END
 
 #endif // !__STOP_WATCH__

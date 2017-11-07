@@ -8,10 +8,15 @@
 #include<stdarg.h>
 #include"define.h"
 #include"Sprite.h"
-#include"IComponent.h"
 #include"../FrameWork/Manager/SpriteManager.h"
 
 USEGAME_FRAMEWORK
+
+class IComponent
+{
+public:
+	virtual void Update(float deltatime) = 0;
+};
 
 class Animation :public IComponent
 {

@@ -1,7 +1,7 @@
 
 #include "StopWatch.h"
 
-US_FRAMEWORK
+USEGAME_FRAMEWORK
 
 StopWatch::StopWatch()
 {

@@ -28,4 +28,9 @@ bool PlayScene::InIt()
 	return true;
 }
 
+void PlayScene::UpdateInput(float dt)
+{
+
+}
+
 

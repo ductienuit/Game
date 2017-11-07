@@ -179,9 +179,6 @@
     <ClInclude Include="FrameWork\Manager\SpriteManager.h">
       <Filter>Header Files\FrameWork\Manager</Filter>
     </ClInclude>
-    <ClInclude Include="Objects\GameObjects\IComponent.h">
-      <Filter>Header Files\FrameWork</Filter>
-    </ClInclude>
     <ClInclude Include="BaseEnemy.h">
       <Filter>Header Files\Object\Enemies</Filter>
     </ClInclude>
@@ -191,11 +188,11 @@
     <ClInclude Include="Objects\GameObjects\Aladdin.h">
       <Filter>Header Files\Object\GameObjects</Filter>
     </ClInclude>
-    <ClInclude Include="PlayScene.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="FrameWork\StopWatch.h">
       <Filter>Header Files\FrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayScene.h">
+      <Filter>Header Files\Object\Scenes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

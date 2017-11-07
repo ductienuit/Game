@@ -6,6 +6,10 @@ IControlable::IControlable()
 	_input = InputController::getInstance();
 }
 
+BaseObject::BaseObject()
+{
+}
+
 BaseObject::BaseObject(eID id)
 {
 	this->_id = id;

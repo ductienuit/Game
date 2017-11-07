@@ -19,24 +19,25 @@ protected:
 class BaseObject
 {
 public:
+	BaseObject();
 	BaseObject(eID id);
 	virtual ~BaseObject();
 
-	virtual void init() = 0;
-	virtual void update(float deltatime) = 0;
-	virtual void draw(LPD3DXSPRITE, Viewport*) = 0;
-	virtual void release() = 0;
+	virtual void InIt() = 0;
+	virtual void Update(float deltatime) = 0;
+	virtual void Draw(LPD3DXSPRITE, Viewport*) = 0;
+	virtual void Release() = 0;
 
-	eID getId();
-	eStatus getStatus();
+	eID			 getId();
+	eStatus		 getStatus();
 	virtual void setStatus(eStatus status);
 	virtual void addStatus(eStatus status);
 	virtual void removeStatus(eStatus status);
 	virtual bool isInStatus(eStatus status);
 
 	virtual Vector2 getPosition();
-	virtual float getPositionX();
-	virtual float getPositionY();
+	virtual float   getPositionX();
+	virtual float   getPositionY();
 
 	virtual void setPosition(Vector3 vector);
 	virtual void setPosition(Vector2 position);
@@ -52,23 +53,23 @@ public:
 	virtual void setScaleY(float sy);
 
 	virtual float getRotate();
-	virtual void setRotate(float degree);
+	virtual void  setRotate(float degree);
 
 	virtual Vector2 getOrigin();
-	virtual void setOrigin(Vector2 origin);
+	virtual void    setOrigin(Vector2 origin);
 
-	virtual void setZIndex(float z);
-	virtual float getZIndex();
+	virtual void    setZIndex(float z);
+	virtual float	getZIndex();
 
-	virtual void setOpacity(float opacity);
-	virtual float getOpacity();
+	virtual void	setOpacity(float opacity);
+	virtual float	getOpacity();
 
-	virtual void setColor(D3DXCOLOR color);
+	virtual void	  setColor(D3DXCOLOR color);
 	virtual D3DXCOLOR getColor();
 
-	virtual Vector2 getAnchorPoint();
+	virtual Vector2	  getAnchorPoint();
 
-	Sprite* getSprite();
+	Sprite*		 getSprite();
 
 	virtual RECT getBounding();
 
@@ -76,18 +77,18 @@ public:
 
 	// vật nào cũng có vận tốc, mặc định là đứng yên sẽ return 0
 	// nếu vật có chuyển động phải override lại để lấy vận tốc.
-	virtual Vector2 getVelocity();
+	virtual Vector2		getVelocity();
 
-	virtual void setPhysicsBodySide(eDirection side);
-	virtual eDirection getPhysicsBodySide();
+	virtual void		setPhysicsBodySide(eDirection side);
+	virtual eDirection  getPhysicsBodySide();
 
 protected:
-	Sprite* _sprite;
+	Sprite*		_sprite;
 	// nếu muốn dùng animation thì class kế thừa khai báo animation
 	// khởi tạo animation thì reference đến sprite
-	eID _id;
-	eStatus _status;
-	eDirection _physicsSide;
+	eID			_id;
+	eStatus		_status;
+	eDirection	_physicsSide;
 };
 #endif __BASEOBJECT_H__
 
