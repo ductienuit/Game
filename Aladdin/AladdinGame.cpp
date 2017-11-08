@@ -10,27 +10,40 @@ AladdinGame::~AladdinGame()
 void AladdinGame::InIt()
 {
 	Game::InIt();
+	SceneManager::getInstance()->AddScene(new PlayScene());
 }
 
 void AladdinGame::Release()
 {
 	Game::Release();
+	// release game
+	SceneManager::getInstance()->ClearScenes();
 }
 
 void AladdinGame::UpdateInput(float deltatime)
 {
+	SceneManager::getInstance()->UpdateInput(deltatime);
 }
 
 void AladdinGame::Update(float deltatime)
 {
+	SceneManager::getInstance()->Update(deltatime);
 }
 
 void AladdinGame::Draw()
 {
+	this->_spriteHandler->Begin(D3DXSPRITE_ALPHABLEND);
+
+	SceneManager::getInstance()->Draw(_spriteHandler);
+
+	this->_spriteHandler->End();
 }
 
-void AladdinGame::LoadResourse()
+void AladdinGame::LoadResource()
 {
+	// Game::init đã gọi hàm này rồi nên không cần gọi lại ContraGame::loadResource
+	// load resource
+	SpriteManager::getInstance()->LoadResource(_spriteHandler);
 }
 
 

@@ -21,6 +21,7 @@ using namespace std;
 
 USEGAME_FRAMEWORK
 
+[event_receiver(native)]
 class PlayScene:public Scene
 {
 public:
@@ -29,11 +30,12 @@ public:
 
 	bool InIt() override;
 	void UpdateInput(float dt) override;
+	void Update(float dt) override;
 	void Draw(LPD3DXSPRITE spriteHandle) override;
 	void Release() override;
 
 	void setViewport(Viewport* viewport);
-	//static Viewport* getViewport();
+	static Viewport* getViewport();
 
 	//Trả về một đối tượng theo id
 	//id để dịnh danh một đối tượng
@@ -52,8 +54,18 @@ private:
 
 	BaseObject* _aladdin;
 	BaseObject* _weaponmanager;
+	void UpdateViewport(BaseObject* objTracker);
 
-	void updateViewport(BaseObject* objTracker);
+
+
+
+
+
+	static Viewport* _viewport;
+	Sprite* sprite;
+	vector<BaseObject*> _listobject;
+	vector<IControlable*> _listControlObject;
+	Animation* _animation;
 };
 
 #endif // !__PLAY_SCENE_H__

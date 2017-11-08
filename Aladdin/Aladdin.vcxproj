@@ -82,6 +82,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <AdditionalDependencies>d3d9.lib;d3dx9.lib;dinput8.lib;dxguid.lib;dsound.lib;dxerr.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -126,6 +127,7 @@
   <ItemGroup>
     <ClCompile Include="AladdinGame.cpp" />
     <ClCompile Include="BaseEnemy.cpp" />
+    <ClCompile Include="FrameWork\IComponent.cpp" />
     <ClCompile Include="Objects\GameObjects\BaseObject.cpp" />
     <ClCompile Include="FrameWork\Animation.cpp" />
     <ClCompile Include="FrameWork\Manager\DeviceManager.cpp" />
@@ -150,6 +152,7 @@
   <ItemGroup>
     <ClInclude Include="AladdinGame.h" />
     <ClInclude Include="BaseEnemy.h" />
+    <ClInclude Include="FrameWork\IComponent.h" />
     <ClInclude Include="Objects\GameObjects\BaseObject.h" />
     <ClInclude Include="FrameWork\Animation.h" />
     <ClInclude Include="FrameWork\debug.h" />

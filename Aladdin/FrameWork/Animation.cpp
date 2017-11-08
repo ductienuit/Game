@@ -74,7 +74,7 @@ void Animation::setIndex(int index)
 
 	_index = index;
 
-	if (_index > _totalFrames)
+	if (_index >= _totalFrames)
 		_index = _startFrame;
 
 	_currentRect = _frameRectList[_index];
@@ -85,22 +85,31 @@ void Animation::setIndex(int index)
 	}
 }
 
-void Animation::Update(int deltatime)
+void Animation::Update(float dt)
 {
 	if (!_canFlashes && !_canAnimate)
 		return;
-	//canFlash - nháy
-	if (_canFlashes)
+
+	_timer += dt / 1000;
+	if (_timer >= _timeAnimate)
 	{
-		if (_spriteSheet->getOpacity() != _valueFlashes)
+		if (_canAnimate)
+			this->NextFrame();
+
+		_timer -= _timeAnimate;				// không thể gán bằng 0. vì như vậy là làm tròn. sẽ có sai số
+
+		if (_canFlashes)
 		{
-			_spriteSheet->setOpacity(_valueFlashes);  //sprite nhạt màu bao nhiêu
-			_spriteSheet->setColor(D3DXCOLOR(_flashColor.r, _flashColor.g, _flashColor.b, _valueFlashes));
-		}
-		else
-		{
-			_spriteSheet->setOpacity(1.0f);          //sprite nhạt màu bao nhiêu
-			_spriteSheet->setColor(D3DXCOLOR(_flashColor.r, _flashColor.g, _flashColor.b, 1.0f));
+			if (_spriteSheet->getOpacity() != _valueFlashes)
+			{
+				_spriteSheet->setOpacity(_valueFlashes);
+				_spriteSheet->setColor(D3DXCOLOR(_flashColor.r, _flashColor.g, _flashColor.b, _valueFlashes));
+			}
+			else
+			{
+				_spriteSheet->setOpacity(1.0f);
+				_spriteSheet->setColor(D3DXCOLOR(_flashColor.r, _flashColor.g, _flashColor.b, 1.0f));
+			}
 		}
 	}
 }

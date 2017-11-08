@@ -1,69 +1,57 @@
-#pragma once
 #ifndef __ALADDIN_H__
-#define	__ALADDIN_H__
+#define __ALADDIN_H__
 
-#include"../../FrameWork/define.h"
-#include"../../FrameWork/Animation.h"
-#include"../../FrameWork/InputController.h"
-#include"../../FrameWork/Manager/SceneManager.h"
-#include"../../FrameWork/StopWatch.h"
+#include "../../FrameWork/define.h"
+#include "../../FrameWork/Animation.h"
+#include "../../FrameWork/InputController.h"
+#include"../../FrameWork/IComponent.h"
+#include "BaseObject.h"
 
-
-
-#include"BaseObject.h"
-//Collision
-
-#include<vector>
+#define ALADDIN_MOVE_SPEED 100
+#define ALADDIN_JUMP_VEL 100
+#define ALADDIN_ACC_MOVE 300
+#define TEST_LAND 200
+#define GRAVITY 50
 
 [event_receiver(native)]
-class Aladdin:public BaseObject,public IControlable
+class Aladdin : public BaseObject, public IControlable
 {
 public:
 	Aladdin();
 	~Aladdin();
 
-	//Override function
 	void InIt();
 	void UpdateInput(float dt);
 	void Update(float deltatime);
 	void Draw(LPD3DXSPRITE spriteHandle, Viewport* viewport);
 	void Release();
 
-	//Check event
+	void setPosition(float x, float y);
+
 	void onKeyPressed(KeyEventArg* key_event);
 	void onKeyReleased(KeyEventArg* key_event);
 
-	void setStatus(eStatus status) override;
-
-
-
-	float getMovingSpeed();
-
-	RECT getBounding() override;
-
 private:
 	map<int, Animation*> _animations;
-	map<int, IComponent*> _componentList;
+	map<string, IComponent*> _componentList;
 
-	float		_movingSpeed;
-	StopWatch*  _stopWatch;
-	eStatus		_currentAnimateIndex;
-	Vector2	    getVelocity();
+	void standing();
+	void moveLeft();
+	void moveRight();
+	void jump();
+	void layDown();
 
-	//Action aladdin
-	void		Standing();
-	void		MoveLeft();
-	void		MoveRight();
-	void		Jump();
-	void		DropDown();
-	void		SwingLeft();
-	void		SwingRight();
+	//void setState(int state);
+	void addStatus(eStatus status);
+	void removeStatus(eStatus status);
+	bool isInStatus(eStatus status);
 
-	
+	Vector2 getVelocity();
+	void updateStatus(float dt);
 
-	void		updateStatus(float dt);
-	void		updateCurrentAnimateIndex();
-	eDirection  getAimingDirection();
+	eStatus _currentAnimateIndex;
+	void updateCurrentAnimateIndex();
 };
-#endif __ALADDIN_H__
 
+
+#endif // !__ALADDIN_H__

@@ -24,7 +24,7 @@ public:
 	virtual	void		UpdateInput(float deltatime);   //Update input, play object and menu control
 	virtual void		Update(float deltatime);        //update your objects
 	virtual void		Draw();							//Draw your objects
-	virtual bool		LoadResource();
+	virtual void		LoadResource();
 
 	void				Run();	
 	void				Render();						//Vẽ ...

@@ -8,15 +8,10 @@
 #include<stdarg.h>
 #include"define.h"
 #include"Sprite.h"
+#include"../FrameWork/IComponent.h"
 #include"../FrameWork/Manager/SpriteManager.h"
 
 USEGAME_FRAMEWORK
-
-class IComponent
-{
-public:
-	virtual void Update(float deltatime) = 0;
-};
 
 class Animation :public IComponent
 {
@@ -50,7 +45,7 @@ public:
 	int		getIndex();
 
 	//Update Animation
-	void	 Update(int deltatime);
+	void	 Update(float dt);
 
 	//Vẽ chuyển động
 	void	 Draw(LPD3DXSPRITE spriteHandle, Viewport* viewport);

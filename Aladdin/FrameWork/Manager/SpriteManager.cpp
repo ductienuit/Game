@@ -6,11 +6,6 @@ SpriteManager::SpriteManager()
 {
 }
 
-
-void SpriteManager::ReleaseTexture(eID id)
-{
-}
-
 SpriteManager::~SpriteManager()
 {
 	for (auto spr = _listSprite.begin(); spr != _listSprite.end(); ++spr)
@@ -53,18 +48,48 @@ void SpriteManager::LoadResource(LPD3DXSPRITE spriteHandle)
 
 Sprite * SpriteManager::getSprite(eID id)
 {
-	return nullptr;
+	Sprite *it = this->_listSprite.find(id)->second;
+	return new Sprite(*it);			// get the copy version of Sprite
 }
 
 RECT SpriteManager::getSourceRect(eID id, string name)
 {
-	return RECT();
+	return _sourceRectList[id][name];
 }
 
 void SpriteManager::LoadSpriteInfo(eID id, const char * fileInfoPath)
 {
+	FILE* file;
+	file = fopen(fileInfoPath, "r");
+
+	if (file)
+	{
+		while (!feof(file))
+		{
+			RECT rect;
+			char name[100];
+			fgets(name, 100, file);
+
+			fscanf(file, "%s %d %d %d %d", &name, &rect.left, &rect.top, &rect.right, &rect.bottom);
+
+			_sourceRectList[id][name] = rect;
+		}
+	}
+
+	fclose(file);
 }
 
 void SpriteManager::ReleaseSprite(eID id)
 {
+	Sprite *it = this->_listSprite.find(id)->second;
+	delete it;							// delete the sprite only, dont relase image
+	this->_listSprite.erase(id);		// erase funciotn only remove the pointer from MAP, dont delete it.
+}
+
+void SpriteManager::ReleaseTexture(eID id)
+{
+	Sprite *spr = this->_listSprite.find(id)->second;
+	spr->Release();						// release image
+	delete spr;
+	this->_listSprite.erase(id);		// erase funciotn only remove the pointer from MAP, dont delete it.
 }

@@ -151,8 +151,7 @@ void Game::Draw()
 	//Chưa code, override
 }
 
-bool Game::LoadResource()
+void Game::LoadResource()
 {
 	//override
-	return true;
 }

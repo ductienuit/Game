@@ -2,6 +2,8 @@
 #ifndef  _GameALADDIN_H_
 #define _GameALADDIN_H
 #include"../Aladdin/FrameWork/Game.h"
+#include"../Aladdin/FrameWork/Manager/SceneManager.h"
+#include"PlayScene.h"
 
 using namespace std;
 USEGAME_FRAMEWORK
@@ -15,11 +17,10 @@ public:
 
 	void	InIt();   //Khởi tạo đối tượng
 	void	Release();
-
 	void	UpdateInput(float deltatime);  //override update input
 	void	Update(float deltatime);       //override update your object
 	void	Draw();                        //Draw your Object
-	void	LoadResourse();
+	void	LoadResource();
 };
 #endif _GAMEALADDIN_H_
 
