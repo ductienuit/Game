@@ -16,7 +16,7 @@
 
 
 [event_receiver(native)]
-class Aladdin : public BaseObject, public IControlable
+class Aladdin : public BaseObject,public IControlable
 {
 public:
 	Aladdin();
@@ -30,22 +30,21 @@ public:
 
 	void setPosition(float x, float y);
 
-	void onKeyPressed(KeyEventArg* key_event);
-	void onKeyReleased(KeyEventArg* key_event);
-
 private:
 	map<int, Animation*> _animations;
 	map<string, IComponent*> _componentList;
+
+	void onKeyReleased(KeyEventArg* key_event);
 
 	void standing();
 	void moveLeft();
 	void moveRight();
 	void jump();
-	void layDown();
+	void sitDown();
 
 	//Dong ho dem
+	StopWatch* _firstAnimateStopWatch;
 	StopWatch* _normalAnimateStopWatch;
-	StopWatch* _freeAnimateStopWatch;
 
 	//void setState(int state);
 	void addStatus(eStatus status);

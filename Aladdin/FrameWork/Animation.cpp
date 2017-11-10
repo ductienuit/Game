@@ -198,6 +198,17 @@ void Animation::addFrameRect(float left, float top, float right, float bottom)
 	this->addFrameRect(rect);
 }
 
+void Animation::addFrameRect(eID id, char * firstRectName, int numb)
+{
+	string name;
+	name = firstRectName;
+	for(int i=0;i<numb;i++)
+	{
+		name = firstRectName + std::to_string(i);
+		this->addFrameRect(SpriteManager::getInstance()->getSourceRect(id, name));
+	}
+}
+
 void Animation::addFrameRect(eID id, char* firstRectName, ...)
 {
 	va_list vl;
