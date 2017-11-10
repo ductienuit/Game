@@ -5,13 +5,15 @@
 #include "../../FrameWork/Animation.h"
 #include "../../FrameWork/InputController.h"
 #include"../../FrameWork/IComponent.h"
+#include"../../FrameWork/StopWatch.h"
 #include "BaseObject.h"
 
-#define ALADDIN_MOVE_SPEED 100
-#define ALADDIN_JUMP_VEL 100
+#define ALADDIN_MOVE_SPEED 125
+#define ALADDIN_JUMP_VEL 450
 #define ALADDIN_ACC_MOVE 300
 #define TEST_LAND 200
-#define GRAVITY 50
+#define GRAVITY 800
+
 
 [event_receiver(native)]
 class Aladdin : public BaseObject, public IControlable
@@ -40,6 +42,10 @@ private:
 	void moveRight();
 	void jump();
 	void layDown();
+
+	//Dong ho dem
+	StopWatch* _normalAnimateStopWatch;
+	StopWatch* _freeAnimateStopWatch;
 
 	//void setState(int state);
 	void addStatus(eStatus status);

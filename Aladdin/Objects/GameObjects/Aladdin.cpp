@@ -46,6 +46,8 @@ void Aladdin::InIt()
 	_animations[eStatus::SITTING_DOWN] = new Animation(_sprite, 0.1f);
 	_animations[eStatus::SITTING_DOWN]->addFrameRect(eID::ALADDIN, "sit_0", "sit_1", "sit_2", "sit_3", NULL);
 
+	_animations[eStatus::FREE] = new Animation(_sprite, 0.1f);
+	_animations[eStatus::FREE]->addFrameRect(eID::ALADDIN,"free_0", "free_1", "free_2", "free_3", "free_4", "free_5", "free_6", "free_7", "free_8", "free_9", "free_10", "free_11", "free_12", "free_13", "free_14", "free_15","free_16", "free_17", "free_18", "free_19", "free_20", "free_21", "free_22", "free_23", "free_24", "free_25", "free_26", "free_27", "free_28", "free_29", "free_30", "free_31",NULL);
 	//_animation[eStatus::DROP] = new Animation(_sprite, 0.1f);
 	//_animations[eStatus::DROP]->addFrameRect(eID::ALADDIN, "drop_down_0", "drop_down_1", "drop_down_2", "drop_down_3", "drop_down_4", "drop_down_5", "drop_down_6", "drop_down_7", "drop_down_8");
 
@@ -80,10 +82,15 @@ void Aladdin::InIt()
 	_animations[eStatus::SHOOTING | eStatus::MOVING_RIGHT] = new Animation(_sprite, 0.1f);
 	_animations[eStatus::SHOOTING | eStatus::MOVING_RIGHT]->addFrameRect(eID::ALADDIN, "throw_0", "throw_1", "throw_2", "throw_3", "throw_4", "throw_5", NULL);
 
+
 	_sprite->drawBounding(false);
 	_sprite->setOrigin(Vector2(0.5f, 0.0f));
 
 	this->setStatus(eStatus::NORMAL);
+
+	//create stopwatch to wait time state normal or free of aladdin
+	_normalAnimateStopWatch = new StopWatch();
+	_freeAnimateStopWatch = new StopWatch();
 }
 
 void Aladdin::Update(float deltatime)
@@ -115,6 +122,12 @@ void Aladdin::Update(float deltatime)
 
 void Aladdin::UpdateInput(float dt)
 {
+	//Change Normal to free animation after 5 minute
+	if (_normalAnimateStopWatch->isStopWatch(5000))
+	{
+		this->removeStatus(eStatus::NORMAL);
+		this->addStatus(eStatus::FREE);
+	}
 }
 
 void Aladdin::Draw(LPD3DXSPRITE spriteHandle, Viewport* viewport)
@@ -149,11 +162,13 @@ void Aladdin::onKeyPressed(KeyEventArg* key_event)
 			this->addStatus(eStatus::DROP);
 			this->jump();
 		}	*/
+		this->removeStatus(eStatus::FREE);
 		this->jump();
 		break;
 	}
 	case DIK_LEFT:
 	{
+		this->removeStatus(eStatus::FREE);
 		this->removeStatus(eStatus::SITTING_DOWN);
 		this->removeStatus(eStatus::MOVING_RIGHT);
 		this->addStatus(eStatus::MOVING_LEFT);
@@ -162,6 +177,7 @@ void Aladdin::onKeyPressed(KeyEventArg* key_event)
 	}
 	case DIK_RIGHT:
 	{
+		this->removeStatus(eStatus::FREE);
 		this->removeStatus(eStatus::SITTING_DOWN);
 		this->removeStatus(eStatus::MOVING_LEFT);
 		this->addStatus(eStatus::MOVING_RIGHT);
@@ -170,16 +186,19 @@ void Aladdin::onKeyPressed(KeyEventArg* key_event)
 	}
 	case DIK_DOWN:
 	{
+		this->removeStatus(eStatus::FREE);
 		this->addStatus(eStatus::SITTING_DOWN);
 		break;
 	}
 	case DIK_UP:
 	{
+		this->removeStatus(eStatus::FREE);
 		this->addStatus(eStatus::LOOKING_UP);
 		break;
 	}
 	case DIK_X:
 	{
+		this->removeStatus(eStatus::FREE);
 		this->addStatus(eStatus::SHOOTING);
 		break;
 	}

@@ -55,6 +55,9 @@
     <Filter Include="Source Files\Object\Scenes">
       <UniqueIdentifier>{dcf85cb3-9864-438f-8fc5-6dea9f61c150}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Object\State Manager">
+      <UniqueIdentifier>{8bc850a5-60e0-46e2-a199-7d0e6d7d288c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
