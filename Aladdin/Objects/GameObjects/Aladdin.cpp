@@ -141,6 +141,7 @@ void Aladdin::UpdateInput(float dt)
 			if (_firstAnimateStopWatch->isStopWatch(2000))
 			{
 				this->addStatus(eStatus::NORMAL1);
+				_normalAnimateStopWatch->restart();  //Chuyển sang trạng thái normal1 thì mình khởi động lại đồng hồ đếm
 			}
 
 			if (_input->isKeyDown(DIK_LEFT))
@@ -167,8 +168,7 @@ void Aladdin::UpdateInput(float dt)
 		}
 	case(eStatus::NORMAL1):
 	{
-		//Change normal to free animation after 5 minute
-		//_normalAnimateStopWatch->restart();
+		//Line Below: Change normal to free animation after 5 minute		
 		if (_normalAnimateStopWatch->isStopWatch(2000))
 		{
 			this->removeStatus(eStatus::NORMAL1);
