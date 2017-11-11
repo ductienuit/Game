@@ -232,26 +232,6 @@ void Aladdin::UpdateInput(float dt)
 		break;
 	}
 
-	case (eStatus::SITTING_DOWN):
-	{
-
-		if ( _animations[_currentAnimateIndex]->getIndex() == 3)
-		{
-			_animations[_currentAnimateIndex]->Stop();
-		}
-
-		if (_input->isKeyDown(DIK_X))
-		{
-			this->addStatus(eStatus::ATTACK);
-		}
-		break;
-
-		if (_input->isKeyDown(DIK_LEFT))
-		{
-
-		}
-	}
-
 	case(eStatus::FREE):
 	{
 		if (_input->isKeyDown(DIK_LEFT))
@@ -329,12 +309,6 @@ void Aladdin::UpdateInput(float dt)
 			this->removeStatus(eStatus::NORMAL1);
 			this->removeStatus(eStatus::FREE);
 			this->addStatus(eStatus::MOVING_RIGHT);
-		}
-		else if (_input->isKeyDown(DIK_DOWN))
-		{
-			this->removeStatus(eStatus::NORMAL1);
-			this->removeStatus(eStatus::FREE);
-			this->addStatus(eStatus::SITTING_DOWN);
 		}
 		else if (_input->isKeyDown(DIK_UP))
 		{
@@ -537,7 +511,7 @@ void Aladdin::onKeyReleased(KeyEventArg * key_event)
 	{
 		this->removeStatus(eStatus::JUMPING);
 		break;
-	}
+	}*/
 	default:
 		break;
 	}
