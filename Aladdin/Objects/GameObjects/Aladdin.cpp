@@ -138,7 +138,7 @@ void Aladdin::UpdateInput(float dt)
 	case(eStatus::NORMAL):
 		{
 			//Change normal to free animation after 5 minute
-			if (_firstAnimateStopWatch->isStopWatch(2000))
+			if (_firstAnimateStopWatch->isStopWatch(1300))
 			{
 				this->addStatus(eStatus::NORMAL1);
 				_normalAnimateStopWatch->restart();  //Chuyển sang trạng thái normal1 thì mình khởi động lại đồng hồ đếm
@@ -162,7 +162,15 @@ void Aladdin::UpdateInput(float dt)
 			}
 			else if (_input->isKeyDown(DIK_X))
 			{
-				this->addStatus(eStatus::THROW);
+				//this->addStatus(eStatus::);  //chém
+			}
+			else if (_input->isKeyDown(DIK_Z)) //ném
+			{
+				this->addStatus(eStatus::THROW);  
+			}
+			else if (_input->isKeyDown(DIK_C))
+			{				
+				jump();
 			}
 			break;
 		}
@@ -200,6 +208,16 @@ void Aladdin::UpdateInput(float dt)
 			this->removeStatus(eStatus::NORMAL1);
 			this->addStatus(eStatus::THROW);
 		}
+		else if (_input->isKeyDown(DIK_Z)) //ném
+		{
+			this->removeStatus(eStatus::NORMAL1);
+			this->addStatus(eStatus::THROW);
+		}
+		else if (_input->isKeyDown(DIK_C))
+		{
+			this->removeStatus(eStatus::NORMAL1);
+			jump();
+		}
 		break;
 	}
 	case(eStatus::FREE):
@@ -224,15 +242,20 @@ void Aladdin::UpdateInput(float dt)
 			this->removeStatus(eStatus::FREE);
 			this->addStatus(eStatus::LOOKING_UP);
 		}
-		else if (_input->isKeyDown(DIK_X))
+		else if (_input->isKeyDown(DIK_X)) //chém
+		{
+			this->removeStatus(eStatus::FREE);
+			//this->addStatus(eStatus::THROW);
+		}
+		else if (_input->isKeyDown(DIK_Z)) //ném
 		{
 			this->removeStatus(eStatus::FREE);
 			this->addStatus(eStatus::THROW);
 		}
-		else if (_input->isKeyDown(DIK_X))
+		else if (_input->isKeyDown(DIK_C))
 		{
 			this->removeStatus(eStatus::FREE);
-			this->addStatus(eStatus::THROW);
+			jump();
 		}
 		break;
 	}
@@ -250,6 +273,7 @@ void Aladdin::UpdateInput(float dt)
 			//check cham dat hoac collision voi mot object
 			break;
 		}
+
 	}
 }
 
@@ -337,28 +361,32 @@ void Aladdin::onKeyReleased(KeyEventArg * key_event)
 	case DIK_RIGHT:
 	{
 		this->removeStatus(eStatus::MOVING_RIGHT);
-		break;
 	}
 	case DIK_LEFT:
 	{
 		this->removeStatus(eStatus::MOVING_LEFT);
-		break;
 	}
 	case DIK_DOWN:
 	{
 		this->removeStatus(eStatus::SITTING_DOWN);
-		break;
 	}
 	case DIK_UP:
 	{
 		this->removeStatus(eStatus::LOOKING_UP);
-		break;
 	}
 	case DIK_X:
 	{
 		this->removeStatus(eStatus::THROW);
-		break;
 	}
+	case DIK_Z: //ném
+	{
+		this->removeStatus(eStatus::THROW);
+	}
+	/*case DIK_C:
+	{
+		this->removeStatus(eStatus::JUMPING);
+		break;
+	}*/
 	default:
 		break;
 	}
