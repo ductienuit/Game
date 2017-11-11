@@ -22,7 +22,11 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{F4CF6139-2E28-4211-8EC4-C5CF060A9775}</ProjectGuid>
     <RootNamespace>Aladdin</RootNamespace>
+<<<<<<< HEAD
     <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+=======
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
+>>>>>>> 34ec9ad73d3311537a3f09a9bc0927a449d063a3
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

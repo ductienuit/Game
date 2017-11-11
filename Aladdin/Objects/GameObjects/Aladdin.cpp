@@ -40,8 +40,13 @@ void Aladdin::InIt()
 	_animations[eStatus::NORMAL] = new Animation(_sprite, 0.1f);
 	_animations[eStatus::NORMAL]->addFrameRect(eID::ALADDIN, "standing_0", "standing_0", NULL);
 
+<<<<<<< HEAD
 	_animations[eStatus::NORMAL1] = new Animation(_sprite, 0.15f);
 	_animations[eStatus::NORMAL1]->addFrameRect(eID::ALADDIN, "standing_", 7); //7 là số ảnh
+=======
+	_animations[eStatus::NORMAL1] = new Animation(_sprite, 0.3f);
+	_animations[eStatus::NORMAL1]->addFrameRect(eID::ALADDIN, "standing_",7); //7 là số ảnh
+>>>>>>> 34ec9ad73d3311537a3f09a9bc0927a449d063a3
 
 	_animations[eStatus::JUMPING] = new Animation(_sprite, 0.1f);
 	_animations[eStatus::JUMPING]->addFrameRect(eID::ALADDIN, "jump_up_", 10);
@@ -73,16 +78,24 @@ void Aladdin::InIt()
 	//_animations[eStatus::DROP] = new Animation(_sprite, 0.1f);
 	//_animations[eStatus::DROP]->addFrameRect(eID::ALADDIN, "drop_down_0", "drop_down_1", "drop_down_2","drop_down_3", "drop_down_4", "drop_down_5", "drop_down_6", "drop_down_7", "drop_down_8");
 
+<<<<<<< HEAD
 	_animations[eStatus::NORMAL | eStatus::THROW] = new Animation(_sprite, 0.1f);
 	_animations[eStatus::NORMAL | eStatus::THROW]->addFrameRect(eID::ALADDIN, "throw_", 5);
 
 	_animations[eStatus::ATTACK | eStatus::SITTING_DOWN] = new Animation(_sprite, 0.1f);
+=======
+	_animations[eStatus::THROW] = new Animation(_sprite, 0.1f);
+	_animations[eStatus::THROW]->addFrameRect(eID::ALADDIN, "throw_",5);
+
+	_animations[eStatus::ATTACK |  eStatus::SITTING_DOWN]= new Animation(_sprite, 0.1f);
+>>>>>>> 34ec9ad73d3311537a3f09a9bc0927a449d063a3
 	_animations[eStatus::ATTACK | eStatus::SITTING_DOWN]->addFrameRect(eID::ALADDIN, "swing_sword_", 5);
 
 	_animations[eStatus::MOVING_RIGHT] = new Animation(_sprite, 0.1f);
 	_animations[eStatus::MOVING_RIGHT]->addFrameRect(eID::ALADDIN, "walk_", 13);
 
 	_animations[eStatus::MOVING_LEFT] = new Animation(_sprite, 0.1f);
+<<<<<<< HEAD
 	_animations[eStatus::MOVING_LEFT]->addFrameRect(eID::ALADDIN, "walk_", 13);
 
 	_animations[eStatus::SITTING_DOWN | eStatus::MOVING_LEFT] = new Animation(_sprite, 0.1f);
@@ -92,6 +105,9 @@ void Aladdin::InIt()
 	_animations[eStatus::SITTING_DOWN | eStatus::MOVING_RIGHT] = new Animation(_sprite, 0.1f);
 	_animations[eStatus::SITTING_DOWN | eStatus::MOVING_RIGHT]->addFrameRect(eID::ALADDIN, "sit_0", "sit_1",
 		"sit_2", "sit_3", NULL);
+=======
+	_animations[eStatus::MOVING_LEFT]->addFrameRect(eID::ALADDIN, "walk_",13);
+>>>>>>> 34ec9ad73d3311537a3f09a9bc0927a449d063a3
 
 	/*_animations[eStatus::LOOKING_UP | eStatus::SHOOTING] = new Animation(_sprite, 0.1f);
 	_animations[eStatus::LOOKING_UP | eStatus::SHOOTING]->addFrameRect(eID::ALADDIN, "shot_up_01", "shot_up_02", NULL);
@@ -144,6 +160,7 @@ void Aladdin::Update(float deltatime)
 			this->removeStatus(eStatus::JUMPING);
 		}
 
+<<<<<<< HEAD
 		else if (this->isInStatus(eStatus::JUMPING_RIGHT))
 		{
 			this->removeStatus(eStatus::JUMPING_RIGHT);
@@ -154,13 +171,26 @@ void Aladdin::Update(float deltatime)
 			this->removeStatus(eStatus::JUMPING_LEFT);
 
 		}
+=======
+		this->removeStatus(eStatus::JUMPING_RIGHT);
+		//this->removeStatus(eStatus::JUMPING);
+>>>>>>> 34ec9ad73d3311537a3f09a9bc0927a449d063a3
 		this->standing();
 	}
 
+	if (this->isInStatus(eStatus::THROW) && _animations[_currentAnimateIndex]->getIndex() >= 4)
+	{
+		this->removeStatus(eStatus::THROW);
+	}
 	this->updateStatus(deltatime);
 
+<<<<<<< HEAD
+=======
+	//Loc dieu kien
+>>>>>>> 34ec9ad73d3311537a3f09a9bc0927a449d063a3
 	this->updateCurrentAnimateIndex();
 
+	//_animations[_currentAnimateIndex]->Update(deltatime);
 	_animations[_currentAnimateIndex]->Update(deltatime);
 	// update component để sau cùng để sửa bên trên sau đó nó cập nhật đúng
 	for (auto it = _componentList.begin(); it != _componentList.end(); it++)
@@ -178,7 +208,7 @@ void Aladdin::UpdateInput(float dt)
 	case(eStatus::NORMAL):
 	{
 		//Change normal to free animation after 5 minute
-		if (_firstAnimateStopWatch->isStopWatch(1300))
+		if (_firstAnimateStopWatch->isStopWatch(4000))
 		{
 			this->addStatus(eStatus::NORMAL1);
 			_normalAnimateStopWatch->restart();  //Chuyển sang trạng thái normal1 thì mình khởi động lại đồng hồ đếm
@@ -210,14 +240,14 @@ void Aladdin::UpdateInput(float dt)
 		}
 		else if (_input->isKeyDown(DIK_C))
 		{
-			jump(eStatus::JUMPING);
+			jump();
 		}
 		break;
 	}
 	case(eStatus::NORMAL1):
 	{
 		//Line Below: Change normal to free animation after 5 minute		
-		if (_normalAnimateStopWatch->isStopWatch(2000))
+		if (_normalAnimateStopWatch->isStopWatch(5000))
 		{
 			this->removeStatus(eStatus::NORMAL1);
 			this->addStatus(eStatus::FREE);
@@ -256,7 +286,7 @@ void Aladdin::UpdateInput(float dt)
 		else if (_input->isKeyDown(DIK_C))
 		{
 			this->removeStatus(eStatus::NORMAL1);
-			jump(eStatus::JUMPING);
+			jump();
 		}
 		break;
 	}
@@ -300,9 +330,9 @@ void Aladdin::UpdateInput(float dt)
 		{
 			this->removeStatus(eStatus::NORMAL1);
 			this->removeStatus(eStatus::FREE);
-			jump(eStatus::JUMPING);
-			break;
+			jump();			
 		}
+		break;
 	}
 	case(eStatus::MOVING_LEFT):
 	{
@@ -348,13 +378,13 @@ void Aladdin::UpdateInput(float dt)
 		{
 			this->removeStatus(eStatus::NORMAL1);
 			this->removeStatus(eStatus::FREE);
-			_sprite->setScaleX(-1);
+			_sprite->setScaleX(-1.6);
 		}
 		else if (_input->isKeyDown(DIK_RIGHT))
 		{
 			this->removeStatus(eStatus::NORMAL1);
 			this->removeStatus(eStatus::FREE);
-			_sprite->setScaleX(1);
+			_sprite->setScaleX(1.6);
 		}
 		else if (_input->isKeyDown(DIK_X))
 		{
@@ -372,28 +402,30 @@ void Aladdin::UpdateInput(float dt)
 		{
 			this->removeStatus(eStatus::NORMAL1);
 			this->removeStatus(eStatus::FREE);
-			jump(eStatus::JUMPING);
+			this->removeStatus(eStatus::SITTING_DOWN);
+			jump();
 		}
 		break;
 	}
 	case(eStatus::LOOKING_UP):
 	{
-		if (_animations[_currentAnimateIndex]->getIndex() == 2)
+		if (_animations[_currentAnimateIndex]->getIndex() >= 2)
 		{
 			_animations[_currentAnimateIndex]->Stop();
 		}
+			
 		//left, right, down,x,c,z
 		if (_input->isKeyDown(DIK_LEFT))
 		{
 			this->removeStatus(eStatus::NORMAL1);
 			this->removeStatus(eStatus::FREE);
-			_sprite->setScaleX(-1);
+			_sprite->setScaleX(-1.6);
 		}
 		else if (_input->isKeyDown(DIK_RIGHT))
 		{
 			this->removeStatus(eStatus::NORMAL1);
 			this->removeStatus(eStatus::FREE);
-			_sprite->setScaleX(1);
+			_sprite->setScaleX(1.6);
 		}
 		else if (_input->isKeyDown(DIK_DOWN))
 		{
@@ -421,7 +453,7 @@ void Aladdin::UpdateInput(float dt)
 			this->removeStatus(eStatus::NORMAL1);
 			this->removeStatus(eStatus::FREE);
 			this->removeStatus(eStatus::LOOKING_UP);
-			jump(eStatus::JUMPING);
+			jump();
 		}
 		break;
 	}
@@ -514,24 +546,32 @@ void Aladdin::onKeyReleased(KeyEventArg * key_event)
 		this->removeStatus(eStatus::NORMAL1);
 		this->removeStatus(eStatus::FREE);
 		this->removeStatus(eStatus::MOVING_RIGHT);
+		break;
 	}
 	case DIK_LEFT:
 	{
 		this->removeStatus(eStatus::NORMAL1);
 		this->removeStatus(eStatus::FREE);
 		this->removeStatus(eStatus::MOVING_LEFT);
+		break;
 	}
 	case DIK_DOWN:
 	{
 		this->removeStatus(eStatus::NORMAL1);
 		this->removeStatus(eStatus::FREE);
 		this->removeStatus(eStatus::SITTING_DOWN);
+		_animations[_currentAnimateIndex]->Restart(0);
+		break;
 	}
 	case DIK_UP:
 	{
 		this->removeStatus(eStatus::NORMAL1);
 		this->removeStatus(eStatus::FREE);
 		this->removeStatus(eStatus::LOOKING_UP);
+
+		//Chạy lại hình ảnh động muốn thực hiện. bắt đầu là 0. Phải có dòng 343
+		_animations[_currentAnimateIndex]->Restart(0);
+		break;
 	}
 	case DIK_X:
 	{
@@ -544,7 +584,9 @@ void Aladdin::onKeyReleased(KeyEventArg * key_event)
 	{
 		this->removeStatus(eStatus::NORMAL1);
 		this->removeStatus(eStatus::FREE);
-		this->removeStatus(eStatus::THROW);
+		//this->removeStatus(eStatus::THROW);
+		break;
+
 	}
 	/*case DIK_C:
 	{
@@ -568,7 +610,7 @@ void Aladdin::standing()
 
 void Aladdin::moveLeft()
 {
-	_sprite->setScaleX(-1);
+	_sprite->setScaleX(-1.6);
 
 	auto move = (Movement*)this->_componentList["Movement"];
 	move->setVelocity(Vector2(-ALADDIN_MOVE_SPEED, move->getVelocity().y));
@@ -576,18 +618,25 @@ void Aladdin::moveLeft()
 
 void Aladdin::moveRight()
 {
-	_sprite->setScaleX(1);
+	_sprite->setScaleX(1.6);
 
 	auto move = (Movement*)this->_componentList["Movement"];
 	move->setVelocity(Vector2(ALADDIN_MOVE_SPEED, move->getVelocity().y));
 }
 
-void Aladdin::jump(eStatus status)
+void Aladdin::jump()
 {
+<<<<<<< HEAD
 	if (this->isInStatus(status))
 		return;
 
 	this->addStatus(status);
+=======
+	if (this->isInStatus(eStatus::JUMPING))
+		return;
+
+	this->addStatus(eStatus::JUMPING);
+>>>>>>> 34ec9ad73d3311537a3f09a9bc0927a449d063a3
 
 	auto move = (Movement*)this->_componentList["Movement"];
 	move->setVelocity(Vector2(move->getVelocity().x, ALADDIN_JUMP_VEL));
@@ -600,6 +649,14 @@ void Aladdin::sitDown()
 {
 	auto move = (Movement*)this->_componentList["Movement"];
 	move->setVelocity(Vector2(0, move->getVelocity().y));
+}
+
+void Aladdin::swingSword()
+{
+	if (this->isInStatus(eStatus::JUMPING))
+		return;
+
+	this->addStatus(eStatus::JUMPING);
 }
 
 void Aladdin::addStatus(eStatus status)
@@ -650,22 +707,22 @@ void Aladdin::updateStatus(float dt)
 
 void Aladdin::updateCurrentAnimateIndex()
 {
-	if (this->isInStatus(eStatus::JUMPING))
+	//if (this->isInStatus(eStatus::JUMPING))
+	//{
+	//	_currentAnimateIndex = eStatus::JUMPING;
+	//}
+	//else if (this->isInStatus(eStatus::THROW) && (this->isInStatus(eStatus::LOOKING_UP) || this->isInStatus(eStatus::SITTING_DOWN)) 
+	//										  && (this->isInStatus(eStatus::MOVING_LEFT) || this->isInStatus(eStatus::MOVING_RIGHT)))
+	//{
+	//	_currentAnimateIndex = (eStatus)(this->getStatus() & ~eStatus::THROW);
+	//}
+	/*if (this->isInStatus(eStatus::SITTING_DOWN) && this->isInStatus(eStatus::THROW))
 	{
-		_currentAnimateIndex = eStatus::JUMPING;
-	}
-	else if (this->isInStatus(eStatus::THROW) && (this->isInStatus(eStatus::LOOKING_UP) ||
-		this->isInStatus(eStatus::SITTING_DOWN)) && (this->isInStatus(eStatus::MOVING_LEFT) ||
-			this->isInStatus(eStatus::MOVING_RIGHT)))
-	{
-		_currentAnimateIndex = (eStatus)(this->getStatus() & ~eStatus::THROW);
-	}
-	else if (this->isInStatus(eStatus::SITTING_DOWN) && this->isInStatus(eStatus::THROW))
-	{
-		_currentAnimateIndex = eStatus::SITTING_DOWN;
+		_currentAnimateIndex = (eStatus)(eStatus::SITTING_DOWN|eStatus::THROW);
 	}
 	else
 	{
 		_currentAnimateIndex = this->getStatus();
-	}
+	}*/
+	_currentAnimateIndex = this->getStatus();
 }
