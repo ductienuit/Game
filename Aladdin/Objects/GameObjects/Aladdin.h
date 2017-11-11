@@ -41,6 +41,8 @@ private:
 	void moveRight();
 	void jump();
 	void sitDown();
+	void swingSword();
+	void sitAttack();
 
 	//Dong ho dem
 	StopWatch* _firstAnimateStopWatch;
