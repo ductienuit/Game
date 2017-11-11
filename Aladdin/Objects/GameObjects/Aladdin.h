@@ -40,6 +40,7 @@ private:
 	void moveLeft();
 	void moveRight();
 	void jump();
+	void jump(eStatus status);
 	void sitDown();
 	void swingSword();
 	void sitAttack();

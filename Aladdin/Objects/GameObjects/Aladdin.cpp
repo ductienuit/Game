@@ -46,6 +46,12 @@ void Aladdin::InIt()
 	_animations[eStatus::JUMPING] = new Animation(_sprite, 0.1f);
 	_animations[eStatus::JUMPING]->addFrameRect(eID::ALADDIN, "jump_up_",10);
 
+	_animations[eStatus::JUMPING_RIGHT] = new Animation(_sprite, 0.1f);
+	_animations[eStatus::JUMPING_RIGHT]->addFrameRect(eID::ALADDIN, "jump_left_right_", 9);
+
+	_animations[eStatus::MOVING_RIGHT | eStatus::JUMPING_RIGHT] = new Animation(_sprite, 0.1f);
+	_animations[eStatus::MOVING_RIGHT | eStatus::JUMPING_RIGHT]->addFrameRect(eID::ALADDIN, "jump_left_right_", 9);
+
 	_animations[eStatus::LOOKING_UP] = new Animation(_sprite, 0.5f);
 	_animations[eStatus::LOOKING_UP]->addFrameRect(eID::ALADDIN, "look_up_0", "look_up_1", "look_up_2", NULL);
 
@@ -127,12 +133,13 @@ void Aladdin::Update(float deltatime)
 		auto gravity = (Gravity*)this->_componentList["Gravity"];
 		gravity->setStatus(eGravityStatus::SHALLOWED);
 
-		this->removeStatus(eStatus::JUMPING);
+
+		this->removeStatus(eStatus::JUMPING_RIGHT);
 		this->standing();
 	}
 
 	this->updateStatus(deltatime);
-
+	
 	this->updateCurrentAnimateIndex();
 
 	_animations[_currentAnimateIndex]->Update(deltatime);
@@ -184,7 +191,7 @@ void Aladdin::UpdateInput(float dt)
 		}
 		else if (_input->isKeyDown(DIK_C))
 		{
-			jump();
+			jump(eStatus::JUMPING);
 		}
 		break;
 	}
@@ -230,7 +237,7 @@ void Aladdin::UpdateInput(float dt)
 		else if (_input->isKeyDown(DIK_C))
 		{
 			this->removeStatus(eStatus::NORMAL1);
-			jump();
+			jump(eStatus::JUMPING);
 		}
 		break;
 	}
@@ -274,7 +281,7 @@ void Aladdin::UpdateInput(float dt)
 		{
 			this->removeStatus(eStatus::NORMAL1);
 			this->removeStatus(eStatus::FREE);
-			jump();
+			jump(eStatus::JUMPING);
 			break;
 		}
 	}
@@ -329,7 +336,7 @@ void Aladdin::UpdateInput(float dt)
 		{
 			this->removeStatus(eStatus::NORMAL1);
 			this->removeStatus(eStatus::FREE);
-			jump();
+			jump(eStatus::JUMPING);
 		}
 		break;
 	}
@@ -378,7 +385,7 @@ void Aladdin::UpdateInput(float dt)
 			this->removeStatus(eStatus::NORMAL1);
 			this->removeStatus(eStatus::FREE);
 			this->removeStatus(eStatus::LOOKING_UP);
-			jump();
+			jump(eStatus::JUMPING);
 		}
 		break;
 	}
@@ -539,12 +546,12 @@ void Aladdin::moveRight()
 	move->setVelocity(Vector2(ALADDIN_MOVE_SPEED, move->getVelocity().y));
 }
 
-void Aladdin::jump()
+void Aladdin::jump(eStatus status)
 {
-	if (this->isInStatus(eStatus::JUMPING))
+	if (this->isInStatus(eStatus::JUMPING_RIGHT))
 		return;
 
-	this->addStatus(eStatus::JUMPING);
+	this->addStatus(eStatus::JUMPING_RIGHT);
 
 	auto move = (Movement*)this->_componentList["Movement"];
 	move->setVelocity(Vector2(move->getVelocity().x, ALADDIN_JUMP_VEL));
@@ -582,11 +589,12 @@ Vector2 Aladdin::getVelocity()
 
 void Aladdin::updateStatus(float dt)
 {
-	if ((this->getStatus() & eStatus::MOVING_LEFT) == eStatus::MOVING_LEFT)
+	
+	if (this->isInStatus(eStatus::MOVING_LEFT))
 	{
 		this->moveLeft();
 	}
-	else if ((this->getStatus() & eStatus::MOVING_RIGHT) == eStatus::MOVING_RIGHT)
+	else if (this->isInStatus(eStatus::MOVING_RIGHT))
 	{
 		this->moveRight();
 	}
@@ -594,11 +602,11 @@ void Aladdin::updateStatus(float dt)
 	//{
 	//	this->sitDown();
 	//}
-	else if ((this->getStatus() & eStatus::JUMPING) != eStatus::JUMPING)
+	else if (!this->isInStatus(eStatus::JUMPING_RIGHT) && !this->isInStatus(eStatus::JUMPING))
 	{
 		this->standing();
 	}
-	else if ((this->getStatus() & eStatus::ATTACK) == eStatus::JUMPING)
+	else if ((this->getStatus() & eStatus::ATTACK) == eStatus::JUMPING_RIGHT)
 	{
 		//this->sitDown();
 	}
