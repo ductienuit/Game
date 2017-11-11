@@ -10,7 +10,7 @@ Sprite::~Sprite()
 Sprite::Sprite(LPD3DXSPRITE spriteHandle, LPCSTR filePath, int totalFrames, int cols)
 {
 	_origin = Vector2(0.5f, 0.5f);
-	_scale = Vector2(1.0f, 1.0f);
+	_scale = Vector2(1.6f,1.92f);
 	_zIndex = 1;
 	_rotate = 0.0f;
 
