@@ -2,7 +2,7 @@
 #define __SCENE_H__
 
 #include"define.h"
-#include "../../FrameWork/Viewport.h"
+#include "../FrameWork/Viewport.h"
 
 GAME_FRAMEWORK
 GAME_FRAMEWORK_BEGIN
