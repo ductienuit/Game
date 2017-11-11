@@ -49,6 +49,9 @@ void Aladdin::InIt()
 	_animations[eStatus::LOOKING_UP] = new Animation(_sprite, 0.5f);
 	_animations[eStatus::LOOKING_UP]->addFrameRect(eID::ALADDIN, "look_up_0", "look_up_1", "look_up_2", NULL);
 
+	_animations[eStatus::LOOKING_UP| eStatus::SITTING_DOWN] = new Animation(_sprite, 0.5f);
+	_animations[eStatus::LOOKING_UP| eStatus::SITTING_DOWN]->addFrameRect(eID::ALADDIN, "look_up_2","look_up_1", "look_up_0", NULL);
+
 	_animations[eStatus::SITTING_DOWN] = new Animation(_sprite, 0.2f);
 	_animations[eStatus::SITTING_DOWN]->addFrameRect(eID::ALADDIN, "sit_0", "sit_1", "sit_2", "sit_3", NULL);
 
@@ -231,7 +234,6 @@ void Aladdin::UpdateInput(float dt)
 		}
 		break;
 	}
-
 	case(eStatus::FREE):
 	{
 		if (_input->isKeyDown(DIK_LEFT))
@@ -281,6 +283,7 @@ void Aladdin::UpdateInput(float dt)
 	{
 		this->removeStatus(eStatus::NORMAL1);
 		this->removeStatus(eStatus::FREE);
+	
 		break;
 	}
 	case (eStatus::JUMPING):
@@ -302,19 +305,13 @@ void Aladdin::UpdateInput(float dt)
 		{
 			this->removeStatus(eStatus::NORMAL1);
 			this->removeStatus(eStatus::FREE);
-			this->addStatus(eStatus::MOVING_LEFT);
+			_sprite->setScaleX(-1);
 		}
 		else if (_input->isKeyDown(DIK_RIGHT))
 		{
 			this->removeStatus(eStatus::NORMAL1);
 			this->removeStatus(eStatus::FREE);
-			this->addStatus(eStatus::MOVING_RIGHT);
-		}
-		else if (_input->isKeyDown(DIK_UP))
-		{
-			this->removeStatus(eStatus::NORMAL1);
-			this->removeStatus(eStatus::FREE);
-			this->addStatus(eStatus::LOOKING_UP);
+			_sprite->setScaleX(1);
 		}
 		else if (_input->isKeyDown(DIK_X))
 		{
@@ -342,7 +339,6 @@ void Aladdin::UpdateInput(float dt)
 		{
 			_animations[_currentAnimateIndex]->Stop();
 		}
-
 		//left, right, down,x,c,z
 		if (_input->isKeyDown(DIK_LEFT))
 		{
@@ -545,7 +541,7 @@ void Aladdin::moveRight()
 
 void Aladdin::jump()
 {
-	if (this->isInStatus(eStatus::JUMPING) || this->isInStatus(eStatus::DROP))
+	if (this->isInStatus(eStatus::JUMPING))
 		return;
 
 	this->addStatus(eStatus::JUMPING);
