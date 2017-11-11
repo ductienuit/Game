@@ -272,6 +272,8 @@ void Aladdin::UpdateInput(float dt)
 	case(eStatus::MOVING_LEFT):
 	case(eStatus::MOVING_RIGHT):
 	{
+		this->removeStatus(eStatus::NORMAL1);
+		this->removeStatus(eStatus::FREE);
 		break;
 	}
 	case (eStatus::JUMPING):
@@ -343,31 +345,41 @@ void Aladdin::UpdateInput(float dt)
 		//left, right, down,x,c,z
 		if (_input->isKeyDown(DIK_LEFT))
 		{
-			this->removeStatus(eStatus::LOOKING_UP);
+			this->removeStatus(eStatus::NORMAL1);
+			this->removeStatus(eStatus::FREE);
 			_sprite->setScaleX(-1);
 		}
 		else if (_input->isKeyDown(DIK_RIGHT))
 		{
-			this->removeStatus(eStatus::LOOKING_UP);
+			this->removeStatus(eStatus::NORMAL1);
+			this->removeStatus(eStatus::FREE);
 			_sprite->setScaleX(1);
 		}
 		else if (_input->isKeyDown(DIK_DOWN))
 		{
+			this->removeStatus(eStatus::NORMAL1);
+			this->removeStatus(eStatus::FREE);
 			this->removeStatus(eStatus::LOOKING_UP);
 			this->addStatus(eStatus::SITTING_DOWN);
 		}
 		else if (_input->isKeyDown(DIK_X))
 		{
+			this->removeStatus(eStatus::NORMAL1);
+			this->removeStatus(eStatus::FREE);
 			this->removeStatus(eStatus::LOOKING_UP);
 			this->addStatus(eStatus::ATTACK);  //chém
 		}
 		else if (_input->isKeyDown(DIK_Z)) //ném
 		{
+			this->removeStatus(eStatus::NORMAL1);
+			this->removeStatus(eStatus::FREE);
 			this->removeStatus(eStatus::LOOKING_UP);
 			this->addStatus(eStatus::THROW);
 		}
 		else if (_input->isKeyDown(DIK_C))
 		{
+			this->removeStatus(eStatus::NORMAL1);
+			this->removeStatus(eStatus::FREE);
 			this->removeStatus(eStatus::LOOKING_UP);
 			jump();
 		}
