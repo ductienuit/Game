@@ -36,7 +36,8 @@ enum eStatus
 	CLIMB		 = (1 << 11),	//leo lên trên
 	SWING		 = (1 << 12),		//leo xà ngang
 	DROP	 	 = (1 << 13),
-	DYING		 = (1 << 14)
+	DYING		 = (1 << 14),
+	ATTACK       = (1 << 15)
 };
 
 enum eID

@@ -61,8 +61,8 @@ void Aladdin::InIt()
 	_animations[eStatus::NORMAL | eStatus::THROW] = new Animation(_sprite, 0.1f);
 	_animations[eStatus::NORMAL | eStatus::THROW]->addFrameRect(eID::ALADDIN, "throw_",5);
 
-	_animations[eStatus::SWING]= new Animation(_sprite, 0.1f);
-	_animations[eStatus::SWING]->addFrameRect(eID::ALADDIN, "free_", 32);
+	_animations[eStatus::ATTACK|eStatus::SITTING_DOWN]= new Animation(_sprite, 0.1f);
+	_animations[eStatus::ATTACK | eStatus::SITTING_DOWN]->addFrameRect(eID::ALADDIN, "swing_sword_", 5);
 
 	_animations[eStatus::MOVING_RIGHT] = new Animation(_sprite, 0.1f);
 	_animations[eStatus::MOVING_RIGHT]->addFrameRect(eID::ALADDIN, "walk_",13);
@@ -167,7 +167,7 @@ void Aladdin::UpdateInput(float dt)
 		}
 		else if (_input->isKeyDown(DIK_X))
 		{
-			this->addStatus(eStatus::SWING);  //chém
+			this->addStatus(eStatus::ATTACK);  //chém
 		}
 		else if (_input->isKeyDown(DIK_Z)) //ném
 		{
@@ -211,7 +211,7 @@ void Aladdin::UpdateInput(float dt)
 		else if (_input->isKeyDown(DIK_X))
 		{
 			this->removeStatus(eStatus::NORMAL1);
-			this->addStatus(eStatus::SWING);  //chém
+			this->addStatus(eStatus::ATTACK);  //chém
 		}
 		else if (_input->isKeyDown(DIK_Z)) //ném
 		{
@@ -229,40 +229,46 @@ void Aladdin::UpdateInput(float dt)
 	{
 		if (_input->isKeyDown(DIK_LEFT))
 		{
+			this->removeStatus(eStatus::NORMAL1);
 			this->removeStatus(eStatus::FREE);
 			this->addStatus(eStatus::MOVING_LEFT);
 		}
 		else if (_input->isKeyDown(DIK_RIGHT))
 		{
+			this->removeStatus(eStatus::NORMAL1);
 			this->removeStatus(eStatus::FREE);
 			this->addStatus(eStatus::MOVING_RIGHT);
 		}
 		else if (_input->isKeyDown(DIK_DOWN))
 		{
+			this->removeStatus(eStatus::NORMAL1);
 			this->removeStatus(eStatus::FREE);
 			this->addStatus(eStatus::SITTING_DOWN);
 		}
 		else if (_input->isKeyDown(DIK_UP))
 		{
-			this->removeStatus(eStatus::FREE);
 			this->addStatus(eStatus::LOOKING_UP);
 		}
 		else if (_input->isKeyDown(DIK_X)) //chém
 		{
+			this->removeStatus(eStatus::NORMAL1);
 			this->removeStatus(eStatus::FREE);
-			this->addStatus(eStatus::SWING);  //chém
+			this->addStatus(eStatus::ATTACK);  //chém
 		}
 		else if (_input->isKeyDown(DIK_Z)) //ném
 		{
+			this->removeStatus(eStatus::NORMAL1);
 			this->removeStatus(eStatus::FREE);
 			this->addStatus(eStatus::THROW);
 		}
 		else if (_input->isKeyDown(DIK_C))
 		{
+			this->removeStatus(eStatus::NORMAL1);
 			this->removeStatus(eStatus::FREE);
 			jump();
 			break;
 		}
+	}
 	case(eStatus::MOVING_LEFT):
 	case(eStatus::MOVING_RIGHT):
 	{
@@ -277,42 +283,92 @@ void Aladdin::UpdateInput(float dt)
 		//check cham dat hoac collision voi mot object
 		break;
 	}
-	}
 	case(eStatus::SITTING_DOWN):
 	{
-		//Change normal to free animation after 5 minute
-		if (_firstAnimateStopWatch->isStopWatch(1300))
+		if (_animations[_currentAnimateIndex]->getIndex() == 3)
 		{
-			this->addStatus(eStatus::NORMAL1);
-			_normalAnimateStopWatch->restart();  //Chuyển sang trạng thái normal1 thì mình khởi động lại đồng hồ đếm
+			_animations[_currentAnimateIndex]->Stop();
 		}
-
 		if (_input->isKeyDown(DIK_LEFT))
 		{
+			this->removeStatus(eStatus::NORMAL1);
+			this->removeStatus(eStatus::FREE);
 			this->addStatus(eStatus::MOVING_LEFT);
 		}
 		else if (_input->isKeyDown(DIK_RIGHT))
 		{
+			this->removeStatus(eStatus::NORMAL1);
+			this->removeStatus(eStatus::FREE);
 			this->addStatus(eStatus::MOVING_RIGHT);
 		}
 		else if (_input->isKeyDown(DIK_DOWN))
 		{
+			this->removeStatus(eStatus::NORMAL1);
+			this->removeStatus(eStatus::FREE);
 			this->addStatus(eStatus::SITTING_DOWN);
 		}
 		else if (_input->isKeyDown(DIK_UP))
 		{
+			this->removeStatus(eStatus::NORMAL1);
+			this->removeStatus(eStatus::FREE);
 			this->addStatus(eStatus::LOOKING_UP);
 		}
 		else if (_input->isKeyDown(DIK_X))
 		{
-			this->addStatus(eStatus::SWING);  //chém
+			this->removeStatus(eStatus::NORMAL1);
+			this->removeStatus(eStatus::FREE);
+			this->addStatus(eStatus::ATTACK);  //chém
 		}
 		else if (_input->isKeyDown(DIK_Z)) //ném
 		{
+			this->removeStatus(eStatus::NORMAL1);
+			this->removeStatus(eStatus::FREE);
 			this->addStatus(eStatus::THROW);
 		}
 		else if (_input->isKeyDown(DIK_C))
 		{
+			this->removeStatus(eStatus::NORMAL1);
+			this->removeStatus(eStatus::FREE);
+			jump();
+		}
+		break;
+	}
+	case(eStatus::LOOKING_UP):
+	{
+		if (_animations[_currentAnimateIndex]->getIndex() == 2)
+		{
+			_animations[_currentAnimateIndex]->Stop();
+		}
+
+		//left, right, down,x,c,z
+		if (_input->isKeyDown(DIK_LEFT))
+		{
+			this->removeStatus(eStatus::LOOKING_UP);
+			_sprite->setScaleX(-1);
+		}
+		else if (_input->isKeyDown(DIK_RIGHT))
+		{
+			this->removeStatus(eStatus::LOOKING_UP);
+			_sprite->setScaleX(1);
+		}
+		else if (_input->isKeyDown(DIK_DOWN))
+		{
+			this->removeStatus(eStatus::LOOKING_UP);
+			this->addStatus(eStatus::SITTING_DOWN);
+		}
+		else if (_input->isKeyDown(DIK_X))
+		{
+			this->removeStatus(eStatus::LOOKING_UP);
+			this->addStatus(eStatus::ATTACK);  //chém
+		}
+		else if (_input->isKeyDown(DIK_Z)) //ném
+		{
+			this->removeStatus(eStatus::LOOKING_UP);
+			this->addStatus(eStatus::THROW);
+		}
+		else if (_input->isKeyDown(DIK_C))
+		{
+			this->removeStatus(eStatus::LOOKING_UP);
 			jump();
 		}
 		break;
@@ -402,27 +458,39 @@ void Aladdin::onKeyReleased(KeyEventArg * key_event)
 	switch (key_event->_key)
 	{
 	case DIK_RIGHT:
-	{
+	{		
+		this->removeStatus(eStatus::NORMAL1);
+		this->removeStatus(eStatus::FREE);
 		this->removeStatus(eStatus::MOVING_RIGHT);
 	}
 	case DIK_LEFT:
 	{
+		this->removeStatus(eStatus::NORMAL1);
+		this->removeStatus(eStatus::FREE);
 		this->removeStatus(eStatus::MOVING_LEFT);
 	}
 	case DIK_DOWN:
 	{
+		this->removeStatus(eStatus::NORMAL1);
+		this->removeStatus(eStatus::FREE);
 		this->removeStatus(eStatus::SITTING_DOWN);
 	}
 	case DIK_UP:
 	{
+		this->removeStatus(eStatus::NORMAL1);
+		this->removeStatus(eStatus::FREE);
 		this->removeStatus(eStatus::LOOKING_UP);
 	}
 	case DIK_X:
 	{
-		this->removeStatus(eStatus::SWING);
+		this->removeStatus(eStatus::NORMAL1);
+		this->removeStatus(eStatus::FREE);
+		this->removeStatus(eStatus::ATTACK);
 	}
 	case DIK_Z: //ném
 	{
+		this->removeStatus(eStatus::NORMAL1);
+		this->removeStatus(eStatus::FREE);
 		this->removeStatus(eStatus::THROW);
 	}
 	/*case DIK_C:
@@ -477,8 +545,8 @@ void Aladdin::jump()
 
 void Aladdin::sitDown()
 {
-	auto move = (Movement*)this->_componentList["Movement"];
-	move->setVelocity(Vector2(0, move->getVelocity().y));
+	/*auto move = (Movement*)this->_componentList["Movement"];
+	move->setVelocity(Vector2(0, move->getVelocity().y));*/
 }
 
 void Aladdin::addStatus(eStatus status)
@@ -512,17 +580,17 @@ void Aladdin::updateStatus(float dt)
 	{
 		this->moveRight();
 	}
-	else if ((this->getStatus() & eStatus::SITTING_DOWN) == eStatus::SITTING_DOWN)
-	{
-		this->sitDown();
-	}
+	//else if ((this->getStatus() & eStatus::SITTING_DOWN) == eStatus::SITTING_DOWN)
+	//{
+	//	this->sitDown();
+	//}
 	else if ((this->getStatus() & eStatus::JUMPING) != eStatus::JUMPING)
 	{
 		this->standing();
 	}
-	else if ((this->getStatus() & eStatus::SWING) == eStatus::JUMPING)
+	else if ((this->getStatus() & eStatus::ATTACK) == eStatus::JUMPING)
 	{
-		this->sitDown();
+		//this->sitDown();
 	}
 }
 
