@@ -1,6 +1,4 @@
 ﻿#include "Sprite.h"
-#include<corecrt_math_defines.h>
-
 USEGAME_FRAMEWORK
 
 Sprite::~Sprite()

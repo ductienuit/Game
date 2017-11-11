@@ -131,7 +131,6 @@ void Aladdin::Update(float deltatime)
 
 void Aladdin::UpdateInput(float dt)
 {
-	
 
 	switch (_status)
 	{
@@ -273,7 +272,10 @@ void Aladdin::UpdateInput(float dt)
 			//check cham dat hoac collision voi mot object
 			break;
 		}
+		case ̣(eStatus::RUNNING):
+		{
 
+		}
 	}
 }
 
