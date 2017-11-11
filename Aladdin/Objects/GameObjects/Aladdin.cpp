@@ -46,7 +46,7 @@ void Aladdin::InIt()
 	_animations[eStatus::LOOKING_UP] = new Animation(_sprite, 0.5f);
 	_animations[eStatus::LOOKING_UP]->addFrameRect(eID::ALADDIN, "look_up_0", "look_up_1", "look_up_2", NULL);
 
-	_animations[eStatus::SITTING_DOWN] = new Animation(_sprite, 0.1f);
+	_animations[eStatus::SITTING_DOWN] = new Animation(_sprite, 0.2f);
 	_animations[eStatus::SITTING_DOWN]->addFrameRect(eID::ALADDIN, "sit_0", "sit_1", "sit_2", "sit_3", NULL);
 
 	_animations[eStatus::FREE] = new Animation(_sprite, 0.1f);
@@ -90,6 +90,13 @@ void Aladdin::InIt()
 	_animations[eStatus::THROW | eStatus::MOVING_RIGHT]->addFrameRect(eID::ALADDIN, "throw_0", "throw_1",
 		"throw_2", "throw_3", "throw_4", "throw_5", NULL);
 
+	//cầm kiếm chém
+	_animations[eStatus::ATTACK] = new Animation(_sprite, 0.1f);
+	_animations[eStatus::ATTACK]->addFrameRect(eID::ALADDIN, "swing_sword_0", "swing_sword_1", "swing_sword_2", "swing_sword_3", "swing_sword_4", NULL);
+	//sit_attack ngồi đâm
+	_animations[eStatus::SITTING_DOWN | eStatus::ATTACK] = new Animation(_sprite, 0.1f);
+	_animations[eStatus::SITTING_DOWN | eStatus::ATTACK]->addFrameRect(eID::ALADDIN, "sit_attack_0", "sit_attack_1", "sit_attack_2", "sit_attack_3", "sit_attack_4", "sit_attack_5", "sit_attack_6", NULL);
+
 
 	_sprite->drawBounding(false);
 	_sprite->setOrigin(Vector2(0.5f, 0.0f));
@@ -120,7 +127,6 @@ void Aladdin::Update(float deltatime)
 	this->updateCurrentAnimateIndex();
 
 	_animations[_currentAnimateIndex]->Update(deltatime);
-
 	// update component để sau cùng để sửa bên trên sau đó nó cập nhật đúng
 	for (auto it = _componentList.begin(); it != _componentList.end(); it++)
 	{
@@ -202,6 +208,27 @@ void Aladdin::UpdateInput(float dt)
 		}
 		break;
 	}
+
+	case (eStatus::SITTING_DOWN):
+	{
+
+		if ( _animations[_currentAnimateIndex]->getIndex() == 3)
+		{
+			_animations[_currentAnimateIndex]->Stop();
+		}
+
+		if (_input->isKeyDown(DIK_SPACE))
+		{
+			this->addStatus(eStatus::ATTACK);
+		}
+		break;
+
+		if (_input->isKeyDown(DIK_LEFT))
+		{
+
+		}
+	}
+
 	case(eStatus::FREE):
 	{
 		if (_input->isKeyDown(DIK_LEFT))
@@ -250,6 +277,7 @@ void Aladdin::UpdateInput(float dt)
 			//check cham dat hoac collision voi mot object
 			break;
 		}
+
 	}
 }
 
@@ -359,6 +387,11 @@ void Aladdin::onKeyReleased(KeyEventArg * key_event)
 		this->removeStatus(eStatus::THROW);
 		break;
 	}
+	case DIK_SPACE:
+	{
+		this->removeStatus(eStatus::ATTACK);
+		break;
+	}
 	default:
 		break;
 	}
@@ -407,7 +440,29 @@ void Aladdin::jump()
 void Aladdin::sitDown()
 {
 	auto move = (Movement*)this->_componentList["Movement"];
-	move->setVelocity(Vector2(0, move->getVelocity().y));
+	move->setVelocity(Vector2(0, 0));
+}
+
+void Aladdin::swingSword()
+{
+	if (this->isInStatus(eStatus::SWING_SWORD))
+		return;
+
+	this->addStatus(eStatus::SWING_SWORD);
+
+	auto move = (Movement*)this->_componentList["Movement"];
+	move->setVelocity(Vector2(move->getVelocity().x, ALADDIN_JUMP_VEL));
+}
+
+void Aladdin::sitAttack()
+{
+	if (this->isInStatus(eStatus::ATTACK) || this->isInStatus(eStatus::SITTING_DOWN))
+		return;
+
+	this->addStatus(eStatus::ATTACK);
+
+	auto move = (Movement*)this->_componentList["Movement"];
+	move->setVelocity(Vector2(move->getVelocity().x, ALADDIN_JUMP_VEL));
 }
 
 void Aladdin::addStatus(eStatus status)
