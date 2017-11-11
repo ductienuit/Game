@@ -1,5 +1,8 @@
 ﻿#include "ALADDIN.h"
-
+/*
+D:\x99\DirectX\Include
+D:\x99\DirectX\Lib\x86
+*/
 Aladdin::Aladdin() : BaseObject(eID::ALADDIN)
 {
 }
