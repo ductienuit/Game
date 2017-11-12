@@ -29,16 +29,16 @@ enum eStatus
 	SITTING_DOWN =	(1 << 4),				// 01000 = 2^3
 	RUNNING =		(1 << 5),				// 10000 = 2^4
 	LOOKING_UP =	(1 << 6),				// 2^5
-	THROW =			(1 << 7),		//Ném táo.
-	FREE =			(1 << 8),		//Trạng thái sau trạng thái normal khi chờ player rờ phím
-	JUMPING_LEFT =  (1 << 9),		//Đang moveLeft nhấn C
-	JUMPING_RIGHT = (1 << 10),		//Đang moveRight nhấn C
-	CLIMB =			(1 << 11),		//Leo lên trên
-	SWING =			(1 << 12),		//Leo xà ngang
-	DROP =			(1 << 13),		//Đứng trên nhảy xuống
-	DYING =			(1 << 14),		//Chết
-	ATTACK =	    (1 << 15),		//Cầm kiếm chém
-	WORKING=		(1 << 16)			//Trạng thái không anime. Kết hợp với các trạng thái với các trạng thái khác để tạo 1 trạng thái.
+	THROW =			(1 << 7),			//Ném táo.
+	FREE =			(1 << 8),			//Trạng thái sau trạng thái normal khi chờ player rờ phím
+	JUMPING_LEFT =  (1 << 9),			//Đang moveLeft nhấn C
+	JUMPING_RIGHT = (1 << 10),			//Đang moveRight nhấn C
+	CLIMB =			(1 << 11),			//Leo lên trên
+	SWING =			(1 << 12),			//Leo xà ngang
+	DROP =			(1 << 13),			//Đứng trên nhảy xuống
+	DYING =			(1 << 14),			//Chết
+	ATTACK =	    (1 << 15),			//Cầm kiếm chém
+	WORKING=		(1 << 16),			//Trạng thái không anime. Kết hợp với các trạng thái với các trạng thái khác để tạo 1 trạng thái.
 };
 
 enum eID
@@ -48,11 +48,11 @@ enum eID
 
 enum eDirection
 {
-	NONE = 0,
-	TOP = 1,
-	BOTTOM = 2,
-	LEFT = 4,
-	RIGHT = 8,
+	NONE =		(1<<26),
+	TOP =		(1<<27),
+	BOTTOM =	(1<<28),
+	LEFT =		(1<<29),
+	RIGHT =		(1<<30),
 	ALL = (TOP | BOTTOM | LEFT | RIGHT),
 };
 

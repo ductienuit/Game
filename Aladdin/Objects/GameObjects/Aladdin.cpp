@@ -66,6 +66,17 @@ void Aladdin::InIt()
 
 	//_animations[eStatus::DROP] = new Animation(_sprite, 0.1f);
 	//_animations[eStatus::DROP]->addFrameRect(eID::ALADDIN, "drop_down_0", "drop_down_1", "drop_down_2","drop_down_3", "drop_down_4", "drop_down_5", "drop_down_6", "drop_down_7", "drop_down_8");
+	
+	_animations[eStatus::CLIMB] = new Animation(_sprite, 0.1f);
+	_animations[eStatus::CLIMB]->addFrameRect(eID::ALADDIN, "climb_",10);
+	/*
+
+	_animations[eStatus::CLIMB | eDirection::TOP] = new Animation(_sprite, 0.1f);
+	_animations[eStatus::CLIMB | eDirection::TOP]->addFrameRect(eID::ALADDIN, "climb_", 10);
+
+	_animations[eStatus::CLIMB | eDirection::BOTTOM] = new Animation(_sprite, 0.1f);
+	_animations[eStatus::CLIMB | eDirection::BOTTOM]->addFrameRect(eID::ALADDIN, "climb_9","climb_8","climb_7","climb_6",
+		"climb_5","climb_4","climb_3","climb_2","climb_1","climb_0",NULL);*/
 
 	_animations[eStatus::THROW] = new Animation(_sprite, 0.1f);
 	_animations[eStatus::THROW]->addFrameRect(eID::ALADDIN, "throw_", 5);
@@ -309,6 +320,14 @@ void Aladdin::UpdateInput(float dt)
 	}
 	case (eStatus::JUMPING):
 	{
+		//Thêm collision nữa mới check collision với đất, dây, cột để leo được.
+		if (_sprite->getPositionY() >= 300)
+		{
+			this->removeStatus(eStatus::JUMPING);
+			this->addStatus(eStatus::CLIMB);		
+			auto g = (Gravity*)this->_componentList["Gravity"];
+			g->setStatus(eGravityStatus::SHALLOWED);
+		}
 		break;
 	}
 	case(eStatus::DROP):
@@ -384,7 +403,46 @@ void Aladdin::UpdateInput(float dt)
 		}
 		break;
 	}
+	case(eStatus::CLIMB):
+	{
+		//left, right, down,x,c,z
+		if (_input->isKeyDown(DIK_LEFT))
+		{
+			//this->removeStatus(eStatus::LOOKING_UP);
+			//_sprite->setScaleX(-1.6);
+		}
+		else if (_input->isKeyDown(DIK_RIGHT))
+		{
+			//this->removeStatus(eStatus::LOOKING_UP);
+			//this->removeStatus(eStatus::ATTACK);
+			//_sprite->setScaleX(1.6);
+		}
+		else if (_input->isKeyDown(DIK_DOWN))
+		{
+			//this->addStatus((eStatus)eDirection::BOTTOM);
+		}
+		else if (_input->isKeyDown(DIK_UP))
+		{
+			//this->addStatus((eStatus)eDirection::TOP);
+		}
+		else if (_input->isKeyDown(DIK_X))
+		{
+			//this->addStatus(eStatus::ATTACK);  //chém
+		}
+		else if (_input->isKeyDown(DIK_Z)) //ném
+		{
+			//this->removeStatus(eStatus::LOOKING_UP);
+			//this->addStatus(eStatus::THROW);
+		}
+		else if (_input->isKeyDown(DIK_C))
+		{
+			//this->removeStatus(eStatus::LOOKING_UP);
+			jump();
+		}
+		break;
 	}
+	}
+	
 }
 
 void Aladdin::Draw(LPD3DXSPRITE spriteHandle, Viewport* viewport)
@@ -484,8 +542,7 @@ void Aladdin::onKeyReleased(KeyEventArg * key_event)
 		{
 			//Nếu đang trong attack thì không hủy sitting_down, hủy khi thực hiện xong hành động ngồi chém
 		}
-		else this->removeStatus(eStatus::SITTING_DOWN);
-		
+		else this->removeStatus(eStatus::SITTING_DOWN);		
 		_animations[_currentAnimateIndex]->Restart(0);
 		break;
 	}
@@ -496,8 +553,9 @@ void Aladdin::onKeyReleased(KeyEventArg * key_event)
 			//Nếu đang trong attack thì không hủy look_up, hủy khi thực hiện xong hành động
 		}
 		else this->removeStatus(eStatus::LOOKING_UP);
-
 		//Chạy lại hình ảnh động muốn thực hiện. bắt đầu là 0. Phải có dòng 343
+		this->removeStatus(eStatus::CLIMB);
+
 		_animations[_currentAnimateIndex]->Restart(0);
 		break;
 	}

@@ -60,6 +60,7 @@ private:
 	void updateStatusOneAction(float deltatime); 
 
 	eStatus _currentAnimateIndex;
+	eDirection _currentDirection;
 	void updateCurrentAnimateIndex();
 };
 
