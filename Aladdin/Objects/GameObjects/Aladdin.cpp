@@ -52,13 +52,13 @@ void Aladdin::InIt()
 	_animations[eStatus::MOVING_RIGHT | eStatus::JUMPING_RIGHT] = new Animation(_sprite, 0.1f);
 	_animations[eStatus::MOVING_RIGHT | eStatus::JUMPING_RIGHT]->addFrameRect(eID::ALADDIN, "jump_left_right_", 9);
 
-	_animations[eStatus::LOOKING_UP] = new Animation(_sprite, 0.5f);
+	_animations[eStatus::LOOKING_UP] = new Animation(_sprite, 0.2f);
 	_animations[eStatus::LOOKING_UP]->addFrameRect(eID::ALADDIN, "look_up_0", "look_up_1", "look_up_2", NULL);
 
 	_animations[eStatus::LOOKING_UP | eStatus::SITTING_DOWN] = new Animation(_sprite, 0.5f);
 	_animations[eStatus::LOOKING_UP | eStatus::SITTING_DOWN]->addFrameRect(eID::ALADDIN, "look_up_2", "look_up_1", "look_up_0", NULL);
 
-	_animations[eStatus::SITTING_DOWN] = new Animation(_sprite, 0.2f);
+	_animations[eStatus::SITTING_DOWN] = new Animation(_sprite, 0.12f);
 	_animations[eStatus::SITTING_DOWN]->addFrameRect(eID::ALADDIN, "sit_0", "sit_1", "sit_2", "sit_3", NULL);
 
 	_animations[eStatus::FREE] = new Animation(_sprite, 0.1f);
@@ -126,29 +126,6 @@ void Aladdin::InIt()
 		, "lookingup_attack_8"
 		, "lookingup_attack_9"
 		, "lookingup_attack_2"
-		, "lookingup_attack_3"
-		, "lookingup_attack_4"
-		, "lookingup_attack_5"
-		, "lookingup_attack_6"
-		, "lookingup_attack_7"
-		, "lookingup_attack_8"
-		, "lookingup_attack_9"
-		, "lookingup_attack_2"
-		, "lookingup_attack_3"
-		, "lookingup_attack_4"
-		, "lookingup_attack_5"
-		, "lookingup_attack_6"
-		, "lookingup_attack_7"
-		, "lookingup_attack_8"
-		, "lookingup_attack_9"
-		, "lookingup_attack_2"
-		, "lookingup_attack_3"
-		, "lookingup_attack_4"
-		, "lookingup_attack_5"
-		, "lookingup_attack_6"
-		, "lookingup_attack_7"
-		, "lookingup_attack_8"
-		, "lookingup_attack_9"
 		, "lookingup_attack_10"
 		, "lookingup_attack_11",NULL
 	);
@@ -229,7 +206,6 @@ void Aladdin::UpdateInput(float dt)
 		}
 		else if (_input->isKeyDown(DIK_X))
 		{
-			this->addStatus(eStatus::WORKING);
 			this->addStatus(eStatus::ATTACK);  //chém
 		}
 		else if (_input->isKeyDown(DIK_Z)) //ném
@@ -311,7 +287,6 @@ void Aladdin::UpdateInput(float dt)
 		}
 		else if (_input->isKeyDown(DIK_X)) //chém
 		{
-			this->removeStatus(eStatus::NORMAL1);
 			this->removeStatus(eStatus::FREE);
 			this->addStatus(eStatus::ATTACK);  //chém
 		}
@@ -343,7 +318,7 @@ void Aladdin::UpdateInput(float dt)
 	}
 	case(eStatus::SITTING_DOWN):
 	{
-		if (_animations[_currentAnimateIndex]->getIndex() == 3)
+		if (_animations[_currentAnimateIndex]->getIndex() >= 3)
 		{
 			_animations[_currentAnimateIndex]->Stop();
 		}
@@ -379,10 +354,13 @@ void Aladdin::UpdateInput(float dt)
 		//left, right, down,x,c,z
 		if (_input->isKeyDown(DIK_LEFT))
 		{
+			this->removeStatus(eStatus::LOOKING_UP);			
 			_sprite->setScaleX(-1.6);
 		}
 		else if (_input->isKeyDown(DIK_RIGHT))
 		{
+			this->removeStatus(eStatus::LOOKING_UP);
+			this->removeStatus(eStatus::ATTACK);
 			_sprite->setScaleX(1.6);
 		}
 		else if (_input->isKeyDown(DIK_DOWN))
@@ -392,9 +370,7 @@ void Aladdin::UpdateInput(float dt)
 		}
 		else if (_input->isKeyDown(DIK_X))
 		{
-			//this->removeStatus(eStatus::LOOKING_UP);
 			this->addStatus(eStatus::ATTACK);  //chém
-			this->addStatus(eStatus::WORKING);
 		}
 		else if (_input->isKeyDown(DIK_Z)) //ném
 		{
@@ -504,7 +480,12 @@ void Aladdin::onKeyReleased(KeyEventArg * key_event)
 	}
 	case DIK_DOWN:
 	{
-		this->removeStatus(eStatus::SITTING_DOWN);
+		if (this->isInStatus(eStatus::ATTACK))
+		{
+			//Nếu đang trong attack thì không hủy sitting_down, hủy khi thực hiện xong hành động ngồi chém
+		}
+		else this->removeStatus(eStatus::SITTING_DOWN);
+		
 		_animations[_currentAnimateIndex]->Restart(0);
 		break;
 	}
@@ -610,10 +591,6 @@ void Aladdin::updateStatus(float dt)
 	{
 		this->moveRight();
 	}
-	//else if ((this->getStatus() & eStatus::SITTING_DOWN) == eStatus::SITTING_DOWN)
-	//{
-	//	this->sitDown();
-	//}
 	else if (!this->isInStatus(eStatus::JUMPING_RIGHT) && !this->isInStatus(eStatus::JUMPING))
 	{
 		this->standing();
@@ -626,21 +603,70 @@ void Aladdin::updateStatus(float dt)
 
 void Aladdin::updateStatusOneAction(float deltatime)
 {
-	//Kiểm tra loại trạng thái và cho thực hiện đến những ảnh cuối cùng
-	if (this->isInStatus(eStatus::THROW) && _animations[_currentAnimateIndex]->getIndex() >= 4)
+
+	//Kiểm tra nếu hành động nhìn lên và chém có một phím nào nhập vào, nhưng đang thực hiện
+	//hành động chém chẳng hạn. Nó sẽ hủy hành động đó và chuyển sang hành động khác
+
+	#pragma region Hủy lập tức hành động nhìn lên và chém - LOOKING_UP | ATTACK
+	if (this->isInStatus(eStatus::ATTACK)   && (this->isInStatus(eStatus::LOOKING_UP)) 
+											&& _animations[_currentAnimateIndex]->getIndex() < 20 
+											&& _input->isKeyPressed(DIK_LEFT))
 	{
-		_animations[_currentAnimateIndex]->setIndex(5);  //Quan trọng, vì nếu không set. Nhấn phím lần 2 sẽ không nhận được index.
-		this->removeStatus(eStatus::THROW);
-	}
-	else if (this->isInStatus(eStatus::ATTACK) && (this->isInStatus(eStatus::LOOKING_UP)) && _animations[_currentAnimateIndex]->getIndex() >= 43)
-	{
-		_animations[_currentAnimateIndex]->setIndex(43);
+		_animations[_currentAnimateIndex]->setIndex(20);
 		this->removeStatus(eStatus::ATTACK);
 		this->removeStatus(eStatus::LOOKING_UP);
 	}
-	else if (this->isInStatus(eStatus::ATTACK)&& !this->isInStatus(eStatus::LOOKING_UP) && _animations[_currentAnimateIndex]->getIndex() >= 4)
+	else if (this->isInStatus(eStatus::ATTACK) && (this->isInStatus(eStatus::LOOKING_UP))
+		&& _animations[_currentAnimateIndex]->getIndex() < 20
+		&& _input->isKeyPressed(DIK_RIGHT))
 	{
-		_animations[_currentAnimateIndex]->setIndex(5);
+		_animations[_currentAnimateIndex]->setIndex(20);
+		this->removeStatus(eStatus::ATTACK);
+		this->removeStatus(eStatus::LOOKING_UP);
+	}
+	else if (this->isInStatus(eStatus::ATTACK) && (this->isInStatus(eStatus::LOOKING_UP))
+		&& _animations[_currentAnimateIndex]->getIndex() < 20
+		&& _input->isKeyPressed(DIK_DOWN))
+	{
+		_animations[_currentAnimateIndex]->setIndex(20);
+		this->removeStatus(eStatus::ATTACK);
+		this->removeStatus(eStatus::LOOKING_UP);
+	}
+	else if (this->isInStatus(eStatus::ATTACK) && (this->isInStatus(eStatus::LOOKING_UP))
+		&& _animations[_currentAnimateIndex]->getIndex() < 20
+		&& _input->isKeyPressed(DIK_C))
+	{
+		_animations[_currentAnimateIndex]->setIndex(20);
+		this->removeStatus(eStatus::ATTACK);
+		this->removeStatus(eStatus::LOOKING_UP);
+	}
+	#pragma endregion
+
+	//Thực hiện hết một hành động đến index của một bức ảnh sprite (thực hiện hết hành động)
+	if (this->isInStatus(eStatus::THROW) && _animations[_currentAnimateIndex]->getIndex() >= 4)
+	{
+		_animations[_currentAnimateIndex]->setIndex(0);  //Quan trọng, vì nếu không set. Nhấn phím lần 2 sẽ không nhận được index.
+		this->removeStatus(eStatus::THROW);
+	}
+	else if (this->isInStatus(eStatus::ATTACK) && (this->isInStatus(eStatus::LOOKING_UP))
+		&& _animations[_currentAnimateIndex]->getIndex() >= 20)
+	{
+		_animations[_currentAnimateIndex]->setIndex(0);
+		this->removeStatus(eStatus::ATTACK); 
+		this->removeStatus(eStatus::LOOKING_UP);
+	}
+	else if (this->isInStatus(eStatus::ATTACK) && (this->isInStatus(eStatus::SITTING_DOWN))
+		&& _animations[_currentAnimateIndex]->getIndex() >= 6)
+	{
+		_animations[_currentAnimateIndex]->setIndex(0);
+		this->removeStatus(eStatus::ATTACK);
+		this->removeStatus(eStatus::SITTING_DOWN);
+	}
+	else if (this->isInStatus(eStatus::ATTACK) && !this->isInStatus(eStatus::LOOKING_UP)  //chém normal
+		&& !this->isInStatus(eStatus::SITTING_DOWN) && _animations[_currentAnimateIndex]->getIndex() >= 4)	
+
+	{
+		_animations[_currentAnimateIndex]->setIndex(0);
 		this->removeStatus(eStatus::ATTACK);
 	}
 }
@@ -686,8 +712,6 @@ void Aladdin::updateCurrentAnimateIndex()
 		this->removeStatus(eStatus::NORMAL1);
 		_currentAnimateIndex = (eStatus)(this->getStatus() & ~eStatus::NORMAL1);
 	}
-	if (this->isInStatus(WORKING))
-		this->removeStatus(eStatus::WORKING);
 	else _currentAnimateIndex = this->getStatus();
 }
 

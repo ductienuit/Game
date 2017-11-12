@@ -1,4 +1,4 @@
-#ifndef __ALADDIN_H__
+﻿#ifndef __ALADDIN_H__
 #define __ALADDIN_H__
 
 #include "../../FrameWork/define.h"
@@ -56,7 +56,8 @@ private:
 
 	Vector2 getVelocity();
 	void updateStatus(float dt);
-	void updateStatusOneAction(float deltatime);
+	//Kiểm tra loại trạng thái và cho thực hiện đến những ảnh cuối cùng
+	void updateStatusOneAction(float deltatime); 
 
 	eStatus _currentAnimateIndex;
 	void updateCurrentAnimateIndex();
