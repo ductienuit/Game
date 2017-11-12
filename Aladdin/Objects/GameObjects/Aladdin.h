@@ -56,6 +56,7 @@ private:
 
 	Vector2 getVelocity();
 	void updateStatus(float dt);
+	void updateStatusOneAction(float deltatime);
 
 	eStatus _currentAnimateIndex;
 	void updateCurrentAnimateIndex();

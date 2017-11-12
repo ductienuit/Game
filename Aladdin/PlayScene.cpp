@@ -81,7 +81,7 @@ void PlayScene::Update(float dt)
 	//sprite->nextFrame();
 	//sprite->setRotate(sprite->getRotate() + 10);
 
-	char str[100];
+	//char str[100];
 	//sprintf(str, "delta time: %f", dt);
 	//_text->setText(str);
 

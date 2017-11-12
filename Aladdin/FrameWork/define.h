@@ -29,15 +29,15 @@ enum eStatus
 	SITTING_DOWN = (1 << 4),				// 01000 = 2^3
 	RUNNING		 = (1 << 5),				// 10000 = 2^4
 	LOOKING_UP	 = (1 << 6),				// 2^5
-	THROW		 = (1 << 7),
-	FREE		 = (1 << 8),			//Trạng thái sau trạng thái normal khi chờ player rờ phím
-	JUMPING_LEFT = (1 << 9),
-	JUMPING_RIGHT= (1 << 10),
-	CLIMB		 = (1 << 11),	//leo lên trên
-	SWING		 = (1 << 12),		//leo xà ngang
-	DROP	 	 = (1 << 13),
-	DYING		 = (1 << 14),
-	ATTACK       = (1 << 15)
+	THROW		 = (1 << 7),		//Ném táo.
+	FREE		 = (1 << 8),		//Trạng thái sau trạng thái normal khi chờ player rờ phím
+	JUMPING_LEFT = (1 << 9),		//Đang moveLeft nhấn C
+	JUMPING_RIGHT= (1 << 10),		//Đang moveRight nhấn C
+	CLIMB		 = (1 << 11),		//Leo lên trên
+	SWING		 = (1 << 12),		//Leo xà ngang
+	DROP	 	 = (1 << 13),		//Đứng trên nhảy xuống
+	DYING		 = (1 << 14),		//Chết
+	ATTACK       = (1 << 15)		//Cầm kiếm chém
 };
 
 enum eID
