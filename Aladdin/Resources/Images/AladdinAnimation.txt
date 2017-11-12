@@ -196,3 +196,90 @@ aladdin_die_13	505	2227	549	2283
 aladdin_die_14	560	2228	601	2281
 aladdin_die_15	614	2232	653	2282
 aladdin_die_16	661	2232	701	2283
+lookingup_attack_0	11	420	53	473
+
+lookingup_attack_1	66	413	104	473
+
+lookingup_attack_2	111	412	176	473
+
+lookingup_attack_3	193	415	240	473
+
+lookingup_attack_4	249	418	296	472
+
+lookingup_attack_5	298	424	352	472
+
+lookingup_attack_6	363	401	437	472
+
+lookingup_attack_7	452	386	506	472
+
+lookingup_attack_8	520	401	569	472
+
+lookingup_attack_9	584	405	635	472
+
+lookingup_attack_2	111	412	176	473
+
+lookingup_attack_3	193	415	240	473
+
+lookingup_attack_4	249	418	296	472
+
+lookingup_attack_5	298	424	352	472
+
+lookingup_attack_6	363	401	437	472
+
+lookingup_attack_7	452	386	506	472
+
+lookingup_attack_8	520	401	569	472
+
+lookingup_attack_9	584	405	635	472
+
+lookingup_attack_2	111	412	176	473
+
+lookingup_attack_3	193	415	240	473
+
+lookingup_attack_4	249	418	296	472
+
+lookingup_attack_5	298	424	352	472
+
+lookingup_attack_6	363	401	437	472
+
+lookingup_attack_7	452	386	506	472
+
+lookingup_attack_8	520	401	569	472
+
+lookingup_attack_9	584	405	635	472
+
+lookingup_attack_2	111	412	176	473
+
+lookingup_attack_3	193	415	240	473
+
+lookingup_attack_4	249	418	296	472
+
+lookingup_attack_5	298	424	352	472
+
+lookingup_attack_6	363	401	437	472
+
+lookingup_attack_7	452	386	506	472
+
+lookingup_attack_8	520	401	569	472
+
+lookingup_attack_9	584	405	635	472
+
+lookingup_attack_2	111	412	176	473
+
+lookingup_attack_3	193	415	240	473
+
+lookingup_attack_4	249	418	296	472
+
+lookingup_attack_5	298	424	352	472
+
+lookingup_attack_6	363	401	437	472
+
+lookingup_attack_7	452	386	506	472
+
+lookingup_attack_8	520	401	569	472
+
+lookingup_attack_9	584	405	635	472
+
+lookingup_attack_10	644	415	697	472
+
+lookingup_attack_11	704	418	750	472

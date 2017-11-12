@@ -105,6 +105,57 @@ void Aladdin::InIt()
 	_animations[eStatus::SITTING_DOWN | eStatus::THROW] = new Animation(_sprite, 0.1f);
 	_animations[eStatus::SITTING_DOWN | eStatus::THROW]->addFrameRect(eID::ALADDIN, "sit_throw_", 5);
 
+	_animations[eStatus::ATTACK | eStatus::LOOKING_UP] = new Animation(_sprite, 0.1f);
+	#pragma region add animation Attack and lookingup
+	_animations[eStatus::ATTACK | eStatus::LOOKING_UP]->addFrameRect(eID::ALADDIN, "lookingup_attack_0"
+		, "lookingup_attack_1"
+		, "lookingup_attack_2"
+		, "lookingup_attack_3"
+		, "lookingup_attack_4"
+		, "lookingup_attack_5"
+		, "lookingup_attack_6"
+		, "lookingup_attack_7"
+		, "lookingup_attack_8"
+		, "lookingup_attack_9"
+		, "lookingup_attack_2"
+		, "lookingup_attack_3"
+		, "lookingup_attack_4"
+		, "lookingup_attack_5"
+		, "lookingup_attack_6"
+		, "lookingup_attack_7"
+		, "lookingup_attack_8"
+		, "lookingup_attack_9"
+		, "lookingup_attack_2"
+		, "lookingup_attack_3"
+		, "lookingup_attack_4"
+		, "lookingup_attack_5"
+		, "lookingup_attack_6"
+		, "lookingup_attack_7"
+		, "lookingup_attack_8"
+		, "lookingup_attack_9"
+		, "lookingup_attack_2"
+		, "lookingup_attack_3"
+		, "lookingup_attack_4"
+		, "lookingup_attack_5"
+		, "lookingup_attack_6"
+		, "lookingup_attack_7"
+		, "lookingup_attack_8"
+		, "lookingup_attack_9"
+		, "lookingup_attack_2"
+		, "lookingup_attack_3"
+		, "lookingup_attack_4"
+		, "lookingup_attack_5"
+		, "lookingup_attack_6"
+		, "lookingup_attack_7"
+		, "lookingup_attack_8"
+		, "lookingup_attack_9"
+		, "lookingup_attack_10"
+		, "lookingup_attack_11",NULL
+	);
+#pragma endregion
+
+	
+
 	_sprite->drawBounding(false);
 	_sprite->setOrigin(Vector2(0.5f, 0.0f));
 
@@ -178,6 +229,7 @@ void Aladdin::UpdateInput(float dt)
 		}
 		else if (_input->isKeyDown(DIK_X))
 		{
+			this->addStatus(eStatus::WORKING);
 			this->addStatus(eStatus::ATTACK);  //chém
 		}
 		else if (_input->isKeyDown(DIK_Z)) //ném
@@ -187,7 +239,7 @@ void Aladdin::UpdateInput(float dt)
 		else if (_input->isKeyDown(DIK_C))
 		{
 			jump();
-		}
+		}		
 		break;
 	}
 	case(eStatus::NORMAL1):
@@ -324,7 +376,6 @@ void Aladdin::UpdateInput(float dt)
 		{
 			_animations[_currentAnimateIndex]->Stop();
 		}
-
 		//left, right, down,x,c,z
 		if (_input->isKeyDown(DIK_LEFT))
 		{
@@ -341,8 +392,9 @@ void Aladdin::UpdateInput(float dt)
 		}
 		else if (_input->isKeyDown(DIK_X))
 		{
-			this->removeStatus(eStatus::LOOKING_UP);
+			//this->removeStatus(eStatus::LOOKING_UP);
 			this->addStatus(eStatus::ATTACK);  //chém
+			this->addStatus(eStatus::WORKING);
 		}
 		else if (_input->isKeyDown(DIK_Z)) //ném
 		{
@@ -458,7 +510,11 @@ void Aladdin::onKeyReleased(KeyEventArg * key_event)
 	}
 	case DIK_UP:
 	{
-		this->removeStatus(eStatus::LOOKING_UP);
+		if (this->isInStatus(eStatus::ATTACK))
+		{
+			//Nếu đang trong attack thì không hủy look_up, hủy khi thực hiện xong hành động
+		}
+		else this->removeStatus(eStatus::LOOKING_UP);
 
 		//Chạy lại hình ảnh động muốn thực hiện. bắt đầu là 0. Phải có dòng 343
 		_animations[_currentAnimateIndex]->Restart(0);
@@ -576,7 +632,13 @@ void Aladdin::updateStatusOneAction(float deltatime)
 		_animations[_currentAnimateIndex]->setIndex(5);  //Quan trọng, vì nếu không set. Nhấn phím lần 2 sẽ không nhận được index.
 		this->removeStatus(eStatus::THROW);
 	}
-	else if (this->isInStatus(eStatus::ATTACK) && _animations[_currentAnimateIndex]->getIndex() >= 4)
+	else if (this->isInStatus(eStatus::ATTACK) && (this->isInStatus(eStatus::LOOKING_UP)) && _animations[_currentAnimateIndex]->getIndex() >= 43)
+	{
+		_animations[_currentAnimateIndex]->setIndex(43);
+		this->removeStatus(eStatus::ATTACK);
+		this->removeStatus(eStatus::LOOKING_UP);
+	}
+	else if (this->isInStatus(eStatus::ATTACK)&& !this->isInStatus(eStatus::LOOKING_UP) && _animations[_currentAnimateIndex]->getIndex() >= 4)
 	{
 		_animations[_currentAnimateIndex]->setIndex(5);
 		this->removeStatus(eStatus::ATTACK);
@@ -624,6 +686,8 @@ void Aladdin::updateCurrentAnimateIndex()
 		this->removeStatus(eStatus::NORMAL1);
 		_currentAnimateIndex = (eStatus)(this->getStatus() & ~eStatus::NORMAL1);
 	}
+	if (this->isInStatus(WORKING))
+		this->removeStatus(eStatus::WORKING);
 	else _currentAnimateIndex = this->getStatus();
 }
 
