@@ -16,7 +16,7 @@
 
 
 [event_receiver(native)]
-class Aladdin : public BaseObject,public IControlable
+class Aladdin : public BaseObject, public IControlable
 {
 public:
 	Aladdin();
@@ -39,6 +39,7 @@ private:
 	void standing();
 	void moveLeft();
 	void moveRight();
+	void jump();
 	void jump(eStatus status);
 	void sitDown();
 	void swingSword();
