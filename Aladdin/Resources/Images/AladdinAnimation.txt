@@ -195,106 +195,64 @@ aladdin_die_13	505	2227	549	2283
 aladdin_die_14	560	2228	601	2281
 aladdin_die_15	614	2232	653	2282
 aladdin_die_16	661	2232	701	2283
+
 lookingup_attack_0	11	420	53	473
-
 lookingup_attack_1	66	413	104	473
-
 lookingup_attack_2	111	412	176	473
-
 lookingup_attack_3	193	415	240	473
-
 lookingup_attack_4	249	418	296	472
-
 lookingup_attack_5	298	424	352	472
-
 lookingup_attack_6	363	401	437	472
-
 lookingup_attack_7	452	386	506	472
-
 lookingup_attack_8	520	401	569	472
-
 lookingup_attack_9	584	405	635	472
-
 lookingup_attack_2	111	412	176	473
-
 lookingup_attack_3	193	415	240	473
-
 lookingup_attack_4	249	418	296	472
-
 lookingup_attack_5	298	424	352	472
-
 lookingup_attack_6	363	401	437	472
-
 lookingup_attack_7	452	386	506	472
-
 lookingup_attack_8	520	401	569	472
-
 lookingup_attack_9	584	405	635	472
-
 lookingup_attack_2	111	412	176	473
-
 lookingup_attack_3	193	415	240	473
-
 lookingup_attack_4	249	418	296	472
-
 lookingup_attack_5	298	424	352	472
-
 lookingup_attack_6	363	401	437	472
-
 lookingup_attack_7	452	386	506	472
-
 lookingup_attack_8	520	401	569	472
-
 lookingup_attack_9	584	405	635	472
-
 lookingup_attack_2	111	412	176	473
-
 lookingup_attack_3	193	415	240	473
-
 lookingup_attack_4	249	418	296	472
-
 lookingup_attack_5	298	424	352	472
-
 lookingup_attack_6	363	401	437	472
-
 lookingup_attack_7	452	386	506	472
-
 lookingup_attack_8	520	401	569	472
-
 lookingup_attack_9	584	405	635	472
-
 lookingup_attack_2	111	412	176	473
-
 lookingup_attack_3	193	415	240	473
-
 lookingup_attack_4	249	418	296	472
-
 lookingup_attack_5	298	424	352	472
-
 lookingup_attack_6	363	401	437	472
-
 lookingup_attack_7	452	386	506	472
-
 lookingup_attack_8	520	401	569	472
-
 lookingup_attack_9	584	405	635	472
-
 lookingup_attack_10	644	415	697	472
-
 lookingup_attack_11	704	418	750	472
 
-run_attack_0            15	2744	60	2798
+run_attack_00	15	2750	55	2798
 
-run_attack_1      	63	2741	112	2798
+run_attack_01	71	2744	106	2798
 
-run_attack_2      	126	2730	166	2800		
+run_attack_02	119	2741	168	2798
 
-run_attack_3      	182	2729	233	2794
+run_attack_03	187	2742	228	2799
 
-run_attack_4      	253	2731	309	2790
+run_attack_04	238	2729	289	2794
 
-run_attack_5      	339	2734	387	2795
+run_attack_05	311	2727	367	2786
 
-run_attack_6      	406	2727	490	2795
+run_attack_06	412	2723	504	2795
 
-run_attack_7       	497	2746	560	2798
+run_attack_07	530	2746	592	2798

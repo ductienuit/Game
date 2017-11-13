@@ -128,6 +128,13 @@ void Aladdin::InIt()
 //		, "run_attack_7", NULL
 //		);
 
+	_animations[eStatus::MOVING_RIGHT | eStatus::ATTACK] = new Animation(_sprite, 0.1f);
+	_animations[eStatus::MOVING_RIGHT | eStatus::ATTACK]->addFrameRect(eID::ALADDIN, "run_attack_0", 8);
+
+	_animations[eStatus::MOVING_LEFT | eStatus::ATTACK] = new Animation(_sprite, 0.1f);
+	_animations[eStatus::MOVING_LEFT | eStatus::ATTACK]->addFrameRect(eID::ALADDIN, "run_attack_0", 8);
+
+
 	_animations[eStatus::ATTACK | eStatus::LOOKING_UP] = new Animation(_sprite, 0.1f);
 	#pragma region add animation Attack and lookingup
 	_animations[eStatus::ATTACK | eStatus::LOOKING_UP]->addFrameRect(eID::ALADDIN, "lookingup_attack_0"
@@ -325,23 +332,21 @@ void Aladdin::UpdateInput(float dt)
 		}
 		break;
 	}
+
 	case(eStatus::MOVING_LEFT):
+	{
+		if (_input->isKeyPressed(DIK_X))
+		{
+			this->addStatus(eStatus::ATTACK);  //chém
+		}
+		break;
+	}
 	case(eStatus::MOVING_RIGHT):
 	{
-		//x,c,z
-		//if (_input->isKeyDown(DIK_X))
-		//{
-		//	this->addStatus(eStatus::ATTACK);  //chém
-		//}
-		//else if (_input->isKeyDown(DIK_Z)) //ném
-		//{
-		//	this->addStatus(eStatus::THROW);
-		//}
-		//else if (_input->isKeyDown(DIK_C))
-		//{
-		//	this->removeStatus(eStatus::MOVING_RIGHT);
-		//	jump();
-		//}
+		if (_input->isKeyDown(DIK_X))
+		{
+			this->addStatus(eStatus::ATTACK);  //chém
+		}
 		break;
 	}
 
@@ -735,6 +740,20 @@ void Aladdin::updateStatusOneAction(float deltatime)
 		_animations[_currentAnimateIndex]->setIndex(0);  //Quan trọng, vì nếu không set. Nhấn phím lần 2 sẽ không nhận được index.
 		this->removeStatus(eStatus::THROW);
 	}
+	else if (this->isInStatus(eStatus::ATTACK) && (this->isInStatus(eStatus::MOVING_LEFT))
+		&& _animations[_currentAnimateIndex]->getIndex() >= 7)
+	{
+		_animations[_currentAnimateIndex]->setIndex(8);
+		this->removeStatus(eStatus::ATTACK);
+		this->removeStatus(eStatus::MOVING_LEFT);
+	}
+	else if (this->isInStatus(eStatus::ATTACK) && (this->isInStatus(eStatus::MOVING_RIGHT))
+		&& _animations[_currentAnimateIndex]->getIndex() >= 7)
+	{
+		_animations[_currentAnimateIndex]->setIndex(8);
+		this->removeStatus(eStatus::ATTACK);
+		this->removeStatus(eStatus::MOVING_RIGHT);
+	}
 	else if (this->isInStatus(eStatus::ATTACK) && (this->isInStatus(eStatus::LOOKING_UP))
 		&& _animations[_currentAnimateIndex]->getIndex() >= 20)
 	{
@@ -750,7 +769,8 @@ void Aladdin::updateStatusOneAction(float deltatime)
 		this->removeStatus(eStatus::SITTING_DOWN);
 	}
 	else if (this->isInStatus(eStatus::ATTACK) && !this->isInStatus(eStatus::LOOKING_UP)  //chém normal
-		&& !this->isInStatus(eStatus::SITTING_DOWN) && _animations[_currentAnimateIndex]->getIndex() >= 4)	
+		&& !this->isInStatus(eStatus::SITTING_DOWN) && !this->isInStatus(eStatus::MOVING_LEFT)
+		&& !this->isInStatus(eStatus::MOVING_RIGHT) && _animations[_currentAnimateIndex]->getIndex() >= 4)
 
 	{
 		_animations[_currentAnimateIndex]->setIndex(0);
