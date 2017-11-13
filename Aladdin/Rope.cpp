@@ -1,10 +1,11 @@
 #include "Rope.h"
 
+
 Rope::Rope() : BaseObject(eID::ROPE)
 {
 	this->_sprite = SpriteManager::getInstance()->getSprite(eID::ROPE);
-	this->_sprite->setScale(1.0f);
-	this->_sprite->setPosition(Vector2(400, 500));
+	this->_sprite->setScale(0.8f);
+	this->_sprite->setPosition(Vector2(400, 400));
 }
 
 Rope::~Rope() {

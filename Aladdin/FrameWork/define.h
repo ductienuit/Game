@@ -19,7 +19,6 @@
 #include"debug.h"
 #include"../testSweepAABB.h"
 
-
 enum eStatus
 {
 	NORMAL =		0,					// 00000 = 0

@@ -318,10 +318,12 @@ void Aladdin::UpdateInput(float dt)
 	{
 		break;
 	}
-	case (eStatus::JUMPING):
+
+	//Test collison
+	case (eStatus::JUMPING):  
 	{
 		//Thêm collision nữa mới check collision với đất, dây, cột để leo được.
-		if (_sprite->getPositionY() >= 300)
+		if (_sprite->getPositionY() >= TEST_ROPE+100)
 		{
 			this->removeStatus(eStatus::JUMPING);
 			this->addStatus(eStatus::CLIMB);		
@@ -788,3 +790,6 @@ bool Aladdin::isInStatus(eStatus status)
 {
 	return (this->getStatus() & status) == status;
 }
+
+
+

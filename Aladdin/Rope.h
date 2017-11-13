@@ -12,10 +12,11 @@ using namespace std;
 
 class Rope : public BaseObject
 {
-public:
+  
+public:	
 	Rope();
 	~Rope();
-
+	
 	// Các phương thức kế thừa từ BaseObject.
 	void InIt() override;
 	void Update(float deltatime) override;
@@ -24,8 +25,6 @@ public:
 
 	// Kiểm tra va chạm.
 	float checkCollision(BaseObject* object, float dt);
-
-
 private:
 	Animation* _animations;
 };

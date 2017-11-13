@@ -129,6 +129,9 @@
     <ClCompile Include="Rope.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="FrameWork\CollisionBody.cpp">
+      <Filter>Source Files\FrameWork</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AladdinGame.h">
@@ -208,6 +211,9 @@
     </ClInclude>
     <ClInclude Include="Rope.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameWork\CollisionBody.h">
+      <Filter>Header Files\FrameWork</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

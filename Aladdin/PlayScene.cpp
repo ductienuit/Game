@@ -51,7 +51,7 @@ bool PlayScene::InIt()
 
 	auto aladdin = new Aladdin();
     aladdin->InIt();
-	aladdin->setPosition(400, 200);
+	aladdin->setPosition(200, 100);
 	_listControlObject.push_back(aladdin);
 	_listobject.push_back(aladdin);
 
