@@ -157,9 +157,9 @@ void Aladdin::InIt()
 
 void Aladdin::Update(float deltatime)
 {
-	if (_sprite->getPositionY() < TEST_LAND)
+	if (_sprite->getPositionY() < TEST_ROPE)
 	{
-		_sprite->setPositionY(TEST_LAND);
+		_sprite->setPositionY(TEST_ROPE);
 		auto gravity = (Gravity*)this->_componentList["Gravity"];
 		gravity->setStatus(eGravityStatus::SHALLOWED);
 		this->removeStatus(eStatus::JUMPING);

@@ -151,7 +151,7 @@ void Sprite::setPosition(Vector3 vector)
 
 void Sprite::setPosition(Vector2 position)
 {
-	this->_position = Vector2(position.x, position.y);
+	this->_position = position;
 	this->UpdateBounding();
 }
 

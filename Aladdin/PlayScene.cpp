@@ -45,12 +45,20 @@ bool PlayScene::InIt()
 	//auto redcannon = new RedCannon(GVector2(500, 500));
 	//_listobject.push_back(redcannon);
 
-	auto aladdin = new Aladdin();
-	aladdin->InIt();
-	aladdin->setPosition(400, 200);
+	auto rope = new Rope();
+	rope->InIt();
+	_listobject.push_back(rope);
 
+	auto aladdin = new Aladdin();
+    aladdin->InIt();
+	aladdin->setPosition(400, 200);
 	_listControlObject.push_back(aladdin);
 	_listobject.push_back(aladdin);
+
+
+
+	
+	
 
 	/*_text = new Text(L"Arial", "", 10, 25);
 
@@ -72,14 +80,6 @@ void PlayScene::UpdateInput(float dt)
 
 void PlayScene::Update(float dt)
 {
-
-	//test sprite
-	//sprite->setPositionX(sprite->getPosition().x + 1);
-	//sprite->nextFrame();
-	//sprite->setRotate(sprite->getRotate() + 1);
-	//sprite->setScale(2);
-	//sprite->nextFrame();
-	//sprite->setRotate(sprite->getRotate() + 10);
 
 	//char str[100];
 	//sprintf(str, "delta time: %f", dt);

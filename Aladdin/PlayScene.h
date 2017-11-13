@@ -16,6 +16,7 @@
 #include"../Aladdin/FrameWork/Animation.h"
 
 #include"../Aladdin/Objects/GameObjects/Aladdin.h"
+#include"../Aladdin/Rope.h"
 
 using namespace std;
 
@@ -54,6 +55,8 @@ private:
 
 	BaseObject* _aladdin;
 	BaseObject* _weaponmanager;
+
+	BaseObject* testLand;
 	void UpdateViewport(BaseObject* objTracker);
 
 

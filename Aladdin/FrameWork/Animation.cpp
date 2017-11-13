@@ -16,7 +16,6 @@ Animation::Animation(Sprite * spriteSheet, float timeAnimate, bool loop)
 	_startFrame = 0;
 	_endFrame = _totalFrames - 1;
 
-	this->setIndex(0);
 	this->setLoop(loop);
 	_canFlashes = false;
 	_flashColor = D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f);
@@ -71,7 +70,6 @@ void Animation::setIndex(int index)
 {
 	if (index == _index || _totalFrames == 0)
 		return;
-
 	_index = index;
 
 	if (_index >= _totalFrames)
@@ -168,8 +166,6 @@ void Animation::addFrameRect(RECT rect)
 
 		// _spriteSheet->setFrameRect(_currentRect);
 	}
-
-
 	_frameRectList.push_back(rect);
 	_totalFrames = _frameRectList.size();
 

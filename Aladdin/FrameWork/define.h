@@ -17,6 +17,7 @@
 #include <map>
 #include <vector>
 #include"debug.h"
+#include"../testSweepAABB.h"
 
 
 enum eStatus
@@ -43,7 +44,8 @@ enum eStatus
 
 enum eID
 {
-	ALADDIN
+	ALADDIN,
+	ROPE
 };
 
 enum eDirection

@@ -1,0 +1,2 @@
+frame_name	left	top	right	bottom
+rope_0	0	0	28	310
