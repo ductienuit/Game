@@ -282,3 +282,19 @@ lookingup_attack_9	584	405	635	472
 lookingup_attack_10	644	415	697	472
 
 lookingup_attack_11	704	418	750	472
+
+run_attack_0            15	2744	60	2798
+
+run_attack_1      	63	2741	112	2798
+
+run_attack_2      	126	2730	166	2800		
+
+run_attack_3      	182	2729	233	2794
+
+run_attack_4      	253	2731	309	2790
+
+run_attack_5      	339	2734	387	2795
+
+run_attack_6      	406	2727	490	2795
+
+run_attack_7       	497	2746	560	2798
