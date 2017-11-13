@@ -116,6 +116,18 @@ void Aladdin::InIt()
 	_animations[eStatus::SITTING_DOWN | eStatus::THROW] = new Animation(_sprite, 0.1f);
 	_animations[eStatus::SITTING_DOWN | eStatus::THROW]->addFrameRect(eID::ALADDIN, "sit_throw_", 5);
 
+	_animations[eStatus::MOVING_RIGHT | eStatus::ATTACK] = new Animation(_sprite, 0.1f);
+#pragma region add animation Attack and Moving right
+	_animations[eStatus::MOVING_RIGHT | eStatus::ATTACK]->addFrameRect(eID::ALADDIN, "run_attack_0"
+		, "run_attack_1"
+		, "run_attack_2"
+		, "run_attack_3"
+		, "run_attack_4"
+		, "run_attack_5"
+		, "run_attack_6"
+		, "run_attack_7", NULL
+		);
+
 	_animations[eStatus::ATTACK | eStatus::LOOKING_UP] = new Animation(_sprite, 0.1f);
 	#pragma region add animation Attack and lookingup
 	_animations[eStatus::ATTACK | eStatus::LOOKING_UP]->addFrameRect(eID::ALADDIN, "lookingup_attack_0"
@@ -316,6 +328,20 @@ void Aladdin::UpdateInput(float dt)
 	case(eStatus::MOVING_LEFT):
 	case(eStatus::MOVING_RIGHT):
 	{
+		//x,c,z
+		if (_input->isKeyDown(DIK_X))
+		{
+			this->addStatus(eStatus::ATTACK);  //chém
+		}
+		else if (_input->isKeyDown(DIK_Z)) //ném
+		{
+			this->addStatus(eStatus::THROW);
+		}
+		else if (_input->isKeyDown(DIK_C))
+		{
+			this->removeStatus(eStatus::MOVING_RIGHT);
+			jump();
+		}
 		break;
 	}
 
