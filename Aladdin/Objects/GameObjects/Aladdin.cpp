@@ -606,7 +606,11 @@ void Aladdin::onKeyReleased(KeyEventArg * key_event)
 			//Nếu đang trong attack thì không hủy sitting_down, hủy khi thực hiện xong hành động ngồi chém
 		}
 		else this->removeStatus(eStatus::SITTING_DOWN);
-		_animations[_currentAnimateIndex]->Restart(0);
+
+		if (this->isInStatus(eStatus::CLIMB))
+		{
+		}
+		else _animations[_currentAnimateIndex]->Restart(0);
 		break;
 	}
 	case DIK_UP:
@@ -617,7 +621,10 @@ void Aladdin::onKeyReleased(KeyEventArg * key_event)
 		}
 		else this->removeStatus(eStatus::LOOKING_UP);
 		//Chạy lại hình ảnh động muốn thực hiện. bắt đầu là 0. Phải có dòng 343
-		_animations[_currentAnimateIndex]->Restart(0);
+		if (this->isInStatus(eStatus::CLIMB))
+		{
+		}
+		else _animations[_currentAnimateIndex]->Restart(0);
 		break;
 	}
 	case DIK_X:
