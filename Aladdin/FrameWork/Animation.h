@@ -38,6 +38,9 @@ public:
 	//Chuyển qua frame kế tiếp
 	void	 NextFrame();
 
+	//Lùi frame
+	void	PrevFrame();
+
 	//Truyền thứ tự frame
 	void	 setIndex(int index);
 

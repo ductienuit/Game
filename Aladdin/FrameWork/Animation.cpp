@@ -60,6 +60,11 @@ void Animation::NextFrame()
 	this->setIndex(_index + 1);
 }
 
+void Animation::PrevFrame()
+{
+	this->setIndex(_index - 1);
+}
+
 int  Animation::getIndex()
 {
 	// use in Explostion::update
@@ -74,7 +79,6 @@ void Animation::setIndex(int index)
 
 	if (_index >= _totalFrames)
 		_index = _startFrame;
-
 	_currentRect = _frameRectList[_index];
 
 	if (!_isLoop && _index == _endFrame)

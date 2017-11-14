@@ -55,6 +55,7 @@ private:
 	Sprite* _refSprite;
 };
 
+
 enum eGravityStatus
 {
 	FALLING__DOWN,

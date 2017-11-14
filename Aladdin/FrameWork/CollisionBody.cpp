@@ -217,7 +217,6 @@ RECT CollisionBody::getSweptBroadphaseRect(BaseObject* object, float dt)
 	rect.bottom = velocity.y > 0 ? myRect.bottom : myRect.bottom + velocity.y;
 	rect.left = velocity.x > 0 ? myRect.left : myRect.left + velocity.x;
 	rect.right = velocity.y > 0 ? myRect.right + velocity.x : myRect.right;
-
 	return rect;
 }
 
@@ -226,7 +225,7 @@ bool CollisionBody::isColliding()
 	return _isColliding;
 }
 
-void CollisionBody::update(float dt)
+void CollisionBody::Update(float dt)
 {
 
 }

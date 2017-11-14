@@ -1,5 +1,6 @@
 #include "PlayScene.h"
-
+#include<iostream>
+using namespace std;
 
 Viewport* PlayScene::_viewport = new Viewport(0, WINDOWS_HEIGHT);
 
@@ -44,21 +45,17 @@ bool PlayScene::InIt()
 
 	//auto redcannon = new RedCannon(GVector2(500, 500));
 	//_listobject.push_back(redcannon);
-
 	auto rope = new Rope();
 	rope->InIt();
 	_listobject.push_back(rope);
 
 	auto aladdin = new Aladdin();
-    aladdin->InIt();
+	aladdin->InIt();
 	aladdin->setPosition(200, 100);
 	_listControlObject.push_back(aladdin);
 	_listobject.push_back(aladdin);
 
 
-
-	
-	
 
 	/*_text = new Text(L"Arial", "", 10, 25);
 
@@ -89,6 +86,9 @@ void PlayScene::Update(float dt)
 	{
 		object->Update(dt);
 	}
+
+	for(auto i : _listobject)
+		i->checkCollision(_listobject[0], dt);
 }
 
 void PlayScene::Draw(LPD3DXSPRITE spriteHandle)

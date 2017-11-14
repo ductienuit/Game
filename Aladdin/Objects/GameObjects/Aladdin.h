@@ -7,12 +7,14 @@
 #include"../../FrameWork/IComponent.h"
 #include"../../FrameWork/StopWatch.h"
 #include "BaseObject.h"
+#include"../../FrameWork/CollisionBody.h"
 
 #define ALADDIN_MOVE_SPEED 125
 #define ALADDIN_JUMP_VEL 450
 #define ALADDIN_ACC_MOVE 300
 #define TEST_ROPE 100
 #define GRAVITY 800
+#define ALADDIN_CLIMB_SPEED 90
 
 
 [event_receiver(native)]
@@ -27,6 +29,11 @@ public:
 	void Update(float deltatime);
 	void Draw(LPD3DXSPRITE spriteHandle, Viewport* viewport);
 	void Release();
+
+	void onCollisionBegin(CollisionEventArg* collision_event);
+	void onCollisionEnd(CollisionEventArg* collision_event);
+
+	float checkCollision(BaseObject* object, float dt);
 
 	void setPosition(float x, float y);
 
@@ -44,6 +51,10 @@ private:
 	void sitDown();
 	void swingSword();
 	void sitAttack();
+	void climbUp();
+	void climbDown();
+
+	int _flagFrameClimb;
 
 	//Dong ho dem
 	StopWatch* _firstAnimateStopWatch;

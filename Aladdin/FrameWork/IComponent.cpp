@@ -37,6 +37,8 @@ Vector2 Movement::getVelocity()
 }
 #pragma endregion
 
+
+
 #pragma region Gravity
 void Gravity::Update(float deltatime)
 {

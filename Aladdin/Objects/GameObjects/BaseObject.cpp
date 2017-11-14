@@ -191,6 +191,11 @@ float BaseObject::checkCollision(BaseObject * object, float dt)
 	return 0.0f;
 }
 
+float BaseObject::checkCollision(BaseObject * object, eDirection & direction)
+{
+	return 0.0f;
+}
+
 Vector2 BaseObject::getVelocity()
 {
 	return Vector2(0, 0);

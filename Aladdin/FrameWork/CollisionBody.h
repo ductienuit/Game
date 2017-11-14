@@ -39,7 +39,7 @@ public:
 	void checkCollision(BaseObject* otherObject, float dt);
 	bool isColliding();
 
-	void update(float dt);
+	void Update(float dt);
 
 	__event void onCollisionBegin(CollisionEventArg* e);
 	__event void onCollisionEnd(CollisionEventArg* e);
