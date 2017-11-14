@@ -1,9 +1,6 @@
 ﻿#include"../Aladdin/FrameWork/define.h"
 #include"AladdinGame.h"
 
-using namespace std;
-
-
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
@@ -12,5 +9,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	myGame->Run();
 	myGame->Release();
 	delete myGame;
+
 	return 1;
 }

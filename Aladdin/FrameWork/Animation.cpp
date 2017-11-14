@@ -57,12 +57,24 @@ Animation::~Animation()
 
 void Animation::NextFrame()
 {
-	this->setIndex(_index + 1);
+	_index = (_index + _totalFrames + 1) % _totalFrames;
+	_currentRect = _frameRectList[_index];
+
+	if (!_isLoop && _index == _endFrame)
+	{
+		this->Stop();
+	}
 }
 
 void Animation::PrevFrame()
 {
-	this->setIndex(_index - 1);
+	_index = (_index + _totalFrames - 1) % _totalFrames;
+	_currentRect = _frameRectList[_index];
+
+	if (!_isLoop && _index == _endFrame)
+	{
+		this->Stop();
+	}
 }
 
 int  Animation::getIndex()
@@ -79,6 +91,7 @@ void Animation::setIndex(int index)
 
 	if (_index >= _totalFrames)
 		_index = _startFrame;
+
 	_currentRect = _frameRectList[_index];
 
 	if (!_isLoop && _index == _endFrame)
@@ -97,6 +110,35 @@ void Animation::Update(float dt)
 	{
 		if (_canAnimate)
 			this->NextFrame();
+
+		_timer -= _timeAnimate;				// không thể gán bằng 0. vì như vậy là làm tròn. sẽ có sai số
+
+		if (_canFlashes)
+		{
+			if (_spriteSheet->getOpacity() != _valueFlashes)
+			{
+				_spriteSheet->setOpacity(_valueFlashes);
+				_spriteSheet->setColor(D3DXCOLOR(_flashColor.r, _flashColor.g, _flashColor.b, _valueFlashes));
+			}
+			else
+			{
+				_spriteSheet->setOpacity(1.0f);
+				_spriteSheet->setColor(D3DXCOLOR(_flashColor.r, _flashColor.g, _flashColor.b, 1.0f));
+			}
+		}
+	}
+}
+
+void Animation::UpdatePreFrame(float dt)
+{
+	if (!_canFlashes && !_canAnimate)
+		return;
+
+	_timer += dt / 1000;
+	if (_timer >= _timeAnimate)
+	{
+		if (_canAnimate)
+			this->PrevFrame();
 
 		_timer -= _timeAnimate;				// không thể gán bằng 0. vì như vậy là làm tròn. sẽ có sai số
 

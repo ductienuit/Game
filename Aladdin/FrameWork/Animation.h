@@ -50,6 +50,8 @@ public:
 	//Update Animation
 	void	 Update(float dt);
 
+	void	 UpdatePreFrame(float dt);
+
 	//Vẽ chuyển động
 	void	 Draw(LPD3DXSPRITE spriteHandle, Viewport* viewport);
 

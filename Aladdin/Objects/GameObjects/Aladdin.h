@@ -8,6 +8,9 @@
 #include"../../FrameWork/StopWatch.h"
 #include "BaseObject.h"
 #include"../../FrameWork/CollisionBody.h"
+#include<iostream>
+
+using namespace std;
 
 #define ALADDIN_MOVE_SPEED 125
 #define ALADDIN_JUMP_VEL 450
@@ -51,10 +54,9 @@ private:
 	void sitDown();
 	void swingSword();
 	void sitAttack();
-	void climbUp();
-	void climbDown();
+	void climbUp(float dt);
+	void climbDown(float dt);
 
-	int _flagFrameClimb;
 
 	//Dong ho dem
 	StopWatch* _firstAnimateStopWatch;

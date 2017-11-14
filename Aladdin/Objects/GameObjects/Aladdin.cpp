@@ -87,14 +87,6 @@ void Aladdin::InIt()
 	_animations[eStatus::CLIMB] = new Animation(_sprite, 0.1f);
 	_animations[eStatus::CLIMB]->addFrameRect(eID::ALADDIN, "climb_", 10);
 
-	/*
-	_animations[eStatus::CLIMB | eDirection::TOP] = new Animation(_sprite, 0.1f);
-	_animations[eStatus::CLIMB | eDirection::TOP]->addFrameRect(eID::ALADDIN, "climb_", 10);
-
-	_animations[eStatus::CLIMB | eDirection::BOTTOM] = new Animation(_sprite, 0.1f);
-	_animations[eStatus::CLIMB | eDirection::BOTTOM]->addFrameRect(eID::ALADDIN, "climb_9","climb_8","climb_7","climb_6",
-	"climb_5","climb_4","climb_3","climb_2","climb_1","climb_0",NULL);*/
-
 	_animations[eStatus::THROW] = new Animation(_sprite, 0.1f);
 	_animations[eStatus::THROW]->addFrameRect(eID::ALADDIN, "throw_", 5);
 
@@ -189,7 +181,6 @@ void Aladdin::InIt()
 	_normalAnimateStopWatch = new StopWatch();
 	_firstAnimateStopWatch = new StopWatch();
 
-	_flagFrameClimb = 0;
 }
 
 void Aladdin::Update(float deltatime)
@@ -217,8 +208,7 @@ void Aladdin::Update(float deltatime)
 
 	if (this->isInStatus(eStatus::CLIMB))
 	{
-		_animations[_currentAnimateIndex]->setIndex(_flagFrameClimb);
-		//_animations[_currentAnimateIndex]->Update(deltatime);
+		this->removeStatus(eStatus::NORMAL);
 	}
 	else _animations[_currentAnimateIndex]->Update(deltatime);
 
@@ -555,33 +545,23 @@ void Aladdin::UpdateInput(float dt)
 		//left, right, down,x,c,z
 		if (_input->isKeyDown(DIK_LEFT))
 		{
-			//this->removeStatus(eStatus::LOOKING_UP);
-			//_sprite->setScaleX(-1.6);
 		}
 		else if (_input->isKeyDown(DIK_RIGHT))
 		{
-			//this->removeStatus(eStatus::LOOKING_UP);
-			//this->removeStatus(eStatus::ATTACK);
-			//_sprite->setScaleX(1.6);
 		}
 		else if (_input->isKeyDown(DIK_DOWN))
 		{
-			_flagFrameClimb = _flagFrameClimb % 10;
-			this->climbDown();
+			this->climbDown(dt);
 		}
 		else if (_input->isKeyDown(DIK_UP))
 		{
-			_flagFrameClimb = 9 - _flagFrameClimb % 10;
-			this->climbUp();
+			this->climbUp(dt);
 		}
 		else if (_input->isKeyDown(DIK_X))
 		{
-			//this->addStatus(eStatus::ATTACK);  //chém
 		}
 		else if (_input->isKeyDown(DIK_Z)) //ném
 		{
-			//this->removeStatus(eStatus::LOOKING_UP);
-			//this->addStatus(eStatus::THROW);
 		}
 		else if (_input->isKeyDown(DIK_C))
 		{
@@ -669,11 +649,9 @@ void Aladdin::onCollisionBegin(CollisionEventArg * collision_event)
 		}
 		else if (collision_event->_sideCollision == eDirection::BOTTOM)
 		{
-			//Chạm đất hoặc gì đó đứng được
+			//Nhảy lên đụng cái gì đó
 			auto gravity = (Gravity*)this->_componentList["Gravity"];
 			gravity->setStatus(eGravityStatus::SHALLOWED);
-
-
 			this->removeStatus(eStatus::JUMPING);
 			this->addStatus(eStatus::CLIMB);
 		}
@@ -763,15 +741,17 @@ void Aladdin::swingSword()
 	this->addStatus(eStatus::JUMPING);
 }
 
-void Aladdin::climbUp()
+void Aladdin::climbUp(float dt)
 {
+	this->_animations[_currentAnimateIndex]->Update(dt);
 	auto move = (Movement*)this->_componentList["Movement"];
 	move->setVelocity(Vector2(move->getVelocity().x, ALADDIN_CLIMB_SPEED));
 
 }
 
-void Aladdin::climbDown()
+void Aladdin::climbDown(float dt)
 {
+	this->_animations[_currentAnimateIndex]->UpdatePreFrame(dt);
 	auto move = (Movement*)this->_componentList["Movement"];
 	move->setVelocity(Vector2(move->getVelocity().x, -ALADDIN_CLIMB_SPEED));
 }
