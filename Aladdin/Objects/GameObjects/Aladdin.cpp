@@ -150,6 +150,15 @@ void Aladdin::InIt()
 	_animations[eStatus::MOVING_LEFT | eStatus::ATTACK] = new Animation(_sprite, 0.1f);
 	_animations[eStatus::MOVING_LEFT | eStatus::ATTACK]->addFrameRect(eID::ALADDIN, "run_attack_0", 8);
 
+	_animations[eStatus::SWING | eStatus::MOVING_LEFT] = new Animation(_sprite, 0.1f);
+	_animations[eStatus::SWING | eStatus::MOVING_LEFT]->addFrameRect(eID::ALADDIN, "swing_", 10);
+
+	_animations[eStatus::SWING | eStatus::JUMPING] = new Animation(_sprite, 0.1f);
+	_animations[eStatus::SWING | eStatus::JUMPING]->addFrameRect(eID::ALADDIN, "swing_", 10);
+
+	_animations[eStatus::SWING | eStatus::MOVING_RIGHT] = new Animation(_sprite, 0.1f);
+	_animations[eStatus::SWING | eStatus::MOVING_RIGHT]->addFrameRect(eID::ALADDIN, "swing_", 10);
+
 
 	_animations[eStatus::ATTACK | eStatus::LOOKING_UP] = new Animation(_sprite, 0.1f);
 #pragma region add animation Attack and lookingup
@@ -583,6 +592,19 @@ void Aladdin::UpdateInput(float dt)
 		}
 		break;
 	}
+	case(eStatus::SWING):
+	{
+		if (_input->isKeyPressed(DIK_LEFT))
+		{
+			this->moveLeft();
+			this->addStatus(eStatus::MOVING_LEFT);
+		}
+		else if (_input->isKeyDown(DIK_RIGHT))
+		{
+			this->addStatus(eStatus::MOVING_RIGHT);
+		}
+		break;
+	}
 	}
 }
 void Aladdin::onKeyReleased(KeyEventArg * key_event)
@@ -665,7 +687,7 @@ void Aladdin::onCollisionBegin(CollisionEventArg * collision_event)
 		}
 		else if (collision_event->_sideCollision == eDirection::LEFT || collision_event->_sideCollision == eDirection::RIGHT)
 		{
-
+			
 		}
 		else if (collision_event->_sideCollision == eDirection::BOTTOM)
 		{
@@ -673,7 +695,7 @@ void Aladdin::onCollisionBegin(CollisionEventArg * collision_event)
 			auto gravity = (Gravity*)this->_componentList["Gravity"];
 			gravity->setStatus(eGravityStatus::SHALLOWED);
 			this->removeStatus(eStatus::JUMPING);
-			this->addStatus(eStatus::CLIMB);
+			this->addStatus(eStatus::SWING);
 		}
 	}
 }
@@ -917,10 +939,28 @@ void Aladdin::updateStatusOneAction(float deltatime)
 		this->removeStatus(eStatus::ATTACK);
 		this->addStatus(eStatus::JUMPING_LEFT);
 	}
+
+	//SWING đu xà đu dây
+	else if (this->isInStatus(eStatus::MOVING_LEFT) && this->isInStatus(eStatus::SWING) && _animations[_currentAnimateIndex]->getIndex() >= 4)
+	{
+		_animations[_currentAnimateIndex]->setIndex(0);
+		this->removeStatus(eStatus::MOVING_LEFT);
+		this->addStatus(eStatus::SWING);
+	}
+	else if (this->isInStatus(eStatus::MOVING_RIGHT) && this->isInStatus(eStatus::SWING) && _animations[_currentAnimateIndex]->getIndex() >= 4)
+	{
+		_animations[_currentAnimateIndex]->setIndex(0);
+		this->removeStatus(eStatus::MOVING_RIGHT);
+		this->addStatus(eStatus::SWING);
+	}
+
 	//Thêm hiệu ứng ATTACK thì phải thêm ngoại lệ vào đây
 	else if (this->isInStatus(eStatus::ATTACK) && !this->isInStatus(eStatus::LOOKING_UP)  //chém normal
 		&& !this->isInStatus(eStatus::SITTING_DOWN) && !this->isInStatus(eStatus::MOVING_LEFT)
-		&& !this->isInStatus(eStatus::MOVING_RIGHT) && !this->isInStatus(eStatus::JUMPING_LEFT) && !this->isInStatus(eStatus::JUMPING_RIGHT) && !this->isInStatus(eStatus::JUMPING) && _animations[_currentAnimateIndex]->getIndex() >= 4)
+		&& !this->isInStatus(eStatus::MOVING_RIGHT) && !this->isInStatus(eStatus::JUMPING_LEFT)
+		&& !this->isInStatus(eStatus::JUMPING_RIGHT) && !this->isInStatus(eStatus::JUMPING)
+		&& !this->isInStatus(eStatus::SWING)
+		&& _animations[_currentAnimateIndex]->getIndex() >= 4)
 
 	{
 		_animations[_currentAnimateIndex]->setIndex(0);
