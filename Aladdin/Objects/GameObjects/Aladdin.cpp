@@ -288,43 +288,35 @@ void Aladdin::UpdateInput(float dt)
 
 		if (_input->isKeyDown(DIK_LEFT))
 		{
-			this->removeStatus(eStatus::NORMAL1);
 			this->addStatus(eStatus::MOVING_LEFT);
 		}
 		else if (_input->isKeyDown(DIK_RIGHT))
 		{
-			this->removeStatus(eStatus::NORMAL1);
 			this->addStatus(eStatus::MOVING_RIGHT);
 		}
 		else if (_input->isKeyDown(DIK_DOWN))
 		{
-			this->removeStatus(eStatus::NORMAL1);
 			this->addStatus(eStatus::SITTING_DOWN);
 		}
 		else if (_input->isKeyDown(DIK_UP))
 		{
-			this->removeStatus(eStatus::NORMAL1);
 			this->addStatus(eStatus::LOOKING_UP);
 		}
 		else if (_input->isKeyPressed(DIK_X))
 		{
-			this->removeStatus(eStatus::NORMAL1);
 			this->addStatus(eStatus::ATTACK);  //chém
 		}
 		else if (_input->isKeyPressed(DIK_Z)) //ném
 		{
-			this->removeStatus(eStatus::NORMAL1);
 			this->addStatus(eStatus::THROW);
 		}
 		else if (_input->isKeyPressed(DIK_C))
 		{
-			this->removeStatus(eStatus::NORMAL1);
 			jump(eStatus::JUMPING);
 		}
 		else if (_input->isKeyPressed(DIK_S))
 		{
 			unHookInputEvent();
-			this->removeStatus(eStatus::NORMAL1);
 			this->addStatus(eStatus::DYING);
 		}
 		break;
@@ -376,8 +368,8 @@ void Aladdin::UpdateInput(float dt)
 
 	case(eStatus::MOVING_LEFT):
 	{
-		this->removeStatus(eStatus::NORMAL1);
-		this->removeStatus(eStatus::FREE);
+		/*this->removeStatus(eStatus::NORMAL1);
+		this->removeStatus(eStatus::FREE);*/
 		if (_input->isKeyPressed(DIK_C))
 		{
 			this->removeStatus(eStatus::MOVING_LEFT);
@@ -461,8 +453,8 @@ void Aladdin::UpdateInput(float dt)
 	}
 	case (eStatus::JUMPING_LEFT):
 	{
-		this->removeStatus(eStatus::NORMAL1);
-		this->removeStatus(eStatus::FREE);
+		/*this->removeStatus(eStatus::NORMAL1);
+		this->removeStatus(eStatus::FREE);*/
 
 		if (_input->isKeyDown(DIK_RIGHT))
 		{
@@ -577,13 +569,13 @@ void Aladdin::UpdateInput(float dt)
 		//left, right, down,x,c,z
 		if (_input->isKeyDown(DIK_LEFT))
 		{
-			this->removeStatus(eStatus::LOOKING_UP);
+			/*this->removeStatus(eStatus::LOOKING_UP);*/
 			_sprite->setScaleX(-1.6);
 		}
 		else if (_input->isKeyDown(DIK_RIGHT))
 		{
-			this->removeStatus(eStatus::LOOKING_UP);
-			this->removeStatus(eStatus::ATTACK);
+			/*this->removeStatus(eStatus::LOOKING_UP);
+			this->removeStatus(eStatus::ATTACK);*/
 			_sprite->setScaleX(1.6);
 		}
 		else if (_input->isKeyDown(DIK_DOWN))
