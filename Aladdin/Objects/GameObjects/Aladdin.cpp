@@ -716,8 +716,8 @@ void Aladdin::onCollisionBegin(CollisionEventArg * collision_event)
 			auto gravity = (Gravity*)this->_componentList["Gravity"]; 
 			gravity->setStatus(eGravityStatus::SHALLOWED);
 			this->removeStatus(eStatus::JUMPING);
-			//this->addStatus(eStatus::CLIMB);
-			this->addStatus(eStatus::SWING);
+			this->addStatus(eStatus::CLIMB);
+			//this->addStatus(eStatus::SWING);
 		}
 	}
 }

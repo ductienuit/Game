@@ -51,7 +51,7 @@ bool PlayScene::InIt()
 
 	auto rope2 = new Rope();
 	rope2->InIt();
-	rope2->setPosition(Vector2(400, 150));
+	rope2->setPosition(Vector2(600, 400));
 	rope2->setRotate(90);
 	_listobject.push_back(rope2);
 
