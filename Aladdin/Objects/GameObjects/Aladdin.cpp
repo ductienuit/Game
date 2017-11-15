@@ -150,6 +150,9 @@ void Aladdin::InIt()
 	_animations[eStatus::MOVING_LEFT | eStatus::ATTACK] = new Animation(_sprite, 0.1f);
 	_animations[eStatus::MOVING_LEFT | eStatus::ATTACK]->addFrameRect(eID::ALADDIN, "run_attack_0", 8);
 
+	_animations[eStatus::DYING] = new Animation(_sprite, 0.1f);
+	_animations[eStatus::DYING]->addFrameRect(eID::ALADDIN, "aladdin_die_", 17);
+
 
 	_animations[eStatus::ATTACK | eStatus::LOOKING_UP] = new Animation(_sprite, 0.1f);
 #pragma region add animation Attack and lookingup
@@ -267,6 +270,11 @@ void Aladdin::UpdateInput(float dt)
 		{
 			jump(eStatus::JUMPING);
 		}
+		else if (_input->isKeyPressed(DIK_S))
+		{
+			unHookInputEvent();
+			this->addStatus(eStatus::DYING);
+		}
 		break;
 	}
 	case(eStatus::NORMAL1):
@@ -313,6 +321,12 @@ void Aladdin::UpdateInput(float dt)
 			this->removeStatus(eStatus::NORMAL1);
 			jump(eStatus::JUMPING);
 		}
+		else if (_input->isKeyPressed(DIK_S))
+		{
+			unHookInputEvent();
+			this->removeStatus(eStatus::NORMAL1);
+			this->addStatus(eStatus::DYING);
+		}
 		break;
 	}
 	case(eStatus::FREE):
@@ -351,6 +365,12 @@ void Aladdin::UpdateInput(float dt)
 			this->removeStatus(eStatus::FREE);
 			jump(eStatus::JUMPING);
 		}
+		else if (_input->isKeyPressed(DIK_S))
+		{
+			unHookInputEvent();
+			this->removeStatus(eStatus::FREE);
+			this->addStatus(eStatus::DYING);
+		}
 		break;
 	}
 
@@ -367,6 +387,12 @@ void Aladdin::UpdateInput(float dt)
 		{
 			this->addStatus(eStatus::ATTACK);  //chém
 		}
+		if (_input->isKeyPressed(DIK_S))
+		{
+			unHookInputEvent();
+			this->removeStatus(eStatus::MOVING_LEFT);
+			this->addStatus(eStatus::DYING);
+		}
 		break;
 	}
 
@@ -381,6 +407,12 @@ void Aladdin::UpdateInput(float dt)
 		{
 			this->addStatus(eStatus::ATTACK);  //chém
 		}
+		if (_input->isKeyPressed(DIK_S))
+		{
+			unHookInputEvent();
+			this->removeStatus(eStatus::MOVING_RIGHT);
+			this->addStatus(eStatus::DYING);
+		}
 		break;
 	}
 	case (eStatus::JUMPING_RIGHT):
@@ -390,7 +422,6 @@ void Aladdin::UpdateInput(float dt)
 			this->moveLeft();
 			this->removeStatus(eStatus::JUMPING_RIGHT);
 			this->addStatus(eStatus::JUMPING_LEFT);
-
 		}
 		else if (_input->isKeyPressed(DIK_Z))
 		{
@@ -419,6 +450,12 @@ void Aladdin::UpdateInput(float dt)
 				this->addStatus(eStatus::JUMPING_LEFT);
 
 			}
+		}
+		else if (_input->isKeyPressed(DIK_S))
+		{
+			unHookInputEvent();
+			this->removeStatus(eStatus::JUMPING_RIGHT);
+			this->addStatus(eStatus::DYING);
 		}
 		break;
 	}
@@ -459,6 +496,12 @@ void Aladdin::UpdateInput(float dt)
 
 			}
 		}
+		else if (_input->isKeyPressed(DIK_S))
+		{
+			unHookInputEvent();
+			this->removeStatus(eStatus::JUMPING_LEFT);
+			this->addStatus(eStatus::DYING);
+		}
 		break;
 	}
 	case (eStatus::JUMPING):
@@ -476,6 +519,12 @@ void Aladdin::UpdateInput(float dt)
 		else if (_input->isKeyPressed(DIK_X))
 		{
 			this->addStatus(eStatus::ATTACK);
+		}
+		else if (_input->isKeyPressed(DIK_S))
+		{
+			unHookInputEvent();
+			this->removeStatus(eStatus::JUMPING);
+			this->addStatus(eStatus::DYING);
 		}
 		break;
 	}
@@ -510,6 +559,12 @@ void Aladdin::UpdateInput(float dt)
 		{
 			this->removeStatus(eStatus::SITTING_DOWN);
 			jump(eStatus::JUMPING);
+		}
+		else if (_input->isKeyPressed(DIK_S))
+		{
+			unHookInputEvent();
+			this->removeStatus(eStatus::SITTING_DOWN);
+			this->addStatus(eStatus::DYING);
 		}
 		break;
 	}
@@ -549,6 +604,13 @@ void Aladdin::UpdateInput(float dt)
 		{
 			this->removeStatus(eStatus::LOOKING_UP);
 			jump(eStatus::JUMPING);
+		}
+
+		else if (_input->isKeyPressed(DIK_S))
+		{
+			unHookInputEvent();
+			this->removeStatus(eStatus::LOOKING_UP);
+			this->addStatus(eStatus::DYING);
 		}
 		break;
 	}
@@ -632,6 +694,12 @@ void Aladdin::onKeyReleased(KeyEventArg * key_event)
 		break;
 	}
 	case DIK_Z: //ném
+	{
+		break;
+
+	}
+
+	case DIK_S: //chet
 	{
 		break;
 
@@ -970,6 +1038,14 @@ void Aladdin::updateCurrentAnimateIndex()
 		_currentAnimateIndex = (eStatus)(this->getStatus() & ~eStatus::NORMAL1);
 	}
 	else _currentAnimateIndex = this->getStatus();
+}
+
+void Aladdin::unHookInputEvent()
+{
+	if (_input != nullptr)
+	{
+		__unhook(_input);
+	}
 }
 
 void Aladdin::addStatus(eStatus status)
