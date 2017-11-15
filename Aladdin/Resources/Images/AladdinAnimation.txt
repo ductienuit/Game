@@ -256,3 +256,45 @@ run_attack_05	311	2727	367	2786
 run_attack_06	412	2723	504	2795
 
 run_attack_07	530	2746	592	2798
+
+climb_jump_00	10	1870	44	1943
+
+climb_jump_01	65	1873	90	1950
+
+climb_jump_02	100	1874	136	1945
+
+climb_jump_03	144	1874	192	1938
+
+climb_jump_04	204	1875	263	1929
+
+climb_jump_05	281	1876	340	1917
+
+climb_jump_06	354	1869	406	1923
+
+climb_jump_07	422	1871	469	1938
+
+climb_jump_08	482	1866	527	1941
+
+climb_throw_00	13	1666	50	1753
+
+climb_throw_01	65	1666	106	1753
+
+climb_throw_02	125	1665	176	1753
+
+climb_throw_03	192	1664	223	1753
+
+climb_throw_04	236	1664	293	1753
+
+climb_attack_00	15	1769	63	1856
+
+climb_attack_01	81	1769	133	1858
+
+climb_attack_02	146	1769	207	1862
+
+climb_attack_03	247	1773	300	1863
+
+climb_attack_04	327	1773	382	1862
+
+climb_attack_05	414	1775	475	1864
+
+climb_attack_06	499	1775	547	1862

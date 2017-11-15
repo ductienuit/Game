@@ -49,13 +49,13 @@ private:
 	void standing();
 	void moveLeft();
 	void moveRight();
-	void jump();
 	void jump(eStatus status);
 	void sitDown();
 	void swingSword();
 	void sitAttack();
 	void climbUp(float dt);
 	void climbDown(float dt);
+	void climbJump();
 
 
 	//Dong ho dem

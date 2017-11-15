@@ -49,9 +49,15 @@ bool PlayScene::InIt()
 	rope->InIt();
 	_listobject.push_back(rope);
 
+	auto rope2 = new Rope();
+	rope2->InIt();
+	rope2->setPosition(Vector2(400, 150));
+	rope2->setRotate(90);
+	_listobject.push_back(rope2);
+
 	auto aladdin = new Aladdin();
 	aladdin->InIt();
-	aladdin->setPosition(200, 100);
+	aladdin->setPosition(200,300);
 	_listControlObject.push_back(aladdin);
 	_listobject.push_back(aladdin);
 
