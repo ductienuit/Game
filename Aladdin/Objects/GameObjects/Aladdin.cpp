@@ -159,6 +159,9 @@ void Aladdin::InIt()
 	_animations[eStatus::SWING | eStatus::MOVING_RIGHT] = new Animation(_sprite, 0.1f);
 	_animations[eStatus::SWING | eStatus::MOVING_RIGHT]->addFrameRect(eID::ALADDIN, "swing_", 10);
 
+	_animations[eStatus::SWING] = new Animation(_sprite, 0.1f);
+	_animations[eStatus::SWING]->addFrameRect(eID::ALADDIN, "swing_", 10);
+
 
 	_animations[eStatus::ATTACK | eStatus::LOOKING_UP] = new Animation(_sprite, 0.1f);
 #pragma region add animation Attack and lookingup
@@ -594,13 +597,14 @@ void Aladdin::UpdateInput(float dt)
 	}
 	case(eStatus::SWING):
 	{
-		if (_input->isKeyPressed(DIK_LEFT))
+		if (_input->isKeyDown(DIK_LEFT))
 		{
-			this->moveLeft();
-			this->addStatus(eStatus::MOVING_LEFT);
+			this->removeStatus(eStatus::MOVING_RIGHT);
+			this->addStatus(eStatus::MOVING_LEFT);		
 		}
 		else if (_input->isKeyDown(DIK_RIGHT))
 		{
+			this->removeStatus(eStatus::MOVING_LEFT);
 			this->addStatus(eStatus::MOVING_RIGHT);
 		}
 		break;
@@ -741,15 +745,28 @@ void Aladdin::standing()
 
 void Aladdin::moveLeft()
 {
-	_sprite->setScaleX(-1.6);
-
+	if (this->isInStatus(eStatus::SWING))
+	{
+		_sprite->setScaleX(1.6);
+	}
+	else
+	{
+		_sprite->setScaleX(-1.6);
+	}
 	auto move = (Movement*)this->_componentList["Movement"];
 	move->setVelocity(Vector2(-ALADDIN_MOVE_SPEED, move->getVelocity().y));
 }
 
 void Aladdin::moveRight()
 {
-	_sprite->setScaleX(1.6);
+	if (this->isInStatus(eStatus::SWING))
+	{
+		_sprite->setScaleX(-1.6);
+	}
+	else
+	{
+		_sprite->setScaleX(1.6);
+	}
 
 	auto move = (Movement*)this->_componentList["Movement"];
 	move->setVelocity(Vector2(ALADDIN_MOVE_SPEED, move->getVelocity().y));
@@ -806,8 +823,15 @@ Vector2 Aladdin::getVelocity()
 
 void Aladdin::updateStatus(float dt)
 {
-
-	if (this->isInStatus(eStatus::MOVING_LEFT))
+	if (this->isInStatus(eStatus::MOVING_LEFT) && this->isInStatus(eStatus::SWING))
+	{
+		this->moveLeft();
+	}
+	else if (this->isInStatus(eStatus::MOVING_RIGHT) && this->isInStatus(eStatus::SWING))
+	{
+		this->moveRight();
+	}
+	else if (this->isInStatus(eStatus::MOVING_LEFT))
 	{
 		this->moveLeft();
 	}
