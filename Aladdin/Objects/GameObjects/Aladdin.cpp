@@ -163,8 +163,8 @@ void Aladdin::InIt()
 	_animations[eStatus::SWING] = new Animation(_sprite, 0.1f);
 	_animations[eStatus::SWING]->addFrameRect(eID::ALADDIN, "swing_0", 10);
 
-	_animations[eStatus::SWING | eStatus::NORMAL1] = new Animation(_sprite, 0.1f);
-	_animations[eStatus::SWING | eStatus::NORMAL1]->addFrameRect(eID::ALADDIN, "swing_free", 5);
+	_animations[eStatus::SWING | eStatus::FREE] = new Animation(_sprite, 0.1f);
+	_animations[eStatus::SWING | eStatus::FREE]->addFrameRect(eID::ALADDIN, "swing_free", 5);
 
 	_animations[eStatus::SWING | eStatus::THROW] = new Animation(_sprite, 0.14f);
 	_animations[eStatus::SWING | eStatus::THROW]->addFrameRect(eID::ALADDIN, "climb_throw_0", 5);
@@ -621,22 +621,22 @@ void Aladdin::UpdateInput(float dt)
 	}
 	case(eStatus::SWING):
 	{
-		if (_firstAnimateStopWatch->isStopWatch(1000))
+		/*if (_firstAnimateStopWatch->isStopWatch(1000))
 		{
-			this->addStatus(eStatus::NORMAL1);
+			this->addStatus(eStatus::FREE);
 			_normalAnimateStopWatch->restart();
-		}
+		}*/
 		if (_input->isKeyDown(DIK_LEFT))
 		{
-			this->removeStatus(eStatus::MOVING_RIGHT);		
+			//this->removeStatus(eStatus::MOVING_RIGHT);		
 			this->_animations[_currentAnimateIndex]->Update(dt);
-			this->addStatus(eStatus::MOVING_LEFT);
+			//this->addStatus(eStatus::MOVING_LEFT);
 		}
 		else if (_input->isKeyDown(DIK_RIGHT))
 		{
-			this->removeStatus(eStatus::MOVING_LEFT);
+			//this->removeStatus(eStatus::MOVING_LEFT);
 			this->_animations[_currentAnimateIndex]->UpdatePreFrame(dt);
-			this->addStatus(eStatus::MOVING_RIGHT);
+			//this->addStatus(eStatus::MOVING_RIGHT);
 		}
 		else if (_input->isKeyDown(DIK_UP))
 		{
