@@ -623,22 +623,18 @@ void Aladdin::UpdateInput(float dt)
 	}
 	case(eStatus::SWING):
 	{
-		/*if (_firstAnimateStopWatch->isStopWatch(1000))
+		if (_firstAnimateStopWatch->isStopWatch(1000))
 		{
 			this->addStatus(eStatus::FREE);
 			_normalAnimateStopWatch->restart();
-		}*/
+		}
 		if (_input->isKeyDown(DIK_LEFT))
-		{
-			//this->removeStatus(eStatus::MOVING_RIGHT);		
+		{	
 			this->_animations[_currentAnimateIndex]->Update(dt);
-			//this->addStatus(eStatus::MOVING_LEFT);
 		}
 		else if (_input->isKeyDown(DIK_RIGHT))
 		{
-			//this->removeStatus(eStatus::MOVING_LEFT);
 			this->_animations[_currentAnimateIndex]->UpdatePreFrame(dt);
-			//this->addStatus(eStatus::MOVING_RIGHT);
 		}
 		else if (_input->isKeyDown(DIK_UP))
 		{
@@ -863,6 +859,7 @@ void Aladdin::climbJump()
 
 void Aladdin::swingLeft(float dt)
 {
+	_sprite->setScaleX(-1.6);
 	this->_animations[_currentAnimateIndex]->Update(dt);
 	auto move = (Movement*)this->_componentList["Movement"];
 	move->setVelocity(Vector2(-ALADDIN_MOVE_SPEED, move->getVelocity().y));
@@ -870,6 +867,7 @@ void Aladdin::swingLeft(float dt)
 
 void Aladdin::swingRight(float dt)
 {
+	_sprite->setScaleX(1.6);
 	this->_animations[_currentAnimateIndex]->UpdatePreFrame(dt);
 	auto move = (Movement*)this->_componentList["Movement"];
 	move->setVelocity(Vector2(ALADDIN_MOVE_SPEED, move->getVelocity().y));
@@ -889,13 +887,26 @@ Vector2 Aladdin::getVelocity()
 
 void Aladdin::updateStatus(float dt)
 {
-	if (this->isInStatus(eStatus::MOVING_LEFT) && this->isInStatus(eStatus::SWING))
+	if (this->isInStatus(eStatus::SWING))
 	{
-		this->moveLeft();
-	}
-	else if (this->isInStatus(eStatus::MOVING_RIGHT) && this->isInStatus(eStatus::SWING))
-	{
-		this->moveRight();
+		if (this->isInStatus(eStatus::ATTACK) || this->isInStatus(eStatus::THROW))
+			return;
+		if (this->isInStatus(eStatus::JUMPING))
+		{
+			return;
+		}
+		if (_input->isKeyDown(DIK_LEFT))
+		{
+			this->swingLeft(dt);
+		}
+		else if (_input->isKeyDown(DIK_RIGHT))
+		{
+			this->swingRight(dt);
+		}
+		else
+		{
+			this->standing();
+		}
 	}
 	else if (this->isInStatus(eStatus::MOVING_LEFT))
 	{
@@ -942,7 +953,6 @@ void Aladdin::updateStatus(float dt)
 
 void Aladdin::updateStatusOneAction(float deltatime)
 {
-
 	//Kiểm tra nếu hành động nhìn lên và chém có một phím nào nhập vào, nhưng đang thực hiện
 	//hành động chém chẳng hạn. Nó sẽ hủy hành động đó và chuyển sang hành động khác
 
@@ -987,7 +997,7 @@ void Aladdin::updateStatusOneAction(float deltatime)
 	}
 #pragma endregion
 
-	//Thực hiện hết một hành động đến totalframe của một bức ảnh sprite (thực hiện hết hành động)
+#pragma region Thực hiện hết một hành động đến totalframe của một bức ảnh sprite (thực hiện hết hành động)
 	if (this->isInStatus(eStatus::THROW) && _animations[_currentAnimateIndex]->getIndex() >= 4)
 	{
 		_animations[_currentAnimateIndex]->setIndex(0);  //Quan trọng, vì nếu không set. Nhấn phím lần 2 sẽ không nhận được index.
@@ -1121,6 +1131,7 @@ void Aladdin::updateStatusOneAction(float deltatime)
 		_animations[_currentAnimateIndex]->setIndex(0);
 		this->removeStatus(eStatus::ATTACK);
 	}
+#pragma endregion
 }
 
 void Aladdin::updateCurrentAnimateIndex()

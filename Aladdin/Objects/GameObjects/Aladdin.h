@@ -52,7 +52,6 @@ private:
 	void jump(eStatus status);
 	void sitDown();
 	void swingSword();
-	void sitAttack();
 	void climbUp(float dt);
 	void climbDown(float dt);
 	void climbJump();
