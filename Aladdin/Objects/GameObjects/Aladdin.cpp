@@ -81,9 +81,6 @@ void Aladdin::InIt()
 	//_animations[eStatus::DROP]->addFrameRect(eID::ALADDIN, "drop_down_0", "drop_down_1", "drop_down_2","drop_down_3", "drop_down_4", "drop_down_5", "drop_down_6", "drop_down_7", "drop_down_8");
 #pragma endregion
 #pragma region Throw Attack Moving Left Right Dying
-	_animations[eStatus::CLIMB] = new Animation(_sprite, 0.1f);
-	_animations[eStatus::CLIMB]->addFrameRect(eID::ALADDIN, "climb_", 10);
-
 	_animations[eStatus::THROW] = new Animation(_sprite, 0.1f);
 	_animations[eStatus::THROW]->addFrameRect(eID::ALADDIN, "throw_", 5);
 
@@ -147,6 +144,7 @@ void Aladdin::InIt()
 	_animations[eStatus::MOVING_LEFT | eStatus::ATTACK] = new Animation(_sprite, 0.1f);
 	_animations[eStatus::MOVING_LEFT | eStatus::ATTACK]->addFrameRect(eID::ALADDIN, "run_attack_0", 8);
 
+
 	_animations[eStatus::DYING] = new Animation(_sprite, 0.1f);
 	_animations[eStatus::DYING]->addFrameRect(eID::ALADDIN, "die_", 28);
 #pragma endregion
@@ -172,8 +170,9 @@ void Aladdin::InIt()
 	_animations[eStatus::SWING | eStatus::ATTACK] = new Animation(_sprite, 0.14f);
 	_animations[eStatus::SWING | eStatus::ATTACK]->addFrameRect(eID::ALADDIN, "climb_attack_0", 7);
 #pragma endregion
+#pragma region Attack and looking Up
+
 	_animations[eStatus::ATTACK | eStatus::LOOKING_UP] = new Animation(_sprite, 0.1f);
-#pragma region add animation Attack and lookingup
 	_animations[eStatus::ATTACK | eStatus::LOOKING_UP]->addFrameRect(eID::ALADDIN, "lookingup_attack_0"
 		, "lookingup_attack_1"
 		, "lookingup_attack_2"
@@ -197,6 +196,9 @@ void Aladdin::InIt()
 		, "lookingup_attack_11", NULL
 	);
 #pragma endregion
+#pragma region Climb
+	_animations[eStatus::CLIMB] = new Animation(_sprite, 0.1f);
+	_animations[eStatus::CLIMB]->addFrameRect(eID::ALADDIN, "climb_", 10);
 
 	_animations[eStatus::CLIMB | eStatus::JUMPING] = new Animation(_sprite, 0.055f);
 	_animations[eStatus::CLIMB | eStatus::JUMPING]->addFrameRect(eID::ALADDIN, "climb_jump_0", 9);
@@ -216,7 +218,7 @@ void Aladdin::InIt()
 	//create stopwatch to wait time state normal or free of aladdin
 	_normalAnimateStopWatch = new StopWatch();
 	_firstAnimateStopWatch = new StopWatch();
-
+#pragma endregion
 }
 
 void Aladdin::Update(float deltatime)
@@ -654,12 +656,14 @@ void Aladdin::UpdateInput(float dt)
 		}
 		else if (_input->isKeyDown(DIK_C))
 		{
-			this->addStatus(eStatus::JUMPING);
+			this->removeStatus(eStatus::SWING);
+			jump(eStatus::JUMPING);
 		}
 		break;
 	}
 	}
 }
+
 void Aladdin::onKeyReleased(KeyEventArg * key_event)
 {
 	switch (key_event->_key)
@@ -734,7 +738,6 @@ void Aladdin::onCollisionBegin(CollisionEventArg * collision_event)
 			//Chạm đất
 			auto gravity = (Gravity*)this->_componentList["Gravity"];
 			gravity->setStatus(eGravityStatus::SHALLOWED);
-
 			this->removeStatus(eStatus::JUMPING);
 			this->standing();
 		}
@@ -748,6 +751,8 @@ void Aladdin::onCollisionBegin(CollisionEventArg * collision_event)
 			auto gravity = (Gravity*)this->_componentList["Gravity"]; 
 			gravity->setStatus(eGravityStatus::SHALLOWED);
 			this->removeStatus(eStatus::JUMPING);
+			this->removeStatus(eStatus::JUMPING_LEFT);
+			this->removeStatus(eStatus::JUMPING_RIGHT);
 			//this->addStatus(eStatus::CLIMB);
 			this->addStatus(eStatus::SWING);
 		}
@@ -1169,6 +1174,7 @@ void Aladdin::unHookInputEvent()
 		__unhook(_input);
 	}
 }
+
 void Aladdin::addStatus(eStatus status)
 {
 	this->setStatus(eStatus(this->getStatus() | status));
@@ -1183,6 +1189,3 @@ bool Aladdin::isInStatus(eStatus status)
 {
 	return (this->getStatus() & status) == status;
 }
-
-
-
