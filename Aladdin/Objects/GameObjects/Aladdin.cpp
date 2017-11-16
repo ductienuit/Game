@@ -149,20 +149,20 @@ void Aladdin::InIt()
 	_animations[eStatus::DYING]->addFrameRect(eID::ALADDIN, "die_", 28);
 #pragma endregion
 #pragma region SWING
-	_animations[eStatus::SWING | eStatus::MOVING_LEFT] = new Animation(_sprite, 0.1f);
-	_animations[eStatus::SWING | eStatus::MOVING_LEFT]->addFrameRect(eID::ALADDIN, "swing_0", 10);
+	_animations[eStatus::SWING] = new Animation(_sprite, 0.1f);
+	_animations[eStatus::SWING]->addFrameRect(eID::ALADDIN, "swing_0", 10);
 
 	_animations[eStatus::SWING | eStatus::JUMPING] = new Animation(_sprite, 0.1f);
 	_animations[eStatus::SWING | eStatus::JUMPING]->addFrameRect(eID::ALADDIN, "swing_0", 10);
 
+	_animations[eStatus::SWING | eStatus::MOVING_LEFT] = new Animation(_sprite, 0.1f);
+	_animations[eStatus::SWING | eStatus::MOVING_LEFT]->addFrameRect(eID::ALADDIN, "swing_0", 10);
+
 	_animations[eStatus::SWING | eStatus::MOVING_RIGHT] = new Animation(_sprite, 0.1f);
 	_animations[eStatus::SWING | eStatus::MOVING_RIGHT]->addFrameRect(eID::ALADDIN, "swing_0", 10);
 
-	_animations[eStatus::SWING] = new Animation(_sprite, 0.1f);
-	_animations[eStatus::SWING]->addFrameRect(eID::ALADDIN, "swing_0", 10);
-
 	_animations[eStatus::SWING | eStatus::FREE] = new Animation(_sprite, 0.1f);
-	_animations[eStatus::SWING | eStatus::FREE]->addFrameRect(eID::ALADDIN, "swing_free", 5);
+	_animations[eStatus::SWING | eStatus::FREE]->addFrameRect(eID::ALADDIN, "swing_free_", 5);
 
 	_animations[eStatus::SWING | eStatus::THROW] = new Animation(_sprite, 0.14f);
 	_animations[eStatus::SWING | eStatus::THROW]->addFrameRect(eID::ALADDIN, "climb_throw_0", 5);
@@ -308,7 +308,7 @@ void Aladdin::UpdateInput(float dt)
 	}
 	case(eStatus::NORMAL1):
 	{
-		//Line Below: Change normal to free animation after 5 minute		
+		//Line Below: Change normal to free animation after 5 second		
 		if (_normalAnimateStopWatch->isStopWatch(5000))
 		{
 			this->removeStatus(eStatus::NORMAL1);
@@ -877,6 +877,11 @@ void Aladdin::swingJump()
 {
 	auto move = (Movement*)this->_componentList["Movement"];
 	move->setVelocity(Vector2(move->getVelocity().x, 50));
+}
+
+void Aladdin::swingFree()
+{
+	
 }
 
 Vector2 Aladdin::getVelocity()

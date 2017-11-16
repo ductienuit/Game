@@ -58,7 +58,7 @@ private:
 	void swingLeft(float dt);
 	void swingRight(float dt);
 	void swingJump();
-
+	void swingFree();
 
 	//Dong ho dem
 	StopWatch* _firstAnimateStopWatch;
