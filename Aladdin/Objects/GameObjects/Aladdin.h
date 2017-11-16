@@ -56,6 +56,9 @@ private:
 	void climbUp(float dt);
 	void climbDown(float dt);
 	void climbJump();
+	void swingLeft(float dt);
+	void swingRight(float dt);
+	void swingJump();
 
 
 	//Dong ho dem
