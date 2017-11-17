@@ -38,7 +38,7 @@ enum eStatus
 	DROP =			(1 << 13),			//Đứng trên nhảy xuống
 	DYING =			(1 << 14),			//Chết
 	ATTACK =	    (1 << 15),			//Cầm kiếm chém
-	WORKING=		(1 << 16),			//Trạng thái không anime. Kết hợp với các trạng thái với các trạng thái khác để tạo 1 trạng thái.
+    BURN   =		(1 << 16),			//Trạng thái không anime. Kết hợp với các trạng thái với các trạng thái khác để tạo 1 trạng thái.
 };
 
 enum eID
