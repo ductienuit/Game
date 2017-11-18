@@ -161,7 +161,7 @@ void Aladdin::InIt()
 	_animations[eStatus::SWING | eStatus::MOVING_RIGHT] = new Animation(_sprite, 0.1f);
 	_animations[eStatus::SWING | eStatus::MOVING_RIGHT]->addFrameRect(eID::ALADDIN, "swing_0", 10);
 
-	_animations[eStatus::SWING | eStatus::FREE] = new Animation(_sprite, 0.1f);
+	_animations[eStatus::SWING | eStatus::FREE] = new Animation(_sprite, 0.2f);
 	_animations[eStatus::SWING | eStatus::FREE]->addFrameRect(eID::ALADDIN, "swing_free_", 5);
 
 	_animations[eStatus::SWING | eStatus::THROW] = new Animation(_sprite, 0.14f);
@@ -623,11 +623,6 @@ void Aladdin::UpdateInput(float dt)
 	}
 	case(eStatus::SWING):
 	{
-		if (_firstAnimateStopWatch->isStopWatch(1000))
-		{
-			this->addStatus(eStatus::FREE);
-			_normalAnimateStopWatch->restart();
-		}
 		if (_input->isKeyDown(DIK_LEFT))
 		{	
 			this->_animations[_currentAnimateIndex]->Update(dt);
@@ -654,6 +649,11 @@ void Aladdin::UpdateInput(float dt)
 		{
 			this->removeStatus(eStatus::SWING);
 			jump(eStatus::JUMPING);
+		}
+		else if (_firstAnimateStopWatch->isStopWatch(300))
+		{
+			this->addStatus(eStatus::FREE);
+			_normalAnimateStopWatch->restart();
 		}
 		break;
 	}
@@ -961,7 +961,7 @@ void Aladdin::updateStatusOneAction(float deltatime)
 	//Kiểm tra nếu hành động nhìn lên và chém có một phím nào nhập vào, nhưng đang thực hiện
 	//hành động chém chẳng hạn. Nó sẽ hủy hành động đó và chuyển sang hành động khác
 
-#pragma region Hủy lập tức hành động nhìn lên và chém - LOOKING_UP | ATTACK
+#pragma region Hủy lập tức hành động nhìn lên và chém - LOOKING_UP | ATTACK - SWING FREE
 	if (this->isInStatus(eStatus::ATTACK) && (this->isInStatus(eStatus::LOOKING_UP))
 		&& _animations[_currentAnimateIndex]->getIndex() < 20
 		&& _input->isKeyPressed(DIK_LEFT))
@@ -995,6 +995,25 @@ void Aladdin::updateStatusOneAction(float deltatime)
 		this->removeStatus(eStatus::LOOKING_UP);
 	}
 
+	if (this->isInStatus(eStatus::SWING) && (this->isInStatus(eStatus::FREE))
+		&& _animations[_currentAnimateIndex]->getIndex() > 10)
+	{
+		_animations[_currentAnimateIndex]->setIndex(0);
+	}
+	else if (this->isInStatus(eStatus::SWING) && (this->isInStatus(eStatus::FREE))
+		&& _animations[_currentAnimateIndex]->getIndex() < 5
+		&& _input->isKeyPressed(DIK_LEFT))
+	{
+		_animations[_currentAnimateIndex]->setIndex(0);
+		this->removeStatus(eStatus::FREE);
+	}
+	else if (this->isInStatus(eStatus::SWING) && (this->isInStatus(eStatus::FREE))
+		&& _animations[_currentAnimateIndex]->getIndex() < 5
+		&& _input->isKeyPressed(DIK_RIGHT))
+	{
+		_animations[_currentAnimateIndex]->setIndex(5);
+		this->removeStatus(eStatus::FREE);
+	}
 	//Trường hợp đặc biệt, khi Climb và jump thì sẽ cho giá trị y tăng đến khi kết thúc sprite climb_jump
 	else if (this->isInStatus(eStatus::JUMPING) && this->isInStatus(eStatus::CLIMB) && _animations[_currentAnimateIndex]->getIndex() < 6)
 	{
@@ -1116,6 +1135,11 @@ void Aladdin::updateStatusOneAction(float deltatime)
 	{
 		_animations[_currentAnimateIndex]->setIndex(0);
 		this->removeStatus(eStatus::ATTACK);
+	}
+	else if (this->isInStatus(eStatus::FREE) && this->isInStatus(eStatus::SWING) && _animations[_currentAnimateIndex]->getIndex() > 5)
+	{
+		_animations[_currentAnimateIndex]->setIndex(5);
+		this->removeStatus(eStatus::FREE);
 	}
 	else if (this->isInStatus(eStatus::JUMPING) && this->isInStatus(eStatus::SWING) && _animations[_currentAnimateIndex]->getIndex() >= 6)
 	{
