@@ -222,4 +222,7 @@
   <ItemGroup>
     <Text Include="Cach code.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
+  </ItemGroup>
 </Project>

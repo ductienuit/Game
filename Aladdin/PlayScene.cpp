@@ -45,8 +45,10 @@ bool PlayScene::InIt()
 
 	//auto redcannon = new RedCannon(GVector2(500, 500));
 	//_listobject.push_back(redcannon);
+
 	auto rope = new Rope();
 	rope->InIt();
+	rope->setPosition(200, 300);
 	_listobject.push_back(rope);
 
 	auto rope2 = new Rope();
@@ -57,7 +59,7 @@ bool PlayScene::InIt()
 
 	auto aladdin = new Aladdin();
 	aladdin->InIt();
-	aladdin->setPosition(200,300);
+	aladdin->setPosition(100,100);
 	_listControlObject.push_back(aladdin);
 	_listobject.push_back(aladdin);
 

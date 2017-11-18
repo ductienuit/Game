@@ -1,0 +1,354 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="AladdinGame" Collapsed="true">
+    <Position X="8.5" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQFAAAAAAAAAgAAAAAQAAAAAAACAAAAAAACABAAAAA=</HashCode>
+      <FileName>AladdinGame.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rope" Collapsed="true">
+    <Position X="4" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAgAAEAAAACABAIAAAAAAAAACABAAAAA=</HashCode>
+      <FileName>Rope.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CollisionEventArg" Collapsed="true">
+    <Position X="0.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAACAAABAAAAAAAAAAAA=</HashCode>
+      <FileName>FrameWork\CollisionBody.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CollisionBody" Collapsed="true">
+    <Position X="10" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BwQAAiAAAAAEAAAAAAAAAQBIQIAAAAECQAEBAAgAAAA=</HashCode>
+      <FileName>FrameWork\CollisionBody.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IComponent" Collapsed="true">
+    <Position X="6.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>FrameWork\IComponent.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Movement" Collapsed="true">
+    <Position X="12.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAIABAAABAAAAAAAAAAAAAAAAAJwAAAAAAA=</HashCode>
+      <FileName>FrameWork\IComponent.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Gravity" Collapsed="true">
+    <Position X="1" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QEQAEAAAAAAIAAAAAAABAAAAAAAAAEAIAAAAAAAAAAA=</HashCode>
+      <FileName>FrameWork\IComponent.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SinMovement" Collapsed="true">
+    <Position X="3.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QkQAAAAAAAAIAAAAAEAQAAAAAAAAAAgAAAAQAAAAAAA=</HashCode>
+      <FileName>FrameWork\IComponent.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RoundMovement" Collapsed="true">
+    <Position X="5.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>SgQAAAAgAAAAAAAAAAAAAAAAAAAAAAAACIgQIAEAAgA=</HashCode>
+      <FileName>FrameWork\IComponent.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Animation" Collapsed="true">
+    <Position X="7.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAQBAAQAACAgAggAgAAiHACPBAEFAAIBIAAAASJoVAU=</HashCode>
+      <FileName>FrameWork\Animation.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Event" Collapsed="true">
+    <Position X="13.5" Y="16.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAUAAAAQAAAgAAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>FrameWork\Event.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EventArg" Collapsed="true">
+    <Position X="1.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>FrameWork\Event.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Game" Collapsed="true">
+    <Position X="8.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIQBAAAAgAoAAgAAAAAQAAAAAAiAAAACILgCABAAAQY=</HashCode>
+      <FileName>FrameWork\Game.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameTime" Collapsed="true">
+    <Position X="13.5" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAQAAIwAAAAAAIQAAoAIAABAQAAAACAHAAAAI=</HashCode>
+      <FileName>FrameWork\GameTime.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Graphics" Collapsed="true">
+    <Position X="9.5" Y="13.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAQACAAIAAAAAAQAAAAAACAAgAAAAAAOggAIIAQE=</HashCode>
+      <FileName>FrameWork\Graphics.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KeyEventArg" Collapsed="true">
+    <Position X="2.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAACAAAAAAAAAAAEAAAAAAAAAAAA=</HashCode>
+      <FileName>FrameWork\InputController.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InputController" Collapsed="true">
+    <Position X="5.5" Y="13.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQEEAAAAAIAAIAAAAEAAAEBAAAAZAZAAAAHABIAACA=</HashCode>
+      <FileName>FrameWork\InputController.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Scene" Collapsed="true">
+    <Position X="6.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAQgAAgAAQAAAAQAAAAAAAAAACABQAAAA=</HashCode>
+      <FileName>FrameWork\Scene.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Sprite" Collapsed="true">
+    <Position X="5.5" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAASAQAQiIEEAQEhAhoIADBAAICEASARgYkRQIEAo=</HashCode>
+      <FileName>FrameWork\Sprite.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Texture" Collapsed="true">
+    <Position X="11.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAQAIhAAAAAAAAAAAAAAAQAAAABIAgBAIEAA=</HashCode>
+      <FileName>FrameWork\Texture.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TimeSpan" Collapsed="true">
+    <Position X="17.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACBCAAAAAAACAAAAAAAAAAABAAAAAAAQggAAAAAA=</HashCode>
+      <FileName>FrameWork\TimeSpan.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Transformable" Collapsed="true">
+    <Position X="5.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIMAQAAAgCgQAQAAAAAAADAAAgAAACAAGQggAAACA=</HashCode>
+      <FileName>FrameWork\Transformable.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Viewport" Collapsed="true">
+    <Position X="19.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAIAAACEAAAAAEAABAAACBAAQABAAAAAEAAAAAA=</HashCode>
+      <FileName>FrameWork\ViewPort.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StopWatch" Collapsed="true">
+    <Position X="16" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAAAgAgAAAAFAAAACAABAAAAACAAAAIgAA=</HashCode>
+      <FileName>FrameWork\StopWatch.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DeviceManager" Collapsed="true">
+    <Position X="1.5" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAEAAAAAAAAgBEQAAAAAAAACBAAAAQAAAACABAEEAA=</HashCode>
+      <FileName>FrameWork\Manager\DeviceManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SceneManager" Collapsed="true">
+    <Position X="17.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQEQAAAACAAAkAAAAAQAgAAAAAQAAQAAAgCEBAAAAQ=</HashCode>
+      <FileName>FrameWork\Manager\SceneManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SpriteManager" Collapsed="true">
+    <Position X="19.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAFABAAAgAAAAAAABAAgIAAAAAAAAQAAAwAABAAAAA=</HashCode>
+      <FileName>FrameWork\Manager\SpriteManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BaseEnemy" Collapsed="true">
+    <Position X="16" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAQAAAA=</HashCode>
+      <FileName>BaseEnemy.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IControlable" Collapsed="true">
+    <Position X="4.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAAAAAAAAQAAAAAAAAAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>Objects\GameObjects\BaseObject.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BaseObject" Collapsed="true">
+    <Position X="1.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BkQAIAAQAAgAgwQQABhgQAACAIAgBEACCQHSkBAIAIA=</HashCode>
+      <FileName>Objects\GameObjects\BaseObject.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Aladdin" Collapsed="true">
+    <Position X="1.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQHEgAAAAgIggUEAAAwAAADIICAACAACARqCFgBAgA=</HashCode>
+      <FileName>Objects\GameObjects\Aladdin.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlayScene" Collapsed="true">
+    <Position X="6.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAAAAEAAAAQgAAACHQAAAAiBAEoABAAIACBBQAAAA=</HashCode>
+      <FileName>PlayScene.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="Box" Collapsed="true">
+    <Position X="16" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAAAAAAAgAAAAAAAAIAAAAAQAhgAAAAAAA=</HashCode>
+      <FileName>testSweepAABB.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Typedef Name="Vector2" Collapsed="true">
+    <Position X="19.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>FrameWork\define.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Typedef Name="Vector3" Collapsed="true">
+    <Position X="16" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>FrameWork\define.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Typedef Name="EventFuntion" Collapsed="true">
+    <Position X="16" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>FrameWork\Event.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Typedef Name="pEvent" Collapsed="true">
+    <Position X="13.5" Y="14.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>FrameWork\Event.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Typedef Name="pGameTime" Collapsed="true">
+    <Position X="13.5" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>FrameWork\GameTime.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Typedef Name="pGraphics" Collapsed="true">
+    <Position X="9.5" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>FrameWork\Graphics.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Typedef Name="pGInput" Collapsed="true">
+    <Position X="16" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>FrameWork\InputController.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Typedef Name="pGKeyboard" Collapsed="true">
+    <Position X="17.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>FrameWork\InputController.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Typedef Name="KeyEvent" Collapsed="true">
+    <Position X="17.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>FrameWork\InputController.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Typedef Name="pInputController" Collapsed="true">
+    <Position X="5.5" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>FrameWork\InputController.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Typedef Name="pTexture" Collapsed="true">
+    <Position X="10.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>FrameWork\Texture.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Typedef Name="pFunction" Collapsed="true">
+    <Position X="19.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>FrameWork\StopWatch.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Typedef Name="pDeviceManager" Collapsed="true">
+    <Position X="1.5" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>FrameWork\Manager\DeviceManager.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Enum Name="eGravityStatus" Collapsed="true">
+    <Position X="17.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>FrameWork\IComponent.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="eStatus" Collapsed="true">
+    <Position X="16" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAJEADAAAAAAAAAA8ICAQAABAAAAAggAAAAoAAA=</HashCode>
+      <FileName>FrameWork\define.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="eID" Collapsed="true">
+    <Position X="19.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAABAAAAA=</HashCode>
+      <FileName>FrameWork\define.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="eDirection" Collapsed="true">
+    <Position X="16" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAIAgAAARAAAAAAAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>FrameWork\define.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

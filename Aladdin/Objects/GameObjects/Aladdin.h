@@ -52,11 +52,13 @@ private:
 	void jump(eStatus status);
 	void sitDown();
 	void swingSword();
-	void sitAttack();
 	void climbUp(float dt);
 	void climbDown(float dt);
 	void climbJump();
-
+	void swingLeft(float dt);
+	void swingRight(float dt);
+	void swingJump();
+	void swingFree();
 
 	//Dong ho dem
 	StopWatch* _firstAnimateStopWatch;
