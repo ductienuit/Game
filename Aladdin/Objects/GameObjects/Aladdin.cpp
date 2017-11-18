@@ -113,7 +113,7 @@ void Aladdin::InIt()
 	_animations[eStatus::ATTACK] = new Animation(_sprite, 0.1f);
 	_animations[eStatus::ATTACK]->addFrameRect(eID::ALADDIN, "swing_sword_", 5);
 	//sit_attack ngồi đâm
-	_animations[eStatus::SITTING_DOWN | eStatus::ATTACK] = new Animation(_sprite, 0.1f);
+	_animations[eStatus::SITTING_DOWN | eStatus::ATTACK] = new Animation(_sprite, 0.5f);
 	_animations[eStatus::SITTING_DOWN | eStatus::ATTACK]->addFrameRect(eID::ALADDIN, "sit_attack_", 7);
 
 	_animations[eStatus::SITTING_DOWN | eStatus::THROW] = new Animation(_sprite, 0.1f);
@@ -139,10 +139,10 @@ void Aladdin::InIt()
 
 
 	_animations[eStatus::MOVING_RIGHT | eStatus::ATTACK] = new Animation(_sprite, 0.1f);
-	_animations[eStatus::MOVING_RIGHT | eStatus::ATTACK]->addFrameRect(eID::ALADDIN, "run_attack_0", 8);
+	_animations[eStatus::MOVING_RIGHT | eStatus::ATTACK]->addFrameRect(eID::ALADDIN, "run_attack_0", 6);
 
 	_animations[eStatus::MOVING_LEFT | eStatus::ATTACK] = new Animation(_sprite, 0.1f);
-	_animations[eStatus::MOVING_LEFT | eStatus::ATTACK]->addFrameRect(eID::ALADDIN, "run_attack_0", 8);
+	_animations[eStatus::MOVING_LEFT | eStatus::ATTACK]->addFrameRect(eID::ALADDIN, "run_attack_0", 6);
 
 
 	_animations[eStatus::DYING] = new Animation(_sprite, 0.1f);
@@ -162,12 +162,13 @@ void Aladdin::InIt()
 	_animations[eStatus::SWING | eStatus::MOVING_RIGHT]->addFrameRect(eID::ALADDIN, "swing_0", 10);
 
 	_animations[eStatus::SWING | eStatus::FREE] = new Animation(_sprite, 0.2f);
-	_animations[eStatus::SWING | eStatus::FREE]->addFrameRect(eID::ALADDIN, "swing_free_", 5);
+	_animations[eStatus::SWING | eStatus::FREE]->addFrameRect(eID::ALADDIN, "swing_free_4" , "swing_free_3", "swing_free_2", "swing_free_1", "swing_free_0",
+		 "swing_free_0", "swing_free_1", "swing_free_2", "swing_free_3", "swing_free_4", NULL);
 
-	_animations[eStatus::SWING | eStatus::THROW] = new Animation(_sprite, 0.14f);
+	_animations[eStatus::SWING | eStatus::THROW] = new Animation(_sprite, 0.2f);
 	_animations[eStatus::SWING | eStatus::THROW]->addFrameRect(eID::ALADDIN, "climb_throw_0", 5);
 
-	_animations[eStatus::SWING | eStatus::ATTACK] = new Animation(_sprite, 0.14f);
+	_animations[eStatus::SWING | eStatus::ATTACK] = new Animation(_sprite, 0.2f);
 	_animations[eStatus::SWING | eStatus::ATTACK]->addFrameRect(eID::ALADDIN, "climb_attack_0", 7);
 #pragma endregion
 #pragma region Attack and looking Up
@@ -996,22 +997,23 @@ void Aladdin::updateStatusOneAction(float deltatime)
 	}
 
 	if (this->isInStatus(eStatus::SWING) && (this->isInStatus(eStatus::FREE))
-		&& _animations[_currentAnimateIndex]->getIndex() > 10)
+		&& _animations[_currentAnimateIndex]->getIndex() >= 8)
 	{
 		_animations[_currentAnimateIndex]->setIndex(0);
+		this->removeStatus(eStatus::FREE);
 	}
 	else if (this->isInStatus(eStatus::SWING) && (this->isInStatus(eStatus::FREE))
-		&& _animations[_currentAnimateIndex]->getIndex() < 5
+		&& _animations[_currentAnimateIndex]->getIndex() < 9
 		&& _input->isKeyPressed(DIK_LEFT))
 	{
 		_animations[_currentAnimateIndex]->setIndex(0);
 		this->removeStatus(eStatus::FREE);
 	}
 	else if (this->isInStatus(eStatus::SWING) && (this->isInStatus(eStatus::FREE))
-		&& _animations[_currentAnimateIndex]->getIndex() < 5
+		&& _animations[_currentAnimateIndex]->getIndex() < 9
 		&& _input->isKeyPressed(DIK_RIGHT))
 	{
-		_animations[_currentAnimateIndex]->setIndex(5);
+		_animations[_currentAnimateIndex]->setIndex(0);
 		this->removeStatus(eStatus::FREE);
 	}
 	//Trường hợp đặc biệt, khi Climb và jump thì sẽ cho giá trị y tăng đến khi kết thúc sprite climb_jump
@@ -1136,10 +1138,11 @@ void Aladdin::updateStatusOneAction(float deltatime)
 		_animations[_currentAnimateIndex]->setIndex(0);
 		this->removeStatus(eStatus::ATTACK);
 	}
-	else if (this->isInStatus(eStatus::FREE) && this->isInStatus(eStatus::SWING) && _animations[_currentAnimateIndex]->getIndex() > 5)
+	else if (this->isInStatus(eStatus::FREE) && this->isInStatus(eStatus::SWING) && _animations[_currentAnimateIndex]->getIndex() >= 8)
 	{
-		_animations[_currentAnimateIndex]->setIndex(5);
+		_animations[_currentAnimateIndex]->setIndex(0);
 		this->removeStatus(eStatus::FREE);
+		_animations[eStatus::FREE]->NextFrame();
 	}
 	else if (this->isInStatus(eStatus::JUMPING) && this->isInStatus(eStatus::SWING) && _animations[_currentAnimateIndex]->getIndex() >= 6)
 	{
