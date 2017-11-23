@@ -11,6 +11,7 @@ Sprite::Sprite(LPD3DXSPRITE spriteHandle, LPCSTR filePath, int totalFrames, int 
 {
 	_origin = Vector2(0.0f, 0.0f);
 	_scale = Vector2(1.6f,1.92f);
+	_lastScale = _scale;
 	_zIndex = 1;
 	_rotate = 0.0f;
 
@@ -189,12 +190,23 @@ void Sprite::setScale(float scale)
 		this->UpdateBounding();
 	}
 }
-
 void Sprite::setScaleX(float sx)
 {
 	if (sx == _scale.x)
 		return;
-
+	_lastScale = _scale;
+	if (_scale.x < 0 && sx > 0)
+	{
+		float lastPosition = this->getPositionX();
+		float distance = abs(this->getBounding().right - this->getBounding().left);
+		this->setPositionX(lastPosition - distance);
+	}
+	else if (sx < 0)
+	{
+		float lastPosition = this->getPositionX();
+		float distance =abs(this->getBounding().right - this->getBounding().left);
+		this->setPositionX(lastPosition + distance);
+	}
 	_scale.x = sx;
 	this->UpdateBounding();
 }
@@ -382,28 +394,59 @@ void Sprite::UpdateBounding()
 	float scaleW = _frameWidth * abs(_scale.x);
 	float scaleH = _frameHeight * abs(_scale.y);
 
-	this->_bound.left = _position.x - scaleW * _origin.x;
-	this->_bound.bottom = _position.y - scaleH * _origin.y;
-	this->_bound.right = _bound.left + scaleW;
-	this->_bound.top = _bound.bottom + scaleH;
+	if (this->getScale().x < 0)
+	{
+		this->_bound.left = _position.x - scaleW;
+		this->_bound.bottom = _position.y - scaleH;
 
-	// 4 điểm của hcn
-	Vector2 p1 = Vector2(_bound.left, _bound.top);
-	Vector2 p2 = Vector2(_bound.right, _bound.top);
-	Vector2 p3 = Vector2(_bound.right, _bound.bottom);
-	Vector2 p4 = Vector2(_bound.left, _bound.bottom);
-	_anchorPoint = Vector2(_bound.left + scaleW * _origin.x, _bound.bottom + scaleH * _origin.y);
 
-	//rotate 4 điểm
-	p1 = RotatePointAroundOrigin(p1, _rotate, _anchorPoint);
-	p2 = RotatePointAroundOrigin(p2, _rotate, _anchorPoint);
-	p3 = RotatePointAroundOrigin(p3, _rotate, _anchorPoint);
-	p4 = RotatePointAroundOrigin(p4, _rotate, _anchorPoint);
+		this->_bound.right = _bound.left + scaleW;
+		this->_bound.top = _bound.bottom + scaleH;
 
-	_bound.left = min(min(p1.x, p2.x), min(p3.x, p4.x));
-	_bound.top = max(max(p1.y, p2.y), max(p3.y, p4.y));
-	_bound.right = max(max(p1.x, p2.x), max(p3.x, p4.x));
-	_bound.bottom = min(min(p1.y, p2.y), min(p3.y, p4.y));
+		// 4 điểm của hcn
+		Vector2 p1 = Vector2(_bound.left, _bound.top);
+		Vector2 p2 = Vector2(_bound.right, _bound.top);
+		Vector2 p3 = Vector2(_bound.right, _bound.bottom);
+		Vector2 p4 = Vector2(_bound.left, _bound.bottom);
+		_anchorPoint = Vector2(_bound.left + scaleW * _origin.x, _bound.bottom + scaleH * _origin.y);
+
+		//rotate 4 điểm
+		p1 = RotatePointAroundOrigin(p1, _rotate, _anchorPoint);
+		p2 = RotatePointAroundOrigin(p2, _rotate, _anchorPoint);
+		p3 = RotatePointAroundOrigin(p3, _rotate, _anchorPoint);
+		p4 = RotatePointAroundOrigin(p4, _rotate, _anchorPoint);
+
+		_bound.left = min(min(p1.x, p2.x), min(p3.x, p4.x));
+		_bound.top = max(max(p1.y, p2.y), max(p3.y, p4.y)) * 2 - _bound.bottom;
+		_bound.right = max(max(p1.x, p2.x), max(p3.x, p4.x));
+		_bound.bottom = max(max(p1.y, p2.y), max(p3.y, p4.y));
+	}
+	else
+	{
+		this->_bound.left = _position.x - scaleW * _origin.x;
+		this->_bound.bottom = _position.y - scaleH * _origin.y;
+
+		this->_bound.right = _bound.left + scaleW;
+		this->_bound.top = _bound.bottom + scaleH;
+
+		// 4 điểm của hcn
+		Vector2 p1 = Vector2(_bound.left, _bound.top);
+		Vector2 p2 = Vector2(_bound.right, _bound.top);
+		Vector2 p3 = Vector2(_bound.right, _bound.bottom);
+		Vector2 p4 = Vector2(_bound.left, _bound.bottom);
+		_anchorPoint = Vector2(_bound.left + scaleW * _origin.x, _bound.bottom + scaleH * _origin.y);
+
+		//rotate 4 điểm
+		p1 = RotatePointAroundOrigin(p1, _rotate, _anchorPoint);
+		p2 = RotatePointAroundOrigin(p2, _rotate, _anchorPoint);
+		p3 = RotatePointAroundOrigin(p3, _rotate, _anchorPoint);
+		p4 = RotatePointAroundOrigin(p4, _rotate, _anchorPoint);
+
+		_bound.left = min(min(p1.x, p2.x), min(p3.x, p4.x));
+		_bound.top = max(max(p1.y, p2.y), max(p3.y, p4.y));
+		_bound.right = max(max(p1.x, p2.x), max(p3.x, p4.x));
+		_bound.bottom = min(min(p1.y, p2.y), min(p3.y, p4.y));
+	}
 }
 
 Vector2 Sprite::RotatePointAroundOrigin(Vector2 point, float angle, Vector2 origin)

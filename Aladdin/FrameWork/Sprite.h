@@ -119,6 +119,8 @@ private:
 	int					_index;
 	Vector2				_currentFrame;					// frame hiện tại
 
+	Vector2				_lastScale;
+
 	RECT				_frameRect;
 	int					_frameWidth;
 	int					_frameHeight;

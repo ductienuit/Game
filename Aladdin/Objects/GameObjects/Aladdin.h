@@ -15,7 +15,6 @@ using namespace std;
 #define ALADDIN_MOVE_SPEED 125
 #define ALADDIN_JUMP_VEL 450
 #define ALADDIN_ACC_MOVE 300
-#define TEST_SOLID 50
 #define GRAVITY 800
 #define ALADDIN_CLIMB_SPEED 90
 
@@ -52,13 +51,14 @@ private:
 	void jump(eStatus status);
 	void sitDown();
 	void swingSword();
+
 	void climbUp(float dt);
 	void climbDown(float dt);
 	void climbJump();
+
 	void swingLeft(float dt);
 	void swingRight(float dt);
 	void swingJump();
-	void swingFree();
 
 	//Dong ho dem
 	StopWatch* _firstAnimateStopWatch;

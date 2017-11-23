@@ -104,7 +104,7 @@ void Aladdin::InIt()
 	_animations[eStatus::ATTACK] = new Animation(_sprite, 0.1f);
 	_animations[eStatus::ATTACK]->addFrameRect(eID::ALADDIN, "swing_sword_", 5);
 	//sit_attack ngồi đâm
-	_animations[eStatus::SITTING_DOWN | eStatus::ATTACK] = new Animation(_sprite, 0.5f);
+	_animations[eStatus::SITTING_DOWN | eStatus::ATTACK] = new Animation(_sprite, 0.1f);
 	_animations[eStatus::SITTING_DOWN | eStatus::ATTACK]->addFrameRect(eID::ALADDIN, "sit_attack_", 7);
 
 	_animations[eStatus::SITTING_DOWN | eStatus::THROW] = new Animation(_sprite, 0.1f);
@@ -577,23 +577,27 @@ void Aladdin::UpdateInput(float dt)
 	}
 	case(eStatus::CLIMB):
 	{
-		/*Không thể remove CLIMB vì phải có collision. */
-		//left, right, down,x,c,z
-		if (_input->isKeyDown(DIK_LEFT))
+		if (_input->isKeyDown(DIK_UP))
 		{
 			this->_animations[_currentAnimateIndex]->Update(dt);
 		}
-		else if (_input->isKeyDown(DIK_RIGHT))
+		else if (_input->isKeyDown(DIK_DOWN))
 		{
 			this->_animations[_currentAnimateIndex]->UpdatePreFrame(dt);
 		}
-		else if (_input->isKeyDown(DIK_DOWN))
+		else if (_input->isKeyDown(DIK_LEFT))
 		{
-			//Chua OptimizeA
+			this->_animations[_currentAnimateIndex]->setIndex(5);
+			Vector2 temp = this->getScale();
+			if(temp.x>0)
+				this->setScaleX(-temp.x);
 		}
-		else if (_input->isKeyDown(DIK_UP))
+		else if (_input->isKeyDown(DIK_RIGHT))
 		{
-			//Chua optimize
+			this->_animations[_currentAnimateIndex]->setIndex(9);
+			Vector2 temp = this->getScale();
+			if (temp.x<0)
+				this->setScaleX(-temp.x);
 		}
 		else if (_input->isKeyPressed(DIK_X))
 		{
@@ -603,9 +607,10 @@ void Aladdin::UpdateInput(float dt)
 		{
 			this->addStatus(eStatus::THROW);
 		}
-		else if (_input->isKeyPressed(DIK_C))
+		else if (_input->isKeyDown(DIK_C))
 		{
-			this->addStatus(eStatus::JUMPING);
+			this->removeStatus(eStatus::CLIMB);
+			jump(eStatus::JUMPING);
 		}
 		break;
 	}
@@ -739,11 +744,12 @@ void Aladdin::onCollisionBegin(CollisionEventArg * collision_event)
 	{
 	case (eID::SOLID):
 	{
-		//		Chạm đất
+		//Chạm đất
 		auto gravity = (Gravity*)this->_componentList["Gravity"];
 		gravity->setStatus(eGravityStatus::SHALLOWED);
 		this->clearStatus();
 		this->standing();
+		this->addStatus(eStatus::CLIMB);
 	}
 	}
 }
@@ -832,14 +838,14 @@ void Aladdin::swingSword()
 
 void Aladdin::climbUp(float dt)
 {
-	this->_animations[_currentAnimateIndex]->Update(dt);
+	//this->_animations[_currentAnimateIndex]->Update(dt);
 	auto move = (Movement*)this->_componentList["Movement"];
 	move->setVelocity(Vector2(move->getVelocity().x, ALADDIN_CLIMB_SPEED));
 }
 
 void Aladdin::climbDown(float dt)
 {
-	this->_animations[_currentAnimateIndex]->UpdatePreFrame(dt);
+	//this->_animations[_currentAnimateIndex]->UpdatePreFrame(dt);
 	auto move = (Movement*)this->_componentList["Movement"];
 	move->setVelocity(Vector2(move->getVelocity().x, -ALADDIN_CLIMB_SPEED));
 }
@@ -869,12 +875,6 @@ void Aladdin::swingJump()
 	auto move = (Movement*)this->_componentList["Movement"];
 	move->setVelocity(Vector2(move->getVelocity().x, 50));
 }
-
-void Aladdin::swingFree()
-{
-	
-}
-
 Vector2 Aladdin::getVelocity()
 {
 	auto move = (Movement*)this->_componentList["Movement"];
