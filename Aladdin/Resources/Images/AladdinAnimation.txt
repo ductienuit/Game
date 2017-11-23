@@ -73,7 +73,6 @@ sit_attack_5	392	640	463	673
 sit_attack_6	475	642	520	673
 
 jump_left_right_0	10	705	51	747
-
 jump_left_right_1	66	683	111	759
 jump_left_right_2	124	686	181	743
 jump_left_right_3	199	698	257	740
@@ -295,21 +294,18 @@ lookingup_attack_9	584	405	635	472
 lookingup_attack_10	644	415	697	472
 lookingup_attack_11	704	418	750	472
 
-run_attack_00	15	2750	55	2798
+run_attack_00	25	3798	60	3850
 
-run_attack_01	71	2744	106	2798
+run_attack_01	70	3790	121	3850
 
-run_attack_02	119	2741	168	2798
+run_attack_02	131	3797	181	3850
 
-run_attack_03	187	2742	228	2799
+run_attack_03	191	3790	239	3850
 
-run_attack_04	238	2729	289	2794
+run_attack_04	249	3790	322	3850
 
-run_attack_05	311	2727	367	2786
+run_attack_05	332	3800	392	3850
 
-run_attack_06	412	2723	504	2795
-
-run_attack_07	530	2746	592	2798
 
 climb_jump_00	10	1870	44	1943
 
