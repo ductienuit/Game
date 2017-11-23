@@ -14,9 +14,8 @@
 #include"../Aladdin/FrameWork/Manager/SceneManager.h"
 #include"../Aladdin/FrameWork/debug.h"
 #include"../Aladdin/FrameWork/Animation.h"
-
 #include"../Aladdin/Objects/GameObjects/Aladdin.h"
-#include"../Aladdin/Rope.h"
+#include"../Aladdin/Tile.h"
 
 using namespace std;
 
@@ -59,10 +58,11 @@ private:
 	BaseObject* testLand;
 	void UpdateViewport(BaseObject* objTracker);
 
-
-
-
-
+	vector<BaseObject*> Bar;
+	vector<BaseObject*> Rope;
+	vector<BaseObject*> Solid;
+	vector<BaseObject*> Spring;
+	vector<BaseObject*> Platform;
 
 	static Viewport* _viewport;
 	Sprite* sprite;

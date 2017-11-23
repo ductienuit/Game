@@ -27,51 +27,15 @@ Viewport * PlayScene::getViewport()
 
 bool PlayScene::InIt()
 {
-
-	//sprite = SpriteManager::getInstance()->getSprite(eID::BILL);
-	//
-	//auto soldier = new Soldier();
-	//soldier->InIt();
-	//_listobject.push_back(soldier);
-
-	//auto falcon = new Falcon();
-	//falcon->InIt();
-	//_listobject.push_back(falcon);
-
-	//auto mario = new Mario();
-	//mario->InIt();
-	//_listobject.push_back(mario);
-	//_listControlObject.push_back(mario);
-
-	//auto redcannon = new RedCannon(GVector2(500, 500));
-	//_listobject.push_back(redcannon);
-
-	auto rope = new Rope();
+	auto rope = new Tile(100,100,eID::SOLID,30,100,500,20);
 	rope->InIt();
-	rope->setPosition(200, 300);
 	_listobject.push_back(rope);
-
-	auto rope2 = new Rope();
-	rope2->InIt();
-	rope2->setPosition(Vector2(600, 400));
-	rope2->setRotate(90);
-	_listobject.push_back(rope2);
 
 	auto aladdin = new Aladdin();
 	aladdin->InIt();
-	aladdin->setPosition(100,100);
+	aladdin->setPosition(100,300);
 	_listControlObject.push_back(aladdin);
 	_listobject.push_back(aladdin);
-
-
-
-	/*_text = new Text(L"Arial", "", 10, 25);
-
-	auto aircraft = new AirCraft(START_POSITION, HORIZONTAL_VELOC, AIRCRAFT_AMPLITUDE, AIRCRAFT_FREQUENCY, eAirCraftType::I);
-	aircraft->InIt();
-	_listobject.push_back(aircraft);
-	_listControlObject.push_back(aircraft);
-*/
 	return true;
 }
 
@@ -107,6 +71,7 @@ void PlayScene::Draw(LPD3DXSPRITE spriteHandle)
 	for each (auto object in _listobject)
 	{
 		object->Draw(spriteHandle, _viewport);
+		object->ShowBB();
 	}
 }
 

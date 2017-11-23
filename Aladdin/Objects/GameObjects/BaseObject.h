@@ -34,6 +34,7 @@ public:
 	virtual void addStatus(eStatus status);
 	virtual void removeStatus(eStatus status);
 	virtual bool isInStatus(eStatus status);
+	virtual void clearStatus();
 
 	virtual Vector2 getPosition();
 	virtual float   getPositionX();
@@ -82,7 +83,7 @@ public:
 
 	virtual void		setPhysicsBodySide(eDirection side);
 	virtual eDirection  getPhysicsBodySide();
-
+	virtual void		ShowBB();
 protected:
 	Sprite*		_sprite;
 	// nếu muốn dùng animation thì class kế thừa khai báo animation

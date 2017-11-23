@@ -51,6 +51,11 @@ bool BaseObject::isInStatus(eStatus status)
 	return (this->getStatus() & status) == status;
 }
 
+void BaseObject::clearStatus()
+{
+	this->setStatus(eStatus(this->getStatus() & eStatus::NORMAL));
+}
+
 Vector2 BaseObject::getPosition()
 {
 	return _sprite->getPosition();
@@ -210,4 +215,28 @@ void BaseObject::setPhysicsBodySide(eDirection side)
 eDirection BaseObject::getPhysicsBodySide()
 {
 	return _physicsSide;
+}
+
+void BaseObject::ShowBB()
+{
+	RECT BBox = _sprite->getBounding();
+	float top = WINDOWS_HEIGHT - BBox.top;
+	float left = BBox.left;
+	float right = BBox.right;
+	float bottom = WINDOWS_HEIGHT - BBox.bottom;
+
+	LPD3DXLINE line;
+	auto dv = DeviceManager::getInstance()->getDevice();
+	D3DXCreateLine(dv, &line);
+	D3DXVECTOR2 lines[] = { D3DXVECTOR2(left, top),
+		D3DXVECTOR2(right, top),
+		D3DXVECTOR2(right, bottom),
+		D3DXVECTOR2(left, bottom),
+		D3DXVECTOR2(left, top),
+		D3DXVECTOR2(right, bottom) };
+	line->SetWidth(4);
+	line->Begin();
+	line->Draw(lines, 6, 0xffffffff);
+	line->End();
+	line->Release();
 }

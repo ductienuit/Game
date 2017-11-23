@@ -1,5 +1,5 @@
-﻿#ifndef _ROPE_H__
-#define _ROPE_H__
+﻿#ifndef _SOLID_H__
+#define _SOLID_H__
 
 #include "../Aladdin/FrameWork/Animation.h"
 #include "../Aladdin/FrameWork/StopWatch.h"
@@ -10,22 +10,23 @@
 
 using namespace std;
 
-class Rope : public BaseObject
+class Tile : public BaseObject
 {
   
 public:	
-	Rope();
-	~Rope();
+	Tile(float x,float y ,eID id, int left, int top, int right,int bottom);
+	~Tile();
 	
 	// Các phương thức kế thừa từ BaseObject.
 	void InIt() override;
 	void Update(float deltatime) override;
 	void Draw(LPD3DXSPRITE, Viewport*) override;
 	void Release() override;
+	void ShowBB() override;
 
 	// Kiểm tra va chạm.
 	float checkCollision(BaseObject* object, float dt);
 private:
 	Animation* _animations;
 };
-#endif _ROPE_H__
+#endif _SOLID_H__
