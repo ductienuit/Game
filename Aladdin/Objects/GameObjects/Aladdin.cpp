@@ -586,8 +586,7 @@ void Aladdin::UpdateInput(float dt)
 			this->_animations[_currentAnimateIndex]->UpdatePreFrame(dt);
 		}
 		else if (_input->isKeyDown(DIK_LEFT))
-		{
-			this->_animations[_currentAnimateIndex]->setIndex(5);
+		{			
 			Vector2 temp = this->getScale();
 			if(temp.x>0)
 				this->setScaleX(-temp.x);
