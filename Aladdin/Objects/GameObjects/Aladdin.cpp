@@ -713,32 +713,6 @@ void Aladdin::onKeyReleased(KeyEventArg * key_event)
 
 void Aladdin::onCollisionBegin(CollisionEventArg * collision_event)
 {
-	//if (collision_event->_otherObject->getId() == eID::SOLID)
-	//{
-	//	if (collision_event->_sideCollision == eDirection::TOP)
-	//	{
-	//		//Chạm đất
-	//		auto gravity = (Gravity*)this->_componentList["Gravity"];
-	//		gravity->setStatus(eGravityStatus::SHALLOWED);
-	//		this->removeStatus(eStatus::JUMPING);
-	//		this->standing();
-	//	}
-	//	else if (collision_event->_sideCollision == eDirection::LEFT || collision_event->_sideCollision == eDirection::RIGHT)
-	//	{
-	//		
-	//	}
-	//	else if (collision_event->_sideCollision == eDirection::BOTTOM)
-	//	{
-	//		//Nhảy lên đụng cái gì đó
-	//		auto gravity = (Gravity*)this->_componentList["Gravity"]; 
-	//		gravity->setStatus(eGravityStatus::SHALLOWED);
-	//		this->removeStatus(eStatus::JUMPING);
-	//		this->removeStatus(eStatus::JUMPING_LEFT);
-	//		this->removeStatus(eStatus::JUMPING_RIGHT);
-	//		//this->addStatus(eStatus::CLIMB);
-	//		this->addStatus(eStatus::SWING);
-	//	}
-	//}
 	switch (collision_event->_otherObject->getId())
 	{
 	case (eID::SOLID):
@@ -748,19 +722,12 @@ void Aladdin::onCollisionBegin(CollisionEventArg * collision_event)
 		gravity->setStatus(eGravityStatus::SHALLOWED);
 		this->clearStatus();
 		this->standing();
-		this->addStatus(eStatus::CLIMB);
 	}
 	}
 }
 
 void Aladdin::onCollisionEnd(CollisionEventArg * collision_event)
 {
-	if (collision_event->_otherObject->getId() == eID::SOLID)
-	{
-		this->removeStatus(eStatus::SWING);
-		this->removeStatus((eStatus)eDirection::TOP);
-		this->removeStatus((eStatus)eDirection::BOTTOM);
-	}
 }
 
 float Aladdin::checkCollision(BaseObject * object, float dt)
@@ -874,6 +841,7 @@ void Aladdin::swingJump()
 	auto move = (Movement*)this->_componentList["Movement"];
 	move->setVelocity(Vector2(move->getVelocity().x, 50));
 }
+
 Vector2 Aladdin::getVelocity()
 {
 	auto move = (Movement*)this->_componentList["Movement"];

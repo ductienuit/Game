@@ -1,0 +1,16 @@
+frame_name	left	top	right	bottom
+guardthin_moving_00	2	9	47	76
+
+guardthin_moving_01	53	10	98	76
+
+guardthin_moving_02	109	11	155	76
+
+guardthin_moving_03	164	11	209	76
+
+guardthin_moving_04	214	10	251	76
+
+guardthin_moving_05	259	9	302	76
+
+guardthin_moving_06	308	9	358	76
+
+guardthin_moving_07	363	11	399	76

@@ -129,6 +129,7 @@
     <ClCompile Include="BaseEnemy.cpp" />
     <ClCompile Include="FrameWork\CollisionBody.cpp" />
     <ClCompile Include="FrameWork\IComponent.cpp" />
+    <ClCompile Include="GuardThin.cpp" />
     <ClCompile Include="Objects\GameObjects\BaseObject.cpp" />
     <ClCompile Include="FrameWork\Animation.cpp" />
     <ClCompile Include="FrameWork\Manager\DeviceManager.cpp" />
@@ -156,6 +157,7 @@
     <ClInclude Include="BaseEnemy.h" />
     <ClInclude Include="FrameWork\CollisionBody.h" />
     <ClInclude Include="FrameWork\IComponent.h" />
+    <ClInclude Include="GuardThin.h" />
     <ClInclude Include="Objects\GameObjects\BaseObject.h" />
     <ClInclude Include="FrameWork\Animation.h" />
     <ClInclude Include="FrameWork\debug.h" />

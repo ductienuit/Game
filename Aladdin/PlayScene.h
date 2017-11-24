@@ -16,6 +16,7 @@
 #include"../Aladdin/FrameWork/Animation.h"
 #include"../Aladdin/Objects/GameObjects/Aladdin.h"
 #include"../Aladdin/Tile.h"
+#include"GuardThin.h"
 
 using namespace std;
 

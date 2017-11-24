@@ -43,6 +43,7 @@ enum eStatus
 enum eID
 {
 	ALADDIN,
+	GUARDTHIN,
 	ROPE,	//Dây
 	SOLID,	//Nền đất
 	SPRING,	//Cái bật nhảy
