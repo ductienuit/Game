@@ -138,6 +138,9 @@
     <ClCompile Include="GuardThin.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="FrameWork\Text.cpp">
+      <Filter>Source Files\FrameWork</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AladdinGame.h">
@@ -223,6 +226,9 @@
     </ClInclude>
     <ClInclude Include="GuardThin.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameWork\Text.h">
+      <Filter>Header Files\FrameWork</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

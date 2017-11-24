@@ -58,8 +58,9 @@ void SpriteManager::LoadResource(LPD3DXSPRITE spriteHandle)
 Sprite * SpriteManager::getSprite(eID id)
 {
 	Sprite *it = this->_listSprite.find(id)->second;
-	return new Sprite(*it);			// get the copy version of Sprite
+	return it;			// get the copy version of Sprite
 }
+
 
 RECT SpriteManager::getSourceRect(eID id, string name)
 {

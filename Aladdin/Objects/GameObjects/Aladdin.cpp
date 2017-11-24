@@ -15,11 +15,11 @@ Aladdin::~Aladdin()
 	}
 	_animations.clear();
 
-	for (auto it = _componentList.begin(); it != _componentList.end(); it++)
+	for (auto it = _listComponent.begin(); it != _listComponent.end(); it++)
 	{
 		SAFE_DELETE(it->second);
 	}
-	_componentList.clear();
+	_listComponent.clear();
 
 	SAFE_DELETE(_sprite);
 }
@@ -32,12 +32,12 @@ void Aladdin::InIt()
 	_sprite = SpriteManager::getInstance()->getSprite(eID::ALADDIN);
 
 	auto movement = new Movement(Vector2(0, 0), Vector2(0, 0), _sprite);
-	_componentList["Movement"] = movement;
-	_componentList["Gravity"] = new Gravity(Vector2(0, -GRAVITY), movement);
-	_componentList["CollisionBody"] = new CollisionBody(this);
+	_listComponent["Movement"] = movement;
+	_listComponent["Gravity"] = new Gravity(Vector2(0, -GRAVITY), movement);
+	_listComponent["CollisionBody"] = new CollisionBody(this);
 
-	__hook(&CollisionBody::onCollisionBegin, (CollisionBody*)_componentList["CollisionBody"], &Aladdin::onCollisionBegin);
-	__hook(&CollisionBody::onCollisionEnd, (CollisionBody*)_componentList["CollisionBody"], &Aladdin::onCollisionEnd);
+	__hook(&CollisionBody::onCollisionBegin, (CollisionBody*)_listComponent["CollisionBody"], &Aladdin::onCollisionBegin);
+	__hook(&CollisionBody::onCollisionEnd, (CollisionBody*)_listComponent["CollisionBody"], &Aladdin::onCollisionEnd);
 
 	_sprite->setFrameRect(SpriteManager::getInstance()->getSourceRect(eID::ALADDIN, "standing_0"));
 	_sprite->setZIndex(1.0f);
@@ -211,7 +211,7 @@ void Aladdin::Update(float deltatime)
 	/*if (_sprite->getPositionY() < TEST_SOLID)
 	{
 		_sprite->setPositionY(TEST_SOLID);
-		auto gravity = (Gravity*)this->_componentList["Gravity"];
+		auto gravity = (Gravity*)this->_listComponent["Gravity"];
 		gravity->setStatus(eGravityStatus::SHALLOWED);
 		this->removeStatus(eStatus::JUMPING);
 		this->standing();
@@ -237,7 +237,7 @@ void Aladdin::Update(float deltatime)
 	else _animations[_currentAnimateIndex]->Update(deltatime);
 
 	// update component để sau cùng để sửa bên trên sau đó nó cập nhật đúng
-	for (auto it = _componentList.begin(); it != _componentList.end(); it++)
+	for (auto it = _listComponent.begin(); it != _listComponent.end(); it++)
 	{
 		it->second->Update(deltatime);
 	}
@@ -718,7 +718,7 @@ void Aladdin::onCollisionBegin(CollisionEventArg * collision_event)
 	case (eID::SOLID):
 	{
 		//Chạm đất
-		auto gravity = (Gravity*)this->_componentList["Gravity"];
+		auto gravity = (Gravity*)this->_listComponent["Gravity"];
 		gravity->setStatus(eGravityStatus::SHALLOWED);
 		this->clearStatus();
 		this->standing();
@@ -732,7 +732,7 @@ void Aladdin::onCollisionEnd(CollisionEventArg * collision_event)
 
 float Aladdin::checkCollision(BaseObject * object, float dt)
 {
-	auto collisionBody = (CollisionBody*)_componentList["CollisionBody"];
+	auto collisionBody = (CollisionBody*)_listComponent["CollisionBody"];
 	collisionBody->checkCollision(object, dt);
 	return 0.0f;
 }
@@ -755,14 +755,14 @@ void Aladdin::Release()
 
 void Aladdin::standing()
 {
-	auto move = (Movement*)this->_componentList["Movement"];
+	auto move = (Movement*)this->_listComponent["Movement"];
 	move->setVelocity(Vector2(0, 0));
 }
 
 void Aladdin::moveLeft()
 {
 	_sprite->setScaleX(-1.6);
-	auto move = (Movement*)this->_componentList["Movement"];
+	auto move = (Movement*)this->_listComponent["Movement"];
 	move->setVelocity(Vector2(-ALADDIN_MOVE_SPEED, move->getVelocity().y));
 }
 
@@ -770,7 +770,7 @@ void Aladdin::moveRight()
 {
 	_sprite->setScaleX(1.6);
 
-	auto move = (Movement*)this->_componentList["Movement"];
+	auto move = (Movement*)this->_listComponent["Movement"];
 	move->setVelocity(Vector2(ALADDIN_MOVE_SPEED, move->getVelocity().y));
 }
 
@@ -781,16 +781,16 @@ void Aladdin::jump(eStatus status)
 
 	this->addStatus(status);
 
-	auto move = (Movement*)this->_componentList["Movement"];
+	auto move = (Movement*)this->_listComponent["Movement"];
 	move->setVelocity(Vector2(move->getVelocity().x, ALADDIN_JUMP_VEL));
 
-	auto g = (Gravity*)this->_componentList["Gravity"];
+	auto g = (Gravity*)this->_listComponent["Gravity"];
 	g->setStatus(eGravityStatus::FALLING__DOWN);
 }
 
 void Aladdin::sitDown()
 {
-	auto move = (Movement*)this->_componentList["Movement"];
+	auto move = (Movement*)this->_listComponent["Movement"];
 	move->setVelocity(Vector2(0, move->getVelocity().y));
 }
 
@@ -805,46 +805,46 @@ void Aladdin::swingSword()
 void Aladdin::climbUp(float dt)
 {
 	//this->_animations[_currentAnimateIndex]->Update(dt);
-	auto move = (Movement*)this->_componentList["Movement"];
+	auto move = (Movement*)this->_listComponent["Movement"];
 	move->setVelocity(Vector2(move->getVelocity().x, ALADDIN_CLIMB_SPEED));
 }
 
 void Aladdin::climbDown(float dt)
 {
 	//this->_animations[_currentAnimateIndex]->UpdatePreFrame(dt);
-	auto move = (Movement*)this->_componentList["Movement"];
+	auto move = (Movement*)this->_listComponent["Movement"];
 	move->setVelocity(Vector2(move->getVelocity().x, -ALADDIN_CLIMB_SPEED));
 }
 
 void Aladdin::climbJump()
 {
-	auto move = (Movement*)this->_componentList["Movement"];
+	auto move = (Movement*)this->_listComponent["Movement"];
 	move->setVelocity(Vector2(move->getVelocity().x,50));
 }
 
 void Aladdin::swingLeft(float dt)
 {
 	_sprite->setScaleX(-1.6);
-	auto move = (Movement*)this->_componentList["Movement"];
+	auto move = (Movement*)this->_listComponent["Movement"];
 	move->setVelocity(Vector2(-ALADDIN_MOVE_SPEED, move->getVelocity().y));
 }
 
 void Aladdin::swingRight(float dt)
 {
 	_sprite->setScaleX(1.6);
-	auto move = (Movement*)this->_componentList["Movement"];
+	auto move = (Movement*)this->_listComponent["Movement"];
 	move->setVelocity(Vector2(ALADDIN_MOVE_SPEED, move->getVelocity().y));
 }
 
 void Aladdin::swingJump()
 {
-	auto move = (Movement*)this->_componentList["Movement"];
+	auto move = (Movement*)this->_listComponent["Movement"];
 	move->setVelocity(Vector2(move->getVelocity().x, 50));
 }
 
 Vector2 Aladdin::getVelocity()
 {
-	auto move = (Movement*)this->_componentList["Movement"];
+	auto move = (Movement*)this->_listComponent["Movement"];
 	return move->getVelocity();
 }
 

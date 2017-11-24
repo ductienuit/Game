@@ -1,14 +1,15 @@
-#ifndef _RUNNINGSOLDIER_H
-#define _RUNNINGSOLDIER_H
+#ifndef _GUARDTHIN_H
+#define _GUARDTHIN_H
 
 #include"BaseEnemy.h"
 #include "../../FrameWork/Animation.h"
 #include "../../FrameWork/StopWatch.h"
 #include "../Aladdin/FrameWork/IComponent.h"
+#include"FrameWork\Text.h"
 
 using namespace std;
 
-#define GUARDTHIN_SPEED 120
+#define GUARDTHIN_SPEED 50
 #define GUARDTHIN_SCORE 100
 
 class GuardThin : public BaseEnemy
@@ -25,10 +26,17 @@ public:
 	void onCollisionEnd(CollisionEventArg*);
 	float checkCollision(BaseObject*, float);
 
+	float distanceBetweenAladdin();
+	void UpdateStatus(float dt);
 
 	IComponent* getComponent(string componentName);
+
+	Text* text;
 	~GuardThin();
 private:
+	void movingLeft();
+	void movingRight();
+	void standing();
 	map<string, IComponent*> _listComponent;
 	map<int, Animation*> _animations;
 	Sprite *_divingSprite;

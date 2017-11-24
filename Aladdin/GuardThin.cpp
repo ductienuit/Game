@@ -4,21 +4,21 @@ GuardThin::GuardThin(eStatus status, int posX, int posY, eDirection direction)
 {
 	_sprite = SpriteManager::getInstance()->getSprite(eID::GUARDTHIN);
 	_sprite->setFrameRect(0, 0, 32.0f, 16.0f);
+	
 	_divingSprite = SpriteManager::getInstance()->getSprite(eID::ALADDIN);
-	_divingSprite->setFrameRect(0, 0, 17.0f, 15.0f);
-	_divingSprite->setOrigin(Vector2(0.0f, 0.0f));
 	Vector2 v(direction * GUARDTHIN_SPEED, 0);
 	Vector2 a(0, 0);
 	this->_listComponent.insert(pair<string, IComponent*>("Movement", new Movement(a, v, this->_sprite)));
 	this->setStatus(status);
 	this->setPosition(posX,posY,1.0f);
+	text = new Text("Arial", "", 10, 25);
 }
 
 void GuardThin::InIt()
 {
-	//this->setHitpoint(GUARDTHIN_HITPOINT);
-	//this->setScore(GUARDTHIN_SCORE);
-	//this->_listComponent.insert(pair<string, IComponent*>("Gravity", new Gravity(Vector2(0, -ENEMY_GRAVITY), (Movement*)(this->getComponent("Movement")))));
+
+	auto movement = new Movement(Vector2(0, 0), Vector2(0, 0), _sprite);
+	_listComponent["Movement"] = movement;
 
 	auto collisionBody = new CollisionBody(this);
 	_listComponent["CollisionBody"] = collisionBody;
@@ -29,15 +29,19 @@ void GuardThin::InIt()
 	_animations[MOVING_LEFT] = new Animation(_sprite, 0.15f);
 	_animations[MOVING_LEFT]->addFrameRect(eID::GUARDTHIN,"guardthin_moving_0",8);
 
-	/*_animations[MOVING_RIGHT] = new Animation(_sprite, 0.15f);
-	_animations[MOVING_RIGHT]->addFrameRect(eID::GUARDTHIN, "run_01", "run_02", "run_03", "run_04", "run_05", "run_06", NULL);
+	_animations[MOVING_RIGHT] = new Animation(_sprite, 0.15f);
+	_animations[MOVING_RIGHT]->addFrameRect(eID::GUARDTHIN, "guardthin_moving_0", 8);
 
-	_animations[DYING] = new Animation(_sprite, 0.15f);
-	_animations[DYING]->addFrameRect(eID::GUARDTHIN, "die_01", NULL);*/
+	_animations[ATTACK] = new Animation(_sprite, 0.15f);
+	_animations[ATTACK]->addFrameRect(eID::GUARDTHIN, "guardsThin_attack_0", 6);
+	_sprite->setOrigin(Vector2(0, 0));
+	
 }
 
 void GuardThin::Update(float deltatime)
 {
+	this->UpdateStatus(deltatime);
+
 	_animations[this->getStatus()]->Update(deltatime);
 
 	// update component để sau cùng để sửa bên trên sau đó nó cập nhật đúng
@@ -51,6 +55,7 @@ void GuardThin::Update(float deltatime)
 void GuardThin::Draw(LPD3DXSPRITE spritehandle, Viewport* viewport)
 {
 	_animations[this->getStatus()]->Draw(spritehandle, viewport);
+	text->Draw();
 }
 
 void GuardThin::Release()
@@ -76,6 +81,52 @@ float GuardThin::checkCollision(BaseObject *, float)
 	return 0.0f;
 }
 
+float GuardThin::distanceBetweenAladdin()
+{
+	float xAla = _divingSprite->getPositionX();
+	float x = this->getPositionX();
+#pragma region Test
+	char str[100];
+	sprintf(str, "khoang cach voi aladdin: %f", xAla);
+	text->setText(str);
+#pragma endregion
+
+
+	return xAla-x;
+}
+
+void GuardThin::UpdateStatus(float dt)
+{
+	if (distanceBetweenAladdin() < 0)
+	{
+		float distance = -distanceBetweenAladdin();
+		if (distance < 50)
+		{
+			this->clearStatus();
+			this->addStatus(eStatus::ATTACK);
+			standing();
+			return;
+		}
+		this->clearStatus();
+		this->addStatus(eStatus::MOVING_LEFT);
+		movingLeft();
+	}
+	else if (distanceBetweenAladdin() > 0)
+	{
+		float distance = distanceBetweenAladdin();
+		if (distance < 50)
+		{
+			this->clearStatus();
+			this->addStatus(eStatus::ATTACK);
+			standing();
+			return;
+		}
+		this->clearStatus();
+		this->addStatus(eStatus::MOVING_RIGHT);
+		movingRight();
+	}
+}
+
 IComponent* GuardThin::getComponent(string componentName)
 {
 	return _listComponent.find(componentName)->second;
@@ -83,4 +134,25 @@ IComponent* GuardThin::getComponent(string componentName)
 
 GuardThin::~GuardThin()
 {
+}
+
+void GuardThin::movingLeft()
+{
+	_sprite->setScaleX(1.6);
+	auto move = (Movement*)this->_listComponent["Movement"];
+	move->setVelocity(Vector2(-GUARDTHIN_SPEED, move->getVelocity().y));
+}
+
+void GuardThin::movingRight()
+{
+	_sprite->setScaleX(-1.6);
+
+	auto move = (Movement*)this->_listComponent["Movement"];
+	move->setVelocity(Vector2(GUARDTHIN_SPEED, move->getVelocity().y));
+}
+
+void GuardThin::standing()
+{
+	auto move = (Movement*)this->_listComponent["Movement"];
+	move->setVelocity(VECTOR2ZERO);
 }

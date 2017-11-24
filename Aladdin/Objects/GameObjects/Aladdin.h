@@ -41,7 +41,7 @@ public:
 
 private:
 	map<int, Animation*> _animations;
-	map<string, IComponent*> _componentList;
+	map<string, IComponent*> _listComponent;
 
 	void onKeyReleased(KeyEventArg* key_event);
 

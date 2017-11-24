@@ -31,7 +31,7 @@ bool PlayScene::InIt()
 	rope->InIt();
 	_listobject.push_back(rope);
 
-	auto guard = new GuardThin(eStatus::MOVING_LEFT, 100, 100, eDirection::LEFT);
+	auto guard = new GuardThin(eStatus::MOVING_LEFT, 200, 100, eDirection::LEFT);
 	guard->InIt();
 	_listobject.push_back(guard);
 
