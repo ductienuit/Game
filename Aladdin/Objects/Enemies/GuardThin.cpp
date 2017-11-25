@@ -27,10 +27,10 @@ void GuardThin::InIt()
 	__hook(&CollisionBody::onCollisionEnd, collisionBody, &GuardThin::onCollisionEnd);
 
 	_animations[MOVING_LEFT] = new Animation(_sprite, 0.15f);
-	_animations[MOVING_LEFT]->addFrameRect(eID::GUARDTHIN,"guardthin_moving_0",8);
+	_animations[MOVING_LEFT]->addFrameRect(eID::GUARDTHIN, "guard_moving_0",8);
 
 	_animations[MOVING_RIGHT] = new Animation(_sprite, 0.15f);
-	_animations[MOVING_RIGHT]->addFrameRect(eID::GUARDTHIN, "guardthin_moving_0", 8);
+	_animations[MOVING_RIGHT]->addFrameRect(eID::GUARDTHIN, "guard_moving_0", 8);
 
 	_animations[ATTACK] = new Animation(_sprite, 0.15f);
 	_animations[ATTACK]->addFrameRect(eID::GUARDTHIN, "guardsThin_attack_0", 6);
@@ -50,7 +50,6 @@ void GuardThin::Update(float deltatime)
 		it->second->Update(deltatime);
 	}
 }
-
 
 void GuardThin::Draw(LPD3DXSPRITE spritehandle, Viewport* viewport)
 {
@@ -138,14 +137,14 @@ GuardThin::~GuardThin()
 
 void GuardThin::movingLeft()
 {
-	_sprite->setScaleX(1.6);
+	_sprite->setScaleX(-1.6);
 	auto move = (Movement*)this->_listComponent["Movement"];
 	move->setVelocity(Vector2(-GUARDTHIN_SPEED, move->getVelocity().y));
 }
 
 void GuardThin::movingRight()
 {
-	_sprite->setScaleX(-1.6);
+	_sprite->setScaleX(1.6);
 
 	auto move = (Movement*)this->_listComponent["Movement"];
 	move->setVelocity(Vector2(GUARDTHIN_SPEED, move->getVelocity().y));

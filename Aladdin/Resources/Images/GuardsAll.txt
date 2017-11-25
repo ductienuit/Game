@@ -1,51 +1,52 @@
 frame_name	left	top	right	bottom
-guard_moving_00	2	9	47	76
 
-guard_moving_01	53	10	98	76
+guard_moving_00	451	9	496	76
 
-guard_moving_02	109	11	155	76
+guard_moving_01	400	10	445	76
 
-guard_moving_03	164	11	209	76
+guard_moving_02	343	11	389	76
 
-guard_moving_04	214	10	251	76
+guard_moving_03	289	11	334	76
 
-guard_moving_05	259	9	302	76
+guard_moving_04	247	10	284	76
 
-guard_moving_06	308	9	358	76
+guard_moving_05	196	9	239	76
 
-guard_moving_07	363	11	399	76
+guard_moving_06	140	9	190	76
 
-
-guardsThin_attack_00	9	82	46	156
-
-guardsThin_attack_01	53	96	102	156
-
-guardsThin_attack_02	109	98	201	156
-
-guardsThin_attack_03	203	97	289	156
-
-guardsThin_attack_04	292	96	369	156
-
-guardsThin_attack_05	382	96	423	156
+guard_moving_07	99	11	135	76
 
 
-guards_being_attack_00	8	175	52	233
+guardsThin_attack_00	452	82	489	156
 
-guards_being_attack_01	59	185	99	233
+guardsThin_attack_01	396	96	445	156
 
-guards_being_attack_02	114	160	153	233
+guardsThin_attack_02	297	98	389	156
 
-guards_being_attack_03	161	165	202	233
+guardsThin_attack_03	209	97	295	156
 
-guards_being_attack_04	210	171	256	233
+guardsThin_attack_04	129	96	206	156
 
-guards_being_attack_05	268	162	310	233
+guardsThin_attack_05	75	96	116	156
 
-guards_being_attack_06	318	184	365	233
 
-guards_being_attack_07	378	185	418	233
+guards_being_attack_00	446	175	490	233
 
-guards_being_attack_08	433	166	478	233
+guards_being_attack_01	399	185	439	233
+
+guards_being_attack_02	345	160	384	233
+
+guards_being_attack_03	296	165	337	233
+
+guards_being_attack_04	242	171	288	233
+
+guards_being_attack_05	188	162	230	233
+
+guards_being_attack_06	133	184	180	233
+
+guards_being_attack_07	80	185	120	233
+
+guards_being_attack_08	20	166	65	233
 
 
 guardsFat_Moving_00	449	255	496	307
