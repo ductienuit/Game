@@ -35,6 +35,11 @@ bool PlayScene::InIt()
 	guard->InIt();
 	_listobject.push_back(guard);
 
+	auto guardShort = new GuardShort(eStatus::MOVING_LEFT, 400, 140, eDirection::LEFT);
+	guardShort->InIt();
+	_listobject.push_back(guardShort);
+
+
 	auto aladdin = new Aladdin();
 	aladdin->InIt();
 	aladdin->setPosition(100,300);
@@ -75,7 +80,7 @@ void PlayScene::Draw(LPD3DXSPRITE spriteHandle)
 	for each (auto object in _listobject)
 	{
 		object->Draw(spriteHandle, _viewport);
-		object->ShowBB();
+		//object->ShowBB();
 	}
 }
 

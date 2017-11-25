@@ -141,6 +141,9 @@
     <ClCompile Include="Objects\BaseObject.cpp">
       <Filter>Source Files\Object</Filter>
     </ClCompile>
+    <ClCompile Include="Objects\Enemies\GuardShort.cpp">
+      <Filter>Source Files\Object\Enemies</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AladdinGame.h">
@@ -229,6 +232,9 @@
     </ClInclude>
     <ClInclude Include="Objects\BaseObject.h">
       <Filter>Header Files\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Enemies\GuardShort.h">
+      <Filter>Header Files\Object\Enemies</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

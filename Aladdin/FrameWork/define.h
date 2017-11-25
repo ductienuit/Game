@@ -44,6 +44,7 @@ enum eID
 {
 	ALADDIN,
 	GUARDTHIN,
+	GUARDSHORT,
 	ROPE,	//Dây
 	SOLID,	//Nền đất
 	SPRING,	//Cái bật nhảy

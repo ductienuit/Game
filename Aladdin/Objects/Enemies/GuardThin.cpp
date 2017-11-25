@@ -84,11 +84,7 @@ float GuardThin::distanceBetweenAladdin()
 {
 	float xAla = _divingSprite->getPositionX();
 	float x = this->getPositionX();
-#pragma region Test
-	char str[100];
-	sprintf(str, "khoang cach voi aladdin: %f", xAla);
-	text->setText(str);
-#pragma endregion
+
 
 
 	return xAla-x;
@@ -99,7 +95,7 @@ void GuardThin::UpdateStatus(float dt)
 	if (distanceBetweenAladdin() < 0)
 	{
 		float distance = -distanceBetweenAladdin();
-		if (distance < 50)
+		if (distance < 100)
 		{
 			this->clearStatus();
 			this->addStatus(eStatus::ATTACK);
@@ -113,7 +109,7 @@ void GuardThin::UpdateStatus(float dt)
 	else if (distanceBetweenAladdin() > 0)
 	{
 		float distance = distanceBetweenAladdin();
-		if (distance < 50)
+		if (distance < 100)
 		{
 			this->clearStatus();
 			this->addStatus(eStatus::ATTACK);
