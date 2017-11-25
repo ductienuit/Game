@@ -35,7 +35,7 @@ bool PlayScene::InIt()
 	guard->InIt();
 	_listobject.push_back(guard);
 
-	auto guardShort = new GuardShort(eStatus::MOVING_LEFT, 400, 140, eDirection::LEFT);
+	auto guardShort = new GuardShort(eStatus::MOVING_LEFT, 600, 140, eDirection::LEFT);
 	guardShort->InIt();
 	_listobject.push_back(guardShort);
 

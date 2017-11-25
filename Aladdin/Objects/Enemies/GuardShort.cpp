@@ -93,7 +93,7 @@ float GuardShort::distanceBetweenAladdin()
 
 
 
-	/*RECT BBox = _divingSprite->getBounding();
+	RECT BBox = _divingSprite->getBounding();
 	float top = WINDOWS_HEIGHT - BBox.top;
 	float left = _divingSprite->getPositionX()+(_divingSprite->getBounding().right - _divingSprite->getBounding().left) / 2;
 	float right = BBox.right;
@@ -112,7 +112,7 @@ float GuardShort::distanceBetweenAladdin()
 	line->Begin();
 	line->Draw(lines, 6, 0xffffffff);
 	line->End();
-	line->Release();*/
+	line->Release();
 #pragma region Test
 	char str[100];
 	sprintf(str, "khoang cach voi aladdin: %f", xAla);
