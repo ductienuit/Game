@@ -19,9 +19,10 @@ public:
 	Sau khi tạo gọi hàm draw() để vẽ.
 	*/
 	Text(LPCSTR fontName, string text, float x = 0, float y = 0, int fontSize = 21);
+	Text();
 	~Text();
 
-	void Draw();
+	void Draw(string);
 
 	void setText(string text);
 	string getText();

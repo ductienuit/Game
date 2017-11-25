@@ -30,7 +30,6 @@ public:
 	void UpdateStatus(float dt);
 
 	IComponent* getComponent(string componentName);
-
 	Text* text;
 	~GuardThin();
 private:

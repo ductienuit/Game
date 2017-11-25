@@ -56,12 +56,12 @@ enum eID
 
 enum eDirection
 {
-	NONE =		(1<<26),
+	NONE =		(1<0),
 	TOP =		(1<<27),
 	BOTTOM =	(1<<28),
 	LEFT =		(1<<29),
 	RIGHT =		(1<<30),
-	ALL = (TOP | BOTTOM | LEFT | RIGHT),
+	INSIDE = (TOP | BOTTOM | LEFT | RIGHT),
 };
 
 #define C_WHITE D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f)				// màu trắnng

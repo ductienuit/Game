@@ -722,6 +722,15 @@ void Aladdin::onCollisionBegin(CollisionEventArg * collision_event)
 		gravity->setStatus(eGravityStatus::SHALLOWED);
 		this->clearStatus();
 		this->standing();
+		break;
+	}
+	case (eID::CLIMBABLE0):
+	{
+		//Leo
+		this->clearStatus();
+		climb();
+		this->addStatus(eStatus::CLIMB);
+		break;
 	}
 	}
 }
@@ -800,6 +809,15 @@ void Aladdin::swingSword()
 		return;
 
 	this->addStatus(eStatus::JUMPING);
+}
+
+void Aladdin::climb()
+{
+	auto move = (Movement*)this->_listComponent["Movement"];
+	move->setVelocity(Vector2(move->getVelocity().x, ALADDIN_JUMP_VEL));
+
+	auto g = (Gravity*)this->_listComponent["Gravity"];
+	g->setStatus(eGravityStatus::FALLING__DOWN);
 }
 
 void Aladdin::climbUp(float dt)

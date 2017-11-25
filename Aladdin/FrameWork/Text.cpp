@@ -1,5 +1,6 @@
 ﻿#include "Text.h"
 
+
 Text::Text(LPCSTR fontName, string text, float x, float y, int fontSize)
 {
 	_fontName = fontName;
@@ -16,14 +17,31 @@ Text::Text(LPCSTR fontName, string text, float x, float y, int fontSize)
 	this->updateFont();
 }
 
+Text::Text()
+{
+	_fontName = "Arial";
+	_text = "";
+	_position.x = 10;
+	_position.y = 25;
+
+	_fontWeight = FW_NORMAL;
+	_italic = false;
+	_fontHeight = 21;
+	_textAlign = DT_LEFT | DT_NOCLIP;
+	_color = 0xFFFFFFFF;
+	this->updateFont();
+}
+
 Text::~Text()
 {
 	_font->Release();
 	SAFE_DELETE(_font);
 }
 
-void Text::Draw()
+void Text::Draw(string text)
 {
+	if (_text.compare(text) != 0)
+		_text = text;
 	_textRect.left = _position.x;
 	_textRect.top = WINDOWS_HEIGHT - _position.y;
 

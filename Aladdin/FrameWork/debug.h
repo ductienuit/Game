@@ -1,3 +1,4 @@
+
 #ifndef __DEBUG_H__
 #define __DEBUG_H__
 #include <iostream>
@@ -16,8 +17,9 @@ void __debugoutput(T var)
 	OutputDebugStringW(str.c_str());
 	OutputDebugStringW(L"\n");
 #else
-	string str = to_string(var);
-	OutputDebugStringA(str);
+	std::string str = to_string(var);
+	LPCSTR s = const_cast<char *>(str.c_str());
+	OutputDebugStringA(s);
 	OutputDebugStringA("\n");
 #endif // UNICOE
 }

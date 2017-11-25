@@ -23,7 +23,7 @@ void Tile::Update(float deltatime)
 
 void Tile::Draw(LPD3DXSPRITE spriteHandle, Viewport* viewport)
 {
-	_sprite->Render(spriteHandle);
+	//_sprite->Render(spriteHandle);
 }
 
 void Tile::Release()

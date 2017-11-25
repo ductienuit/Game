@@ -27,17 +27,13 @@ Viewport * PlayScene::getViewport()
 
 bool PlayScene::InIt()
 {
-	auto rope = new Tile(100,100,eID::SOLID,0,0,500,20);
-	rope->InIt();
-	_listobject.push_back(rope);
+	_listobject.push_back(new Tile(100, 100, eID::SOLID, 0, 0, 500, 10));
 
-	auto climb = new Tile(100, 150, eID::CLIMBABLE0, 0, 0, 10, 150);
-	climb->InIt();
-	_listobject.push_back(climb);
+	_listobject.push_back(new Tile(400, 100, eID::CLIMBABLE0, 0, 0, 10, 100));
 
-	auto guard = new GuardThin(eStatus::MOVING_LEFT, 200, 100, eDirection::LEFT);
+	/*auto guard = new GuardThin(eStatus::MOVING_LEFT, 200, 100, eDirection::LEFT);
 	guard->InIt();
-	_listobject.push_back(guard);
+	_listobject.push_back(guard);*/
 
 	auto aladdin = new Aladdin();
 	aladdin->InIt();
@@ -58,9 +54,9 @@ void PlayScene::UpdateInput(float dt)
 void PlayScene::Update(float dt)
 {
 
-	//char str[100];
-	//sprintf(str, "delta time: %f", dt);
-	//_text->setText(str);
+	/*char str[100];
+	sprintf(str, "delta time: %f", dt);
+	_text->setText(str);*/
 
 	for each (auto object in _listobject)
 	{
@@ -68,18 +64,16 @@ void PlayScene::Update(float dt)
 	}
 
 	for(auto i : _listobject)
-		i->checkCollision(_listobject[0], dt);
+		for (auto j : _listobject)
+			i->checkCollision(j, dt);
 }
 
 void PlayScene::Draw(LPD3DXSPRITE spriteHandle)
 {
-	//sprite->render(spriteHandle, _viewport);
-	//_text->draw();
-
 	for each (auto object in _listobject)
 	{
 		object->Draw(spriteHandle, _viewport);
-		object->ShowBB();
+		//object->ShowBB();
 	}
 }
 

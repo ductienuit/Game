@@ -234,7 +234,7 @@ void BaseObject::ShowBB()
 		D3DXVECTOR2(left, bottom),
 		D3DXVECTOR2(left, top),
 		D3DXVECTOR2(right, bottom) };
-	line->SetWidth(4);
+	line->SetWidth(1);
 	line->Begin();
 	line->Draw(lines, 6, 0xffffffff);
 	line->End();

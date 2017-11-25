@@ -11,7 +11,6 @@ GuardThin::GuardThin(eStatus status, int posX, int posY, eDirection direction)
 	this->_listComponent.insert(pair<string, IComponent*>("Movement", new Movement(a, v, this->_sprite)));
 	this->setStatus(status);
 	this->setPosition(posX,posY,1.0f);
-	text = new Text("Arial", "", 10, 25);
 }
 
 void GuardThin::InIt()
@@ -54,7 +53,7 @@ void GuardThin::Update(float deltatime)
 void GuardThin::Draw(LPD3DXSPRITE spritehandle, Viewport* viewport)
 {
 	_animations[this->getStatus()]->Draw(spritehandle, viewport);
-	text->Draw();
+
 }
 
 void GuardThin::Release()
@@ -85,9 +84,7 @@ float GuardThin::distanceBetweenAladdin()
 	float xAla = _divingSprite->getPositionX();
 	float x = this->getPositionX();
 #pragma region Test
-	char str[100];
-	sprintf(str, "khoang cach voi aladdin: %f", xAla);
-	text->setText(str);
+
 #pragma endregion
 
 

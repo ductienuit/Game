@@ -52,6 +52,7 @@ private:
 	void sitDown();
 	void swingSword();
 
+	void climb();
 	void climbUp(float dt);
 	void climbDown(float dt);
 	void climbJump();
@@ -68,6 +69,7 @@ private:
 	void addStatus(eStatus status);
 	void removeStatus(eStatus status);
 	bool isInStatus(eStatus status);
+
 
 	Vector2 getVelocity();
 	void updateStatus(float dt);
