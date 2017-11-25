@@ -14,7 +14,7 @@ class Tile : public BaseObject
 {
   
 public:	
-	Tile(float x,float y ,eID id, int left, int top, int right,int bottom);
+	Tile(float x,float y ,eID id, int left, int top, int width,int height);
 	~Tile();
 	
 	// Các phương thức kế thừa từ BaseObject.

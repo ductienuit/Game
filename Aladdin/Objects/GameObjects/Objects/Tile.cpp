@@ -1,12 +1,11 @@
 #include "Tile.h"
 
-Tile::Tile(float x, float y, eID id, int left, int top, int right, int bottom) : BaseObject(id)
+Tile::Tile(float x, float y, eID id, int left, int top, int width, int height) : BaseObject(id)
 {
 	this->_sprite = SpriteManager::getInstance()->getSprite(id);
 	this->_sprite->setPosition(x, y);
 
-	_animations = new Animation(_sprite, 0.1f);
-	_animations->addFrameRect(left, top, right, bottom);
+	_sprite->setFrameRect(left, top, width, height);
 }
 
 Tile::~Tile() {
@@ -24,7 +23,7 @@ void Tile::Update(float deltatime)
 
 void Tile::Draw(LPD3DXSPRITE spriteHandle, Viewport* viewport)
 {
-	_animations->Draw(spriteHandle, viewport);
+	_sprite->Render(spriteHandle);
 }
 
 void Tile::Release()

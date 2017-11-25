@@ -45,6 +45,8 @@ Sprite::Sprite(LPD3DXSPRITE spriteHandle, LPCSTR filePath, int totalFrames, int 
 	);
 }
 
+
+
 void Sprite::Release()
 {
 	this->_texture.Release();

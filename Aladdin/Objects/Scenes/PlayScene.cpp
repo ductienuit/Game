@@ -27,9 +27,13 @@ Viewport * PlayScene::getViewport()
 
 bool PlayScene::InIt()
 {
-	auto rope = new Tile(100,100,eID::SOLID,30,100,500,20);
+	auto rope = new Tile(100,100,eID::SOLID,0,0,500,20);
 	rope->InIt();
 	_listobject.push_back(rope);
+
+	auto climb = new Tile(100, 150, eID::CLIMBABLE0, 0, 0, 10, 150);
+	climb->InIt();
+	_listobject.push_back(climb);
 
 	auto guard = new GuardThin(eStatus::MOVING_LEFT, 200, 100, eDirection::LEFT);
 	guard->InIt();

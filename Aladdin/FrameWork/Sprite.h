@@ -25,7 +25,8 @@ public:
 	Nếu không truyền số frame, số cột (= 1) sẽ vẽ hết hình. Để vẽ một vị trí cụ thể trên hình thì dùng setFrameRect().
 	*/
 	Sprite(LPD3DXSPRITE spriteHandle, LPCSTR filePath, int totalFrames = 1, int cols = 1);
-
+	
+	
 	~Sprite();
 
 	/*
