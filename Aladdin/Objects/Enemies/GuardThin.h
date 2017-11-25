@@ -4,8 +4,8 @@
 #include"BaseEnemy.h"
 #include "../../FrameWork/Animation.h"
 #include "../../FrameWork/StopWatch.h"
-#include "../Aladdin/FrameWork/IComponent.h"
-#include"FrameWork\Text.h"
+#include"../../FrameWork/IComponent.h"
+#include"../../FrameWork/Text.h"
 
 using namespace std;
 

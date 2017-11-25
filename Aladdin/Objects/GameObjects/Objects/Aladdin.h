@@ -6,7 +6,7 @@
 #include "../../FrameWork/InputController.h"
 #include"../../FrameWork/IComponent.h"
 #include"../../FrameWork/StopWatch.h"
-#include "BaseObject.h"
+#include"../../BaseObject.h"
 #include"../../FrameWork/CollisionBody.h"
 #include<iostream>
 

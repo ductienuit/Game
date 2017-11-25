@@ -111,20 +111,8 @@
     <ClCompile Include="FrameWork\Manager\SpriteManager.cpp">
       <Filter>Source Files\FrameWork\Manager</Filter>
     </ClCompile>
-    <ClCompile Include="BaseEnemy.cpp">
-      <Filter>Source Files\Object\Enemies</Filter>
-    </ClCompile>
-    <ClCompile Include="Objects\GameObjects\BaseObject.cpp">
-      <Filter>Source Files\Object\GameObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="Objects\GameObjects\Aladdin.cpp">
-      <Filter>Source Files\Object\GameObjects</Filter>
-    </ClCompile>
     <ClCompile Include="FrameWork\StopWatch.cpp">
       <Filter>Source Files\FrameWork</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayScene.cpp">
-      <Filter>Source Files\Object\Scenes</Filter>
     </ClCompile>
     <ClCompile Include="FrameWork\IComponent.cpp">
       <Filter>Source Files\FrameWork</Filter>
@@ -132,14 +120,26 @@
     <ClCompile Include="FrameWork\CollisionBody.cpp">
       <Filter>Source Files\FrameWork</Filter>
     </ClCompile>
-    <ClCompile Include="Tile.cpp">
-      <Filter>Source Files\Object\GameObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="GuardThin.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="FrameWork\Text.cpp">
       <Filter>Source Files\FrameWork</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\GameObjects\Objects\Tile.cpp">
+      <Filter>Source Files\Object\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\GameObjects\Objects\Aladdin.cpp">
+      <Filter>Source Files\Object\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Enemies\BaseEnemy.cpp">
+      <Filter>Source Files\Object\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Enemies\GuardThin.cpp">
+      <Filter>Source Files\Object\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Scenes\PlayScene.cpp">
+      <Filter>Source Files\Object\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\BaseObject.cpp">
+      <Filter>Source Files\Object</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -197,20 +197,8 @@
     <ClInclude Include="FrameWork\Manager\SpriteManager.h">
       <Filter>Header Files\FrameWork\Manager</Filter>
     </ClInclude>
-    <ClInclude Include="BaseEnemy.h">
-      <Filter>Header Files\Object\Enemies</Filter>
-    </ClInclude>
-    <ClInclude Include="Objects\GameObjects\BaseObject.h">
-      <Filter>Header Files\Object\GameObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="Objects\GameObjects\Aladdin.h">
-      <Filter>Header Files\Object\GameObjects</Filter>
-    </ClInclude>
     <ClInclude Include="FrameWork\StopWatch.h">
       <Filter>Header Files\FrameWork</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayScene.h">
-      <Filter>Header Files\Object\Scenes</Filter>
     </ClInclude>
     <ClInclude Include="FrameWork\IComponent.h">
       <Filter>Header Files\FrameWork</Filter>
@@ -221,14 +209,26 @@
     <ClInclude Include="FrameWork\CollisionBody.h">
       <Filter>Header Files\FrameWork</Filter>
     </ClInclude>
-    <ClInclude Include="Tile.h">
-      <Filter>Header Files\Object\GameObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="GuardThin.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="FrameWork\Text.h">
       <Filter>Header Files\FrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\GameObjects\Objects\Tile.h">
+      <Filter>Header Files\Object\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\GameObjects\Objects\Aladdin.h">
+      <Filter>Header Files\Object\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Enemies\BaseEnemy.h">
+      <Filter>Header Files\Object\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Enemies\GuardThin.h">
+      <Filter>Header Files\Object\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Scenes\PlayScene.h">
+      <Filter>Header Files\Object\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\BaseObject.h">
+      <Filter>Header Files\Object</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

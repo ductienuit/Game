@@ -1,8 +1,8 @@
 #ifndef _BASE_ENEMY_H
 #define _BASE_ENEMY_H
 
-#include "../Aladdin/Objects/GameObjects/BaseObject.h"
-#include "../Aladdin/FrameWork/CollisionBody.h"
+#include "../BaseObject.h"
+#include "../../FrameWork/CollisionBody.h"
 
 #define ENEMY_GRAVITY 500
 

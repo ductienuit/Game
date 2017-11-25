@@ -1,12 +1,12 @@
 ﻿#ifndef _SOLID_H__
 #define _SOLID_H__
 
-#include "../Aladdin/FrameWork/Animation.h"
-#include "../Aladdin/FrameWork/StopWatch.h"
+#include"../../../FrameWork/Animation.h"
+#include "../../../FrameWork/StopWatch.h"
 
-#include "../Aladdin/Objects/GameObjects/BaseObject.h"
-#include "../Aladdin/FrameWork/IComponent.h"
-#include "../Aladdin/FrameWork/Scene.h"
+#include"../../BaseObject.h"
+#include "../../../FrameWork/IComponent.h"
+#include "../../../FrameWork/Scene.h"
 
 using namespace std;
 

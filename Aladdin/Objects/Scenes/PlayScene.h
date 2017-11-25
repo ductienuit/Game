@@ -8,15 +8,14 @@
 + Danh sách đối tượng nằm trong vùng active.
 + Map
 */
-
-#include"../Aladdin/FrameWork/Scene.h"
-#include"../Aladdin/FrameWork/Manager/SpriteManager.h"
-#include"../Aladdin/FrameWork/Manager/SceneManager.h"
-#include"../Aladdin/FrameWork/debug.h"
-#include"../Aladdin/FrameWork/Animation.h"
-#include"../Aladdin/Objects/GameObjects/Aladdin.h"
-#include"../Aladdin/Tile.h"
-#include"GuardThin.h"
+#include"../../FrameWork/Scene.h"
+#include"../../FrameWork/Manager/SpriteManager.h"
+#include"../../FrameWork/Manager/SceneManager.h"
+#include"../../FrameWork/debug.h"
+#include"../../FrameWork/Animation.h"
+#include"../GameObjects/Objects/Aladdin.h"
+#include"../GameObjects/Objects/Tile.h"
+#include"../Enemies/GuardThin.h"
 
 using namespace std;
 

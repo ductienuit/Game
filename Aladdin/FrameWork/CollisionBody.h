@@ -2,7 +2,7 @@
 #define __COLLISION_BODY__
 
 
-#include "../Objects/GameObjects/BaseObject.h"
+#include "../Objects/BaseObject.h"
 #include "IComponent.h"
 
 /*

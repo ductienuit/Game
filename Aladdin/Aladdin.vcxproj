@@ -126,11 +126,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AladdinGame.cpp" />
-    <ClCompile Include="BaseEnemy.cpp" />
+    <ClCompile Include="Objects\Enemies\BaseEnemy.cpp" />
     <ClCompile Include="FrameWork\CollisionBody.cpp" />
     <ClCompile Include="FrameWork\IComponent.cpp" />
-    <ClCompile Include="GuardThin.cpp" />
-    <ClCompile Include="Objects\GameObjects\BaseObject.cpp" />
+    <ClCompile Include="Objects\Enemies\GuardThin.cpp" />
+    <ClCompile Include="Objects\BaseObject.cpp" />
     <ClCompile Include="FrameWork\Animation.cpp" />
     <ClCompile Include="FrameWork\Manager\DeviceManager.cpp" />
     <ClCompile Include="FrameWork\Event.cpp" />
@@ -147,19 +147,19 @@
     <ClCompile Include="FrameWork\Transformable.cpp" />
     <ClCompile Include="FrameWork\ViewPort.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Objects\GameObjects\Aladdin.cpp" />
-    <ClCompile Include="PlayScene.cpp" />
+    <ClCompile Include="Objects\GameObjects\Objects\Aladdin.cpp" />
+    <ClCompile Include="Objects\Scenes\PlayScene.cpp" />
     <ClCompile Include="FrameWork\StopWatch.cpp" />
     <ClCompile Include="FrameWork\Text.cpp" />
-    <ClCompile Include="Tile.cpp" />
+    <ClCompile Include="Objects\GameObjects\Objects\Tile.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AladdinGame.h" />
-    <ClInclude Include="BaseEnemy.h" />
+    <ClInclude Include="Objects\Enemies\BaseEnemy.h" />
     <ClInclude Include="FrameWork\CollisionBody.h" />
     <ClInclude Include="FrameWork\IComponent.h" />
-    <ClInclude Include="GuardThin.h" />
-    <ClInclude Include="Objects\GameObjects\BaseObject.h" />
+    <ClInclude Include="Objects\Enemies\GuardThin.h" />
+    <ClInclude Include="Objects\BaseObject.h" />
     <ClInclude Include="FrameWork\Animation.h" />
     <ClInclude Include="FrameWork\debug.h" />
     <ClInclude Include="FrameWork\define.h" />
@@ -177,11 +177,11 @@
     <ClInclude Include="FrameWork\TimeSpan.h" />
     <ClInclude Include="FrameWork\Transformable.h" />
     <ClInclude Include="FrameWork\ViewPort.h" />
-    <ClInclude Include="Objects\GameObjects\Aladdin.h" />
-    <ClInclude Include="PlayScene.h" />
+    <ClInclude Include="Objects\GameObjects\Objects\Aladdin.h" />
+    <ClInclude Include="Objects\Scenes\PlayScene.h" />
     <ClInclude Include="FrameWork\StopWatch.h" />
     <ClInclude Include="FrameWork\Text.h" />
-    <ClInclude Include="Tile.h" />
+    <ClInclude Include="Objects\GameObjects\Objects\Tile.h" />
     <ClInclude Include="testSweepAABB.h" />
   </ItemGroup>
   <ItemGroup>
