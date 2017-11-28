@@ -28,7 +28,7 @@ public:
 	virtual void Draw(LPD3DXSPRITE, Viewport*) = 0;
 	virtual void Release() = 0;
 
-	eID			 getId();
+	virtual eID	 getId();
 	eStatus		 getStatus();
 	virtual void setStatus(eStatus status);
 	virtual void addStatus(eStatus status);

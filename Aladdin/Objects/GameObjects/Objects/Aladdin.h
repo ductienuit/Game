@@ -8,12 +8,15 @@
 #include"../../FrameWork/StopWatch.h"
 #include"../../BaseObject.h"
 #include"../../FrameWork/CollisionBody.h"
+
+#include"Land.h"
 #include<iostream>
 
 using namespace std;
 
 #define ALADDIN_MOVE_SPEED 125
 #define ALADDIN_JUMP_VEL 450
+#define ALADDIN_CLIMB_JUMP_VEL 300
 #define ALADDIN_ACC_MOVE 300
 #define GRAVITY 800
 #define ALADDIN_CLIMB_SPEED 90
@@ -39,9 +42,12 @@ public:
 
 	void setPosition(float x, float y);
 
+	RECT getBounding() override;
+	void setBounding(RECT);
 private:
 	map<int, Animation*> _animations;
 	map<string, IComponent*> _listComponent;
+	RECT _boundAla;
 
 	void onKeyReleased(KeyEventArg* key_event);
 
@@ -56,6 +62,8 @@ private:
 	void climbUp(float dt);
 	void climbDown(float dt);
 	void climbJump();
+	void climbLeft();
+	void climbRight();
 
 	void swingLeft(float dt);
 	void swingRight(float dt);

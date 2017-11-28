@@ -27,9 +27,10 @@ Viewport * PlayScene::getViewport()
 
 bool PlayScene::InIt()
 {
-	_listobject.push_back(new Tile(100, 100, eID::SOLID, 0, 0, 500, 10));
+	_listobject.push_back(new Land(200, 350, 10, 200, eDirection::NONE, eLandType::CLIMBABLE0));
+	_listobject.push_back(new Land(100, 100, 1000, 50, eDirection::NONE,eLandType::SOLID));
 
-	_listobject.push_back(new Tile(400, 100, eID::CLIMBABLE0, 0, 0, 10, 100));
+	
 
 	/*auto guard = new GuardThin(eStatus::MOVING_LEFT, 200, 100, eDirection::LEFT);
 	guard->InIt();
@@ -65,7 +66,10 @@ void PlayScene::Update(float dt)
 
 	for(auto i : _listobject)
 		for (auto j : _listobject)
-			i->checkCollision(j, dt);
+		{
+			if (i->getId() != j->getId())
+				i->checkCollision(j, dt);
+		}
 }
 
 void PlayScene::Draw(LPD3DXSPRITE spriteHandle)
@@ -73,7 +77,7 @@ void PlayScene::Draw(LPD3DXSPRITE spriteHandle)
 	for each (auto object in _listobject)
 	{
 		object->Draw(spriteHandle, _viewport);
-		//object->ShowBB();
+		object->ShowBB();
 	}
 }
 

@@ -47,6 +47,7 @@ public:
 	void setPosition(Vector3 vector);
 	void setPosition(Vector2 position);
 	void setPositionX(float x);
+	void setPositionXNotUpdate(float x);
 	void setPositionY(float y);
 
 	void setScale(Vector2 scale);
@@ -108,6 +109,7 @@ public:
 	void		setColor(D3DXCOLOR color);
 	D3DXCOLOR   getColor();
 
+	void DrawRect(RECT);
 private:
 	Texture				_texture;
 	float				_opacity;						// Độ mờ khi bị thương, từ 0.0f đến 1.0f thôi
@@ -138,7 +140,6 @@ private:
 	LPDIRECT3DSURFACE9	_surface;
 	bool				_isDrawBounding;
 };
-
 GAME_FRAMEWORK_END
 
 #endif // !__SPRITE_H__

@@ -14,7 +14,7 @@
 #include"../../FrameWork/debug.h"
 #include"../../FrameWork/Animation.h"
 #include"../GameObjects/Objects/Aladdin.h"
-#include"../GameObjects/Objects/Tile.h"
+#include"../GameObjects/Objects/Land.h"
 #include"../Enemies/GuardThin.h"
 
 using namespace std;

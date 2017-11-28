@@ -45,18 +45,6 @@ void SpriteManager::LoadResource(LPD3DXSPRITE spriteHandle)
 	this->_listSprite.insert(pair<eID, Sprite*>(eID::ALADDIN, sp));
 	this->LoadSpriteInfo(eID::ALADDIN, "Resources//Images//AladdinAnimation.txt");
 
-	sp = new Sprite(spriteHandle, "Resources//Images//Trans.png");
-	this->_listSprite.insert(pair<eID, Sprite*>(eID::SOLID, sp));
-
-	sp = new Sprite(spriteHandle, "Resources//Images//Trans.png");
-	this->_listSprite.insert(pair<eID, Sprite*>(eID::CLIMBABLE0, sp));
-
-	sp = new Sprite(spriteHandle, "Resources//Images//Trans.png");
-	this->_listSprite.insert(pair<eID, Sprite*>(eID::CLIMBABLE1, sp));
-
-	sp = new Sprite(spriteHandle, "Resources//Images//Trans.png");
-	this->_listSprite.insert(pair<eID, Sprite*>(eID::CLIMBABLE2, sp));
-
 
 	sp = new Sprite(spriteHandle, "Resources//Images//Guards.png");
 	this->_listSprite.insert(pair<eID, Sprite*>(eID::GUARDTHIN, sp));

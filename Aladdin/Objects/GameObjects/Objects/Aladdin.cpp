@@ -185,8 +185,8 @@ void Aladdin::InIt()
 	_animations[eStatus::CLIMB] = new Animation(_sprite, 0.1f);
 	_animations[eStatus::CLIMB]->addFrameRect(eID::ALADDIN, "climb_", 10);
 
-	_animations[eStatus::CLIMB | eStatus::JUMPING] = new Animation(_sprite, 0.055f);
-	_animations[eStatus::CLIMB | eStatus::JUMPING]->addFrameRect(eID::ALADDIN, "climb_jump_0", 9);
+	_animations[eStatus::CLIMB_JUMP] = new Animation(_sprite, 0.055f);
+	_animations[eStatus::CLIMB_JUMP]->addFrameRect(eID::ALADDIN, "climb_jump_0", 9);
 
 	_animations[eStatus::CLIMB | eStatus::THROW] = new Animation(_sprite, 0.14f);
 	_animations[eStatus::CLIMB | eStatus::THROW]->addFrameRect(eID::ALADDIN, "climb_throw_0", 5);
@@ -195,8 +195,7 @@ void Aladdin::InIt()
 	_animations[eStatus::CLIMB | eStatus::ATTACK]->addFrameRect(eID::ALADDIN, "climb_attack_0", 7);
 
 	_sprite->drawBounding(false);
-	_sprite->setOrigin(Vector2(0.0f, 0.0f));
-
+	this->setBounding(_sprite->getBounding());
 
 	this->setStatus(eStatus::NORMAL);
 
@@ -609,7 +608,25 @@ void Aladdin::UpdateInput(float dt)
 		else if (_input->isKeyDown(DIK_C))
 		{
 			this->removeStatus(eStatus::CLIMB);
-			jump(eStatus::JUMPING);
+			this->addStatus(eStatus::CLIMB_JUMP);			
+		}
+		break;
+	}
+	case(eStatus::CLIMB_JUMP):
+	{
+		if (_input->isKeyDown(DIK_LEFT))
+		{
+			climbLeft();
+		}
+		else if (_input->isKeyDown(DIK_RIGHT))
+		{
+			climbRight();
+		}
+		else if (_input->isKeyPressed(DIK_X))
+		{
+		}
+		else if (_input->isKeyPressed(DIK_Z)) //ném
+		{
 		}
 		break;
 	}
@@ -715,21 +732,33 @@ void Aladdin::onCollisionBegin(CollisionEventArg * collision_event)
 {
 	switch (collision_event->_otherObject->getId())
 	{
-	case (eID::SOLID):
+	case eID::LAND:
 	{
-		//Chạm đất
-		auto gravity = (Gravity*)this->_listComponent["Gravity"];
-		gravity->setStatus(eGravityStatus::SHALLOWED);
-		this->clearStatus();
-		this->standing();
-		break;
-	}
-	case (eID::CLIMBABLE0):
-	{
-		//Leo
-		this->clearStatus();
-		climb();
-		this->addStatus(eStatus::CLIMB);
+		auto land = (Land*)collision_event->_otherObject;
+		switch (land->getType())
+		{
+			case (eLandType::CLIMBABLE0):
+			{
+				this->removeStatus((eStatus)(NORMAL1 | MOVING_LEFT | MOVING_RIGHT |
+					JUMPING | SITTING_DOWN |
+					RUNNING | LOOKING_UP | FREE |
+					JUMPING_LEFT | JUMPING_RIGHT |
+					SWING |DROP| DYING| BURN));
+				this->addStatus(eStatus::CLIMB);
+				climb();
+				int x = land->getPositionX();
+				this->setPositionX(x);
+				break;
+			}
+			case (eLandType::SOLID):
+			{
+				//Chạm đất
+				auto gravity = (Gravity*)this->_listComponent["Gravity"];
+				gravity->setStatus(eGravityStatus::SHALLOWED);
+				this->standing();
+				break;
+			}			
+		}
 		break;
 	}
 	}
@@ -737,12 +766,34 @@ void Aladdin::onCollisionBegin(CollisionEventArg * collision_event)
 
 void Aladdin::onCollisionEnd(CollisionEventArg * collision_event)
 {
+	switch (collision_event->_otherObject->getId())
+	{
+	case eID::LAND:
+	{
+		this->standing();
+		auto g = (Gravity*)this->_listComponent["Gravity"];
+		g->setStatus(eGravityStatus::FALLING__DOWN);
+		auto land = (Land*)collision_event->_otherObject;
+		switch (land->getType())
+		{
+		case (eLandType::CLIMBABLE0):
+		{
+			this->removeStatus(eStatus::CLIMB);
+			break;
+		}
+		}
+		break;
+	}
+	}
 }
 
 float Aladdin::checkCollision(BaseObject * object, float dt)
 {
+	if (object == this)
+		return 0.0f;
 	auto collisionBody = (CollisionBody*)_listComponent["CollisionBody"];
 	collisionBody->checkCollision(object, dt);
+
 	return 0.0f;
 }
 
@@ -751,8 +802,27 @@ void Aladdin::setPosition(float x, float y)
 	_sprite->setPosition(x, y);
 }
 
+RECT Aladdin::getBounding()
+{
+	return _boundAla;
+}
+
+void Aladdin::setBounding(RECT r)
+{
+	float distancex = abs(r.right - r.left)/4.0f;
+	float distancey = abs(r.top - r.bottom)/4.0f;
+	RECT temp;
+	temp.left = r.left + distancex;
+	temp.right = r.right - distancex;
+	temp.top = r.top - distancey;
+	temp.bottom = r.bottom + distancey;
+	_boundAla = temp;
+}
+
 void Aladdin::Draw(LPD3DXSPRITE spriteHandle, Viewport* viewport)
 {
+
+	this->setBounding(_sprite->getBounding());
 	_animations[_currentAnimateIndex]->Draw(spriteHandle, viewport);
 }
 
@@ -817,7 +887,7 @@ void Aladdin::climb()
 	move->setVelocity(Vector2(move->getVelocity().x, ALADDIN_JUMP_VEL));
 
 	auto g = (Gravity*)this->_listComponent["Gravity"];
-	g->setStatus(eGravityStatus::FALLING__DOWN);
+	g->setStatus(eGravityStatus::SHALLOWED);
 }
 
 void Aladdin::climbUp(float dt)
@@ -836,8 +906,24 @@ void Aladdin::climbDown(float dt)
 
 void Aladdin::climbJump()
 {
+
 	auto move = (Movement*)this->_listComponent["Movement"];
-	move->setVelocity(Vector2(move->getVelocity().x,50));
+	move->setVelocity(Vector2(move->getVelocity().x, ALADDIN_CLIMB_JUMP_VEL));
+
+	auto g = (Gravity*)this->_listComponent["Gravity"];
+	g->setStatus(eGravityStatus::FALLING__DOWN);
+}
+
+void Aladdin::climbLeft()
+{
+	auto move = (Movement*)this->_listComponent["Movement"];
+	move->setVelocity(Vector2(-ALADDIN_MOVE_SPEED, move->getVelocity().y));
+}
+
+void Aladdin::climbRight()
+{
+	auto move = (Movement*)this->_listComponent["Movement"];
+	move->setVelocity(Vector2(ALADDIN_MOVE_SPEED, move->getVelocity().y));
 }
 
 void Aladdin::swingLeft(float dt)
@@ -889,6 +975,10 @@ void Aladdin::updateStatus(float dt)
 			this->standing();
 		}
 	}
+	else if (this->isInStatus(eStatus::CLIMB_JUMP))
+	{
+			climbJump();
+	}
 	else if (this->isInStatus(eStatus::MOVING_LEFT))
 	{
 		this->moveLeft();
@@ -901,12 +991,6 @@ void Aladdin::updateStatus(float dt)
 	{
 		if (this->isInStatus(eStatus::ATTACK) || this->isInStatus(eStatus::THROW))
 			return;
-		if (this->isInStatus(eStatus::JUMPING))
-		{
-			
-			//this->removeStatus(eStatus::JUMPING);
-			return;
-		}
 		if (_input->isKeyDown(DIK_UP))
 		{
 			this->climbUp(dt);
@@ -980,7 +1064,13 @@ void Aladdin::updateStatusOneAction(float deltatime)
 #pragma endregion
 
 #pragma region Thực hiện hết một hành động đến totalframe của một bức ảnh sprite (thực hiện hết hành động)
-	if (this->isInStatus(eStatus::THROW) && _animations[_currentAnimateIndex]->getIndex() >= 4)
+	if (this->isInStatus(eStatus::CLIMB_JUMP) && _animations[_currentAnimateIndex]->getIndex() >= 8)
+	{
+		_animations[_currentAnimateIndex]->setIndex(0);  //Quan trọng, vì nếu không set. Nhấn phím lần 2 sẽ không nhận được index.
+		this->removeStatus(eStatus::CLIMB_JUMP);
+		this->addStatus(eStatus::CLIMB);
+	}
+	else if (this->isInStatus(eStatus::THROW) && _animations[_currentAnimateIndex]->getIndex() >= 4)
 	{
 		_animations[_currentAnimateIndex]->setIndex(0);  //Quan trọng, vì nếu không set. Nhấn phím lần 2 sẽ không nhận được index.
 		this->removeStatus(eStatus::THROW);

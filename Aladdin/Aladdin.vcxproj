@@ -151,7 +151,7 @@
     <ClCompile Include="Objects\Scenes\PlayScene.cpp" />
     <ClCompile Include="FrameWork\StopWatch.cpp" />
     <ClCompile Include="FrameWork\Text.cpp" />
-    <ClCompile Include="Objects\GameObjects\Objects\Tile.cpp" />
+    <ClCompile Include="Objects\GameObjects\Objects\Land.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AladdinGame.h" />
@@ -181,7 +181,7 @@
     <ClInclude Include="Objects\Scenes\PlayScene.h" />
     <ClInclude Include="FrameWork\StopWatch.h" />
     <ClInclude Include="FrameWork\Text.h" />
-    <ClInclude Include="Objects\GameObjects\Objects\Tile.h" />
+    <ClInclude Include="Objects\GameObjects\Objects\Land.h" />
     <ClInclude Include="testSweepAABB.h" />
   </ItemGroup>
   <ItemGroup>

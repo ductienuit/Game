@@ -5,6 +5,7 @@
 #include "../Objects/BaseObject.h"
 #include "IComponent.h"
 #include"Text.h"
+#include"../Objects/GameObjects/Objects/Land.h"
 
 /*Sử dụng cho đối tượng muốn kt va chạm
 - Thêm nó như là một Component vào object
@@ -61,6 +62,7 @@ public:
 	Text *text;
 private:
 	BaseObject* _target;
+	BaseObject* _preObject;
 	float	_dxEntry, //Khoảng cách cần đi để bắt đầu va chạm
 			_dyEntry, //Khoảng cách cần đi để bắt đầu va chạm
 			_dxExit,  // Khoảng cách cần đi kể từ lúc này để khi hết va chạm
@@ -69,6 +71,7 @@ private:
 
 	bool _isCollide;
 	bool _isColliding;
+	bool _flagEnd;
 	Vector2 _collidePosition;
 	eDirection _collideSide;
 
@@ -79,5 +82,5 @@ private:
 
 	RECT getSweptBroadphaseRect(BaseObject* object, float dt);
 };
-
+void DrawRect(RECT otherRect);
 #endif // !__COLLISION_BODY__

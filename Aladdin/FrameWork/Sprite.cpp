@@ -9,8 +9,8 @@ Sprite::~Sprite()
 
 Sprite::Sprite(LPD3DXSPRITE spriteHandle, LPCSTR filePath, int totalFrames, int cols)
 {
-	_origin = Vector2(0.0f, 0.0f);
-	_scale = Vector2(1.6f,1.92f);
+	_origin = Vector2(0.5f, 0.0f);
+	_scale = Vector2(1.6f, 1.92f);
 	_lastScale = _scale;
 	_zIndex = 1;
 	_rotate = 0.0f;
@@ -44,8 +44,6 @@ Sprite::Sprite(LPD3DXSPRITE spriteHandle, LPCSTR filePath, int totalFrames, int 
 		NULL
 	);
 }
-
-
 
 void Sprite::Release()
 {
@@ -196,19 +194,39 @@ void Sprite::setScaleX(float sx)
 {
 	if (sx == _scale.x)
 		return;
-	_lastScale = _scale;
+	/*_lastScale = _scale;
+
 	if (_scale.x < 0 && sx > 0)
 	{
-		float lastPosition = this->getPositionX();
-		float distance = abs(this->getBounding().right - this->getBounding().left);
-		this->setPositionX(lastPosition - distance);
+		_scale.x = sx;
+		float lastPosition = _position.x;
+		float distance = abs(_bound.right - _bound.left);
+
+		_position.x = lastPosition - distance;
+		float scaleW = _frameWidth * abs(_scale.x);
+		float scaleH = _frameHeight * abs(_scale.y);
+
+		this->_bound.left = _position.x - scaleW* _origin.x;
+		this->_bound.bottom = _position.y - scaleH* _origin.y;
+		this->_bound.right = _bound.left + scaleW;
+		this->_bound.top = _bound.bottom + scaleH;
+		return;
 	}
-	else if (sx < 0)
+	else if (_scale.x > 0 && sx < 0)
 	{
-		float lastPosition = this->getPositionX();
-		float distance =abs(this->getBounding().right - this->getBounding().left);
-		this->setPositionX(lastPosition + distance);
-	}
+		_scale.x = sx;
+		float lastPosition = _position.x;
+		float distance = abs(_bound.right - _bound.left);
+		_position.x = lastPosition + distance;
+		float scaleW = _frameWidth * abs(_scale.x);
+		float scaleH = _frameHeight * abs(_scale.y);
+
+		this->_bound.left = _position.x - scaleW ;
+		this->_bound.bottom = _position.y - scaleH;
+		this->_bound.right = _bound.left + scaleW;
+		this->_bound.top = _bound.bottom + scaleH;
+		return;
+	}*/
 	_scale.x = sx;
 	this->UpdateBounding();
 }
@@ -372,6 +390,31 @@ D3DXCOLOR Sprite::getColor()
 	return _color;
 }
 
+void Sprite::DrawRect(RECT BBox)
+{
+#pragma region Visualize collision
+	float top = WINDOWS_HEIGHT - BBox.top;
+	float left = BBox.left;
+	float right = BBox.right;
+	float bottom = WINDOWS_HEIGHT - BBox.bottom;
+
+	LPD3DXLINE line;
+	auto dv = DeviceManager::getInstance()->getDevice();
+	D3DXCreateLine(dv, &line);
+	D3DXVECTOR2 lines[] = { D3DXVECTOR2(left, top),
+		D3DXVECTOR2(right, top),
+		D3DXVECTOR2(right, bottom),
+		D3DXVECTOR2(left, bottom),
+		D3DXVECTOR2(left, top),
+		D3DXVECTOR2(right, bottom) };
+	line->SetWidth(1);
+	line->Begin();
+	line->Draw(lines, 6, 0xffffffff);
+	line->End();
+	line->Release();
+#pragma endregion
+}
+
 void Sprite::setFrameRect()
 {
 	this->_frameRect.left = (long)_currentFrame.x * _frameWidth;
@@ -396,59 +439,28 @@ void Sprite::UpdateBounding()
 	float scaleW = _frameWidth * abs(_scale.x);
 	float scaleH = _frameHeight * abs(_scale.y);
 
-	if (this->getScale().x < 0)
-	{
-		this->_bound.left = _position.x - scaleW;
-		this->_bound.bottom = _position.y - scaleH;
+	this->_bound.left = _position.x - scaleW * _origin.x;
+	this->_bound.bottom = _position.y - scaleH * _origin.y;
+	this->_bound.right = _bound.left + scaleW;
+	this->_bound.top = _bound.bottom + scaleH;
 
+	// 4 điểm của hcn
+	Vector2 p1 = Vector2(_bound.left, _bound.top);
+	Vector2 p2 = Vector2(_bound.right, _bound.top);
+	Vector2 p3 = Vector2(_bound.right, _bound.bottom);
+	Vector2 p4 = Vector2(_bound.left, _bound.bottom);
+	_anchorPoint = Vector2(_bound.left + scaleW * _origin.x, _bound.bottom + scaleH * _origin.y);
 
-		this->_bound.right = _bound.left + scaleW;
-		this->_bound.top = _bound.bottom + scaleH;
+	//rotate 4 điểm
+	p1 = RotatePointAroundOrigin(p1, _rotate, _anchorPoint);
+	p2 = RotatePointAroundOrigin(p2, _rotate, _anchorPoint);
+	p3 = RotatePointAroundOrigin(p3, _rotate, _anchorPoint);
+	p4 = RotatePointAroundOrigin(p4, _rotate, _anchorPoint);
 
-		// 4 điểm của hcn
-		Vector2 p1 = Vector2(_bound.left, _bound.top);
-		Vector2 p2 = Vector2(_bound.right, _bound.top);
-		Vector2 p3 = Vector2(_bound.right, _bound.bottom);
-		Vector2 p4 = Vector2(_bound.left, _bound.bottom);
-		_anchorPoint = Vector2(_bound.left + scaleW * _origin.x, _bound.bottom + scaleH * _origin.y);
-
-		//rotate 4 điểm
-		p1 = RotatePointAroundOrigin(p1, _rotate, _anchorPoint);
-		p2 = RotatePointAroundOrigin(p2, _rotate, _anchorPoint);
-		p3 = RotatePointAroundOrigin(p3, _rotate, _anchorPoint);
-		p4 = RotatePointAroundOrigin(p4, _rotate, _anchorPoint);
-
-		_bound.left = min(min(p1.x, p2.x), min(p3.x, p4.x));
-		_bound.top = max(max(p1.y, p2.y), max(p3.y, p4.y)) * 2 - _bound.bottom;
-		_bound.right = max(max(p1.x, p2.x), max(p3.x, p4.x));
-		_bound.bottom = max(max(p1.y, p2.y), max(p3.y, p4.y));
-	}
-	else
-	{
-		this->_bound.left = _position.x - scaleW * _origin.x;
-		this->_bound.bottom = _position.y - scaleH * _origin.y;
-
-		this->_bound.right = _bound.left + scaleW;
-		this->_bound.top = _bound.bottom + scaleH;
-
-		// 4 điểm của hcn
-		Vector2 p1 = Vector2(_bound.left, _bound.top);
-		Vector2 p2 = Vector2(_bound.right, _bound.top);
-		Vector2 p3 = Vector2(_bound.right, _bound.bottom);
-		Vector2 p4 = Vector2(_bound.left, _bound.bottom);
-		_anchorPoint = Vector2(_bound.left + scaleW * _origin.x, _bound.bottom + scaleH * _origin.y);
-
-		//rotate 4 điểm
-		p1 = RotatePointAroundOrigin(p1, _rotate, _anchorPoint);
-		p2 = RotatePointAroundOrigin(p2, _rotate, _anchorPoint);
-		p3 = RotatePointAroundOrigin(p3, _rotate, _anchorPoint);
-		p4 = RotatePointAroundOrigin(p4, _rotate, _anchorPoint);
-
-		_bound.left = min(min(p1.x, p2.x), min(p3.x, p4.x));
-		_bound.top = max(max(p1.y, p2.y), max(p3.y, p4.y));
-		_bound.right = max(max(p1.x, p2.x), max(p3.x, p4.x));
-		_bound.bottom = min(min(p1.y, p2.y), min(p3.y, p4.y));
-	}
+	_bound.left = min(min(p1.x, p2.x), min(p3.x, p4.x));
+	_bound.top = max(max(p1.y, p2.y), max(p3.y, p4.y));
+	_bound.right = max(max(p1.x, p2.x), max(p3.x, p4.x));
+	_bound.bottom = min(min(p1.y, p2.y), min(p3.y, p4.y));
 }
 
 Vector2 Sprite::RotatePointAroundOrigin(Vector2 point, float angle, Vector2 origin)
@@ -456,7 +468,7 @@ Vector2 Sprite::RotatePointAroundOrigin(Vector2 point, float angle, Vector2 orig
 	// nhân ma trận xoay
 	/*
 	x' = x.cos(t) - y.sin(t)
-	y' = x.sin(t) + y.cos(t)	
+	y' = x.sin(t) + y.cos(t)
 	t là góc quay theo radian
 	vậy quanh quanh 1 điểm mình dời về góc rồi quay xong dời lại
 	Chi tiết:

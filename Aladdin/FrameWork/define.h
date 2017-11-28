@@ -38,20 +38,14 @@ enum eStatus
 	DYING =			(1 << 14),			//Chết
 	ATTACK =	    (1 << 15),			//Cầm kiếm chém
     BURN   =		(1 << 16),			//Trạng thái không anime. Kết hợp với các trạng thái với các trạng thái khác để tạo 1 trạng thái.
+	CLIMB_JUMP =    (1 << 17)
 };
 
 enum eID
 {
+	LAND,
 	ALADDIN,
 	GUARDTHIN,
-	ROPE,	//Dây
-	SOLID,	//Nền đất
-	SPRING,	//Cái bật nhảy
-	PLATFORM, //Tấm gỗ
-	BAR,
-	CLIMBABLE0,
-	CLIMBABLE1,
-	CLIMBABLE2
 };
 
 enum eDirection
@@ -64,6 +58,17 @@ enum eDirection
 	INSIDE = (TOP | BOTTOM | LEFT | RIGHT),
 };
 
+enum eLandType
+{
+	ROPE,	//Dây
+	SOLID,	//Nền đất
+	SPRING,	//Cái bật nhảy
+	PLATFORM, //Tấm gỗ
+	BAR,
+	CLIMBABLE0,
+	CLIMBABLE1,
+	CLIMBABLE2
+};
 #define C_WHITE D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f)				// màu trắnng
 #define COLOR_KEY D3DXCOLOR(1.0f, 0.0f, 1.0f, 1.0f)				// màu khi mà load hình nó bỏ qua > trong suốt
 
@@ -77,7 +82,6 @@ enum eDirection
 typedef D3DXVECTOR2 Vector2;
 typedef D3DXVECTOR3 Vector3;
 #define VECTOR2ZERO Vector2(0.0f, 0.0f)
-
 #define GAME_FRAMEWORK		    namespace FrameWork
 
 #define GAME_FRAMEWORK_BEGIN	{
