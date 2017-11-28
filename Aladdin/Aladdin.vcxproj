@@ -153,6 +153,7 @@
     <ClCompile Include="FrameWork\StopWatch.cpp" />
     <ClCompile Include="FrameWork\Text.cpp" />
     <ClCompile Include="Objects\GameObjects\Objects\Tile.cpp" />
+    <ClCompile Include="Objects\Enemies\ThrowAction.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AladdinGame.h" />
@@ -185,6 +186,7 @@
     <ClInclude Include="FrameWork\Text.h" />
     <ClInclude Include="Objects\GameObjects\Objects\Tile.h" />
     <ClInclude Include="testSweepAABB.h" />
+    <ClInclude Include="Objects\Enemies\ThrowAction.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Cach code.txt" />

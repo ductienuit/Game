@@ -1,6 +1,5 @@
-
-#ifndef _GUARDSHORT_H
-#define _GUARDSHORT_H
+#ifndef _THROWACTION
+#define _THROWACTION
 
 #include "../../FrameWork/Animation.h"
 #include "../../FrameWork/StopWatch.h"
@@ -9,13 +8,13 @@
 #include "BaseEnemy.h"
 using namespace std;
 
-#define GUARDSHORT_SPEED 30
-#define GUARDSHORT_SCORE 100
+#define THROWACTION_SPEED 30
+#define SWORD_GRAVITY 800
 
-class GuardShort : public BaseEnemy
+class ThrowAction : public BaseEnemy
 {
 public:
-	GuardShort(eStatus status, int posX, int posY, eDirection direction);
+	ThrowAction(eStatus status, int posX, int posY, eDirection direction);
 
 	void InIt() override;
 	void Update(float deltatime) override;
@@ -32,7 +31,7 @@ public:
 	IComponent* getComponent(string componentName);
 
 	Text* text;
-	~GuardShort();
+	~ThrowAction();
 private:
 	void movingLeft();
 	void movingRight();

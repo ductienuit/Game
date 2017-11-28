@@ -31,18 +31,21 @@ bool PlayScene::InIt()
 	rope->InIt();
 	_listobject.push_back(rope);
 
-	auto guard = new GuardThin(eStatus::MOVING_LEFT, 200, 100, eDirection::LEFT);
+	/*auto guard = new GuardThin(eStatus::MOVING_LEFT, 200, 100, eDirection::LEFT);
 	guard->InIt();
-	_listobject.push_back(guard);
+	_listobject.push_back(guard);*/
 
-	auto guardShort = new GuardShort(eStatus::MOVING_LEFT, 600, 140, eDirection::LEFT);
+	/*auto guardShort = new GuardShort(eStatus::MOVING_LEFT, 600, 140, eDirection::LEFT);
 	guardShort->InIt();
 	_listobject.push_back(guardShort);
 
+	auto ThrowAction = new GuardShort(eStatus::THROW, 300, 140, eDirection::LEFT);
+	ThrowAction->InIt();
+	_listobject.push_back(guardShort);*/
 
 	auto aladdin = new Aladdin();
 	aladdin->InIt();
-	aladdin->setPosition(100,300);
+	aladdin->setPosition(100,140);
 	_listControlObject.push_back(aladdin);
 	_listobject.push_back(aladdin);
 	return true;
