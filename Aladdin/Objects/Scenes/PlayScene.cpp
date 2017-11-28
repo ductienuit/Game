@@ -27,7 +27,7 @@ Viewport * PlayScene::getViewport()
 
 bool PlayScene::InIt()
 {
-	_listobject.push_back(new Land(200, 350, 10, 200, eDirection::NONE, eLandType::CLIMBABLE0));
+	_listobject.push_back(new Land(200, 500, 10, 200, eDirection::NONE, eLandType::CLIMBABLE0));
 	_listobject.push_back(new Land(100, 100, 1000, 50, eDirection::NONE,eLandType::SOLID));
 
 	

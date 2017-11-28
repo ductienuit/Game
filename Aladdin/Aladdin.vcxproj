@@ -182,7 +182,6 @@
     <ClInclude Include="FrameWork\StopWatch.h" />
     <ClInclude Include="FrameWork\Text.h" />
     <ClInclude Include="Objects\GameObjects\Objects\Land.h" />
-    <ClInclude Include="testSweepAABB.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Cach code.txt" />

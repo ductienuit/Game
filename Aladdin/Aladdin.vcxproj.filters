@@ -203,9 +203,6 @@
     <ClInclude Include="FrameWork\IComponent.h">
       <Filter>Header Files\FrameWork</Filter>
     </ClInclude>
-    <ClInclude Include="testSweepAABB.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="FrameWork\CollisionBody.h">
       <Filter>Header Files\FrameWork</Filter>
     </ClInclude>
