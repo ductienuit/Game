@@ -66,11 +66,11 @@ sit_throw_4	320	579	377	616
 
 sit_attack_0	9	640	56	673
 sit_attack_1	64	642	109	673
-sit_attack_2	117	640	195	673
-sit_attack_3	230	639	327	673
-sit_attack_4	364	640	449	673
-sit_attack_5	475	640	550	673
-sit_attack_6	559	642	604	673
+sit_attack_2	133	640	230	673
+sit_attack_3	255	639	396	673
+sit_attack_4	410	640	536	673
+sit_attack_5	552	640	653	673
+sit_attack_6	732	642	777	673
 
 jump_left_right_0	10	705	51	747
 jump_left_right_1	66	683	111	759
