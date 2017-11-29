@@ -185,7 +185,7 @@ void Aladdin::InIt()
 	_animations[eStatus::CLIMB] = new Animation(_sprite, 0.1f);
 	_animations[eStatus::CLIMB]->addFrameRect(eID::ALADDIN, "climb_", 10);
 
-	_animations[eStatus::CLIMB | eStatus::JUMPING] = new Animation(_sprite, 0.055f);
+	_animations[eStatus::CLIMB | eStatus::JUMPING] = new Animation(_sprite, 0.1f);
 	_animations[eStatus::CLIMB | eStatus::JUMPING]->addFrameRect(eID::ALADDIN, "climb_jump_0", 9);
 
 	_animations[eStatus::CLIMB | eStatus::THROW] = new Animation(_sprite, 0.14f);
@@ -1114,6 +1114,8 @@ void Aladdin::updateStatusOneAction(float deltatime)
 	{
 		_animations[_currentAnimateIndex]->setIndex(0);
 		this->removeStatus(eStatus::JUMPING);
+		auto g = (Gravity*)this->_listComponent["Gravity"];
+		g->setStatus(eGravityStatus::SHALLOWED);
 		_animations[eStatus::CLIMB]->NextFrame();
 	}
 
