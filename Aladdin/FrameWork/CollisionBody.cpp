@@ -38,8 +38,9 @@ void CollisionBody::checkCollision(BaseObject * otherObject, float dt)
 		{
 			CollisionEventArg* e = new CollisionEventArg(otherObject);
 			e->_sideCollision = direction;
-			_preObject = otherObject;		
-			__debugoutput(2);
+			_preObject = otherObject;	
+
+			__debugoutput(1);
 			__raise onCollisionBegin(e);
 			_flagEnd = true;
 		}
@@ -60,8 +61,8 @@ void CollisionBody::checkCollision(BaseObject * otherObject, float dt)
 	 {
 			CollisionEventArg* e = new CollisionEventArg(_preObject);
 			e->_sideCollision = NONE;
+			__debugoutput(2);
 			__raise onCollisionEnd(e);
-
 			_flagEnd = false;
 	}
 }

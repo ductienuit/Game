@@ -17,7 +17,11 @@
 #include <map>
 #include <vector>
 #include"debug.h"
-
+//else if (this->isInStatus(eStatus::ATTACK)
+//	&& isExist((eStatus)
+//	(LOOKING_UP | SITTING_DOWN | MOVING_LEFT
+//	| MOVING_RIGHT | JUMPING_LEFT | JUMPING_RIGHT
+//	| JUMPING | CLIMB | SWING)))
 enum eStatus
 {
 	NORMAL =		0,					// 00000 = 0

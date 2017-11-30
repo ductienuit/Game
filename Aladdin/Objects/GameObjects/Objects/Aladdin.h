@@ -16,7 +16,7 @@ using namespace std;
 
 #define ALADDIN_MOVE_SPEED 125
 #define ALADDIN_JUMP_VEL 450
-#define ALADDIN_CLIMB_JUMP_VEL 200
+#define ALADDIN_CLIMB_JUMP_VEL 250
 #define ALADDIN_ACC_MOVE 300
 #define GRAVITY 800
 #define ALADDIN_CLIMB_SPEED 90
@@ -77,6 +77,7 @@ private:
 	void addStatus(eStatus status);
 	void removeStatus(eStatus status);
 	bool isInStatus(eStatus status);
+	bool isExist(eStatus status);
 
 
 	Vector2 getVelocity();
