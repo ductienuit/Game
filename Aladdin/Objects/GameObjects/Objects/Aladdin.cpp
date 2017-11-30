@@ -188,6 +188,9 @@ void Aladdin::InIt()
 	_animations[eStatus::CLIMB | eStatus::JUMPING] = new Animation(_sprite, 0.1f);
 	_animations[eStatus::CLIMB | eStatus::JUMPING]->addFrameRect(eID::ALADDIN, "climb_jump_0", 9);
 
+	_animations[eStatus::CLIMB_JUMP] = new Animation(_sprite, 0.1f);
+	_animations[eStatus::CLIMB_JUMP]->addFrameRect(eID::ALADDIN, "climb_jump_0", 9);
+
 	_animations[eStatus::CLIMB | eStatus::THROW] = new Animation(_sprite, 0.14f);
 	_animations[eStatus::CLIMB | eStatus::THROW]->addFrameRect(eID::ALADDIN, "climb_throw_0", 5);
 
@@ -574,6 +577,27 @@ void Aladdin::UpdateInput(float dt)
 		}
 		break;
 	}
+	case (eStatus::CLIMB_JUMP):
+	{
+		if (_input->isKeyDown(DIK_LEFT))
+			this->climbLeft();
+		if (_input->isKeyDown(DIK_RIGHT))
+			this->climbRight();
+
+		else if (_input->isKeyPressed(DIK_Z))
+		{
+			this->removeStatus(eStatus::CLIMB_JUMP);
+			this->addStatus(eStatus::JUMPING);
+			this->addStatus(eStatus::THROW);
+		}
+		else if (_input->isKeyPressed(DIK_X))
+		{
+			this->removeStatus(eStatus::CLIMB_JUMP);
+			this->addStatus(eStatus::JUMPING);
+			this->addStatus(eStatus::ATTACK);
+		}
+		break;
+	}
 	case(eStatus::CLIMB):
 	{
 		if (_input->isKeyDown(DIK_UP))
@@ -607,25 +631,8 @@ void Aladdin::UpdateInput(float dt)
 		}
 		else if (_input->isKeyDown(DIK_C))
 		{
-			this->addStatus(eStatus::JUMPING);			
-		}
-		break;
-	}
-	case(eStatus::CLIMB_JUMP):
-	{
-		if (_input->isKeyDown(DIK_LEFT))
-		{
-			climbLeft();
-		}
-		else if (_input->isKeyDown(DIK_RIGHT))
-		{
-			climbRight();
-		}
-		else if (_input->isKeyPressed(DIK_X))
-		{
-		}
-		else if (_input->isKeyPressed(DIK_Z)) //ném
-		{
+			this->addStatus(eStatus::JUMPING);		
+			climbJump();
 		}
 		break;
 	}
@@ -767,25 +774,27 @@ void Aladdin::onCollisionBegin(CollisionEventArg * collision_event)
 
 void Aladdin::onCollisionEnd(CollisionEventArg * collision_event)
 {
-	//switch (collision_event->_otherObject->getId())
-	//{
-	//case eID::LAND:
-	//{
-	//	this->standing();
-	//	auto g = (Gravity*)this->_listComponent["Gravity"];
-	//	g->setStatus(eGravityStatus::FALLING__DOWN);
-	//	auto land = (Land*)collision_event->_otherObject;
-	//	switch (land->getType())
-	//	{
-	//	case (eLandType::CLIMBABLE0):
-	//	{
-	//		this->removeStatus(eStatus::CLIMB);
-	//		break;
-	//	}
-	//	}
-	//	break;
-	//}
-	//}
+	switch (collision_event->_otherObject->getId())
+	{
+	case eID::LAND:
+	{
+		/*this->standing();*/
+		
+		auto land = (Land*)collision_event->_otherObject;
+		switch (land->getType())
+		{
+		case (eLandType::CLIMBABLE0):
+		{
+			this->removeStatus(eStatus::CLIMB);
+			this->addStatus(eStatus::JUMPING);
+			auto g = (Gravity*)this->_listComponent["Gravity"];
+			g->setStatus(eGravityStatus::FALLING__DOWN); 
+			break;
+		}
+		}
+		break;
+	}
+	}
 }
 
 float Aladdin::checkCollision(BaseObject * object, float dt)
@@ -976,10 +985,6 @@ void Aladdin::updateStatus(float dt)
 			this->standing();
 		}
 	}
-	else if (this->isInStatus(eStatus::CLIMB_JUMP))
-	{
-			climbJump();
-	}
 	else if (this->isInStatus(eStatus::MOVING_LEFT))
 	{
 		this->moveLeft();
@@ -991,7 +996,7 @@ void Aladdin::updateStatus(float dt)
 	else if (this->isInStatus(eStatus::CLIMB))
 	{
 		if (this->isInStatus(eStatus::ATTACK) || this->isInStatus(eStatus::THROW))
-			return;
+			return;		
 		if (_input->isKeyDown(DIK_UP))
 		{
 			this->climbUp(dt);
@@ -1061,6 +1066,10 @@ void Aladdin::updateStatusOneAction(float deltatime)
 	else if (this->isInStatus(eStatus::JUMPING) && this->isInStatus(eStatus::CLIMB) && _animations[_currentAnimateIndex]->getIndex() < 6)
 	{
 		this->climbJump();
+		if (_input->isKeyDown(DIK_LEFT))
+			this->climbLeft();
+		else if (_input->isKeyDown(DIK_RIGHT))
+			this->climbRight();
 	}
 #pragma endregion
 
