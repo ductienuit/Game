@@ -58,7 +58,7 @@ void CollisionBody::checkCollision(BaseObject * otherObject, float dt)
 
 	if (_isColliding == false && _flagEnd==true)
 	 {
-			CollisionEventArg* e = new CollisionEventArg(otherObject);
+			CollisionEventArg* e = new CollisionEventArg(_preObject);
 			e->_sideCollision = NONE;
 			__raise onCollisionEnd(e);
 
