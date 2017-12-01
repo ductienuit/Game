@@ -83,7 +83,7 @@ void PlayScene::Draw(LPD3DXSPRITE spriteHandle)
 	for each (auto object in _listobject)
 	{
 		object->Draw(spriteHandle, _viewport);
-		//object->ShowBB();
+		object->ShowBB();
 	}
 }
 

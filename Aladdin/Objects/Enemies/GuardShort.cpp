@@ -49,7 +49,6 @@ void GuardShort::InIt()
 		, "guardsShort_throw_05", "guardsShort_throw_06", "guardsShort_throw_07", NULL);
 
 	//_sprite->drawBounding(false);
-	_sprite->setOrigin(Vector2(0, 0));
 	_canThrow = true;
 
 }
@@ -70,7 +69,7 @@ void GuardShort::Update(float deltatime)
 void GuardShort::Draw(LPD3DXSPRITE spritehandle, Viewport* viewport)
 {
 	_animations[this->getStatus()]->Draw(spritehandle, viewport);
-	text->Draw();
+	//text->Draw();
 	knife->Draw(spritehandle, viewport);
 }
 

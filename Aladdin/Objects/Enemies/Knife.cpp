@@ -66,7 +66,7 @@ void Knife::Update(float deltatime)
 void Knife::Draw(LPD3DXSPRITE spritehandle, Viewport* viewport)
 {
 	_animations[this->getStatus()]->Draw(spritehandle, viewport);
-	text->Draw();
+	//text->Draw();
 }
 
 void Knife::Release()
