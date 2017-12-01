@@ -1,5 +1,5 @@
-#ifndef _THROWACTION
-#define _THROWACTION
+#ifndef _KNIFE_H
+#define _KNIFE_H
 
 #include "../../FrameWork/Animation.h"
 #include "../../FrameWork/StopWatch.h"
@@ -8,14 +8,15 @@
 #include "BaseEnemy.h"
 using namespace std;
 
-#define THROWACTION_SPEED 30
-#define SWORD_GRAVITY 800
+#define KNIFE_SPEED 100
+#define KNIFE_GRAVITY 800
+#define KNIFE_JUMP 100
 
-class ThrowAction : public BaseEnemy
+class Knife : public BaseEnemy
 {
 public:
-	ThrowAction(eStatus status, int posX, int posY, eDirection direction);
-
+	Knife(eStatus status, int posX, int posY, eDirection direction);
+	void Set(eStatus status, int posX, int posY, eDirection direction);
 	void InIt() override;
 	void Update(float deltatime) override;
 	void Draw(LPD3DXSPRITE, Viewport*) override;
@@ -31,7 +32,7 @@ public:
 	IComponent* getComponent(string componentName);
 
 	Text* text;
-	~ThrowAction();
+	~Knife();
 private:
 	void movingLeft();
 	void movingRight();

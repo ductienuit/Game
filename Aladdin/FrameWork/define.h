@@ -45,6 +45,7 @@ enum eID
 	ALADDIN,
 	GUARDTHIN,
 	GUARDSHORT,
+	KNIFE,
 	ROPE,	//Dây
 	SOLID,	//Nền đất
 	SPRING,	//Cái bật nhảy

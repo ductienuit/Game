@@ -144,7 +144,7 @@
     <ClCompile Include="Objects\Enemies\GuardShort.cpp">
       <Filter>Source Files\Object\Enemies</Filter>
     </ClCompile>
-    <ClCompile Include="Objects\Enemies\ThrowAction.cpp">
+    <ClCompile Include="Objects\Enemies\Knife.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -239,7 +239,7 @@
     <ClInclude Include="Objects\Enemies\GuardShort.h">
       <Filter>Header Files\Object\Enemies</Filter>
     </ClInclude>
-    <ClInclude Include="Objects\Enemies\ThrowAction.h">
+    <ClInclude Include="Objects\Enemies\Knife.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

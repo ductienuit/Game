@@ -35,19 +35,20 @@ bool PlayScene::InIt()
 	guard->InIt();
 	_listobject.push_back(guard);*/
 
-	/*auto guardShort = new GuardShort(eStatus::MOVING_LEFT, 600, 140, eDirection::LEFT);
+	auto guardShort = new GuardShort(eStatus::MOVING_LEFT, 600, 140, eDirection::LEFT);
 	guardShort->InIt();
 	_listobject.push_back(guardShort);
 
-	auto ThrowAction = new GuardShort(eStatus::THROW, 300, 140, eDirection::LEFT);
-	ThrowAction->InIt();
-	_listobject.push_back(guardShort);*/
+	auto knife = new Knife(eStatus::THROW, 600, 600, eDirection::NONE);
+	knife->InIt();
+	_listobject.push_back(knife);
 
 	auto aladdin = new Aladdin();
 	aladdin->InIt();
 	aladdin->setPosition(100,140);
 	_listControlObject.push_back(aladdin);
 	_listobject.push_back(aladdin);
+
 	return true;
 }
 

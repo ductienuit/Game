@@ -17,7 +17,7 @@
 #include"../GameObjects/Objects/Tile.h"
 #include"../Enemies/GuardThin.h"
 #include"../Enemies/GuardShort.h"
-#include"../Enemies/ThrowAction.h"
+#include"../Enemies/Knife.h"
 using namespace std;
 
 USEGAME_FRAMEWORK

@@ -6,6 +6,7 @@
 #include "../../FrameWork/StopWatch.h"
 #include "../../FrameWork/IComponent.h"
 #include "../../FrameWork/Text.h"
+#include "../Enemies/Knife.h"
 #include "BaseEnemy.h"
 using namespace std;
 
@@ -37,9 +38,13 @@ private:
 	void movingLeft();
 	void movingRight();
 	void standing();
-	void Throw();
+	void Throw(float deltatime);
+
+	Knife* knife;
 	map<string, IComponent*> _listComponent;
 	map<int, Animation*> _animations;
 	Sprite *_divingSprite;
+	vector<BaseObject*> _listobject;
+	vector<IControlable*> _listControlObject;
 };
 #endif

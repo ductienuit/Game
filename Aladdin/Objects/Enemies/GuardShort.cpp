@@ -19,6 +19,8 @@ void GuardShort::InIt()
 
 	auto movement = new Movement(Vector2(0, 0), Vector2(0, 0), _sprite);
 	_listComponent["Movement"] = movement;
+	
+	auto knife = new Knife(eStatus::THROW, this->getPositionX(), this->getPositionY(), eDirection::NONE);
 
 	auto collisionBody = new CollisionBody(this);
 	_listComponent["CollisionBody"] = collisionBody;
@@ -40,6 +42,10 @@ void GuardShort::InIt()
 
 	_animations[FREE] = new Animation(_sprite, 0.2f);
 	_animations[FREE]->addFrameRect(eID::GUARDSHORT, "guardsShort_free_0", 5);
+
+	_animations[THROW] = new Animation(_sprite, 0.15f);
+	_animations[THROW]->addFrameRect(eID::KNIFE, "guardsShort_throw_01", "guardsShort_throw_02", "guardsShort_throw_03", "guardsShort_throw_04"
+		, "guardsShort_throw_05", "guardsShort_throw_06", "guardsShort_throw_07", NULL);
 
 	//_sprite->drawBounding(false);
 	_sprite->setOrigin(Vector2(0, 0));
@@ -93,27 +99,6 @@ float GuardShort::distanceBetweenAladdin()
 	float xAla = _divingSprite->getPositionX() +(_divingSprite->getBounding().right- _divingSprite->getBounding().left) / 2;
 	float x = this->getPositionX();
 
-	/*RECT BBox = _divingSprite->getBounding();
-	float top = WINDOWS_HEIGHT - BBox.top;
-	float left = _divingSprite->getPositionX()+(_divingSprite->getBounding().right - _divingSprite->getBounding().left) / 2;
-	float right = BBox.right;
-	float bottom = WINDOWS_HEIGHT - BBox.bottom;
-
-	LPD3DXLINE line;
-	auto dv = DeviceManager::getInstance()->getDevice();
-	D3DXCreateLine(dv, &line);
-	D3DXVECTOR2 lines[] = { D3DXVECTOR2(left, top),
-		D3DXVECTOR2(right, top),
-		D3DXVECTOR2(right, bottom),
-		D3DXVECTOR2(left, bottom),
-		D3DXVECTOR2(left, top),
-		D3DXVECTOR2(right, bottom) };
-	line->SetWidth(4);
-	line->Begin();
-	line->Draw(lines, 6, 0xffffffff);
-	line->End();
-	line->Release();*/
-
 #pragma region Test
 	char str[100];
 	sprintf(str, "khoang cach voi aladdin: %f", xAla - x);
@@ -129,11 +114,12 @@ void GuardShort::UpdateStatus(float dt)
 	if (distanceBetweenAladdin() < 0)
 	{
 		float distance = -distanceBetweenAladdin();
-		if (distance < 150 && distance > 25)
+		if (distance < 200 && distance > 25)
 		{
 			this->clearStatus();
 			this->addStatus(eStatus::ATTACK);
 			standing();
+			Throw(dt);
 			return;
 		}
 		this->clearStatus();
@@ -149,10 +135,11 @@ void GuardShort::UpdateStatus(float dt)
 	else if (distanceBetweenAladdin() > 0)
 	{
 		float distance = distanceBetweenAladdin();
-		if (distance < 150 && distance > 25)
+		if (distance < 200 && distance > 25)
 		{
 			this->clearStatus();
 			this->addStatus(eStatus::ATTACK);
+			Throw(dt);
 			standing();
 			return;
 		}
@@ -198,8 +185,15 @@ void GuardShort::standing()
 	move->setVelocity(VECTOR2ZERO);
 }
 
-void GuardShort::Throw()
+void GuardShort::Throw(float deltatime)
 {
-	auto g = (Gravity*)this->_listComponent["Gravity"];
-	g->setStatus(eGravityStatus::FALLING__DOWN);
+	//knife->Set(eStatus::THROW, this->getPositionX(), this->getPositionY(), eDirection::NONE);
+	auto knife = new Knife(eStatus::THROW, this->getPositionX()-50, this->getPositionY()+100, eDirection::NONE);
+	knife->InIt();
+	_listobject.push_back(knife);
+	knife->addStatus(eStatus::THROW);
+	
+	knife->Update(deltatime);
+
+	
 }
