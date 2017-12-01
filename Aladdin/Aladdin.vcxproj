@@ -126,6 +126,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AladdinGame.cpp" />
+    <ClCompile Include="Objects\Enemies\GuardShort.cpp" />
     <ClCompile Include="Objects\Enemies\BaseEnemy.cpp" />
     <ClCompile Include="FrameWork\CollisionBody.cpp" />
     <ClCompile Include="FrameWork\IComponent.cpp" />
@@ -152,9 +153,11 @@
     <ClCompile Include="FrameWork\StopWatch.cpp" />
     <ClCompile Include="FrameWork\Text.cpp" />
     <ClCompile Include="Objects\GameObjects\Objects\Land.cpp" />
+    <ClCompile Include="Objects\Enemies\Knife.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AladdinGame.h" />
+    <ClInclude Include="Objects\Enemies\GuardShort.h" />
     <ClInclude Include="Objects\Enemies\BaseEnemy.h" />
     <ClInclude Include="FrameWork\CollisionBody.h" />
     <ClInclude Include="FrameWork\IComponent.h" />
@@ -182,6 +185,7 @@
     <ClInclude Include="FrameWork\StopWatch.h" />
     <ClInclude Include="FrameWork\Text.h" />
     <ClInclude Include="Objects\GameObjects\Objects\Land.h" />
+    <ClInclude Include="Objects\Enemies\Knife.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Cach code.txt" />

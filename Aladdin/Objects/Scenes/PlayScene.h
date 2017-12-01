@@ -16,7 +16,8 @@
 #include"../GameObjects/Objects/Aladdin.h"
 #include"../GameObjects/Objects/Land.h"
 #include"../Enemies/GuardThin.h"
-
+#include"../Enemies/GuardShort.h"
+#include"../Enemies/Knife.h"
 using namespace std;
 
 USEGAME_FRAMEWORK

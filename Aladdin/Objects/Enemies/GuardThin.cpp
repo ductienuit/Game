@@ -32,7 +32,7 @@ void GuardThin::InIt()
 	_animations[MOVING_RIGHT]->addFrameRect(eID::GUARDTHIN, "guard_moving_0", 8);
 
 	_animations[ATTACK] = new Animation(_sprite, 0.15f);
-	_animations[ATTACK]->addFrameRect(eID::GUARDTHIN, "guardsThin_attack_0", 6);
+	_animations[ATTACK]->addFrameRect(eID::GUARDTHIN, "guardsShort_throw_0", 8);
 	_sprite->setOrigin(Vector2(0, 0));
 	
 }
@@ -83,9 +83,7 @@ float GuardThin::distanceBetweenAladdin()
 {
 	float xAla = _divingSprite->getPositionX();
 	float x = this->getPositionX();
-#pragma region Test
 
-#pragma endregion
 
 
 	return xAla-x;
@@ -96,7 +94,7 @@ void GuardThin::UpdateStatus(float dt)
 	if (distanceBetweenAladdin() < 0)
 	{
 		float distance = -distanceBetweenAladdin();
-		if (distance < 50)
+		if (distance < 100)
 		{
 			this->clearStatus();
 			this->addStatus(eStatus::ATTACK);

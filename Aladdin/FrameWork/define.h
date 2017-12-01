@@ -50,6 +50,7 @@ enum eID
 	LAND,
 	ALADDIN,
 	GUARDTHIN,
+	GUARDSHORT,
 };
 
 enum eDirection

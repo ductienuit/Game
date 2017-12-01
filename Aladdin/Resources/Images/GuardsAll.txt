@@ -152,19 +152,19 @@ guardsShort_throw_06	248	676	273	698
 guardsShort_throw_07	224	678	237	700
 
 
-guardsShort_near_00	459	727	496	771
+guardsShort_free_00	459	727	496	771
 
-guardsShort_near_01	413	721	453	771
+guardsShort_free_01	413	721	453	771
 
-guardsShort_near_02	370	725	404	771
+guardsShort_free_02	370	725	404	771
 
-guardsShort_near_03	317	727	355	771
+guardsShort_free_03	317	727	355	771
 
-guardsShort_near_04	257	725	311	771
+guardsShort_free_04	257	725	311	771
 
-guardsShort_near_05	199	719	251	771
+guardsShort_free_05	199	719	251	771
 
-guardsShort_near_06	150	722	190	771
+guardsShort_free_06	150	722	190	771
 
 
 guardsShort_Moving_00	454	784	491	836

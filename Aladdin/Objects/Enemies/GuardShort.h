@@ -1,21 +1,22 @@
-#ifndef _GUARDTHIN_H
-#define _GUARDTHIN_H
 
-#include "BaseEnemy.h"
+#ifndef _GUARDSHORT_H
+#define _GUARDSHORT_H
+
 #include "../../FrameWork/Animation.h"
 #include "../../FrameWork/StopWatch.h"
 #include "../../FrameWork/IComponent.h"
 #include "../../FrameWork/Text.h"
-
+#include "../Enemies/Knife.h"
+#include "BaseEnemy.h"
 using namespace std;
 
-#define GUARDTHIN_SPEED 50
-#define GUARDTHIN_SCORE 100
+#define GUARDSHORT_SPEED 30
+#define GUARDSHORT_SCORE 100
 
-class GuardThin : public BaseEnemy
+class GuardShort : public BaseEnemy
 {
 public:
-	GuardThin(eStatus status, int posX,int posY, eDirection direction);
+	GuardShort(eStatus status, int posX, int posY, eDirection direction);
 
 	void InIt() override;
 	void Update(float deltatime) override;
@@ -30,14 +31,21 @@ public:
 	void UpdateStatus(float dt);
 
 	IComponent* getComponent(string componentName);
+
 	Text* text;
-	~GuardThin();
+	~GuardShort();
 private:
 	void movingLeft();
 	void movingRight();
 	void standing();
+	void Throw(float deltatime);
+
+	Knife* knife;
 	map<string, IComponent*> _listComponent;
 	map<int, Animation*> _animations;
 	Sprite *_divingSprite;
+	vector<BaseObject*> _listobject;
+	vector<IControlable*> _listControlObject;
+	bool _canThrow;
 };
 #endif

@@ -104,7 +104,7 @@ void Aladdin::InIt()
 	_animations[eStatus::ATTACK] = new Animation(_sprite, 0.1f);
 	_animations[eStatus::ATTACK]->addFrameRect(eID::ALADDIN, "swing_sword_", 5);
 	//sit_attack ngồi đâm
-	_animations[eStatus::SITTING_DOWN | eStatus::ATTACK] = new Animation(_sprite, 0.1f);
+	_animations[eStatus::SITTING_DOWN | eStatus::ATTACK] = new Animation(_sprite, 0.3f);
 	_animations[eStatus::SITTING_DOWN | eStatus::ATTACK]->addFrameRect(eID::ALADDIN, "sit_attack_", 7);
 
 	_animations[eStatus::SITTING_DOWN | eStatus::THROW] = new Animation(_sprite, 0.1f);
