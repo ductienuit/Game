@@ -67,6 +67,9 @@ public:
 	//Dừng chuyển frame
 	void	Stop();
 
+	//Bắt đầu lại frame 0
+	void	Begin();
+
 	void	setcanAnimate(bool can);
 	bool	isAnimate();
 	void	addFrameRect(RECT rect);

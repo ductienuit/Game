@@ -180,6 +180,11 @@ void Animation::Stop()
 		_canAnimate = false;
 }
 
+void Animation::Begin()
+{
+	this->_index = 0;
+}
+
 void Animation::setcanAnimate(bool can)
 {
 	if (_canAnimate != can)

@@ -27,20 +27,26 @@ Viewport * PlayScene::getViewport()
 
 bool PlayScene::InIt()
 {
-	_listobject.push_back(new Land(200, 500, 10, 200, eDirection::NONE, eLandType::CLIMBABLE0));
-	_listobject.push_back(new Land(100, 100, 1000, 50, eDirection::NONE,eLandType::SOLID));
-
+	_listobject.push_back(new Land(100, 100, 1000, 50, eDirection::TOP, eLandType::SOLID));
+	_listobject.push_back(new Land(600, 300, 10, 200, eDirection::INSIDE, eLandType::CLIMBABLE0));
+	_listobject.push_back(new Land(600, 350, 20, 20, eDirection::BOTTOM, eLandType::STOP));
+	_listobject.push_back(new Land(300, 450, 550, 30, eDirection::BOTTOM, eLandType::BAR));
 	
 
 	/*auto guard = new GuardThin(eStatus::MOVING_LEFT, 200, 100, eDirection::LEFT);
 	guard->InIt();
 	_listobject.push_back(guard);*/
 
+	auto guardShort = new GuardShort(eStatus::MOVING_LEFT, 600, 140, eDirection::LEFT);
+	guardShort->InIt();
+	_listobject.push_back(guardShort);
+
 	auto aladdin = new Aladdin();
 	aladdin->InIt();
 	aladdin->setPosition(100,300);
 	_listControlObject.push_back(aladdin);
 	_listobject.push_back(aladdin);
+
 	return true;
 }
 

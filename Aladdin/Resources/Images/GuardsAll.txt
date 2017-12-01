@@ -152,19 +152,19 @@ guardsShort_throw_06	248	676	273	698
 guardsShort_throw_07	224	678	237	700
 
 
-guardsShort_near_00	459	727	496	771
+guardsShort_free_00	459	727	496	771
 
-guardsShort_near_01	413	721	453	771
+guardsShort_free_01	413	721	453	771
 
-guardsShort_near_02	370	725	404	771
+guardsShort_free_02	370	725	404	771
 
-guardsShort_near_03	317	727	355	771
+guardsShort_free_03	317	727	355	771
 
-guardsShort_near_04	257	725	311	771
+guardsShort_free_04	257	725	311	771
 
-guardsShort_near_05	199	719	251	771
+guardsShort_free_05	199	719	251	771
 
-guardsShort_near_06	150	722	190	771
+guardsShort_free_06	150	722	190	771
 
 
 guardsShort_Moving_00	454	784	491	836
@@ -184,15 +184,15 @@ guardsShort_Moving_06	180	788	217	836
 guardsShort_Moving_07	141	785	175	836
 
 
-guardsShort_attack_00	441	842	496	900
+guardsShort_attack_00	402	848	464	906
 
-guardsShort_attack_01	394	844	430	900
+guardsShort_attack_01	326	851	370	907
 
-guardsShort_attack_02	322	850	383	900
+guardsShort_attack_02	204	854	298	904
 
-guardsShort_attack_03	270	856	316	900
+guardsShort_attack_03	127	855	192	899
 
-guardsShort_attack_04	229	848	262	900
+guardsShort_attack_04	70	847	114	899
 
 
 guardsShort_dying_00	439	919	494	971

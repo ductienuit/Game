@@ -34,14 +34,19 @@ void CollisionBody::checkCollision(BaseObject * otherObject, float dt)
 	{
 		float time = SweptAABB(myRect, otherRect, direction, dt);
 		auto land = (Land*)otherObject;
+		//Ưu tiên
 		if (1 - time > 0)
 		{
 			CollisionEventArg* e = new CollisionEventArg(otherObject);
 			e->_sideCollision = direction;
-			_preObject = otherObject;		
-			__debugoutput(2);
+			_preObject = otherObject;	
+
 			__raise onCollisionBegin(e);
 			_flagEnd = true;
+		}
+		if (land->getType() == eLandType::STOP)
+		{
+			_target->StopUp();
 		}
 		_isColliding = true;
 	}
@@ -60,8 +65,8 @@ void CollisionBody::checkCollision(BaseObject * otherObject, float dt)
 	 {
 			CollisionEventArg* e = new CollisionEventArg(_preObject);
 			e->_sideCollision = NONE;
-			__raise onCollisionEnd(e);
 
+			__raise onCollisionEnd(e);
 			_flagEnd = false;
 	}
 }

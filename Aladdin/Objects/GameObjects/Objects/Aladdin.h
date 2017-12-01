@@ -16,7 +16,7 @@ using namespace std;
 
 #define ALADDIN_MOVE_SPEED 125
 #define ALADDIN_JUMP_VEL 450
-#define ALADDIN_CLIMB_JUMP_VEL 200
+#define ALADDIN_CLIMB_JUMP_VEL 250
 #define ALADDIN_ACC_MOVE 300
 #define GRAVITY 800
 #define ALADDIN_CLIMB_SPEED 90
@@ -44,10 +44,13 @@ public:
 
 	RECT getBounding() override;
 	void setBounding(RECT);
+
+	void Stop() override;
 private:
 	map<int, Animation*> _animations;
 	map<string, IComponent*> _listComponent;
 	RECT _boundAla;
+	BaseObject* landstop;
 
 	void onKeyReleased(KeyEventArg* key_event);
 
@@ -65,6 +68,7 @@ private:
 	void climbLeft();
 	void climbRight();
 
+	void swing();
 	void swingLeft(float dt);
 	void swingRight(float dt);
 	void swingJump();
@@ -77,6 +81,7 @@ private:
 	void addStatus(eStatus status);
 	void removeStatus(eStatus status);
 	bool isInStatus(eStatus status);
+	bool isExist(eStatus status);
 
 
 	Vector2 getVelocity();
