@@ -30,7 +30,7 @@ enum eStatus
 	MOVING_RIGHT =	(1 << 2),				// 00010 = 2^1
 	JUMPING =		(1 << 3),				// 00100 = 2^2
 	SITTING_DOWN =	(1 << 4),				// 01000 = 2^3
-	RUNNING =		(1 << 5),				// 10000 = 2^4
+	RUNNING =			(1 << 5),				// 10000 = 2^4
 	LOOKING_UP =	(1 << 6),				// 2^5
 	THROW =			(1 << 7),			//Ném táo.
 	FREE =			(1 << 8),			//Trạng thái sau trạng thái normal khi chờ player rờ phím
@@ -68,10 +68,11 @@ enum eLandType
 	SOLID,	//Nền đất
 	SPRING,	//Cái bật nhảy
 	PLATFORM, //Tấm gỗ
-	BAR,
-	CLIMBABLE0,
-	CLIMBABLE1,
-	CLIMBABLE2
+	BAR,  //Thanh xà ngang
+	CLIMBABLE0,//Dây 1
+	CLIMBABLE1,//Dây 2
+	CLIMBABLE2,//Dây 3
+	STOP
 };
 #define C_WHITE D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f)				// màu trắnng
 #define COLOR_KEY D3DXCOLOR(1.0f, 0.0f, 1.0f, 1.0f)				// màu khi mà load hình nó bỏ qua > trong suốt

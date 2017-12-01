@@ -206,6 +206,11 @@ Vector2 BaseObject::getVelocity()
 	return Vector2(0, 0);
 }
 
+void BaseObject::Stop()
+{
+}
+
+
 void BaseObject::setPhysicsBodySide(eDirection side)
 {
 	if (side != _physicsSide)
@@ -239,4 +244,9 @@ void BaseObject::ShowBB()
 	line->Draw(lines, 6, 0xffffffff);
 	line->End();
 	line->Release();
+}
+
+void BaseObject::StopUp()
+{
+	_canUp = false;
 }

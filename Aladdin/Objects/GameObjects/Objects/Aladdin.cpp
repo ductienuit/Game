@@ -144,8 +144,8 @@ void Aladdin::InIt()
 	_animations[eStatus::SWING] = new Animation(_sprite, 0.1f);
 	_animations[eStatus::SWING]->addFrameRect(eID::ALADDIN, "swing_0", 10);
 
-	_animations[eStatus::SWING | eStatus::JUMPING] = new Animation(_sprite, 0.1f);
-	_animations[eStatus::SWING | eStatus::JUMPING]->addFrameRect(eID::ALADDIN, "swing_0", 10);
+	//_animations[eStatus::SWING | eStatus::JUMPING] = new Animation(_sprite, 0.1f);
+	//_animations[eStatus::SWING | eStatus::JUMPING]->addFrameRect(eID::ALADDIN, "swing_0", 10);
 
 	_animations[eStatus::SWING | eStatus::THROW] = new Animation(_sprite, 0.14f);
 	_animations[eStatus::SWING | eStatus::THROW]->addFrameRect(eID::ALADDIN, "climb_throw_0", 5);
@@ -205,6 +205,7 @@ void Aladdin::InIt()
 	_sprite->drawBounding(false);
 	setBounding(_sprite->getBounding());
 
+	_canUp = true;
 	setStatus(eStatus::NORMAL);
 
 	//create stopwatch to wait time state normal or free of aladdin
@@ -248,6 +249,9 @@ void Aladdin::Update(float deltatime)
 	{
 		it->second->Update(deltatime);
 	}
+
+	//Set lại bounding của aladdin
+	setBounding(_sprite->getBounding());
 }
 
 void Aladdin::UpdateInput(float dt)
@@ -394,8 +398,6 @@ void Aladdin::UpdateInput(float dt)
 	}
 	case(eStatus::MOVING_LEFT):
 	{
-		/*removeStatus(eStatus::NORMAL1);
-		removeStatus(eStatus::FREE);*/
 		if (_input->isKeyPressed(DIK_C))
 		{
 			removeStatus(eStatus::MOVING_LEFT);
@@ -437,7 +439,6 @@ void Aladdin::UpdateInput(float dt)
 				moveLeft();
 				removeStatus(eStatus::THROW);
 				addStatus(eStatus::JUMPING_LEFT);
-
 			}
 		}
 		else if (_input->isKeyPressed(DIK_X))
@@ -507,11 +508,6 @@ void Aladdin::UpdateInput(float dt)
 		{
 			addStatus(eStatus::ATTACK);
 		}
-		break;
-	}
-	case(eStatus::DROP):
-	{
-		//check cham dat hoac collision voi mot object
 		break;
 	}
 	case(eStatus::SITTING_DOWN):
@@ -609,11 +605,18 @@ void Aladdin::UpdateInput(float dt)
 	{
 		if (_input->isKeyDown(DIK_UP))
 		{
+			if (_canUp == false)
+			{
+				Stop();
+				return;
+			}						
 			_animations[_currentAnimateIndex]->Update(dt);
 			climbUp(dt);
 		}
 		else if (_input->isKeyDown(DIK_DOWN))
 		{
+			_canUp = true;
+			_animations[_currentAnimateIndex]->Start();
 			_animations[_currentAnimateIndex]->UpdatePreFrame(dt);
 			climbDown(dt);
 		}
@@ -786,26 +789,83 @@ void Aladdin::onCollisionBegin(CollisionEventArg * collision_event)
 	case eID::LAND:
 	{
 		auto land = (Land*)collision_event->_otherObject;
-		switch (land->getType())
+		switch (collision_event->_sideCollision)
 		{
-			case (eLandType::CLIMBABLE0):
+			case(eDirection::TOP):
 			{
-				clearStatus();
-				addStatus(eStatus::CLIMB);
-				climb();
-				int x = land->getPositionX();
-				setPositionX(x);
-				break;
+				switch (land->getType())
+				{
+					case (eLandType::SOLID):
+					{
+						//Chạm đất
+						clearStatus();
+						auto gravity = (Gravity*)_listComponent["Gravity"];
+						gravity->setStatus(eGravityStatus::SHALLOWED);
+						standing();
+						break;
+					}
+				}
 			}
-			case (eLandType::SOLID):
+			case(eDirection::BOTTOM):
 			{
-				//Chạm đất
-				clearStatus();
-				auto gravity = (Gravity*)_listComponent["Gravity"];
-				gravity->setStatus(eGravityStatus::SHALLOWED);
-				standing();
-				break;
-			}			
+				switch (land->getType())
+				{
+					case (eLandType::BAR):
+					{
+						clearStatus();
+						addStatus(eStatus::SWING);
+						swing();
+						float y = land->getPositionY();
+						__debugoutput(y);
+						setPositionY(y);
+						break;
+					}
+					case (eLandType::STOP):
+					{
+						_canUp = false;
+						break;
+					}
+					case (eLandType::CLIMBABLE0):
+					{
+						clearStatus();
+						addStatus(eStatus::CLIMB);
+						climb();
+						float x = land->getPositionX();
+						setPositionX(x);
+						break;
+					}
+				}
+			}
+			case(eDirection::LEFT):
+			{
+				switch (land->getType())
+				{
+					case (eLandType::CLIMBABLE0):
+					{
+						clearStatus();
+						addStatus(eStatus::CLIMB);
+						climb();
+						float x = land->getPositionX();
+						setPositionX(x);
+						break;
+					}
+				}
+			}
+			case(eDirection::RIGHT):
+			{
+				switch (land->getType())
+				{
+				case (eLandType::CLIMBABLE0):
+				{
+					clearStatus();
+					addStatus(eStatus::CLIMB);
+					climb();
+					float x = land->getPositionX();
+					setPositionX(x);
+					break;
+				}
+				}
+			}
 		}
 		break;
 	}
@@ -814,6 +874,7 @@ void Aladdin::onCollisionBegin(CollisionEventArg * collision_event)
 
 void Aladdin::onCollisionEnd(CollisionEventArg * collision_event)
 {
+
 	switch (collision_event->_otherObject->getId())
 	{
 	case eID::LAND:
@@ -839,6 +900,11 @@ void Aladdin::onCollisionEnd(CollisionEventArg * collision_event)
 			auto g = (Gravity*)_listComponent["Gravity"];
 			g->setStatus(eGravityStatus::FALLING__DOWN);
 			break;
+		}
+		case( eLandType::STOP):
+		{
+			_animations[_currentAnimateIndex]->Start();
+			_canUp = true;
 		}
 		}
 		break;
@@ -996,6 +1062,24 @@ void Aladdin::updateStatusOneAction(float deltatime)
 		g->setStatus(eGravityStatus::SHALLOWED);
 		_animations[eStatus::CLIMB]->NextFrame();
 	}
+	//SWING
+	if (isInStatus(eStatus(THROW | SWING)) && _animations[_currentAnimateIndex]->getIndex() >= 4)
+	{
+		_animations[_currentAnimateIndex]->setIndex(0);
+		removeStatus(eStatus::THROW);
+	}
+	else if (isInStatus(eStatus(ATTACK | SWING)) && _animations[_currentAnimateIndex]->getIndex() >= 6)
+	{
+		_animations[_currentAnimateIndex]->setIndex(0);
+		removeStatus(eStatus::ATTACK);
+	}
+	//else if (isInStatus(eStatus(JUMPING | SWING)) && _animations[_currentAnimateIndex]->getIndex() >= 6)
+	//{
+	//	_animations[_currentAnimateIndex]->setIndex(0);
+	//	removeStatus(eStatus::JUMPING);
+	//}
+
+
 
 	//JUMP
 	else if (isInStatus(eStatus(THROW | JUMPING)) && _animations[_currentAnimateIndex]->getIndex() >= 4)
@@ -1035,36 +1119,10 @@ void Aladdin::updateStatusOneAction(float deltatime)
 		addStatus(eStatus::JUMPING_LEFT);
 	}
 
-	//SWING
-	else if (isInStatus(eStatus(MOVING_LEFT|eStatus::SWING)) && _animations[_currentAnimateIndex]->getIndex() >= 4)
-	{
-		_animations[_currentAnimateIndex]->setIndex(0);
-		removeStatus(eStatus::MOVING_LEFT);
-		addStatus(eStatus::SWING);
-	}
-	else if (isInStatus(eStatus(MOVING_RIGHT|SWING)) && _animations[_currentAnimateIndex]->getIndex() >= 4)
-	{
-		_animations[_currentAnimateIndex]->setIndex(0);
-		removeStatus(eStatus::MOVING_RIGHT);
-		addStatus(eStatus::SWING);
-	}
-	else if (isInStatus(eStatus(THROW|SWING)) && _animations[_currentAnimateIndex]->getIndex() >= 4)
-	{
-		_animations[_currentAnimateIndex]->setIndex(0);
-		removeStatus(eStatus::THROW);
-	}
-	else if (isInStatus(eStatus(ATTACK|SWING)) && _animations[_currentAnimateIndex]->getIndex() >= 6)
-	{
-		_animations[_currentAnimateIndex]->setIndex(0);
-		removeStatus(eStatus::ATTACK);
-	}
 
-	else if (isInStatus(eStatus(JUMPING|SWING)) && _animations[_currentAnimateIndex]->getIndex() >= 6)
-	{
-		_animations[_currentAnimateIndex]->setIndex(0);
-		removeStatus(eStatus::JUMPING);
-		_animations[eStatus::SWING]->NextFrame();
-	}
+
+
+	//XỬ LÍ NGOẠI LỆ
 	//Thêm hiệu ứng ATTACK thì phải thêm ngoại lệ vào đây
 	else if (isInStatus(eStatus::ATTACK) 
 		&& !isExist(temp) 
@@ -1113,10 +1171,18 @@ void Aladdin::setBounding(RECT r)
 	_boundAla = temp;
 }
 
+void Aladdin::Stop()
+{
+	this->_animations[_currentAnimateIndex]->Stop();
+	auto move = (Movement*)_listComponent["Movement"];
+	move->setVelocity(VECTOR2ZERO);
+
+	auto g = (Gravity*)_listComponent["Gravity"];
+	g->setStatus(eGravityStatus::SHALLOWED);
+}
+
 void Aladdin::Draw(LPD3DXSPRITE spriteHandle, Viewport* viewport)
 {
-
-	setBounding(_sprite->getBounding());
 	_animations[_currentAnimateIndex]->Draw(spriteHandle, viewport);
 }
 
@@ -1220,6 +1286,15 @@ void Aladdin::climbRight()
 	move->setVelocity(Vector2(ALADDIN_MOVE_SPEED, move->getVelocity().y));
 }
 
+void Aladdin::swing()
+{
+	auto move = (Movement*)_listComponent["Movement"];
+	move->setVelocity(VECTOR2ZERO);
+
+	auto g = (Gravity*)_listComponent["Gravity"];
+	g->setStatus(eGravityStatus::SHALLOWED);
+}
+
 void Aladdin::swingLeft(float dt)
 {
 	_sprite->setScaleX(-1.6);
@@ -1245,8 +1320,6 @@ Vector2 Aladdin::getVelocity()
 	auto move = (Movement*)_listComponent["Movement"];
 	return move->getVelocity();
 }
-
-
 
 void Aladdin::unHookInputEvent()
 {

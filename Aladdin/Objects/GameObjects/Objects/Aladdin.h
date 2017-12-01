@@ -44,10 +44,13 @@ public:
 
 	RECT getBounding() override;
 	void setBounding(RECT);
+
+	void Stop() override;
 private:
 	map<int, Animation*> _animations;
 	map<string, IComponent*> _listComponent;
 	RECT _boundAla;
+	BaseObject* landstop;
 
 	void onKeyReleased(KeyEventArg* key_event);
 
@@ -65,6 +68,7 @@ private:
 	void climbLeft();
 	void climbRight();
 
+	void swing();
 	void swingLeft(float dt);
 	void swingRight(float dt);
 	void swingJump();

@@ -80,10 +80,12 @@ public:
 	// vật nào cũng có vận tốc, mặc định là đứng yên sẽ return 0
 	// nếu vật có chuyển động phải override lại để lấy vận tốc.
 	virtual Vector2		getVelocity();
+	virtual void		Stop();
 
 	virtual void		setPhysicsBodySide(eDirection side);
 	virtual eDirection  getPhysicsBodySide();
 	virtual void		ShowBB();
+	virtual void		StopUp();
 protected:
 	Sprite*		_sprite;
 	// nếu muốn dùng animation thì class kế thừa khai báo animation
@@ -91,6 +93,8 @@ protected:
 	eID			_id;
 	eStatus		_status;
 	eDirection	_physicsSide;
+	//FLAG
+	bool		_canUp;
 };
 #endif __BASEOBJECT_H__
 
