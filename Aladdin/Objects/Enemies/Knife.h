@@ -16,7 +16,6 @@ class Knife : public BaseEnemy
 {
 public:
 	Knife(eStatus status, int posX, int posY, eDirection direction);
-	void Set(eStatus status, int posX, int posY, eDirection direction);
 	void InIt() override;
 	void Update(float deltatime) override;
 	void Draw(LPD3DXSPRITE, Viewport*) override;
@@ -27,19 +26,20 @@ public:
 	float checkCollision(BaseObject*, float);
 
 	float distanceBetweenAladdin();
-	void UpdateStatus(float dt);
 
 	IComponent* getComponent(string componentName);
 
 	Text* text;
+	void Throw(Vector2);
 	~Knife();
 private:
 	void movingLeft();
 	void movingRight();
 	void standing();
-	void Throw();
+	
 	map<string, IComponent*> _listComponent;
 	map<int, Animation*> _animations;
 	Sprite *_divingSprite;
+	Vector2 _originPosition;
 };
 #endif

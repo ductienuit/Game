@@ -39,10 +39,6 @@ bool PlayScene::InIt()
 	guardShort->InIt();
 	_listobject.push_back(guardShort);
 
-	auto knife = new Knife(eStatus::THROW, 600, 600, eDirection::NONE);
-	knife->InIt();
-	_listobject.push_back(knife);
-
 	auto aladdin = new Aladdin();
 	aladdin->InIt();
 	aladdin->setPosition(100,140);

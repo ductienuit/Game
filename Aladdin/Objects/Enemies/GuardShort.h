@@ -46,5 +46,6 @@ private:
 	Sprite *_divingSprite;
 	vector<BaseObject*> _listobject;
 	vector<IControlable*> _listControlObject;
+	bool _canThrow;
 };
 #endif

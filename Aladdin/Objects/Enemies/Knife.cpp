@@ -4,20 +4,7 @@ Knife::Knife(eStatus status, int posX, int posY, eDirection direction)
 {
 	_sprite = SpriteManager::getInstance()->getSprite(eID::KNIFE);
 	_sprite->setFrameRect(0, 0, 32.0f, 16.0f);
-
-	_divingSprite = SpriteManager::getInstance()->getSprite(eID::ALADDIN);
-	Vector2 v(direction * KNIFE_SPEED, 0);
-	Vector2 a(0, 0);
-	this->_listComponent.insert(pair<string, IComponent*>("Movement", new Movement(a, v, this->_sprite)));
-	this->setStatus(status);
-	this->setPosition(posX, posY, 1.0f);
-	text = new Text("Arial", "", 10, 25);
-}
-
-void Knife::Set(eStatus status, int posX, int posY, eDirection direction)
-{
-	_sprite = SpriteManager::getInstance()->getSprite(eID::KNIFE);
-	_sprite->setFrameRect(0, 0, 32.0f, 16.0f);
+	//_originPosition = Vector2(posX, posY+100);
 
 	_divingSprite = SpriteManager::getInstance()->getSprite(eID::ALADDIN);
 	Vector2 v(direction * KNIFE_SPEED, 0);
@@ -30,12 +17,22 @@ void Knife::Set(eStatus status, int posX, int posY, eDirection direction)
 
 void Knife::InIt()
 {
+	//auto move = (Movement*)this->_listComponent["Movement"];
+	//move->setVelocity(Vector2(move->getVelocity().x, KNIFE_JUMP));
 
-	auto movement = new Movement(Vector2(0, 0), Vector2(0, 0), _sprite);
+	//auto gravity = new Gravity(Vector2(0, -KNIFE_GRAVITY), move);
+	//gravity->setStatus(eGravityStatus::FALLING__DOWN);
+	//_listComponent["Gravity"] = gravity;
+
+
+
+
+	/*auto movement = new Movement(Vector2(9.8, 9.8), Vector2(20, 10), _sprite);
 	_listComponent["Movement"] = movement;
 
 	auto gravity = new Gravity(Vector2(0,-KNIFE_GRAVITY),movement);
-	_listComponent["Gravity"] = gravity;
+	gravity->setStatus(eGravityStatus::FALLING__DOWN);*/
+	//_listComponent["Gravity"] = gravity;
 
 	auto collisionBody = new CollisionBody(this);
 	_listComponent["CollisionBody"] = collisionBody;
@@ -51,12 +48,13 @@ void Knife::InIt()
 	_sprite->setOrigin(Vector2(0, 0));
 
 }
-
+int i = 100;
 void Knife::Update(float deltatime)
 {
-	this->UpdateStatus(deltatime);
-
 	_animations[this->getStatus()]->Update(deltatime);
+
+	/*float x = this->getPositionX()-1;
+	float y = this->getPositionY()-1;*/
 
 	// update component để sau cùng để sửa bên trên sau đó nó cập nhật đúng
 	for (auto it = _listComponent.begin(); it != _listComponent.end(); it++)
@@ -94,11 +92,6 @@ float Knife::checkCollision(BaseObject *, float)
 	return 0.0f;
 }
 
-void Knife::UpdateStatus(float dt)
-{
-	Throw();
-}
-
 IComponent* Knife::getComponent(string componentName)
 {
 	return _listComponent.find(componentName)->second;
@@ -129,18 +122,12 @@ void Knife::standing()
 	move->setVelocity(VECTOR2ZERO);
 }
 
-void Knife::Throw()
+void Knife::Throw(Vector2 pos)
 {
-	auto move = (Movement*)this->_listComponent["Movement"];
-	move->setVelocity(Vector2(-KNIFE_SPEED, move->getVelocity().y));
-
-	//auto move = (Movement*)this->_listComponent["Movement"];
-	//move->setVelocity(Vector2(move->getVelocity().x, KNIFE_JUMP));
-
-	auto g = (Gravity*)this->_listComponent["Gravity"];
-	g->setStatus(eGravityStatus::FALLING__DOWN);
+	setPosition(_originPosition);
 
 }
+
 float Knife::distanceBetweenAladdin()
 {
 	float xAla = _divingSprite->getPositionX() + (_divingSprite->getBounding().right - _divingSprite->getBounding().left) / 2;

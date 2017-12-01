@@ -20,7 +20,8 @@ void GuardShort::InIt()
 	auto movement = new Movement(Vector2(0, 0), Vector2(0, 0), _sprite);
 	_listComponent["Movement"] = movement;
 	
-	auto knife = new Knife(eStatus::THROW, this->getPositionX(), this->getPositionY(), eDirection::NONE);
+	knife = new Knife(eStatus::THROW, this->getPositionX(), this->getPositionY(), eDirection::NONE);
+	knife->InIt();
 
 	auto collisionBody = new CollisionBody(this);
 	_listComponent["CollisionBody"] = collisionBody;
@@ -34,7 +35,7 @@ void GuardShort::InIt()
 	_animations[MOVING_RIGHT] = new Animation(_sprite, 0.15f);
 	_animations[MOVING_RIGHT]->addFrameRect(eID::GUARDSHORT, "guardsShort_Moving_0", 8);
 
-	_animations[ATTACK] = new Animation(_sprite, 0.2f);
+	_animations[ATTACK] = new Animation(_sprite, 0.3f);
 	_animations[ATTACK]->addFrameRect(eID::GUARDSHORT, "guardsShort_attack_0", 5);
 
 	_animations[DYING] = new Animation(_sprite, 0.15f);
@@ -49,6 +50,7 @@ void GuardShort::InIt()
 
 	//_sprite->drawBounding(false);
 	_sprite->setOrigin(Vector2(0, 0));
+	_canThrow = true;
 
 }
 
@@ -57,7 +59,7 @@ void GuardShort::Update(float deltatime)
 	this->UpdateStatus(deltatime);
 
 	_animations[this->getStatus()]->Update(deltatime);
-
+	knife->Update(deltatime);
 	// update component để sau cùng để sửa bên trên sau đó nó cập nhật đúng
 	for (auto it = _listComponent.begin(); it != _listComponent.end(); it++)
 	{
@@ -69,6 +71,7 @@ void GuardShort::Draw(LPD3DXSPRITE spritehandle, Viewport* viewport)
 {
 	_animations[this->getStatus()]->Draw(spritehandle, viewport);
 	text->Draw();
+	knife->Draw(spritehandle, viewport);
 }
 
 void GuardShort::Release()
@@ -79,6 +82,7 @@ void GuardShort::Release()
 	}
 	_listComponent.clear();
 	SAFE_DELETE(this->_sprite);
+	knife->Release();
 }
 
 void GuardShort::onCollisionBegin(CollisionEventArg *)
@@ -119,7 +123,9 @@ void GuardShort::UpdateStatus(float dt)
 			this->clearStatus();
 			this->addStatus(eStatus::ATTACK);
 			standing();
-			Throw(dt);
+			knife->addStatus(eStatus::THROW);
+			if(_animations[_status]->getIndex()==4)
+				knife->Throw(this->getPosition());
 			return;
 		}
 		this->clearStatus();
@@ -139,7 +145,7 @@ void GuardShort::UpdateStatus(float dt)
 		{
 			this->clearStatus();
 			this->addStatus(eStatus::ATTACK);
-			Throw(dt);
+			knife->addStatus(eStatus::THROW);
 			standing();
 			return;
 		}
@@ -185,15 +191,3 @@ void GuardShort::standing()
 	move->setVelocity(VECTOR2ZERO);
 }
 
-void GuardShort::Throw(float deltatime)
-{
-	//knife->Set(eStatus::THROW, this->getPositionX(), this->getPositionY(), eDirection::NONE);
-	auto knife = new Knife(eStatus::THROW, this->getPositionX()-50, this->getPositionY()+100, eDirection::NONE);
-	knife->InIt();
-	_listobject.push_back(knife);
-	knife->addStatus(eStatus::THROW);
-	
-	knife->Update(deltatime);
-
-	
-}
