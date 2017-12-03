@@ -123,8 +123,8 @@ void GuardShort::UpdateStatus(float dt)
 			this->addStatus(eStatus::ATTACK);
 			standing();
 			knife->addStatus(eStatus::THROW);
-			if(_animations[_status]->getIndex()==4)
-				knife->Throw(this->getPosition());
+			if(_animations[_status]->getIndex()==2)
+				knife->Throw();
 			return;
 		}
 		this->clearStatus();

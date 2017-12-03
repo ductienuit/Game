@@ -39,8 +39,7 @@ void CollisionBody::checkCollision(BaseObject * otherObject, float dt)
 		{
 			CollisionEventArg* e = new CollisionEventArg(otherObject);
 			e->_sideCollision = direction;
-			_preObject = otherObject;	
-
+			_preObject = otherObject;
 			__raise onCollisionBegin(e);
 			_flagEnd = true;
 		}
@@ -56,15 +55,13 @@ void CollisionBody::checkCollision(BaseObject * otherObject, float dt)
 			return;
 		if (AABB(_target->getSprite()->getBounding(),_preObject->getBounding()) == false )
 		{
-			DrawRect(_target->getSprite()->getBounding());
 			_isColliding = false;
 		}
 	}
 
 	if (_isColliding == false && _flagEnd==true)
 	 {
-			CollisionEventArg* e = new CollisionEventArg(_preObject);
-			e->_sideCollision = NONE;
+			CollisionEventArg* e = new CollisionEventArg(_preObject); //Đối số PreObject thứ 2 không sử dụng
 
 			__raise onCollisionEnd(e);
 			_flagEnd = false;
@@ -346,14 +343,16 @@ RECT CollisionBody::getSweptBroadphaseRect(BaseObject* object, float dt)  //obje
 	/*Tại sao không chia 1000 mà chia 500 ?
 		+	Chia 500 sẽ tạo ra BroadPhaseRect có tỷ lệ to hơn, 
 		check collision sẽ đúng không bị overlaprect  */
-	auto velocity = Vector2(object->getVelocity().x * dt/500, object->getVelocity().y * dt/500 );
+	auto velocity = Vector2(object->getVelocity().x * dt/400, object->getVelocity().y * dt/400 );
+	//__debugoutput(velocity.y);
 	auto myRect = object->getBounding();
 	RECT rect;
-	
+	DrawRect(myRect);
 	rect.left = velocity.x > 0 ? myRect.left : myRect.left + velocity.x;
 	rect.right = velocity.x > 0 ? myRect.right + velocity.x : myRect.right;
 	rect.top = velocity.y > 0 ? velocity.y + myRect.top: myRect.top;
 	rect.bottom = velocity.y > 0 ? myRect.bottom : myRect.bottom + velocity.y;
+	DrawRect(rect);
 	return rect;
 }
 

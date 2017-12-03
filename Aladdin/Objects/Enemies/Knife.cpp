@@ -4,7 +4,7 @@ Knife::Knife(eStatus status, int posX, int posY, eDirection direction)
 {
 	_sprite = SpriteManager::getInstance()->getSprite(eID::KNIFE);
 	_sprite->setFrameRect(0, 0, 32.0f, 16.0f);
-	//_originPosition = Vector2(posX, posY+100);
+	_originPosition = Vector2(posX-120, posY+60);
 
 	_divingSprite = SpriteManager::getInstance()->getSprite(eID::ALADDIN);
 	Vector2 v(direction * KNIFE_SPEED, 0);
@@ -23,10 +23,7 @@ void Knife::InIt()
 	//auto gravity = new Gravity(Vector2(0, -KNIFE_GRAVITY), move);
 	//gravity->setStatus(eGravityStatus::FALLING__DOWN);
 	//_listComponent["Gravity"] = gravity;
-
-
-
-
+	
 	/*auto movement = new Movement(Vector2(9.8, 9.8), Vector2(20, 10), _sprite);
 	_listComponent["Movement"] = movement;
 
@@ -40,21 +37,21 @@ void Knife::InIt()
 	__hook(&CollisionBody::onCollisionBegin, collisionBody, &Knife::onCollisionBegin);
 	__hook(&CollisionBody::onCollisionEnd, collisionBody, &Knife::onCollisionEnd);
 
-	_animations[THROW] = new Animation(_sprite, 0.15f);
+	_animations[THROW] = new Animation(_sprite, 0.1f);
 	_animations[THROW]->addFrameRect(eID::KNIFE, "guardsShort_throw_01", "guardsShort_throw_02", "guardsShort_throw_03", "guardsShort_throw_04"
 		, "guardsShort_throw_05", "guardsShort_throw_06", "guardsShort_throw_07", NULL);
 
 	//_sprite->drawBounding(false);
-	_sprite->setOrigin(Vector2(0, 0));
+	//_sprite->setOrigin(Vector2(0, 0));
 
 }
-int i = 100;
 void Knife::Update(float deltatime)
 {
 	_animations[this->getStatus()]->Update(deltatime);
 
-	/*float x = this->getPositionX()-1;
-	float y = this->getPositionY()-1;*/
+	float x = this->getPositionX()-10;
+	float y = this->getPositionY()-5;
+	this->setPosition(x, y);
 
 	// update component để sau cùng để sửa bên trên sau đó nó cập nhật đúng
 	for (auto it = _listComponent.begin(); it != _listComponent.end(); it++)
@@ -122,10 +119,11 @@ void Knife::standing()
 	move->setVelocity(VECTOR2ZERO);
 }
 
-void Knife::Throw(Vector2 pos)
+void Knife::Throw()
 {
-	setPosition(_originPosition);
-
+	float x = _originPosition.x - 10;
+	float y = _originPosition.y - 5;
+	this->setPosition(x, y);
 }
 
 float Knife::distanceBetweenAladdin()

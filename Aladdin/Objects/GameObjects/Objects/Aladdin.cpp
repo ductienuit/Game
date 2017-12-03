@@ -89,10 +89,10 @@ void Aladdin::InIt()
 	_animations[eStatus::ATTACK | eStatus::SITTING_DOWN]->addFrameRect(eID::ALADDIN, "swing_sword_", 5);
 
 	_animations[eStatus::MOVING_RIGHT] = new Animation(_sprite, 0.1f);
-	_animations[eStatus::MOVING_RIGHT]->addFrameRect(eID::ALADDIN, "walk_", 13);
+	_animations[eStatus::MOVING_RIGHT]->addFrameRect(eID::ALADDIN, "walk_", 12);
 
 	_animations[eStatus::MOVING_LEFT] = new Animation(_sprite, 0.1f);
-	_animations[eStatus::MOVING_LEFT]->addFrameRect(eID::ALADDIN, "walk_", 13);
+	_animations[eStatus::MOVING_LEFT]->addFrameRect(eID::ALADDIN, "walk_", 12);
 
 	_animations[eStatus::THROW | eStatus::MOVING_LEFT] = new Animation(_sprite, 0.1f);
 	_animations[eStatus::THROW | eStatus::MOVING_LEFT]->addFrameRect(eID::ALADDIN, "throw_", 6);
@@ -145,8 +145,8 @@ void Aladdin::InIt()
 	_animations[eStatus::SWING] = new Animation(_sprite, 0.1f);
 	_animations[eStatus::SWING]->addFrameRect(eID::ALADDIN, "swing_0", 10);
 
-	//_animations[eStatus::SWING | eStatus::JUMPING] = new Animation(_sprite, 0.1f);
-	//_animations[eStatus::SWING | eStatus::JUMPING]->addFrameRect(eID::ALADDIN, "swing_0", 10);
+	_animations[eStatus::SWING | eStatus::JUMPING] = new Animation(_sprite, 0.1f);
+	_animations[eStatus::SWING | eStatus::JUMPING]->addFrameRect(eID::ALADDIN, "jump_up_", 10);
 
 	_animations[eStatus::SWING | eStatus::THROW] = new Animation(_sprite, 0.14f);
 	_animations[eStatus::SWING | eStatus::THROW]->addFrameRect(eID::ALADDIN, "climb_throw_0", 5);
@@ -789,12 +789,14 @@ void Aladdin::onCollisionBegin(CollisionEventArg * collision_event)
 	{
 	case eID::LAND:
 	{
+
 		auto land = (Land*)collision_event->_otherObject;
+		eLandType type = land->getType();
 		switch (collision_event->_sideCollision)
 		{
 			case(eDirection::TOP):
 			{
-				switch (land->getType())
+				switch (type)
 				{
 					case (eLandType::SOLID):
 					{
@@ -806,19 +808,23 @@ void Aladdin::onCollisionBegin(CollisionEventArg * collision_event)
 						break;
 					}
 				}
+				break;
 			}
 			case(eDirection::BOTTOM):
 			{
-				switch (land->getType())
+				switch (type)
 				{
 					case (eLandType::BAR):
 					{
+						
+						if (isInStatus(eStatus(JUMPING|SWING)))
+							return;
+						//_preObjectColli = collision_event->_otherObject;
 						clearStatus();
 						addStatus(eStatus::SWING);
-						swing();
-						float y = land->getPositionY();
-						__debugoutput(y);
+						float y = land->getPositionBottom();
 						setPositionY(y);
+						swing();
 						break;
 					}
 					case (eLandType::STOP):
@@ -828,6 +834,7 @@ void Aladdin::onCollisionBegin(CollisionEventArg * collision_event)
 					}
 					case (eLandType::CLIMBABLE0):
 					{
+						_canUp = true;
 						clearStatus();
 						addStatus(eStatus::CLIMB);
 						climb();
@@ -836,14 +843,16 @@ void Aladdin::onCollisionBegin(CollisionEventArg * collision_event)
 						break;
 					}
 				}
+				break;
 			}
 			case(eDirection::LEFT):
 			{
-				switch (land->getType())
+				switch (type)
 				{
 					case (eLandType::CLIMBABLE0):
 					{
 						clearStatus();
+						_canUp = true;
 						addStatus(eStatus::CLIMB);
 						climb();
 						float x = land->getPositionX();
@@ -851,14 +860,16 @@ void Aladdin::onCollisionBegin(CollisionEventArg * collision_event)
 						break;
 					}
 				}
+				break;
 			}
 			case(eDirection::RIGHT):
 			{
-				switch (land->getType())
+				switch (type)
 				{
 				case (eLandType::CLIMBABLE0):
 				{
 					clearStatus();
+					_canUp = true;
 					addStatus(eStatus::CLIMB);
 					climb();
 					float x = land->getPositionX();
@@ -866,6 +877,7 @@ void Aladdin::onCollisionBegin(CollisionEventArg * collision_event)
 					break;
 				}
 				}
+				break;
 			}
 		}
 		break;

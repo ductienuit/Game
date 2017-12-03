@@ -30,7 +30,7 @@ public:
 	IComponent* getComponent(string componentName);
 
 	Text* text;
-	void Throw(Vector2);
+	void Throw();
 	~Knife();
 private:
 	void movingLeft();

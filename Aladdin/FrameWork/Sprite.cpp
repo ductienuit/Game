@@ -9,7 +9,7 @@ Sprite::~Sprite()
 
 Sprite::Sprite(LPD3DXSPRITE spriteHandle, LPCSTR filePath, int totalFrames, int cols)
 {
-	_origin = Vector2(0.5f, 0.0f);
+	_origin = Vector2(0.5f, 1.0);
 	_scale = Vector2(1.6f, 1.92f);
 	_lastScale = _scale;
 	_zIndex = 1;
@@ -440,9 +440,9 @@ void Sprite::UpdateBounding()
 	float scaleH = _frameHeight * abs(_scale.y);
 
 	this->_bound.left = _position.x - scaleW * _origin.x;
-	this->_bound.bottom = _position.y - scaleH * _origin.y;
+	this->_bound.bottom = _position.y -scaleH ;//Không nhân _origin vì origin mình là 0.5
 	this->_bound.right = _bound.left + scaleW;
-	this->_bound.top = _bound.bottom + scaleH;
+	this->_bound.top = _position.y;
 
 	// 4 điểm của hcn
 	Vector2 p1 = Vector2(_bound.left, _bound.top);
@@ -461,6 +461,7 @@ void Sprite::UpdateBounding()
 	_bound.top = max(max(p1.y, p2.y), max(p3.y, p4.y));
 	_bound.right = max(max(p1.x, p2.x), max(p3.x, p4.x));
 	_bound.bottom = min(min(p1.y, p2.y), min(p3.y, p4.y));
+
 }
 
 Vector2 Sprite::RotatePointAroundOrigin(Vector2 point, float angle, Vector2 origin)

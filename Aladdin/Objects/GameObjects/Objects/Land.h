@@ -24,8 +24,10 @@ public:
 	Vector2 getOrigin() override;
 	RECT getBounding() override;
 	eID getId() override;
+
 	float getPositionX() override;
 	float getPositionY() override;
+	float getPositionBottom();
 	void setPosition(Vector3 vector) override;
 	void setPosition(float x, float y, float z) override;
 	void setPosition(float x, float y) override;

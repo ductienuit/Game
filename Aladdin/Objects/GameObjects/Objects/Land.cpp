@@ -117,6 +117,11 @@ float Land::getPositionY()
 	return _bound.top;
 }
 
+float Land::getPositionBottom()
+{
+	return _bound.bottom;
+}
+
 void Land::setPosition(Vector3 vector)
 {
 	_bound.left = vector.x;

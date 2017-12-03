@@ -51,6 +51,7 @@ private:
 	map<string, IComponent*> _listComponent;
 	RECT _boundAla;
 	BaseObject* landstop;
+	BaseObject* _preObjectColli;  //Đối tượng va chạm trước đó
 
 	void onKeyReleased(KeyEventArg* key_event);
 
