@@ -46,17 +46,28 @@ float Viewport::getHeight()
 
 Vector3 Viewport::getPositionInViewport(Vector3* position)
 {
-	D3DXMATRIX mt;
-	D3DXVECTOR4 posViewport;
+	//D3DXMATRIX mt;
+	//D3DXVECTOR4 posViewport;
 
-	D3DXMatrixIdentity(&mt);
-	mt._22 = -1.0f;
-	mt._41 = (-1) * _positionWorld.x;
-	mt._42 = _positionWorld.y;
+	//D3DXMatrixIdentity(&mt);
+	//mt._22 = -1.0f;
+	//mt._41 = (-1) * _positionWorld.x;
+	//mt._42 = _positionWorld.y;
 
-	D3DXVec3Transform(&posViewport, position, &mt);
+	//D3DXVec3Transform(&posViewport, position, &mt);
 
-	return Vector3(posViewport.x, posViewport.y, posViewport.z);
+	//return Vector3(posViewport.x, posViewport.y, posViewport.z);
+	D3DXMATRIX matrix;
+	D3DXMatrixIdentity(&matrix);
+	matrix._22 = -1;
+	matrix._41 = -_positionWorld.x;
+	matrix._42 = _positionWorld.y;
+
+	D3DXVECTOR4 MatrixResult;
+	D3DXVec3Transform(&MatrixResult, position, &matrix);
+
+	D3DXVECTOR3 result = D3DXVECTOR3(MatrixResult.x, MatrixResult.y, MatrixResult.z);
+	return result;
 }
 
 bool Viewport::isContains(const RECT & rect)

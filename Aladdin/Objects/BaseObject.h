@@ -68,6 +68,8 @@ public:
 	virtual void	  setColor(D3DXCOLOR color);
 	virtual D3DXCOLOR getColor();
 
+	virtual void	setCanUp(bool);
+
 	virtual Vector2	  getAnchorPoint();
 
 	Sprite*		 getSprite();

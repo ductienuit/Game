@@ -176,6 +176,11 @@ D3DXCOLOR BaseObject::getColor()
 	return _sprite->getColor();
 }
 
+void BaseObject::setCanUp(bool value)
+{
+	_canUp = value;
+}
+
 Vector2 BaseObject::getAnchorPoint()
 {
 	return _sprite->getAnchorPoint();

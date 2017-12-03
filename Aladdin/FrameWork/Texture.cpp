@@ -67,7 +67,9 @@ void Texture::Render(LPD3DXSPRITE spriteHandle, RECT * srcRect, Vector2 position
 	D3DXMATRIX matOld;
 
 	// origin in position
-	Vector3 center = Vector3(abs(srcRect->right - srcRect->left) * origin.x, abs(srcRect->top - srcRect->bottom) * (1 - origin.y), zIndex);
+	Vector3 center = Vector3(abs(srcRect->right - srcRect->left) * origin.x, 
+							abs(srcRect->top - srcRect->bottom) * (1 - origin.y),
+							zIndex);
 
 	// get matrix texture
 	spriteHandle->GetTransform(&matOld);

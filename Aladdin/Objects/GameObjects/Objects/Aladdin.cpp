@@ -49,14 +49,14 @@ void Aladdin::InIt()
 	_animations[eStatus::NORMAL1] = new Animation(_sprite, 0.3f);
 	_animations[eStatus::NORMAL1]->addFrameRect(eID::ALADDIN, "standing_", 7); //7 là số ảnh
 
-	_animations[eStatus::JUMPING] = new Animation(_sprite, 0.1f);
+	_animations[eStatus::JUMPING] = new Animation(_sprite, 0.095f);
 	_animations[eStatus::JUMPING]->addFrameRect(eID::ALADDIN, "jump_up_", 10);
 
-	_animations[eStatus::JUMPING_RIGHT] = new Animation(_sprite, 0.1f);
-	_animations[eStatus::JUMPING_RIGHT]->addFrameRect(eID::ALADDIN, "jump_left_right_", 9);
+	_animations[eStatus::JUMPING_RIGHT] = new Animation(_sprite, 0.15f);
+	_animations[eStatus::JUMPING_RIGHT]->addFrameRect(eID::ALADDIN, "jump_left_right_", 8);
 
-	_animations[eStatus::JUMPING_LEFT] = new Animation(_sprite, 0.1f);
-	_animations[eStatus::JUMPING_LEFT]->addFrameRect(eID::ALADDIN, "jump_left_right_", 9);
+	_animations[eStatus::JUMPING_LEFT] = new Animation(_sprite, 0.15f);
+	_animations[eStatus::JUMPING_LEFT]->addFrameRect(eID::ALADDIN, "jump_left_right_", 8);
 
 	_animations[eStatus::MOVING_LEFT | eStatus::JUMPING_LEFT] = new Animation(_sprite, 0.1f);
 	_animations[eStatus::MOVING_LEFT | eStatus::JUMPING_LEFT]->addFrameRect(eID::ALADDIN, "jump_left_right_", 9);
@@ -79,7 +79,7 @@ void Aladdin::InIt()
 	//_animations[eStatus::DROP] = new Animation(_sprite, 0.1f);
 	//_animations[eStatus::DROP]->addFrameRect(eID::ALADDIN, "drop_down_0", "drop_down_1", "drop_down_2","drop_down_3", "drop_down_4", "drop_down_5", "drop_down_6", "drop_down_7", "drop_down_8");
 
-	_animations[eStatus::CLIMB] = new Animation(_sprite, 0.1f);
+	_animations[eStatus::CLIMB] = new Animation(_sprite, 0.15f);
 	_animations[eStatus::CLIMB]->addFrameRect(eID::ALADDIN, "climb_", 10);
 
 	_animations[eStatus::THROW] = new Animation(_sprite, 0.1f);
@@ -89,10 +89,10 @@ void Aladdin::InIt()
 	_animations[eStatus::ATTACK | eStatus::SITTING_DOWN]->addFrameRect(eID::ALADDIN, "swing_sword_", 5);
 
 	_animations[eStatus::MOVING_RIGHT] = new Animation(_sprite, 0.1f);
-	_animations[eStatus::MOVING_RIGHT]->addFrameRect(eID::ALADDIN, "walk_", 12);
+	_animations[eStatus::MOVING_RIGHT]->addFrameRect(eID::ALADDIN, "walk_", 11);
 
 	_animations[eStatus::MOVING_LEFT] = new Animation(_sprite, 0.1f);
-	_animations[eStatus::MOVING_LEFT]->addFrameRect(eID::ALADDIN, "walk_", 12);
+	_animations[eStatus::MOVING_LEFT]->addFrameRect(eID::ALADDIN, "walk_", 11);
 
 	_animations[eStatus::THROW | eStatus::MOVING_LEFT] = new Animation(_sprite, 0.1f);
 	_animations[eStatus::THROW | eStatus::MOVING_LEFT]->addFrameRect(eID::ALADDIN, "throw_", 6);
@@ -104,8 +104,7 @@ void Aladdin::InIt()
 	_animations[eStatus::ATTACK] = new Animation(_sprite, 0.1f);
 	_animations[eStatus::ATTACK]->addFrameRect(eID::ALADDIN, "swing_sword_", 5);
 	//sit_attack ngồi đâm
-	_animations[eStatus::SITTING_DOWN | eStatus::ATTACK] = new Animation(_sprite, 0.5f);
-	_animations[eStatus::SITTING_DOWN | eStatus::ATTACK] = new Animation(_sprite, 0.3f);
+	_animations[eStatus::SITTING_DOWN | eStatus::ATTACK] = new Animation(_sprite, 0.1f);
 	_animations[eStatus::SITTING_DOWN | eStatus::ATTACK]->addFrameRect(eID::ALADDIN, "sit_attack_", 7);
 
 	_animations[eStatus::SITTING_DOWN | eStatus::THROW] = new Animation(_sprite, 0.1f);
@@ -410,7 +409,7 @@ void Aladdin::UpdateInput(float dt)
 		}
 		break;
 	}
-    case(eStatus::MOVING_RIGHT):
+	case(eStatus::MOVING_RIGHT):
 	{
 		if (_input->isKeyPressed(DIK_C))
 		{
@@ -610,7 +609,8 @@ void Aladdin::UpdateInput(float dt)
 			{
 				Stop();
 				return;
-			}						
+			}
+			_animations[_currentAnimateIndex]->Start();
 			_animations[_currentAnimateIndex]->Update(dt);
 			climbUp(dt);
 		}
@@ -622,16 +622,16 @@ void Aladdin::UpdateInput(float dt)
 			climbDown(dt);
 		}
 		else if (_input->isKeyPressed(DIK_LEFT))
-		{			
+		{
 			Vector2 temp = getScale();
-			if(temp.x>0)
+			if (temp.x > 0)
 				setScaleX(-temp.x);
 		}
 		else if (_input->isKeyPressed(DIK_RIGHT))
 		{
 			_animations[_currentAnimateIndex]->setIndex(9);
 			Vector2 temp = getScale();
-			if (temp.x<0)
+			if (temp.x < 0)
 				setScaleX(-temp.x);
 		}
 		else if (_input->isKeyPressed(DIK_X))
@@ -644,7 +644,7 @@ void Aladdin::UpdateInput(float dt)
 		}
 		else if (_input->isKeyPressed(DIK_C))
 		{
-			addStatus(eStatus::JUMPING);		
+			addStatus(eStatus::JUMPING);
 			climbJump();
 		}
 		else standing();
@@ -653,15 +653,15 @@ void Aladdin::UpdateInput(float dt)
 	case(eStatus::SWING):
 	{
 		if (_input->isKeyDown(DIK_LEFT))
-		{	
-			if(_sprite->getScale()>0)
+		{
+			if (_sprite->getScale() > 0)
 				_animations[_currentAnimateIndex]->Update(dt);
 			else _animations[_currentAnimateIndex]->UpdatePreFrame(dt);
 		}
 		else if (_input->isKeyDown(DIK_RIGHT))
 		{
-			if (_sprite->getScale()>0)
-				_animations[_currentAnimateIndex]->Update(dt);		
+			if (_sprite->getScale() > 0)
+				_animations[_currentAnimateIndex]->Update(dt);
 			else
 				_animations[_currentAnimateIndex]->UpdatePreFrame(dt);
 		}
@@ -675,8 +675,9 @@ void Aladdin::UpdateInput(float dt)
 		}
 		else if (_input->isKeyDown(DIK_C))
 		{
-			removeStatus(eStatus::SWING);
-			jump(eStatus::JUMPING);
+			//removeStatus(eStatus::SWING);
+			addStatus(eStatus::JUMPING);
+			swingJump();
 		}
 		break;
 	}
@@ -689,7 +690,7 @@ void Aladdin::UpdateInput(float dt)
 			if (_input->isKeyDown(DIK_LEFT))
 			{
 				Vector2 temp = getScale();
-				if (temp.x>0)
+				if (temp.x > 0)
 					setScaleX(-temp.x);
 				removeStatus(eStatus::JUMPING);
 				removeStatus(eStatus::CLIMB);
@@ -700,7 +701,7 @@ void Aladdin::UpdateInput(float dt)
 			else if (_input->isKeyDown(DIK_RIGHT))
 			{
 				Vector2 temp = getScale();
-				if (temp.x<0)
+				if (temp.x < 0)
 					setScaleX(-temp.x);
 				removeStatus(eStatus::JUMPING);
 				removeStatus(eStatus::CLIMB);
@@ -709,6 +710,13 @@ void Aladdin::UpdateInput(float dt)
 				_animations[_currentAnimateIndex]->Begin();
 			}
 		}
+	}
+	if (isInStatus(eStatus(SWING | JUMPING)))
+	{
+		if (_input->isKeyDown(DIK_LEFT))
+			moveLeft();
+		if (_input->isKeyDown(DIK_RIGHT))
+			moveRight();
 	}
 }
 
@@ -730,17 +738,12 @@ void Aladdin::onKeyReleased(KeyEventArg * key_event)
 	}
 	case DIK_DOWN:
 	{
-		if (isInStatus(eStatus::ATTACK))
-		{
-			//Nếu đang trong attack thì không hủy sitting_down, hủy khi thực hiện xong hành động ngồi chém
-		}
-		else removeStatus(eStatus::SITTING_DOWN);
+		removeStatus(eStatus::SITTING_DOWN);
 
 		if (isInStatus(eStatus::CLIMB))
 		{
 		}
 		else _animations[_currentAnimateIndex]->Restart(0);
-		standing();
 		break;
 	}
 	case DIK_UP:
@@ -748,6 +751,7 @@ void Aladdin::onKeyReleased(KeyEventArg * key_event)
 		if (isInStatus(eStatus::ATTACK))
 		{
 			//Nếu đang trong attack thì không hủy look_up, hủy khi thực hiện xong hành động
+			break;
 		}
 		else removeStatus(eStatus::LOOKING_UP);
 		//Chạy lại hình ảnh động muốn thực hiện. bắt đầu là 0. Phải có dòng 343
@@ -760,12 +764,12 @@ void Aladdin::onKeyReleased(KeyEventArg * key_event)
 	}
 	case DIK_X:
 	{
-		standing();
+		//standing();
 		break;
 	}
 	case DIK_Z: //ném
 	{
-		standing();
+		//standing();
 		break;
 
 	}
@@ -822,8 +826,8 @@ void Aladdin::onCollisionBegin(CollisionEventArg * collision_event)
 						//_preObjectColli = collision_event->_otherObject;
 						clearStatus();
 						addStatus(eStatus::SWING);
-						float y = land->getPositionBottom();
-						setPositionY(y);
+						float y = land->getBounding().top;
+						setPositionY(y-150); //set cứng khi va chạm với Bar thì cho giảm y
 						swing();
 						break;
 					}
@@ -1014,10 +1018,10 @@ void Aladdin::updateStatusOneAction(float deltatime)
 #pragma endregion
 
 
-
-	eStatus temp = (eStatus)(LOOKING_UP | SITTING_DOWN | MOVING_LEFT
+	//Có các hiêu ứng trong temp trừ ATTACK
+	eStatus temp = (eStatus)((LOOKING_UP | SITTING_DOWN | MOVING_LEFT
 		| MOVING_RIGHT | JUMPING_LEFT | JUMPING_RIGHT
-		| JUMPING | CLIMB | SWING);
+		| JUMPING | CLIMB | SWING));
 
 
 
@@ -1175,7 +1179,7 @@ RECT Aladdin::getBounding()
 void Aladdin::setBounding(RECT r)
 {
 	float distancex = abs(r.right - r.left)/4.0f;
-	float distancey = abs(r.top - r.bottom)/4.0f;
+	float distancey = abs(r.top - r.bottom)/3.0f;
 	RECT temp;
 	temp.left = r.left + distancex;
 	temp.right = r.right - distancex;
@@ -1325,7 +1329,10 @@ void Aladdin::swingRight(float dt)
 void Aladdin::swingJump()
 {
 	auto move = (Movement*)_listComponent["Movement"];
-	move->setVelocity(Vector2(move->getVelocity().x, 50));
+	move->setVelocity(Vector2(move->getVelocity().x, ALADDIN_JUMP_VEL));
+
+	auto g = (Gravity*)_listComponent["Gravity"];
+	g->setStatus(eGravityStatus::FALLING__DOWN);
 }
 
 Vector2 Aladdin::getVelocity()
@@ -1359,5 +1366,7 @@ bool Aladdin::isInStatus(eStatus status)
 
 bool Aladdin::isExist(eStatus status)
 {
-	return _status & status != 0;
+	if (int(_status & status) != 0)
+		return true;
+	return false;
 }

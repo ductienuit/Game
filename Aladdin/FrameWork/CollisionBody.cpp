@@ -44,9 +44,7 @@ void CollisionBody::checkCollision(BaseObject * otherObject, float dt)
 			_flagEnd = true;
 		}
 		if (land->getType() == eLandType::STOP)
-		{
 			_target->StopUp();
-		}
 		_isColliding = true;
 	}
 	else
@@ -343,8 +341,7 @@ RECT CollisionBody::getSweptBroadphaseRect(BaseObject* object, float dt)  //obje
 	/*Tại sao không chia 1000 mà chia 500 ?
 		+	Chia 500 sẽ tạo ra BroadPhaseRect có tỷ lệ to hơn, 
 		check collision sẽ đúng không bị overlaprect  */
-	auto velocity = Vector2(object->getVelocity().x * dt/400, object->getVelocity().y * dt/400 );
-	//__debugoutput(velocity.y);
+	auto velocity = Vector2(object->getVelocity().x * dt/500, object->getVelocity().y * dt/500 );
 	auto myRect = object->getBounding();
 	RECT rect;
 	DrawRect(myRect);

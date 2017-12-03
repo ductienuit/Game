@@ -9,7 +9,7 @@ Sprite::~Sprite()
 
 Sprite::Sprite(LPD3DXSPRITE spriteHandle, LPCSTR filePath, int totalFrames, int cols)
 {
-	_origin = Vector2(0.5f, 1.0);
+	_origin = Vector2(0.5f, 0.0);
 	_scale = Vector2(1.6f, 1.92f);
 	_lastScale = _scale;
 	_zIndex = 1;
@@ -62,42 +62,6 @@ void Sprite::Render(LPD3DXSPRITE spriteHandle)
 		_zIndex
 	);
 }
-
-//void Sprite::Render(LPD3DXSPRITE spriteHandle, Viewport* viewport)
-//{
-//	_texture.render(
-//		spriteHandle,
-//		&_frameRect,
-//		*viewport,
-//		_position,
-//		_scale,
-//		_rotate,
-//		_origin,
-//		_zIndex
-//	);
-//
-//	//Vẽ bounding để xem
-//	if (_surface == nullptr || _isDrawBounding == false)
-//	{
-//		return;
-//	}
-//
-//	RECT r;
-//	r.top = WINDOW_HEIGHT - _bound.top;
-//	r.left = _bound.left;
-//	r.bottom = WINDOW_HEIGHT - _bound.bottom;
-//	r.right = _bound.right;
-//
-//	DeviceManager::getInstance()->getDevice()->ColorFill(_surface, NULL, D3DXCOLOR(1.0f, 0.0f, 1.0f, 1.0f));
-//
-//	DeviceManager::getInstance()->getDevice()->StretchRect(
-//		_surface,
-//		NULL,
-//		DeviceManager::getInstance()->getSurface(),
-//		&r,
-//		D3DTEXF_NONE
-//	);
-//}
 
 void Sprite::Render(LPD3DXSPRITE spriteHandle, Viewport* viewport)
 {
@@ -436,13 +400,14 @@ void Sprite::setCurrentFrame()
 
 void Sprite::UpdateBounding()
 {
+
 	float scaleW = _frameWidth * abs(_scale.x);
 	float scaleH = _frameHeight * abs(_scale.y);
 
 	this->_bound.left = _position.x - scaleW * _origin.x;
-	this->_bound.bottom = _position.y -scaleH ;//Không nhân _origin vì origin mình là 0.5
+	this->_bound.bottom = _position.y - scaleH * _origin.y;
 	this->_bound.right = _bound.left + scaleW;
-	this->_bound.top = _position.y;
+	this->_bound.top = _bound.bottom +scaleH;
 
 	// 4 điểm của hcn
 	Vector2 p1 = Vector2(_bound.left, _bound.top);

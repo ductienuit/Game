@@ -2,7 +2,7 @@
 #include<iostream>
 using namespace std;
 
-Viewport* PlayScene::_viewport = new Viewport(0, WINDOWS_HEIGHT);
+Viewport* PlayScene::_viewport = new Viewport(1, WINDOWS_HEIGHT);
 
 PlayScene::PlayScene()
 {
@@ -30,7 +30,7 @@ bool PlayScene::InIt()
 	_listobject.push_back(new Land(100, 100, 1000, 50, eDirection::TOP, eLandType::SOLID));
 	_listobject.push_back(new Land(600, 300, 10, 200, eDirection::INSIDE, eLandType::CLIMBABLE0));
 	_listobject.push_back(new Land(600, 350, 20, 20, eDirection::BOTTOM, eLandType::STOP));
-	_listobject.push_back(new Land(130, 500, 550, 30, eDirection::BOTTOM, eLandType::BAR));
+	_listobject.push_back(new Land(130, 460, 550, 30, eDirection::BOTTOM, eLandType::BAR));
 	
 
 	/*auto guard = new GuardThin(eStatus::MOVING_LEFT, 200, 100, eDirection::LEFT);
@@ -83,8 +83,7 @@ void PlayScene::Draw(LPD3DXSPRITE spriteHandle)
 	for each (auto object in _listobject)
 	{
 		object->Draw(spriteHandle, _viewport);
-		if (object->getId()!=eID::ALADDIN)
-			object->ShowBB();
+		object->ShowBB();
 	}
 }
 
