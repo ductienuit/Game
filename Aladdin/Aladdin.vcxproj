@@ -126,6 +126,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AladdinGame.cpp" />
+    <ClCompile Include="Objects\Scenes\BackGround.cpp" />
+    <ClCompile Include="FrameWork\Camera.cpp" />
     <ClCompile Include="Objects\Enemies\GuardShort.cpp" />
     <ClCompile Include="Objects\Enemies\BaseEnemy.cpp" />
     <ClCompile Include="FrameWork\CollisionBody.cpp" />
@@ -157,6 +159,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AladdinGame.h" />
+    <ClInclude Include="Objects\Scenes\BackGround.h" />
+    <ClInclude Include="FrameWork\Camera.h" />
     <ClInclude Include="Objects\Enemies\GuardShort.h" />
     <ClInclude Include="Objects\Enemies\BaseEnemy.h" />
     <ClInclude Include="FrameWork\CollisionBody.h" />

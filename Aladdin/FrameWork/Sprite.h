@@ -35,7 +35,7 @@ public:
 	void Release();
 
 	/*
-	vẽ hình
+	Render background
 	*/
 	void Render(LPD3DXSPRITE spriteHandle);
 	/*

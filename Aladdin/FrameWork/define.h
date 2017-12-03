@@ -51,7 +51,8 @@ enum eID
 	ALADDIN,
 	GUARDTHIN,
 	GUARDSHORT,
-	KNIFE
+	KNIFE,
+	BACKGROUND
 };
 
 enum eDirection

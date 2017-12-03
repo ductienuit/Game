@@ -13,11 +13,13 @@
 #include"../../FrameWork/Manager/SceneManager.h"
 #include"../../FrameWork/debug.h"
 #include"../../FrameWork/Animation.h"
+#include"../../FrameWork/Camera.h"
 #include"../GameObjects/Objects/Aladdin.h"
 #include"../GameObjects/Objects/Land.h"
 #include"../Enemies/GuardThin.h"
 #include"../Enemies/GuardShort.h"
 #include"../Enemies/Knife.h"
+#include"BackGround.h"
 using namespace std;
 
 USEGAME_FRAMEWORK
@@ -41,11 +43,10 @@ public:
 	//Trả về một đối tượng theo id
 	//id để dịnh danh một đối tượng
 	BaseObject* getObject(eID id);
-
-	//Lấy đối tượng Aladdin
-	Aladdin* getAladdin();
 private:
 	void destroyObject();   //Nếu object hết hạn sử dụng thì hủy đối tượng
+	BackGround* background;
+	Camera* camera;
 
 	//Danh sach các đói tượng hoạt động rộng không thể đưa vào quadtree như Aladdin
 	vector<BaseObject*> _listObject;
@@ -53,7 +54,7 @@ private:
 	//Danh sách các đối tượng dùng để tạo trong quadtree
 	map<string, BaseObject*> _mapObject;
 
-	BaseObject* _aladdin;
+	Aladdin* _aladdin;
 	BaseObject* _weaponmanager;
 
 	BaseObject* testLand;

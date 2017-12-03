@@ -45,6 +45,13 @@ public:
 	void Render(LPD3DXSPRITE spriteHandle, const RECT* rect, const Vector3* center, const Vector3* position);
 
 	/*
+	render background
+	@position: vị trí
+	*/
+	void Render(LPD3DXSPRITE spriteHandle,const Vector3* position);
+
+
+	/*
 	render texture với các tham số tranform, gốc tọa độ top-left
 	@position: vị trí
 	@scale:

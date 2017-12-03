@@ -31,7 +31,13 @@ bool PlayScene::InIt()
 	_listobject.push_back(new Land(600, 300, 10, 200, eDirection::INSIDE, eLandType::CLIMBABLE0));
 	_listobject.push_back(new Land(600, 350, 20, 20, eDirection::BOTTOM, eLandType::STOP));
 	_listobject.push_back(new Land(130, 460, 550, 30, eDirection::BOTTOM, eLandType::BAR));
-	
+
+	camera = new Camera(800, 600, 0, DirectX::XMFLOAT3(1.0f, 1.0f, 1.0f));
+
+
+	background = new BackGround();
+	background->InIt();
+
 
 	/*auto guard = new GuardThin(eStatus::MOVING_LEFT, 200, 100, eDirection::LEFT);
 	guard->InIt();
@@ -41,21 +47,38 @@ bool PlayScene::InIt()
 	guardShort->InIt();
 	_listobject.push_back(guardShort);*/
 
-	auto aladdin = new Aladdin();
-	aladdin->InIt();
-	aladdin->setPosition(100,300);
-	_listControlObject.push_back(aladdin);
-	_listobject.push_back(aladdin);
+    _aladdin = new Aladdin();
+	_aladdin->InIt();
+	_aladdin->setPosition(100,300);
+	_listobject.push_back(_aladdin);
 
 	return true;
 }
 
 void PlayScene::UpdateInput(float dt)
 {
-	for each (IControlable* obj in _listControlObject)
+	if (camera)
 	{
-		obj->UpdateInput(dt);
+		if (GetAsyncKeyState(70)) //70 is the vKey value for F
+		{
+			if (!camera->IsFollowing())
+			{
+				camera->Follow(_aladdin);
+			}
+		}
+
+		if (GetAsyncKeyState(85)) //85 is the vKey value for U
+		{
+			if (camera->IsFollowing())
+			{
+				camera->Unfollow();
+			}
+		}
+
+		camera->Update();
 	}
+
+	_aladdin->UpdateInput(dt);
 }
 
 void PlayScene::Update(float dt)
@@ -80,11 +103,23 @@ void PlayScene::Update(float dt)
 
 void PlayScene::Draw(LPD3DXSPRITE spriteHandle)
 {
+	LPDIRECT3DDEVICE9 device = DeviceManager::getInstance()->getDevice();
+	device->Clear(0, NULL, D3DCLEAR_TARGET, D3DCOLOR_XRGB(0, 100, 100), 1.0f, 0);
+	device->BeginScene();
+
+	if (camera)
+	{
+		camera->SetTransform();
+	}
+
+	background->Draw(spriteHandle,_viewport);
 	for each (auto object in _listobject)
 	{
 		object->Draw(spriteHandle, _viewport);
 		object->ShowBB();
 	}
+	device->EndScene();
+	device->Present(NULL, NULL, NULL, NULL);
 }
 
 void PlayScene::Release()

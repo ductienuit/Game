@@ -60,6 +60,22 @@ void Texture::Render(LPD3DXSPRITE spriteHandle, const RECT* rect, const Vector3*
 		_color);
 }
 
+void Texture::Render(LPD3DXSPRITE spriteHandle, const Vector3 * position)
+{	
+	// BEGIN
+	spriteHandle->Begin(D3DXSPRITE_ALPHABLEND | D3DXSPRITE_OBJECTSPACE);
+
+	spriteHandle->Draw(
+		this->_texture,
+		NULL,
+		NULL,
+		position,
+		_color);
+
+	// END
+	spriteHandle->End();
+}
+
 void Texture::Render(LPD3DXSPRITE spriteHandle, RECT * srcRect, Vector2 position, Vector2 scale, float rotate, Vector2 origin, float zIndex)
 {
 	D3DXMATRIX matFinal;

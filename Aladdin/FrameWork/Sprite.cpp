@@ -52,15 +52,8 @@ void Sprite::Release()
 
 void Sprite::Render(LPD3DXSPRITE spriteHandle)
 {
-	_texture.Render(
-		spriteHandle,
-		&_frameRect,
-		Vector2((int)_position.x, (int)_position.y),
-		_scale,
-		_rotate,
-		_origin,
-		_zIndex
-	);
+	Vector3 position = Vector3(_position.x, _position.y, _zIndex);
+	_texture.Render(spriteHandle, &position);
 }
 
 void Sprite::Render(LPD3DXSPRITE spriteHandle, Viewport* viewport)
@@ -98,7 +91,6 @@ void Sprite::Render(LPD3DXSPRITE spriteHandle, Viewport* viewport)
 		D3DTEXF_NONE
 	);
 }
-
 
 void Sprite::setPosition(float x, float y, float z)
 {
