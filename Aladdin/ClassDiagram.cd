@@ -154,7 +154,7 @@
       <FileName>FrameWork\Transformable.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Viewport" Collapsed="true">
+  <Class Name="GCamera" Collapsed="true">
     <Position X="19.5" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>QAAAAAIAAACEAAAAAEAABAAACBAAQABAAAAAEAAAAAA=</HashCode>

@@ -2,11 +2,11 @@
 #include<iostream>
 using namespace std;
 
-Viewport* PlayScene::_viewport = new Viewport(1, WINDOWS_HEIGHT);
+GCamera* PlayScene::_viewport = new GCamera(1, WINDOWS_HEIGHT);
 
 PlayScene::PlayScene()
 {
-	//_viewport = new Viewport(0,600);
+	//_viewport = new GCamera(0,600);
 }
 
 PlayScene::~PlayScene()
@@ -14,38 +14,37 @@ PlayScene::~PlayScene()
 	delete _viewport;
 	_viewport = nullptr;
 }
-void PlayScene::setViewport(Viewport * viewport)
+void PlayScene::setGCamera(GCamera * viewport)
 {
 	if (_viewport != viewport)
 		_viewport = viewport;
 }
 
-Viewport * PlayScene::getViewport()
+GCamera * PlayScene::getGCamera()
 {
 	return _viewport;
 }
 
 bool PlayScene::InIt()
 {
-	_listobject.push_back(new Land(100, 100, 1000, 50, eDirection::TOP, eLandType::SOLID));
-	_listobject.push_back(new Land(600, 300, 10, 200, eDirection::INSIDE, eLandType::CLIMBABLE0));
+	_listobject.push_back(new Land(100, 100, 4771, 50, eDirection::TOP, eLandType::SOLID));
+	/*_listobject.push_back(new Land(600, 300, 10, 200, eDirection::INSIDE, eLandType::CLIMBABLE0));
 	_listobject.push_back(new Land(600, 350, 20, 20, eDirection::BOTTOM, eLandType::STOP));
-	_listobject.push_back(new Land(130, 460, 550, 30, eDirection::BOTTOM, eLandType::BAR));
+	_listobject.push_back(new Land(130, 460, 550, 30, eDirection::BOTTOM, eLandType::BAR));*/
 
-	camera = new Camera(800, 600, 0, DirectX::XMFLOAT3(1.0f, 1.0f, 1.0f));
+	camera = new Camera(4771, 688, DirectX::XMFLOAT3(1.0f, 1.0f, 1.0f));
 
 
 	background = new BackGround();
 	background->InIt();
 
-
-	/*auto guard = new GuardThin(eStatus::MOVING_LEFT, 200, 100, eDirection::LEFT);
+	auto guard = new GuardThin(eStatus::MOVING_LEFT,2000, 100, eDirection::LEFT);
 	guard->InIt();
-	_listobject.push_back(guard);*/
+	_listobject.push_back(guard);
 
-	/*auto guardShort = new GuardShort(eStatus::MOVING_LEFT, 600, 140, eDirection::LEFT);
+	auto guardShort = new GuardShort(eStatus::MOVING_LEFT, 600, 140, eDirection::LEFT);
 	guardShort->InIt();
-	_listobject.push_back(guardShort);*/
+	_listobject.push_back(guardShort);
 
     _aladdin = new Aladdin();
 	_aladdin->InIt();

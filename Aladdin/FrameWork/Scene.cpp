@@ -11,7 +11,7 @@ Scene::~Scene()
 {
 }
 
-Viewport * Scene::getViewport()
+GCamera * Scene::getGCamera()
 {
 	return _viewport;
 }

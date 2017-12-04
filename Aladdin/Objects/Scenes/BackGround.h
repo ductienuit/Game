@@ -4,7 +4,7 @@
 
 #include"../BaseObject.h"
 #include "../../FrameWork/define.h"
-#include"../../FrameWork/ViewPort.h"
+#include"../../FrameWork/GCamera.h"
 
 class BackGround:public BaseObject
 {
@@ -15,7 +15,7 @@ public:
 
 	void InIt();
 	void Update(float deltatime);
-	void Draw(LPD3DXSPRITE, Viewport*);
+	void Draw(LPD3DXSPRITE, GCamera*);
 	void Release();
 };
 #endif __BACKGROUND_H__

@@ -12,15 +12,14 @@ BackGround::~BackGround()
 void BackGround::InIt()
 {
 	_sprite = SpriteManager::getInstance()->getSprite(eID::BACKGROUND);
-	_sprite->setFrameRect(SpriteManager::getInstance()->getSourceRect(eID::ALADDIN, "standing_0"));
-	this->setPosition(0, 0, 0);
+	this->setPosition(0, -500);
 }
 
 void BackGround::Update(float deltatime)
 {
 }
 
-void BackGround::Draw(LPD3DXSPRITE spriteHandle, Viewport *viewport)
+void BackGround::Draw(LPD3DXSPRITE spriteHandle, GCamera *viewport)
 {
 	_sprite->Render(spriteHandle);
 }

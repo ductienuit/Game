@@ -99,9 +99,6 @@
     <ClCompile Include="FrameWork\Transformable.cpp">
       <Filter>Source Files\FrameWork</Filter>
     </ClCompile>
-    <ClCompile Include="FrameWork\ViewPort.cpp">
-      <Filter>Source Files\FrameWork</Filter>
-    </ClCompile>
     <ClCompile Include="FrameWork\Manager\DeviceManager.cpp">
       <Filter>Source Files\FrameWork\Manager</Filter>
     </ClCompile>
@@ -153,6 +150,9 @@
     <ClCompile Include="Objects\Scenes\BackGround.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="FrameWork\GCamera.cpp">
+      <Filter>Source Files\FrameWork</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AladdinGame.h">
@@ -195,9 +195,6 @@
       <Filter>Header Files\FrameWork</Filter>
     </ClInclude>
     <ClInclude Include="FrameWork\Transformable.h">
-      <Filter>Header Files\FrameWork</Filter>
-    </ClInclude>
-    <ClInclude Include="FrameWork\ViewPort.h">
       <Filter>Header Files\FrameWork</Filter>
     </ClInclude>
     <ClInclude Include="FrameWork\Manager\DeviceManager.h">
@@ -250,6 +247,9 @@
     </ClInclude>
     <ClInclude Include="Objects\Scenes\BackGround.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameWork\GCamera.h">
+      <Filter>Header Files\FrameWork</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

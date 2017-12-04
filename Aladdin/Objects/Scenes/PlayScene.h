@@ -37,8 +37,8 @@ public:
 	void Draw(LPD3DXSPRITE spriteHandle) override;
 	void Release() override;
 
-	void setViewport(Viewport* viewport);
-	static Viewport* getViewport();
+	void setGCamera(GCamera* viewport);
+	static GCamera* getGCamera();
 
 	//Trả về một đối tượng theo id
 	//id để dịnh danh một đối tượng
@@ -58,7 +58,7 @@ private:
 	BaseObject* _weaponmanager;
 
 	BaseObject* testLand;
-	void UpdateViewport(BaseObject* objTracker);
+	void UpdateGCamera(BaseObject* objTracker);
 
 	vector<BaseObject*> Bar;
 	vector<BaseObject*> Rope;
@@ -66,7 +66,7 @@ private:
 	vector<BaseObject*> Spring;
 	vector<BaseObject*> Platform;
 
-	static Viewport* _viewport;
+	static GCamera* _viewport;
 	Sprite* sprite;
 	vector<BaseObject*> _listobject;
 	vector<IControlable*> _listControlObject;

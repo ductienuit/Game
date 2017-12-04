@@ -43,7 +43,7 @@ void Land::Update(float deltatime)
 	}
 }
 
-void Land::Draw(LPD3DXSPRITE spriteHandle, Viewport* viewport)
+void Land::Draw(LPD3DXSPRITE spriteHandle, GCamera* viewport)
 {
 	// do nothing.
 	//return;
@@ -72,7 +72,7 @@ void Land::Draw(LPD3DXSPRITE spriteHandle, Viewport* viewport)
 		this->setColor(0xff0000ff);
 	}*/
 	//RECT r;
-	/*auto pos = viewport->getPositionInViewport(new Vector3(getPositionX(), getPositionY(), 0));
+	/*auto pos = viewport->getPositionInGCamera(new Vector3(getPositionX(), getPositionY(), 0));
 	r.top = max(pos.y, 1);
 	r.left = max(pos.x, 1);
 	r.bottom = min(pos.y + _bound.top - _bound.bottom, WINDOWS_HEIGHT - 1);

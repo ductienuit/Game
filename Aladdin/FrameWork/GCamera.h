@@ -1,19 +1,19 @@
-﻿#ifndef __VIEWPORT_H__
-#define __VIEWPORT_H__
+﻿#ifndef __GCAMERA_H__
+#define __GCAMERA_H__
 
 #include "define.h"
 
 /*
-Viewport là class dùng để chuyển hệ toạ độ top-left về hệ toạ độ đê-cac
+GCamera là class dùng để chuyển hệ toạ độ top-left về hệ toạ độ đê-cac
 là toạ độ camera trong thế giới game.
 */
-class Viewport
+class GCamera
 {
 public:
-	Viewport();
-	Viewport(float x, float y);
-	Viewport(float x, float y, float width, float height);
-	~Viewport();
+	GCamera();
+	GCamera(float x, float y);
+	GCamera(float x, float y, float width, float height);
+	~GCamera();
 
 	void setPositionWorld(Vector2 position);
 	Vector2 getPositionWorld();
@@ -22,7 +22,7 @@ public:
 	float getHeight();
 
 	//Lấy position trong viewport
-	Vector3 getPositionInViewport(Vector3* position);
+	Vector3 getPositionInGCamera(Vector3* position);
 	// kiểm tra hcn có nằm trong màn hình không.
 	bool	isContains(const RECT &rect);
 
@@ -31,10 +31,12 @@ public:
 	*/
 	RECT getBounding();
 
+	void UpdateCamera(int);
+
 private:
 	Vector2 _positionWorld;
 	float _width;
 	float _height;
 };
 
-#endif // !__VIEWPORT_H__
+#endif // !__GCAMERA_H__

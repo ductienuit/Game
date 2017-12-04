@@ -6,7 +6,7 @@
 #include "../FrameWork/Manager/DeviceManager.h"
 #include "Texture.h"
 #include "Transformable.h"
-#include "Viewport.h"
+#include "GCamera.h"
 
 
 
@@ -41,7 +41,7 @@ public:
 	/*
 	vẽ hình với viewport
 	*/
-	void Render(LPD3DXSPRITE spriteHandle, Viewport* viewport);
+	void Render(LPD3DXSPRITE spriteHandle, GCamera* viewport);
 
 	void setPosition(float x, float y, float z = 1);
 	void setPosition(Vector3 vector);

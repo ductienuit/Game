@@ -339,7 +339,7 @@ D3DXCOLOR Animation::getColorFlash()
 	return _flashColor;
 }
 
-void Animation::Draw(LPD3DXSPRITE spriteHandle, Viewport * viewport)
+void Animation::Draw(LPD3DXSPRITE spriteHandle, GCamera * viewport)
 {
 	_spriteSheet->setFrameRect(_currentRect);
 	_spriteSheet->Render(spriteHandle, viewport);

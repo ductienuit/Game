@@ -60,7 +60,7 @@ void Knife::Update(float deltatime)
 	}
 }
 
-void Knife::Draw(LPD3DXSPRITE spritehandle, Viewport* viewport)
+void Knife::Draw(LPD3DXSPRITE spritehandle, GCamera* viewport)
 {
 	_animations[this->getStatus()]->Draw(spritehandle, viewport);
 	//text->Draw();

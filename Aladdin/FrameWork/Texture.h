@@ -11,7 +11,7 @@ call release before delete to avoid LEAK
 
 #include "define.h"
 #include "../FrameWork/Manager/DeviceManager.h"
-#include"ViewPort.h"
+#include"GCamera.h"
 
 GAME_FRAMEWORK
 GAME_FRAMEWORK_BEGIN
@@ -70,7 +70,7 @@ public:
 	@origin: điểm neo để transform
 	@zIndex: độ sâu
 	*/
-	void Render(LPD3DXSPRITE spriteHandle, RECT* srcRect, Viewport viewport, Vector2 position, Vector2 scale, float rotate, Vector2 origin, float zIndex = 0);
+	void Render(LPD3DXSPRITE spriteHandle, RECT* srcRect, GCamera viewport, Vector2 position, Vector2 scale, float rotate, Vector2 origin, float zIndex = 0);
 
 	void setColor(D3DXCOLOR);
 	D3DXCOLOR getColor();

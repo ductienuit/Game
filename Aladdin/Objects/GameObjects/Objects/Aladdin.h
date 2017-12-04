@@ -14,12 +14,12 @@
 
 using namespace std;
 
-#define ALADDIN_MOVE_SPEED 125
+#define ALADDIN_MOVE_SPEED 140
 #define ALADDIN_JUMP_VEL 500
 #define ALADDIN_CLIMB_JUMP_VEL 300
 #define ALADDIN_ACC_MOVE 300
 #define GRAVITY 800
-#define ALADDIN_CLIMB_SPEED 110
+#define ALADDIN_CLIMB_SPEED 110 
 
 
 [event_receiver(native)]
@@ -32,7 +32,7 @@ public:
 	void InIt();
 	void UpdateInput(float dt);
 	void Update(float deltatime);
-	void Draw(LPD3DXSPRITE spriteHandle, Viewport* viewport);
+	void Draw(LPD3DXSPRITE spriteHandle, GCamera* viewport);
 	void Release();
 
 	void onCollisionBegin(CollisionEventArg* collision_event);

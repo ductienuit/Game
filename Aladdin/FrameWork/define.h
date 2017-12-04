@@ -1,6 +1,6 @@
 ﻿#ifndef __GAME_FRAMEWORK__
 #define __GAME_FRAMEWORK__
-#define WINDOWS_WIDTH 800
+#define WINDOWS_WIDTH 850
 #define WINDOWS_HEIGHT 600
 #define FPS 30
 #define MAX_KEYS 256
@@ -79,6 +79,8 @@ enum eLandType
 };
 #define C_WHITE D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f)				// màu trắnng
 #define COLOR_KEY D3DXCOLOR(1.0f, 0.0f, 1.0f, 1.0f)				// màu khi mà load hình nó bỏ qua > trong suốt
+#define BUFFER_WIDTH 1700//2550
+#define BUFFER_HEIGHT 1200//1800
 
 //enum StateGame
 //{	
@@ -86,7 +88,16 @@ enum eLandType
 //	Pause,
 //	Resume
 //};
-
+template <typename T>
+inline T Clamp(T value, T min, T max)
+{
+	T temp = value;
+	if (temp < min)
+		temp = min;
+	else if (temp > max)
+		temp = max;
+	return temp;
+}
 typedef D3DXVECTOR2 Vector2;
 typedef D3DXVECTOR3 Vector3;
 #define VECTOR2ZERO Vector2(0.0f, 0.0f)
