@@ -32,7 +32,7 @@ public:
 	void InIt();
 	void UpdateInput(float dt);
 	void Update(float deltatime);
-	void Draw(LPD3DXSPRITE spriteHandle, GCamera* viewport);
+	void Draw(LPD3DXSPRITE spriteHandle, ViewPort* viewport);
 	void Release();
 
 	void onCollisionBegin(CollisionEventArg* collision_event);

@@ -53,7 +53,7 @@ public:
 	void	 UpdatePreFrame(float dt);
 
 	//Vẽ chuyển động
-	void	 Draw(LPD3DXSPRITE spriteHandle, GCamera* viewport);
+	void	 Draw(LPD3DXSPRITE spriteHandle, ViewPort* viewport);
 
 	//Đặt thời gian chuyển frame
 	void	setTimeAnimate(float time);

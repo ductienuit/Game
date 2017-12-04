@@ -63,7 +63,7 @@ void Texture::Render(LPD3DXSPRITE spriteHandle, const RECT* rect, const Vector3*
 void Texture::Render(LPD3DXSPRITE spriteHandle, const Vector3 * position)
 {	
 	// BEGIN
-	spriteHandle->Begin(D3DXSPRITE_ALPHABLEND | D3DXSPRITE_OBJECTSPACE | D3DXSPRITE_DONOTSAVESTATE | D3DXSPRITE_DO_NOT_ADDREF_TEXTURE);
+	spriteHandle->Begin(D3DXSPRITE_ALPHABLEND | D3DXSPRITE_DONOTSAVESTATE | D3DXSPRITE_OBJECTSPACE  | D3DXSPRITE_DO_NOT_ADDREF_TEXTURE);
 
 	spriteHandle->Draw(
 		this->_texture,
@@ -121,12 +121,12 @@ void Texture::Render(LPD3DXSPRITE spriteHandle, RECT * srcRect, Vector2 position
 	spriteHandle->End();
 }
 
-void Texture::Render(LPD3DXSPRITE spriteHandle, RECT * srcRect, GCamera viewport, Vector2 position, Vector2 scale, float rotate, Vector2 origin, float zIndex)
+void Texture::Render(LPD3DXSPRITE spriteHandle, RECT * srcRect, ViewPort viewport, Vector2 position, Vector2 scale, float rotate, Vector2 origin, float zIndex)
 {
-	Vector3 positionGCamera;
-	positionGCamera = viewport.getPositionInGCamera(&Vector3(position.x, position.y, zIndex)); 
+	Vector3 positionViewPort;
+	positionViewPort = viewport.getPositionInViewPort(&Vector3(position.x, position.y, zIndex)); 
 	//ép kiêu về int. để tránh trường hợp bị hụt pixel 
-	Render(spriteHandle, srcRect, Vector2((int)positionGCamera.x, (int)positionGCamera.y), scale, rotate, origin, positionGCamera.z);
+	Render(spriteHandle, srcRect, Vector2((int)positionViewPort.x, (int)positionViewPort.y), scale, rotate, origin, positionViewPort.z);
 }
 
 void Texture::setColor(D3DXCOLOR color)

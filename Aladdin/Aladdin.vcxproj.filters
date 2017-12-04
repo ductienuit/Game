@@ -150,7 +150,7 @@
     <ClCompile Include="Objects\Scenes\BackGround.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="FrameWork\GCamera.cpp">
+    <ClCompile Include="FrameWork\ViewPort.cpp">
       <Filter>Source Files\FrameWork</Filter>
     </ClCompile>
   </ItemGroup>
@@ -248,7 +248,7 @@
     <ClInclude Include="Objects\Scenes\BackGround.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FrameWork\GCamera.h">
+    <ClInclude Include="FrameWork\ViewPort.h">
       <Filter>Header Files\FrameWork</Filter>
     </ClInclude>
   </ItemGroup>

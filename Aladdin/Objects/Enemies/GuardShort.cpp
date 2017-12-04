@@ -66,7 +66,7 @@ void GuardShort::Update(float deltatime)
 	}
 }
 
-void GuardShort::Draw(LPD3DXSPRITE spritehandle, GCamera* viewport)
+void GuardShort::Draw(LPD3DXSPRITE spritehandle, ViewPort* viewport)
 {
 	_animations[this->getStatus()]->Draw(spritehandle, viewport);
 	//text->Draw();

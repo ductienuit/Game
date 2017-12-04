@@ -3,7 +3,7 @@
 #include"../../FrameWork/define.h"
 #include"../../FrameWork/Manager/SpriteManager.h"
 #include"../../FrameWork/Sprite.h"
-#include"../../FrameWork/GCamera.h"
+#include"../../FrameWork/ViewPort.h"
 #include"../../FrameWork/InputController.h"
 
 USEGAME_FRAMEWORK
@@ -25,7 +25,7 @@ public:
 
 	virtual void InIt() = 0;
 	virtual void Update(float deltatime) = 0;
-	virtual void Draw(LPD3DXSPRITE, GCamera*) = 0;
+	virtual void Draw(LPD3DXSPRITE, ViewPort*) = 0;
 	virtual void Release() = 0;
 
 	virtual eID	 getId();

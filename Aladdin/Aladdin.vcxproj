@@ -148,7 +148,7 @@
     <ClCompile Include="FrameWork\Texture.cpp" />
     <ClCompile Include="FrameWork\TimeSpan.cpp" />
     <ClCompile Include="FrameWork\Transformable.cpp" />
-    <ClCompile Include="FrameWork\GCamera.cpp" />
+    <ClCompile Include="FrameWork\ViewPort.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Objects\GameObjects\Objects\Aladdin.cpp" />
     <ClCompile Include="Objects\Scenes\PlayScene.cpp" />
@@ -183,7 +183,7 @@
     <ClInclude Include="FrameWork\Texture.h" />
     <ClInclude Include="FrameWork\TimeSpan.h" />
     <ClInclude Include="FrameWork\Transformable.h" />
-    <ClInclude Include="FrameWork\GCamera.h" />
+    <ClInclude Include="FrameWork\ViewPort.h" />
     <ClInclude Include="Objects\GameObjects\Objects\Aladdin.h" />
     <ClInclude Include="Objects\Scenes\PlayScene.h" />
     <ClInclude Include="FrameWork\StopWatch.h" />

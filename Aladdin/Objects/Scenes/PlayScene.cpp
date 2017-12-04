@@ -1,12 +1,10 @@
-#include "PlayScene.h"
+﻿#include "PlayScene.h"
 #include<iostream>
 using namespace std;
-
-GCamera* PlayScene::_viewport = new GCamera(1, WINDOWS_HEIGHT);
-
+ViewPort* PlayScene::_viewport = new ViewPort(0, WINDOWS_HEIGHT, WINDOWS_WIDTH, WINDOWS_HEIGHT);
 PlayScene::PlayScene()
 {
-	//_viewport = new GCamera(0,600);
+	
 }
 
 PlayScene::~PlayScene()
@@ -14,20 +12,40 @@ PlayScene::~PlayScene()
 	delete _viewport;
 	_viewport = nullptr;
 }
-void PlayScene::setGCamera(GCamera * viewport)
+void PlayScene::setViewPort(ViewPort * viewport)
 {
 	if (_viewport != viewport)
 		_viewport = viewport;
 }
 
-GCamera * PlayScene::getGCamera()
+void PlayScene::UpdateViewport(BaseObject * aladdin)
 {
-	return _viewport;
+	// Vị trí hiện tại của viewport. 
+	Vector2 current_position = _viewport->getPositionWorld();
+	Vector2 worldsize = Vector2(4771, 688);
+	// Bám theo object.
+	Vector2 new_position = Vector2(max(aladdin->getPositionX() - 260, 0), WINDOWS_HEIGHT);		// 200 khoảng cách tối đa giữa object và map -> hardcode
+
+																								////#if(!_DEBUG)
+																								//	// Không cho đi ngược
+																								//	if (new_position.x < current_position.x)
+																								//	{
+																								//		new_position.x = current_position.x;
+																								//	}
+																								////#endif
+
+																								// Không cho đi quá map.
+	if (new_position.x + WINDOWS_WIDTH > worldsize.x)
+	{
+		new_position.x = worldsize.x - WINDOWS_WIDTH;
+	}
+
+	_viewport->setPositionWorld(new_position);
 }
 
 bool PlayScene::InIt()
 {
-	_listobject.push_back(new Land(100, 100, 4771, 50, eDirection::TOP, eLandType::SOLID));
+	_listobject.push_back(new Land(0, 100, 4771, 50, eDirection::TOP, eLandType::SOLID));
 	/*_listobject.push_back(new Land(600, 300, 10, 200, eDirection::INSIDE, eLandType::CLIMBABLE0));
 	_listobject.push_back(new Land(600, 350, 20, 20, eDirection::BOTTOM, eLandType::STOP));
 	_listobject.push_back(new Land(130, 460, 550, 30, eDirection::BOTTOM, eLandType::BAR));*/
@@ -56,26 +74,27 @@ bool PlayScene::InIt()
 
 void PlayScene::UpdateInput(float dt)
 {
-	if (camera)
-	{
-		if (GetAsyncKeyState(70)) //70 is the vKey value for F
-		{
-			if (!camera->IsFollowing())
-			{
-				camera->Follow(_aladdin);
-			}
-		}
+	//if (camera)
+	//{
+	//	if (GetAsyncKeyState(70)) //70 is the vKey value for F
+	//	{
+	//		if (!camera->IsFollowing())
+	//		{
+	//			camera->Follow(_aladdin);
+	//		}
+	//	}
 
-		if (GetAsyncKeyState(85)) //85 is the vKey value for U
-		{
-			if (camera->IsFollowing())
-			{
-				camera->Unfollow();
-			}
-		}
+	//	if (GetAsyncKeyState(85)) //85 is the vKey value for U
+	//	{
+	//		if (camera->IsFollowing())
+	//		{
+	//			camera->Unfollow();
+	//		}
+	//	}
 
-		camera->Update();
-	}
+	//	camera->Update();
+	//}
+
 
 	_aladdin->UpdateInput(dt);
 }
@@ -86,6 +105,8 @@ void PlayScene::Update(float dt)
 	/*char str[100];
 	sprintf(str, "delta time: %f", dt);
 	_text->setText(str);*/
+	
+	this->UpdateViewport(_aladdin);
 
 	for each (auto object in _listobject)
 	{
@@ -112,6 +133,7 @@ void PlayScene::Draw(LPD3DXSPRITE spriteHandle)
 	}
 
 	background->Draw(spriteHandle,_viewport);
+
 	for each (auto object in _listobject)
 	{
 		object->Draw(spriteHandle, _viewport);

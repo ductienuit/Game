@@ -56,7 +56,7 @@ void Sprite::Render(LPD3DXSPRITE spriteHandle)
 	_texture.Render(spriteHandle, &position);
 }
 
-void Sprite::Render(LPD3DXSPRITE spriteHandle, GCamera* viewport)
+void Sprite::Render(LPD3DXSPRITE spriteHandle, ViewPort* viewport)
 {
 	_texture.Render(
 		spriteHandle,

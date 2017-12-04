@@ -19,7 +19,7 @@ public:
 
 	void InIt() override;
 	void Update(float deltatime) override;
-	void Draw(LPD3DXSPRITE, GCamera*) override;
+	void Draw(LPD3DXSPRITE, ViewPort*) override;
 	void Release() override;
 
 	void onCollisionBegin(CollisionEventArg*);

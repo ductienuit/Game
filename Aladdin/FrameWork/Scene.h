@@ -2,7 +2,7 @@
 #define __SCENE_H__
 
 #include"define.h"
-#include "../FrameWork/GCamera.h"
+#include "../FrameWork/ViewPort.h"
 
 GAME_FRAMEWORK
 GAME_FRAMEWORK_BEGIN
@@ -18,9 +18,9 @@ public:
 	void virtual Draw(LPD3DXSPRITE spriteHandle) = 0;
 	void virtual Release() = 0;
 
-	GCamera*  getGCamera();
+	ViewPort*  getViewPort();
 protected:
-	GCamera* _viewport;
+	ViewPort* _viewport;
 private:
 
 };

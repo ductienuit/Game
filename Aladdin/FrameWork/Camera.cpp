@@ -43,10 +43,6 @@ Camera::~Camera()
 void Camera::Update()
 {
 	int cameraX = this->width / 2, cameraY = this->height / 2;
-	if (!this->following)
-		return;
-	float x = this->following->getPositionX();
-	float y = this->following->getPositionY();
 	if (this->following)
 	{
 		cameraX = this->following->getPositionX();
@@ -56,47 +52,13 @@ void Camera::Update()
 	//Tịnh tiến hoặc phóng to thu nhỏ camera bằng ma trận
 	/* Đọc begin programing directx - Chương 5*/
 	this->viewMatrix = D3DXMATRIX(
-				scaleFactors.x * cos(angle),	 scaleFactors.x * sin(angle),						 0,		0,
-				-scaleFactors.y * sin(angle),	 scaleFactors.y * cos(angle),						 0,		0,
-				0,														   0,				scaleFactors.z,	0,
-				-cameraX * scaleFactors.x * cos(angle) 
-				+ cameraY * scaleFactors.y * sin(angle), -cameraX * scaleFactors.y * sin(angle)
-														 - cameraY * scaleFactors.y * cos(angle),
-																									  0,	 1
+				1,	 0,	 0,					0,
+				0,	 1,	 0,					0,
+				0,   0,	 1,					0,
+				-cameraX ,- cameraY ,  0,	 1
 	);
 
 
-
-	//float temp;
-	//temp = x - cameraPosX;
-	//if (abs(temp) < 2)
-	//	cameraPosX = x;
-	//else
-	//	cameraPosX += temp*0.25f;
-	//temp = y - cameraPosY;
-	//if (abs(temp) < 2)
-	//	cameraPosY = -y;
-	//else
-	//	cameraPosY += temp*0.5f;
-
-
-	//float half_cam_width = (float)cameraDimension.x / 2;
-	//float half_cam_height = (float)cameraDimension.y / 2;
-
-	////Ràng buộc camera không vượt 1/2
-	//cameraPosX = Clamp<float>(cameraPosX, (float)cameraBorder.left + half_cam_width, (float)cameraBorder.right - half_cam_width);
-	//cameraPosY = Clamp<float>(cameraPosY, (float)cameraBorder.top + half_cam_height, (float)cameraBorder.bottom - half_cam_height);
-
-	//viewMatrix = D3DXMATRIX(
-	//	1, 0, 0, 0,
-	//	0, 1, 0, 0,
-	//	0, 0, 1, 0,
-	//	-cameraPosX, -cameraPosY, 0, 1);
-
-	//DrawRect.top = (int)(cameraPosY - half_cam_height);
-	//DrawRect.left = (int)(cameraPosX - half_cam_width);
-	//DrawRect.right = (int)(cameraPosX + half_cam_width);
-	//DrawRect.bottom = (int)(cameraPosY + half_cam_height);
 }
 
 void Camera::Follow(BaseObject* following)

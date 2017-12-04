@@ -50,7 +50,7 @@ void GuardThin::Update(float deltatime)
 	}
 }
 
-void GuardThin::Draw(LPD3DXSPRITE spritehandle, GCamera* viewport)
+void GuardThin::Draw(LPD3DXSPRITE spritehandle, ViewPort* viewport)
 {
 	_animations[this->getStatus()]->Draw(spritehandle, viewport);
 

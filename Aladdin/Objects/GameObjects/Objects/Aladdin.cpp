@@ -1198,7 +1198,7 @@ void Aladdin::Stop()
 	g->setStatus(eGravityStatus::SHALLOWED);
 }
 
-void Aladdin::Draw(LPD3DXSPRITE spriteHandle, GCamera* viewport)
+void Aladdin::Draw(LPD3DXSPRITE spriteHandle, ViewPort* viewport)
 {
 	_animations[_currentAnimateIndex]->Draw(spriteHandle, viewport);
 }

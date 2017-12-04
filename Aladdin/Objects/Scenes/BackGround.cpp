@@ -19,7 +19,7 @@ void BackGround::Update(float deltatime)
 {
 }
 
-void BackGround::Draw(LPD3DXSPRITE spriteHandle, GCamera *viewport)
+void BackGround::Draw(LPD3DXSPRITE spriteHandle, ViewPort *viewport)
 {
 	_sprite->Render(spriteHandle);
 }
