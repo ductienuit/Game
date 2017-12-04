@@ -1,6 +1,6 @@
 ﻿#ifndef __GAME_FRAMEWORK__
 #define __GAME_FRAMEWORK__
-#define WINDOWS_WIDTH 850
+#define WINDOWS_WIDTH 840
 #define WINDOWS_HEIGHT 600
 #define FPS 30
 #define MAX_KEYS 256

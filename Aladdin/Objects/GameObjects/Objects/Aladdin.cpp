@@ -203,6 +203,8 @@ void Aladdin::InIt()
 	_animations[eStatus::CLIMB | eStatus::ATTACK]->addFrameRect(eID::ALADDIN, "climb_attack_0", 7);
 
 	_sprite->drawBounding(false);
+
+	//Set lại bouding cho riêng aladdin để xét va chạm
 	setBounding(_sprite->getBounding());
 
 	_canUp = true;
@@ -216,18 +218,6 @@ void Aladdin::InIt()
 
 void Aladdin::Update(float deltatime)
 {
-	/*if (_sprite->getPositionY() < TEST_SOLID)
-	{
-		_sprite->setPositionY(TEST_SOLID);
-		auto gravity = (Gravity*)_listComponent["Gravity"];
-		gravity->setStatus(eGravityStatus::SHALLOWED);
-		removeStatus(eStatus::JUMPING);
-		standing();
-
-		removeStatus(eStatus::JUMPING_RIGHT);
-		removeStatus(eStatus::JUMPING_LEFT);
-	}*/
-
 	updateStatus(deltatime);
 
 	//Loc dieu kien

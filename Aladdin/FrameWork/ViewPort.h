@@ -10,29 +10,33 @@ là toạ độ camera trong thế giới game.
 class ViewPort
 {
 public:
-	ViewPort();
+	~ViewPort(void);
+	ViewPort(void);
 	ViewPort(float x, float y);
 	ViewPort(float x, float y, float width, float height);
-	~ViewPort();
-
-	void setPositionWorld(Vector2 position);
-	Vector2 getPositionWorld();
-
-	float getWidth();
-	float getHeight();
 
 
-	Vector3 getPositionInViewPort(Vector3* position);
+	static ViewPort*	getInstance();
+	void				setPositionWorld(Vector2 position);
+	Vector2				getPositionWorld();
+
+	float				getWidth();
+	float				getHeight();
+
+	//decard to world
+	Vector3				getPositionInViewPort(Vector3* position);
+	//world to decard
+	Vector2				convertWorldtoDecard(Vector3*);
 
 	// kiểm tra hcn có nằm trong màn hình không.
-	bool	isContains(const RECT &rect);
-
+	bool				isContains(const RECT &rect);
 	/*
 	Lấy kích thước của viewport bằng HCN, tinhs trong world lớn
 	*/
-	RECT getBounding();
+	RECT				getBounding();
 
 private:
+	static ViewPort* _instance;
 	Vector2 _positionWorld;
 	float _width;
 	float _height;

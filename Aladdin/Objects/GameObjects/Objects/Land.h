@@ -65,6 +65,9 @@ private:
 
 	// Hình chữ nhật bao lấy land.
 	RECT _bound;
+	int _height;
+	int _width;
+	Vector3  _positionViewport;
 };
 
 

@@ -114,11 +114,11 @@ void Texture::Render(LPD3DXSPRITE spriteHandle, RECT * srcRect, Vector2 position
 		&center,
 		&Vector3(position.x, position.y, zIndex),
 		_color);
-
 	spriteHandle->SetTransform(&matOld);
 
 	// END
 	spriteHandle->End();
+	auto device = DeviceManager::getInstance()->getDevice();
 }
 
 void Texture::Render(LPD3DXSPRITE spriteHandle, RECT * srcRect, ViewPort viewport, Vector2 position, Vector2 scale, float rotate, Vector2 origin, float zIndex)

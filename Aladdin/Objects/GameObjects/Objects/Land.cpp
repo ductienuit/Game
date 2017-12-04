@@ -9,6 +9,8 @@ Land::Land(int x, int y, int width, int height, eDirection physicBodyDirection, 
 	this->_bound.left = x;
 	this->_bound.bottom = y - height;
 	this->_bound.right = x + width;
+	_width = width;
+	_height = height;
 	this->_type = type;
 	BaseObject::setPhysicsBodySide(physicBodyDirection);
 
@@ -37,10 +39,15 @@ void Land::InIt()
 
 void Land::Update(float deltatime)
 {
-	//for (auto it : _listComponent)
-	//{
-	//	it.second->Update(deltatime);
-	//}
+	/*Vector3 positionViewPort;
+	positionViewPort = ViewPort::getInstance()->getPositionInViewPort(&Vector3(_bound.left, _bound.top, 1));
+	_positionViewport.x = positionViewPort.x;
+	_positionViewport.y = positionViewPort.y;
+
+	this->_bound.left = _positionViewport.x;
+	this->_bound.top = abs(_positionViewport.y - WINDOWS_HEIGHT); 
+	this->_bound.right = _bound.left + _width;	
+	this->_bound.bottom = _bound.top + _height;	*/
 }
 
 void Land::Draw(LPD3DXSPRITE spriteHandle, ViewPort* viewport)

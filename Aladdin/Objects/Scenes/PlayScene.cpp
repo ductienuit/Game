@@ -1,7 +1,7 @@
 ﻿#include "PlayScene.h"
 #include<iostream>
 using namespace std;
-ViewPort* PlayScene::_viewport = new ViewPort(0, WINDOWS_HEIGHT, WINDOWS_WIDTH, WINDOWS_HEIGHT);
+ViewPort* PlayScene::_viewport = ViewPort::getInstance();
 PlayScene::PlayScene()
 {
 	
@@ -24,39 +24,29 @@ void PlayScene::UpdateViewport(BaseObject * aladdin)
 	Vector2 current_position = _viewport->getPositionWorld();
 	Vector2 worldsize = Vector2(4771, 688);
 	// Bám theo object.
-	Vector2 new_position = Vector2(max(aladdin->getPositionX() - 260, 0), WINDOWS_HEIGHT);		// 200 khoảng cách tối đa giữa object và map -> hardcode
-
-																								////#if(!_DEBUG)
-																								//	// Không cho đi ngược
-																								//	if (new_position.x < current_position.x)
-																								//	{
-																								//		new_position.x = current_position.x;
-																								//	}
-																								////#endif
-
-																								// Không cho đi quá map.
+	float y = aladdin->getPositionY() - WINDOWS_HEIGHT;
+	Vector2 new_position = Vector2(max(aladdin->getPositionX() - 420, 0),
+		max(aladdin->getPositionY()+500,WINDOWS_HEIGHT));		// 420 va 500 khoảng cách tối đa giữa object và map -> hardcode
+	// Không cho đi quá map.
 	if (new_position.x + WINDOWS_WIDTH > worldsize.x)
 	{
 		new_position.x = worldsize.x - WINDOWS_WIDTH;
 	}
-
 	_viewport->setPositionWorld(new_position);
 }
 
 bool PlayScene::InIt()
 {
-	_listobject.push_back(new Land(0, 100, 4771, 50, eDirection::TOP, eLandType::SOLID));
+	_listobject.push_back(new Land(0, 50, 4771, 50, eDirection::TOP, eLandType::SOLID));
 	/*_listobject.push_back(new Land(600, 300, 10, 200, eDirection::INSIDE, eLandType::CLIMBABLE0));
 	_listobject.push_back(new Land(600, 350, 20, 20, eDirection::BOTTOM, eLandType::STOP));
 	_listobject.push_back(new Land(130, 460, 550, 30, eDirection::BOTTOM, eLandType::BAR));*/
-
-	camera = new Camera(4771, 688, DirectX::XMFLOAT3(1.0f, 1.0f, 1.0f));
 
 
 	background = new BackGround();
 	background->InIt();
 
-	auto guard = new GuardThin(eStatus::MOVING_LEFT,2000, 100, eDirection::LEFT);
+	auto guard = new GuardThin(eStatus::MOVING_LEFT,100, 100, eDirection::LEFT);
 	guard->InIt();
 	_listobject.push_back(guard);
 
@@ -66,7 +56,7 @@ bool PlayScene::InIt()
 
     _aladdin = new Aladdin();
 	_aladdin->InIt();
-	_aladdin->setPosition(100,300);
+	_aladdin->setPosition(00,250);
 	_listobject.push_back(_aladdin);
 
 	return true;
@@ -74,28 +64,6 @@ bool PlayScene::InIt()
 
 void PlayScene::UpdateInput(float dt)
 {
-	//if (camera)
-	//{
-	//	if (GetAsyncKeyState(70)) //70 is the vKey value for F
-	//	{
-	//		if (!camera->IsFollowing())
-	//		{
-	//			camera->Follow(_aladdin);
-	//		}
-	//	}
-
-	//	if (GetAsyncKeyState(85)) //85 is the vKey value for U
-	//	{
-	//		if (camera->IsFollowing())
-	//		{
-	//			camera->Unfollow();
-	//		}
-	//	}
-
-	//	camera->Update();
-	//}
-
-
 	_aladdin->UpdateInput(dt);
 }
 
@@ -123,15 +91,6 @@ void PlayScene::Update(float dt)
 
 void PlayScene::Draw(LPD3DXSPRITE spriteHandle)
 {
-	LPDIRECT3DDEVICE9 device = DeviceManager::getInstance()->getDevice();
-	device->Clear(0, NULL, D3DCLEAR_TARGET, D3DCOLOR_XRGB(0, 100, 100), 1.0f, 0);
-	device->BeginScene();
-
-	if (camera)
-	{
-		camera->SetTransform();
-	}
-
 	background->Draw(spriteHandle,_viewport);
 
 	for each (auto object in _listobject)
@@ -139,8 +98,6 @@ void PlayScene::Draw(LPD3DXSPRITE spriteHandle)
 		object->Draw(spriteHandle, _viewport);
 		object->ShowBB();
 	}
-	device->EndScene();
-	device->Present(NULL, NULL, NULL, NULL);
 }
 
 void PlayScene::Release()

@@ -55,6 +55,9 @@ public:
 	//Vẽ chuyển động
 	void	 Draw(LPD3DXSPRITE spriteHandle, ViewPort* viewport);
 
+	//Vẽ chuyển động
+	void	 Draw(LPD3DXSPRITE spriteHandle);
+
 	//Đặt thời gian chuyển frame
 	void	setTimeAnimate(float time);
 

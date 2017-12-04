@@ -40,6 +40,7 @@ public:
 
 protected:
 	Vector2			_position;				// Vị trí của sprite,gốc là hình chỉnh giữa  Texture
+	Vector2			_positionViewport;		//Vị trí của position trong viewport
 	Vector2			_scale;					// Độ phóng đại theo chiều dài và rộng
 	float			_rotate;				// Góc quay theo độ 0-360
 	Vector2			_origin;				// Điểm gốc của Transform, dùng để xoay, scale (anchor: điểm neo)

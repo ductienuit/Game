@@ -1,6 +1,7 @@
 ﻿#include "ViewPort.h"
 
-ViewPort::ViewPort()
+ViewPort* ViewPort::_instance = NULL;
+ViewPort::ViewPort(void)
 {
 }
 
@@ -18,8 +19,15 @@ ViewPort::ViewPort(float x, float y, float width, float height)
 	_height = height;
 }
 
-ViewPort::~ViewPort()
+ViewPort::~ViewPort(void)
 {
+}
+
+ViewPort * ViewPort::getInstance()
+{
+	if (_instance == NULL)
+		_instance = new ViewPort(0, WINDOWS_HEIGHT, WINDOWS_WIDTH, WINDOWS_HEIGHT);
+	return _instance;
 }
 
 void ViewPort::setPositionWorld(Vector2 position)
@@ -31,6 +39,21 @@ void ViewPort::setPositionWorld(Vector2 position)
 Vector2 ViewPort::getPositionWorld()
 {
 	return _positionWorld;
+}
+
+Vector2 ViewPort::convertWorldtoDecard(Vector3* position)
+{
+	D3DXMATRIX mt;
+	D3DXVECTOR4 posViewPort;
+
+	D3DXMatrixIdentity(&mt);
+	mt._22 = -1.0f;
+	mt._41 = (-1) * _positionWorld.x;
+	mt._42 = _positionWorld.y;
+
+	D3DXVec3Transform(&posViewPort, position, &mt);
+
+	return Vector3(posViewPort.x, posViewPort.y, posViewPort.z);
 }
 
 float ViewPort::getWidth()
@@ -50,7 +73,7 @@ Vector3 ViewPort::getPositionInViewPort(Vector3* position)
 
 	D3DXMatrixIdentity(&mt);
 	mt._22 = -1.0f;
-	mt._41 = (-1) * _positionWorld.x;
+	mt._41 = -_positionWorld.x;
 	mt._42 = _positionWorld.y;
 
 	D3DXVec3Transform(&posViewPort, position, &mt);
@@ -74,10 +97,6 @@ bool ViewPort::isContains(const RECT &rect)
 RECT ViewPort::getBounding()
 {
 	RECT rect;
-	//rect.left = _positionWorld.x;
-	//rect.bottom = WINDOW_HEIGHT - _positionWorld.y;
-	//rect.top = rect.bottom + _height;
-	//rect.right = rect.left + _width;
 
 	rect.left = _positionWorld.x;
 	rect.top = _positionWorld.y;

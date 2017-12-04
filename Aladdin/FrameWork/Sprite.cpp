@@ -53,7 +53,7 @@ void Sprite::Release()
 void Sprite::Render(LPD3DXSPRITE spriteHandle)
 {
 	Vector3 position = Vector3(_position.x, _position.y, _zIndex);
-	_texture.Render(spriteHandle, &position);
+	_texture.Render(spriteHandle, &_frameRect, _position, _scale, _rotate, _origin);
 }
 
 void Sprite::Render(LPD3DXSPRITE spriteHandle, ViewPort* viewport)
@@ -69,27 +69,27 @@ void Sprite::Render(LPD3DXSPRITE spriteHandle, ViewPort* viewport)
 		_zIndex
 	);
 
-	//Vẽ bounding để xem
-	if (_surface == nullptr || _isDrawBounding == false)
-	{
-		return;
-	}
+	////Vẽ bounding để xem
+	//if (_surface == nullptr || _isDrawBounding == false)
+	//{
+	//	return;
+	//}
 
-	RECT r;
-	r.top = WINDOWS_HEIGHT - _bound.top;
-	r.left = _bound.left;
-	r.bottom = WINDOWS_HEIGHT - _bound.bottom;
-	r.right = _bound.right;
+	//RECT r;
+	//r.top = WINDOWS_HEIGHT - _bound.top;
+	//r.left = _bound.left;
+	//r.bottom = WINDOWS_HEIGHT - _bound.bottom;
+	//r.right = _bound.right;
 
-	DeviceManager::getInstance()->getDevice()->ColorFill(_surface, NULL, D3DXCOLOR(1.0f, 0.0f, 1.0f, 1.0f));
+	//DeviceManager::getInstance()->getDevice()->ColorFill(_surface, NULL, D3DXCOLOR(1.0f, 0.0f, 1.0f, 1.0f));
 
-	DeviceManager::getInstance()->getDevice()->StretchRect(
-		_surface,
-		NULL,
-		DeviceManager::getInstance()->getSurface(),
-		&r,
-		D3DTEXF_NONE
-	);
+	//DeviceManager::getInstance()->getDevice()->StretchRect(
+	//	_surface,
+	//	NULL,
+	//	DeviceManager::getInstance()->getSurface(),
+	//	&r,
+	//	D3DTEXF_NONE
+	//);
 }
 
 void Sprite::setPosition(float x, float y, float z)
@@ -101,12 +101,24 @@ void Sprite::setPosition(float x, float y, float z)
 void Sprite::setPosition(Vector3 vector)
 {
 	this->_position = Vector2(vector.x, vector.y);
+
+	Vector3 positionViewPort;
+	positionViewPort = ViewPort::getInstance()->getPositionInViewPort(&Vector3(_position.x, _position.y, 1));
+	_positionViewport.x = positionViewPort.x;
+	_positionViewport.y = positionViewPort.y;	
+
 	this->UpdateBounding();
 }
 
 void Sprite::setPosition(Vector2 position)
 {
 	this->_position = position;
+
+	Vector3 positionViewPort;
+	positionViewPort = ViewPort::getInstance()->getPositionInViewPort(&Vector3(_position.x, _position.y, 1));
+	_positionViewport.x = positionViewPort.x;
+	_positionViewport.y = positionViewPort.y;
+
 	this->UpdateBounding();
 }
 
@@ -116,6 +128,10 @@ void Sprite::setPositionX(float x)
 		return;
 
 	_position.x = x;
+	Vector3 positionViewPort;
+	positionViewPort = ViewPort::getInstance()->getPositionInViewPort(&Vector3(_position.x, _position.y, 1));
+	_positionViewport.x = positionViewPort.x;
+	_positionViewport.y = positionViewPort.y;
 	this->UpdateBounding();
 }
 
@@ -125,6 +141,10 @@ void Sprite::setPositionY(float y)
 		return;
 
 	_position.y = y;
+	Vector3 positionViewPort;
+	positionViewPort = ViewPort::getInstance()->getPositionInViewPort(&Vector3(_position.x, _position.y, 1));
+	_positionViewport.x = positionViewPort.x;
+	_positionViewport.y = positionViewPort.y;
 	this->UpdateBounding();
 }
 
@@ -146,6 +166,7 @@ void Sprite::setScale(float scale)
 		this->UpdateBounding();
 	}
 }
+
 void Sprite::setScaleX(float sx)
 {
 	if (sx == _scale.x)
@@ -392,12 +413,11 @@ void Sprite::setCurrentFrame()
 
 void Sprite::UpdateBounding()
 {
-
 	float scaleW = _frameWidth * abs(_scale.x);
 	float scaleH = _frameHeight * abs(_scale.y);
 
-	this->_bound.left = _position.x - scaleW * _origin.x;
-	this->_bound.bottom = _position.y - scaleH * _origin.y;
+	this->_bound.left = _positionViewport.x - scaleW * _origin.x;
+	this->_bound.bottom = abs(_positionViewport.y-WINDOWS_HEIGHT) - scaleH * _origin.y;
 	this->_bound.right = _bound.left + scaleW;
 	this->_bound.top = _bound.bottom +scaleH;
 
@@ -406,13 +426,6 @@ void Sprite::UpdateBounding()
 	Vector2 p2 = Vector2(_bound.right, _bound.top);
 	Vector2 p3 = Vector2(_bound.right, _bound.bottom);
 	Vector2 p4 = Vector2(_bound.left, _bound.bottom);
-	_anchorPoint = Vector2(_bound.left + scaleW * _origin.x, _bound.bottom + scaleH * _origin.y);
-
-	//rotate 4 điểm
-	p1 = RotatePointAroundOrigin(p1, _rotate, _anchorPoint);
-	p2 = RotatePointAroundOrigin(p2, _rotate, _anchorPoint);
-	p3 = RotatePointAroundOrigin(p3, _rotate, _anchorPoint);
-	p4 = RotatePointAroundOrigin(p4, _rotate, _anchorPoint);
 
 	_bound.left = min(min(p1.x, p2.x), min(p3.x, p4.x));
 	_bound.top = max(max(p1.y, p2.y), max(p3.y, p4.y));

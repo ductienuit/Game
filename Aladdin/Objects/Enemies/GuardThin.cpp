@@ -33,7 +33,7 @@ void GuardThin::InIt()
 
 	_animations[ATTACK] = new Animation(_sprite, 0.15f);
 	_animations[ATTACK]->addFrameRect(eID::GUARDTHIN, "guardsShort_throw_0", 8);
-	_sprite->setOrigin(Vector2(0, 0));
+	_sprite->setOrigin(Vector2(0.5, 0));
 	
 }
 
@@ -52,8 +52,7 @@ void GuardThin::Update(float deltatime)
 
 void GuardThin::Draw(LPD3DXSPRITE spritehandle, ViewPort* viewport)
 {
-	_animations[this->getStatus()]->Draw(spritehandle, viewport);
-
+	_animations[this->getStatus()]->Draw(spritehandle,viewport);
 }
 
 void GuardThin::Release()

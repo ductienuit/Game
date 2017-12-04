@@ -26,7 +26,6 @@ public:
 	*/
 	Sprite(LPD3DXSPRITE spriteHandle, LPCSTR filePath, int totalFrames = 1, int cols = 1);
 	
-	
 	~Sprite();
 
 	/*
@@ -47,7 +46,6 @@ public:
 	void setPosition(Vector3 vector);
 	void setPosition(Vector2 position);
 	void setPositionX(float x);
-	void setPositionXNotUpdate(float x);
 	void setPositionY(float y);
 
 	void setScale(Vector2 scale);
@@ -111,11 +109,12 @@ public:
 
 	void DrawRect(RECT);
 private:
+	ViewPort			_refViewport;
 	Texture				_texture;
 	float				_opacity;						// Độ mờ khi bị thương, từ 0.0f đến 1.0f thôi
 	D3DXCOLOR			_color;							// Màu ảnh, set cứng 255 255 255
 
-	RECT				_bound;							// Vùng vẽ trong texture, source rect
+	RECT				_bound;							// Rect chứa sprite để kiểm tra va chạm
 
 	int					_totalFrames;					// tổng số frame
 	int					_columns;						// số cột

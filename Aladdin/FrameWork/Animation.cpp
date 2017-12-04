@@ -344,3 +344,4 @@ void Animation::Draw(LPD3DXSPRITE spriteHandle, ViewPort * viewport)
 	_spriteSheet->setFrameRect(_currentRect);
 	_spriteSheet->Render(spriteHandle, viewport);
 }
+
