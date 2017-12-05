@@ -1,21 +1,23 @@
-#ifndef _KNIFE_H
-#define _KNIFE_H
+
+#ifndef _KNIFETHROWER_H
+#define _KNIFETHROWER_H
 
 #include "../../FrameWork/Animation.h"
 #include "../../FrameWork/StopWatch.h"
 #include "../../FrameWork/IComponent.h"
 #include "../../FrameWork/Text.h"
+#include "../Enemies/Knife.h"
 #include "BaseEnemy.h"
 using namespace std;
 
-#define KNIFE_SPEED 100
-#define KNIFE_GRAVITY 800
-#define KNIFE_JUMP 100
+#define KNIFETHROWER_SPEED 0
+#define KNIFETHROWER_SCORE 100
 
-class Knife : public BaseEnemy
+class KnifeThrower : public BaseEnemy
 {
 public:
-	Knife(eStatus status, int posX, int posY, eDirection direction);
+	KnifeThrower(eStatus status, int posX, int posY, eDirection direction);
+
 	void InIt() override;
 	void Update(float deltatime) override;
 	void Draw(LPD3DXSPRITE, Viewport*) override;
@@ -26,21 +28,22 @@ public:
 	float checkCollision(BaseObject*, float);
 
 	float distanceBetweenAladdin();
+	void UpdateStatus(float dt);
 
 	IComponent* getComponent(string componentName);
 
 	Text* text;
-	void ThrowLeft();
-	void ThrowRight();
-	~Knife();
+	~KnifeThrower();
 private:
 	void movingLeft();
 	void movingRight();
-	void standing();
-	
+
+	Knife* knife;
 	map<string, IComponent*> _listComponent;
 	map<int, Animation*> _animations;
 	Sprite *_divingSprite;
-	Vector2 _originPosition;
+	vector<BaseObject*> _listobject;
+	vector<IControlable*> _listControlObject;
+	bool _canThrow;
 };
 #endif

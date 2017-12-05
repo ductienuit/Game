@@ -18,6 +18,7 @@
 #include"../GameObjects/Objects/Land.h"
 #include"../Enemies/GuardThin.h"
 #include"../Enemies/GuardShort.h"
+#include"../Enemies/KnifeThrower.h"
 #include"../Enemies/Knife.h"
 #include"BackGround.h"
 using namespace std;
