@@ -3,7 +3,7 @@
 GuardLu::GuardLu(eStatus status, int posX, int posY, eDirection direction)
 {
 	_sprite = SpriteManager::getInstance()->getSprite(eID::GUARDLU);
-	_sprite->setFrameRect(0, 0, 32.0f, 16.0f);
+
 
 	_divingSprite = SpriteManager::getInstance()->getSprite(eID::ALADDIN);
 	Vector2 v(direction * GUARDLU_SPEED, 0);
@@ -29,16 +29,16 @@ void GuardLu::InIt()
 	__hook(&CollisionBody::onCollisionEnd, collisionBody, &GuardLu::onCollisionEnd);
 
 	_animations[MOVING_LEFT] = new Animation(_sprite, 0.15f);
-	_animations[MOVING_LEFT]->addFrameRect(eID::GUARDLU, "guardsLu_Moving_0", 12);
+	_animations[MOVING_LEFT]->addFrameRect(eID::GUARDLU, "guardsLu_Moving_", 12);
 
 	_animations[MOVING_RIGHT] = new Animation(_sprite, 0.15f);
-	_animations[MOVING_RIGHT]->addFrameRect(eID::GUARDLU, "guardsLu_Moving_0", 12);
+	_animations[MOVING_RIGHT]->addFrameRect(eID::GUARDLU, "guardsLu_Moving_", 12);
 
 	_animations[ATTACK] = new Animation(_sprite, 0.3f);
-	_animations[ATTACK]->addFrameRect(eID::GUARDLU, "guardsLu_Attack_0", 4);
+	_animations[ATTACK]->addFrameRect(eID::GUARDLU, "guardsLu_Attack_", 4);
 
 	_animations[FREE] = new Animation(_sprite, 0.2f);
-	_animations[FREE]->addFrameRect(eID::GUARDLU, "guardsLu_Being_0", 6);
+	_animations[FREE]->addFrameRect(eID::GUARDLU, "guardsLu_Being_", 6);
 
 	//_sprite->drawBounding(false);
 
@@ -105,7 +105,7 @@ void GuardLu::UpdateStatus(float dt)
 	if (distanceBetweenAladdin() < 0)
 	{
 		float distance = -distanceBetweenAladdin();
-		if (distance < 200 && distance > 25)
+		if (distance < 25 && distance > 2.5)
 		{
 			this->clearStatus();
 			this->addStatus(eStatus::ATTACK);
@@ -125,7 +125,7 @@ void GuardLu::UpdateStatus(float dt)
 	else if (distanceBetweenAladdin() > 0)
 	{
 		float distance = distanceBetweenAladdin();
-		if (distance < 200 && distance > 25)
+		if (distance < 70 && distance > 10)
 		{
 			this->clearStatus();
 			this->addStatus(eStatus::ATTACK);
@@ -135,7 +135,7 @@ void GuardLu::UpdateStatus(float dt)
 		this->clearStatus();
 		this->addStatus(eStatus::MOVING_RIGHT);
 		movingRight();
-		if (distance < 25)
+		if (distance < 50)
 		{
 			this->clearStatus();
 			this->addStatus(eStatus::MOVING_LEFT);
