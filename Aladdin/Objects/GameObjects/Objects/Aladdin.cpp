@@ -76,9 +76,6 @@ void Aladdin::InIt()
 	_animations[eStatus::FREE] = new Animation(_sprite, 0.1f);
 	_animations[eStatus::FREE]->addFrameRect(eID::ALADDIN, "free_", 32);
 
-	//_animations[eStatus::DROP] = new Animation(_sprite, 0.1f);
-	//_animations[eStatus::DROP]->addFrameRect(eID::ALADDIN, "drop_down_0", "drop_down_1", "drop_down_2","drop_down_3", "drop_down_4", "drop_down_5", "drop_down_6", "drop_down_7", "drop_down_8");
-
 	_animations[eStatus::CLIMB] = new Animation(_sprite, 0.15f);
 	_animations[eStatus::CLIMB]->addFrameRect(eID::ALADDIN, "climb_", 10);
 
@@ -156,9 +153,6 @@ void Aladdin::InIt()
 	_animations[eStatus::ATTACK | eStatus::LOOKING_UP] = new Animation(_sprite, 0.1f);
 
     #pragma region Attack-LookingUp
-
-
-
 	_animations[eStatus::ATTACK | eStatus::LOOKING_UP]->addFrameRect(eID::ALADDIN, "lookingup_attack_0"
 		, "lookingup_attack_1"
 		, "lookingup_attack_2"
@@ -209,7 +203,6 @@ void Aladdin::InIt()
 
 	_canUp = true;
 	setStatus(eStatus::NORMAL);
-
 	//create stopwatch to wait time state normal or free of aladdin
 	_normalAnimateStopWatch = new StopWatch();
 	_firstAnimateStopWatch = new StopWatch();
@@ -1169,7 +1162,7 @@ RECT Aladdin::getBounding()
 void Aladdin::setBounding(RECT r)
 {
 	float distancex = abs(r.right - r.left)/4.0f;
-	float distancey = abs(r.top - r.bottom)/3.0f;
+	float distancey = abs(r.top - r.bottom)/10.0f;
 	RECT temp;
 	temp.left = r.left + distancex;
 	temp.right = r.right - distancex;

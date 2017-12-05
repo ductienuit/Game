@@ -9,8 +9,8 @@ Sprite::~Sprite()
 
 Sprite::Sprite(LPD3DXSPRITE spriteHandle, LPCSTR filePath, int totalFrames, int cols)
 {
-	_origin = Vector2(0.5f, 0.0);
-	_scale = Vector2(1.6f, 1.92f);
+	_origin = ORIGINCHARACTER;
+	_scale = SCALECHARACTER;
 	_lastScale = _scale;
 	_zIndex = 1;
 	_rotate = 0.0f;
@@ -25,48 +25,6 @@ Sprite::Sprite(LPD3DXSPRITE spriteHandle, LPCSTR filePath, int totalFrames, int 
 	_textureHeight = _texture.getHeight();
 	_frameWidth = _textureWidth / cols;
 	_frameHeight = _textureHeight * cols / totalFrames;
-	_index = 0;
-	_currentFrame = Vector2(0, 0);
-
-	this->setIndex(0);
-	this->UpdateBounding();
-
-	_isDrawBounding = false;
-	_surface = nullptr;
-
-	//create surface
-	DeviceManager::getInstance()->getDevice()->CreateOffscreenPlainSurface(
-		WINDOWS_WIDTH,
-		WINDOWS_HEIGHT,
-		D3DFMT_X8R8G8B8,
-		D3DPOOL_DEFAULT,
-		&_surface,
-		NULL
-	);
-}
-
-Sprite::Sprite(float x, float y,int w,int h, int totalFrames , int cols )
-{
-	//Set tọa độ decard
-	_position.x = x;
-	_position.y = y;
-
-
-	//Lấy tọa độ trong viewport
-	Vector3 positionViewPort;
-	positionViewPort = ViewPort::getInstance()->getPositionInViewPort(&Vector3(_position.x, _position.y, 1));
-	_positionViewport.x = positionViewPort.x;
-	_positionViewport.y = positionViewPort.y;
-
-	_origin = Vector2(0.5f, 0.0f);
-	_scale = Vector2(1.0f, 1.0f);
-	_lastScale = _scale;
-	_zIndex = 1;
-	_rotate = 0.0f;
-	_totalFrames = totalFrames;
-	_columns = cols;
-	_frameWidth = w;
-	_frameHeight = h;
 	_index = 0;
 	_currentFrame = Vector2(0, 0);
 
@@ -153,23 +111,13 @@ void Sprite::setPosition(float x, float y, float z)
 void Sprite::setPosition(Vector3 vector)
 {
 	this->_position = Vector2(vector.x, vector.y);
-
-	Vector3 positionViewPort;
-	positionViewPort = ViewPort::getInstance()->getPositionInViewPort(&Vector3(_position.x, _position.y, 1));
-	_positionViewport.x = positionViewPort.x;
-	_positionViewport.y = positionViewPort.y;	
-
+	
 	this->UpdateBounding();
 }
 
 void Sprite::setPosition(Vector2 position)
 {
 	this->_position = position;
-
-	Vector3 positionViewPort;
-	positionViewPort = ViewPort::getInstance()->getPositionInViewPort(&Vector3(_position.x, _position.y, 1));
-	_positionViewport.x = positionViewPort.x;
-	_positionViewport.y = positionViewPort.y;
 
 	this->UpdateBounding();
 }
@@ -193,10 +141,6 @@ void Sprite::setPositionY(float y)
 		return;
 
 	_position.y = y;
-	Vector3 positionViewPort;
-	positionViewPort = ViewPort::getInstance()->getPositionInViewPort(&Vector3(_position.x, _position.y, 1));
-	_positionViewport.x = positionViewPort.x;
-	_positionViewport.y = positionViewPort.y;
 	this->UpdateBounding();
 }
 

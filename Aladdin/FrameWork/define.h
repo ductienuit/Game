@@ -81,23 +81,12 @@ enum eLandType
 #define COLOR_KEY D3DXCOLOR(1.0f, 0.0f, 1.0f, 1.0f)				// màu khi mà load hình nó bỏ qua > trong suốt
 #define BUFFER_WIDTH 1700//2550
 #define BUFFER_HEIGHT 1200//1800
+#define SCALEFACTOR D3DXVECTOR2(1.6f,1.92f)
+#define SCALECHARACTER D3DXVECTOR2(1.6f,1.92f)
+#define SCALEMAP D3DXVECTOR2(1.6f,1.92f)
+#define ORIGINCHARACTER D3DXVECTOR2(0.5f, 0.0f)
+#define ORIGINBACKGROUND D3DXVECTOR2(0.0f, 0.0f)
 
-//enum StateGame
-//{	
-//	Alive,
-//	Pause,
-//	Resume
-//};
-template <typename T>
-inline T Clamp(T value, T min, T max)
-{
-	T temp = value;
-	if (temp < min)
-		temp = min;
-	else if (temp > max)
-		temp = max;
-	return temp;
-}
 typedef D3DXVECTOR2 Vector2;
 typedef D3DXVECTOR3 Vector3;
 #define VECTOR2ZERO Vector2(0.0f, 0.0f)

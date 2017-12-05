@@ -13,7 +13,6 @@
 #include"../../FrameWork/Manager/SceneManager.h"
 #include"../../FrameWork/debug.h"
 #include"../../FrameWork/Animation.h"
-#include"../../FrameWork/Camera.h"
 #include"../GameObjects/Objects/Aladdin.h"
 #include"../GameObjects/Objects/Land.h"
 #include"../Enemies/GuardThin.h"
@@ -46,7 +45,6 @@ public:
 private:
 	void destroyObject();   //Nếu object hết hạn sử dụng thì hủy đối tượng
 	BackGround* background;
-	Camera* camera;
 
 	//Danh sach các đói tượng hoạt động rộng không thể đưa vào quadtree như Aladdin
 	vector<BaseObject*> _listObject;

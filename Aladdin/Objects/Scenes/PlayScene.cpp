@@ -37,7 +37,7 @@ void PlayScene::UpdateViewport(BaseObject * aladdin)
 
 bool PlayScene::InIt()
 {
-	_listobject.push_back(new Land(0, 50, 4771, 50, eDirection::TOP, eLandType::SOLID));
+	_listobject.push_back(new Land(0, 50, 4771, 10, eDirection::TOP, eLandType::SOLID));
 	/*_listobject.push_back(new Land(600, 300, 10, 200, eDirection::INSIDE, eLandType::CLIMBABLE0));
 	_listobject.push_back(new Land(600, 350, 20, 20, eDirection::BOTTOM, eLandType::STOP));
 	_listobject.push_back(new Land(130, 460, 550, 30, eDirection::BOTTOM, eLandType::BAR));*/
