@@ -61,6 +61,12 @@ void SpriteManager::LoadResource(LPD3DXSPRITE spriteHandle)
 	sp = new Sprite(spriteHandle, "Resources//Images//background.png");
 	this->_listSprite.insert(pair<eID, Sprite*>(eID::BACKGROUND, sp));
 	this->LoadSpriteInfo(eID::BACKGROUND, "Resources//Images//background.txt");
+	//red-line
+
+	sp = new Sprite(spriteHandle, "Resources//Images//red-line.png");
+	this->_listSprite.insert(pair<eID, Sprite*>(eID::LAND, sp));
+	this->LoadSpriteInfo(eID::BACKGROUND, "Resources//Images//red-line.txt");
+
 }
 
 Sprite * SpriteManager::getSprite(eID id)

@@ -45,6 +45,48 @@ Sprite::Sprite(LPD3DXSPRITE spriteHandle, LPCSTR filePath, int totalFrames, int 
 	);
 }
 
+Sprite::Sprite(float x, float y,int w,int h, int totalFrames , int cols )
+{
+	//Set tọa độ decard
+	_position.x = x;
+	_position.y = y;
+
+
+	//Lấy tọa độ trong viewport
+	Vector3 positionViewPort;
+	positionViewPort = ViewPort::getInstance()->getPositionInViewPort(&Vector3(_position.x, _position.y, 1));
+	_positionViewport.x = positionViewPort.x;
+	_positionViewport.y = positionViewPort.y;
+
+	_origin = Vector2(0.5f, 0.0f);
+	_scale = Vector2(1.0f, 1.0f);
+	_lastScale = _scale;
+	_zIndex = 1;
+	_rotate = 0.0f;
+	_totalFrames = totalFrames;
+	_columns = cols;
+	_frameWidth = w;
+	_frameHeight = h;
+	_index = 0;
+	_currentFrame = Vector2(0, 0);
+
+	this->setIndex(0);
+	this->UpdateBounding();
+
+	_isDrawBounding = false;
+	_surface = nullptr;
+
+	//create surface
+	DeviceManager::getInstance()->getDevice()->CreateOffscreenPlainSurface(
+		WINDOWS_WIDTH,
+		WINDOWS_HEIGHT,
+		D3DFMT_X8R8G8B8,
+		D3DPOOL_DEFAULT,
+		&_surface,
+		NULL
+	);
+}
+
 void Sprite::Release()
 {
 	this->_texture.Release();
@@ -54,6 +96,12 @@ void Sprite::Render(LPD3DXSPRITE spriteHandle)
 {
 	Vector3 position = Vector3(_position.x, _position.y, _zIndex);
 	_texture.Render(spriteHandle, &_frameRect, _position, _scale, _rotate, _origin);
+}
+
+void Sprite::Render()
+{
+///do something
+	UpdateBounding();
 }
 
 void Sprite::Render(LPD3DXSPRITE spriteHandle, ViewPort* viewport)
@@ -68,7 +116,11 @@ void Sprite::Render(LPD3DXSPRITE spriteHandle, ViewPort* viewport)
 		_origin,
 		_zIndex
 	);
-
+	Vector3 positionViewPort;
+	positionViewPort = ViewPort::getInstance()->getPositionInViewPort(&Vector3(_position.x, _position.y, 1));
+	_positionViewport.x = positionViewPort.x;
+	_positionViewport.y = positionViewPort.y;
+	this->UpdateBounding();
 	////Vẽ bounding để xem
 	//if (_surface == nullptr || _isDrawBounding == false)
 	//{
@@ -417,7 +469,7 @@ void Sprite::UpdateBounding()
 	float scaleH = _frameHeight * abs(_scale.y);
 
 	this->_bound.left = _positionViewport.x - scaleW * _origin.x;
-	this->_bound.bottom = abs(_positionViewport.y-WINDOWS_HEIGHT) - scaleH * _origin.y;
+	this->_bound.bottom = WINDOWS_HEIGHT- _positionViewport.y- scaleH * _origin.y;
 	this->_bound.right = _bound.left + scaleW;
 	this->_bound.top = _bound.bottom +scaleH;
 

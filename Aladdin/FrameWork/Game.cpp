@@ -86,20 +86,6 @@ void Game::Run()
 			_oldTime += _frameRate;
 			_input->Update();
 			this->Render();
-
-            #pragma region Code test man hinh
-		/*	if (_deviceManager->getDevice()->BeginScene())
-			{
-			this->_spriteHandler->Begin(D3DXSPRITE_ALPHABLEND);
-			_deviceManager->getDevice()->ColorFill(
-			_deviceManager->getSurface(),
-			NULL,
-			D3DCOLOR_XRGB((int)_deltaTime, (int)_deltaTime, 0));
-			this->_spriteHandler->End();
-			_deviceManager->getDevice()->EndScene();
-			}
-			_deviceManager->getDevice()->Present(NULL, NULL, NULL, NULL);*/
-            #pragma endregion
 		}
 		else
 			Sleep(_frameRate - _deltaTime);						//sleep every frame for high performance		
