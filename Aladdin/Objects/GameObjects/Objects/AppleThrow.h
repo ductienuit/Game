@@ -1,21 +1,23 @@
-#ifndef _KNIFE_H
-#define _KNIFE_H
+#pragma once
+#ifndef _APPLETHROW_H
+#define _APPLETHROW_H
 
 #include "../../FrameWork/Animation.h"
 #include "../../FrameWork/StopWatch.h"
 #include "../../FrameWork/IComponent.h"
 #include "../../FrameWork/Text.h"
-#include "BaseEnemy.h"
+#include "../../BaseObject.h"
+#include"../../FrameWork/CollisionBody.h"
 using namespace std;
 
-#define KNIFE_SPEED 300
-#define KNIFE_GRAVITY 800
-#define KNIFE_JUMP 100
+#define APPLETHROW_SPEED 300
+#define APPLETHROW_GRAVITY 800
+#define APPLETHROW_JUMP 100
 
-class Knife : public BaseEnemy
+class AppleThrow : public BaseObject
 {
 public:
-	Knife(eStatus status, int posX, int posY, eDirection direction);
+	AppleThrow(eStatus status, int posX, int posY, eDirection direction);
 	void InIt() override;
 	void Update(float deltatime) override;
 	void Draw(LPD3DXSPRITE, ViewPort*) override;
@@ -30,9 +32,10 @@ public:
 	Text* text;
 	void movingLeft(float x, float y);
 	void movingRight(float x, float y);
-	~Knife();
+	~AppleThrow();
 private:
-	
+
+
 	map<string, IComponent*> _listComponent;
 	map<int, Animation*> _animations;
 	Sprite *_divingSprite;

@@ -1,8 +1,5 @@
 ﻿#include "ALADDIN.h"
-/*
-D:\x99\DirectX\Include
-D:\x99\DirectX\Lib\x86
-*/
+
 Aladdin::Aladdin() : BaseObject(eID::ALADDIN)
 {
 }
@@ -30,6 +27,9 @@ void Aladdin::InIt()
 	__hook(&InputController::__eventkeyReleased, _input, &Aladdin::onKeyReleased);
 
 	_sprite = SpriteManager::getInstance()->getSprite(eID::ALADDIN);
+
+	appleThrow = new AppleThrow(eStatus::THROW, -this->getPositionX(), -this->getPositionY(), eDirection::NONE);
+	appleThrow->InIt();
 
 	auto movement = new Movement(Vector2(0, 0), Vector2(0, 0), _sprite);
 	_listComponent["Movement"] = movement;
@@ -219,7 +219,7 @@ void Aladdin::InIt()
 void Aladdin::Update(float deltatime)
 {
 	updateStatus(deltatime);
-
+	appleThrow->Update(deltatime);
 	//Loc dieu kien
 	updateCurrentAnimateIndex();
 
@@ -280,6 +280,9 @@ void Aladdin::UpdateInput(float dt)
 		else if (_input->isKeyPressed(DIK_Z)) //ném
 		{
 			addStatus(eStatus::THROW);
+			appleThrow->addStatus(eStatus::THROW);
+			if (_animations[_status]->getIndex() == 2)
+				appleThrow->movingLeft(this->getPositionX(), this->getPositionY());
 		}
 		else if (_input->isKeyPressed(DIK_C))
 		{
@@ -1191,6 +1194,7 @@ void Aladdin::Stop()
 void Aladdin::Draw(LPD3DXSPRITE spriteHandle, ViewPort* viewport)
 {
 	_animations[_currentAnimateIndex]->Draw(spriteHandle, viewport);
+	appleThrow->Draw(spriteHandle, viewport);
 }
 
 void Aladdin::Release()

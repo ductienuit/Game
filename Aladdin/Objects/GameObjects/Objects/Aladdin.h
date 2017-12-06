@@ -4,10 +4,11 @@
 #include "../../FrameWork/define.h"
 #include "../../FrameWork/Animation.h"
 #include "../../FrameWork/InputController.h"
-#include"../../FrameWork/IComponent.h"
-#include"../../FrameWork/StopWatch.h"
-#include"../../BaseObject.h"
-#include"../../FrameWork/CollisionBody.h"
+#include "../../FrameWork/IComponent.h"
+#include "../../FrameWork/StopWatch.h"
+#include "../../BaseObject.h"
+#include "../../FrameWork/CollisionBody.h"
+#include "AppleThrow.h"
 
 #include"Land.h"
 #include<iostream>
@@ -49,6 +50,7 @@ public:
 private:
 	map<int, Animation*> _animations;
 	map<string, IComponent*> _listComponent;
+	AppleThrow *appleThrow;
 	RECT _boundAla;
 	BaseObject* landstop;
 	BaseObject* _preObjectColli;  //Đối tượng va chạm trước đó
