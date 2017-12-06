@@ -206,6 +206,7 @@ void Aladdin::InIt()
 	//create stopwatch to wait time state normal or free of aladdin
 	_normalAnimateStopWatch = new StopWatch();
 	_firstAnimateStopWatch = new StopWatch();
+	this->setScale(SCALEALADDIN);
 
 }
 
@@ -501,11 +502,11 @@ void Aladdin::UpdateInput(float dt)
 		}
 		if (_input->isKeyDown(DIK_LEFT))
 		{
-			_sprite->setScaleX(-1.6);
+			_sprite->setScaleX(-SCALEALADDIN.x);
 		}
 		else if (_input->isKeyDown(DIK_RIGHT))
 		{
-			_sprite->setScaleX(1.6);
+			_sprite->setScaleX(SCALEALADDIN.x);
 		}
 		else if (_input->isKeyPressed(DIK_X))
 		{
@@ -532,13 +533,13 @@ void Aladdin::UpdateInput(float dt)
 		if (_input->isKeyDown(DIK_LEFT))
 		{
 			removeStatus(eStatus::LOOKING_UP);
-			_sprite->setScaleX(-1.6);
+			_sprite->setScaleX(-SCALEALADDIN.x);
 		}
 		else if (_input->isKeyDown(DIK_RIGHT))
 		{
 			removeStatus(eStatus::LOOKING_UP);
 			removeStatus(eStatus::ATTACK);
-			_sprite->setScaleX(1.6);
+			_sprite->setScaleX(SCALEALADDIN.x);
 		}
 		else if (_input->isKeyDown(DIK_DOWN))
 		{
@@ -1200,14 +1201,14 @@ void Aladdin::standing()
 
 void Aladdin::moveLeft()
 {
-	_sprite->setScaleX(-1.6);
+	_sprite->setScaleX(-SCALEALADDIN.x);
 	auto move = (Movement*)_listComponent["Movement"];
 	move->setVelocity(Vector2(-ALADDIN_MOVE_SPEED, move->getVelocity().y));
 }
 
 void Aladdin::moveRight()
 {
-	_sprite->setScaleX(1.6);
+	_sprite->setScaleX(SCALEALADDIN.x);
 
 	auto move = (Movement*)_listComponent["Movement"];
 	move->setVelocity(Vector2(ALADDIN_MOVE_SPEED, move->getVelocity().y));
@@ -1297,14 +1298,14 @@ void Aladdin::swing()
 
 void Aladdin::swingLeft(float dt)
 {
-	_sprite->setScaleX(-1.6);
+	_sprite->setScaleX(-SCALEALADDIN.x);
 	auto move = (Movement*)_listComponent["Movement"];
 	move->setVelocity(Vector2(-ALADDIN_MOVE_SPEED, move->getVelocity().y));
 }
 
 void Aladdin::swingRight(float dt)
 {
-	_sprite->setScaleX(1.6);
+	_sprite->setScaleX(SCALEALADDIN.x);
 	auto move = (Movement*)_listComponent["Movement"];
 	move->setVelocity(Vector2(ALADDIN_MOVE_SPEED, move->getVelocity().y));
 }

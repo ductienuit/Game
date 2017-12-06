@@ -35,7 +35,7 @@ void CollisionBody::checkCollision(BaseObject * otherObject, float dt)
 		float time = SweptAABB(myRect, otherRect, direction, dt);
 		auto land = (Land*)otherObject;
 		//Ưu tiên
-		if (1 - time > 0)
+		if (1.0f - time > 0)
 		{
 			CollisionEventArg* e = new CollisionEventArg(otherObject);
 			e->_sideCollision = direction;
@@ -341,7 +341,7 @@ RECT CollisionBody::getSweptBroadphaseRect(BaseObject* object, float dt)  //obje
 	/*Tại sao không chia 1000 mà chia 500 ?
 		+	Chia 500 sẽ tạo ra BroadPhaseRect có tỷ lệ to hơn, 
 		check collision sẽ đúng không bị overlaprect  */
-	auto velocity = Vector2(object->getVelocity().x * dt/500, object->getVelocity().y * dt/500 );
+	auto velocity = Vector2(object->getVelocity().x * dt/300, object->getVelocity().y * dt/300);
 	auto myRect = object->getBounding();
 	RECT rect;
 	DrawRect(myRect);

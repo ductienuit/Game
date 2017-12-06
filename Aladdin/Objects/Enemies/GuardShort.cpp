@@ -3,7 +3,6 @@
 GuardShort::GuardShort(eStatus status, int posX, int posY, eDirection direction)
 {
 	_sprite = SpriteManager::getInstance()->getSprite(eID::GUARDSHORT);
-	//_sprite->setFrameRect(0, 0, 32.0f, 16.0f);
 
 	_divingSprite = SpriteManager::getInstance()->getSprite(eID::ALADDIN);
 	Vector2 v(direction * GUARDSHORT_SPEED, 0);

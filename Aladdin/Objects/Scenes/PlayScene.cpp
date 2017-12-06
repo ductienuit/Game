@@ -26,7 +26,7 @@ void PlayScene::UpdateViewport(BaseObject * aladdin)
 	// Bám theo object.
 	float y = aladdin->getPositionY() - WINDOWS_HEIGHT;
 	Vector2 new_position = Vector2(max(aladdin->getPositionX() - 420, 0),
-		max(aladdin->getPositionY()+500,WINDOWS_HEIGHT));		// 420 va 500 khoảng cách tối đa giữa object và map -> hardcode
+		max(aladdin->getPositionY() + 500, WINDOWS_HEIGHT));		// 420 va 500 khoảng cách tối đa giữa object và map -> hardcode
 	// Không cho đi quá map.
 	if (new_position.x + WINDOWS_WIDTH > worldsize.x)
 	{
@@ -37,7 +37,7 @@ void PlayScene::UpdateViewport(BaseObject * aladdin)
 
 bool PlayScene::InIt()
 {
-	_listobject.push_back(new Land(0, 50, 4771, 10, eDirection::TOP, eLandType::SOLID));
+	_listobject.push_back(new Land(0, 100, 4771, 10, eDirection::TOP, eLandType::SOLID));
 	/*_listobject.push_back(new Land(600, 300, 10, 200, eDirection::INSIDE, eLandType::CLIMBABLE0));
 	_listobject.push_back(new Land(600, 350, 20, 20, eDirection::BOTTOM, eLandType::STOP));
 	_listobject.push_back(new Land(130, 460, 550, 30, eDirection::BOTTOM, eLandType::BAR));*/
