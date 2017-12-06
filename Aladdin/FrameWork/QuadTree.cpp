@@ -195,10 +195,6 @@ void QuadTree::loadChild(pugi::xml_node& node, QuadTree* parent)
 			auto objectnames = splitString(text, ' ');
 			for each (string name in objectnames)
 			{
-				//auto obj = listobject[name];
-				//if (obj == NULL)
-				//	continue;
-				//parent->insertObject(obj);
 				parent->insertObject(name);
 			}
 		}

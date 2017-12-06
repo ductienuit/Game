@@ -44,7 +44,7 @@ private:
 	map<string, IComponent*> _listComponent;
 	map<int, Animation*> _animations;
 	Sprite *_divingSprite;
-	vector<BaseObject*> _listobject;
+	vector<BaseObject*> _listObject;
 	vector<IControlable*> _listControlObject;
 	bool _canThrow;
 };

@@ -37,10 +37,10 @@ void PlayScene::UpdateViewport(BaseObject * aladdin)
 
 bool PlayScene::InIt()
 {
-	_listobject.push_back(new Land(0, 100, 4771, 10, eDirection::TOP, eLandType::SOLID));
-	/*_listobject.push_back(new Land(600, 300, 10, 200, eDirection::INSIDE, eLandType::CLIMBABLE0));
-	_listobject.push_back(new Land(600, 350, 20, 20, eDirection::BOTTOM, eLandType::STOP));
-	_listobject.push_back(new Land(130, 460, 550, 30, eDirection::BOTTOM, eLandType::BAR));*/
+	_listObject.push_back(new Land(0, 100, 4771, 10, eDirection::TOP, eLandType::SOLID));
+	/*_listObject.push_back(new Land(600, 300, 10, 200, eDirection::INSIDE, eLandType::CLIMBABLE0));
+	_listObject.push_back(new Land(600, 350, 20, 20, eDirection::BOTTOM, eLandType::STOP));
+	_listObject.push_back(new Land(130, 460, 550, 30, eDirection::BOTTOM, eLandType::BAR));*/
 
 
 	background = new BackGround();
@@ -48,20 +48,20 @@ bool PlayScene::InIt()
 
 	auto guardLu = new GuardLu(eStatus::MOVING_LEFT, 200, 100, eDirection::LEFT);
 	guardLu->InIt();
-	_listobject.push_back(guardLu);
+	_listObject.push_back(guardLu);
 
 	auto guardThin = new GuardThin(eStatus::MOVING_LEFT, 200, 100, eDirection::LEFT);
 	guardThin->InIt();
-	_listobject.push_back(guardThin);
+	_listObject.push_back(guardThin);
 
 	auto guardShort = new GuardShort(eStatus::MOVING_LEFT, 600, 140, eDirection::LEFT);
 	guardShort->InIt();
-	_listobject.push_back(guardShort);
+	_listObject.push_back(guardShort);
 
     _aladdin = new Aladdin();
 	_aladdin->InIt();
 	_aladdin->setPosition(00,250);
-	_listobject.push_back(_aladdin);
+	_listObject.push_back(_aladdin);
 
 	return true;
 }
@@ -80,13 +80,13 @@ void PlayScene::Update(float dt)
 	
 	this->UpdateViewport(_aladdin);
 
-	for each (auto object in _listobject)
+	for each (auto object in _listObject)
 	{
 		object->Update(dt);
 	}
 
-	for(auto i : _listobject)
-		for (auto j : _listobject)
+	for(auto i : _listObject)
+		for (auto j : _listObject)
 		{
 			if (i->getId() != j->getId())
 				i->checkCollision(j, dt);
@@ -97,7 +97,7 @@ void PlayScene::Draw(LPD3DXSPRITE spriteHandle)
 {
 	background->Draw(spriteHandle,_viewport);
 
-	for each (auto object in _listobject)
+	for each (auto object in _listObject)
 	{
 		object->Draw(spriteHandle, _viewport);
 		object->ShowBB();
@@ -106,7 +106,7 @@ void PlayScene::Draw(LPD3DXSPRITE spriteHandle)
 
 void PlayScene::Release()
 {
-	for each (auto object in _listobject)
+	for each (auto object in _listObject)
 	{
 		object->Release();
 	}

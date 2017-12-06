@@ -13,6 +13,7 @@
 #include"../../FrameWork/Manager/SceneManager.h"
 #include"../../FrameWork/debug.h"
 #include"../../FrameWork/Animation.h"
+#include"../FrameWork/QuadTree.h"
 
 #include"../Objects/GameObjects/Objects/Aladdin.h"
 #include"../Objects/GameObjects/Objects/Land.h"
@@ -20,6 +21,7 @@
 #include"../Objects/Enemies/GuardShort.h"
 #include"../Objects/Enemies/GuardLu.h"
 #include"../Objects/Enemies/Knife.h"
+
 #include"BackGround.h"
 using namespace std;
 
@@ -45,8 +47,11 @@ public:
 	//id để dịnh danh một đối tượng
 	BaseObject* getObject(eID id);
 private:
-	void destroyObject();   //Nếu object hết hạn sử dụng thì hủy đối tượng
-	BackGround* background;
+	//Quadtree
+	QuadTree* _root;
+
+	//Nếu object hết hạn sử dụng thì hủy đối tượng
+	void destroyObject();   
 
 	//Danh sach các đói tượng hoạt động rộng không thể đưa vào quadtree như Aladdin
 	vector<BaseObject*> _listObject;
@@ -54,21 +59,37 @@ private:
 	//Danh sách các đối tượng dùng để tạo trong quadtree
 	map<string, BaseObject*> _mapObject;
 
+	/*
+	Danh sách các đối tượng nằm trong camera
+	Mỗi vòng lặp sẽ truyền vào rect camera và trả về các object nằm trong*/
+	vector<BaseObject*> _activeObject;
+
+	/* 
+	Danh sách những đối tượng được UpdateInput
+	*/
+	vector<IControlable*> _listControlObject;
+
 	Aladdin* _aladdin;
 	BaseObject* _weaponmanager;
 
-	BaseObject* testLand;
+	/*Danh sách các đối tượng va chạm mềm*/
+	vector<BaseObject*> Bar;			//Thanh xà ngang
+	vector<BaseObject*> Rope;			//Dây
+	vector<BaseObject*> Solid;			//Đất
+	vector<BaseObject*> Spring;			//Cục nhún
+	vector<BaseObject*> Platform;		//Thanh gỗ
 
-	vector<BaseObject*> Bar;
-	vector<BaseObject*> Rope;
-	vector<BaseObject*> Solid;
-	vector<BaseObject*> Spring;
-	vector<BaseObject*> Platform;
+	//Main background
+	BackGround* background;
+	//Front background
 
+	//Sky background;
+
+	//Chuyển đổi tọa độ word sang viewport
 	static ViewPort* _viewport;
+
 	Sprite* sprite;
-	vector<BaseObject*> _listobject;
-	vector<IControlable*> _listControlObject;
+
 	Animation* _animation;
 };
 

@@ -16,8 +16,6 @@ private:
 
 	//vector<BaseObject*>  _listOject;
 	vector<string> _listObject;
-
-
 public:
 	QuadTree(int id, int level, RECT bound, QuadTree* parent);
 	void insertObject(BaseObject* baseobject);
