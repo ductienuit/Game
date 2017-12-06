@@ -236,6 +236,8 @@ void Aladdin::Update(float deltatime)
 
 	//Set lại bounding của aladdin
 	setBounding(_sprite->getBounding());
+	float x = this->getPositionX();
+	float y = this->getPositionY();
 }
 
 void Aladdin::UpdateInput(float dt)

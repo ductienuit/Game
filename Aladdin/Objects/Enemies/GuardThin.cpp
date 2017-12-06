@@ -33,6 +33,7 @@ void GuardThin::InIt()
 
 	_animations[ATTACK] = new Animation(_sprite, 0.15f);
 	_animations[ATTACK]->addFrameRect(eID::GUARDTHIN, "guardsThin_attack_0", 6);
+
 	_sprite->setOrigin(Vector2(0.5, 0));
 	
 }
@@ -43,11 +44,13 @@ void GuardThin::Update(float deltatime)
 
 	_animations[this->getStatus()]->Update(deltatime);
 
+	float x = this->getPositionX();
+	float y = this->getPositionY();
 	//update component để sau cùng để sửa bên trên sau đó nó cập nhật đúng
-	for (auto it = _listComponent.begin(); it != _listComponent.end(); it++)
-	{
-		it->second->Update(deltatime);
-	}
+	//for (auto it = _listComponent.begin(); it != _listComponent.end(); it++)
+	//{
+	//	it->second->Update(deltatime);
+	//}
 }
 
 void GuardThin::Draw(LPD3DXSPRITE spritehandle, ViewPort* viewport)

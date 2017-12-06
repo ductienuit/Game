@@ -49,6 +49,7 @@ public:
 private:
 	//Quadtree
 	QuadTree* _root;
+	RECT test;
 
 	//Nếu object hết hạn sử dụng thì hủy đối tượng
 	void destroyObject();   

@@ -18,12 +18,6 @@ void BackGround::InIt()
 
 void BackGround::Update(float deltatime)
 {
-	if (this->_following)
-	{
-		/*float cameraX = this->_following->getPositionX();
-		float cameraY = -this->_following->getPositionY() / 10;
-		_sprite->setPosition(cameraX, cameraY);*/
-	}
 }
 
 void BackGround::Draw(LPD3DXSPRITE spriteHandle, ViewPort *viewport)

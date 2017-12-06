@@ -2,6 +2,7 @@
 #define __GAME_FRAMEWORK__
 #define WINDOWS_WIDTH 840
 #define WINDOWS_HEIGHT 600
+#define SIZEMAP	D3DXVECTOR2(7634,1321) //4771*1,6 ; 688*1.92 
 #define FPS 30
 #define MAX_KEYS 256
 
