@@ -13,12 +13,13 @@
 #include"../../FrameWork/Manager/SceneManager.h"
 #include"../../FrameWork/debug.h"
 #include"../../FrameWork/Animation.h"
-#include"../GameObjects/Objects/Aladdin.h"
-#include"../GameObjects/Objects/Land.h"
-#include"../Enemies/GuardThin.h"
-#include"../Enemies/GuardShort.h"
-#include"../Enemies/GuardLu.h"
-#include"../Enemies/Knife.h"
+
+#include"../Objects/GameObjects/Objects/Aladdin.h"
+#include"../Objects/GameObjects/Objects/Land.h"
+#include"../Objects/Enemies/GuardThin.h"
+#include"../Objects/Enemies/GuardShort.h"
+#include"../Objects/Enemies/GuardLu.h"
+#include"../Objects/Enemies/Knife.h"
 #include"BackGround.h"
 using namespace std;
 

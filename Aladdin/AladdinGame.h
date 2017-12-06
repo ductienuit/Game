@@ -3,7 +3,7 @@
 #define _GameALADDIN_H
 #include"../Aladdin/FrameWork/Game.h"
 #include"../Aladdin/FrameWork/Manager/SceneManager.h"
-#include"Objects\Scenes\PlayScene.h"
+#include"Scenes\PlayScene.h"
 
 using namespace std;
 USEGAME_FRAMEWORK

@@ -37,9 +37,6 @@
     <Filter Include="Header Files\Object\GameObjects">
       <UniqueIdentifier>{85eb93d2-958c-4834-9deb-161af68ff242}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Object\Scenes">
-      <UniqueIdentifier>{39e7ce3d-1743-485d-b8c9-37d4468eda5f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Object\Weapons">
       <UniqueIdentifier>{4e9ab0a8-a469-4cfa-be71-76d1eec01e1a}</UniqueIdentifier>
     </Filter>
@@ -52,11 +49,14 @@
     <Filter Include="Source Files\Object\Weapons">
       <UniqueIdentifier>{a87368fc-23ed-4536-bedb-baa171c713f2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Object\Scenes">
-      <UniqueIdentifier>{dcf85cb3-9864-438f-8fc5-6dea9f61c150}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Debug">
       <UniqueIdentifier>{a1b6a736-3163-4bb6-afe8-d1c9bd828289}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Scenes">
+      <UniqueIdentifier>{dcf85cb3-9864-438f-8fc5-6dea9f61c150}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Scenes">
+      <UniqueIdentifier>{39e7ce3d-1743-485d-b8c9-37d4468eda5f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -129,9 +129,6 @@
     <ClCompile Include="Objects\Enemies\GuardThin.cpp">
       <Filter>Source Files\Object\Enemies</Filter>
     </ClCompile>
-    <ClCompile Include="Objects\Scenes\PlayScene.cpp">
-      <Filter>Source Files\Object\Scenes</Filter>
-    </ClCompile>
     <ClCompile Include="Objects\BaseObject.cpp">
       <Filter>Source Files\Object</Filter>
     </ClCompile>
@@ -147,9 +144,6 @@
     <ClCompile Include="Objects\Enemies\GuardLu.cpp">
       <Filter>Source Files\Object\Enemies</Filter>
     </ClCompile>
-    <ClCompile Include="Objects\Scenes\BackGround.cpp">
-      <Filter>Source Files\Object\Scenes</Filter>
-    </ClCompile>
     <ClCompile Include="Objects\Enemies\Knife.cpp">
       <Filter>Source Files\Object\Enemies</Filter>
     </ClCompile>
@@ -158,6 +152,12 @@
     </ClCompile>
     <ClCompile Include="FrameWork\QuadTree.cpp">
       <Filter>Source Files\FrameWork</Filter>
+    </ClCompile>
+    <ClCompile Include="Scenes\BackGround.cpp">
+      <Filter>Source Files\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Scenes\PlayScene.cpp">
+      <Filter>Source Files\Scenes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -233,9 +233,6 @@
     <ClInclude Include="Objects\Enemies\GuardThin.h">
       <Filter>Header Files\Object\Enemies</Filter>
     </ClInclude>
-    <ClInclude Include="Objects\Scenes\PlayScene.h">
-      <Filter>Header Files\Object\Scenes</Filter>
-    </ClInclude>
     <ClInclude Include="Objects\BaseObject.h">
       <Filter>Header Files\Object</Filter>
     </ClInclude>
@@ -257,11 +254,14 @@
     <ClInclude Include="FrameWork\QuadTree.h">
       <Filter>Header Files\FrameWork</Filter>
     </ClInclude>
-    <ClInclude Include="Objects\Scenes\BackGround.h">
-      <Filter>Header Files\Object\Scenes</Filter>
-    </ClInclude>
     <ClInclude Include="Objects\Enemies\Knife.h">
       <Filter>Header Files\FrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenes\BackGround.h">
+      <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenes\PlayScene.h">
+      <Filter>Header Files\Scenes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -127,7 +127,7 @@
   <ItemGroup>
     <ClCompile Include="AladdinGame.cpp" />
     <ClCompile Include="Objects\Enemies\GuardLu.cpp" />
-    <ClCompile Include="Objects\Scenes\BackGround.cpp" />
+    <ClCompile Include="Scenes\BackGround.cpp" />
     <ClCompile Include="Objects\Enemies\GuardShort.cpp" />
     <ClCompile Include="Objects\Enemies\BaseEnemy.cpp" />
     <ClCompile Include="FrameWork\CollisionBody.cpp" />
@@ -151,7 +151,7 @@
     <ClCompile Include="FrameWork\ViewPort.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Objects\GameObjects\Objects\Aladdin.cpp" />
-    <ClCompile Include="Objects\Scenes\PlayScene.cpp" />
+    <ClCompile Include="Scenes\PlayScene.cpp" />
     <ClCompile Include="FrameWork\StopWatch.cpp" />
     <ClCompile Include="FrameWork\Text.cpp" />
     <ClCompile Include="Objects\GameObjects\Objects\Land.cpp" />
@@ -162,7 +162,7 @@
   <ItemGroup>
     <ClInclude Include="AladdinGame.h" />
     <ClInclude Include="Objects\Enemies\GuardLu.h" />
-    <ClInclude Include="Objects\Scenes\BackGround.h" />
+    <ClInclude Include="Scenes\BackGround.h" />
     <ClInclude Include="Objects\Enemies\GuardShort.h" />
     <ClInclude Include="Objects\Enemies\BaseEnemy.h" />
     <ClInclude Include="FrameWork\CollisionBody.h" />
@@ -187,7 +187,7 @@
     <ClInclude Include="FrameWork\Transformable.h" />
     <ClInclude Include="FrameWork\ViewPort.h" />
     <ClInclude Include="Objects\GameObjects\Objects\Aladdin.h" />
-    <ClInclude Include="Objects\Scenes\PlayScene.h" />
+    <ClInclude Include="Scenes\PlayScene.h" />
     <ClInclude Include="FrameWork\StopWatch.h" />
     <ClInclude Include="FrameWork\Text.h" />
     <ClInclude Include="Objects\GameObjects\Objects\Land.h" />
