@@ -138,20 +138,26 @@
     <ClCompile Include="Objects\Enemies\GuardShort.cpp">
       <Filter>Source Files\Object\Enemies</Filter>
     </ClCompile>
-    <ClCompile Include="Objects\Enemies\Knife.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Objects\GameObjects\Objects\Land.cpp">
       <Filter>Source Files\Object\GameObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="Objects\Scenes\BackGround.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="FrameWork\ViewPort.cpp">
       <Filter>Source Files\FrameWork</Filter>
     </ClCompile>
     <ClCompile Include="Objects\Enemies\GuardLu.cpp">
       <Filter>Source Files\Object\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Scenes\BackGround.cpp">
+      <Filter>Source Files\Object\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Enemies\Knife.cpp">
+      <Filter>Source Files\Object\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="FrameWork\Utils.cpp">
+      <Filter>Source Files\FrameWork</Filter>
+    </ClCompile>
+    <ClCompile Include="FrameWork\QuadTree.cpp">
+      <Filter>Source Files\FrameWork</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -236,20 +242,26 @@
     <ClInclude Include="Objects\Enemies\GuardShort.h">
       <Filter>Header Files\Object\Enemies</Filter>
     </ClInclude>
-    <ClInclude Include="Objects\Enemies\Knife.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Objects\GameObjects\Objects\Land.h">
       <Filter>Header Files\Object\GameObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="Objects\Scenes\BackGround.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FrameWork\ViewPort.h">
       <Filter>Header Files\FrameWork</Filter>
     </ClInclude>
     <ClInclude Include="Objects\Enemies\GuardLu.h">
       <Filter>Header Files\Object\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameWork\Utils.h">
+      <Filter>Header Files\FrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameWork\QuadTree.h">
+      <Filter>Header Files\FrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Scenes\BackGround.h">
+      <Filter>Header Files\Object\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Enemies\Knife.h">
+      <Filter>Header Files\FrameWork</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

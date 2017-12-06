@@ -9,7 +9,7 @@
 #include "BaseEnemy.h"
 using namespace std;
 
-#define GUARDLU_SPEED 80
+#define GUARDLU_SPEED 30
 #define GUARDLU_SCORE 100
 
 class GuardLu : public BaseEnemy

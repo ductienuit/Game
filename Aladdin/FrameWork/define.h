@@ -17,11 +17,9 @@
 #include <map>
 #include <vector>
 #include"debug.h"
-//else if (this->isInStatus(eStatus::ATTACK)
-//	&& isExist((eStatus)
-//	(LOOKING_UP | SITTING_DOWN | MOVING_LEFT
-//	| MOVING_RIGHT | JUMPING_LEFT | JUMPING_RIGHT
-//	| JUMPING | CLIMB | SWING)))
+#include "utils.h"
+
+
 enum eStatus
 {
 	NORMAL =		0,					// 00000 = 0
@@ -30,7 +28,7 @@ enum eStatus
 	MOVING_RIGHT =	(1 << 2),				// 00010 = 2^1
 	JUMPING =		(1 << 3),				// 00100 = 2^2
 	SITTING_DOWN =	(1 << 4),				// 01000 = 2^3
-	RUNNING =			(1 << 5),				// 10000 = 2^4
+	RUNNING =		(1 << 5),				// 10000 = 2^4
 	LOOKING_UP =	(1 << 6),				// 2^5
 	THROW =			(1 << 7),			//Ném táo.
 	FREE =			(1 << 8),			//Trạng thái sau trạng thái normal khi chờ player rờ phím
