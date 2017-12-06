@@ -138,9 +138,6 @@
     <ClCompile Include="Objects\Enemies\GuardShort.cpp">
       <Filter>Source Files\Object\Enemies</Filter>
     </ClCompile>
-    <ClCompile Include="Objects\Enemies\Knife.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Objects\GameObjects\Objects\Land.cpp">
       <Filter>Source Files\Object\GameObjects</Filter>
     </ClCompile>
@@ -152,6 +149,9 @@
     </ClCompile>
     <ClCompile Include="FrameWork\ViewPort.cpp">
       <Filter>Source Files\FrameWork</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Enemies\Knife.cpp">
+      <Filter>Source Files\Object\Enemies</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -236,9 +236,6 @@
     <ClInclude Include="Objects\Enemies\GuardShort.h">
       <Filter>Header Files\Object\Enemies</Filter>
     </ClInclude>
-    <ClInclude Include="Objects\Enemies\Knife.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Objects\GameObjects\Objects\Land.h">
       <Filter>Header Files\Object\GameObjects</Filter>
     </ClInclude>
@@ -250,6 +247,9 @@
     </ClInclude>
     <ClInclude Include="FrameWork\ViewPort.h">
       <Filter>Header Files\FrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Enemies\Knife.h">
+      <Filter>Header Files\Object\Enemies</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

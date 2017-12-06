@@ -99,7 +99,7 @@ float GuardShort::checkCollision(BaseObject *, float)
 
 float GuardShort::distanceBetweenAladdin()
 {
-	float xAla = _divingSprite->getPositionX() +(_divingSprite->getBounding().right- _divingSprite->getBounding().left) / 2;
+	float xAla = _divingSprite->getPositionX() +(_divingSprite->getBounding().right - _divingSprite->getBounding().left) / 2;
 	float x = this->getPositionX();
 
 #pragma region Test
@@ -107,8 +107,6 @@ float GuardShort::distanceBetweenAladdin()
 	sprintf(str, "khoang cach voi aladdin: %f", xAla - x);
 	text->setText(str);
 #pragma endregion
-
-
 	return xAla - x;
 }
 
@@ -116,46 +114,50 @@ void GuardShort::UpdateStatus(float dt)
 {
 	if (distanceBetweenAladdin() < 0)
 	{
-		float distance = -distanceBetweenAladdin();
-		if (distance < 200 && distance > 25)
+		float distance = distanceBetweenAladdin();
+		if (distance < 200 && distance > 1)
 		{
 			this->clearStatus();
 			this->addStatus(eStatus::ATTACK);
 			standing();
 			knife->addStatus(eStatus::THROW);
-			if(_animations[_status]->getIndex()==2)
-				knife->Throw();
+			if (_animations[_status]->getIndex() == 2)
+				knife->movingLeft(this->getPositionX(), this->getPositionY());
 			return;
 		}
 		this->clearStatus();
 		this->addStatus(eStatus::MOVING_LEFT);
 		movingLeft();
-		if (distance < 25)
+		if (distance <= 1)
 		{
 			this->clearStatus();
 			this->addStatus(eStatus::MOVING_RIGHT);
 			movingRight();
+			return;
 		}
 	}
 	else if (distanceBetweenAladdin() > 0)
 	{
 		float distance = distanceBetweenAladdin();
-		if (distance < 200 && distance > 25)
+		if (distance < 200 && distance > 1)
 		{
 			this->clearStatus();
 			this->addStatus(eStatus::ATTACK);
-			knife->addStatus(eStatus::THROW);
 			standing();
+			knife->addStatus(eStatus::THROW);
+			if (_animations[_status]->getIndex() == 2)
+				knife->movingRight(this->getPositionX(), this->getPositionY());
 			return;
 		}
 		this->clearStatus();
 		this->addStatus(eStatus::MOVING_RIGHT);
 		movingRight();
-		if (distance < 25)
+		if (distance <= 1)
 		{
 			this->clearStatus();
 			this->addStatus(eStatus::MOVING_LEFT);
 			movingLeft();
+			return;
 		}
 	}
 }

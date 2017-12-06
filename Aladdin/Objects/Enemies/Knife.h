@@ -8,7 +8,7 @@
 #include "BaseEnemy.h"
 using namespace std;
 
-#define KNIFE_SPEED 100
+#define KNIFE_SPEED 200
 #define KNIFE_GRAVITY 800
 #define KNIFE_JUMP 100
 
@@ -25,17 +25,13 @@ public:
 	void onCollisionEnd(CollisionEventArg*);
 	float checkCollision(BaseObject*, float);
 
-	float distanceBetweenAladdin();
-
 	IComponent* getComponent(string componentName);
 
 	Text* text;
-	void Throw();
+	void movingLeft(float x, float y);
+	void movingRight(float x, float y);
 	~Knife();
 private:
-	void movingLeft();
-	void movingRight();
-	void standing();
 	
 	map<string, IComponent*> _listComponent;
 	map<int, Animation*> _animations;

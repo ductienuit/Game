@@ -17,19 +17,6 @@ Knife::Knife(eStatus status, int posX, int posY, eDirection direction)
 
 void Knife::InIt()
 {
-	//auto move = (Movement*)this->_listComponent["Movement"];
-	//move->setVelocity(Vector2(move->getVelocity().x, KNIFE_JUMP));
-
-	//auto gravity = new Gravity(Vector2(0, -KNIFE_GRAVITY), move);
-	//gravity->setStatus(eGravityStatus::FALLING__DOWN);
-	//_listComponent["Gravity"] = gravity;
-	
-	/*auto movement = new Movement(Vector2(9.8, 9.8), Vector2(20, 10), _sprite);
-	_listComponent["Movement"] = movement;
-
-	auto gravity = new Gravity(Vector2(0,-KNIFE_GRAVITY),movement);
-	gravity->setStatus(eGravityStatus::FALLING__DOWN);*/
-	//_listComponent["Gravity"] = gravity;
 
 	auto collisionBody = new CollisionBody(this);
 	_listComponent["CollisionBody"] = collisionBody;
@@ -41,17 +28,10 @@ void Knife::InIt()
 	_animations[THROW]->addFrameRect(eID::KNIFE, "guardsShort_throw_01", "guardsShort_throw_02", "guardsShort_throw_03", "guardsShort_throw_04"
 		, "guardsShort_throw_05", "guardsShort_throw_06", "guardsShort_throw_07", NULL);
 
-	//_sprite->drawBounding(false);
-	//_sprite->setOrigin(Vector2(0, 0));
-
 }
 void Knife::Update(float deltatime)
 {
 	_animations[this->getStatus()]->Update(deltatime);
-
-	float x = this->getPositionX()-10;
-	float y = this->getPositionY()-5;
-	this->setPosition(x, y);
 
 	// update component để sau cùng để sửa bên trên sau đó nó cập nhật đúng
 	for (auto it = _listComponent.begin(); it != _listComponent.end(); it++)
@@ -98,43 +78,23 @@ Knife::~Knife()
 {
 }
 
-void Knife::movingLeft()
+void Knife::movingLeft(float x, float y)
 {
 	_sprite->setScaleX(-1.6);
 	auto move = (Movement*)this->_listComponent["Movement"];
-	move->setVelocity(Vector2(-KNIFE_SPEED, move->getVelocity().y));
-}
-
-void Knife::movingRight()
-{
-	_sprite->setScaleX(1.6);
-
-	auto move = (Movement*)this->_listComponent["Movement"];
-	move->setVelocity(Vector2(KNIFE_SPEED, move->getVelocity().y));
-}
-
-void Knife::standing()
-{
-	auto move = (Movement*)this->_listComponent["Movement"];
-	move->setVelocity(VECTOR2ZERO);
-}
-
-void Knife::Throw()
-{
-	float x = _originPosition.x - 10;
-	float y = _originPosition.y - 5;
+	move->setVelocity(Vector2(-KNIFE_SPEED, -KNIFE_JUMP));
+	x = x - 80;
+	y = y + 60;
 	this->setPosition(x, y);
 }
 
-float Knife::distanceBetweenAladdin()
+void Knife::movingRight(float x, float y)
 {
-	float xAla = _divingSprite->getPositionX() + (_divingSprite->getBounding().right - _divingSprite->getBounding().left) / 2;
-	float x = this->getPositionX();
+	_sprite->setScaleX(1.6);
+	auto move = (Movement*)this->_listComponent["Movement"];
+	move->setVelocity(Vector2(KNIFE_SPEED, -KNIFE_JUMP));
 
-#pragma region Test
-	char str[100];
-	sprintf(str, "khoang cach voi aladdin: %f", xAla - x);
-	text->setText(str);
-#pragma endregion
-	return xAla - x;
+	x = x + 80;
+	y = y + 60;
+	this->setPosition(x, y);
 }
