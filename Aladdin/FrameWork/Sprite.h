@@ -26,7 +26,8 @@ public:
 	*/
 	Sprite(LPD3DXSPRITE spriteHandle, LPCSTR filePath, int totalFrames = 1, int cols = 1);
 	
-	Sprite(float x, float y, int w, int h, int totalFrames = 1, int cols = 1);
+	/*Khởi tạo sprite cho land, chú ý: Chỉ sử dụng bounding để xét va chạm*/
+	Sprite(int x, int y, int w, int h,Vector2 scale = SCALEFACTOR, int totalFrames = 1, int cols = 1);
 
 	~Sprite();
 
@@ -40,7 +41,7 @@ public:
 	*/
 	void Render(LPD3DXSPRITE spriteHandle);
 	/*
-	Render land, just change position _bound
+	Render land, just change position in viewport
 	*/
 	void Render();
 	/*

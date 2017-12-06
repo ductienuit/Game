@@ -22,10 +22,10 @@ void PlayScene::setViewPort(ViewPort * viewport)
 bool PlayScene::InIt()
 {
 
-	/*_listObject.push_back(new Land(600, 300, 10, 200, eDirection::INSIDE, eLandType::CLIMBABLE0));
-	_listObject.push_back(new Land(600, 350, 20, 20, eDirection::BOTTOM, eLandType::STOP));
-	_listObject.push_back(new Land(130, 460, 550, 30, eDirection::BOTTOM, eLandType::BAR));*/
-	_listObject.push_back(new Land(1, 100, 4771, 10, eDirection::TOP, eLandType::SOLID));
+	_listObject.push_back(new Land(600,300, 10, 200, eDirection::INSIDE, eLandType::CLIMBABLE0));
+	_listObject.push_back(new Land(600,750, 20, 20, eDirection::BOTTOM, eLandType::STOP));
+	_listObject.push_back(new Land(130, 850, 800, 30, eDirection::BOTTOM, eLandType::BAR));
+	_listObject.push_back(new Land(5, 100, 4771, 10, eDirection::TOP, eLandType::SOLID));
 
 	test.top = 100;
 	test.left = 10;
@@ -49,7 +49,7 @@ bool PlayScene::InIt()
 
     _aladdin = new Aladdin();
 	_aladdin->InIt();
-	_aladdin->setPosition(00,250);
+	_aladdin->setPosition(20,250);
 	_listObject.push_back(_aladdin);
 
 	return true;
@@ -85,22 +85,22 @@ void PlayScene::Update(float dt)
 
 void PlayScene::Draw(LPD3DXSPRITE spriteHandle)
 {
-	background->Draw(spriteHandle,_viewport);
+	//background->Draw(spriteHandle,_viewport);
 	for each (auto object in _listObject)
 	{
 		object->Draw(spriteHandle, _viewport);
 		object->ShowBB();
 	}
-	RECT test1;
-	Vector3 p1 = Vector3(test.left, test.top,1);
-	p1 = ViewPort::getInstance()->getPositionInViewPort(&p1);
-	test1.left = p1.x;
-	test1.top = WINDOWS_HEIGHT - p1.y;
-	p1 = Vector3(test.right, test.bottom, 1);
-	p1 = ViewPort::getInstance()->getPositionInViewPort(&p1);
-	test1.right = p1.x;
-	test1.bottom = WINDOWS_HEIGHT - p1.y;
-	DrawRect(test1);
+	//RECT test1;
+	//Vector3 p1 = Vector3(test.left, test.top,1);
+	//p1 = ViewPort::getInstance()->getPositionInViewPort(&p1);
+	//test1.left = p1.x;
+	//test1.top = WINDOWS_HEIGHT - p1.y;
+	//p1 = Vector3(test.right, test.bottom, 1);
+	//p1 = ViewPort::getInstance()->getPositionInViewPort(&p1);
+	//test1.right = p1.x;
+	//test1.bottom = WINDOWS_HEIGHT - p1.y;
+	//DrawRect(test1);
 }
 
 void PlayScene::Release()

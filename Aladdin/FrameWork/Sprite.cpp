@@ -19,10 +19,47 @@ Sprite::Sprite(LPD3DXSPRITE spriteHandle, LPCSTR filePath, int totalFrames, int 
 	if (rs != D3D_OK)
 		throw;
 
+	/*Vì mình truyền vào list rectangle nên mình set tổng
+		frame bằng 1 và số cột sprite là 1*/
 	_totalFrames = totalFrames;
 	_columns = cols;
 	_textureWidth = _texture.getWidth();
 	_textureHeight = _texture.getHeight();
+	_frameWidth = _textureWidth / cols;
+	_frameHeight = _textureHeight * cols / totalFrames;
+	_index = 0;
+	_currentFrame = Vector2(0, 0);
+
+	this->setIndex(0);
+	this->UpdateBounding();
+
+	_isDrawBounding = false;
+	_surface = nullptr;
+
+	//create surface
+	DeviceManager::getInstance()->getDevice()->CreateOffscreenPlainSurface(
+		WINDOWS_WIDTH,
+		WINDOWS_HEIGHT,
+		D3DFMT_X8R8G8B8,
+		D3DPOOL_DEFAULT,
+		&_surface,
+		NULL
+	);
+}
+
+Sprite::Sprite(int x, int y, int w, int h, Vector2 scale, int totalFrames, int cols)
+{
+	_origin = ORIGINZERO;
+	_scale = SCALEFACTOR;
+	_zIndex = 0;
+	_rotate = 0.0f;
+	_position.x = x;
+	_position.y = y;
+
+	_totalFrames = totalFrames;
+	_columns = cols;
+	_textureWidth = w;
+	_textureHeight = h;
 	_frameWidth = _textureWidth / cols;
 	_frameHeight = _textureHeight * cols / totalFrames;
 	_index = 0;
@@ -50,16 +87,19 @@ void Sprite::Release()
 	this->_texture.Release();
 }
 
+void Sprite::Render()
+{
+	Vector3 positionViewPort;
+	positionViewPort = ViewPort::getInstance()->getPositionInViewPort(&Vector3(_position.x, _position.y, 1));
+	_positionViewport.x = positionViewPort.x;
+	_positionViewport.y = positionViewPort.y;
+	this->UpdateBounding();
+}
+
 void Sprite::Render(LPD3DXSPRITE spriteHandle)
 {
 	Vector3 position = Vector3(_position.x, _position.y, _zIndex);
 	_texture.Render(spriteHandle, &_frameRect, _position, _scale, _rotate, _origin);
-}
-
-void Sprite::Render()
-{
-///do something
-	UpdateBounding();
 }
 
 void Sprite::Render(LPD3DXSPRITE spriteHandle, ViewPort* viewport)

@@ -813,7 +813,7 @@ void Aladdin::onCollisionBegin(CollisionEventArg * collision_event)
 						clearStatus();
 						addStatus(eStatus::SWING);
 						float y = land->getBounding().top;
-						setPositionY(y-150); //set cứng khi va chạm với Bar thì cho giảm y
+						setPositionY(y); //set cứng khi va chạm với Bar thì cho giảm y
 						swing();
 						break;
 					}

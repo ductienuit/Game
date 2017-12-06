@@ -4,12 +4,10 @@
 
 Land::Land(int x, int y, int width, int height, eDirection physicBodyDirection, eLandType type) : BaseObject(eID::LAND)
 {
-	_sprite = SpriteManager::getInstance()->getSprite(eID::LAND);
+	_sprite = new Sprite(x, y, width,height);
 	_sprite->setFrameRect(0, 0,width, height);
 	_width = width;
 	_height = height;
-	this->setPosition(x, y, 1.0f);
-	_sprite->setOrigin(Vector2(0, 0));
 	_type = type;
 }
 
@@ -23,7 +21,7 @@ void Land::Update(float deltatime)
 
 void Land::Draw(LPD3DXSPRITE spriteHandle, ViewPort* viewport)
 {
-	_sprite->Render(spriteHandle, viewport);
+	_sprite->Render();
 }
 
 void Land::Release()

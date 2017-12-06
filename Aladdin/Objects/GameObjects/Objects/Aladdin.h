@@ -14,7 +14,7 @@
 
 using namespace std;
 
-#define ALADDIN_MOVE_SPEED 600
+#define ALADDIN_MOVE_SPEED 200
 #define ALADDIN_JUMP_VEL 500
 #define ALADDIN_CLIMB_JUMP_VEL 300
 #define ALADDIN_ACC_MOVE 300
