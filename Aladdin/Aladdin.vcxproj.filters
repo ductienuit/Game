@@ -150,6 +150,9 @@
     <ClCompile Include="FrameWork\ViewPort.cpp">
       <Filter>Source Files\FrameWork</Filter>
     </ClCompile>
+    <ClCompile Include="Objects\Enemies\GuardLu.cpp">
+      <Filter>Source Files\Object\Enemies</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AladdinGame.h">
@@ -244,6 +247,9 @@
     </ClInclude>
     <ClInclude Include="FrameWork\ViewPort.h">
       <Filter>Header Files\FrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Enemies\GuardLu.h">
+      <Filter>Header Files\Object\Enemies</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
