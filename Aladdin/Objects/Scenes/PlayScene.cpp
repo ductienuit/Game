@@ -59,6 +59,9 @@ bool PlayScene::InIt()
 	_aladdin->setPosition(00,250);
 	_listobject.push_back(_aladdin);
 
+	backgroundfront = new BackGroundFront();
+	backgroundfront->InIt();
+
 	return true;
 }
 
@@ -91,13 +94,16 @@ void PlayScene::Update(float dt)
 
 void PlayScene::Draw(LPD3DXSPRITE spriteHandle)
 {
-	background->Draw(spriteHandle,_viewport);
+	
+	background->Draw(spriteHandle, _viewport);
 
 	for each (auto object in _listobject)
 	{
 		object->Draw(spriteHandle, _viewport);
 		object->ShowBB();
 	}
+
+	backgroundfront->Draw(spriteHandle, _viewport);
 }
 
 void PlayScene::Release()

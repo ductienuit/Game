@@ -19,6 +19,7 @@
 #include"../Enemies/GuardShort.h"
 #include"../Enemies/Knife.h"
 #include"BackGround.h"
+#include"BackGroundFront.h"
 using namespace std;
 
 USEGAME_FRAMEWORK
@@ -45,6 +46,7 @@ public:
 private:
 	void destroyObject();   //Nếu object hết hạn sử dụng thì hủy đối tượng
 	BackGround* background;
+	BackGroundFront* backgroundfront;
 
 	//Danh sach các đói tượng hoạt động rộng không thể đưa vào quadtree như Aladdin
 	vector<BaseObject*> _listObject;
