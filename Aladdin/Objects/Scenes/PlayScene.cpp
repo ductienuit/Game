@@ -46,9 +46,9 @@ bool PlayScene::InIt()
 	background = new BackGround();
 	background->InIt();
 
-	/*auto guard = new GuardThin(eStatus::MOVING_LEFT,100, 100, eDirection::LEFT);
+	auto guard = new GuardThin(eStatus::MOVING_LEFT,100, 100, eDirection::LEFT);
 	guard->InIt();
-	_listobject.push_back(guard);*/
+	_listobject.push_back(guard);
 
 	auto guardShort = new GuardShort(eStatus::MOVING_LEFT, 400, 80, eDirection::LEFT);
 	guardShort->InIt();

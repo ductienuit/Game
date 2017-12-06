@@ -114,8 +114,8 @@ void GuardShort::UpdateStatus(float dt)
 {
 	if (distanceBetweenAladdin() < 0)
 	{
-		float distance = distanceBetweenAladdin();
-		if (distance < 200 && distance > 1)
+		float distance = -distanceBetweenAladdin();
+		if (distance < 200 && distance > 25)
 		{
 			this->clearStatus();
 			this->addStatus(eStatus::ATTACK);
@@ -128,18 +128,18 @@ void GuardShort::UpdateStatus(float dt)
 		this->clearStatus();
 		this->addStatus(eStatus::MOVING_LEFT);
 		movingLeft();
-		if (distance <= 1)
+		if (distance < 25)
 		{
 			this->clearStatus();
 			this->addStatus(eStatus::MOVING_RIGHT);
 			movingRight();
-			return;
+			
 		}
 	}
 	else if (distanceBetweenAladdin() > 0)
 	{
 		float distance = distanceBetweenAladdin();
-		if (distance < 200 && distance > 1)
+		if (distance < 200 && distance > 25)
 		{
 			this->clearStatus();
 			this->addStatus(eStatus::ATTACK);
@@ -152,12 +152,12 @@ void GuardShort::UpdateStatus(float dt)
 		this->clearStatus();
 		this->addStatus(eStatus::MOVING_RIGHT);
 		movingRight();
-		if (distance <= 1)
+		if (distance <= 25)
 		{
 			this->clearStatus();
 			this->addStatus(eStatus::MOVING_LEFT);
 			movingLeft();
-			return;
+			
 		}
 	}
 }
