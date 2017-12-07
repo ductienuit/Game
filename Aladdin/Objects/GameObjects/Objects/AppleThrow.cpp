@@ -83,8 +83,8 @@ void AppleThrow::movingLeft(float x, float y)
 	_sprite->setScaleX(-1.6);
 	auto move = (Movement*)this->_listComponent["Movement"];
 	move->setVelocity(Vector2(-APPLETHROW_SPEED, -APPLETHROW_JUMP));
-	x = x - 80;
-	y = y + 60;
+	x = x - 40;
+	y = y + 80;
 	this->setPosition(x, y);
 }
 
@@ -94,7 +94,7 @@ void AppleThrow::movingRight(float x, float y)
 	auto move = (Movement*)this->_listComponent["Movement"];
 	move->setVelocity(Vector2(APPLETHROW_SPEED, -APPLETHROW_JUMP));
 
-	x = x + 80;
-	y = y + 60;
+	x = x + 40;
+	y = y + 80;
 	this->setPosition(x, y);
 }

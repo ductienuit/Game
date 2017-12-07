@@ -20,7 +20,7 @@ void GuardShort::InIt()
 	auto movement = new Movement(Vector2(0, 0), Vector2(0, 0), _sprite);
 	_listComponent["Movement"] = movement;
 	
-	knife = new Knife(eStatus::THROW, -this->getPositionX(), -this->getPositionY(), eDirection::NONE);
+	knife = new Knife(eStatus::THROW, getPositionX(), getPositionY(), eDirection::NONE);
 	knife->InIt();
 
 	auto collisionBody = new CollisionBody(this);
