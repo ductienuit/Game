@@ -281,7 +281,8 @@ void Aladdin::UpdateInput(float dt)
 		{
 			addStatus(eStatus::THROW);
 			appleThrow->addStatus(eStatus::THROW);
-			if (_animations[_status]->getIndex() == 2)
+			float dc = _animations[_status]->getIndex();
+			if (_animations[_status]->getIndex() == 0)
 				appleThrow->movingLeft(this->getPositionX(), this->getPositionY());
 		}
 		else if (_input->isKeyPressed(DIK_C))
@@ -1201,6 +1202,7 @@ void Aladdin::Release()
 {
 	_sprite->Release();
 	_animations.clear();
+	appleThrow->Release();
 }
 
 void Aladdin::standing()
