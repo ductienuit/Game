@@ -23,6 +23,7 @@
 #include"../Objects/Enemies/Knife.h"
 
 #include"BackGround.h"
+#include"BackGroundFront.h"
 using namespace std;
 
 USEGAME_FRAMEWORK
@@ -81,9 +82,9 @@ private:
 	vector<BaseObject*> Platform;		//Thanh gỗ
 
 	//Main background
-	BackGround* background;
+	BackGround* _background;
 	//Front background
-
+	BackGroundFront* _backgroundfront;
 	//Sky background;
 
 	//Chuyển đổi tọa độ word sang viewport

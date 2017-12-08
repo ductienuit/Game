@@ -30,6 +30,12 @@ bool PlayScene::InIt()
 	//  **********
 	// (T,L)
 
+
+	//Tường
+	_listObject.push_back(new Land(1432, 0, 51, 110, eDirection::INSIDE, eLandType::WALL));
+
+
+
 	//Dây và cục chặn
 	_listObject.push_back(new Land(2084, 105, 10, 200, eDirection::INSIDE, eLandType::CLIMBABLE0));
 	_listObject.push_back(new Land(2084, 333, 20, 20, eDirection::BOTTOM, eLandType::STOP));
@@ -56,11 +62,14 @@ bool PlayScene::InIt()
 	_listObject.push_back(new Land(1307, 0, 43, 103, eDirection::TOP, eLandType::STAIR));
 	_listObject.push_back(new Land(1347, 0, 43, 111, eDirection::TOP, eLandType::STAIR));
 	_listObject.push_back(new Land(1387, 0, 43, 119, eDirection::TOP, eLandType::STAIR));
-	_listObject.push_back(new Land(1430, 0, 43, 119, eDirection::TOP, eLandType::STAIR));
+	_listObject.push_back(new Land(1430, 110, 43, 10, eDirection::TOP, eLandType::STAIR));
 	//platform
 
-	background = new BackGround();
-	background->InIt();
+	_background = new BackGround();
+	_background->InIt();
+
+	_backgroundfront = new BackGroundFront();
+	_backgroundfront->InIt();
 
 	auto guardLu = new GuardLu(eStatus::MOVING_LEFT, 200, 100, eDirection::LEFT);
 	guardLu->InIt();
@@ -77,7 +86,7 @@ bool PlayScene::InIt()
 
     _aladdin = new Aladdin();
 	_aladdin->InIt();
-	_aladdin->setPosition(900,250);
+	_aladdin->setPosition(1053,250);
 	_listObject.push_back(_aladdin);
 
 	return true;
@@ -113,12 +122,13 @@ void PlayScene::Update(float dt)
 
 void PlayScene::Draw(LPD3DXSPRITE spriteHandle)
 {
-	background->Draw(spriteHandle,_viewport);
+	_background->Draw(spriteHandle,_viewport);
 	for each (auto object in _listObject)
 	{
 		object->Draw(spriteHandle, _viewport);
 		object->ShowBB();
 	}
+	_backgroundfront->Draw(spriteHandle, _viewport);
 }
 
 void PlayScene::Release()

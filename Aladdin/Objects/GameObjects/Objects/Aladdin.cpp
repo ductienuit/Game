@@ -46,6 +46,9 @@ void Aladdin::InIt()
 	_animations[eStatus::NORMAL] = new Animation(_sprite, 0.1f);
 	_animations[eStatus::NORMAL]->addFrameRect(eID::ALADDIN, "standing_0", "standing_0", NULL);
 
+	_animations[eStatus::STOPWALK] = new Animation(_sprite, 0.1f);
+	_animations[eStatus::STOPWALK]->addFrameRect(eID::ALADDIN, "standing_0", "standing_0", NULL);
+
 	_animations[eStatus::NORMAL1] = new Animation(_sprite, 0.3f);
 	_animations[eStatus::NORMAL1]->addFrameRect(eID::ALADDIN, "standing_", 7); //7 là số ảnh
 
@@ -783,6 +786,12 @@ void Aladdin::onCollisionBegin(CollisionEventArg * collision_event)
 
 			auto land = (Land*)collision_event->_otherObject;
 			eLandType type = land->getType();
+			if (type == eLandType::WALL)
+			{
+				Stop();
+				this->setStatus(eStatus::STOPWALK);
+				break;
+			}
 			switch (collision_event->_sideCollision)
 			{
 				case(eDirection::TOP):
@@ -896,7 +905,9 @@ void Aladdin::onCollisionEnd(CollisionEventArg * collision_event)
 		case eID::LAND:
 		{
 			auto land = (Land*)collision_event->_otherObject;
-			switch (land->getType())
+			auto type = land->getType();
+
+			switch (type)
 			{
 				case (eLandType::CLIMBABLE0):
 				{

@@ -29,7 +29,7 @@ enum eStatus
 	MOVING_RIGHT =	(1 << 2),				// 00010 = 2^1
 	JUMPING =		(1 << 3),				// 00100 = 2^2
 	SITTING_DOWN =	(1 << 4),				// 01000 = 2^3
-	RUNNING =		(1 << 5),				// 10000 = 2^4
+	STOPWALK =		(1 << 5),				// 10000 = 2^4
 	LOOKING_UP =	(1 << 6),				// 2^5
 	THROW =			(1 << 7),			//Ném táo.
 	FREE =			(1 << 8),			//Trạng thái sau trạng thái normal khi chờ player rờ phím
@@ -77,7 +77,8 @@ enum eLandType
 	CLIMBABLE1,//Dây 2
 	CLIMBABLE2,//Dây 3
 	STOP,
-	STAIR //Bậc thang
+	STAIR, //Bậc thang,
+	WALL
 };
 #define C_WHITE D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f)				// màu trắnng
 #define COLOR_KEY D3DXCOLOR(1.0f, 0.0f, 1.0f, 1.0f)				// màu khi mà load hình nó bỏ qua > trong suốt

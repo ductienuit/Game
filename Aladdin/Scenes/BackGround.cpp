@@ -27,19 +27,6 @@ void BackGround::Draw(LPD3DXSPRITE spriteHandle, ViewPort *viewport)
 
 void BackGround::Release()
 {
-}
-
-void BackGround::Follow(BaseObject * follow)
-{
-	this->_following = follow;
-}
-
-void BackGround::Unfollow()
-{
-	_following = nullptr;
-}
-
-bool BackGround::IsFollowing() const
-{
-	return this->_following != nullptr;
+	_sprite->Release();
+	_sprite = nullptr;
 }
