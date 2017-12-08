@@ -388,16 +388,13 @@ void Aladdin::UpdateInput(float dt)
 	}
 	case(eStatus::STOPWALK):
 	{
-		if (_input->isKeyDown(DIK_LEFT))
+		if (_input->isKeyDown(DIK_LEFT)) 
 		{
-			/*Aladdin hướng va chạm bên trái mà nhấn phím left arrow
-			=>Không hủy*/
-			if (getScale().x < 0) 
-			{
-				removeStatus(eStatus::STOPWALK);
-				addStatus(eStatus::MOVING_LEFT);
-			}
-			else
+			/*1. Nhấn LeftArrow
+			  2. Hướng aladdin là right 
+			  => scale.x > 0
+			  3. Hủy StopWalk và chuyển sang moving left*/
+			if (getScale().x > 0) 
 			{
 				removeStatus(eStatus::STOPWALK);
 				addStatus(eStatus::MOVING_LEFT);
@@ -405,10 +402,15 @@ void Aladdin::UpdateInput(float dt)
 		}
 		else if (_input->isKeyDown(DIK_RIGHT))
 		{
-			/*Aladdin hướng va chạm bên trái mà nhấn phím left arrow
-			=>Không hủy*/
-			removeStatus(eStatus::STOPWALK);
-			addStatus(eStatus::MOVING_RIGHT);
+			/*1. Nhấn RightArrow
+			2. Hướng aladdin là left
+			=> scale.x < 0
+			3. Hủy StopWalk và chuyển sang moving right*/
+			if (getScale().x < 0)
+			{
+				removeStatus(eStatus::STOPWALK);
+				addStatus(eStatus::MOVING_RIGHT);
+			}
 		}
 		break;
 	}

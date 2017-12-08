@@ -71,18 +71,14 @@ bool PlayScene::InIt()
 	_backgroundfront = new BackGroundFront();
 	_backgroundfront->InIt();
 
-	auto guardLu = new GuardLu(eStatus::MOVING_LEFT, 200, 100, eDirection::LEFT);
+	/*auto guardLu = new GuardLu(eStatus::MOVING_LEFT, 200, 100, eDirection::LEFT);
 	guardLu->InIt();
 	_listObject.push_back(guardLu);
-	guardLu->setPositionY(0);
+	guardLu->setPositionY(0);*/
 
 	auto knifeThrower = new KnifeThrower(eStatus::THROW_LEFT_NEAR, 200, 100, eDirection::LEFT);
 	knifeThrower->InIt();
 	_listObject.push_back(knifeThrower);
-
-
-	_listObject.push_back(guardLu);
-	guardLu->setPositionY(0);
 
 	/*auto guardThin = new GuardThin(eStatus::MOVING_LEFT, 200, 100, eDirection::LEFT);
 	guardThin->InIt();
