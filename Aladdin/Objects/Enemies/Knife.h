@@ -40,9 +40,9 @@ public:
 	void movingRight(float x, float y);
 	~Knife();
 private:
-	void movingLeft();
-	void movingRight();
-	void standing();
+	//void movingLeft();
+	//void movingRight();
+	//void standing();
 	
 	map<string, IComponent*> _listComponent;
 	map<int, Animation*> _animations;

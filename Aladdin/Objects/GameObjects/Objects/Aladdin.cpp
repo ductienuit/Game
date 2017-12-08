@@ -245,7 +245,6 @@ void Aladdin::Update(float deltatime)
 
 void Aladdin::UpdateInput(float dt)
 {
-	_deltatime = dt;
 	switch (_status)
 	{
 	case(eStatus::NORMAL):

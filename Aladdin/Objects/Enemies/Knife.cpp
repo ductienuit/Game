@@ -135,7 +135,7 @@ Knife::~Knife()
 
 
 void Knife::ThrowLeftFar()
-{	
+{
 	if (_animations[_status]->getIndex() != 6)
 	{
 		if (_animations[_status]->getIndex() < 3)
@@ -155,6 +155,7 @@ void Knife::ThrowLeftFar()
 		_currentPosition = _originPosition;
 		this->setPosition(_originPosition.x, _originPosition.y);
 	}
+}
 void Knife::movingLeft(float x, float y)
 {
 	_sprite->setScaleX(-1.6);
