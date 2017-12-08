@@ -126,7 +126,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AladdinGame.cpp" />
-	<ClCompile Include="Objects\Enemies\KnifeThrower.cpp" />
+    <ClCompile Include="Objects\Enemies\GuardThrowJar.cpp" />
+    <ClCompile Include="Objects\Enemies\Jar.cpp" />
+    <ClCompile Include="Objects\Enemies\KnifeThrower.cpp" />
     <ClCompile Include="Objects\Enemies\GuardLu.cpp" />
     <ClCompile Include="Scenes\BackGround.cpp" />
     <ClCompile Include="Objects\Enemies\GuardShort.cpp" />
@@ -163,7 +165,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AladdinGame.h" />
-	<ClInclude Include="Objects\Enemies\KnifeThrower.h" />
+    <ClInclude Include="Objects\Enemies\GuardThrowJar.h" />
+    <ClInclude Include="Objects\Enemies\Jar.h" />
+    <ClInclude Include="Objects\Enemies\KnifeThrower.h" />
     <ClInclude Include="Objects\Enemies\GuardLu.h" />
     <ClInclude Include="Scenes\BackGround.h" />
     <ClInclude Include="Objects\Enemies\GuardShort.h" />

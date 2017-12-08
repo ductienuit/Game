@@ -76,6 +76,11 @@ bool PlayScene::InIt()
 	_listObject.push_back(guardLu);
 	guardLu->setPositionY(0);*/
 
+	// code them trong file PlaySence.cpp
+	auto guardThrowJar = new ThrowJar(eStatus::FREE, 40, 300);
+	guardThrowJar->InIt();
+	_listObject.push_back(guardThrowJar);
+
 	auto knifeThrower = new KnifeThrower(eStatus::THROW_LEFT_NEAR, 200, 100, eDirection::LEFT);
 	knifeThrower->InIt();
 	_listObject.push_back(knifeThrower);
@@ -116,13 +121,11 @@ void PlayScene::Update(float dt)
 		object->Update(dt);
 	}
 
-	for(auto i : _listObject)
-		if (_aladdin->getId() != i->getId())
-			_aladdin->checkCollision(i, dt);
-	/*for (auto i : _listObject)
+	/*Check collision*/
+	for (auto i : _listObject)
 		for (auto j : _listObject)
 			if (j->getId() != i->getId())
-				i->checkCollision(j, dt);*/
+				i->checkCollision(j, dt);
 }
 
 void PlayScene::Draw(LPD3DXSPRITE spriteHandle)

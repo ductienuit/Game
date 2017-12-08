@@ -165,6 +165,12 @@
     <ClCompile Include="Objects\Enemies\KnifeThrower.cpp">
       <Filter>Source Files\Object\Enemies</Filter>
     </ClCompile>
+    <ClCompile Include="Objects\Enemies\GuardThrowJar.cpp">
+      <Filter>Source Files\Object\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Enemies\Jar.cpp">
+      <Filter>Source Files\Object\Enemies</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AladdinGame.h">
@@ -273,6 +279,12 @@
       <Filter>Header Files\Scenes</Filter>
     </ClInclude>
     <ClInclude Include="Objects\Enemies\KnifeThrower.h">
+      <Filter>Header Files\Object\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Enemies\GuardThrowJar.h">
+      <Filter>Header Files\Object\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Enemies\Jar.h">
       <Filter>Header Files\Object\Enemies</Filter>
     </ClInclude>
   </ItemGroup>

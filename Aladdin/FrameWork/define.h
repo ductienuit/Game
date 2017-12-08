@@ -45,7 +45,8 @@ enum eStatus
 	THROW_LEFT_NEAR =	(1 << 18),		//Trang thai cua knife
 	THROW_RIGHT_NEAR =	(1 << 19),		//Trang thai cua knife
 	THROW_LEFT_FAR =	(1 << 20),		//Trang thai cua knife
-	THROW_RIGHT_FAR =	(1 << 21)		//Trang thai cua knife
+	THROW_RIGHT_FAR =	(1 << 21),		//Trang thai cua knife
+	DESTROY			=   (1 << 22),
 };
 
 enum eID
@@ -58,7 +59,9 @@ enum eID
 	GUARDLU,
 	KNIFE,
 	BACKGROUND,
-	BACKGROUNDFRONT
+	BACKGROUNDFRONT,
+	JAR,
+	THROWJAR
 };
 
 enum eDirection
