@@ -788,8 +788,10 @@ void Aladdin::onCollisionBegin(CollisionEventArg * collision_event)
 			eLandType type = land->getType();
 			if (type == eLandType::WALL)
 			{
-				Stop();
-				this->setStatus(eStatus::STOPWALK);
+				standing();
+
+				//set trạng thái chỉ khi đi ngược hướng va chạm mới set lại trạng thái khác
+				//this->setStatus(eStatus::STOPWALK); 
 				break;
 			}
 			switch (collision_event->_sideCollision)
