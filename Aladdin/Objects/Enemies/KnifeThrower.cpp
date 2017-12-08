@@ -54,7 +54,7 @@ void KnifeThrower::Update(float deltatime)
 	}
 }
 
-void KnifeThrower::Draw(LPD3DXSPRITE spritehandle, Viewport* viewport)
+void KnifeThrower::Draw(LPD3DXSPRITE spritehandle, ViewPort* viewport)
 {
 	_animations[this->getStatus()]->Draw(spritehandle, viewport);
 	//text->Draw();

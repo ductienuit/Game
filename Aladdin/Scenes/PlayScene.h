@@ -20,7 +20,7 @@
 #include"../Objects/Enemies/GuardThin.h"
 #include"../Objects/Enemies/GuardShort.h"
 #include"../Objects/Enemies/GuardLu.h"
-#include"../Enemies/KnifeThrower.h"
+#include"../Objects/Enemies/KnifeThrower.h"
 #include"../Objects/Enemies/Knife.h"
 
 #include"BackGround.h"
