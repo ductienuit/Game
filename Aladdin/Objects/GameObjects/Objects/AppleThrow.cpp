@@ -24,9 +24,8 @@ void AppleThrow::InIt()
 	__hook(&CollisionBody::onCollisionBegin, collisionBody, &AppleThrow::onCollisionBegin);
 	__hook(&CollisionBody::onCollisionEnd, collisionBody, &AppleThrow::onCollisionEnd);
 
-	_animations[THROW] = new Animation(_sprite, 0.1f);
-	_animations[THROW]->addFrameRect(eID::APPLETHROW, "guardsShort_throw_01", "guardsShort_throw_02", "guardsShort_throw_03", "guardsShort_throw_04"
-		, "guardsShort_throw_05", "guardsShort_throw_06", "guardsShort_throw_07", NULL);
+	_animations[THROW] = new Animation(_sprite, 0.5f);
+	_animations[THROW]->addFrameRect(eID::APPLETHROW, "apple_00", "apple_00", NULL);
 
 }
 void AppleThrow::Update(float deltatime)

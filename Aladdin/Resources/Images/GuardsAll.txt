@@ -206,4 +206,3 @@ guardsShort_dying_04	358	1476	485	1554
 guardsShort_dying_05	204	1449	339	1554
 
 guardsShort_dying_06	58	1455	191	1554
-
