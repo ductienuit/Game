@@ -313,8 +313,8 @@ float CollisionBody::SweptAABB(RECT b1, RECT b2, eDirection & direction, float d
 				direction = RIGHT;
 			}
 			else
-			{
-				direction = LEFT;
+			{				
+				direction = LEFT;		
 			}
 		}
 		else

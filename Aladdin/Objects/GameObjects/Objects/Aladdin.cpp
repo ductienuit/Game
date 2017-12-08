@@ -242,6 +242,7 @@ void Aladdin::Update(float deltatime)
 
 void Aladdin::UpdateInput(float dt)
 {
+	_deltatime = dt;
 	switch (_status)
 	{
 	case(eStatus::NORMAL):
@@ -777,142 +778,162 @@ void Aladdin::onCollisionBegin(CollisionEventArg * collision_event)
 {
 	switch (collision_event->_otherObject->getId())
 	{
-	case eID::LAND:
-	{
-
-		auto land = (Land*)collision_event->_otherObject;
-		eLandType type = land->getType();
-		switch (collision_event->_sideCollision)
+		case eID::LAND:
 		{
-			case(eDirection::TOP):
+
+			auto land = (Land*)collision_event->_otherObject;
+			eLandType type = land->getType();
+			switch (collision_event->_sideCollision)
 			{
-				switch (type)
+				case(eDirection::TOP):
 				{
-					case (eLandType::SOLID):
+					switch (type)
 					{
-						//Chạm đất
-						clearStatus();
-						auto gravity = (Gravity*)_listComponent["Gravity"];
-						gravity->setStatus(eGravityStatus::SHALLOWED);
-						standing();
-						break;
+						case (eLandType::SOLID):
+						{
+							//Chạm đất
+							clearStatus();
+							auto gravity = (Gravity*)_listComponent["Gravity"];
+							gravity->setStatus(eGravityStatus::SHALLOWED);
+							standing();
+							break;
+						}
+						case (eLandType::STAIR):
+						{
+							//Chạm đất
+							clearStatus();
+							auto gravity = (Gravity*)_listComponent["Gravity"];
+							gravity->setStatus(eGravityStatus::SHALLOWED);
+							standing();
+							break;
+						}
 					}
-				}
-				break;
-			}
-			case(eDirection::BOTTOM):
-			{
-				switch (type)
-				{
-					case (eLandType::BAR):
-					{
-						
-						if (isInStatus(eStatus(JUMPING|SWING)))
-							return;
-						//_preObjectColli = collision_event->_otherObject;
-						clearStatus();
-						addStatus(eStatus::SWING);
-						float y = land->getBounding().top;
-						setPositionY(y); //set cứng khi va chạm với Bar thì cho giảm y
-						swing();
-						break;
-					}
-					case (eLandType::STOP):
-					{
-						_canUp = false;
-						break;
-					}
-					case (eLandType::CLIMBABLE0):
-					{
-						_canUp = true;
-						clearStatus();
-						addStatus(eStatus::CLIMB);
-						climb();
-						float x = land->getPositionX();
-						setPositionX(x);
-						break;
-					}
-				}
-				break;
-			}
-			case(eDirection::LEFT):
-			{
-				switch (type)
-				{
-					case (eLandType::CLIMBABLE0):
-					{
-						clearStatus();
-						_canUp = true;
-						addStatus(eStatus::CLIMB);
-						climb();
-						float x = land->getPositionX();
-						setPositionX(x);
-						break;
-					}
-				}
-				break;
-			}
-			case(eDirection::RIGHT):
-			{
-				switch (type)
-				{
-				case (eLandType::CLIMBABLE0):
-				{
-					clearStatus();
-					_canUp = true;
-					addStatus(eStatus::CLIMB);
-					climb();
-					float x = land->getPositionX();
-					setPositionX(x);
 					break;
 				}
+				case(eDirection::BOTTOM):
+				{
+					switch (type)
+					{
+						case (eLandType::BAR):
+						{						
+							if (isInStatus(eStatus(JUMPING|SWING)))
+								return;
+							clearStatus();
+							addStatus(eStatus::SWING);
+							float y = land->getPositionY();
+							setPositionY(y-150); //set cứng khi va chạm với Bar thì cho giảm y
+							swing();
+							break;
+						}
+						case (eLandType::STOP):
+						{
+							_canUp = false;
+							break;
+						}
+						case (eLandType::CLIMBABLE0):
+						{
+							_canUp = true;
+							clearStatus();
+							addStatus(eStatus::CLIMB);
+							climb();
+							float x = land->getPositionX();
+							setPositionX(x);
+							break;
+						}
+					}
+					break;
 				}
-				break;
+				case(eDirection::LEFT):
+				{
+					switch (type)
+					{
+						case (eLandType::CLIMBABLE0):
+						{
+							clearStatus();
+							_canUp = true;
+							addStatus(eStatus::CLIMB);
+							climb();
+							float x = land->getPositionX();
+							setPositionX(x);
+							break;
+						}
+						case (eLandType::STAIR):
+						{						
+							auto move = (Movement*)_listComponent["Movement"];
+							move->setVelocity(Vector2(0, 170));
+							break;
+						}
+					}
+					break;
+				}
+				case(eDirection::RIGHT):
+				{
+					switch (type)
+					{
+						case (eLandType::CLIMBABLE0):
+						{
+							clearStatus();
+							_canUp = true;
+							addStatus(eStatus::CLIMB);
+							climb();
+							float x = land->getPositionX();
+							setPositionX(x);
+							break;
+						}
+					}
+					break;
+				}
 			}
+			break;
 		}
-		break;
-	}
 	}
 }
 
 void Aladdin::onCollisionEnd(CollisionEventArg * collision_event)
 {
-
 	switch (collision_event->_otherObject->getId())
 	{
-	case eID::LAND:
-	{
-		auto land = (Land*)collision_event->_otherObject;
-		switch (land->getType())
+		case eID::LAND:
 		{
-		case (eLandType::CLIMBABLE0):
-		{
-			if (isInStatus(eStatus::JUMPING))
+			auto land = (Land*)collision_event->_otherObject;
+			switch (land->getType())
 			{
-				removeStatus(CLIMB_JUMP);
-				return;
+				case (eLandType::CLIMBABLE0):
+				{
+					if (isInStatus(eStatus::JUMPING))
+					{
+						removeStatus(CLIMB_JUMP);
+						return;
+					}
+					removeStatus(eStatus::CLIMB);
+					addStatus(eStatus::CLIMB_JUMP);
+					auto g = (Gravity*)_listComponent["Gravity"];
+					g->setStatus(eGravityStatus::FALLING__DOWN); 
+					break;
+				}
+				case (eLandType::SOLID):
+				{
+					auto g = (Gravity*)_listComponent["Gravity"];
+					g->setStatus(eGravityStatus::FALLING__DOWN);
+					break;
+				}
+				case( eLandType::STOP):
+				{
+					_animations[_currentAnimateIndex]->Start();
+					_canUp = true;
+					break;
+				}
+				case (eLandType::STAIR):
+				{
+					auto g = (Gravity*)_listComponent["Gravity"];
+					g->setStatus(eGravityStatus::FALLING__DOWN);
+					break;
+				}
 			}
-			removeStatus(eStatus::CLIMB);
-			addStatus(eStatus::CLIMB_JUMP);
-			auto g = (Gravity*)_listComponent["Gravity"];
-			g->setStatus(eGravityStatus::FALLING__DOWN); 
 			break;
 		}
-		case (eLandType::SOLID):
-		{
-			auto g = (Gravity*)_listComponent["Gravity"];
-			g->setStatus(eGravityStatus::FALLING__DOWN);
-			break;
-		}
-		case( eLandType::STOP):
-		{
-			_animations[_currentAnimateIndex]->Start();
-			_canUp = true;
-		}
-		}
-		break;
 	}
-	}
+
 }
 
 float Aladdin::checkCollision(BaseObject * object, float dt)
@@ -1150,11 +1171,6 @@ void Aladdin::updateCurrentAnimateIndex()
 		_currentAnimateIndex = (eStatus)(getStatus() & ~eStatus::NORMAL1);
 	}
 	else _currentAnimateIndex = getStatus();
-}
-
-void Aladdin::setPosition(float x, float y)
-{
-	_sprite->setPosition(x, y);
 }
 
 RECT Aladdin::getBounding()

@@ -14,7 +14,7 @@
 
 using namespace std;
 
-#define ALADDIN_MOVE_SPEED 200
+#define ALADDIN_MOVE_SPEED 250
 #define ALADDIN_JUMP_VEL 500
 #define ALADDIN_CLIMB_JUMP_VEL 300
 #define ALADDIN_ACC_MOVE 300
@@ -40,13 +40,12 @@ public:
 
 	float checkCollision(BaseObject* object, float dt);
 
-	void setPosition(float x, float y);
-
 	RECT getBounding() override;
 	void setBounding(RECT);
 
 	void Stop() override;
 private:
+	float _deltatime;
 	map<int, Animation*> _animations;
 	map<string, IComponent*> _listComponent;
 	RECT _boundAla;

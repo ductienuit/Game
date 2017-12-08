@@ -53,8 +53,8 @@ Sprite::Sprite(int x, int y, int w, int h, Vector2 scale, int totalFrames, int c
 	_scale = SCALEFACTOR;
 	_zIndex = 0;
 	_rotate = 0.0f;
-	_position.x = x;
-	_position.y = y;
+	_position.x = x*SCALEFACTOR.x; //Phải nhân để ra đúng tọa độ scale
+	_position.y = y*SCALEFACTOR.y; //background và character nhân nên position cũng vậy
 
 	_totalFrames = totalFrames;
 	_columns = cols;
@@ -309,10 +309,10 @@ void Sprite::setFrameRect(float top, float right, float bottom, float left)
 
 void Sprite::setFrameRect(float x, float y, int width, int height)
 {
-	_frameRect.top = y;
+	_frameRect.top = y ;
 	_frameRect.right = x + width;
 	_frameRect.left = x;
-	_frameRect.bottom = y + height;
+	_frameRect.bottom = y - height;
 
 	_frameWidth = width;
 	_frameHeight = height;
@@ -453,9 +453,9 @@ void Sprite::UpdateBounding()
 	float scaleH = _frameHeight * abs(_scale.y);
 
 	this->_bound.left = _positionViewport.x - scaleW * _origin.x;
-	this->_bound.bottom = WINDOWS_HEIGHT- _positionViewport.y- scaleH * _origin.y;
+	this->_bound.top = WINDOWS_HEIGHT- _positionViewport.y- scaleH * _origin.y;
 	this->_bound.right = _bound.left + scaleW;
-	this->_bound.top = _bound.bottom +scaleH;
+	this->_bound.bottom = _bound.top +scaleH;
 
 	// 4 điểm của hcn
 	Vector2 p1 = Vector2(_bound.left, _bound.top);

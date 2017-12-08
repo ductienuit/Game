@@ -21,16 +21,43 @@ void PlayScene::setViewPort(ViewPort * viewport)
 
 bool PlayScene::InIt()
 {
+	//Chú ý: Top Left của land ở bên dưới chứ không ở trên
+	//  **********(B,R)
+	//	**********
+	//  **********
+	//  **********
+	//	**********
+	//  **********
+	// (T,L)
 
-	_listObject.push_back(new Land(600,300, 10, 200, eDirection::INSIDE, eLandType::CLIMBABLE0));
-	_listObject.push_back(new Land(600,750, 20, 20, eDirection::BOTTOM, eLandType::STOP));
+	//Dây và cục chặn
+	_listObject.push_back(new Land(2084, 105, 10, 200, eDirection::INSIDE, eLandType::CLIMBABLE0));
+	_listObject.push_back(new Land(2084, 333, 20, 20, eDirection::BOTTOM, eLandType::STOP));
+	_listObject.push_back(new Land(1541, 688-333, 10, 157, eDirection::INSIDE, eLandType::CLIMBABLE0));
+	_listObject.push_back(new Land(1541, 688-149, 20, 20, eDirection::BOTTOM, eLandType::STOP));
+
+	//Thanh xà ngang
 	_listObject.push_back(new Land(130, 850, 800, 30, eDirection::BOTTOM, eLandType::BAR));
-	_listObject.push_back(new Land(5, 100, 4771, 10, eDirection::TOP, eLandType::SOLID));
-
-	test.top = 100;
-	test.left = 10;
-	test.bottom = 0;
-	test.right = 20;
+	//Nền
+	_listObject.push_back(new Land(1454, 12, 4771, 10, eDirection::TOP, eLandType::SOLID));
+	_listObject.push_back(new Land(5, 50, 1454, 10, eDirection::TOP, eLandType::SOLID));
+	//Miến gỗ đứng rớt
+	_listObject.push_back(new Land(1641, 239, 36, 10, eDirection::TOP, eLandType::SOLID));
+	//Miến gỗ đứng ko rớt
+	_listObject.push_back(new Land(1757, 239, 284, 10, eDirection::TOP, eLandType::SOLID));
+	_listObject.push_back(new Land(1477, 688-451, 102, 10, eDirection::TOP, eLandType::SOLID));
+	_listObject.push_back(new Land(1477, 688-402, 40, 10, eDirection::TOP, eLandType::SOLID));
+	_listObject.push_back(new Land(1585, 688 - 292, 685, 10, eDirection::TOP, eLandType::SOLID));
+	//Bật thang
+	_listObject.push_back(new Land(1146, 0, 43, 71, eDirection::TOP, eLandType::STAIR));
+	_listObject.push_back(new Land(1189, 0, 43, 79, eDirection::TOP, eLandType::STAIR));
+	_listObject.push_back(new Land(1229, 0, 43, 87, eDirection::TOP, eLandType::STAIR));
+	_listObject.push_back(new Land(1266, 0, 43, 95, eDirection::TOP, eLandType::STAIR));
+	_listObject.push_back(new Land(1307, 0, 43, 103, eDirection::TOP, eLandType::STAIR));
+	_listObject.push_back(new Land(1347, 0, 43, 111, eDirection::TOP, eLandType::STAIR));
+	_listObject.push_back(new Land(1387, 0, 43, 119, eDirection::TOP, eLandType::STAIR));
+	_listObject.push_back(new Land(1430, 0, 43, 119, eDirection::TOP, eLandType::STAIR));
+	//platform
 
 	background = new BackGround();
 	background->InIt();
@@ -38,18 +65,19 @@ bool PlayScene::InIt()
 	auto guardLu = new GuardLu(eStatus::MOVING_LEFT, 200, 100, eDirection::LEFT);
 	guardLu->InIt();
 	_listObject.push_back(guardLu);
+	guardLu->setPositionY(0);
 
-	auto guardThin = new GuardThin(eStatus::MOVING_LEFT, 200, 100, eDirection::LEFT);
+	/*auto guardThin = new GuardThin(eStatus::MOVING_LEFT, 200, 100, eDirection::LEFT);
 	guardThin->InIt();
 	_listObject.push_back(guardThin);
 
 	auto guardShort = new GuardShort(eStatus::MOVING_LEFT, 600, 140, eDirection::LEFT);
 	guardShort->InIt();
-	_listObject.push_back(guardShort);
+	_listObject.push_back(guardShort);*/
 
     _aladdin = new Aladdin();
 	_aladdin->InIt();
-	_aladdin->setPosition(20,250);
+	_aladdin->setPosition(900,250);
 	_listObject.push_back(_aladdin);
 
 	return true;
@@ -85,22 +113,12 @@ void PlayScene::Update(float dt)
 
 void PlayScene::Draw(LPD3DXSPRITE spriteHandle)
 {
-	//background->Draw(spriteHandle,_viewport);
+	background->Draw(spriteHandle,_viewport);
 	for each (auto object in _listObject)
 	{
 		object->Draw(spriteHandle, _viewport);
 		object->ShowBB();
 	}
-	//RECT test1;
-	//Vector3 p1 = Vector3(test.left, test.top,1);
-	//p1 = ViewPort::getInstance()->getPositionInViewPort(&p1);
-	//test1.left = p1.x;
-	//test1.top = WINDOWS_HEIGHT - p1.y;
-	//p1 = Vector3(test.right, test.bottom, 1);
-	//p1 = ViewPort::getInstance()->getPositionInViewPort(&p1);
-	//test1.right = p1.x;
-	//test1.bottom = WINDOWS_HEIGHT - p1.y;
-	//DrawRect(test1);
 }
 
 void PlayScene::Release()

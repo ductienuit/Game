@@ -1,5 +1,4 @@
 frame_name	left	top	right	bottom
-
 standing_0		2	7	41	59
 standing_1		46	7	87	59
 standing_2		93	5	136	59

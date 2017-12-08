@@ -52,7 +52,8 @@ enum eID
 	GUARDSHORT,
 	GUARDLU,
 	KNIFE,
-	BACKGROUND
+	BACKGROUND,
+	BACKGROUNDFRONT
 };
 
 enum eDirection
@@ -75,7 +76,8 @@ enum eLandType
 	CLIMBABLE0,//Dây 1
 	CLIMBABLE1,//Dây 2
 	CLIMBABLE2,//Dây 3
-	STOP
+	STOP,
+	STAIR //Bậc thang
 };
 #define C_WHITE D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f)				// màu trắnng
 #define COLOR_KEY D3DXCOLOR(1.0f, 0.0f, 1.0f, 1.0f)				// màu khi mà load hình nó bỏ qua > trong suốt
