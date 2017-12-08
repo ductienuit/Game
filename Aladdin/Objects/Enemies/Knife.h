@@ -9,7 +9,7 @@
 #include<math.h>
 using namespace std;
 
-#define KNIFE_SPEED 100
+#define KNIFE_SPEED 300
 #define KNIFE_GRAVITY 800
 #define KNIFE_JUMP 100
 
@@ -36,8 +36,13 @@ public:
 	void ThrowLeftFar();
 	void ThrowRightFar();
 	bool canChangeThrowDirection();
+	void movingLeft(float x, float y);
+	void movingRight(float x, float y);
 	~Knife();
 private:
+	void movingLeft();
+	void movingRight();
+	void standing();
 	
 	map<string, IComponent*> _listComponent;
 	map<int, Animation*> _animations;

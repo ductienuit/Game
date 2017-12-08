@@ -40,6 +40,11 @@ void Knife::InIt()
 	__hook(&CollisionBody::onCollisionBegin, collisionBody, &Knife::onCollisionBegin);
 	__hook(&CollisionBody::onCollisionEnd, collisionBody, &Knife::onCollisionEnd);
 
+	_animations[THROW] = new Animation(_sprite, 0.1f);
+	_animations[THROW]->addFrameRect(eID::KNIFE, "guardsShort_throw_01", "guardsShort_throw_02", "guardsShort_throw_03", "guardsShort_throw_04"
+		, "guardsShort_throw_05", "guardsShort_throw_06", "guardsShort_throw_07", NULL);
+
+
 	_animations[THROW_LEFT_NEAR] = new Animation(_sprite, 0.1f);
 	_animations[THROW_LEFT_NEAR]->addFrameRect(eID::KNIFE, "guardsShort_throw_01", "guardsShort_throw_02", "guardsShort_throw_03", "guardsShort_throw_04"
 		, "guardsShort_throw_05", "guardsShort_throw_06", "guardsShort_throw_07", NULL);
@@ -61,7 +66,6 @@ void Knife::InIt()
 }
 void Knife::Update(float deltatime)
 {
-	eStatus l = this->getStatus();
 	_animations[this->getStatus()]->Update(deltatime);
 
 	
@@ -151,6 +155,14 @@ void Knife::ThrowLeftFar()
 		_currentPosition = _originPosition;
 		this->setPosition(_originPosition.x, _originPosition.y);
 	}
+void Knife::movingLeft(float x, float y)
+{
+	_sprite->setScaleX(-1.6);
+	auto move = (Movement*)this->_listComponent["Movement"];
+	move->setVelocity(Vector2(-KNIFE_SPEED, -KNIFE_JUMP));
+	x = x - 80;
+	y = y + 60;
+	this->setPosition(x, y);
 }
 
 void Knife::ThrowRightFar()
@@ -196,6 +208,15 @@ void Knife::ThrowLeftNear()
 		_currentPosition = _originPosition;
 		this->setPosition(_originPosition.x, _originPosition.y);
 	}
+}
+void Knife::movingRight(float x, float y)
+{
+	_sprite->setScaleX(1.6);
+	auto move = (Movement*)this->_listComponent["Movement"];
+	move->setVelocity(Vector2(KNIFE_SPEED, -KNIFE_JUMP));
+	x = x + 80;
+	y = y + 60;
+	this->setPosition(x, y);
 }
 
 void Knife::ThrowRightNear()

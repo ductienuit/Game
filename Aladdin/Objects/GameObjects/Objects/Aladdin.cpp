@@ -1,8 +1,5 @@
 ﻿#include "ALADDIN.h"
-/*
-D:\x99\DirectX\Include
-D:\x99\DirectX\Lib\x86
-*/
+
 Aladdin::Aladdin() : BaseObject(eID::ALADDIN)
 {
 }
@@ -30,6 +27,9 @@ void Aladdin::InIt()
 	__hook(&InputController::__eventkeyReleased, _input, &Aladdin::onKeyReleased);
 
 	_sprite = SpriteManager::getInstance()->getSprite(eID::ALADDIN);
+
+	appleThrow = new AppleThrow(eStatus::THROW, this->getPositionX(), this->getPositionY(), eDirection::NONE);
+	appleThrow->InIt();
 
 	auto movement = new Movement(Vector2(0, 0), Vector2(0, 0), _sprite);
 	_listComponent["Movement"] = movement;
@@ -216,7 +216,7 @@ void Aladdin::InIt()
 void Aladdin::Update(float deltatime)
 {
 	updateStatus(deltatime);
-
+	appleThrow->Update(deltatime);
 	//Loc dieu kien
 	updateCurrentAnimateIndex();
 
@@ -280,6 +280,15 @@ void Aladdin::UpdateInput(float dt)
 		else if (_input->isKeyPressed(DIK_Z)) //ném
 		{
 			addStatus(eStatus::THROW);
+			appleThrow->addStatus(eStatus::THROW);
+			if (getScale().x > 0)
+			{
+				appleThrow->movingRight(this->getPositionX(), this->getPositionY());
+			}
+			else if (getScale().x < 0)
+			{
+				appleThrow->movingLeft(this->getPositionX(), this->getPositionY());
+			}
 		}
 		else if (_input->isKeyPressed(DIK_C))
 		{
@@ -334,6 +343,15 @@ void Aladdin::UpdateInput(float dt)
 		{
 			removeStatus(eStatus::NORMAL1);
 			addStatus(eStatus::THROW);
+			appleThrow->addStatus(eStatus::THROW);
+			if (getScale().x > 0)
+			{
+				appleThrow->movingRight(this->getPositionX(), this->getPositionY());
+			}
+			else if (getScale().x < 0)
+			{
+				appleThrow->movingLeft(this->getPositionX(), this->getPositionY());
+			}
 		}
 		else if (_input->isKeyPressed(DIK_C))
 		{
@@ -378,6 +396,15 @@ void Aladdin::UpdateInput(float dt)
 		{
 			removeStatus(eStatus::FREE);
 			addStatus(eStatus::THROW);
+			appleThrow->addStatus(eStatus::THROW);
+			if (getScale().x > 0)
+			{
+				appleThrow->movingRight(this->getPositionX(), this->getPositionY());
+			}
+			else if (getScale().x < 0)
+			{
+				appleThrow->movingLeft(this->getPositionX(), this->getPositionY());
+			}
 		}
 		else if (_input->isKeyPressed(DIK_C))
 		{
@@ -423,7 +450,20 @@ void Aladdin::UpdateInput(float dt)
 		}
 		if (_input->isKeyPressed(DIK_X))
 		{
-			addStatus(eStatus::ATTACK);  //chém
+			addStatus(eStatus::ATTACK);
+		}
+		if (_input->isKeyPressed(DIK_Z))
+		{
+			addStatus(eStatus::THROW);
+			appleThrow->addStatus(eStatus::THROW);
+			if (getScale().x > 0)
+			{
+				appleThrow->movingRight(this->getPositionX(), this->getPositionY());
+			}
+			else if (getScale().x < 0)
+			{
+				appleThrow->movingLeft(this->getPositionX(), this->getPositionY());
+			}
 		}
 		break;
 	}
@@ -434,9 +474,18 @@ void Aladdin::UpdateInput(float dt)
 			removeStatus(eStatus::MOVING_RIGHT);
 			jump(eStatus::JUMPING_RIGHT);
 		}
-		if (_input->isKeyDown(DIK_X))
+		if (_input->isKeyPressed(DIK_Z))
 		{
-			addStatus(eStatus::ATTACK);  //chém
+			addStatus(eStatus::THROW);
+			appleThrow->addStatus(eStatus::THROW);
+			if (getScale().x > 0)
+			{
+				appleThrow->movingRight(this->getPositionX(), this->getPositionY());
+			}
+			else if (getScale().x < 0)
+			{
+				appleThrow->movingLeft(this->getPositionX(), this->getPositionY());
+			}
 		}
 		break;
 	}
@@ -452,6 +501,15 @@ void Aladdin::UpdateInput(float dt)
 		else if (_input->isKeyPressed(DIK_Z))
 		{
 			addStatus(eStatus::THROW);
+			appleThrow->addStatus(eStatus::THROW);
+			if (getScale().x > 0)
+			{
+				appleThrow->movingRight(this->getPositionX(), this->getPositionY());
+			}
+			else if (getScale().x < 0)
+			{
+				appleThrow->movingLeft(this->getPositionX(), this->getPositionY());
+			}
 			if (_input->isKeyDown(DIK_LEFT))
 			{
 				moveLeft();
@@ -485,6 +543,15 @@ void Aladdin::UpdateInput(float dt)
 		else if (_input->isKeyPressed(DIK_Z))
 		{
 			addStatus(eStatus::THROW);
+			appleThrow->addStatus(eStatus::THROW);
+			if (getScale().x > 0)
+			{
+				appleThrow->movingRight(this->getPositionX(), this->getPositionY());
+			}
+			else if (getScale().x < 0)
+			{
+				appleThrow->movingLeft(this->getPositionX(), this->getPositionY());
+			}
 			if (_input->isKeyDown(DIK_RIGHT))
 			{
 				removeStatus(eStatus::THROW);
@@ -520,6 +587,15 @@ void Aladdin::UpdateInput(float dt)
 		else if (_input->isKeyPressed(DIK_Z))
 		{
 			addStatus(eStatus::THROW);
+			appleThrow->addStatus(eStatus::THROW);
+			if (getScale().x > 0)
+			{
+				appleThrow->movingRight(this->getPositionX(), this->getPositionY());
+			}
+			else if (getScale().x < 0)
+			{
+				appleThrow->movingLeft(this->getPositionX(), this->getPositionY());
+			}
 
 		}
 		else if (_input->isKeyPressed(DIK_X))
@@ -549,6 +625,15 @@ void Aladdin::UpdateInput(float dt)
 		else if (_input->isKeyPressed(DIK_Z)) //ném
 		{
 			addStatus(eStatus::THROW);
+			appleThrow->addStatus(eStatus::THROW);
+			if (getScale().x > 0)
+			{
+				appleThrow->movingRight(this->getPositionX(), this->getPositionY());
+			}
+			else if (getScale().x < 0)
+			{
+				appleThrow->movingLeft(this->getPositionX(), this->getPositionY());
+			}
 		}
 		else if (_input->isKeyPressed(DIK_C))
 		{
@@ -588,6 +673,15 @@ void Aladdin::UpdateInput(float dt)
 		{
 			removeStatus(eStatus::LOOKING_UP);
 			addStatus(eStatus::THROW);
+			appleThrow->addStatus(eStatus::THROW);
+			if (getScale().x > 0)
+			{
+				appleThrow->movingRight(this->getPositionX(), this->getPositionY());
+			}
+			else if (getScale().x < 0)
+			{
+				appleThrow->movingLeft(this->getPositionX(), this->getPositionY());
+			}
 		}
 		else if (_input->isKeyPressed(DIK_C))
 		{
@@ -610,6 +704,15 @@ void Aladdin::UpdateInput(float dt)
 			removeStatus(eStatus::CLIMB_JUMP);
 			addStatus(eStatus::JUMPING);
 			addStatus(eStatus::THROW);
+			appleThrow->addStatus(eStatus::THROW);
+			if (getScale().x > 0)
+			{
+				appleThrow->movingRight(this->getPositionX(), this->getPositionY());
+			}
+			else if (getScale().x < 0)
+			{
+				appleThrow->movingLeft(this->getPositionX(), this->getPositionY());
+			}
 		}
 		else if (_input->isKeyPressed(DIK_X))
 		{
@@ -656,9 +759,18 @@ void Aladdin::UpdateInput(float dt)
 		{
 			addStatus(eStatus::ATTACK);
 		}
-		else if (_input->isKeyPressed(DIK_Z)) //ném
+		else if (_input->isKeyPressed(DIK_Z))
 		{
 			addStatus(eStatus::THROW);
+			appleThrow->addStatus(eStatus::THROW);
+			if (getScale().x > 0)
+			{
+				appleThrow->movingRight(this->getPositionX(), this->getPositionY());
+			}
+			else if (getScale().x < 0)
+			{
+				appleThrow->movingLeft(this->getPositionX(), this->getPositionY());
+			}
 		}
 		else if (_input->isKeyPressed(DIK_C))
 		{
@@ -687,9 +799,18 @@ void Aladdin::UpdateInput(float dt)
 		{
 			addStatus(eStatus::ATTACK);
 		}
-		else if (_input->isKeyPressed(DIK_Z)) //ném
+		else if (_input->isKeyPressed(DIK_Z))
 		{
 			addStatus(eStatus::THROW);
+			appleThrow->addStatus(eStatus::THROW);
+			if (getScale().x > 0)
+			{
+				appleThrow->movingRight(this->getPositionX(), this->getPositionY());
+			}
+			else if (getScale().x < 0)
+			{
+				appleThrow->movingLeft(this->getPositionX(), this->getPositionY());
+			}
 		}
 		else if (_input->isKeyDown(DIK_C))
 		{
@@ -1253,12 +1374,14 @@ void Aladdin::Stop()
 void Aladdin::Draw(LPD3DXSPRITE spriteHandle, ViewPort* viewport)
 {
 	_animations[_currentAnimateIndex]->Draw(spriteHandle, viewport);
+	appleThrow->Draw(spriteHandle, viewport);
 }
 
 void Aladdin::Release()
 {
 	_sprite->Release();
 	_animations.clear();
+	appleThrow->Release();
 }
 
 void Aladdin::standing()

@@ -62,6 +62,8 @@ enum eID
 	BACKGROUNDFRONT,
 	JAR,
 	THROWJAR
+	APPLETHROW,
+	BACKGROUND
 };
 
 enum eDirection

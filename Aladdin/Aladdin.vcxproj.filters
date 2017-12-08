@@ -135,6 +135,9 @@
     <ClCompile Include="Objects\Enemies\GuardShort.cpp">
       <Filter>Source Files\Object\Enemies</Filter>
     </ClCompile>
+    <ClCompile Include="Objects\Enemies\Knife.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="Objects\GameObjects\Objects\Land.cpp">
       <Filter>Source Files\Object\GameObjects</Filter>
     </ClCompile>
@@ -170,6 +173,9 @@
     </ClCompile>
     <ClCompile Include="Objects\Enemies\Jar.cpp">
       <Filter>Source Files\Object\Enemies</Filter>
+    </ClCompile>
+	 <ClCompile Include="Objects\GameObjects\Objects\AppleThrow.cpp">
+      <Filter>Source Files\Object\GameObjects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -251,6 +257,9 @@
     <ClInclude Include="Objects\Enemies\GuardShort.h">
       <Filter>Header Files\Object\Enemies</Filter>
     </ClInclude>
+    <ClInclude Include="Objects\Enemies\Knife.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="Objects\GameObjects\Objects\Land.h">
       <Filter>Header Files\Object\GameObjects</Filter>
     </ClInclude>
@@ -286,6 +295,9 @@
     </ClInclude>
     <ClInclude Include="Objects\Enemies\Jar.h">
       <Filter>Header Files\Object\Enemies</Filter>
+    </ClInclude>
+	<ClInclude Include="Objects\GameObjects\Objects\AppleThrow.h">
+      <Filter>Header Files\Object\GameObjects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -3,6 +3,7 @@
 GuardShort::GuardShort(eStatus status, int posX, int posY, eDirection direction)
 {
 	_sprite = SpriteManager::getInstance()->getSprite(eID::GUARDSHORT);
+	_sprite->setFrameRect(0, 0, 32.0f, 16.0f);
 
 	_divingSprite = SpriteManager::getInstance()->getSprite(eID::ALADDIN);
 	Vector2 v(direction * GUARDSHORT_SPEED, 0);
@@ -19,7 +20,7 @@ void GuardShort::InIt()
 	auto movement = new Movement(Vector2(0, 0), Vector2(0, 0), _sprite);
 	_listComponent["Movement"] = movement;
 	
-	knife = new Knife(eStatus::THROW, this->getPositionX(), this->getPositionY(), eDirection::NONE);
+	knife = new Knife(eStatus::THROW, getPositionX(), getPositionY(), eDirection::NONE);
 	knife->InIt();
 
 	auto collisionBody = new CollisionBody(this);
@@ -34,8 +35,9 @@ void GuardShort::InIt()
 	_animations[MOVING_RIGHT] = new Animation(_sprite, 0.15f);
 	_animations[MOVING_RIGHT]->addFrameRect(eID::GUARDSHORT, "guardsShort_Moving_0", 8);
 
-	_animations[ATTACK] = new Animation(_sprite, 0.3f);
-	_animations[ATTACK]->addFrameRect(eID::GUARDSHORT, "guardsShort_attack_0", 5);
+	_animations[ATTACK] = new Animation(_sprite, 0.1f);
+	_animations[ATTACK]->addFrameRect(eID::GUARDSHORT, "guardsShort_attack_00" , "guardsShort_attack_01" , "guardsShort_attack_02"
+		, "guardsShort_attack_03" , "guardsShort_attack_04" , "guardsShort_attack_00", "guardsShort_attack_00", NULL);
 
 	_animations[DYING] = new Animation(_sprite, 0.15f);
 	_animations[DYING]->addFrameRect(eID::GUARDSHORT, "guardsShort_dying_0", 7);
@@ -43,12 +45,7 @@ void GuardShort::InIt()
 	_animations[FREE] = new Animation(_sprite, 0.2f);
 	_animations[FREE]->addFrameRect(eID::GUARDSHORT, "guardsShort_free_0", 5);
 
-	_animations[THROW] = new Animation(_sprite, 0.15f);
-	_animations[THROW]->addFrameRect(eID::KNIFE, "guardsShort_throw_01", "guardsShort_throw_02", "guardsShort_throw_03", "guardsShort_throw_04"
-		, "guardsShort_throw_05", "guardsShort_throw_06", "guardsShort_throw_07", NULL);
-
-	//_sprite->drawBounding(false);
-	_canThrow = true;
+	_canThrow = false;
 
 }
 
@@ -69,7 +66,8 @@ void GuardShort::Draw(LPD3DXSPRITE spritehandle, ViewPort* viewport)
 {
 	_animations[this->getStatus()]->Draw(spritehandle, viewport);
 	//text->Draw();
-	knife->Draw(spritehandle, viewport);
+	if (_canThrow)
+		knife->Draw(spritehandle, viewport);
 }
 
 void GuardShort::Release()
@@ -98,7 +96,7 @@ float GuardShort::checkCollision(BaseObject *, float)
 
 float GuardShort::distanceBetweenAladdin()
 {
-	float xAla = _divingSprite->getPositionX() +(_divingSprite->getBounding().right- _divingSprite->getBounding().left) / 2;
+	float xAla = _divingSprite->getPositionX() +(_divingSprite->getBounding().right - _divingSprite->getBounding().left) / 2;
 	float x = this->getPositionX();
 
 #pragma region Test
@@ -106,55 +104,53 @@ float GuardShort::distanceBetweenAladdin()
 	sprintf(str, "khoang cach voi aladdin: %f", xAla - x);
 	text->setText(str);
 #pragma endregion
-
-
 	return xAla - x;
 }
 
 void GuardShort::UpdateStatus(float dt)
 {
+	__debugoutput(distanceBetweenAladdin());
 	if (distanceBetweenAladdin() < 0)
 	{
 		float distance = -distanceBetweenAladdin();
-		if (distance < 200 && distance > 25)
+		if (distance > 200)
 		{
 			this->clearStatus();
+			this->addStatus(eStatus::MOVING_LEFT);
+			movingLeft();
+		}
+		else if (distance <= 200)
+		{
+			this->clearStatus();
+			_sprite->setScaleX(-1.6);
 			this->addStatus(eStatus::ATTACK);
 			standing();
 			knife->addStatus(eStatus::THROW);
-			if(_animations[_status]->getIndex()==2)
-				knife->ThrowLeftNear();
-			return;
-		}
-		this->clearStatus();
-		this->addStatus(eStatus::MOVING_LEFT);
-		movingLeft();
-		if (distance < 25)
-		{
-			this->clearStatus();
-			this->addStatus(eStatus::MOVING_RIGHT);
-			movingRight();
+			if (_animations[_status]->getIndex() == 2)
+				knife->movingLeft(this->getPositionX(), this->getPositionY());
+			_canThrow = true;
 		}
 	}
 	else if (distanceBetweenAladdin() > 0)
 	{
 		float distance = distanceBetweenAladdin();
-		if (distance < 200 && distance > 25)
+		
+		if (distance <= 200)
 		{
 			this->clearStatus();
+			_sprite->setScaleX(1.6);
 			this->addStatus(eStatus::ATTACK);
-			knife->addStatus(eStatus::THROW);
 			standing();
-			return;
+			knife->addStatus(eStatus::THROW);
+			if (_animations[_status]->getIndex() == 2)
+				knife->movingRight(this->getPositionX(), this->getPositionY());
+			_canThrow = true;
 		}
-		this->clearStatus();
-		this->addStatus(eStatus::MOVING_RIGHT);
-		movingRight();
-		if (distance < 25)
+		else if (distance > 200)
 		{
 			this->clearStatus();
-			this->addStatus(eStatus::MOVING_LEFT);
-			movingLeft();
+			this->addStatus(eStatus::MOVING_RIGHT);
+			movingRight();
 		}
 	}
 }
