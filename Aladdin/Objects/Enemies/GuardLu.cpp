@@ -4,7 +4,6 @@ GuardLu::GuardLu(eStatus status, int posX, int posY, eDirection direction)
 {
 	_sprite = SpriteManager::getInstance()->getSprite(eID::GUARDLU);
 
-
 	_divingSprite = SpriteManager::getInstance()->getSprite(eID::ALADDIN);
 	Vector2 v(direction * GUARDLU_SPEED, 0);
 	Vector2 a(0, 0);

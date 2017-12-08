@@ -94,26 +94,30 @@ float ThrowJar::checkCollision(BaseObject *, float)
 	return 0.0f;
 }
 
-float ThrowJar::distanceBetweenAladdin()
+Vector2 ThrowJar::distanceBetweenAladdin()
 {
 	float xAla = _divingSprite->getPositionX() + (_divingSprite->getBounding().right - _divingSprite->getBounding().left) / 2;
 	float x = this->getPositionX();
 
+	float yAla = _divingSprite->getPositionY();
+	float y = this->getPositionY();
 #pragma region Test
-	char str[100];
+	/*char str[100];
 	sprintf(str, "khoang cach voi aladdin: %f", xAla - x);
-	text->setText(str);
+	text->setText(str);*/
 #pragma endregion
 
 
-	return xAla - x;
+	return Vector2(xAla - x,yAla-y);
 }
 
 void ThrowJar::UpdateStatus(float dt)
 {
+	if (distanceBetweenAladdin().y > 0)
+		return;
 	if (distanceBetweenAladdin() < 0)
 	{
-		float distance = -distanceBetweenAladdin();
+		float distance = -distanceBetweenAladdin().x;
 
 		if (distance <= 80)
 		{
@@ -160,7 +164,7 @@ void ThrowJar::UpdateStatus(float dt)
 	//-----------------------------------------------------------------------------
 	else if (distanceBetweenAladdin() > 0)
 	{
-		float distance = distanceBetweenAladdin();
+		float distance = distanceBetweenAladdin().x;
 		if (distance <= 80)
 		{
 			this->clearStatus();
