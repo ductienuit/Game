@@ -41,7 +41,11 @@ enum eStatus
 	DYING =			(1 << 14),			//Chết
 	ATTACK =	    (1 << 15),			//Cầm kiếm chém
     BURN   =		(1 << 16),			//Trạng thái không anime. Kết hợp với các trạng thái với các trạng thái khác để tạo 1 trạng thái.
-	CLIMB_JUMP =    (1 << 17)
+	CLIMB_JUMP =    (1 << 17),
+	THROW_LEFT_NEAR =	(1 << 18),		//Trang thai cua knife
+	THROW_RIGHT_NEAR =	(1 << 19),		//Trang thai cua knife
+	THROW_LEFT_FAR =	(1 << 20),		//Trang thai cua knife
+	THROW_RIGHT_FAR =	(1 << 21)		//Trang thai cua knife
 };
 
 enum eID
@@ -50,6 +54,7 @@ enum eID
 	ALADDIN,
 	GUARDTHIN,
 	GUARDSHORT,
+	KNIFETHROWER,
 	GUARDLU,
 	KNIFE,
 	BACKGROUND,

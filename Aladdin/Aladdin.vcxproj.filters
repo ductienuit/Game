@@ -162,6 +162,9 @@
     <ClCompile Include="Scenes\BackGroundFront.cpp">
       <Filter>Source Files\Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="Objects\Enemies\KnifeThrower.cpp">
+      <Filter>Source Files\Object\Enemies</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AladdinGame.h">
@@ -268,6 +271,9 @@
     </ClInclude>
     <ClInclude Include="Scenes\BackGroundFront.h">
       <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Enemies\KnifeThrower.h">
+      <Filter>Header Files\Object\Enemies</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
