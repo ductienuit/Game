@@ -61,6 +61,7 @@ void Knife::InIt()
 }
 void Knife::Update(float deltatime)
 {
+	eStatus l = this->getStatus();
 	_animations[this->getStatus()]->Update(deltatime);
 
 	

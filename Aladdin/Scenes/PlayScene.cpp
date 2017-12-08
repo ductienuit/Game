@@ -80,11 +80,11 @@ bool PlayScene::InIt()
 	knifeThrower->InIt();
 	_listObject.push_back(knifeThrower);
 
-	/*auto guardThin = new GuardThin(eStatus::MOVING_LEFT, 200, 100, eDirection::LEFT);
+	auto guardThin = new GuardThin(eStatus::MOVING_LEFT, 200, 100, eDirection::LEFT);
 	guardThin->InIt();
 	_listObject.push_back(guardThin);
 
-	auto guardShort = new GuardShort(eStatus::MOVING_LEFT, 600, 140, eDirection::LEFT);
+	/*auto guardShort = new GuardShort(eStatus::MOVING_LEFT, 600, 140, eDirection::LEFT);
 	guardShort->InIt();
 	_listObject.push_back(guardShort);*/
 
@@ -117,11 +117,12 @@ void PlayScene::Update(float dt)
 	}
 
 	for(auto i : _listObject)
+		if (_aladdin->getId() != i->getId())
+			_aladdin->checkCollision(i, dt);
+	/*for (auto i : _listObject)
 		for (auto j : _listObject)
-		{
-			if (i->getId() != j->getId())
-				i->checkCollision(j, dt);
-		}
+			if (j->getId() != i->getId())
+				i->checkCollision(j, dt);*/
 }
 
 void PlayScene::Draw(LPD3DXSPRITE spriteHandle)

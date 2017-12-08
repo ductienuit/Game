@@ -809,6 +809,14 @@ void Aladdin::onCollisionBegin(CollisionEventArg * collision_event)
 {
 	switch (collision_event->_otherObject->getId())
 	{
+		case eID::GUARDTHIN:
+		{
+			if (collision_event->_otherObject->getStatus() == ATTACK && !isInStatus(eStatus::DYING))
+			{
+				setStatus(DYING);
+			}
+			break;
+		}
 		case eID::LAND:
 		{
 
@@ -925,6 +933,7 @@ void Aladdin::onCollisionBegin(CollisionEventArg * collision_event)
 			}
 			break;
 		}
+	
 	}
 }
 
