@@ -1,213 +1,209 @@
 frame_name	left	top	right	bottom
 
-guard_moving_00	451	9	496	76
+guardsThin_moving_00	865	14	953	123
 
-guard_moving_01	400	10	445	76
+guardsThin_moving_01	767	14	855	123
 
-guard_moving_02	343	11	389	76
+guardsThin_moving_02	657	17	748	123
 
-guard_moving_03	289	11	334	76
+guardsThin_moving_03	554	17	642	123
 
-guard_moving_04	247	10	284	76
+guardsThin_moving_04	473	14	546	123
 
-guard_moving_05	196	9	239	76
+guardsThin_moving_05	375	14	460	123
 
-guard_moving_06	140	9	190	76
+guardsThin_moving_06	268	14	366	123
 
-guard_moving_07	99	11	135	76
+guardsThin_moving_07	189	17	260	123
 
 
-guardsThin_attack_00	452	82	489	156
+guardsThin_attack_00	867	130	940	251
 
-guardsThin_attack_01	396	96	445	156
+guardsThin_attack_01	759	153	855	251
 
-guardsThin_attack_02	297	98	389	156
+guardsThin_attack_02	569	156	748	251
 
-guardsThin_attack_03	209	97	295	156
+guardsThin_attack_03	400	154	567	251
 
-guardsThin_attack_04	129	96	206	156
+guardsThin_attack_04	246	153	397	251
 
-guardsThin_attack_05	75	96	116	156
+guardsThin_attack_05	143	153	224	251
 
 
-guards_being_attack_00	446	175	490	233
+guards_being_attack_00	855	279	942	374
 
-guards_being_attack_01	399	185	439	233
+guards_being_attack_01	765	295	844	374
 
-guards_being_attack_02	345	160	384	233
+guards_being_attack_02	661	255	738	374
 
-guards_being_attack_03	296	165	337	233
+guards_being_attack_03	567	263	648	374
 
-guards_being_attack_04	242	171	288	233
+guards_being_attack_04	463	273	554	374
 
-guards_being_attack_05	188	162	230	233
+guards_being_attack_05	360	258	443	374
 
-guards_being_attack_06	133	184	180	233
+guards_being_attack_06	254	293	347	374
 
-guards_being_attack_07	80	185	120	233
+guards_being_attack_07	152	295	232	374
 
-guards_being_attack_08	20	166	65	233
+guards_being_attack_08	37	265	126	374
 
 
-guardsFat_Moving_00	449	255	496	307
+guardsFat_Moving_00	861	407	953	492
 
-guardsFat_Moving_01	391	253	443	307
+guardsFat_Moving_01	749	404	852	492
 
-guardsFat_Moving_02	331	252	387	307
+guardsFat_Moving_02	634	402	744	492
 
-guardsFat_Moving_03	274	253	325	307
+guardsFat_Moving_03	525	404	625	492
 
-guardsFat_Moving_04	219	255	268	307
+guardsFat_Moving_04	419	407	516	492
 
-guardsFat_Moving_05	172	254	214	307
+guardsFat_Moving_05	329	405	412	492
 
-guardsFat_Moving_06	120	251	164	307
+guardsFat_Moving_06	229	401	316	492
 
-guardsFat_Moving_07	69	253	116	307
+guardsFat_Moving_07	131	404	224	492
 
 
-guardsFat_Near_00	449	317	493	370
+guardsFat_Near_00	861	506	948	593
 
-guardsFat_Near_01	405	316	442	370
+guardsFat_Near_01	776	505	850	593
 
-guardsFat_Near_02	346	317	400	370
+guardsFat_Near_02	663	506	769	593
 
-guardsFat_Near_03	283	317	341	370
+guardsFat_Near_03	542	506	656	593
 
-guardsFat_Near_04	228	317	277	370
+guardsFat_Near_04	436	506	533	593
 
-guardsFat_Near_05	176	317	220	370
+guardsFat_Near_05	337	506	424	593
 
 
-guardsFat_AttackOne_00	437	378	492	430
+guardsFat_AttackOne_00	838	604	946	689
 
-guardsFat_AttackOne_01	366	386	433	430
+guardsFat_AttackOne_01	701	617	832	689
 
-guardsFat_AttackOne_02	288	388	358	430
+guardsFat_AttackOne_02	552	620	688	689
 
-guardsFat_AttackOne_03	207	387	282	430
+guardsFat_AttackOne_03	396	618	543	689
 
-guardsFat_AttackOne_04	113	385	201	430
+guardsFat_AttackOne_04	216	615	387	689
 
-guardsFat_AttackOne_05	8	384	103	430
+guardsFat_AttackOne_05	15	613	199	689
 
 
-guardsFat_AttackTwo_00	449	447	492	507
+guardsFat_AttackTwo_00	861	714	946	812
 
-guardsFat_AttackTwo_01	394	434	437	507
+guardsFat_AttackTwo_01	755	693	840	812
 
-guardsFat_AttackTwo_02	330	441	382	507
+guardsFat_AttackTwo_02	632	705	735	812
 
-guardsFat_AttackTwo_03	206	451	320	507
+guardsFat_AttackTwo_03	394	721	615	812
 
-guardsFat_AttackTwo_04	107	434	198	507
+guardsFat_AttackTwo_04	204	693	381	812
 
 
-guardsFat_beingAttack_00	438	538	492	586
+guardsFat_beingAttack_00	840	860	946	939
+guardsFat_beingAttack_01	698	823	821	939
 
-guardsFat_beingAttack_01	364	515	427	586
+guardsFat_beingAttack_02	565	846	692	939
 
-guardsFat_beingAttack_02	295	529	360	586
+guardsFat_beingAttack_03	415	831	554	939
 
-guardsFat_beingAttack_03	217	520	288	586
+guardsFat_beingAttack_04	256	834	400	939
 
-guardsFat_beingAttack_04	134	522	208	586
+guardsFat_beingAttack_05	95	847	224	939
 
-guardsFat_beingAttack_05	50	530	116	586
 
+guardsFat_burn_00	857	956	938	1044
 
-guardsFat_burn_00	447	598	488	652
+guardsFat_burn_01	759	946	844	1044
 
-guardsFat_burn_01	396	592	439	652
+guardsFat_burn_02	673	948	754	1044
 
-guardsFat_burn_02	351	593	392	652
+guardsFat_burn_03	586	950	662	1044
 
-guardsFat_burn_03	306	594	344	652
+guardsFat_burn_04	496	958	577	1044
 
-guardsFat_burn_04	259	599	300	652
+guardsFat_burn_05	387	948	472	1044
 
-guardsFat_burn_05	202	593	245	652
+guardsFat_burn_06	300	950	383	1044
 
-guardsFat_burn_06	157	594	199	652
+guardsFat_burn_07	210	950	295	1044
 
-guardsFat_burn_07	110	594	153	652
+guardsFat_burn_08	114	961	203	1044
 
-guardsFat_burn_08	60	601	105	652
 
+guardsShort_throw_00	855	1060	940	1142
 
-guardsShort_throw_00	446	663	489	713
+guardsShort_throw_01	794	1084	817	1126
 
-guardsShort_throw_01	414	678	425	703
+guardsShort_throw_02	719	1087	771	1116
 
-guardsShort_throw_02	375	686	401	697
+guardsShort_throw_03	680	1079	708	1123
 
-guardsShort_throw_03	355	675	368	701
+guardsShort_throw_04	611	1090	665	1124
 
-guardsShort_throw_04	319	682	346	702
+guardsShort_throw_05	538	1082	592	1128
 
-guardsShort_throw_05	283	677	308	700
+guardsShort_throw_06	475	1079	525	1118
 
-guardsShort_throw_06	248	676	273	698
+guardsShort_throw_07	429	1084	456	1121
 
-guardsShort_throw_07	224	678	237	700
 
+guardsShort_free_00	880	1162	953	1235
 
-guardsShort_free_00	459	727	496	771
+guardsShort_free_01	790	1153	871	1235
 
-guardsShort_free_01	413	721	453	771
+guardsShort_free_02	709	1159	777	1235
 
-guardsShort_free_02	370	725	404	771
+guardsShort_free_03	607	1162	683	1235
 
-guardsShort_free_03	317	727	355	771
+guardsShort_free_04	492	1159	598	1235
 
-guardsShort_free_04	257	725	311	771
+guardsShort_free_05	381	1150	483	1235
 
-guardsShort_free_05	199	719	251	771
+guardsShort_free_06	287	1154	366	1235
 
-guardsShort_free_06	150	722	190	771
 
+guardsShort_Moving_00	870	1254	944	1339
 
-guardsShort_Moving_00	454	784	491	836
+guardsShort_Moving_01	788	1257	857	1339
+guardsShort_Moving_02	705	1262	779	1339
 
-guardsShort_Moving_01	411	786	446	836
+guardsShort_Moving_03	625	1249	702	1339
 
-guardsShort_Moving_02	368	789	405	836
+guardsShort_Moving_04	531	1241	616	1339
 
-guardsShort_Moving_03	326	781	365	836
+guardsShort_Moving_05	433	1249	510	1339
 
-guardsShort_Moving_04	277	776	320	836
+guardsShort_Moving_06	344	1260	418	1339
 
-guardsShort_Moving_05	226	781	265	836
+guardsShort_Moving_07	269	1255	337	1339
 
-guardsShort_Moving_06	180	788	217	836
 
-guardsShort_Moving_07	141	785	175	836
+guardsShort_attack_00	771	1356	891	1451
 
+guardsShort_attack_01	626	1361	711	1452
 
-guardsShort_attack_00	402	848	464	906
+guardsShort_attack_02	392	1366	573	1448
 
-guardsShort_attack_01	326	851	370	907
+guardsShort_attack_03	244	1367	370	1440
 
-guardsShort_attack_02	204	854	298	904
+guardsShort_attack_04	134	1354	220	1440
 
-guardsShort_attack_03	127	855	192	899
 
-guardsShort_attack_04	70	847	114	899
+guardsShort_dying_00	842	1470	950	1554
 
+guardsShort_dying_01	728	1471	836	1554
 
-guardsShort_dying_00	439	919	494	971
+guardsShort_dying_02	611	1473	719	1554
 
-guardsShort_dying_01	380	920	435	971
+guardsShort_dying_03	494	1473	602	1554
 
-guardsShort_dying_02	319	921	374	971
+guardsShort_dying_04	358	1476	485	1554
 
-guardsShort_dying_03	258	921	313	971
+guardsShort_dying_05	204	1449	339	1554
 
-guardsShort_dying_04	187	923	252	971
-
-guardsShort_dying_05	107	906	176	971
-
-guardsShort_dying_06	31	910	99	971
-
-
+guardsShort_dying_06	58	1455	191	1554
 

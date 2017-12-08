@@ -26,13 +26,13 @@ void GuardThin::InIt()
 	__hook(&CollisionBody::onCollisionEnd, collisionBody, &GuardThin::onCollisionEnd);
 
 	_animations[MOVING_LEFT] = new Animation(_sprite, 0.15f);
-	_animations[MOVING_LEFT]->addFrameRect(eID::GUARDTHIN, "guard_moving_0",8);
+	_animations[MOVING_LEFT]->addFrameRect(eID::GUARDTHIN, "guardsThin_moving_0",8);
 
 	_animations[MOVING_RIGHT] = new Animation(_sprite, 0.15f);
-	_animations[MOVING_RIGHT]->addFrameRect(eID::GUARDTHIN, "guard_moving_0", 8);
+	_animations[MOVING_RIGHT]->addFrameRect(eID::GUARDTHIN, "guardsThin_moving_0", 8);
 
 	_animations[ATTACK] = new Animation(_sprite, 0.15f);
-	_animations[ATTACK]->addFrameRect(eID::GUARDTHIN, "guardsShort_throw_0", 8);
+	_animations[ATTACK]->addFrameRect(eID::GUARDTHIN, "guardsThin_attack_0", 8);
 	_sprite->setOrigin(Vector2(0.5, 0));
 	
 }
