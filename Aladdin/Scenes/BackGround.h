@@ -17,11 +17,7 @@ public:
 	void Update(float deltatime);
 	void Draw(LPD3DXSPRITE, ViewPort*);
 	void Release();
-	void Follow(BaseObject *follow);
-	void Unfollow();
-	bool IsFollowing() const;
-private:
-	BaseObject* _following;
+	
 };
 #endif __BACKGROUND_H__
 
