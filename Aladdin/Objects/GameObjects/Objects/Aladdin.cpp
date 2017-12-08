@@ -386,6 +386,32 @@ void Aladdin::UpdateInput(float dt)
 		}
 		break;
 	}
+	case(eStatus::STOPWALK):
+	{
+		if (_input->isKeyDown(DIK_LEFT))
+		{
+			/*Aladdin hướng va chạm bên trái mà nhấn phím left arrow
+			=>Không hủy*/
+			if (getScale().x < 0) 
+			{
+				removeStatus(eStatus::STOPWALK);
+				addStatus(eStatus::MOVING_LEFT);
+			}
+			else
+			{
+				removeStatus(eStatus::STOPWALK);
+				addStatus(eStatus::MOVING_LEFT);
+			}
+		}
+		else if (_input->isKeyDown(DIK_RIGHT))
+		{
+			/*Aladdin hướng va chạm bên trái mà nhấn phím left arrow
+			=>Không hủy*/
+			removeStatus(eStatus::STOPWALK);
+			addStatus(eStatus::MOVING_RIGHT);
+		}
+		break;
+	}
 	case(eStatus::MOVING_LEFT):
 	{
 		if (_input->isKeyPressed(DIK_C))
@@ -791,7 +817,7 @@ void Aladdin::onCollisionBegin(CollisionEventArg * collision_event)
 				standing();
 
 				//set trạng thái chỉ khi đi ngược hướng va chạm mới set lại trạng thái khác
-				//this->setStatus(eStatus::STOPWALK); 
+				this->setStatus(eStatus::STOPWALK); 
 				break;
 			}
 			switch (collision_event->_sideCollision)
