@@ -124,7 +124,7 @@ void GuardShort::UpdateStatus(float dt)
 			standing();
 			knife->addStatus(eStatus::THROW);
 			if(_animations[_status]->getIndex()==2)
-				knife->ThrowLeft();
+				knife->ThrowLeftNear();
 			return;
 		}
 		this->clearStatus();

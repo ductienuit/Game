@@ -6,6 +6,7 @@
 #include "../../FrameWork/IComponent.h"
 #include "../../FrameWork/Text.h"
 #include "BaseEnemy.h"
+#include<math.h>
 using namespace std;
 
 #define KNIFE_SPEED 100
@@ -30,17 +31,18 @@ public:
 	IComponent* getComponent(string componentName);
 
 	Text* text;
-	void ThrowLeft();
-	void ThrowRight();
+	void ThrowLeftNear();
+	void ThrowRightNear();
+	void ThrowLeftFar();
+	void ThrowRightFar();
+	bool canChangeThrowDirection();
 	~Knife();
 private:
-	void movingLeft();
-	void movingRight();
-	void standing();
 	
 	map<string, IComponent*> _listComponent;
 	map<int, Animation*> _animations;
 	Sprite *_divingSprite;
 	Vector2 _originPosition;
+	Vector2 _currentPosition;
 };
 #endif

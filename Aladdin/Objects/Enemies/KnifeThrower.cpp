@@ -20,7 +20,7 @@ void KnifeThrower::InIt()
 	auto movement = new Movement(Vector2(0, 0), Vector2(0, 0), _sprite);
 	_listComponent["Movement"] = movement;
 
-	knife = new Knife(eStatus::THROW, this->getPositionX(), this->getPositionY(), eDirection::NONE);
+	knife = new Knife(eStatus::THROW_LEFT_FAR, this->getPositionX(), this->getPositionY(), eDirection::NONE);
 	knife->InIt();
 
 	auto collisionBody = new CollisionBody(this);
@@ -108,11 +108,21 @@ void KnifeThrower::UpdateStatus(float dt)
 		this->addStatus(eStatus::MOVING_LEFT);
 		movingLeft();
 
-		if (-distanceBetweenAladdin() < 250)
+		if (-distanceBetweenAladdin() < 350)
 		{
-			knife->addStatus(eStatus::THROW);
-			if (_animations[_status]->getIndex() == 2)
-				knife->ThrowLeft();
+			if (knife->canChangeThrowDirection())
+			{
+				if (-distanceBetweenAladdin() < 300)
+				{
+					knife->clearStatus();
+					knife->addStatus(eStatus::THROW_LEFT_NEAR);
+				}
+				else
+				{
+					knife->clearStatus();
+					knife->addStatus(eStatus::THROW_LEFT_FAR);
+				}
+			}
 			return;
 		}
 	}
@@ -122,11 +132,21 @@ void KnifeThrower::UpdateStatus(float dt)
 		this->addStatus(eStatus::MOVING_RIGHT);
 		movingRight();
 
-		if (distanceBetweenAladdin() < 250)
+		if (distanceBetweenAladdin() < 350)
 		{
-			knife->addStatus(eStatus::THROW);
-			if (_animations[_status]->getIndex() == 7)
-				knife->ThrowRight();
+			if (knife->canChangeThrowDirection())
+			{
+				if (distanceBetweenAladdin() < 300)
+				{
+					knife->clearStatus();
+					knife->addStatus(eStatus::THROW_RIGHT_NEAR);
+				}
+				else
+				{
+					knife->clearStatus();
+					knife->addStatus(eStatus::THROW_RIGHT_FAR);
+				}
+			}
 			return;
 		}
 	}
