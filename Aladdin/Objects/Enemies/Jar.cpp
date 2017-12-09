@@ -28,13 +28,21 @@ void Jar::InIt()
 	_animations[DROP | DESTROY] = new Animation(_sprite, 0.1f);
 	_animations[DROP | DESTROY]->addFrameRect(eID::JAR, "jar_broken_", 9);
 
-	_animations[DESTROY] = new Animation(_sprite, 0.1f);
+	_animations[DESTROY] = new Animation(_sprite, 0.05f);
 	_animations[DESTROY]->addFrameRect(eID::JAR, "jar_broken_", 9);
 }
 
 void Jar::Update(float deltatime)
 {
 	_animations[this->getStatus()]->Update(deltatime);
+
+	if (isInStatus(DESTROY))
+	{
+		if (_animations[DESTROY]->getIndex() >= 8)
+			removeStatus(DESTROY);
+	}
+
+
 
 	float x = this->getPositionX();
 	float y = this->getPositionY() - JAR_VELOCITY;
@@ -70,7 +78,7 @@ void Jar::onCollisionBegin(CollisionEventArg *collision_event)
 	case eID::ALADDIN:
 	{
 		/*DK1:Aladdin đang không bị đánh
-		DK2 bức ảnh status Attack của guartlu hiện tại là 3*/
+		DK2 bức ảnh status Attack của guardlu hiện tại là 3*/
 		if (collision_event->_otherObject->isInStatus(eStatus::BEHIT) == false && !isInStatus(DESTROY))
 		{
 			//Set status aladdin bị đánh

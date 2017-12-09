@@ -76,10 +76,10 @@ bool PlayScene::InIt()
 	guardLu->InIt();
 	_listObject.push_back(guardLu);
 
-	// code them trong file PlaySence.cpp
-	auto guardThrowJar = new ThrowJar(eStatus::FREE, 300, 300);
-	guardThrowJar->InIt();
-	_listObject.push_back(guardThrowJar);
+	//COMPLETE throwJar but not Jar
+	//auto guardThrowJar = new ThrowJar(eStatus::FREE, 300, 300);
+	//guardThrowJar->InIt();
+	//_listObject.push_back(guardThrowJar);
 
 	auto knifeThrower = new KnifeThrower(eStatus::THROW_LEFT_NEAR, 200, 100, eDirection::LEFT);
 	knifeThrower->InIt();
