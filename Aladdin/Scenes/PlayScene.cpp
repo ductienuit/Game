@@ -121,11 +121,30 @@ void PlayScene::Update(float dt)
 		object->Update(dt);
 	}
 
-	/*Check collision*/
-	for (auto i : _listObject)
-		for (auto j : _listObject)
-			if (j->getId() != i->getId())
-				i->checkCollision(j, dt);
+	///*Check collision*/
+	//for (auto i : _listObject)
+	//	for (auto j : _listObject)
+	//		if (j->getId() != i->getId())
+	//			i->checkCollision(j, dt);
+
+
+	//Kiểm tra va chạm chéo
+	//Sau khi co Quadtree se thay listObject thanh _activeObjects
+	for (BaseObject* obj : _listObject)
+	{
+		// obj la Enermy va aladdin
+		if (obj == nullptr || obj->getId() == eID::LAND)
+			continue;
+
+		for (BaseObject* passiveobj : _listObject)
+		{
+			//passiveobj là Land và enermy
+			if (passiveobj == nullptr || passiveobj == obj || passiveobj->isInStatus(eStatus::DESTROY))
+				continue;
+
+			obj->checkCollision(passiveobj, dt);
+		}
+	}
 }
 
 void PlayScene::Draw(LPD3DXSPRITE spriteHandle)

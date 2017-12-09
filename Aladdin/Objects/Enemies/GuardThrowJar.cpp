@@ -1,6 +1,6 @@
 ﻿#include "GuardThrowJar.h"
 
-ThrowJar::ThrowJar(eStatus status, int posX, int posY)
+ThrowJar::ThrowJar(eStatus status, int posX, int posY) :BaseEnemy(eID::THROWJAR)
 {
 	_sprite = SpriteManager::getInstance()->getSprite(eID::THROWJAR);
 	_sprite->setFrameRect(0, 0, 32.0f, 16.0f);

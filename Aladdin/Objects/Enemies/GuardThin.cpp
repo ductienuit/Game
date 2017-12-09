@@ -1,6 +1,6 @@
 ﻿#include "GuardThin.h"
 
-GuardThin::GuardThin(eStatus status, int posX, int posY, eDirection direction)
+GuardThin::GuardThin(eStatus status, int posX, int posY, eDirection direction):BaseEnemy(eID::GUARDTHIN)
 {
 	_sprite = SpriteManager::getInstance()->getSprite(eID::GUARDTHIN);
 	_sprite->setFrameRect(0, 0, 32.0f, 16.0f);
@@ -68,16 +68,35 @@ void GuardThin::Release()
 	SAFE_DELETE(this->_sprite);
 }
 
-void GuardThin::onCollisionBegin(CollisionEventArg *)
+void GuardThin::onCollisionBegin(CollisionEventArg *collision_event)
 {
+	eID objectID = collision_event->_otherObject->getId();
+	switch (objectID)
+	{
+	case eID::ALADDIN:
+	{
+		if (collision_event->_otherObject->isInStatus(eStatus::DYING) == false)
+		{
+			collision_event->_otherObject->setStatus(eStatus::DYING);
+			//((Aladdin*)collision_event->_otherObject)->die();
+		}
+		break;
+	}
+	default:
+		break;
+	}
 }
 
 void GuardThin::onCollisionEnd(CollisionEventArg *)
 {
 }
 
-float GuardThin::checkCollision(BaseObject *, float)
+float GuardThin::checkCollision(BaseObject *object, float dt)
 {
+	if (object == this)
+		return 0.0f;
+	auto collisionBody = (CollisionBody*)_listComponent["CollisionBody"];
+	collisionBody->checkCollision(object, dt);
 	return 0.0f;
 }
 

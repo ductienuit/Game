@@ -1,6 +1,6 @@
 ﻿#include "Jar.h"
 
-Jar::Jar(eStatus status, int posX, int posY, eDirection direction)
+Jar::Jar(eStatus status, int posX, int posY, eDirection direction) :BaseEnemy(eID::JAR)
 {
 	_sprite = SpriteManager::getInstance()->getSprite(eID::JAR);
 	_sprite->setFrameRect(0, 0, 32.0f, 16.0f);

@@ -1,6 +1,6 @@
 ﻿#include "KnifeThrower.h"
 
-KnifeThrower::KnifeThrower(eStatus status, int posX, int posY, eDirection direction)
+KnifeThrower::KnifeThrower(eStatus status, int posX, int posY, eDirection direction) :BaseEnemy(eID::KNIFETHROWER)
 {
 	_sprite = SpriteManager::getInstance()->getSprite(eID::KNIFETHROWER);
 	_sprite->setFrameRect(0, 0, 32.0f, 16.0f);

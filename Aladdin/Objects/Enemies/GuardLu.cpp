@@ -1,6 +1,6 @@
 #include "GuardLu.h"
 
-GuardLu::GuardLu(eStatus status, int posX, int posY, eDirection direction)
+GuardLu::GuardLu(eStatus status, int posX, int posY, eDirection direction) :BaseEnemy(eID::GUARDLU)
 {
 	_sprite = SpriteManager::getInstance()->getSprite(eID::GUARDLU);
 

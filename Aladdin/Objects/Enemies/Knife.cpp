@@ -1,6 +1,6 @@
 ﻿#include "Knife.h"
 
-Knife::Knife(eStatus status, int posX, int posY, eDirection direction)
+Knife::Knife(eStatus status, int posX, int posY, eDirection direction) :BaseEnemy(eID::KNIFE)
 {
 	_sprite = SpriteManager::getInstance()->getSprite(eID::KNIFE);
 	_sprite->setFrameRect(0, 0, 32.0f, 16.0f);

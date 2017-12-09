@@ -1,6 +1,6 @@
 ﻿#include "GuardShort.h"
 
-GuardShort::GuardShort(eStatus status, int posX, int posY, eDirection direction)
+GuardShort::GuardShort(eStatus status, int posX, int posY, eDirection direction) :BaseEnemy(eID::GUARDSHORT)
 {
 	_sprite = SpriteManager::getInstance()->getSprite(eID::GUARDSHORT);
 	_sprite->setFrameRect(0, 0, 32.0f, 16.0f);
