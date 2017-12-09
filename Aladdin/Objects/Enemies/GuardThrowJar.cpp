@@ -6,22 +6,23 @@ ThrowJar::ThrowJar(eStatus status, int posX, int posY) :BaseEnemy(eID::THROWJAR)
 	_sprite->setFrameRect(0, 0, 32.0f, 16.0f);
 
 	_divingSprite = SpriteManager::getInstance()->getSprite(eID::ALADDIN);
-	/*Vector2 v(direction * THROWJAR_SPEED, 0);
-	Vector2 a(0, 0);
-	this->_listComponent.insert(pair<string, IComponent*>("Movement", new Movement(a, v, this->_sprite)));*/
+
 	this->setStatus(status);
 	this->setPosition(posX, posY, 1.0f);
 	text = new Text("Arial", "", 10, 25);
+
+	jar = new Jar(eStatus::DROP, posX, posY, eDirection::BOTTOM);
+
+	_score = 10;
 }
 
 void ThrowJar::InIt()
 {
 
+	jar->InIt();
+
 	auto movement = new Movement(Vector2(0, 0), Vector2(0, 0), _sprite);
 	_listComponent["Movement"] = movement;
-
-	jar = new Jar(eStatus::DROP, this->getPositionX(), this->getPositionY(), eDirection::BOTTOM);
-	jar->InIt();
 
 	auto collisionBody = new CollisionBody(this);
 	_listComponent["CollisionBody"] = collisionBody;
@@ -30,32 +31,28 @@ void ThrowJar::InIt()
 	__hook(&CollisionBody::onCollisionEnd, collisionBody, &ThrowJar::onCollisionEnd);
 
 	_animations[FREE] = new Animation(_sprite, 0.2f);
-	_animations[FREE]->addFrameRect(eID::THROWJAR, "lulu", "lulu", NULL);
+	_animations[FREE]->addFrameRect(eID::THROWJAR, "throwjar_0", "throwjar_0", NULL);
 
-	_animations[THROW] = new Animation(_sprite, 0.15f);
-	_animations[THROW]->addFrameRect(eID::THROWJAR, "lulu_0", 10);
+	_animations[THROW] = new Animation(_sprite, 0.08f);
+	_animations[THROW]->addFrameRect(eID::THROWJAR, "throwjar_", 10);
 
-	_animations[DROP] = new Animation(_sprite, 0.1f);
-	_animations[DROP]->addFrameRect(eID::JAR, "lu_roi_", 6);
+	_animations[DYING] = new Animation(_sprite, 0.1f);
+	_animations[DYING]->addFrameRect(eID::THROWJAR, "destroy_enermy_", 10);
 
-	_animations[DROP | DESTROY] = new Animation(_sprite, 0.1f);
-	_animations[DROP | DESTROY]->addFrameRect(eID::JAR, "lu_be_", 8);
-
-	_animations[DESTROY] = new Animation(_sprite, 0.1f);
-	_animations[DESTROY]->addFrameRect(eID::JAR, "lu_be_", 8);
-
-
-	//_sprite->drawBounding(false);
+	_sprite->drawBounding(false);
 	_canDrop = true;
 }
 
 void ThrowJar::Update(float deltatime)
 {
+	eStatus temp = this->getStatus();
+	_animations[temp]->Update(deltatime);
+
 	this->UpdateStatus(deltatime);
 
-	eStatus xL = this->getStatus();
-	_animations[/*this->getStatus()*/xL]->Update(deltatime);
+	//Jar là cái lu
 	jar->Update(deltatime);
+
 	// update component để sau cùng để sửa bên trên sau đó nó cập nhật đúng
 	for (auto it = _listComponent.begin(); it != _listComponent.end(); it++)
 	{
@@ -63,56 +60,29 @@ void ThrowJar::Update(float deltatime)
 	}
 }
 
-void ThrowJar::Draw(LPD3DXSPRITE spritehandle, ViewPort* viewport)
-{
-	_animations[this->getStatus()]->Draw(spritehandle, viewport);
-	//text->Draw();
-	jar->Draw(spritehandle, viewport);
-}
-
-void ThrowJar::Release()
-{
-	for (auto component : _listComponent)
-	{
-		delete component.second;
-	}
-	_listComponent.clear();
-	SAFE_DELETE(this->_sprite);
-	jar->Release();
-}
-
-void ThrowJar::onCollisionBegin(CollisionEventArg *)
-{
-}
-
-void ThrowJar::onCollisionEnd(CollisionEventArg *)
-{
-}
-
-float ThrowJar::checkCollision(BaseObject *, float)
-{
-	return 0.0f;
-}
-
-Vector2 ThrowJar::distanceBetweenAladdin()
-{
-	float xAla = _divingSprite->getPositionX() + (_divingSprite->getBounding().right - _divingSprite->getBounding().left) / 2;
-	float x = this->getPositionX();
-
-	float yAla = _divingSprite->getPositionY();
-	float y = this->getPositionY();
-#pragma region Test
-	/*char str[100];
-	sprintf(str, "khoang cach voi aladdin: %f", xAla - x);
-	text->setText(str);*/
-#pragma endregion
-
-
-	return Vector2(xAla - x,yAla-y);
-}
-
 void ThrowJar::UpdateStatus(float dt)
 {
+	switch (this->getStatus())
+	{
+		case eStatus::DESTROY:
+			return;
+		case eStatus::DYING:
+		{
+			standing();
+			if (_animations[DYING]->getIndex() == 9)
+			{
+				_animations[DYING]->setIndex(0);
+				this->setStatus(DESTROY);
+				//score+=10;
+			}
+			return;
+		}
+	}
+
+
+
+
+
 	if (distanceBetweenAladdin().y > 0)
 		return;
 	if (distanceBetweenAladdin() < 0)
@@ -127,12 +97,6 @@ void ThrowJar::UpdateStatus(float dt)
 			if (_animations[_status]->getIndex() == 6)
 			{
 				jar->Drop();
-				/*	if (jar->PositionY() <= 140 && jar->PositionY() >= 100)
-				{
-				jar->clearStatus();
-				jar->addStatus(eStatus::DESTROY);
-				jar->standing();
-				}*/
 			}
 			return;
 		}
@@ -142,12 +106,6 @@ void ThrowJar::UpdateStatus(float dt)
 			if (_animations[_status]->getIndex() == 6)
 			{
 				jar->Drop();
-				/*	if (jar->PositionY() <= 140 && jar->PositionY() >= 100)
-				{
-				jar->clearStatus();
-				jar->addStatus(eStatus::DESTROY);
-				jar->standing();
-				}*/
 			}
 			if (isInStatus(THROW) && _animations[this->getStatus()]->getIndex() >= 9)
 			{
@@ -173,12 +131,6 @@ void ThrowJar::UpdateStatus(float dt)
 			if (_animations[_status]->getIndex() == 6)
 			{
 				jar->Drop();
-				/*if (jar->PositionY() <= 140 && jar->PositionY() >= 100)
-				{
-				jar->clearStatus();
-				jar->addStatus(eStatus::DESTROY);
-				jar->standing();
-				}*/
 			}
 			return;
 		}
@@ -188,12 +140,6 @@ void ThrowJar::UpdateStatus(float dt)
 			if (_animations[_status]->getIndex() == 6)
 			{
 				jar->Drop();
-				/*	if (jar->PositionY() <= 140 && jar->PositionY() >= 100)
-				{
-				jar->clearStatus();
-				jar->addStatus(eStatus::DESTROY);
-				jar->standing();
-				}*/
 			}
 			if (isInStatus(THROW) && _animations[this->getStatus()]->getIndex() >= 9)
 			{
@@ -210,6 +156,74 @@ void ThrowJar::UpdateStatus(float dt)
 	}
 }
 
+void ThrowJar::Draw(LPD3DXSPRITE spritehandle, ViewPort* viewport)
+{
+	_animations[this->getStatus()]->Draw(spritehandle, viewport);
+	//text->Draw();
+	jar->Draw(spritehandle, viewport);
+}
+
+void ThrowJar::Release()
+{
+	for (auto component : _listComponent)
+	{
+		delete component.second;
+	}
+	_listComponent.clear();
+	SAFE_DELETE(this->_sprite);
+	jar->Release();
+}
+
+void ThrowJar::onCollisionBegin(CollisionEventArg *collision_event)
+{
+	eID objectID = collision_event->_otherObject->getId();
+	switch (objectID)
+	{
+	case eID::ALADDIN:
+	{
+		if (collision_event->_otherObject->isInStatus(ATTACK))
+		{
+			//mạng sống còn 1 và bức ảnh ATTACK của aladdin bằng 1
+			if (collision_event->_otherObject->getIndex() == 3)
+			{
+				this->setStatus(eStatus::DYING);
+			}
+			break;
+		}
+		break;
+	}
+	default:
+		break;
+	}
+}
+
+void ThrowJar::onCollisionEnd(CollisionEventArg *)
+{
+}
+
+float ThrowJar::checkCollision(BaseObject *object, float dt)
+{
+	if (object == this)
+		return 0.0f;
+	auto collisionBody = (CollisionBody*)_listComponent["CollisionBody"];
+	//Check collision enermy(this) với aladdin(object)
+	/*Ưu tiên check ThrowJar trước, sau đó đến Jar*/
+	if(!collisionBody->checkCollision(object, dt, true))
+		jar->checkCollision(object, dt);
+	return 0.0f;
+}
+
+Vector2 ThrowJar::distanceBetweenAladdin()
+{
+	float xAla = _divingSprite->getPositionX() + (_divingSprite->getBounding().right - _divingSprite->getBounding().left) / 2;
+	float x = this->getPositionX();
+
+	float yAla = _divingSprite->getPositionY();
+	float y = this->getPositionY();
+
+	return Vector2(xAla - x,yAla-y);
+}
+
 IComponent* ThrowJar::getComponent(string componentName)
 {
 	return _listComponent.find(componentName)->second;
@@ -218,7 +232,6 @@ IComponent* ThrowJar::getComponent(string componentName)
 ThrowJar::~ThrowJar()
 {
 }
-
 
 void ThrowJar::standing()
 {

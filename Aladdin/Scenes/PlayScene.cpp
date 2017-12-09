@@ -71,12 +71,13 @@ bool PlayScene::InIt()
 	_backgroundfront = new BackGroundFront();
 	_backgroundfront->InIt();
 
-	/*auto guardLu = new GuardLu(eStatus::FREE, 200, 100, eDirection::LEFT);
+	//Complete
+	auto guardLu = new GuardLu(eStatus::FREE, 200, 100, eDirection::LEFT);
 	guardLu->InIt();
-	_listObject.push_back(guardLu);*/
+	_listObject.push_back(guardLu);
 
 	// code them trong file PlaySence.cpp
-	/*auto guardThrowJar = new ThrowJar(eStatus::FREE, 40, 300);
+	auto guardThrowJar = new ThrowJar(eStatus::FREE, 300, 300);
 	guardThrowJar->InIt();
 	_listObject.push_back(guardThrowJar);
 
@@ -84,7 +85,8 @@ bool PlayScene::InIt()
 	knifeThrower->InIt();
 	_listObject.push_back(knifeThrower);
 
-	auto guardThin = new GuardThin(eStatus::MOVING_LEFT, 200, 100, eDirection::LEFT);
+	//Complete
+	/*auto guardThin = new GuardThin(eStatus::MOVING_LEFT, 200, 100, eDirection::LEFT);
 	guardThin->InIt();
 	_listObject.push_back(guardThin);*/
 
@@ -97,6 +99,12 @@ bool PlayScene::InIt()
 	_aladdin->setPosition(1053,250);
 	_listObject.push_back(_aladdin);
 
+
+
+	for each (auto object in _listObject)
+	{
+		object->getSprite()->UpdatePosition();
+	}
 	return true;
 }
 
@@ -151,6 +159,8 @@ void PlayScene::Update(float dt)
 		eID temp = obj->getId();
 		if (temp == LAND || temp == ALADDIN)
 			continue;	
+		if (obj->getId() == THROWJAR)
+			dt = dt;
 		obj->checkCollision(_aladdin, dt);
 	}
 }
@@ -165,7 +175,7 @@ void PlayScene::Draw(LPD3DXSPRITE spriteHandle)
 		object->Draw(spriteHandle, _viewport);
 		object->ShowBB();
 	}
-	_backgroundfront->Draw(spriteHandle, _viewport);
+	//_backgroundfront->Draw(spriteHandle, _viewport);
 }
 
 void PlayScene::Release()

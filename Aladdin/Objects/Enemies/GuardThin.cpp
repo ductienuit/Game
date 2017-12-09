@@ -12,7 +12,7 @@ GuardThin::GuardThin(eStatus status, int posX, int posY, eDirection direction):B
 	this->setStatus(status);
 	this->setPosition(posX,posY,1.0f);
 
-	}
+}
 
 void GuardThin::InIt()
 {
@@ -37,8 +37,8 @@ void GuardThin::InIt()
 	_animations[BEHIT] = new Animation(_sprite, 0.2f);
 	_animations[BEHIT]->addFrameRect(eID::GUARDTHIN, "guards_being_attack_0", 9);
 
-	_animations[STOPWALK] = new Animation(_sprite, 0.2f);
-	_animations[STOPWALK]->addFrameRect(eID::GUARDTHIN, "destroy_enermy_", 10);
+	_animations[DYING] = new Animation(_sprite, 0.2f);
+	_animations[DYING]->addFrameRect(eID::GUARDTHIN, "destroy_enermy_", 10);
 
 	_sprite->setOrigin(Vector2(0.5, 0));
 
@@ -54,8 +54,6 @@ void GuardThin::Update(float deltatime)
 
 	this->UpdateStatus(deltatime);
 
-	float x = this->getPositionX();
-	float y = this->getPositionY();
 	//update component để sau cùng để sửa bên trên sau đó nó cập nhật đúng
 	for (auto it = _listComponent.begin(); it != _listComponent.end(); it++)
 	{
@@ -81,16 +79,16 @@ void GuardThin::UpdateStatus(float dt)
 				if (_hitpoint <= 0)
 				{
 					//score+=10;
-					this->setStatus(STOPWALK);
+					this->setStatus(DYING);
 				}
 			}
 			return;
 		}
-		case eStatus::STOPWALK:
+		case eStatus::DYING:
 		{
-			if (_animations[STOPWALK]->getIndex() == 9)
+			if (_animations[DYING]->getIndex() == 9)
 			{
-				_animations[STOPWALK]->setIndex(0);
+				_animations[DYING]->setIndex(0);
 				this->setStatus(DESTROY);
 			}
 			return;

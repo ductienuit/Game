@@ -115,6 +115,8 @@ public:
 	D3DXCOLOR   getColor();
 
 	void DrawRect(RECT);
+	//Update after change init position
+	void UpdatePosition();
 private:
 	ViewPort			_refViewport;
 	Texture				_texture;

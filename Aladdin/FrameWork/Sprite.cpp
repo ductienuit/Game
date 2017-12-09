@@ -428,6 +428,15 @@ void Sprite::DrawRect(RECT BBox)
 #pragma endregion
 }
 
+void Sprite::UpdatePosition()
+{
+	Vector3 positionViewPort;
+	positionViewPort = ViewPort::getInstance()->getPositionInViewPort(&Vector3(_position.x, _position.y, 1));
+	_positionViewport.x = positionViewPort.x;
+	_positionViewport.y = positionViewPort.y;
+	this->UpdateBounding();
+}
+
 void Sprite::setFrameRect()
 {
 	this->_frameRect.left = (long)_currentFrame.x * _frameWidth;

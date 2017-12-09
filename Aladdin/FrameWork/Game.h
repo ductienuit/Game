@@ -37,8 +37,8 @@ protected:
 	pGameTime			_gameTime;            //Quản lí time	
 	pDeviceManager		_deviceManager;       //Thiết bị xuất, surface
 	pInputController    _input;               //Quản lí các nút bấm
-	LPD3DXSPRITE		_spriteHandler;    
 	static Graphics*	_graphics;            //Dùng khởi tạo Window and pointer window hwnd
+	LPD3DXSPRITE		_spriteHandler;
 private:
 	float		        _frameRate;				  // time for 1 frame, milisecond
 	float			    _oldTime;

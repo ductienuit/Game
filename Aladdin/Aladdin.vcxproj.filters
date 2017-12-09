@@ -174,7 +174,7 @@
     <ClCompile Include="Objects\Enemies\Jar.cpp">
       <Filter>Source Files\Object\Enemies</Filter>
     </ClCompile>
-	 <ClCompile Include="Objects\GameObjects\Objects\AppleThrow.cpp">
+    <ClCompile Include="Objects\GameObjects\Objects\AppleThrow.cpp">
       <Filter>Source Files\Object\GameObjects</Filter>
     </ClCompile>
   </ItemGroup>
@@ -296,7 +296,7 @@
     <ClInclude Include="Objects\Enemies\Jar.h">
       <Filter>Header Files\Object\Enemies</Filter>
     </ClInclude>
-	<ClInclude Include="Objects\GameObjects\Objects\AppleThrow.h">
+    <ClInclude Include="Objects\GameObjects\Objects\AppleThrow.h">
       <Filter>Header Files\Object\GameObjects</Filter>
     </ClInclude>
   </ItemGroup>

@@ -9,6 +9,7 @@
 using namespace std;
 
 #define JAR_GRAVITY 800
+#define JAR_VELOCITY 10
 
 
 class Jar : public BaseEnemy
@@ -24,7 +25,6 @@ public:
 	void onCollisionEnd(CollisionEventArg*);
 	float checkCollision(BaseObject*, float);
 
-	float distanceBetweenAladdin();
 
 	IComponent* getComponent(string componentName);
 	float PositionY();

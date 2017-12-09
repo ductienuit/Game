@@ -3,8 +3,8 @@
 Jar::Jar(eStatus status, int posX, int posY, eDirection direction) :BaseEnemy(eID::JAR)
 {
 	_sprite = SpriteManager::getInstance()->getSprite(eID::JAR);
-	_sprite->setFrameRect(0, 0, 32.0f, 16.0f);
 	_originPosition = Vector2(posX, posY);
+	_sprite->setFrameRect(0, 0, 32.0f, 16.0f);
 
 	_divingSprite = SpriteManager::getInstance()->getSprite(eID::ALADDIN);
 	Vector2 v(direction * JAR_GRAVITY, 0);
@@ -17,55 +17,27 @@ Jar::Jar(eStatus status, int posX, int posY, eDirection direction) :BaseEnemy(eI
 
 void Jar::InIt()
 {
-	//auto move = (Movement*)this->_listComponent["Movement"];
-	//move->setVelocity(Vector2(move->getVelocity().x, JAR_JUMP));
-
-	//auto gravity = new Gravity(Vector2(0, -JAR_GRAVITY), move);
-	//gravity->setStatus(eGravityStatus::FALLING__DOWN);
-	//_listComponent["Gravity"] = gravity;
-
-	/*auto movement = new Movement(Vector2(9.8, 9.8), Vector2(20, 10), _sprite);
-	_listComponent["Movement"] = movement;
-
-	auto gravity = new Gravity(Vector2(0,-JAR_GRAVITY),movement);
-	gravity->setStatus(eGravityStatus::FALLING__DOWN);*/
-	//_listComponent["Gravity"] = gravity;
-
 	auto collisionBody = new CollisionBody(this);
 	_listComponent["CollisionBody"] = collisionBody;
 
 	__hook(&CollisionBody::onCollisionBegin, collisionBody, &Jar::onCollisionBegin);
-	__hook(&CollisionBody::onCollisionEnd, collisionBody, &Jar::onCollisionEnd);
 
 	_animations[DROP] = new Animation(_sprite, 0.1f);
-	_animations[DROP]->addFrameRect(eID::JAR, "lu_roi_", 6);
+	_animations[DROP]->addFrameRect(eID::JAR, "jar_falling_", 6);
 
 	_animations[DROP | DESTROY] = new Animation(_sprite, 0.1f);
-	_animations[DROP | DESTROY]->addFrameRect(eID::JAR, "lu_be_", 8);
+	_animations[DROP | DESTROY]->addFrameRect(eID::JAR, "jar_broken_", 9);
 
 	_animations[DESTROY] = new Animation(_sprite, 0.1f);
-	_animations[DESTROY]->addFrameRect(eID::JAR, "lu_be_", 8);
-
-	/*_animations[FREE|DROP] = new Animation(_sprite, 0.1f);
-	_animations[FREE|DROP]->addFrameRect(eID::JAR, "lu_be_00","lu_be_01",NULL);
-
-	_animations[FREE] = new Animation(_sprite, 0.1f);
-	_animations[FREE]->addFrameRect(eID::JAR, "lu_be_00", "lu_be_01", NULL);*/
-
-	//dm méo có throw mà m add vô là sao
-
-	//_sprite->drawBounding(false);
-	//_sprite->setOrigin(Vector2(0, 0));
-
+	_animations[DESTROY]->addFrameRect(eID::JAR, "jar_broken_", 9);
 }
+
 void Jar::Update(float deltatime)
 {
-	//eStatus xL = this->getStatus();
-	//Hiêu ứng nó là Throw|DROP, thấy sai chưa
 	_animations[this->getStatus()]->Update(deltatime);
 
 	float x = this->getPositionX();
-	float y = this->getPositionY() - 10;
+	float y = this->getPositionY() - JAR_VELOCITY;
 	this->setPosition(x, y);
 
 	// update component để sau cùng để sửa bên trên sau đó nó cập nhật đúng
@@ -78,7 +50,6 @@ void Jar::Update(float deltatime)
 void Jar::Draw(LPD3DXSPRITE spritehandle, ViewPort* viewport)
 {
 	_animations[this->getStatus()]->Draw(spritehandle, viewport);
-	//text->Draw();
 }
 
 void Jar::Release()
@@ -91,16 +62,40 @@ void Jar::Release()
 	SAFE_DELETE(this->_sprite);
 }
 
-void Jar::onCollisionBegin(CollisionEventArg *)
+void Jar::onCollisionBegin(CollisionEventArg *collision_event)
 {
+	eID objectID = collision_event->_otherObject->getId();
+	switch (objectID)
+	{
+	case eID::ALADDIN:
+	{
+		/*DK1:Aladdin đang không bị đánh
+		DK2 bức ảnh status Attack của guartlu hiện tại là 3*/
+		if (collision_event->_otherObject->isInStatus(eStatus::BEHIT) == false && !isInStatus(DESTROY))
+		{
+			//Set status aladdin bị đánh
+			collision_event->_otherObject->setStatus(eStatus::BEHIT);
+			this->setStatus(DESTROY);
+		}
+		break;
+	}
+	default:
+		break;
+	}
 }
 
 void Jar::onCollisionEnd(CollisionEventArg *)
 {
 }
 
-float Jar::checkCollision(BaseObject *, float)
+float Jar::checkCollision(BaseObject *object, float dt)
 {
+	if (object == this)
+		return 0.0f;
+	auto collisionBody = (CollisionBody*)_listComponent["CollisionBody"];
+
+	//Check collision enermy(this) với aladdin(object)
+	collisionBody->checkCollision(object, dt, true);
 	return 0.0f;
 }
 
@@ -129,21 +124,8 @@ void Jar::movingDown()
 void Jar::Drop()
 {
 	float x = _originPosition.x;
-	float y = _originPosition.y - 10;
+	float y = _originPosition.y - JAR_VELOCITY;
 	this->setPosition(x, y);
-}
-
-float Jar::distanceBetweenAladdin()
-{
-	float xAla = _divingSprite->getPositionX() + (_divingSprite->getBounding().right - _divingSprite->getBounding().left) / 2;
-	float x = this->getPositionX();
-
-#pragma region Test
-	char str[100];
-	sprintf(str, "khoang cach voi aladdin: %f", xAla - x);
-	text->setText(str);
-#pragma endregion
-	return xAla - x;
 }
 
 float Jar::PositionY()

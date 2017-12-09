@@ -16,12 +16,13 @@ void CollisionBody::checkCollision(BaseObject * otherObject, float dt)
 	eDirection direction;
 	RECT myRect = _target->getBounding();
 	RECT otherRect;
-	if (otherObject->getId() == eID::LAND)
+	/*if (otherObject->getId() == eID::LAND)
 	{
 		auto land = (Land*)otherObject;
 		otherRect = land->getBounding();
 	}
-	else otherRect = otherObject->getBounding();
+	else*/ 
+		otherRect = otherObject->getBounding();
 	/*Có được thời gian rồi thì mình bắt đầu xét va chạm:
 
 	time > 1.0f: frame tiếp theo nó vẫn chưa thể va chạm.
@@ -66,7 +67,7 @@ void CollisionBody::checkCollision(BaseObject * otherObject, float dt)
 	}
 }
 
-void CollisionBody::checkCollision(BaseObject* otherObject, float dt, bool isEnermy)
+bool CollisionBody::checkCollision(BaseObject* otherObject, float dt, bool isEnermy)
 {
 	eDirection direction;
 	RECT myRect = _target->getBounding();
@@ -80,7 +81,9 @@ void CollisionBody::checkCollision(BaseObject* otherObject, float dt, bool isEne
 		CollisionEventArg* e = new CollisionEventArg(otherObject);
 		e->_sideCollision = NONE; //Enermy không cần hướng va chạm
 		__raise onCollisionBegin(e);
+		return true;
 	}
+	return false;
 }
 
 /*Code này không sử dụng*/

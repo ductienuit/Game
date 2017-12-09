@@ -39,8 +39,8 @@ void GuardLu::InIt()
 	_animations[FREE] = new Animation(_sprite, 0.2f);
 	_animations[FREE]->addFrameRect(eID::GUARDLU, "guardsLu_free_", 6);
 
-	_animations[STOPWALK] = new Animation(_sprite, 0.2f);
-	_animations[STOPWALK]->addFrameRect(eID::GUARDLU, "destroy_enermy_", 10);
+	_animations[DYING] = new Animation(_sprite, 0.2f);
+	_animations[DYING]->addFrameRect(eID::GUARDLU, "destroy_enermy_", 10);
 
 	//_sprite->drawBounding(false);
 
@@ -91,7 +91,7 @@ void GuardLu::onCollisionBegin(CollisionEventArg *collision_event)
 			//mạng sống còn 1 và bức ảnh ATTACK của aladdin bằng 1
 			if (collision_event->_otherObject->getIndex() == 3)
 			{
-				this->setStatus(eStatus::STOPWALK);
+				this->setStatus(eStatus::DYING);
 			}
 			break;
 		}
@@ -147,12 +147,12 @@ void GuardLu::UpdateStatus(float dt)
 	{
 		case eStatus::DESTROY:
 			return;
-		case eStatus::STOPWALK:
+		case eStatus::DYING:
 		{
 			standing();
-			if (_animations[STOPWALK]->getIndex() == 9)
+			if (_animations[DYING]->getIndex() == 9)
 			{
-				_animations[STOPWALK]->setIndex(0);
+				_animations[DYING]->setIndex(0);
 				this->setStatus(DESTROY);
 				//score+=10;
 			}

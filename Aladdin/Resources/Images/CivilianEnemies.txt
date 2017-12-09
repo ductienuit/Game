@@ -96,78 +96,81 @@ knifeThrowers_attack_09	67	152	119	238
 
 knifeThrowers_attack_10	3	157	56	238
 
-lulu_00		11	35	22	57
+throwjar_0		11	35	22	57
 
 
-lulu_01		42	32	59	57
+throwjar_1		42	32	59	57
 
 
-lulu_02		73	29	96	61
+throwjar_2		73	29	96	61
 
 
-lulu_03		107	29	136	60
+throwjar_3		107	29	136	60
 
 
-lulu_04		145	26	186	62
+throwjar_4		145	26	186	62
 
 
-lulu_05		194	26	235	67
+throwjar_5		194	26	235	67
 
 
-lulu_06		251	27	294	68
+throwjar_6		251	27	294	68
 
 
-lulu_07		306	31	331	53
+throwjar_7		306	31	331	53
 
 
-lulu_08		345	36	363	49
+throwjar_8		345	36	363	49
 
 
-lulu_09		382	37	390	43
-
-
-
-lu_roi_0		15	97	43	118
-
-
-lu_roi_1		56	95	80	119
-
-
-lu_roi_2		90	95	116	117
-
-
-lu_roi_3		127	98	154	114
-
-
-lu_roi_4		164	92	188	116
-
-
-lu_roi_5		204	94	225	119
+throwjar_9		382	37	390	43
 
 
 
-lu_be_0		235	100	272	115
+jar_falling_0	15	97	43	118
 
 
-lu_be_1		292	94	360	116
+jar_falling_1	56	95	80	119
 
 
-lu_be_2		376	94	452	120
+jar_falling_2	90	95	116	117
 
 
-lu_be_3		472	88	558	121
+jar_falling_3	127	98	154	114
 
 
-lu_be_4		578	85	674	118
+jar_falling_4	164	92	188	116
 
 
-lu_be_5		695	83	791	119
+jar_falling_5	204	94	225	119
 
 
-lu_be_6		814	84	916	120
+jar_broken_0	204	94	225	119
 
 
-lu_be_7		955	81	1056	111
+
+jar_broken_1	235	100	272	115
+
+
+jar_broken_2	292	94	360	116
+
+
+jar_broken_3	376	94	452	120
+
+
+jar_broken_4	472	88	558	121
+
+
+jar_broken_5	578	85	674	118
+
+
+jar_broken_6	695	83	791	119
+
+
+jar_broken_7	814	84	916	120
+
+
+jar_broken_8	955	81	1056	111
 
 
 destroy_enermy_0	0	594	55	654

@@ -58,7 +58,7 @@ public:
 	Kiểm tra va chạm ala với enermy
 	@otherObject: đối tượng va chạm với this
 	*/
-	void checkCollision(BaseObject* otherObject, float dt,bool isEnermy);
+	bool checkCollision(BaseObject* otherObject, float dt,bool isEnermy);
 
 	bool isColliding();
 
