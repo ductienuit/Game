@@ -16,7 +16,6 @@ KnifeThrower::KnifeThrower(eStatus status, int posX, int posY, eDirection direct
 
 void KnifeThrower::InIt()
 {
-
 	auto movement = new Movement(Vector2(0, 0), Vector2(0, 0), _sprite);
 	_listComponent["Movement"] = movement;
 
@@ -35,18 +34,22 @@ void KnifeThrower::InIt()
 	_animations[MOVING_RIGHT] = new Animation(_sprite, 0.1f);
 	_animations[MOVING_RIGHT]->addFrameRect(eID::KNIFETHROWER, "knifeThrowers_attack_0", 10);
 
+	_animations[DYING] = new Animation(_sprite, 0.05f);
+	_animations[DYING]->addFrameRect(eID::GUARDLU, "destroy_enermy_", 10);
 
-	//_sprite->drawBounding(false);
+	_sprite->drawBounding(false);
 	_canThrow = true;
 
+	_hitpoint = 2;// 1 lần đánh
+	_score = 10; //Số điểm được mỗi lần giết enermy
 }
 
 void KnifeThrower::Update(float deltatime)
 {
-	this->UpdateStatus(deltatime);
-
 	_animations[this->getStatus()]->Update(deltatime);
 	knife->Update(deltatime);
+	this->UpdateStatus(deltatime);	
+
 	// update component để sau cùng để sửa bên trên sau đó nó cập nhật đúng
 	for (auto it = _listComponent.begin(); it != _listComponent.end(); it++)
 	{
@@ -57,7 +60,6 @@ void KnifeThrower::Update(float deltatime)
 void KnifeThrower::Draw(LPD3DXSPRITE spritehandle, ViewPort* viewport)
 {
 	_animations[this->getStatus()]->Draw(spritehandle, viewport);
-	//text->Draw();
 	knife->Draw(spritehandle, viewport);
 }
 
@@ -72,16 +74,42 @@ void KnifeThrower::Release()
 	knife->Release();
 }
 
-void KnifeThrower::onCollisionBegin(CollisionEventArg *)
+void KnifeThrower::onCollisionBegin(CollisionEventArg *collision_event)
 {
+	eID objectID = collision_event->_otherObject->getId();
+	switch (objectID)
+	{
+	case eID::ALADDIN:
+	{
+		if (collision_event->_otherObject->isInStatus(ATTACK))
+		{
+			//mạng sống còn 1 và bức ảnh ATTACK của aladdin bằng 1
+			if (collision_event->_otherObject->getIndex() == 3)
+			{
+				this->setStatus(eStatus::DYING);
+			}
+			break;
+		}
+		break;
+	}
+	default:
+		break;
+	}
 }
 
 void KnifeThrower::onCollisionEnd(CollisionEventArg *)
 {
 }
 
-float KnifeThrower::checkCollision(BaseObject *, float)
+float KnifeThrower::checkCollision(BaseObject *object, float dt)
 {
+	if (object == this)
+		return 0.0f;
+	auto collisionBody = (CollisionBody*)_listComponent["CollisionBody"];
+	//Check collision enermy(this) với aladdin(object)
+	/*Ưu tiên check KnifeThrower trước, sau đó đến knife*/
+	if (!collisionBody->checkCollision(object, dt, true))
+		knife->checkCollision(object, dt);
 	return 0.0f;
 }
 
@@ -89,19 +117,28 @@ float KnifeThrower::distanceBetweenAladdin()
 {
 	float xAla = _divingSprite->getPositionX() + (_divingSprite->getBounding().right - _divingSprite->getBounding().left) / 2;
 	float x = this->getPositionX();
-
-#pragma region Test
-	char str[100];
-	sprintf(str, "khoang cach voi aladdin: %f", xAla - x);
-	text->setText(str);
-#pragma endregion
-
-
 	return xAla - x;
 }
 
 void KnifeThrower::UpdateStatus(float dt)
 {
+	switch (this->getStatus())
+	{
+	case eStatus::DESTROY:
+		return;
+	case eStatus::DYING:
+	{
+		if (_animations[DYING]->getIndex() == 9)
+		{
+			_animations[DYING]->setIndex(0);
+			this->setStatus(DESTROY);
+			//score+=10;
+		}
+		return;
+	}
+	}
+
+
 	if (distanceBetweenAladdin() < 0)
 	{
 		this->clearStatus();
@@ -114,13 +151,11 @@ void KnifeThrower::UpdateStatus(float dt)
 			{
 				if (-distanceBetweenAladdin() < 300)
 				{
-					knife->clearStatus();
-					knife->addStatus(eStatus::THROW_LEFT_NEAR);
+					knife->setStatus(eStatus::THROW_LEFT_NEAR);
 				}
 				else
 				{
-					knife->clearStatus();
-					knife->addStatus(eStatus::THROW_LEFT_FAR);
+					knife->setStatus(eStatus::THROW_LEFT_FAR);
 				}
 			}
 			return;
@@ -138,13 +173,11 @@ void KnifeThrower::UpdateStatus(float dt)
 			{
 				if (distanceBetweenAladdin() < 300)
 				{
-					knife->clearStatus();
-					knife->addStatus(eStatus::THROW_RIGHT_NEAR);
+					knife->setStatus(eStatus::THROW_RIGHT_NEAR);
 				}
 				else
 				{
-					knife->clearStatus();
-					knife->addStatus(eStatus::THROW_RIGHT_FAR);
+					knife->setStatus(eStatus::THROW_RIGHT_FAR);
 				}
 			}
 			return;

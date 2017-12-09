@@ -43,7 +43,6 @@ void Jar::Update(float deltatime)
 	}
 
 
-
 	float x = this->getPositionX();
 	float y = this->getPositionY() - JAR_VELOCITY;
 	this->setPosition(x, y);

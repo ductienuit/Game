@@ -18,7 +18,6 @@ ThrowJar::ThrowJar(eStatus status, int posX, int posY) :BaseEnemy(eID::THROWJAR)
 
 void ThrowJar::InIt()
 {
-
 	jar->InIt();
 
 	auto movement = new Movement(Vector2(0, 0), Vector2(0, 0), _sprite);

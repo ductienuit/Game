@@ -7,7 +7,6 @@ Knife::Knife(eStatus status, int posX, int posY, eDirection direction) :BaseEnem
 	_originPosition = Vector2(posX, posY + 100);
 	_currentPosition = Vector2(_originPosition.x, _originPosition.y);
 
-	//_divingSprite = SpriteManager::getInstance()->getSprite(eID::ALADDIN);
 	Vector2 v(direction * KNIFE_SPEED, 0);
 	Vector2 a(0, 0);
 	this->_listComponent.insert(pair<string, IComponent*>("Movement", new Movement(a, v, this->_sprite)));
@@ -18,56 +17,36 @@ Knife::Knife(eStatus status, int posX, int posY, eDirection direction) :BaseEnem
 
 void Knife::InIt()
 {
-	//auto move = (Movement*)this->_listComponent["Movement"];
-	//move->setVelocity(Vector2(move->getVelocity().x, KNIFE_JUMP));
-
-	//auto gravity = new Gravity(Vector2(0, -KNIFE_GRAVITY), move);
-	//gravity->setStatus(eGravityStatus::FALLING__DOWN);
-	//_listComponent["Gravity"] = gravity;
-
-	/*auto movement = new Movement(Vector2(9.8, 9.8), Vector2(20, 10), _sprite);
-	_listComponent["Movement"] = movement;
-
-	auto gravity = new Gravity(Vector2(0,-KNIFE_GRAVITY),movement);
-	gravity->setStatus(eGravityStatus::FALLING__DOWN);*/
-	//_listComponent["Gravity"] = gravity;
-
-	/*auto sinmovement = new SinMovement(Vector2(300, 0), 1.5, _sprite);*/
-
 	auto collisionBody = new CollisionBody(this);
 	_listComponent["CollisionBody"] = collisionBody;
 
 	__hook(&CollisionBody::onCollisionBegin, collisionBody, &Knife::onCollisionBegin);
 	__hook(&CollisionBody::onCollisionEnd, collisionBody, &Knife::onCollisionEnd);
 
-	_animations[THROW] = new Animation(_sprite, 0.1f);
-	_animations[THROW]->addFrameRect(eID::KNIFE, "guardsShort_throw_01", "guardsShort_throw_02", "guardsShort_throw_03", "guardsShort_throw_04"
-		, "guardsShort_throw_05", "guardsShort_throw_06", "guardsShort_throw_07", NULL);
-
-
-	_animations[THROW_LEFT_NEAR] = new Animation(_sprite, 0.1f);
+	_animations[THROW_LEFT_NEAR] = new Animation(_sprite, 0.12f);
 	_animations[THROW_LEFT_NEAR]->addFrameRect(eID::KNIFE, "guardsShort_throw_01", "guardsShort_throw_02", "guardsShort_throw_03", "guardsShort_throw_04"
 		, "guardsShort_throw_05", "guardsShort_throw_06", "guardsShort_throw_07", NULL);
 
-	_animations[THROW_RIGHT_NEAR] = new Animation(_sprite, 0.1f);
+	_animations[THROW_RIGHT_NEAR] = new Animation(_sprite, 0.12f);
 	_animations[THROW_RIGHT_NEAR]->addFrameRect(eID::KNIFE, "guardsShort_throw_01", "guardsShort_throw_02", "guardsShort_throw_03", "guardsShort_throw_04"
 		, "guardsShort_throw_05", "guardsShort_throw_06", "guardsShort_throw_07", NULL);
 	
-	_animations[THROW_LEFT_FAR] = new Animation(_sprite, 0.1f);
+	_animations[THROW_LEFT_FAR] = new Animation(_sprite, 0.12f);
 	_animations[THROW_LEFT_FAR]->addFrameRect(eID::KNIFE, "guardsShort_throw_01", "guardsShort_throw_02", "guardsShort_throw_03", "guardsShort_throw_04"
 		, "guardsShort_throw_05", "guardsShort_throw_06", "guardsShort_throw_07", NULL);
 
-	_animations[THROW_RIGHT_FAR] = new Animation(_sprite, 0.1f);
+	_animations[THROW_RIGHT_FAR] = new Animation(_sprite, 0.12f);
 	_animations[THROW_RIGHT_FAR]->addFrameRect(eID::KNIFE, "guardsShort_throw_01", "guardsShort_throw_02", "guardsShort_throw_03", "guardsShort_throw_04"
 		, "guardsShort_throw_05", "guardsShort_throw_06", "guardsShort_throw_07", NULL);
 	//_sprite->drawBounding(false);
 	//_sprite->setOrigin(Vector2(0, 0));
-
 }
+
 void Knife::Update(float deltatime)
 {
+	if (isInStatus(DESTROY))
+		return;
 	_animations[this->getStatus()]->Update(deltatime);
-
 	
 	switch (this->getStatus())
 	{
@@ -97,6 +76,8 @@ void Knife::Update(float deltatime)
 
 void Knife::Draw(LPD3DXSPRITE spritehandle, ViewPort* viewport)
 {
+	if (isInStatus(DESTROY))
+		return;
 	_animations[this->getStatus()]->Draw(spritehandle, viewport);
 	//text->Draw();
 }
@@ -111,16 +92,39 @@ void Knife::Release()
 	SAFE_DELETE(this->_sprite);
 }
 
-void Knife::onCollisionBegin(CollisionEventArg *)
+void Knife::onCollisionBegin(CollisionEventArg *collision_event)
 {
+	eID objectID = collision_event->_otherObject->getId();
+	switch (objectID)
+	{
+	case eID::ALADDIN:
+	{
+		/*DK1:Aladdin đang không bị đánh*/
+		if (collision_event->_otherObject->isInStatus(eStatus::BEHIT) == false && !isInStatus(DESTROY))
+		{
+			//Set status aladdin bị đánh
+			collision_event->_otherObject->setStatus(eStatus::BEHIT);
+			//this->setStatus(DESTROY);
+		}
+		break;
+	}
+	default:
+		break;
+	}
 }
 
 void Knife::onCollisionEnd(CollisionEventArg *)
 {
 }
 
-float Knife::checkCollision(BaseObject *, float)
+float Knife::checkCollision(BaseObject *object, float dt)
 {
+	if (object == this)
+		return 0.0f;
+	auto collisionBody = (CollisionBody*)_listComponent["CollisionBody"];
+
+	//Check collision enermy(this) với aladdin(object)
+	collisionBody->checkCollision(object, dt, true);
 	return 0.0f;
 }
 
@@ -132,7 +136,6 @@ IComponent* Knife::getComponent(string componentName)
 Knife::~Knife()
 {
 }
-
 
 void Knife::ThrowLeftFar()
 {
@@ -155,15 +158,6 @@ void Knife::ThrowLeftFar()
 		_currentPosition = _originPosition;
 		this->setPosition(_originPosition.x, _originPosition.y);
 	}
-}
-void Knife::movingLeft(float x, float y)
-{
-	_sprite->setScaleX(-1.6);
-	auto move = (Movement*)this->_listComponent["Movement"];
-	move->setVelocity(Vector2(-KNIFE_SPEED, -KNIFE_JUMP));
-	x = x - 80;
-	y = y + 60;
-	this->setPosition(x, y);
 }
 
 void Knife::ThrowRightFar()
@@ -210,15 +204,6 @@ void Knife::ThrowLeftNear()
 		this->setPosition(_originPosition.x, _originPosition.y);
 	}
 }
-void Knife::movingRight(float x, float y)
-{
-	_sprite->setScaleX(1.6);
-	auto move = (Movement*)this->_listComponent["Movement"];
-	move->setVelocity(Vector2(KNIFE_SPEED, -KNIFE_JUMP));
-	x = x + 80;
-	y = y + 60;
-	this->setPosition(x, y);
-}
 
 void Knife::ThrowRightNear()
 {
@@ -233,17 +218,4 @@ void Knife::ThrowRightNear()
 		_currentPosition = _originPosition;
 		this->setPosition(_originPosition.x, _originPosition.y);
 	}
-}
-
-float Knife::distanceBetweenAladdin()
-{
-	float xAla = _divingSprite->getPositionX() + (_divingSprite->getBounding().right - _divingSprite->getBounding().left) / 2;
-	float x = this->getPositionX();
-
-#pragma region Test
-	char str[100];
-	sprintf(str, "khoang cach voi aladdin: %f", xAla - x);
-	text->setText(str);
-#pragma endregion
-	return xAla - x;
 }

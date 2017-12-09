@@ -26,8 +26,6 @@ public:
 	void onCollisionEnd(CollisionEventArg*);
 	float checkCollision(BaseObject*, float);
 
-	float distanceBetweenAladdin();
-
 	IComponent* getComponent(string componentName);
 
 	Text* text;
@@ -36,17 +34,11 @@ public:
 	void ThrowLeftFar();
 	void ThrowRightFar();
 	bool canChangeThrowDirection();
-	void movingLeft(float x, float y);
-	void movingRight(float x, float y);
 	~Knife();
 private:
-	//void movingLeft();
-	//void movingRight();
-	//void standing();
 	
 	map<string, IComponent*> _listComponent;
 	map<int, Animation*> _animations;
-	Sprite *_divingSprite;
 	Vector2 _originPosition;
 	Vector2 _currentPosition;
 };

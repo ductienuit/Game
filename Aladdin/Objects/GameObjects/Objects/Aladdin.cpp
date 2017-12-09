@@ -138,7 +138,7 @@ void Aladdin::InIt()
 	_animations[eStatus::DYING] = new Animation(_sprite, 0.1f);
 	_animations[eStatus::DYING]->addFrameRect(eID::ALADDIN, "die_", 28);
 
-	_animations[eStatus::BEHIT] = new Animation(_sprite, 0.1f);
+	_animations[eStatus::BEHIT] = new Animation(_sprite, 0.07f);
 	_animations[eStatus::BEHIT]->addFrameRect(eID::ALADDIN, "burn_", 6); //6
 
 	_animations[eStatus::SWING] = new Animation(_sprite, 0.1f);

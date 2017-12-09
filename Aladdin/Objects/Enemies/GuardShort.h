@@ -6,7 +6,7 @@
 #include "../../FrameWork/StopWatch.h"
 #include "../../FrameWork/IComponent.h"
 #include "../../FrameWork/Text.h"
-#include "../Enemies/Knife.h"
+#include "../Enemies/KnifeShort.h"
 #include "BaseEnemy.h"
 using namespace std;
 
@@ -40,7 +40,7 @@ private:
 	void standing();
 	void Throw(float deltatime);
 
-	Knife* knife;
+	KnifeShort* knife;
 	map<string, IComponent*> _listComponent;
 	map<int, Animation*> _animations;
 	Sprite *_divingSprite;

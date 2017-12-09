@@ -81,7 +81,7 @@ bool PlayScene::InIt()
 	//guardThrowJar->InIt();
 	//_listObject.push_back(guardThrowJar);
 
-	auto knifeThrower = new KnifeThrower(eStatus::THROW_LEFT_NEAR, 200, 100, eDirection::LEFT);
+	auto knifeThrower = new KnifeThrower(eStatus::MOVING_RIGHT, 200, 100, eDirection::LEFT);
 	knifeThrower->InIt();
 	_listObject.push_back(knifeThrower);
 
@@ -157,10 +157,8 @@ void PlayScene::Update(float dt)
 			continue;
 
 		eID temp = obj->getId();
-		if (temp == LAND || temp == ALADDIN)
+		if (temp == LAND || temp == ALADDIN || obj->getStatus()==DESTROY)
 			continue;	
-		if (obj->getId() == THROWJAR)
-			dt = dt;
 		obj->checkCollision(_aladdin, dt);
 	}
 }

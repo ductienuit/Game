@@ -44,7 +44,7 @@ void GuardLu::InIt()
 
 	//_sprite->drawBounding(false);
 
-	_hitpoint = 2;//Số lần đánh
+	_hitpoint = 2;//1 lần đánh
 	_score = 10; //Số điểm được mỗi lần giết enermy
 
 
@@ -150,7 +150,7 @@ void GuardLu::UpdateStatus(float dt)
 		case eStatus::DYING:
 		{
 			standing();
-			if (_animations[DYING]->getIndex() == 9)
+			if (_animations[DYING]->getIndex() >= 9)
 			{
 				_animations[DYING]->setIndex(0);
 				this->setStatus(DESTROY);

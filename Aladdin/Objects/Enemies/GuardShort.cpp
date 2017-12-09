@@ -12,16 +12,17 @@ GuardShort::GuardShort(eStatus status, int posX, int posY, eDirection direction)
 	this->setStatus(status);
 	this->setPosition(posX, posY, 1.0f);
 	text = new Text("Arial", "", 10, 25);
+
+	_score = 10;
 }
 
 void GuardShort::InIt()
 {
+	knife = new KnifeShort(eStatus::THROW, getPositionX(), getPositionY(), eDirection::NONE);
+	knife->InIt();
 
 	auto movement = new Movement(Vector2(0, 0), Vector2(0, 0), _sprite);
 	_listComponent["Movement"] = movement;
-	
-	knife = new Knife(eStatus::THROW, getPositionX(), getPositionY(), eDirection::NONE);
-	knife->InIt();
 
 	auto collisionBody = new CollisionBody(this);
 	_listComponent["CollisionBody"] = collisionBody;
@@ -35,8 +36,8 @@ void GuardShort::InIt()
 	_animations[MOVING_RIGHT] = new Animation(_sprite, 0.15f);
 	_animations[MOVING_RIGHT]->addFrameRect(eID::GUARDSHORT, "guardsShort_Moving_0", 8);
 
-	_animations[ATTACK] = new Animation(_sprite, 0.1f);
-	_animations[ATTACK]->addFrameRect(eID::GUARDSHORT, "guardsShort_attack_00" , "guardsShort_attack_01" , "guardsShort_attack_02"
+	_animations[THROW] = new Animation(_sprite, 0.1f);
+	_animations[THROW]->addFrameRect(eID::GUARDSHORT, "guardsShort_attack_00" , "guardsShort_attack_01" , "guardsShort_attack_02"
 		, "guardsShort_attack_03" , "guardsShort_attack_04" , "guardsShort_attack_00", "guardsShort_attack_00", NULL);
 
 	_animations[DYING] = new Animation(_sprite, 0.15f);
@@ -65,7 +66,7 @@ void GuardShort::Update(float deltatime)
 void GuardShort::Draw(LPD3DXSPRITE spritehandle, ViewPort* viewport)
 {
 	_animations[this->getStatus()]->Draw(spritehandle, viewport);
-	//text->Draw();
+
 	if (_canThrow)
 		knife->Draw(spritehandle, viewport);
 }
@@ -98,18 +99,11 @@ float GuardShort::distanceBetweenAladdin()
 {
 	float xAla = _divingSprite->getPositionX() +(_divingSprite->getBounding().right - _divingSprite->getBounding().left) / 2;
 	float x = this->getPositionX();
-
-#pragma region Test
-	char str[100];
-	sprintf(str, "khoang cach voi aladdin: %f", xAla - x);
-	text->setText(str);
-#pragma endregion
 	return xAla - x;
 }
 
 void GuardShort::UpdateStatus(float dt)
 {
-	__debugoutput(distanceBetweenAladdin());
 	if (distanceBetweenAladdin() < 0)
 	{
 		float distance = -distanceBetweenAladdin();
@@ -123,7 +117,7 @@ void GuardShort::UpdateStatus(float dt)
 		{
 			this->clearStatus();
 			_sprite->setScaleX(-1.6);
-			this->addStatus(eStatus::ATTACK);
+			this->addStatus(eStatus::THROW);
 			standing();
 			knife->addStatus(eStatus::THROW);
 			if (_animations[_status]->getIndex() == 2)
@@ -139,7 +133,7 @@ void GuardShort::UpdateStatus(float dt)
 		{
 			this->clearStatus();
 			_sprite->setScaleX(1.6);
-			this->addStatus(eStatus::ATTACK);
+			this->addStatus(eStatus::THROW);
 			standing();
 			knife->addStatus(eStatus::THROW);
 			if (_animations[_status]->getIndex() == 2)
