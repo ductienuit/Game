@@ -12,9 +12,7 @@ GuardThin::GuardThin(eStatus status, int posX, int posY, eDirection direction):B
 	this->setStatus(status);
 	this->setPosition(posX,posY,1.0f);
 
-	_hitpoint = 2;//Số lần đánh
-	_score = 10; //Số điểm được mỗi lần giết enermy
-}
+	}
 
 void GuardThin::InIt()
 {
@@ -39,15 +37,22 @@ void GuardThin::InIt()
 	_animations[BEHIT] = new Animation(_sprite, 0.2f);
 	_animations[BEHIT]->addFrameRect(eID::GUARDTHIN, "guards_being_attack_0", 9);
 
+	_animations[STOPWALK] = new Animation(_sprite, 0.2f);
+	_animations[STOPWALK]->addFrameRect(eID::GUARDTHIN, "destroy_enermy_", 10);
+
 	_sprite->setOrigin(Vector2(0.5, 0));
+
+	_hitpoint = 4;//Số lần đánh
+	_score = 10; //Số điểm được mỗi lần giết enermy
+
 	
 }
 
 void GuardThin::Update(float deltatime)
 {
-	this->UpdateStatus(deltatime);
-
 	_animations[this->getStatus()]->Update(deltatime);
+
+	this->UpdateStatus(deltatime);
 
 	float x = this->getPositionX();
 	float y = this->getPositionY();
@@ -55,6 +60,70 @@ void GuardThin::Update(float deltatime)
 	for (auto it = _listComponent.begin(); it != _listComponent.end(); it++)
 	{
 		it->second->Update(deltatime);
+	}
+}
+
+void GuardThin::UpdateStatus(float dt)
+{
+	switch (this->getStatus())
+	{
+		case eStatus::DESTROY:
+			return;
+		case eStatus::BEHIT:
+		{
+			standing();
+			if (_animations[BEHIT]->getIndex() == 8)
+			{
+				_animations[BEHIT]->setIndex(0);
+				removeStatus(BEHIT);
+				addStatus(MOVING_LEFT);
+
+				if (_hitpoint <= 0)
+				{
+					//score+=10;
+					this->setStatus(STOPWALK);
+				}
+			}
+			return;
+		}
+		case eStatus::STOPWALK:
+		{
+			if (_animations[STOPWALK]->getIndex() == 9)
+			{
+				_animations[STOPWALK]->setIndex(0);
+				this->setStatus(DESTROY);
+			}
+			return;
+		}
+	}
+
+
+
+	//Aladdin đứng bên trái
+	if (distanceBetweenAladdin() < 0)
+	{
+		float distance = -distanceBetweenAladdin();
+		if (distance < 100)
+		{
+			this->setStatus(eStatus::ATTACK);
+			standing();
+			return;
+		}
+		this->setStatus(eStatus::MOVING_LEFT);
+		movingLeft();
+	}
+	else if (distanceBetweenAladdin() > 0)
+	{
+		float distance = distanceBetweenAladdin();
+		if (distance < 50)
+		{
+			this->clearStatus();
+			this->addStatus(eStatus::ATTACK);
+			standing();
+			return;
+		}
+		this->setStatus(eStatus::MOVING_RIGHT);
+		movingRight();
 	}
 }
 
@@ -82,11 +151,11 @@ void GuardThin::onCollisionBegin(CollisionEventArg *collision_event)
 	{
 		if (collision_event->_otherObject->isInStatus(ATTACK))
 		{
-			//mạng sống còn 1
-			if (--_hitpoint <= 0)
+			//mạng sống còn 1 và bức ảnh ATTACK của aladdin bằng 1
+			if (collision_event->_otherObject->getIndex() == 1 && _hitpoint >= 1)
 			{
+				_hitpoint -= 1;
 				this->setStatus(eStatus::BEHIT);
-				//score+=10;
 			}
 			break;
 		}
@@ -127,50 +196,6 @@ float GuardThin::distanceBetweenAladdin()
 	float xAla = _divingSprite->getPositionX();
 	float x = this->getPositionX();
 	return xAla-x;
-}
-
-void GuardThin::UpdateStatus(float dt)
-{
-	if (isInStatus(BEHIT))
-	{
-		standing();
-		if (_animations[BEHIT]->getIndex() == 8)
-		{
-			_animations[BEHIT]->setIndex(0);
-			removeStatus(BEHIT);
-			addStatus(MOVING_LEFT);
-		}
-		return;
-	}
-	//Aladdin đứng bên trái
-	if (distanceBetweenAladdin() < 0)
-	{
-		float distance = -distanceBetweenAladdin();
-		if (distance < 100)
-		{
-			this->clearStatus();
-			this->addStatus(eStatus::ATTACK);
-			standing();
-			return;
-		}
-		this->clearStatus();
-		this->addStatus(eStatus::MOVING_LEFT);
-		movingLeft();
-	}
-	else if (distanceBetweenAladdin() > 0)
-	{
-		float distance = distanceBetweenAladdin();
-		if (distance < 50)
-		{
-			this->clearStatus();
-			this->addStatus(eStatus::ATTACK);
-			standing();
-			return;
-		}
-		this->clearStatus();
-		this->addStatus(eStatus::MOVING_RIGHT);
-		movingRight();
-	}
 }
 
 IComponent* GuardThin::getComponent(string componentName)

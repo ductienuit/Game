@@ -88,6 +88,7 @@ public:
 	virtual eDirection  getPhysicsBodySide();
 	virtual void		ShowBB();
 	virtual void		StopUp();
+	virtual int			getIndex(); //Index of Animations
 protected:
 	Sprite*		_sprite;
 	// nếu muốn dùng animation thì class kế thừa khai báo animation

@@ -71,13 +71,12 @@ bool PlayScene::InIt()
 	_backgroundfront = new BackGroundFront();
 	_backgroundfront->InIt();
 
-	/*auto guardLu = new GuardLu(eStatus::MOVING_LEFT, 200, 100, eDirection::LEFT);
+	/*auto guardLu = new GuardLu(eStatus::FREE, 200, 100, eDirection::LEFT);
 	guardLu->InIt();
-	_listObject.push_back(guardLu);
-	guardLu->setPositionY(0);*/
+	_listObject.push_back(guardLu);*/
 
 	// code them trong file PlaySence.cpp
-	auto guardThrowJar = new ThrowJar(eStatus::FREE, 40, 300);
+	/*auto guardThrowJar = new ThrowJar(eStatus::FREE, 40, 300);
 	guardThrowJar->InIt();
 	_listObject.push_back(guardThrowJar);
 
@@ -87,7 +86,7 @@ bool PlayScene::InIt()
 
 	auto guardThin = new GuardThin(eStatus::MOVING_LEFT, 200, 100, eDirection::LEFT);
 	guardThin->InIt();
-	_listObject.push_back(guardThin);
+	_listObject.push_back(guardThin);*/
 
 	/*auto guardShort = new GuardShort(eStatus::MOVING_LEFT, 600, 140, eDirection::LEFT);
 	guardShort->InIt();
@@ -118,6 +117,8 @@ void PlayScene::Update(float dt)
 
 	for each (auto object in _listObject)
 	{
+		if (object == nullptr || object->isInStatus(DESTROY)|| object->getId()==LAND)
+			continue;
 		object->Update(dt);
 	}
 
@@ -159,6 +160,8 @@ void PlayScene::Draw(LPD3DXSPRITE spriteHandle)
 	_background->Draw(spriteHandle,_viewport);
 	for each (auto object in _listObject)
 	{
+		if (object == nullptr || object->isInStatus(DESTROY))
+			continue;
 		object->Draw(spriteHandle, _viewport);
 		object->ShowBB();
 	}

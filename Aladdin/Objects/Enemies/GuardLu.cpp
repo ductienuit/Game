@@ -1,4 +1,4 @@
-#include "GuardLu.h"
+﻿#include "GuardLu.h"
 
 GuardLu::GuardLu(eStatus status, int posX, int posY, eDirection direction) :BaseEnemy(eID::GUARDLU)
 {
@@ -37,18 +37,26 @@ void GuardLu::InIt()
 	_animations[ATTACK]->addFrameRect(eID::GUARDLU, "guardsLu_Attack_", 4);
 
 	_animations[FREE] = new Animation(_sprite, 0.2f);
-	_animations[FREE]->addFrameRect(eID::GUARDLU, "guardsLu_Being_", 6);
+	_animations[FREE]->addFrameRect(eID::GUARDLU, "guardsLu_free_", 6);
+
+	_animations[STOPWALK] = new Animation(_sprite, 0.2f);
+	_animations[STOPWALK]->addFrameRect(eID::GUARDLU, "destroy_enermy_", 10);
 
 	//_sprite->drawBounding(false);
+
+	_hitpoint = 2;//Số lần đánh
+	_score = 10; //Số điểm được mỗi lần giết enermy
+
 
 }
 
 void GuardLu::Update(float deltatime)
 {
-	this->UpdateStatus(deltatime);
-
 	_animations[this->getStatus()]->Update(deltatime);
-	// update component ?? sau c�ng ?? s?a b�n tr�n sau ?� n� c?p nh?t ?�ng
+
+	this->UpdateStatus(deltatime);
+	
+	// update component ?? sau cùng ?? s?a bên trên sau ?ó nó c?p nh?t ?úng
 	for (auto it = _listComponent.begin(); it != _listComponent.end(); it++)
 	{
 		it->second->Update(deltatime);
@@ -71,16 +79,50 @@ void GuardLu::Release()
 	SAFE_DELETE(this->_sprite);
 }
 
-void GuardLu::onCollisionBegin(CollisionEventArg *)
+void GuardLu::onCollisionBegin(CollisionEventArg *collision_event)
 {
+	eID objectID = collision_event->_otherObject->getId();
+	switch (objectID)
+	{
+	case eID::ALADDIN:
+	{
+		if (collision_event->_otherObject->isInStatus(ATTACK))
+		{
+			//mạng sống còn 1 và bức ảnh ATTACK của aladdin bằng 1
+			if (collision_event->_otherObject->getIndex() == 3)
+			{
+				this->setStatus(eStatus::STOPWALK);
+			}
+			break;
+		}
+		else
+			/*DK1:Aladdin đang không bị đánh
+			DK2 bức ảnh status Attack của guartlu hiện tại là 3*/
+			if (collision_event->_otherObject->isInStatus(eStatus::BEHIT) == false
+				&&
+				this->_animations[ATTACK]->getIndex() == 3)
+			{
+				//Set status aladdin bị đánh
+				collision_event->_otherObject->setStatus(eStatus::BEHIT);
+			}
+		break;
+	}
+	default:
+		break;
+	}
 }
 
 void GuardLu::onCollisionEnd(CollisionEventArg *)
 {
 }
 
-float GuardLu::checkCollision(BaseObject *, float)
+float GuardLu::checkCollision(BaseObject *object, float dt)
 {
+	if (object == this)
+		return 0.0f;
+	auto collisionBody = (CollisionBody*)_listComponent["CollisionBody"];
+	//Check collision enermy(this) với aladdin(object)
+	collisionBody->checkCollision(object, dt, true);
 	return 0.0f;
 }
 
@@ -101,6 +143,25 @@ float GuardLu::distanceBetweenAladdin()
 
 void GuardLu::UpdateStatus(float dt)
 {
+	switch (this->getStatus())
+	{
+		case eStatus::DESTROY:
+			return;
+		case eStatus::STOPWALK:
+		{
+			standing();
+			if (_animations[STOPWALK]->getIndex() == 9)
+			{
+				_animations[STOPWALK]->setIndex(0);
+				this->setStatus(DESTROY);
+				//score+=10;
+			}
+			return;
+		}
+	}
+
+
+
 	if (distanceBetweenAladdin() < 0)
 	{
 		float distance = -distanceBetweenAladdin();

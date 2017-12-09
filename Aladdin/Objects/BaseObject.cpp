@@ -255,3 +255,8 @@ void BaseObject::StopUp()
 {
 	_canUp = false;
 }
+
+int BaseObject::getIndex()
+{
+	return 0;
+}

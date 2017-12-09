@@ -36,15 +36,18 @@ public:
 	void Draw(LPD3DXSPRITE spriteHandle, ViewPort* viewport);
 	void Release();
 
-	void onCollisionBegin(CollisionEventArg* collision_event);
-	void onCollisionEnd(CollisionEventArg* collision_event);
+	void	onCollisionBegin(CollisionEventArg* collision_event);
+	void	onCollisionEnd(CollisionEventArg* collision_event);
 
-	float checkCollision(BaseObject* object, float dt);
+	float	checkCollision(BaseObject* object, float dt);
 
-	RECT getBounding() override;
-	void setBounding(RECT);
+	RECT	getBounding() override;
+	void	setBounding(RECT);
 
-	void Stop() override;
+			//get index Animation Attack
+	int		getIndex() override;
+
+	void	Stop() override;
 private:
 	map<int, Animation*> _animations;
 	map<string, IComponent*> _listComponent;

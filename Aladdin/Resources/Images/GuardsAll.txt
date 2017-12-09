@@ -210,4 +210,13 @@ guardsShort_dying_05	107	906	176	971
 guardsShort_dying_06	31	910	99	971
 
 
-
+destroy_enermy_0	0	991	44	1041
+destroy_enermy_0	44	991	99	1041
+destroy_enermy_0	99	991	148	1041
+destroy_enermy_0	148	991	199	1041
+destroy_enermy_0	199	991	250	1041
+destroy_enermy_0	250	991	300	1041
+destroy_enermy_0	300	991	345	1041
+destroy_enermy_0	345	991	396	1041
+destroy_enermy_0	396	991	446	1041
+destroy_enermy_0	446	991	490	1041

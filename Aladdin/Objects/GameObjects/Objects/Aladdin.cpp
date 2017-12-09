@@ -1355,6 +1355,14 @@ void Aladdin::setBounding(RECT r)
 	_boundAla = temp;
 }
 
+int Aladdin::getIndex()
+{
+	//_currentAnimateIndex is in eStatus::ATTACK
+	if(isInStatus(ATTACK))
+		return _animations[_currentAnimateIndex]->getIndex();
+	else return 0;
+}
+
 void Aladdin::Stop()
 {
 	this->_animations[_currentAnimateIndex]->Stop();
