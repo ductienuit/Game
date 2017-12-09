@@ -11,11 +11,13 @@ GuardThin::GuardThin(eStatus status, int posX, int posY, eDirection direction):B
 	this->_listComponent.insert(pair<string, IComponent*>("Movement", new Movement(a, v, this->_sprite)));
 	this->setStatus(status);
 	this->setPosition(posX,posY,1.0f);
+
+	_hitpoint = 2;//Số lần đánh
+	_score = 10; //Số điểm được mỗi lần giết enermy
 }
 
 void GuardThin::InIt()
 {
-
 	auto movement = new Movement(Vector2(0, 0), Vector2(0, 0), _sprite);
 	_listComponent["Movement"] = movement;
 
@@ -34,6 +36,9 @@ void GuardThin::InIt()
 	_animations[ATTACK] = new Animation(_sprite, 0.15f);
 	_animations[ATTACK]->addFrameRect(eID::GUARDTHIN, "guardsThin_attack_0", 6);
 
+	_animations[BEHIT] = new Animation(_sprite, 0.2f);
+	_animations[BEHIT]->addFrameRect(eID::GUARDTHIN, "guards_being_attack_0", 9);
+
 	_sprite->setOrigin(Vector2(0.5, 0));
 	
 }
@@ -47,10 +52,10 @@ void GuardThin::Update(float deltatime)
 	float x = this->getPositionX();
 	float y = this->getPositionY();
 	//update component để sau cùng để sửa bên trên sau đó nó cập nhật đúng
-	//for (auto it = _listComponent.begin(); it != _listComponent.end(); it++)
-	//{
-	//	it->second->Update(deltatime);
-	//}
+	for (auto it = _listComponent.begin(); it != _listComponent.end(); it++)
+	{
+		it->second->Update(deltatime);
+	}
 }
 
 void GuardThin::Draw(LPD3DXSPRITE spritehandle, ViewPort* viewport)
@@ -75,10 +80,25 @@ void GuardThin::onCollisionBegin(CollisionEventArg *collision_event)
 	{
 	case eID::ALADDIN:
 	{
-		if (collision_event->_otherObject->isInStatus(eStatus::DYING) == false)
+		if (collision_event->_otherObject->isInStatus(ATTACK))
 		{
-			collision_event->_otherObject->setStatus(eStatus::DYING);
-			//((Aladdin*)collision_event->_otherObject)->die();
+			//mạng sống còn 1
+			if (--_hitpoint <= 0)
+			{
+				this->setStatus(eStatus::BEHIT);
+				//score+=10;
+			}
+			break;
+		}
+		else
+			/*DK1:Aladdin đang không bị đánh
+			  DK2 bức ảnh status Attack của guarthin hiện tại là 5*/
+			if (collision_event->_otherObject->isInStatus(eStatus::BEHIT) == false 
+				&&
+				this->_animations[ATTACK]->getIndex() == 5)
+		{
+			//Set status aladdin bị đánh
+			collision_event->_otherObject->setStatus(eStatus::BEHIT);
 		}
 		break;
 	}
@@ -89,6 +109,7 @@ void GuardThin::onCollisionBegin(CollisionEventArg *collision_event)
 
 void GuardThin::onCollisionEnd(CollisionEventArg *)
 {
+	//do nothing
 }
 
 float GuardThin::checkCollision(BaseObject *object, float dt)
@@ -96,7 +117,8 @@ float GuardThin::checkCollision(BaseObject *object, float dt)
 	if (object == this)
 		return 0.0f;
 	auto collisionBody = (CollisionBody*)_listComponent["CollisionBody"];
-	collisionBody->checkCollision(object, dt);
+	//Check collision enermy(this) với aladdin(object)
+	collisionBody->checkCollision(object, dt,true);
 	return 0.0f;
 }
 
@@ -104,14 +126,23 @@ float GuardThin::distanceBetweenAladdin()
 {
 	float xAla = _divingSprite->getPositionX();
 	float x = this->getPositionX();
-
-
-
 	return xAla-x;
 }
 
 void GuardThin::UpdateStatus(float dt)
 {
+	if (isInStatus(BEHIT))
+	{
+		standing();
+		if (_animations[BEHIT]->getIndex() == 8)
+		{
+			_animations[BEHIT]->setIndex(0);
+			removeStatus(BEHIT);
+			addStatus(MOVING_LEFT);
+		}
+		return;
+	}
+	//Aladdin đứng bên trái
 	if (distanceBetweenAladdin() < 0)
 	{
 		float distance = -distanceBetweenAladdin();

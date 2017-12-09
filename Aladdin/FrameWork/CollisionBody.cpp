@@ -29,7 +29,7 @@ void CollisionBody::checkCollision(BaseObject * otherObject, float dt)
 	Thời gian để kết thúc va chạm phải lớn hơn thời gian để va chạm (va chạm xong rồi thì sau đó mới hết chứ đúng không).
 	Khi có thể va chạm mình sẽ trả về thời gian va chạm đó, còn không trả về 1.0f*/
 
-	RECT broadphaseRect = getSweptBroadphaseRect(_target, dt);
+	RECT broadphaseRect = getBroadphaseRect(_target, dt);
 	if (AABB(broadphaseRect, otherRect)==true)
 	{
 		float time = SweptAABB(myRect, otherRect, direction, dt);
@@ -66,13 +66,30 @@ void CollisionBody::checkCollision(BaseObject * otherObject, float dt)
 	}
 }
 
+void CollisionBody::checkCollision(BaseObject* otherObject, float dt, bool isEnermy)
+{
+	eDirection direction;
+	RECT myRect = _target->getBounding();
+	RECT otherRect = otherObject->getBounding();
+
+
+	/*Lấy rect tương lai của aladdin và kiểm tra va chạm với enermy(this)*/
+	RECT broadphaseRect = getBroadphaseRect(otherObject, dt);
+	if (AABB(broadphaseRect, myRect) == true)
+	{
+		CollisionEventArg* e = new CollisionEventArg(otherObject);
+		e->_sideCollision = NONE; //Enermy không cần hướng va chạm
+		__raise onCollisionBegin(e);
+	}
+}
+
 /*Code này không sử dụng*/
 float CollisionBody::isCollide(RECT myRect, RECT otherRect, eDirection & direction, float dt)
 {
 	/*25/11 Sửa bởi Tiến */
 
 	// sử dụng Broadphase rect để kt vùng tiếp theo có va chạm ko
-	RECT broadphaseRect = getSweptBroadphaseRect(_target, dt);
+	RECT broadphaseRect = getBroadphaseRect(_target, dt);
 	if (AABB(broadphaseRect, otherRect)==false)
 	{
 		return 1.0f; //Khong va cham
@@ -336,7 +353,7 @@ float CollisionBody::SweptAABB(RECT b1, RECT b2, eDirection & direction, float d
 #pragma endregion
 
 //Đúng
-RECT CollisionBody::getSweptBroadphaseRect(BaseObject* object, float dt)  //object day la Aladdin
+RECT CollisionBody::getBroadphaseRect(BaseObject* object, float dt)  //object day la Aladdin
 {
 	/*Tại sao không chia 1000 mà chia 500 ?
 		+	Chia 500 sẽ tạo ra BroadPhaseRect có tỷ lệ to hơn, 

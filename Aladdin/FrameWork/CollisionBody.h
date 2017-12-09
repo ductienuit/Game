@@ -48,11 +48,18 @@ public:
 	~CollisionBody();
 
 	/*
-	ki?m tra va ch?m v?i object khác
-	@otherObject: ??i t??ng kt va ch?m v?i nó
-	@dt: delta time c?a c?a m?i frame
+	kiểm tra va chạm ala với land
+	@otherObject: đối tượng land va chạm với aladdin
+	@dt: delta time thời gian vòng lặp trước
 	*/
 	void checkCollision(BaseObject* otherObject, float dt);
+
+	/*
+	Kiểm tra va chạm ala với enermy
+	@otherObject: đối tượng va chạm với this
+	*/
+	void checkCollision(BaseObject* otherObject, float dt,bool isEnermy);
+
 	bool isColliding();
 
 	void Update(float dt);
@@ -80,7 +87,7 @@ private:
 	float SweptAABB(RECT myRect,RECT otherRect, eDirection & direction, float dt);
 	bool isColliding(BaseObject* otherObject, float& moveX, float& moveY, float dt);
 
-	RECT getSweptBroadphaseRect(BaseObject* object, float dt);
+	RECT getBroadphaseRect(BaseObject* object, float dt);
 };
 void DrawRect(RECT otherRect);
 #endif // !__COLLISION_BODY__

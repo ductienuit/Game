@@ -77,6 +77,7 @@ private:
 	//Dong ho dem
 	StopWatch* _firstAnimateStopWatch;
 	StopWatch* _normalAnimateStopWatch;
+	StopWatch* _beAttackSW;
 
 	//void setState(int state);
 	void addStatus(eStatus status);

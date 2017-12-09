@@ -138,8 +138,8 @@ void Aladdin::InIt()
 	_animations[eStatus::DYING] = new Animation(_sprite, 0.1f);
 	_animations[eStatus::DYING]->addFrameRect(eID::ALADDIN, "die_", 28);
 
-	_animations[eStatus::BURN] = new Animation(_sprite, 0.1f);
-	_animations[eStatus::BURN]->addFrameRect(eID::ALADDIN, "burn_", 6);
+	_animations[eStatus::BEHIT] = new Animation(_sprite, 0.1f);
+	_animations[eStatus::BEHIT]->addFrameRect(eID::ALADDIN, "burn_", 6); //6
 
 	_animations[eStatus::SWING] = new Animation(_sprite, 0.1f);
 	_animations[eStatus::SWING]->addFrameRect(eID::ALADDIN, "swing_0", 10);
@@ -209,6 +209,7 @@ void Aladdin::InIt()
 	//create stopwatch to wait time state normal or free of aladdin
 	_normalAnimateStopWatch = new StopWatch();
 	_firstAnimateStopWatch = new StopWatch();
+	_beAttackSW = new StopWatch();
 	this->setScale(SCALEALADDIN);
 
 }
@@ -292,15 +293,6 @@ void Aladdin::UpdateInput(float dt)
 		else if (_input->isKeyPressed(DIK_C))
 		{
 			jump(eStatus::JUMPING);
-		}
-		else if (_input->isKeyPressed(DIK_B))
-		{
-			addStatus(eStatus::BURN);
-		}
-		else if (_input->isKeyPressed(DIK_S))
-		{
-			unHookInputEvent();
-			addStatus(eStatus::DYING);
 		}
 		break;
 	}
@@ -819,6 +811,19 @@ void Aladdin::UpdateInput(float dt)
 		}
 		break;
 	}
+	case(eStatus::BEHIT):
+	{
+		//Làm ảnh mờ khi bị đánh
+		this->setOpacity(0.7);
+		//Tự hủy khi đế một bức ảnh nào đó
+		if (_animations[_currentAnimateIndex]->getIndex()== 5)
+		{
+			_animations[_currentAnimateIndex]->setIndex(0);
+			this->setOpacity(1.0f);
+			this->clearStatus();
+		}
+		break;
+	}
 	}
 
 	if (isInStatus(eStatus::CLIMB))
@@ -929,17 +934,8 @@ void Aladdin::onCollisionBegin(CollisionEventArg * collision_event)
 {
 	switch (collision_event->_otherObject->getId())
 	{
-		case eID::GUARDTHIN:
-		{
-			if (collision_event->_otherObject->getStatus() == ATTACK && !isInStatus(eStatus::DYING))
-			{
-				setStatus(DYING);
-			}
-			break;
-		}
 		case eID::LAND:
 		{
-
 			auto land = (Land*)collision_event->_otherObject;
 			eLandType type = land->getType();
 			if (type == eLandType::WALL)
@@ -1052,8 +1048,7 @@ void Aladdin::onCollisionBegin(CollisionEventArg * collision_event)
 				}
 			}
 			break;
-		}
-	
+		}		
 	}
 }
 

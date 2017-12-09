@@ -121,29 +121,36 @@ void PlayScene::Update(float dt)
 		object->Update(dt);
 	}
 
-	///*Check collision*/
-	//for (auto i : _listObject)
-	//	for (auto j : _listObject)
-	//		if (j->getId() != i->getId())
-	//			i->checkCollision(j, dt);
 
 
-	//Kiểm tra va chạm chéo
-	//Sau khi co Quadtree se thay listObject thanh _activeObjects
-	for (BaseObject* obj : _listObject)
+	//Cải tiến. Chia ra 2 list một cho enermy 1 cho land
+
+	/*Check collision aladdin with land
+	@i Object*/
+	for (auto i : _listObject)
+	{
+		// i la Enermy va aladdin
+		if (i == nullptr)
+			continue;
+		eID temp = i->getId();
+		if (i->getId() != eID::LAND || _aladdin->getId() == temp)
+			continue;
+		_aladdin->checkCollision(i, dt);
+	}
+
+
+	/*Check collision (*1)enermy with (*2)aladdin (chú ý thứ tự )
+	@i Enermyobject*/
+	for (auto obj : _listObject)
 	{
 		// obj la Enermy va aladdin
-		if (obj == nullptr || obj->getId() == eID::LAND)
+		if (obj == nullptr)
 			continue;
 
-		for (BaseObject* passiveobj : _listObject)
-		{
-			//passiveobj là Land và enermy
-			if (passiveobj == nullptr || passiveobj == obj || passiveobj->isInStatus(eStatus::DESTROY))
-				continue;
-
-			obj->checkCollision(passiveobj, dt);
-		}
+		eID temp = obj->getId();
+		if (temp == LAND || temp == ALADDIN)
+			continue;	
+		obj->checkCollision(_aladdin, dt);
 	}
 }
 
