@@ -180,6 +180,9 @@
     <ClCompile Include="Objects\Enemies\Knife.cpp">
       <Filter>Source Files\Object\Enemies</Filter>
     </ClCompile>
+    <ClCompile Include="Objects\Enemies\GuardFat.cpp">
+      <Filter>Source Files\Object\Enemies</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AladdinGame.h">
@@ -260,9 +263,6 @@
     <ClInclude Include="Objects\Enemies\GuardShort.h">
       <Filter>Header Files\Object\Enemies</Filter>
     </ClInclude>
-    <ClInclude Include="Objects\Enemies\Knife.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Objects\GameObjects\Objects\Land.h">
       <Filter>Header Files\Object\GameObjects</Filter>
     </ClInclude>
@@ -302,8 +302,14 @@
     <ClInclude Include="Objects\GameObjects\Objects\AppleThrow.h">
       <Filter>Header Files\Object\GameObjects</Filter>
     </ClInclude>
+    <ClInclude Include="Objects\Enemies\GuardFat.h">
+      <Filter>Header Files\Object\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Enemies\Knife.h">
+      <Filter>Header Files\Object\Enemies</Filter>
+    </ClInclude>
     <ClInclude Include="Objects\Enemies\KnifeShort.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Object\Enemies</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

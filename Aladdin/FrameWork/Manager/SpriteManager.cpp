@@ -37,9 +37,6 @@ void SpriteManager::LoadResource(LPD3DXSPRITE spriteHandle)
 	// sp = new SPRITE(...)
 	// this->_listSprite.insert(pair<eID, Sprite*>(eID::ENUMOBJECT, sp));
 
-	//Sprite* sp = new Sprite(spriteHandle, L"Flower.png", 4, 4);
-	//this->_listSprite.insert(pair<eID, Sprite*>(eID::FLOWER, sp));
-
 	Sprite* sp = NULL;
 	sp = new Sprite(spriteHandle, "Resources//Images//AladdinAnimation.png");
 	this->_listSprite.insert(pair<eID, Sprite*>(eID::ALADDIN, sp));
@@ -73,12 +70,6 @@ void SpriteManager::LoadResource(LPD3DXSPRITE spriteHandle)
 	sp = new Sprite(spriteHandle, "Resources//Images//backgroundfront.png");
 	this->_listSprite.insert(pair<eID, Sprite*>(eID::BACKGROUNDFRONT, sp));
 	this->LoadSpriteInfo(eID::BACKGROUNDFRONT, "Resources//Images//backgroundfront.txt");
-
-	//red-line
-
-	sp = new Sprite(spriteHandle, "Resources//Images//red-line.png");
-	this->_listSprite.insert(pair<eID, Sprite*>(eID::LAND, sp));
-	this->LoadSpriteInfo(eID::BACKGROUND, "Resources//Images//red-line.txt");
 
 
 	sp = new Sprite(spriteHandle, "Resources//Images//CivilianEnemies.png");
