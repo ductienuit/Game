@@ -1,4 +1,3 @@
-#pragma once
 #ifndef _APPLETHROW_H
 #define _APPLETHROW_H
 
@@ -6,7 +5,7 @@
 #include "../../FrameWork/StopWatch.h"
 #include "../../FrameWork/IComponent.h"
 #include "../../FrameWork/Text.h"
-#include "../../BaseObject.h"
+#include "../BaseObject.h"
 #include"../../FrameWork/CollisionBody.h"
 using namespace std;
 
@@ -41,4 +40,4 @@ private:
 	Sprite *_divingSprite;
 	Vector2 _originPosition;
 };
-#endif
+#endif _APPLETHROW_H

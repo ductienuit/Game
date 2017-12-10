@@ -63,9 +63,6 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="AladdinGame.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="FrameWork\Animation.cpp">
       <Filter>Source Files\FrameWork</Filter>
     </ClCompile>
@@ -120,9 +117,6 @@
     <ClCompile Include="FrameWork\Text.cpp">
       <Filter>Source Files\FrameWork</Filter>
     </ClCompile>
-    <ClCompile Include="Objects\GameObjects\Objects\Aladdin.cpp">
-      <Filter>Source Files\Object\GameObjects</Filter>
-    </ClCompile>
     <ClCompile Include="Objects\Enemies\BaseEnemy.cpp">
       <Filter>Source Files\Object\Enemies</Filter>
     </ClCompile>
@@ -134,9 +128,6 @@
     </ClCompile>
     <ClCompile Include="Objects\Enemies\GuardShort.cpp">
       <Filter>Source Files\Object\Enemies</Filter>
-    </ClCompile>
-    <ClCompile Include="Objects\GameObjects\Objects\Land.cpp">
-      <Filter>Source Files\Object\GameObjects</Filter>
     </ClCompile>
     <ClCompile Include="FrameWork\ViewPort.cpp">
       <Filter>Source Files\FrameWork</Filter>
@@ -168,9 +159,6 @@
     <ClCompile Include="Objects\Enemies\Jar.cpp">
       <Filter>Source Files\Object\Enemies</Filter>
     </ClCompile>
-    <ClCompile Include="Objects\GameObjects\Objects\AppleThrow.cpp">
-      <Filter>Source Files\Object\GameObjects</Filter>
-    </ClCompile>
     <ClCompile Include="Objects\Enemies\Knife.cpp">
       <Filter>Header Files\Object\Enemies</Filter>
     </ClCompile>
@@ -186,11 +174,23 @@
     <ClCompile Include="Objects\Enemies\Fire.cpp">
       <Filter>Source Files\Object\Enemies</Filter>
     </ClCompile>
+    <ClCompile Include="Objects\GameObjects\Land.cpp">
+      <Filter>Source Files\Object\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\GameObjects\Aladdin.cpp">
+      <Filter>Source Files\Object\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\GameObjects\AppleThrow.cpp">
+      <Filter>Source Files\Object\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\GameObjects\FallingPlatform.cpp">
+      <Filter>Source Files\Object\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="AladdinGame.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AladdinGame.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="FrameWork\Animation.h">
       <Filter>Header Files\FrameWork</Filter>
     </ClInclude>
@@ -251,9 +251,6 @@
     <ClInclude Include="FrameWork\Text.h">
       <Filter>Header Files\FrameWork</Filter>
     </ClInclude>
-    <ClInclude Include="Objects\GameObjects\Objects\Aladdin.h">
-      <Filter>Header Files\Object\GameObjects</Filter>
-    </ClInclude>
     <ClInclude Include="Objects\Enemies\BaseEnemy.h">
       <Filter>Header Files\Object\Enemies</Filter>
     </ClInclude>
@@ -265,9 +262,6 @@
     </ClInclude>
     <ClInclude Include="Objects\Enemies\GuardShort.h">
       <Filter>Header Files\Object\Enemies</Filter>
-    </ClInclude>
-    <ClInclude Include="Objects\GameObjects\Objects\Land.h">
-      <Filter>Header Files\Object\GameObjects</Filter>
     </ClInclude>
     <ClInclude Include="FrameWork\ViewPort.h">
       <Filter>Header Files\FrameWork</Filter>
@@ -302,9 +296,6 @@
     <ClInclude Include="Objects\Enemies\Jar.h">
       <Filter>Header Files\Object\Enemies</Filter>
     </ClInclude>
-    <ClInclude Include="Objects\GameObjects\Objects\AppleThrow.h">
-      <Filter>Header Files\Object\GameObjects</Filter>
-    </ClInclude>
     <ClInclude Include="Objects\Enemies\GuardFat.h">
       <Filter>Header Files\Object\Enemies</Filter>
     </ClInclude>
@@ -314,7 +305,22 @@
     <ClInclude Include="Objects\Enemies\KnifeShort.h">
       <Filter>Header Files\Object\Enemies</Filter>
     </ClInclude>
+    <ClInclude Include="Objects\GameObjects\Aladdin.h">
+      <Filter>Header Files\Object\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\GameObjects\AppleThrow.h">
+      <Filter>Header Files\Object\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\GameObjects\FallingPlatform.h">
+      <Filter>Header Files\Object\GameObjects</Filter>
+    </ClInclude>
     <ClInclude Include="Objects\Enemies\Fire.h">
+      <Filter>Header Files\Object\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\GameObjects\Land.h">
+      <Filter>Header Files\Object\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="AladdinGame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -323,5 +329,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
+    <None Include="Objects\GameObjects\desktop.ini" />
   </ItemGroup>
 </Project>

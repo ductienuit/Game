@@ -5,7 +5,7 @@
 #include "../Objects/BaseObject.h"
 #include "IComponent.h"
 #include"Text.h"
-#include"../Objects/GameObjects/Objects/Land.h"
+#include"../Objects/GameObjects/Land.h"
 
 /*Sử dụng cho đối tượng muốn kt va chạm
 - Thêm nó như là một Component vào object

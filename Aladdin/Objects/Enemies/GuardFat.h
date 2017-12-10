@@ -6,7 +6,7 @@
 #include "../../FrameWork/StopWatch.h"
 #include "../../FrameWork/IComponent.h"
 #include "../../FrameWork/Text.h"
-#include"../GameObjects/Objects/Aladdin.h"
+#include"../GameObjects/Aladdin.h"
 
 using namespace std;
 

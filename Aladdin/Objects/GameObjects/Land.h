@@ -1,11 +1,11 @@
-﻿
-#ifndef __LAND_H__
+﻿#ifndef __LAND_H__
 #define __LAND_H__
 
-#include "../../../FrameWork/define.h"
-#include "../../BaseObject.h"
-#include "../../../FrameWork/IComponent.h"
-#include"../../../FrameWork/CollisionBody.h"
+#include "../../FrameWork/debug.h"
+#include "../../FrameWork/IComponent.h"
+#include"../../FrameWork/CollisionBody.h"
+#include "../BaseObject.h"
+
 
 class Land : public BaseObject
 {

@@ -15,8 +15,8 @@
 #include"../FrameWork/Animation.h"
 #include"../FrameWork/QuadTree.h"
 
-#include"../Objects/GameObjects/Objects/Aladdin.h"
-#include"../Objects/GameObjects/Objects/Land.h"
+#include"../Objects/GameObjects/Aladdin.h"
+#include"../Objects/GameObjects/Land.h"
 #include"../Objects/Enemies/GuardThin.h"
 #include"../Objects/Enemies/GuardShort.h"
 #include"../Objects/Enemies/GuardLu.h"
