@@ -12,8 +12,6 @@ GuardShort::GuardShort(eStatus status, int posX, int posY, eDirection direction)
 	this->setStatus(status);
 	this->setPosition(posX, posY, 1.0f);
 	text = new Text("Arial", "", 10, 25);
-
-	_score = 10;
 }
 
 void GuardShort::InIt()
@@ -40,22 +38,28 @@ void GuardShort::InIt()
 	_animations[THROW]->addFrameRect(eID::GUARDSHORT, "guardsShort_attack_00" , "guardsShort_attack_01" , "guardsShort_attack_02"
 		, "guardsShort_attack_03" , "guardsShort_attack_04" , "guardsShort_attack_00", "guardsShort_attack_00", NULL);
 
-	_animations[DYING] = new Animation(_sprite, 0.15f);
-	_animations[DYING]->addFrameRect(eID::GUARDSHORT, "guardsShort_dying_0", 7);
-
 	_animations[FREE] = new Animation(_sprite, 0.2f);
 	_animations[FREE]->addFrameRect(eID::GUARDSHORT, "guardsShort_free_0", 5);
 
+	_animations[BEHIT] = new Animation(_sprite, 0.15f);
+	_animations[BEHIT]->addFrameRect(eID::GUARDSHORT, "guardsShort_dying_0", 7);
+
+	_animations[DYING] = new Animation(_sprite, 0.2f);
+	_animations[DYING]->addFrameRect(eID::GUARDTHIN, "destroy_enermy_", 10);
+
 	_canThrow = false;
+	_hitpoint = 2;// Chú ý 2 lần đánh chứ không phải 3
+	_score = 10; //Số điểm được mỗi lần giết enermy
 
 }
 
 void GuardShort::Update(float deltatime)
 {
-	this->UpdateStatus(deltatime);
-
 	_animations[this->getStatus()]->Update(deltatime);
 	knife->Update(deltatime);
+
+	this->UpdateStatus(deltatime);
+	
 	// update component để sau cùng để sửa bên trên sau đó nó cập nhật đúng
 	for (auto it = _listComponent.begin(); it != _listComponent.end(); it++)
 	{
@@ -82,16 +86,41 @@ void GuardShort::Release()
 	knife->Release();
 }
 
-void GuardShort::onCollisionBegin(CollisionEventArg *)
+void GuardShort::onCollisionBegin(CollisionEventArg *collision_event)
 {
+	eID objectID = collision_event->_otherObject->getId();
+	switch (objectID)
+	{
+		case eID::ALADDIN:
+		{
+			if (collision_event->_otherObject->isInStatus(ATTACK))
+			{
+				//mạng sống còn 1 và bức ảnh ATTACK của aladdin bằng 1
+				if (collision_event->_otherObject->getIndex() == 4 && _hitpoint >= 1)
+				{
+					_hitpoint -= 1;
+					this->setStatus(eStatus::BEHIT);
+				}
+				break;
+			}
+			break;
+		}
+	}
 }
 
 void GuardShort::onCollisionEnd(CollisionEventArg *)
 {
 }
 
-float GuardShort::checkCollision(BaseObject *, float)
+float GuardShort::checkCollision(BaseObject *object, float dt)
 {
+	if (object == this)
+		return 0.0f;
+	auto collisionBody = (CollisionBody*)_listComponent["CollisionBody"];
+	//Check collision enermy(this) với aladdin(object)
+	/*Ưu tiên check GuardShort trước, sau đó đến knife*/
+	if (!collisionBody->checkCollision(object, dt, true))
+		knife->checkCollision(object, dt);
 	return 0.0f;
 }
 
@@ -104,6 +133,38 @@ float GuardShort::distanceBetweenAladdin()
 
 void GuardShort::UpdateStatus(float dt)
 {
+	switch (this->getStatus())
+	{
+		case eStatus::DESTROY:
+			return;
+		case eStatus::BEHIT:
+		{
+			standing();
+			if (_animations[BEHIT]->getIndex() == 6)
+			{
+				_animations[BEHIT]->setIndex(0);
+				removeStatus(BEHIT);
+				addStatus(MOVING_LEFT);
+
+				if (_hitpoint <= 0)
+				{
+					//score+=10;
+					this->setStatus(DYING);
+				}
+			}
+			return;
+		}
+		case eStatus::DYING:
+		{
+			if (_animations[DYING]->getIndex() == 9)
+			{
+				_animations[DYING]->setIndex(0);
+				this->setStatus(DESTROY);
+			}
+			return;
+		}
+	}
+
 	if (distanceBetweenAladdin() < 0)
 	{
 		float distance = -distanceBetweenAladdin();

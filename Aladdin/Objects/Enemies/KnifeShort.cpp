@@ -56,16 +56,38 @@ void KnifeShort::Release()
 	SAFE_DELETE(this->_sprite);
 }
 
-void KnifeShort::onCollisionBegin(CollisionEventArg *)
+void KnifeShort::onCollisionBegin(CollisionEventArg *collision_event)
 {
+	eID objectID = collision_event->_otherObject->getId();
+	switch (objectID)
+	{
+	case eID::ALADDIN:
+	{
+		/*DK1:Aladdin đang không bị đánh*/
+		if (collision_event->_otherObject->isInStatus(eStatus::BEHIT) == false && !isInStatus(DESTROY))
+		{
+			//Set status aladdin bị đánh
+			collision_event->_otherObject->setStatus(eStatus::BEHIT);
+		}
+		break;
+	}
+	default:
+		break;
+	}
 }
 
 void KnifeShort::onCollisionEnd(CollisionEventArg *)
 {
 }
 
-float KnifeShort::checkCollision(BaseObject *, float)
+float KnifeShort::checkCollision(BaseObject *object, float dt)
 {
+	if (object == this)
+		return 0.0f;
+	auto collisionBody = (CollisionBody*)_listComponent["CollisionBody"];
+
+	//Check collision enermy(this) với aladdin(object)
+	collisionBody->checkCollision(object, dt, true);
 	return 0.0f;
 }
 

@@ -48,6 +48,7 @@ void KnifeThrower::Update(float deltatime)
 {
 	_animations[this->getStatus()]->Update(deltatime);
 	knife->Update(deltatime);
+
 	this->UpdateStatus(deltatime);	
 
 	// update component để sau cùng để sửa bên trên sau đó nó cập nhật đúng

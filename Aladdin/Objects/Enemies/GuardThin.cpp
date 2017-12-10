@@ -145,32 +145,30 @@ void GuardThin::onCollisionBegin(CollisionEventArg *collision_event)
 	eID objectID = collision_event->_otherObject->getId();
 	switch (objectID)
 	{
-	case eID::ALADDIN:
-	{
-		if (collision_event->_otherObject->isInStatus(ATTACK))
+		case eID::ALADDIN:
 		{
-			//mạng sống còn 1 và bức ảnh ATTACK của aladdin bằng 1
-			if (collision_event->_otherObject->getIndex() == 1 && _hitpoint >= 1)
+			if (collision_event->_otherObject->isInStatus(ATTACK))
 			{
-				_hitpoint -= 1;
-				this->setStatus(eStatus::BEHIT);
+				//mạng sống còn 1 và bức ảnh ATTACK của aladdin bằng 1
+				if (collision_event->_otherObject->getIndex() == 1 && _hitpoint >= 1)
+				{
+					_hitpoint -= 1;
+					this->setStatus(eStatus::BEHIT);
+				}
+				break;
+			}
+			else
+				/*DK1:Aladdin đang không bị đánh
+				  DK2 bức ảnh status Attack của guarthin hiện tại là 5*/
+				if (collision_event->_otherObject->isInStatus(eStatus::BEHIT) == false 
+					&&
+					this->_animations[ATTACK]->getIndex() == 5)
+			{
+				//Set status aladdin bị đánh
+				collision_event->_otherObject->setStatus(eStatus::BEHIT);
 			}
 			break;
 		}
-		else
-			/*DK1:Aladdin đang không bị đánh
-			  DK2 bức ảnh status Attack của guarthin hiện tại là 5*/
-			if (collision_event->_otherObject->isInStatus(eStatus::BEHIT) == false 
-				&&
-				this->_animations[ATTACK]->getIndex() == 5)
-		{
-			//Set status aladdin bị đánh
-			collision_event->_otherObject->setStatus(eStatus::BEHIT);
-		}
-		break;
-	}
-	default:
-		break;
 	}
 }
 
