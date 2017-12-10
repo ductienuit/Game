@@ -64,7 +64,8 @@ enum eID
 	THROWJAR,
 	APPLETHROW,
 	GUARDFAT,
-	FIRE
+	FIRE,
+	FALLINGPLATFORM
 };
 
 enum eDirection

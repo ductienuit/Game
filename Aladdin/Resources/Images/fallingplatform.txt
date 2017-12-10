@@ -1,0 +1,10 @@
+frame_name	left	top	right	bottom
+falling_platform_0		0	0	28	56
+falling_platform_1		31	0	56	56
+falling_platform_2		62	0	84	56
+falling_platform_3		93	0	112	56
+falling_platform_4		124	0	168	56
+falling_platform_5		155	0	196	56
+falling_platform_6		186	0	224	56
+falling_platform_7		217	0	252	56
+falling_platform_8		248	0	280	56	
