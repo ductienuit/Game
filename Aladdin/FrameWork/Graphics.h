@@ -3,7 +3,6 @@
 #ifndef __GRAPHICS_H__
 #define __GRAPHICS_H__
 
-#include <Windows.h>
 #include "define.h"
 
 GAME_FRAMEWORK
