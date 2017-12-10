@@ -88,6 +88,10 @@ void SpriteManager::LoadResource(LPD3DXSPRITE spriteHandle)
 	sp = new Sprite(spriteHandle, "Resources//Images//CivilianEnemies.png");
 	this->_listSprite.insert(pair<eID, Sprite*>(eID::THROWJAR, sp));
 	this->LoadSpriteInfo(eID::THROWJAR, "Resources//Images//CivilianEnemies.txt");
+
+	sp = new Sprite(spriteHandle, "Resources//Images//flame_strip9_15_54.png");
+	this->_listSprite.insert(pair<eID, Sprite*>(eID::FIRE, sp));
+	this->LoadSpriteInfo(eID::FIRE, "Resources//Images//flame_strip9_15_54.txt");
 }
 
 Sprite * SpriteManager::getSprite(eID id)

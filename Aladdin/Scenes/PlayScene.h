@@ -24,6 +24,7 @@
 #include"../Objects/Enemies/Knife.h"
 #include"../Objects/Enemies/Jar.h"
 #include"../Objects/Enemies/GuardThrowJar.h"
+#include"../Objects/Enemies/Fire.h"
 
 #include"BackGround.h"
 #include"BackGroundFront.h"

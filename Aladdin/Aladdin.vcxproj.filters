@@ -183,6 +183,9 @@
     <ClCompile Include="Objects\Enemies\GuardFat.cpp">
       <Filter>Source Files\Object\Enemies</Filter>
     </ClCompile>
+    <ClCompile Include="Objects\Enemies\Fire.cpp">
+      <Filter>Source Files\Object\Enemies</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AladdinGame.h">
@@ -310,6 +313,9 @@
     </ClInclude>
     <ClInclude Include="Objects\Enemies\KnifeShort.h">
       <Filter>Header Files\Object\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Enemies\Fire.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

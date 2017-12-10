@@ -1,0 +1,10 @@
+frame_name	left	top	right	bottom
+burn_0		0	0	31	56
+burn_1		31	0	62	56
+burn_2		62	0	93	56
+burn_3		93	0	124	56
+burn_4		124	0	155	56
+burn_5		155	0	186	56
+burn_6		186	0	217	56
+burn_7		217	0	248	56
+burn_8		248	0	279	56	

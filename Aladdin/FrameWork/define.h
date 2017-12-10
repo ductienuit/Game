@@ -63,7 +63,8 @@ enum eID
 	JAR,
 	THROWJAR,
 	APPLETHROW,
-	GUARDFAT
+	GUARDFAT,
+	FIRE
 };
 
 enum eDirection
@@ -88,7 +89,7 @@ enum eLandType
 	CLIMBABLE2,//Dây 3
 	STOP,
 	STAIR, //Bậc thang,
-	WALL
+	WALL,
 };
 #define C_WHITE D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f)				// màu trắnng
 #define COLOR_KEY D3DXCOLOR(1.0f, 0.0f, 1.0f, 1.0f)				// màu khi mà load hình nó bỏ qua > trong suốt

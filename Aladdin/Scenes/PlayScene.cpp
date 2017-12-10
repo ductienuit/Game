@@ -65,6 +65,18 @@ bool PlayScene::InIt()
 	_listObject.push_back(new Land(1430, 110, 43, 10, eDirection::TOP, eLandType::STAIR));
 	//platform
 
+	//Fire
+	/*_listObject.push_back(new Land(458, 688-626, 42, 55, eDirection::TOP, eLandType::FIRE));
+	_listObject.push_back(new Land(504, 688 - 627, 38, 56, eDirection::TOP, eLandType::FIRE));
+	_listObject.push_back(new Land(551, 688 - 625, 31, 55, eDirection::TOP, eLandType::FIRE));
+*/
+
+	_listObject.push_back(new Fire(BEHIT, 458, 688 - 626, TOP));
+	_listObject.push_back(new Fire(BEHIT, 504, 688 - 626, TOP));
+	_listObject.push_back(new Fire(BEHIT, 551, 688 - 626, TOP));
+
+
+	//Background
 	_background = new BackGround();
 	_background->InIt();
 
