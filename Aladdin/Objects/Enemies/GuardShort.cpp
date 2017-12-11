@@ -168,7 +168,7 @@ void GuardShort::UpdateStatus(float dt)
 		}
 	}
 	this->clearStatus();
-	if (_minMove <= this->getPositionX() && this->getPositionX() <= _maxMove)
+	if (_minMove < this->getPositionX() && this->getPositionX() < _maxMove)
 	{
 		if (distanceBetweenAladdin() < 0)
 		{
@@ -181,7 +181,6 @@ void GuardShort::UpdateStatus(float dt)
 			}
 			else if (distance <= 200)
 			{
-				this->clearStatus();
 				_sprite->setScaleX(-1.6);
 				this->addStatus(eStatus::THROW);
 				standing();
@@ -197,7 +196,6 @@ void GuardShort::UpdateStatus(float dt)
 
 			if (distance <= 200)
 			{
-				this->clearStatus();
 				_sprite->setScaleX(1.6);
 				this->addStatus(eStatus::THROW);
 				standing();
@@ -208,7 +206,6 @@ void GuardShort::UpdateStatus(float dt)
 			}
 			else if (distance > 200)
 			{
-				this->clearStatus();
 				this->addStatus(eStatus::MOVING_RIGHT);
 				movingRight();
 			}
@@ -216,7 +213,6 @@ void GuardShort::UpdateStatus(float dt)
 	}
 	else if ((_minMove > this->getPositionX()) && xAla < _minMove)
 	{
-		this->clearStatus();
 		this->addStatus(eStatus::THROW);
 		standing();
 		knife->addStatus(eStatus::THROW);
@@ -224,15 +220,13 @@ void GuardShort::UpdateStatus(float dt)
 			knife->movingLeft(this->getPositionX(), this->getPositionY());
 		_canThrow = true;
 	}
-	else if (distanceBetweenAladdin() > 0 && xAla > _minMove)
+	else if (distanceBetweenAladdin() > 0 && xAla > _minMove && this->getPositionX() < _maxMove)
 	{
-		this->clearStatus();
 		this->addStatus(eStatus::MOVING_RIGHT);
 		movingRight();
 	}
-	else if ((this->getPositionX() > _maxMove) && xAla < _minMove)
+	else if ((this->getPositionX() > _maxMove) && xAla > _maxMove)
 	{
-		this->clearStatus();
 		this->addStatus(eStatus::THROW);
 		standing();
 		knife->addStatus(eStatus::THROW);
@@ -242,7 +236,6 @@ void GuardShort::UpdateStatus(float dt)
 	}
 	else if (distanceBetweenAladdin() < 0 && xAla < _maxMove)
 	{
-		this->clearStatus();
 		this->addStatus(eStatus::MOVING_LEFT);
 		movingLeft();
 	}
