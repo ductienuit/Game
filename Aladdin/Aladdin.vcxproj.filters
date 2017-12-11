@@ -159,6 +159,69 @@
     <ClCompile Include="Scenes\PlayScene.cpp">
       <Filter>Source Files\Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="ReadMapEditor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\HK5\Nhập môn Game\MapReader\MapReader\base64.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\HK5\Nhập môn Game\MapReader\MapReader\miniz.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\HK5\Nhập môn Game\MapReader\MapReader\tinyxml2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\HK5\Nhập môn Game\MapReader\MapReader\TmxEllipse.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\HK5\Nhập môn Game\MapReader\MapReader\TmxImage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\HK5\Nhập môn Game\MapReader\MapReader\TmxImageLayer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\HK5\Nhập môn Game\MapReader\MapReader\TmxLayer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\HK5\Nhập môn Game\MapReader\MapReader\TmxMap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\HK5\Nhập môn Game\MapReader\MapReader\TmxObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\HK5\Nhập môn Game\MapReader\MapReader\TmxObjectGroup.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\HK5\Nhập môn Game\MapReader\MapReader\TmxPolygon.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\HK5\Nhập môn Game\MapReader\MapReader\TmxPolyline.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\HK5\Nhập môn Game\MapReader\MapReader\TmxPropertySet.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\HK5\Nhập môn Game\MapReader\MapReader\TmxTerrain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\HK5\Nhập môn Game\MapReader\MapReader\TmxTerrainArray.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\HK5\Nhập môn Game\MapReader\MapReader\TmxTile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\HK5\Nhập môn Game\MapReader\MapReader\TmxTileLayer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\HK5\Nhập môn Game\MapReader\MapReader\TmxTileOffset.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\HK5\Nhập môn Game\MapReader\MapReader\TmxTileset.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\HK5\Nhập môn Game\MapReader\MapReader\TmxUtil.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AladdinGame.h">
@@ -263,11 +326,90 @@
     <ClInclude Include="Scenes\PlayScene.h">
       <Filter>Header Files\Scenes</Filter>
     </ClInclude>
+    <ClInclude Include="ReadMapEditor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\HK5\Nhập môn Game\MapReader\MapReader\zlib128-dll\include\zconf.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\HK5\Nhập môn Game\MapReader\MapReader\zlib128-dll\include\zlib.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\HK5\Nhập môn Game\MapReader\MapReader\base64.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\HK5\Nhập môn Game\MapReader\MapReader\tinyxml2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\HK5\Nhập môn Game\MapReader\MapReader\TmxEllipse.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\HK5\Nhập môn Game\MapReader\MapReader\TmxImage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\HK5\Nhập môn Game\MapReader\MapReader\TmxImageLayer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\HK5\Nhập môn Game\MapReader\MapReader\TmxLayer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\HK5\Nhập môn Game\MapReader\MapReader\TmxMap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\HK5\Nhập môn Game\MapReader\MapReader\TmxMapTile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\HK5\Nhập môn Game\MapReader\MapReader\TmxObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\HK5\Nhập môn Game\MapReader\MapReader\TmxObjectGroup.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\HK5\Nhập môn Game\MapReader\MapReader\TmxPoint.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\HK5\Nhập môn Game\MapReader\MapReader\TmxPolygon.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\HK5\Nhập môn Game\MapReader\MapReader\TmxPolyline.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\HK5\Nhập môn Game\MapReader\MapReader\TmxPropertySet.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\HK5\Nhập môn Game\MapReader\MapReader\TmxTerrain.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\HK5\Nhập môn Game\MapReader\MapReader\TmxTerrainArray.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\HK5\Nhập môn Game\MapReader\MapReader\TmxTile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\HK5\Nhập môn Game\MapReader\MapReader\TmxTileLayer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\HK5\Nhập môn Game\MapReader\MapReader\TmxTileOffset.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\HK5\Nhập môn Game\MapReader\MapReader\TmxTileset.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\HK5\Nhập môn Game\MapReader\MapReader\TmxUtil.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\HK5\Nhập môn Game\MapReader\MapReader\zconf.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\HK5\Nhập môn Game\MapReader\MapReader\zlib.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="Cach code.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
+    <None Include="E:\HK5\Nhập môn Game\MapReader\MapReader\Tmx.h" />
   </ItemGroup>
 </Project>

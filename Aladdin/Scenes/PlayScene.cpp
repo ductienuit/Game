@@ -37,6 +37,11 @@ void PlayScene::UpdateViewport(BaseObject * aladdin)
 
 bool PlayScene::InIt()
 {
+
+	mMap = new ReadMapEditor("..\Resources\Images\mapobject.tmx", _root);
+	
+	_activeObject = mMap->GetList(rect);
+
 	_listObject.push_back(new Land(0, 100, 4771, 10, eDirection::TOP, eLandType::SOLID));
 	/*_listObject.push_back(new Land(600, 300, 10, 200, eDirection::INSIDE, eLandType::CLIMBABLE0));
 	_listObject.push_back(new Land(600, 350, 20, 20, eDirection::BOTTOM, eLandType::STOP));

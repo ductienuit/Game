@@ -1,231 +1,173 @@
 ﻿#include "QuadTree.h"
 
-// Thần phần static phải khởi tạo lại ở file.cpp.
-vector<string> QuadTree::ActiveObject;
+int QuadTree::MAX_LEVEL = 5;
+int QuadTree::MAX_OBJECT_IN_REGION = 5;
+std::vector<BaseObject*> QuadTree::mListDynamicGameObject;
 
-QuadTree::QuadTree(int id, int level, RECT bound, QuadTree* parent)
+QuadTree::QuadTree(RECT bound, int level)
 {
-	this->_id = id;
-	this->_level = level;
-	this->_bound = bound;
-	this->_parent = parent;
-	for (int i = 0; i < 4; i++)
-	{
-		_childs[i] = NULL;
-	}
+	this->mBound = bound;
+	this->mLevel = level;
 }
 
-void QuadTree::insertObject(BaseObject* baseobject)
-{
-	//this->_listOject.push_back(baseobject);
-}
-
-void QuadTree::insertObject(string objectname)
-{
-	this->_listObject.push_back(objectname);
-}
-
-RECT QuadTree::getBound()
-{
-	return _bound;
-}
-INT64 QuadTree::getId()
-{
-	return _id;
-}
-int QuadTree::getLevel()
-{
-	return _level;
-}
-QuadTree* QuadTree::getParent()
-{
-	return _parent;
-}
-void QuadTree::setParent(QuadTree* parent)
-{
-	this->_parent = parent;
-}
-vector<string> QuadTree::getAllObject()
-{
-	return	_listObject;
-}
-
-bool QuadTree::isLeaf()
-{
-	if (this->_childs[0] == NULL)
-		return true;
-	return false;
-}
-
-// Sử dụng hàm này sẽ gây delay lớn, vì biến cục bộ vector<string> rs khi return được huỷ/cấp phát/copy nhiều lần.
-// KHÔNG DÙNG HÀM NÀY.
-vector<string> QuadTree::getlistObject(RECT bound)
-{
-	// Muốn demo thì xoá exception.
-	throw new exception("Không dùng hàm này. Chỉ dùng để minh hoạ");
-	vector<string> rs;
-	if (isContains(this->_bound, bound) || isIntersectd(this->_bound, bound) || isContains(bound, this->_bound))
-	{
-		if (this->isLeaf() == true)
-		{
-
-			// Cơ bản là add hết list vào list kết quả.
-			// Nhưng mỗi node trong quadtree có thể chứa các đối tương của node khác.
-			// Vậy ta cần loại bỏ các object này.
-			//
-			//rs.insert(rs.end(), this->_listOject.begin(), this->_listOject.end());
-
-			for (string obj : _listObject)
-			{
-				auto it = std::find(rs.begin(), rs.end(), obj);
-
-				// it != rs.end() tức là không tìm thấy it trong rs, tức là không có phần tử nào trùng.
-				// it._Ptr == nullptr tức là rs không có phần tử nào. (rs.size() = 0)
-				if (it == rs.end() || it._Ptr == nullptr)
-				{
-					rs.push_back(obj);
-				}
-			}
-		}
-		else
-		{
-			for (int i = 0; i < 4; i++)
-			{
-				vector<string> temp = _childs[i]->getlistObject(bound);
-				for (string obj : temp)
-				{
-					std::vector<string>::iterator it = std::find(rs.begin(), rs.end(), obj);
-					if (it == rs.end() || it._Ptr == nullptr)
-					{
-						rs.push_back(obj);
-					}
-				}
-				//rs.insert(rs.end(), temp.begin(), temp.end());
-			}
-		}
-	}
-	return rs;
-}
-
-
-void QuadTree::fetchActiveObject(RECT bound)
-{
-	if (isContains(this->_bound, bound) || isIntersectd(this->_bound, bound) || isContains(bound, this->_bound))
-	{
-		if (this->isLeaf() == true)
-		{
-			for (string obj : _listObject)
-			{
-				auto it = std::find(ActiveObject.begin(), ActiveObject.end(), obj);
-				if (it == ActiveObject.end() || it._Ptr == nullptr)
-				{
-					ActiveObject.push_back(obj);
-				}
-			}
-		}
-		else
-		{
-			for (int i = 0; i < 4; i++)
-			{
-				_childs[i]->fetchActiveObject(bound);
-			}
-		}
-	}
-}
-
-vector<string> QuadTree::GetActiveObject(RECT bound, bool botleft)
-{
-	if (botleft)
-	{
-		// đổi từ bot-left sang top-left
-		bound.bottom = WINDOWS_HEIGHT - bound.bottom;
-		bound.top = WINDOWS_HEIGHT - bound.top;
-	}
-
-	QuadTree::ActiveObject.clear();
-	this->fetchActiveObject(bound);
-	return QuadTree::ActiveObject;
-}
-
-
-QuadTree* QuadTree::loadQuadTree(const string path)
-{
-#pragma region
-	QuadTree* node = nullptr;
-	pugi::xml_document doc;
-
-	// Mở file và đọc
-	xml_parse_result result = doc.load_file(path.data(), pugi::parse_default | pugi::parse_pi);
-	if (result == false)
-	{
-		return nullptr;
-	}
-#pragma endregion
-	pugi::xml_node rootxml = doc.first_child();
-	node = initNode(rootxml);
-	loadChild(rootxml, node);
-	return node;
-}
-
-QuadTree* QuadTree::initNode(xml_node& node)
-{
-	RECT bound;
-	int id = node.attribute("Id").as_int();
-	int level = node.attribute("Level").as_int();
-	bound.top = node.attribute("Y").as_int();
-	bound.left = node.attribute("X").as_int();
-	bound.right = bound.left + node.attribute("Width").as_int();
-	bound.bottom = bound.top + node.attribute("Height").as_int();
-	QuadTree* qnode = new QuadTree(id, level, bound, NULL);
-	return qnode;
-}
-void QuadTree::loadChild(pugi::xml_node& node, QuadTree* parent)
-{
-	QuadTree* child[4] = { NULL };
-	auto childnodes = node.children();
-	string nodename;
-	int childindex = 0;
-	for each (xml_node childnode in childnodes)
-	{
-
-		nodename = childnode.name();
-		if (nodename == "Objects")
-		{
-			string text = childnode.text().as_string();
-			auto objectnames = splitString(text, ' ');
-			for each (string name in objectnames)
-			{
-				parent->insertObject(name);
-			}
-		}
-		else if (nodename == "QuadTree")
-		{
-			QuadTree* qnode = initNode(childnode);
-			qnode->setParent(parent);
-			loadChild(childnode, qnode);
-			child[childindex] = qnode;
-			childindex++;
-		}
-	}
-	parent->setChilds(child);
-}
-
-QuadTree** QuadTree::getChilds()
-{
-	return _childs;
-}
-
-void QuadTree::setChilds(QuadTree* nodes[4])
-{
-	for (int i = 0; i < 4; i++)
-	{
-		this->_childs[i] = nodes[i];
-	}
-}
 QuadTree::~QuadTree()
 {
-	for (int i = 0; i < 4; i++)
+	this->Clear();
+}
+
+bool QuadTree::IsContain(BaseObject * gameObject)
+{
+	RECT bound = gameObject->getBounding();
+	return !(bound.right < mBound.left ||
+		bound.bottom < mBound.top ||
+		bound.left > mBound.right ||
+		bound.top > mBound.bottom);
+}
+
+void QuadTree::InsertStaticObject(BaseObject * gameObject)
+{
+	//Insert entity into corresponding nodes
+	if (mNodes)
 	{
-		SAFE_DELETE(_childs[i]);
+		if (mNodes[0]->IsContain(gameObject))
+			mNodes[0]->InsertStaticObject(gameObject);
+		if (mNodes[1]->IsContain(gameObject))
+			mNodes[1]->InsertStaticObject(gameObject);
+		if (mNodes[2]->IsContain(gameObject))
+			mNodes[2]->InsertStaticObject(gameObject);
+		if (mNodes[3]->IsContain(gameObject))
+			mNodes[3]->InsertStaticObject(gameObject);
+
+		return; // Return here to ignore rest.
+	}
+
+	//Insert entity into current quadtree
+	if (this->IsContain(gameObject))
+		mListStaticGameObject.push_back(gameObject);
+
+	//Split and move all objects in list into it’s corresponding nodes
+	if (mListStaticGameObject.size() > MAX_OBJECT_IN_REGION && mLevel < MAX_LEVEL)
+	{
+		this->Split();
+
+		while (!mListStaticGameObject.empty())
+		{
+			if (mNodes[0]->IsContain(mListStaticGameObject.back()))
+				mNodes[0]->InsertStaticObject(mListStaticGameObject.back());
+			if (mNodes[1]->IsContain(mListStaticGameObject.back()))
+				mNodes[1]->InsertStaticObject(mListStaticGameObject.back());
+			if (mNodes[2]->IsContain(mListStaticGameObject.back()))
+				mNodes[2]->InsertStaticObject(mListStaticGameObject.back());
+			if (mNodes[3]->IsContain(mListStaticGameObject.back()))
+				mNodes[3]->InsertStaticObject(mListStaticGameObject.back());
+
+			mListStaticGameObject.pop_back();
+		}
 	}
 }
+
+void QuadTree::InsertDynamicObject(BaseObject * gameObject)
+{
+	mListDynamicGameObject.push_back(gameObject);
+}
+
+void QuadTree::Retrieve(std::vector<BaseObject*>& return_objects_list, BaseObject * gameObject)
+{
+	if (mNodes)
+	{
+		if (mNodes[0]->IsContain(gameObject))
+			mNodes[0]->Retrieve(return_objects_list, gameObject);
+		if (mNodes[1]->IsContain(gameObject))
+			mNodes[1]->Retrieve(return_objects_list, gameObject);
+		if (mNodes[2]->IsContain(gameObject))
+			mNodes[2]->Retrieve(return_objects_list, gameObject);
+		if (mNodes[3]->IsContain(gameObject))
+			mNodes[3]->Retrieve(return_objects_list, gameObject);
+
+		//TODO: remove duplicate
+		/*std::sort(return_objects_list.begin(), return_objects_list.end());
+		auto last = std::unique(return_objects_list.begin(), return_objects_list.end());
+		return_objects_list.erase(last, return_objects_list.end());*/
+
+		//return; // Return here to ignore rest.
+	}
+
+	//Add all entities in current region into return_objects_list
+	if (this->IsContain(gameObject))
+	{
+		//find static objects
+		for (auto i = mListStaticGameObject.begin(); i != mListStaticGameObject.end(); i++)
+		{
+			if (gameObject != *i)
+				return_objects_list.push_back(*i);
+		}
+
+		//add moving objects
+		for (auto i = mListDynamicGameObject.begin(); i != mListDynamicGameObject.end(); i++)
+		{
+			if (gameObject != *i)
+				return_objects_list.push_back(*i);
+		}
+	}
+}
+
+void QuadTree::Clear()
+{
+	if (mNodes)
+	{
+		for (size_t i = 0; i < 4; i++)
+		{
+			if (mNodes[i])
+			{
+				mNodes[i]->Clear();
+				delete mNodes[i];
+				mNodes[i] = NULL;
+			}
+		}
+		delete[] mNodes;
+	}
+
+	mListStaticGameObject.clear();
+}
+
+void QuadTree::Split()
+{
+	//split current node into 4 nodes
+	mNodes = new QuadTree*[4];
+
+	int width = (mBound.right - mBound.left) / 2;
+	int height = (mBound.bottom - mBound.top) / 2;
+
+	RECT childRect;
+
+	//top left
+	childRect.left = mBound.left;
+	childRect.right = mBound.left + width;
+	childRect.top = mBound.top;
+	childRect.bottom = mBound.top + height;
+	mNodes[0] = new QuadTree(childRect, mLevel + 1);
+
+	//top right
+	childRect.right = mBound.right;
+	childRect.left = mBound.right - width;
+	childRect.top = mBound.top;
+	childRect.bottom = mBound.top + height;
+	mNodes[1] = new QuadTree(childRect, mLevel + 1);
+
+	//bottom left
+	childRect.left = mBound.left;
+	childRect.right = mBound.left + width;
+	childRect.bottom = mBound.bottom;
+	childRect.top = mBound.bottom - height;
+	mNodes[2] = new QuadTree(childRect, mLevel + 1);
+
+	//bottom right
+	childRect.right = mBound.right;
+	childRect.left = mBound.right - width;
+	childRect.bottom = mBound.bottom;
+	childRect.top = mBound.bottom - height;
+	mNodes[3] = new QuadTree(childRect, mLevel + 1);
+}
+
+
+
