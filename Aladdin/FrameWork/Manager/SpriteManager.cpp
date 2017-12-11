@@ -92,6 +92,10 @@ void SpriteManager::LoadResource(LPD3DXSPRITE spriteHandle)
 	sp = new Sprite(spriteHandle, "Resources//Images//flame_strip9_15_54.png");
 	this->_listSprite.insert(pair<eID, Sprite*>(eID::FIRE, sp));
 	this->LoadSpriteInfo(eID::FIRE, "Resources//Images//flame_strip9_15_54.txt");
+
+	sp = new Sprite(spriteHandle, "Resources//Images//fallingplatform.png");
+	this->_listSprite.insert(pair<eID, Sprite*>(eID::FALLINGPLATFORM, sp));
+	this->LoadSpriteInfo(eID::FALLINGPLATFORM, "Resources//Images//fallingplatform.txt");
 }
 
 Sprite * SpriteManager::getSprite(eID id)

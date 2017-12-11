@@ -11,6 +11,7 @@
 #include "AppleThrow.h"
 
 #include"Land.h"
+#include"FallingPlatform.h"
 #include<iostream>
 
 using namespace std;

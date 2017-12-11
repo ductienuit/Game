@@ -1,18 +1,13 @@
 ﻿#include "FallingPlatform.h"
 
-FallingPlatform::FallingPlatform(eStatus status, int posX, int posY, eDirection direction):BaseObject(eID::FALLINGPLATFORM)
+FallingPlatform::FallingPlatform(int posX, int posY, eDirection direction):BaseObject(eID::FALLINGPLATFORM)
 {
 	_sprite = SpriteManager::getInstance()->getSprite(eID::FALLINGPLATFORM);
-	_sprite->setFrameRect(0, 0, 32.0f, 16.0f);
-	_originPosition = Vector2(posX, posY);
-
-	_divingSprite = SpriteManager::getInstance()->getSprite(eID::ALADDIN);
-	Vector2 v(0, FALLING_SPEED);
-	Vector2 a(0, 0);
-	this->_listComponent.insert(pair<string, IComponent*>("Movement", new Movement(a, v, this->_sprite)));
-	this->setStatus(status);
-	this->setPosition(posX, posY, 1.0f);
+	_originPosition = Vector2(posX*SCALEFACTOR.x, (posY - 11)*SCALEFACTOR.y);
+	setOrigin(ORIGINZERO);
+	this->setPosition(posX*SCALEFACTOR.x, (posY-11)*SCALEFACTOR.y, 1.0f);
 	text = new Text("Arial", "", 10, 25);
+	InIt();
 }
 
 void FallingPlatform::InIt()
@@ -21,24 +16,59 @@ void FallingPlatform::InIt()
 	_listComponent["Movement"] = movement;
 	_listComponent["Gravity"] = new Gravity(Vector2(0, -GRAVITY), movement);
 
+	auto g = (Gravity*)_listComponent["Gravity"];
+	g->setStatus(eGravityStatus::SHALLOWED);
+
 	auto collisionBody = new CollisionBody(this);
 	_listComponent["CollisionBody"] = collisionBody;
 
 	__hook(&CollisionBody::onCollisionBegin, collisionBody, &FallingPlatform::onCollisionBegin);
 	__hook(&CollisionBody::onCollisionEnd, collisionBody, &FallingPlatform::onCollisionEnd);
 
-	_animations[THROW] = new Animation(_sprite, 0.1f);
-	_animations[THROW]->addFrameRect(eID::KNIFE, "guardsShort_throw_01", "guardsShort_throw_02", "guardsShort_throw_03", "guardsShort_throw_04"
-		, "guardsShort_throw_05", "guardsShort_throw_06", "guardsShort_throw_07", NULL);
+	_animations[NORMAL] = new Animation(_sprite, 0.05f);
+	_animations[NORMAL]->addFrameRect(eID::FALLINGPLATFORM, "falling_platform_0", "falling_platform_0", "falling_platform_0", NULL);
+
+	_animations[eStatus::DROP] = new Animation(_sprite, 0.05f);
+	_animations[DROP]->addFrameRect(eID::FALLINGPLATFORM, "falling_platform_",9);
+
+	_countTime = new StopWatch();
+	_drop = false;
 }
+
 void FallingPlatform::Update(float deltatime)
 {
-	_animations[this->getStatus()]->Update(deltatime);
+	_animations[_status]->Update(deltatime);
+
+	UpdateStatus();
 
 	// update component để sau cùng để sửa bên trên sau đó nó cập nhật đúng
 	for (auto it = _listComponent.begin(); it != _listComponent.end(); it++)
 	{
 		it->second->Update(deltatime);
+	}
+}
+
+void FallingPlatform::UpdateStatus()
+{
+	if (_drop)
+	{
+		if(_countTime->isStopWatch(100))
+			if (!isInStatus(DROP))
+			{
+				setStatus(DROP);				
+			}
+	}
+	if (isInStatus(DROP))
+	{
+		falling();
+		if (_animations[DROP]->getIndex() == 8)
+		{
+			_animations[DROP]->setIndex(0);
+			setPosition(_originPosition);
+			setStatus(NORMAL);
+			stopFalling();
+			_drop = false;
+		}
 	}
 }
 
@@ -60,22 +90,6 @@ void FallingPlatform::Release()
 
 void FallingPlatform::onCollisionBegin(CollisionEventArg *collision_event)
 {
-	eID objectID = collision_event->_otherObject->getId();
-	switch (objectID)
-	{
-	case eID::ALADDIN:
-	{
-		/*DK1:Aladdin đang không bị đánh*/
-		if (collision_event->_otherObject->isInStatus(eStatus::BEHIT) == false && !isInStatus(DESTROY))
-		{
-			//Set status aladdin bị đánh
-			collision_event->_otherObject->setStatus(eStatus::BEHIT);
-		}
-		break;
-	}
-	default:
-		break;
-	}
 }
 
 void FallingPlatform::onCollisionEnd(CollisionEventArg *)
@@ -104,4 +118,25 @@ FallingPlatform::~FallingPlatform()
 
 void FallingPlatform::falling()
 {
+	auto move = (Movement*)_listComponent["Movement"];
+	move->setVelocity(Vector2(move->getVelocity().x, -FALLING_SPEED));
+	auto g = (Gravity*)_listComponent["Gravity"];
+	g->setStatus(eGravityStatus::FALLING__DOWN);
 }
+
+void FallingPlatform::stopFalling()
+{
+	auto move = (Movement*)_listComponent["Movement"];
+	move->setVelocity(VECTOR2ZERO);
+
+	auto g = (Gravity*)_listComponent["Gravity"];
+	g->setStatus(eGravityStatus::SHALLOWED);
+}
+
+void FallingPlatform::startCount()
+{
+	_countTime->restart();
+	_drop = true;
+}
+
+

@@ -9,17 +9,19 @@
 #include "../BaseObject.h"
 using namespace std;
 
-#define FALLING_SPEED 200
+#define FALLING_SPEED 80
 #define GRAVITY 800
 
 class FallingPlatform : public BaseObject
 {
 public:
-	FallingPlatform(eStatus status, int posX, int posY, eDirection direction);
+	FallingPlatform(int posX, int posY, eDirection direction);
 	void InIt() override;
 	void Update(float deltatime) override;
 	void Draw(LPD3DXSPRITE, ViewPort*) override;
 	void Release() override;
+
+	void UpdateStatus();
 
 	void onCollisionBegin(CollisionEventArg*);
 	void onCollisionEnd(CollisionEventArg*);
@@ -29,13 +31,16 @@ public:
 
 	Text* text;
 	void falling();
+	void stopFalling();
+	void startCount();
 	~FallingPlatform();
 private:
 
 	map<string, IComponent*> _listComponent;
 	map<int, Animation*> _animations;
-	Sprite *_divingSprite;
 	Vector2 _originPosition;
+	StopWatch* _countTime;
+	bool _drop;
 };
 #endif _FALLING_PLATFORM_H
 

@@ -18,6 +18,10 @@ bool StopWatch::isFinish()
 {
 	return this->_isFinish;
 }
+bool StopWatch::isStart()
+{
+	return _isStart;
+}
 // milisecond
 bool StopWatch::isTimeLoop(float time)
 {

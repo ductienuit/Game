@@ -943,112 +943,130 @@ void Aladdin::onCollisionBegin(CollisionEventArg * collision_event)
 				standing();
 
 				//set trạng thái chỉ khi đi ngược hướng va chạm mới set lại trạng thái khác
-				this->setStatus(eStatus::STOPWALK); 
+				this->setStatus(eStatus::STOPWALK);
 				break;
 			}
 			switch (collision_event->_sideCollision)
 			{
-				case(eDirection::TOP):
+			case(eDirection::TOP):
+			{
+				switch (type)
 				{
-					switch (type)
-					{
-						case (eLandType::SOLID):
-						{
-							//Chạm đất
-							clearStatus();
-							auto gravity = (Gravity*)_listComponent["Gravity"];
-							gravity->setStatus(eGravityStatus::SHALLOWED);
-							standing();
-							break;
-						}
-						case (eLandType::STAIR):
-						{
-							//Chạm đất
-							clearStatus();
-							auto gravity = (Gravity*)_listComponent["Gravity"];
-							gravity->setStatus(eGravityStatus::SHALLOWED);
-							standing();
-							break;
-						}
-					}
+				case (eLandType::SOLID):
+				{
+					//Chạm đất
+					clearStatus();
+					auto gravity = (Gravity*)_listComponent["Gravity"];
+					gravity->setStatus(eGravityStatus::SHALLOWED);
+					standing();
 					break;
 				}
-				case(eDirection::BOTTOM):
+				case (eLandType::STAIR):
 				{
-					switch (type)
-					{
-						case (eLandType::BAR):
-						{						
-							if (isInStatus(eStatus(JUMPING|SWING)))
-								return;
-							clearStatus();
-							addStatus(eStatus::SWING);
-							float y = land->getPositionY();
-							setPositionY(y-150); //set cứng khi va chạm với Bar thì cho giảm y
-							swing();
-							break;
-						}
-						case (eLandType::STOP):
-						{
-							_canUp = false;
-							break;
-						}
-						case (eLandType::CLIMBABLE0):
-						{
-							_canUp = true;
-							clearStatus();
-							addStatus(eStatus::CLIMB);
-							climb();
-							float x = land->getPositionX();
-							setPositionX(x);
-							break;
-						}
-					}
+					//Chạm đất
+					clearStatus();
+					auto gravity = (Gravity*)_listComponent["Gravity"];
+					gravity->setStatus(eGravityStatus::SHALLOWED);
+					standing();
 					break;
 				}
-				case(eDirection::LEFT):
+				}
+				break;
+			}
+			case(eDirection::BOTTOM):
+			{
+				switch (type)
 				{
-					switch (type)
-					{
-						case (eLandType::CLIMBABLE0):
-						{
-							clearStatus();
-							_canUp = true;
-							addStatus(eStatus::CLIMB);
-							climb();
-							float x = land->getPositionX();
-							setPositionX(x);
-							break;
-						}
-						case (eLandType::STAIR):
-						{						
-							auto move = (Movement*)_listComponent["Movement"];
-							move->setVelocity(Vector2(0, 170));
-							break;
-						}
-					}
+				case (eLandType::BAR):
+				{
+					if (isInStatus(eStatus(JUMPING | SWING)))
+						return;
+					clearStatus();
+					addStatus(eStatus::SWING);
+					float y = land->getPositionY();
+					setPositionY(y - 150); //set cứng khi va chạm với Bar thì cho giảm y
+					swing();
 					break;
 				}
-				case(eDirection::RIGHT):
+				case (eLandType::STOP):
 				{
-					switch (type)
-					{
-						case (eLandType::CLIMBABLE0):
-						{
-							clearStatus();
-							_canUp = true;
-							addStatus(eStatus::CLIMB);
-							climb();
-							float x = land->getPositionX();
-							setPositionX(x);
-							break;
-						}
-					}
+					_canUp = false;
 					break;
 				}
+				case (eLandType::CLIMBABLE0):
+				{
+					_canUp = true;
+					clearStatus();
+					addStatus(eStatus::CLIMB);
+					climb();
+					float x = land->getPositionX();
+					setPositionX(x);
+					break;
+				}
+				}
+				break;
+			}
+			case(eDirection::LEFT):
+			{
+				switch (type)
+				{
+				case (eLandType::CLIMBABLE0):
+				{
+					clearStatus();
+					_canUp = true;
+					addStatus(eStatus::CLIMB);
+					climb();
+					float x = land->getPositionX();
+					setPositionX(x);
+					break;
+				}
+				case (eLandType::STAIR):
+				{
+					auto move = (Movement*)_listComponent["Movement"];
+					move->setVelocity(Vector2(0, 170));
+					break;
+				}
+				}
+				break;
+			}
+			case(eDirection::RIGHT):
+			{
+				switch (type)
+				{
+				case (eLandType::CLIMBABLE0):
+				{
+					clearStatus();
+					_canUp = true;
+					addStatus(eStatus::CLIMB);
+					climb();
+					float x = land->getPositionX();
+					setPositionX(x);
+					break;
+				}
+				}
+				break;
+			}
 			}
 			break;
-		}		
+		}
+		case eID::FALLINGPLATFORM:
+		{
+			switch (collision_event->_sideCollision)
+			{
+				case(eDirection::TOP):
+				{
+					auto temp = (FallingPlatform*)collision_event->_otherObject;
+					temp->startCount();
+					//Chạm đất
+					clearStatus();
+					auto gravity = (Gravity*)_listComponent["Gravity"];
+					gravity->setStatus(eGravityStatus::SHALLOWED);
+					standing();
+					break;
+				}
+				break;
+			}
+		}
 	}
 }
 
@@ -1095,6 +1113,12 @@ void Aladdin::onCollisionEnd(CollisionEventArg * collision_event)
 					break;
 				}
 			}
+			break;
+		}
+		case eID::FALLINGPLATFORM:
+		{
+			auto g = (Gravity*)_listComponent["Gravity"];
+			g->setStatus(eGravityStatus::FALLING__DOWN);
 			break;
 		}
 	}

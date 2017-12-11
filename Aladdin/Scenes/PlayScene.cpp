@@ -48,7 +48,8 @@ bool PlayScene::InIt()
 	_listObject.push_back(new Land(1454, 12, 4771, 10, eDirection::TOP, eLandType::SOLID));
 	_listObject.push_back(new Land(5, 50, 1454, 10, eDirection::TOP, eLandType::SOLID));
 	//Miến gỗ đứng rớt
-	_listObject.push_back(new Land(1641, 239, 36, 10, eDirection::TOP, eLandType::SOLID));
+	_listObject.push_back(new FallingPlatform(1641, 239, eDirection::TOP));
+
 	//Miến gỗ đứng ko rớt
 	_listObject.push_back(new Land(1757, 239, 284, 10, eDirection::TOP, eLandType::SOLID));
 	_listObject.push_back(new Land(1477, 688-451, 102, 10, eDirection::TOP, eLandType::SOLID));
@@ -154,6 +155,11 @@ void PlayScene::Update(float dt)
 		if (i == nullptr)
 			continue;
 		eID temp = i->getId();
+
+		/*Fallingplatform cần kiểm tra riêng 
+		aladdin với nó và ngược lại ở for dưới*/
+		if (temp == eID::FALLINGPLATFORM) 
+			_aladdin->checkCollision(i, dt);
 		if (i->getId() != eID::LAND || _aladdin->getId() == temp)
 			continue;
 		_aladdin->checkCollision(i, dt);

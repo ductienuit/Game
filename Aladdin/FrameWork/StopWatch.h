@@ -26,6 +26,7 @@ public:
 	~StopWatch();
 
 	bool isFinish();
+	bool isStart();
 	bool isTimeLoop(float time);
 	bool isStopWatch(float time);
 	void timeLoopAction(float milisecond, pFunction action);
