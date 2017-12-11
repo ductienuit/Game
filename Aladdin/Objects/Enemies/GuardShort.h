@@ -16,7 +16,7 @@ using namespace std;
 class GuardShort : public BaseEnemy
 {
 public:
-	GuardShort(eStatus status, int posX, int posY, eDirection direction);
+	GuardShort(eStatus status, int posX, int posY, eDirection direction, int minMove, int maxMove);
 
 	void InIt() override;
 	void Update(float deltatime) override;

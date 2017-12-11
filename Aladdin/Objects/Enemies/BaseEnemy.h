@@ -24,5 +24,7 @@ protected:
 	void gainScore();
 	int _hitpoint;
 	int _score;
+	int _minMove;
+	int _maxMove;
 };
 #endif
