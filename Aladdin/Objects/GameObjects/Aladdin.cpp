@@ -1,4 +1,5 @@
 ﻿#include "ALADDIN.h"
+bool Enter[3];
 
 Aladdin::Aladdin() : BaseObject(eID::ALADDIN)
 {

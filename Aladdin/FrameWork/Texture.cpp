@@ -63,7 +63,7 @@ void Texture::Render(LPD3DXSPRITE spriteHandle, const RECT* rect, const Vector3*
 void Texture::Render(LPD3DXSPRITE spriteHandle, const Vector3 * position)
 {	
 	// BEGIN
-	spriteHandle->Begin(D3DXSPRITE_ALPHABLEND | D3DXSPRITE_DONOTSAVESTATE | D3DXSPRITE_OBJECTSPACE  | D3DXSPRITE_DO_NOT_ADDREF_TEXTURE);
+	spriteHandle->Begin(D3DXSPRITE_ALPHABLEND | D3DXSPRITE_DONOTSAVESTATE);
 
 	spriteHandle->Draw(
 		this->_texture,
@@ -106,7 +106,7 @@ void Texture::Render(LPD3DXSPRITE spriteHandle, RECT * srcRect, Vector2 position
 	spriteHandle->SetTransform(&matFinal);
 
 	// BEGIN
-	spriteHandle->Begin(D3DXSPRITE_ALPHABLEND | D3DXSPRITE_DONOTSAVESTATE | D3DXSPRITE_DO_NOT_ADDREF_TEXTURE);
+	spriteHandle->Begin(D3DXSPRITE_ALPHABLEND | D3DXSPRITE_DONOTSAVESTATE);
 
 	spriteHandle->Draw(
 		this->_texture,

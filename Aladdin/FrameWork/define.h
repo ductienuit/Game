@@ -1,7 +1,7 @@
 ﻿#ifndef __GAME_FRAMEWORK__
 #define __GAME_FRAMEWORK__
-#define WINDOWS_WIDTH 840
-#define WINDOWS_HEIGHT 600
+#define WINDOWS_WIDTH 640
+#define WINDOWS_HEIGHT 480
 #define SIZEMAP	D3DXVECTOR2(7634,1321) //4771*1,6 ; 688*1.92 
 #define FPS 30
 #define MAX_KEYS 256
@@ -19,7 +19,6 @@
 #include <vector>
 #include"debug.h"
 #include "utils.h"
-
 
 enum eStatus
 {
@@ -91,16 +90,16 @@ enum eLandType
 	STOP,
 	STAIR, //Bậc thang,
 	WALL,
+	CHECKSTAIR2,
+	CHECKSTAIR3
 };
 #define C_WHITE D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f)				// màu trắnng
 #define COLOR_KEY D3DXCOLOR(1.0f, 0.0f, 1.0f, 1.0f)				// màu khi mà load hình nó bỏ qua > trong suốt
-#define BUFFER_WIDTH 1700//2550
-#define BUFFER_HEIGHT 1200//1800
 #define SCALEFACTOR D3DXVECTOR2(1.6f,1.92f)
 #define SCALECHARACTER D3DXVECTOR2(1.6f,1.92f)
 #define SCALEALADDIN D3DXVECTOR2(1.8f,2.16f)
 #define SCALEMAP D3DXVECTOR2(1.6f,1.92f)
-#define SCALEONE D3DXVECTOR2(0.0f,0.0f)
+#define SCALEONE D3DXVECTOR2(1.0f,1.0f)
 #define ORIGINCHARACTER D3DXVECTOR2(0.5f, 0.0f)
 #define ORIGINZERO D3DXVECTOR2(0.0f, 0.0f)
 

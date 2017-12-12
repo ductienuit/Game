@@ -12,7 +12,8 @@ BackGround::~BackGround()
 void BackGround::InIt()
 {
 	_sprite = SpriteManager::getInstance()->getSprite(eID::BACKGROUND);
-	this->setOrigin(Vector2(0,0));//Set top left dưới 0 0
+	this->setOrigin(ORIGINZERO);//Set top left dưới 0 0
+	this->setScale(SCALEMAP);
 	this->setPosition(0, 0);
 }
 
