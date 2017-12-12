@@ -90,8 +90,10 @@ enum eLandType
 	STOP,
 	STAIR, //Bậc thang,
 	WALL,
+	CHECKSTAIR1,  //Cờ đặt cầu thang lên xuống
 	CHECKSTAIR2,
-	CHECKSTAIR3
+	CHECKSTAIR3,
+	CHECKSTAIR4,
 };
 #define C_WHITE D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f)				// màu trắnng
 #define COLOR_KEY D3DXCOLOR(1.0f, 0.0f, 1.0f, 1.0f)				// màu khi mà load hình nó bỏ qua > trong suốt

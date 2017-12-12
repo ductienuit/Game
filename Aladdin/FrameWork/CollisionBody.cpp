@@ -61,7 +61,6 @@ void CollisionBody::checkCollision(BaseObject * otherObject, float dt)
 	if (_isColliding == false && _flagEnd==true)
 	 {
 			CollisionEventArg* e = new CollisionEventArg(_preObject); //Đối số PreObject thứ 2 không sử dụng
-
 			__raise onCollisionEnd(e);
 			_flagEnd = false;
 	}
@@ -319,7 +318,6 @@ float CollisionBody::SweptAABB(RECT b1, RECT b2, eDirection & direction, float d
 	// if there was no collision
 	if (entryTime > exitTime || xEntry < 0.0f && yEntry < 0.0f || xEntry > 1.0f || yEntry > 1.0f)
 	{
-		direction = NONE;
 		return 1.0f;
 	}
 
