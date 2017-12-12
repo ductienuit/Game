@@ -2,7 +2,7 @@
 
 AppleThrow::AppleThrow(eStatus status, int posX, int posY, eDirection direction)
 {
-	_sprite = SpriteManager::getInstance()->getSprite(eID::KNIFE);
+	_sprite = SpriteManager::getInstance()->getSprite(eID::APPLETHROW);
 	_sprite->setFrameRect(0, 0, 32.0f, 16.0f);
 	_originPosition = Vector2(posX - 120, posY + 60);
 
@@ -25,7 +25,7 @@ void AppleThrow::InIt()
 	__hook(&CollisionBody::onCollisionEnd, collisionBody, &AppleThrow::onCollisionEnd);
 
 	_animations[THROW] = new Animation(_sprite, 0.5f);
-	_animations[THROW]->addFrameRect(eID::APPLETHROW, "apple_", 3);
+	_animations[THROW]->addFrameRect(eID::APPLETHROW, "apple_00", "apple_00", "apple_00", NULL);
 
 }
 void AppleThrow::Update(float deltatime)
@@ -82,6 +82,7 @@ void AppleThrow::movingLeft(float x, float y)
 	_sprite->setScaleX(-1.6);
 	auto move = (Movement*)this->_listComponent["Movement"];
 	move->setVelocity(Vector2(-APPLETHROW_SPEED, -APPLETHROW_JUMP));
+	
 	x = x - 40;
 	y = y + 80;
 	this->setPosition(x, y);

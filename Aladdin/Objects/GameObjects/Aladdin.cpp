@@ -76,7 +76,7 @@ void Aladdin::InIt()
 	_animations[eStatus::SITTING_DOWN] = new Animation(_sprite, 0.12f);
 	_animations[eStatus::SITTING_DOWN]->addFrameRect(eID::ALADDIN, "sit_0", "sit_1", "sit_2", "sit_3", NULL);
 
-	_animations[eStatus::FREE] = new Animation(_sprite, 0.1f);
+	_animations[eStatus::FREE] = new Animation(_sprite, 0.2f);
 	_animations[eStatus::FREE]->addFrameRect(eID::ALADDIN, "free_", 32);
 
 	_animations[eStatus::CLIMB] = new Animation(_sprite, 0.15f);
