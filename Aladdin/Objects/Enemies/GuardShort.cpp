@@ -1,6 +1,6 @@
 ﻿#include "GuardShort.h"
 
-GuardShort::GuardShort(eStatus status, int posX, int posY, eDirection direction) :BaseEnemy(eID::GUARDSHORT)
+GuardShort::GuardShort(eStatus status, int posX, int posY, eDirection direction, int minMove, int maxMove) :BaseEnemy(eID::GUARDSHORT)
 {
 	_sprite = SpriteManager::getInstance()->getSprite(eID::GUARDSHORT);
 	_sprite->setFrameRect(0, 0, 32.0f, 16.0f);
@@ -11,6 +11,8 @@ GuardShort::GuardShort(eStatus status, int posX, int posY, eDirection direction)
 	this->_listComponent.insert(pair<string, IComponent*>("Movement", new Movement(a, v, this->_sprite)));
 	this->setStatus(status);
 	this->setPosition(posX, posY, 1.0f);
+	_minMove = minMove;
+	_maxMove = maxMove;
 	text = new Text("Arial", "", 10, 25);
 }
 
@@ -133,6 +135,7 @@ float GuardShort::distanceBetweenAladdin()
 
 void GuardShort::UpdateStatus(float dt)
 {
+	float xAla = _divingSprite->getPositionX() + (_divingSprite->getBounding().right - _divingSprite->getBounding().left) / 2;
 	switch (this->getStatus())
 	{
 		case eStatus::DESTROY:
@@ -164,49 +167,77 @@ void GuardShort::UpdateStatus(float dt)
 			return;
 		}
 	}
-
-	if (distanceBetweenAladdin() < 0)
+	this->clearStatus();
+	if (_minMove < this->getPositionX() && this->getPositionX() < _maxMove)
 	{
-		float distance = -distanceBetweenAladdin();
-		if (distance > 200)
+		if (distanceBetweenAladdin() < 0)
 		{
-			this->clearStatus();
-			this->addStatus(eStatus::MOVING_LEFT);
-			movingLeft();
+			float distance = -distanceBetweenAladdin();
+			if (distance > 200)
+			{
+				this->clearStatus();
+				this->addStatus(eStatus::MOVING_LEFT);
+				movingLeft();
+			}
+			else if (distance <= 200)
+			{
+				_sprite->setScaleX(-1.6);
+				this->addStatus(eStatus::THROW);
+				standing();
+				knife->addStatus(eStatus::THROW);
+				if (_animations[_status]->getIndex() == 2)
+					knife->movingLeft(this->getPositionX(), this->getPositionY());
+				_canThrow = true;
+			}
 		}
-		else if (distance <= 200)
+		else if (distanceBetweenAladdin() > 0)
 		{
-			this->clearStatus();
-			_sprite->setScaleX(-1.6);
-			this->addStatus(eStatus::THROW);
-			standing();
-			knife->addStatus(eStatus::THROW);
-			if (_animations[_status]->getIndex() == 2)
-				knife->movingLeft(this->getPositionX(), this->getPositionY());
-			_canThrow = true;
+			float distance = distanceBetweenAladdin();
+
+			if (distance <= 200)
+			{
+				_sprite->setScaleX(1.6);
+				this->addStatus(eStatus::THROW);
+				standing();
+				knife->addStatus(eStatus::THROW);
+				if (_animations[_status]->getIndex() == 2)
+					knife->movingRight(this->getPositionX(), this->getPositionY());
+				_canThrow = true;
+			}
+			else if (distance > 200)
+			{
+				this->addStatus(eStatus::MOVING_RIGHT);
+				movingRight();
+			}
 		}
 	}
-	else if (distanceBetweenAladdin() > 0)
+	else if ((_minMove > this->getPositionX()) && xAla < _minMove)
 	{
-		float distance = distanceBetweenAladdin();
-		
-		if (distance <= 200)
-		{
-			this->clearStatus();
-			_sprite->setScaleX(1.6);
-			this->addStatus(eStatus::THROW);
-			standing();
-			knife->addStatus(eStatus::THROW);
-			if (_animations[_status]->getIndex() == 2)
-				knife->movingRight(this->getPositionX(), this->getPositionY());
-			_canThrow = true;
-		}
-		else if (distance > 200)
-		{
-			this->clearStatus();
-			this->addStatus(eStatus::MOVING_RIGHT);
-			movingRight();
-		}
+		this->addStatus(eStatus::THROW);
+		standing();
+		knife->addStatus(eStatus::THROW);
+		if (_animations[_status]->getIndex() == 2)
+			knife->movingLeft(this->getPositionX(), this->getPositionY());
+		_canThrow = true;
+	}
+	else if (distanceBetweenAladdin() > 0 && xAla > _minMove && this->getPositionX() < _maxMove)
+	{
+		this->addStatus(eStatus::MOVING_RIGHT);
+		movingRight();
+	}
+	else if ((this->getPositionX() > _maxMove) && xAla > _maxMove)
+	{
+		this->addStatus(eStatus::THROW);
+		standing();
+		knife->addStatus(eStatus::THROW);
+		if (_animations[_status]->getIndex() == 2)
+			knife->movingRight(this->getPositionX(), this->getPositionY());
+		_canThrow = true;
+	}
+	else if (distanceBetweenAladdin() < 0 && xAla < _maxMove)
+	{
+		this->addStatus(eStatus::MOVING_LEFT);
+		movingLeft();
 	}
 }
 

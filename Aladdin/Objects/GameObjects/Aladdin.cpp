@@ -78,14 +78,14 @@ void Aladdin::InIt()
 	_animations[eStatus::SITTING_DOWN] = new Animation(_sprite, 0.12f);
 	_animations[eStatus::SITTING_DOWN]->addFrameRect(eID::ALADDIN, "sit_0", "sit_1", "sit_2", "sit_3", NULL);
 
-	_animations[eStatus::FREE] = new Animation(_sprite, 0.1f);
+	_animations[eStatus::FREE] = new Animation(_sprite, 0.2f);
 	_animations[eStatus::FREE]->addFrameRect(eID::ALADDIN, "free_", 32);
 
 	_animations[eStatus::CLIMB] = new Animation(_sprite, 0.15f);
 	_animations[eStatus::CLIMB]->addFrameRect(eID::ALADDIN, "climb_", 10);
 
 	_animations[eStatus::THROW] = new Animation(_sprite, 0.1f);
-	_animations[eStatus::THROW]->addFrameRect(eID::ALADDIN, "throw_", 5);
+	_animations[eStatus::THROW]->addFrameRect(eID::ALADDIN, "throw_0", 5);
 
 	_animations[eStatus::ATTACK | eStatus::SITTING_DOWN] = new Animation(_sprite, 0.1f);
 	_animations[eStatus::ATTACK | eStatus::SITTING_DOWN]->addFrameRect(eID::ALADDIN, "swing_sword_", 5);
@@ -97,14 +97,14 @@ void Aladdin::InIt()
 	_animations[eStatus::MOVING_LEFT]->addFrameRect(eID::ALADDIN, "walk_", 11);
 
 	_animations[eStatus::THROW | eStatus::MOVING_LEFT] = new Animation(_sprite, 0.1f);
-	_animations[eStatus::THROW | eStatus::MOVING_LEFT]->addFrameRect(eID::ALADDIN, "throw_", 6);
+	_animations[eStatus::THROW | eStatus::MOVING_LEFT]->addFrameRect(eID::ALADDIN, "run_throw_0", 6);
 
 	_animations[eStatus::THROW | eStatus::MOVING_RIGHT] = new Animation(_sprite, 0.1f);
-	_animations[eStatus::THROW | eStatus::MOVING_RIGHT]->addFrameRect(eID::ALADDIN, "throw_", 6);
+	_animations[eStatus::THROW | eStatus::MOVING_RIGHT]->addFrameRect(eID::ALADDIN, "run_throw_0", 6);
 
 	//cầm kiếm chém
 	_animations[eStatus::ATTACK] = new Animation(_sprite, 0.1f);
-	_animations[eStatus::ATTACK]->addFrameRect(eID::ALADDIN, "swing_sword_", 5);
+	_animations[eStatus::ATTACK]->addFrameRect(eID::ALADDIN, "attack_0", 5);
 	//sit_attack ngồi đâm
 	_animations[eStatus::SITTING_DOWN | eStatus::ATTACK] = new Animation(_sprite, 0.1f);
 	_animations[eStatus::SITTING_DOWN | eStatus::ATTACK]->addFrameRect(eID::ALADDIN, "sit_attack_", 7);

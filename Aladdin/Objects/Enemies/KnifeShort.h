@@ -8,7 +8,7 @@
 #include "BaseEnemy.h"
 using namespace std;
 
-#define KNIFE_SHORT_SPEED 200
+#define KNIFE_SHORT_SPEED 500
 #define KNIFE_SHORT_GRAVITY 800
 #define KNIFE_SHORT_JUMP 100
 
