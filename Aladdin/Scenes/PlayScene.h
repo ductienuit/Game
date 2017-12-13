@@ -8,11 +8,11 @@
 + Danh sách đối tượng nằm trong vùng active.
 + Map
 */
-#include"../../FrameWork/Scene.h"
-#include"../../FrameWork/Manager/SpriteManager.h"
-#include"../../FrameWork/Manager/SceneManager.h"
-#include"../../FrameWork/debug.h"
-#include"../../FrameWork/Animation.h"
+#include"../FrameWork/Scene.h"
+#include"../FrameWork/Manager/SpriteManager.h"
+#include"../FrameWork/Manager/SceneManager.h"
+#include"../FrameWork/debug.h"
+#include"../FrameWork/Animation.h"
 #include"../FrameWork/QuadTree.h"
 
 #include"../Objects/GameObjects/Objects/Aladdin.h"

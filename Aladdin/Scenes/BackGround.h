@@ -3,8 +3,8 @@
 
 
 #include"../Objects/BaseObject.h"
-#include "../../FrameWork/define.h"
-#include"../../FrameWork/ViewPort.h"
+#include "../FrameWork/define.h"
+#include"../FrameWork/ViewPort.h"
 
 class BackGround:public BaseObject
 {
