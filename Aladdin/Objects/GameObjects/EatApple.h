@@ -1,5 +1,5 @@
-#ifndef _CAMEL_H
-#define _CAMEL_H
+#ifndef _APPLE_EAT_H_
+#define _APPLE_EAT_H_
 
 #include "../../FrameWork/Animation.h"
 #include "../../FrameWork/StopWatch.h"
@@ -8,28 +8,24 @@
 #include"../../FrameWork/CollisionBody.h"
 #include "../BaseObject.h"
 
+using namespace std;
 
-class Camel :public BaseObject
+class EatApple : public BaseObject
 {
 public:
-	Camel(int posX, int posY);
+	EatApple(int posX, int posY);
 	void InIt() override;
 	void Update(float deltatime) override;
 	void Draw(LPD3DXSPRITE, ViewPort*) override;
 	void Release() override;
 
-	void UpdateStatus();
-
 	void onCollisionBegin(CollisionEventArg*);
 	void onCollisionEnd(CollisionEventArg*);
 	float checkCollision(BaseObject*, float);
-
-	RECT getBounding() override;
-	~Camel();
+	~EatApple();
 private:
 	map<string, IComponent*> _listComponent;
 	map<int, Animation*> _animations;
 	Text* text;
 };
-#endif _CAMEL_H
-
+#endif _APPLE_EAT_H_

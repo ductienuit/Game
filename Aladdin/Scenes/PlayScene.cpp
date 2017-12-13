@@ -107,8 +107,12 @@ bool PlayScene::InIt()
 	//_listObject.push_back(new Land(1430, 110, 43, 10, eDirection::TOP, eLandType::STAIR));
 	//platform
 
+
+
+	//Apple
+	//_listObject.push_back(new EatApple(600, 200));
 	//Camel - Lac da
-	auto camel = new Camel(200, 50);
+	auto camel = new Camel(1000, 50);
 	_listObject.push_back(camel);
 
 	//Fire
@@ -124,32 +128,32 @@ bool PlayScene::InIt()
 	_backgroundfront = new BackGroundFront();
 	_backgroundfront->InIt();
 
-	//Complete
-	/*auto guardLu = new GuardLu(eStatus::FREE, 200, 100, eDirection::LEFT);
-	guardLu->InIt();
-	_listObject.push_back(guardLu);*/
+	////Complete
+	//auto guardLu = new GuardLu(eStatus::FREE, 200, 100, eDirection::LEFT);
+	//guardLu->InIt();
+	//_listObject.push_back(guardLu);
 
-	//COMPLETE throwJar but not Jar
+	////COMPLETE throwJar but not Jar
 	//auto guardThrowJar = new ThrowJar(eStatus::FREE, 300, 300);
 	//guardThrowJar->InIt();
 	//_listObject.push_back(guardThrowJar);
 
-	/*auto knifeThrower = new KnifeThrower(eStatus::MOVING_RIGHT, 200, 100, eDirection::LEFT);
-	knifeThrower->InIt();
-	_listObject.push_back(knifeThrower);*/
+	//auto knifeThrower = new KnifeThrower(eStatus::MOVING_RIGHT, 200, 100, eDirection::LEFT);
+	//knifeThrower->InIt();
+	//_listObject.push_back(knifeThrower);
 
-	//Complete
-	/*auto guardThin = new GuardThin(eStatus::MOVING_LEFT, 200, 100, eDirection::LEFT);
-	guardThin->InIt();
-	_listObject.push_back(guardThin);*/
+	////Complete
+	//auto guardThin = new GuardThin(eStatus::MOVING_LEFT, 200, 100, eDirection::LEFT);
+	//guardThin->InIt();
+	//_listObject.push_back(guardThin);
 
-	auto guardfat = new GuardFat(eStatus::MOVING_LEFT, 200, 100, eDirection::LEFT);
-	guardfat->InIt();
-	_listObject.push_back(guardfat);
+	//auto guardfat = new GuardFat(eStatus::MOVING_LEFT, 200, 100, eDirection::LEFT);
+	//guardfat->InIt();
+	//_listObject.push_back(guardfat);
 
-	/*auto guardShort = new GuardShort(eStatus::MOVING_LEFT, 200, 100, eDirection::LEFT, 2700, 3200);
-	guardShort->InIt();
-	_listObject.push_back(guardShort);*/
+	//auto guardShort = new GuardShort(eStatus::MOVING_LEFT, 200, 100, eDirection::LEFT, 2700, 3200);
+	//guardShort->InIt();
+	//_listObject.push_back(guardShort);
 
     _aladdin = new Aladdin();
 	_aladdin->InIt();
@@ -180,14 +184,25 @@ void PlayScene::Update(float dt)
 	
 	this->UpdateViewport(_aladdin);
 
+	Vector2 viewport_position = _viewport->getPositionWorld();
+	RECT viewport_in_transform = _viewport->getBounding();
+
+	// Hàm getlistobject của quadtree yêu cầu truyền vào một hình chữ nhật theo hệ top left, nên cần tính lại khung màn hình
+	RECT screen;
+	// left right không đổi dù hệ top-left hay hệ bot-left
+	screen.left = viewport_in_transform.left;
+	screen.right = viewport_in_transform.right;
+	screen.top = SIZEMAP.y - viewport_position.y;
+	screen.bottom = screen.top + _viewport->getHeight();
+
+	DrawRect(screen);
+
 	for each (auto object in _listObject)
 	{
 		if (object == nullptr || object->isInStatus(DESTROY)|| object->getId()==LAND)
 			continue;
 		object->Update(dt);
 	}
-
-
 
 	//Cải tiến. Chia ra 2 list một cho enermy 1 cho land
 
@@ -267,20 +282,20 @@ void PlayScene::Update(float dt)
 
 void PlayScene::Draw(LPD3DXSPRITE spriteHandle)
 {
-	_background->Draw(spriteHandle,_viewport);
+    _background->Draw(spriteHandle,_viewport);
 	for each (auto object in _listObject)
 	{
 		if (object == nullptr || object->isInStatus(DESTROY))
 			continue;
 		object->Draw(spriteHandle, _viewport);
-		object->ShowBB();
+		//object->ShowBB();
 	}
-	//_backgroundfront->Draw(spriteHandle, _viewport);
+	_backgroundfront->Draw(spriteHandle, _viewport);
 
 	for each(auto object in Stair[0])
 	{
 		object->Draw(spriteHandle, _viewport);
-		object->ShowBB();
+		//object->ShowBB();
 	}
 	for each(auto object in Stair[1])
 	{

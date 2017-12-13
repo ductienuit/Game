@@ -3,7 +3,7 @@
 #define WINDOWS_WIDTH 640
 #define WINDOWS_HEIGHT 480
 #define SIZEMAP	D3DXVECTOR2(7634,1321) //4771*1,6 ; 688*1.92 
-#define FPS 30
+#define FPS 60
 #define MAX_KEYS 256
 
 #include <d3d9.h>		// d3d9.lib
@@ -69,6 +69,8 @@ enum eID
 	CAMEL,
 	BULLETCAMEL,
 
+	APPLEEAT,
+	ITEMSPARK
 };
 
 enum eDirection
@@ -102,6 +104,7 @@ enum eLandType
 #define C_WHITE D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f)				// màu trắnng
 #define COLOR_KEY D3DXCOLOR(1.0f, 0.0f, 1.0f, 1.0f)				// màu khi mà load hình nó bỏ qua > trong suốt
 #define SCALEFACTOR D3DXVECTOR2(1.6f,1.92f)
+#define SCALEAPPLE D3DXVECTOR2(10.0f,5.0f)
 #define SCALECHARACTER D3DXVECTOR2(1.6f,1.92f)
 #define SCALEALADDIN D3DXVECTOR2(1.8f,2.16f)
 #define SCALEMAP D3DXVECTOR2(1.6f,1.92f)

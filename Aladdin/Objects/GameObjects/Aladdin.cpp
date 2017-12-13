@@ -1042,9 +1042,9 @@ void Aladdin::onCollisionBegin(CollisionEventArg * collision_event)
 					}
 					case (eLandType::STAIR):
 					{
-						auto move = (Movement*)_listComponent["Movement"];
-						move->setVelocity(Vector2(0, 170));
-						//setPositionY(this->getPositionY() + 1);
+						/*auto move = (Movement*)_listComponent["Movement"];
+						move->setVelocity(Vector2(0, 170));*/
+						setPositionY(this->getPositionY() + 10);
 						break;
 					}
 				}

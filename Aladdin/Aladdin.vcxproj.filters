@@ -192,6 +192,9 @@
     <ClCompile Include="Objects\GameObjects\Camel.cpp">
       <Filter>Source Files\Object\GameObjects</Filter>
     </ClCompile>
+    <ClCompile Include="Objects\GameObjects\EatApple.cpp">
+      <Filter>Source Files\Object\GameObjects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FrameWork\Animation.h">
@@ -328,6 +331,9 @@
     </ClInclude>
     <ClInclude Include="Objects\Enemies\Fire.h">
       <Filter>Header Files\Object\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\GameObjects\EatApple.h">
+      <Filter>Header Files\Object\GameObjects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
