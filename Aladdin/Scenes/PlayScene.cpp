@@ -24,6 +24,9 @@ void PlayScene::setViewPort(ViewPort * viewport)
 
 bool PlayScene::InIt()
 {
+	mMap = new ReadMapEditor("..\Resources\Images\mapobject.tmx", _root);
+
+	_activeObject = mMap->GetList(rect);
 	//Chú ý: Top Left của land ở bên dưới chứ không ở trên
 	//  **********(B,R)
 	//	**********

@@ -14,6 +14,7 @@
 #include"../FrameWork/debug.h"
 #include"../FrameWork/Animation.h"
 #include"../FrameWork/QuadTree.h"
+#include"../ReadMapEditor.h"
 
 #include"../Objects/GameObjects/Aladdin.h"
 #include"../Objects/GameObjects/Land.h"
@@ -103,6 +104,9 @@ private:
 	Sprite* sprite;
 
 	Animation* _animation;
+	//map object
+	ReadMapEditor* mMap;
+	RECT* rect;
 };
 
 #endif // !__PLAY_SCENE_H__
