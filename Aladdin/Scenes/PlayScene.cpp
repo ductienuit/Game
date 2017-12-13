@@ -39,13 +39,13 @@ bool PlayScene::InIt()
 	guardLu->InIt();
 	_listObject.push_back(guardLu);
 
-	auto guardThin = new GuardThin(eStatus::MOVING_LEFT, 200, 100, eDirection::LEFT);
+	/*auto guardThin = new GuardThin(eStatus::MOVING_LEFT, 200, 100, eDirection::LEFT);
 	guardThin->InIt();
 	_listObject.push_back(guardThin);
 
 	auto guardShort = new GuardShort(eStatus::MOVING_LEFT, 600, 140, eDirection::LEFT);
 	guardShort->InIt();
-	_listObject.push_back(guardShort);
+	_listObject.push_back(guardShort);*/
 
     _aladdin = new Aladdin();
 	_aladdin->InIt();

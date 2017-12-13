@@ -1,41 +1,69 @@
 frame_name	left	top	right	bottom
+
 guardsLu_Moving_0	20	428	73	474
+
 
 guardsLu_Moving_1	79	423	124	469
 
+
 guardsLu_Moving_2	126	417	169	468
+
 
 guardsLu_Moving_3	174	416	212	467
 
+
 guardsLu_Moving_4	217	415	255	466
 
+
 guardsLu_Moving_5	263	417	301	466
+
 guardsLu_Moving_6	307	415	362	461
+
 
 guardsLu_Moving_7	370	414	414	462
 
+
 guardsLu_Moving_8	422	409	465	461
+
 
 guardsLu_Moving_9	470	407	508	460
 
+
 guardsLu_Moving_10	517	406	555	459
 
+
 guardsLu_Moving_11	566	409	604	459
+
+
 guardsLu_Attack_0	289	355	325	394
+
 
 guardsLu_Attack_1	335	355	371	395
 
+
 guardsLu_Attack_2	379	353	428	393
 
+
 guardsLu_Attack_3	433	353	493	393
+
+
 guardsLu_Being_0	18	360	54	399
+
 
 guardsLu_Being_1	60	366	99	398
 
+
 guardsLu_Being_2	109	335	141	399
+
 
 guardsLu_Being_3	147	349	181	398
 
+
 guardsLu_Being_4	186	350	223	396
 
+
 guardsLu_Being_5	226	350	263	396
+
+
+
+guardsLu_far_00	18	360	54	399
