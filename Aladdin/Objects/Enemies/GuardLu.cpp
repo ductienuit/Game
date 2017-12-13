@@ -37,11 +37,9 @@ void GuardLu::InIt()
 	_animations[ATTACK] = new Animation(_sprite, 0.3f);
 	_animations[ATTACK]->addFrameRect(eID::GUARDLU, "guardsLu_Attack_", 4);
 
-	_animations[NORMAL] = new Animation(_sprite, 0.3f);
-	_animations[NORMAL]->addFrameRect(eID::GUARDLU, "guardsLu_Being_", 9);
 
 	_animations[FREE] = new Animation(_sprite, 0.2f);
-	_animations[FREE]->addFrameRect(eID::GUARDLU, "guardsLu_Far_", 2);
+	_animations[FREE]->addFrameRect(eID::GUARDLU, "guardsLu_free_", 6);
 
 	//_sprite->drawBounding(false);
 
@@ -120,14 +118,14 @@ void GuardLu::UpdateStatus(float dt)
 		movingLeft();
 		if (distance < 25)
 		{
-			this->clearStatus();
-			this->addStatus(eStatus::MOVING_RIGHT);
+			this->setStatus(eStatus::MOVING_RIGHT);
 			movingRight();
 		}
 		if (distance > 300)
 		{
 			standing();
-			this->addStatus(eStatus::FREE);
+			this->setStatus(eStatus::FREE);
+			return;
 		}
 	}
 	else if (distanceBetweenAladdin() > 0)
@@ -152,7 +150,8 @@ void GuardLu::UpdateStatus(float dt)
 		if (distance>250)
 		{
 			standing();
-			this->addStatus(eStatus::FREE);
+			this->setStatus(eStatus::FREE);
+			return;
 		}
 	}
 }

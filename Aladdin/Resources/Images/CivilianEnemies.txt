@@ -34,7 +34,6 @@ guardsLu_Moving_10	517	406	555	459
 
 guardsLu_Moving_11	566	409	604	459
 
-
 guardsLu_Attack_0	289	355	325	394
 
 
@@ -47,26 +46,153 @@ guardsLu_Attack_2	379	353	428	393
 guardsLu_Attack_3	433	353	493	393
 
 
-guardsLu_Being_0	18	360	54	399
+guardsLu_free_0	18	360	54	399
 
 
-guardsLu_Being_1	60	366	99	398
+guardsLu_free_1	60	366	99	398
 
 
-guardsLu_Being_2	109	335	141	399
+guardsLu_free_2	109	335	141	399
 
 
-guardsLu_Being_3	147	349	181	398
+guardsLu_free_3	147	349	181	398
 
 
-guardsLu_Being_4	186	350	223	396
+guardsLu_free_4	186	350	223	396
 
 
-guardsLu_Being_5	226	350	263	396
+guardsLu_free_5	226	350	263	396
 
 
 
-guardsLu_Far_00	60	366	99	398
+guardsLu_far_00	18	360	54	399
 
-guardsLu_Far_01	18	360	54	399
+guardsLu_far_01	18	360	54	399
 
+guardsLu_far_02	18	360	54	399
+
+
+
+
+
+
+knifeThrowers_attack_00	618	160	689	238
+
+
+knifeThrowers_attack_01	572	159	620	238
+
+
+knifeThrowers_attack_02	490	156	566	238
+
+
+knifeThrowers_attack_03	440	151	490	238
+
+
+knifeThrowers_attack_04	376	158	432	238
+
+
+knifeThrowers_attack_05	314	170	369	238
+
+
+knifeThrowers_attack_06	230	160	304	238
+
+
+knifeThrowers_attack_07	179	160	230	238
+
+
+knifeThrowers_attack_08	117	156	166	238
+
+
+knifeThrowers_attack_09	67	152	119	238
+
+
+knifeThrowers_attack_10	3	157	56	238
+
+throwjar_0		11	35	22	57
+
+
+throwjar_1		42	32	59	57
+
+
+throwjar_2		73	29	96	61
+
+
+throwjar_3		107	29	136	60
+
+
+throwjar_4		145	26	186	62
+
+
+throwjar_5		194	26	235	67
+
+
+throwjar_6		251	27	294	68
+
+
+throwjar_7		306	31	331	53
+
+
+throwjar_8		345	36	363	49
+
+
+throwjar_9		382	37	390	43
+
+
+
+jar_falling_0	15	97	43	118
+
+
+jar_falling_1	56	95	80	119
+
+
+jar_falling_2	90	95	116	117
+
+
+jar_falling_3	127	98	154	114
+
+
+jar_falling_4	164	92	188	116
+
+
+jar_falling_5	204	94	225	119
+
+
+jar_broken_0	204	94	225	119
+
+
+
+jar_broken_1	235	100	272	115
+
+
+jar_broken_2	292	94	360	116
+
+
+jar_broken_3	376	94	452	120
+
+
+jar_broken_4	472	88	558	121
+
+
+jar_broken_5	578	85	674	118
+
+
+jar_broken_6	695	83	791	119
+
+
+jar_broken_7	814	84	916	120
+
+
+jar_broken_8	955	81	1056	111
+
+
+destroy_enermy_0	0	594	55	654
+destroy_enermy_1	55	594	117	654
+destroy_enermy_2	117	594	173	654
+destroy_enermy_3	173	594	228	654
+destroy_enermy_4	228	594	284	654
+destroy_enermy_5	284	594	340	654
+destroy_enermy_6	340	594	393	654
+destroy_enermy_7	393	594	448	654
+destroy_enermy_8	448	594	503	654
+destroy_enermy_9	503	594	559	654
+		
