@@ -17,6 +17,7 @@
 using namespace std;
 
 #define ALADDIN_MOVE_SPEED 250
+#define ALADDIN_MOVE_JUMP_SPEED 200
 #define ALADDIN_JUMP_VEL 500
 #define ALADDIN_JUMP_DOUBLE_VEL 400
 #define ALADDIN_CLIMB_JUMP_VEL 300
@@ -67,6 +68,9 @@ private:
 	void jumpDouble();
 	void sitDown();
 	void swingSword();
+
+	void moveLeftJump();
+	void moveRightJump();
 
 	void climb();
 	void climbUp(float dt);

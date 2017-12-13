@@ -487,7 +487,7 @@ void Aladdin::UpdateInput(float dt)
 	{
 		if (_input->isKeyDown(DIK_LEFT))
 		{
-			moveLeft();
+			moveLeftJump();
 			removeStatus(eStatus::JUMPING_RIGHT);
 			addStatus(eStatus::JUMPING_LEFT);
 
@@ -504,25 +504,18 @@ void Aladdin::UpdateInput(float dt)
 			{
 				appleThrow->movingLeft(this->getPositionX(), this->getPositionY());
 			}
-			if (_input->isKeyDown(DIK_LEFT))
-			{
-				moveLeft();
-				removeStatus(eStatus::THROW);
-				addStatus(eStatus::JUMPING_LEFT);
-			}
 		}
 		else if (_input->isKeyPressed(DIK_X))
 		{
 
 			addStatus(eStatus::ATTACK);
-			if (_input->isKeyDown(DIK_LEFT))
+			/*if (_input->isKeyDown(DIK_LEFT))
 			{
 				moveLeft();
 				removeStatus(eStatus::ATTACK);
 				removeStatus(eStatus::THROW);
 				addStatus(eStatus::JUMPING_LEFT);
-
-			}
+			}*/
 		}
 		break;
 	}
@@ -530,7 +523,7 @@ void Aladdin::UpdateInput(float dt)
 	{
 		if (_input->isKeyDown(DIK_RIGHT))
 		{
-			moveRight();
+			moveRightJump();
 			removeStatus(eStatus::JUMPING_LEFT);
 			addStatus(eStatus::JUMPING_RIGHT);
 		}
@@ -546,15 +539,13 @@ void Aladdin::UpdateInput(float dt)
 			{
 				appleThrow->movingLeft(this->getPositionX(), this->getPositionY());
 			}
-			if (_input->isKeyDown(DIK_RIGHT))
+			/*if (_input->isKeyDown(DIK_RIGHT))
 			{
 				removeStatus(eStatus::THROW);
 				moveRight();
-
-
 				addStatus(eStatus::JUMPING_RIGHT);
 
-			}
+			}*/
 		}
 		else if (_input->isKeyPressed(DIK_X))
 		{
@@ -574,9 +565,9 @@ void Aladdin::UpdateInput(float dt)
 	case (eStatus::JUMPING):
 	{
 		if (_input->isKeyDown(DIK_LEFT))
-			moveLeft();
+			moveLeftJump();
 		if (_input->isKeyDown(DIK_RIGHT))
-			moveRight();
+			moveRightJump();
 
 		else if (_input->isKeyPressed(DIK_Z))
 		{
@@ -873,13 +864,15 @@ void Aladdin::onKeyReleased(KeyEventArg * key_event)
 	case DIK_RIGHT:
 	{
 		removeStatus(eStatus::MOVING_RIGHT);
-		standing();
+		if (!isInStatus(JUMPING_LEFT))
+			standing();
 		break;
 	}
 	case DIK_LEFT:
 	{
 		removeStatus(eStatus::MOVING_LEFT);
-		standing();
+		if (!isInStatus(JUMPING_RIGHT))
+			standing();
 		break;
 	}
 	case DIK_DOWN:
@@ -1558,6 +1551,21 @@ void Aladdin::swingSword()
 		return;
 
 	addStatus(eStatus::JUMPING);
+}
+
+void Aladdin::moveLeftJump()
+{
+	_sprite->setScaleX(-SCALEALADDIN.x);
+	auto move = (Movement*)_listComponent["Movement"];
+	move->setVelocity(Vector2(-ALADDIN_MOVE_JUMP_SPEED, move->getVelocity().y));
+}
+
+void Aladdin::moveRightJump()
+{
+	_sprite->setScaleX(SCALEALADDIN.x);
+
+	auto move = (Movement*)_listComponent["Movement"];
+	move->setVelocity(Vector2(ALADDIN_MOVE_JUMP_SPEED, move->getVelocity().y));
 }
 
 void Aladdin::climb()
