@@ -83,7 +83,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_X86_;_DEBUG;_CONSOLE;_MBCS;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
-	  <CallingConvention>StdCall</CallingConvention>
+      <CallingConvention>StdCall</CallingConvention>
     </ClCompile>
     <Link>
       <AdditionalDependencies>d3d9.lib;d3dx9.lib;dinput8.lib;dxguid.lib;dsound.lib;dxerr.lib;winmm.lib;zlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -127,26 +127,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AladdinGame.cpp" />
-    <ClCompile Include="E:\HK5\Nhập môn Game\MapReader\MapReader\base64.cpp" />
-    <ClCompile Include="E:\HK5\Nhập môn Game\MapReader\MapReader\miniz.c" />
-    <ClCompile Include="E:\HK5\Nhập môn Game\MapReader\MapReader\tinyxml2.cpp" />
-    <ClCompile Include="E:\HK5\Nhập môn Game\MapReader\MapReader\TmxEllipse.cpp" />
-    <ClCompile Include="E:\HK5\Nhập môn Game\MapReader\MapReader\TmxImage.cpp" />
-    <ClCompile Include="E:\HK5\Nhập môn Game\MapReader\MapReader\TmxImageLayer.cpp" />
-    <ClCompile Include="E:\HK5\Nhập môn Game\MapReader\MapReader\TmxLayer.cpp" />
-    <ClCompile Include="E:\HK5\Nhập môn Game\MapReader\MapReader\TmxMap.cpp" />
-    <ClCompile Include="E:\HK5\Nhập môn Game\MapReader\MapReader\TmxObject.cpp" />
-    <ClCompile Include="E:\HK5\Nhập môn Game\MapReader\MapReader\TmxObjectGroup.cpp" />
-    <ClCompile Include="E:\HK5\Nhập môn Game\MapReader\MapReader\TmxPolygon.cpp" />
-    <ClCompile Include="E:\HK5\Nhập môn Game\MapReader\MapReader\TmxPolyline.cpp" />
-    <ClCompile Include="E:\HK5\Nhập môn Game\MapReader\MapReader\TmxPropertySet.cpp" />
-    <ClCompile Include="E:\HK5\Nhập môn Game\MapReader\MapReader\TmxTerrain.cpp" />
-    <ClCompile Include="E:\HK5\Nhập môn Game\MapReader\MapReader\TmxTerrainArray.cpp" />
-    <ClCompile Include="E:\HK5\Nhập môn Game\MapReader\MapReader\TmxTile.cpp" />
-    <ClCompile Include="E:\HK5\Nhập môn Game\MapReader\MapReader\TmxTileLayer.cpp" />
-    <ClCompile Include="E:\HK5\Nhập môn Game\MapReader\MapReader\TmxTileOffset.cpp" />
-    <ClCompile Include="E:\HK5\Nhập môn Game\MapReader\MapReader\TmxTileset.cpp" />
-    <ClCompile Include="E:\HK5\Nhập môn Game\MapReader\MapReader\TmxUtil.cpp" />
     <ClCompile Include="Objects\GameObjects\EatApple.cpp" />
     <ClCompile Include="Objects\GameObjects\Camel.cpp" />
     <ClCompile Include="Objects\Enemies\Fire.cpp" />
@@ -161,6 +141,26 @@
     <ClCompile Include="Objects\GameObjects\FallingPlatform.cpp" />
     <ClCompile Include="Objects\GameObjects\Land.cpp" />
     <ClCompile Include="ReadMapEditor.cpp" />
+    <ClCompile Include="Resources\MapReader\base64.cpp" />
+    <ClCompile Include="Resources\MapReader\miniz.c" />
+    <ClCompile Include="Resources\MapReader\tinyxml2.cpp" />
+    <ClCompile Include="Resources\MapReader\TmxEllipse.cpp" />
+    <ClCompile Include="Resources\MapReader\TmxImage.cpp" />
+    <ClCompile Include="Resources\MapReader\TmxImageLayer.cpp" />
+    <ClCompile Include="Resources\MapReader\TmxLayer.cpp" />
+    <ClCompile Include="Resources\MapReader\TmxMap.cpp" />
+    <ClCompile Include="Resources\MapReader\TmxObject.cpp" />
+    <ClCompile Include="Resources\MapReader\TmxObjectGroup.cpp" />
+    <ClCompile Include="Resources\MapReader\TmxPolygon.cpp" />
+    <ClCompile Include="Resources\MapReader\TmxPolyline.cpp" />
+    <ClCompile Include="Resources\MapReader\TmxPropertySet.cpp" />
+    <ClCompile Include="Resources\MapReader\TmxTerrain.cpp" />
+    <ClCompile Include="Resources\MapReader\TmxTerrainArray.cpp" />
+    <ClCompile Include="Resources\MapReader\TmxTile.cpp" />
+    <ClCompile Include="Resources\MapReader\TmxTileLayer.cpp" />
+    <ClCompile Include="Resources\MapReader\TmxTileOffset.cpp" />
+    <ClCompile Include="Resources\MapReader\TmxTileset.cpp" />
+    <ClCompile Include="Resources\MapReader\TmxUtil.cpp" />
     <ClCompile Include="Scenes\BackGround.cpp" />
     <ClCompile Include="Objects\Enemies\GuardShort.cpp" />
     <ClCompile Include="Objects\Enemies\BaseEnemy.cpp" />
@@ -194,31 +194,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AladdinGame.h" />
-    <ClInclude Include="E:\HK5\Nhập môn Game\MapReader\MapReader\base64.h" />
-    <ClInclude Include="E:\HK5\Nhập môn Game\MapReader\MapReader\tinyxml2.h" />
-    <ClInclude Include="E:\HK5\Nhập môn Game\MapReader\MapReader\TmxEllipse.h" />
-    <ClInclude Include="E:\HK5\Nhập môn Game\MapReader\MapReader\TmxImage.h" />
-    <ClInclude Include="E:\HK5\Nhập môn Game\MapReader\MapReader\TmxImageLayer.h" />
-    <ClInclude Include="E:\HK5\Nhập môn Game\MapReader\MapReader\TmxLayer.h" />
-    <ClInclude Include="E:\HK5\Nhập môn Game\MapReader\MapReader\TmxMap.h" />
-    <ClInclude Include="E:\HK5\Nhập môn Game\MapReader\MapReader\TmxMapTile.h" />
-    <ClInclude Include="E:\HK5\Nhập môn Game\MapReader\MapReader\TmxObject.h" />
-    <ClInclude Include="E:\HK5\Nhập môn Game\MapReader\MapReader\TmxObjectGroup.h" />
-    <ClInclude Include="E:\HK5\Nhập môn Game\MapReader\MapReader\TmxPoint.h" />
-    <ClInclude Include="E:\HK5\Nhập môn Game\MapReader\MapReader\TmxPolygon.h" />
-    <ClInclude Include="E:\HK5\Nhập môn Game\MapReader\MapReader\TmxPolyline.h" />
-    <ClInclude Include="E:\HK5\Nhập môn Game\MapReader\MapReader\TmxPropertySet.h" />
-    <ClInclude Include="E:\HK5\Nhập môn Game\MapReader\MapReader\TmxTerrain.h" />
-    <ClInclude Include="E:\HK5\Nhập môn Game\MapReader\MapReader\TmxTerrainArray.h" />
-    <ClInclude Include="E:\HK5\Nhập môn Game\MapReader\MapReader\TmxTile.h" />
-    <ClInclude Include="E:\HK5\Nhập môn Game\MapReader\MapReader\TmxTileLayer.h" />
-    <ClInclude Include="E:\HK5\Nhập môn Game\MapReader\MapReader\TmxTileOffset.h" />
-    <ClInclude Include="E:\HK5\Nhập môn Game\MapReader\MapReader\TmxTileset.h" />
-    <ClInclude Include="E:\HK5\Nhập môn Game\MapReader\MapReader\TmxUtil.h" />
-    <ClInclude Include="E:\HK5\Nhập môn Game\MapReader\MapReader\zconf.h" />
-    <ClInclude Include="E:\HK5\Nhập môn Game\MapReader\MapReader\zlib.h" />
-    <ClInclude Include="E:\HK5\Nhập môn Game\MapReader\MapReader\zlib128-dll\include\zconf.h" />
-    <ClInclude Include="E:\HK5\Nhập môn Game\MapReader\MapReader\zlib128-dll\include\zlib.h" />
     <ClInclude Include="Objects\GameObjects\EatApple.h" />
     <ClInclude Include="Objects\GameObjects\Camel.h" />
     <ClInclude Include="Objects\Enemies\Fire.h" />
@@ -233,6 +208,30 @@
     <ClInclude Include="Objects\GameObjects\FallingPlatform.h" />
     <ClInclude Include="Objects\GameObjects\Land.h" />
     <ClInclude Include="ReadMapEditor.h" />
+    <ClInclude Include="Resources\MapReader\base64.h" />
+    <ClInclude Include="Resources\MapReader\tinyxml2.h" />
+    <ClInclude Include="Resources\MapReader\Tmx.h" />
+    <ClInclude Include="Resources\MapReader\TmxEllipse.h" />
+    <ClInclude Include="Resources\MapReader\TmxImage.h" />
+    <ClInclude Include="Resources\MapReader\TmxImageLayer.h" />
+    <ClInclude Include="Resources\MapReader\TmxLayer.h" />
+    <ClInclude Include="Resources\MapReader\TmxMap.h" />
+    <ClInclude Include="Resources\MapReader\TmxMapTile.h" />
+    <ClInclude Include="Resources\MapReader\TmxObject.h" />
+    <ClInclude Include="Resources\MapReader\TmxObjectGroup.h" />
+    <ClInclude Include="Resources\MapReader\TmxPoint.h" />
+    <ClInclude Include="Resources\MapReader\TmxPolygon.h" />
+    <ClInclude Include="Resources\MapReader\TmxPolyline.h" />
+    <ClInclude Include="Resources\MapReader\TmxPropertySet.h" />
+    <ClInclude Include="Resources\MapReader\TmxTerrain.h" />
+    <ClInclude Include="Resources\MapReader\TmxTerrainArray.h" />
+    <ClInclude Include="Resources\MapReader\TmxTile.h" />
+    <ClInclude Include="Resources\MapReader\TmxTileLayer.h" />
+    <ClInclude Include="Resources\MapReader\TmxTileOffset.h" />
+    <ClInclude Include="Resources\MapReader\TmxTileset.h" />
+    <ClInclude Include="Resources\MapReader\TmxUtil.h" />
+    <ClInclude Include="Resources\MapReader\zconf.h" />
+    <ClInclude Include="Resources\MapReader\zlib.h" />
     <ClInclude Include="Scenes\BackGround.h" />
     <ClInclude Include="Objects\Enemies\GuardShort.h" />
     <ClInclude Include="Objects\Enemies\BaseEnemy.h" />
@@ -270,8 +269,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
-    <None Include="E:\HK5\Nhập môn Game\MapReader\MapReader\Tmx.h" />
     <None Include="Objects\GameObjects\desktop.ini" />
+    <None Include="Resources\Images\mapobject.tmx" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="pugixml-1.7\scripts\pugixml_vs2010.vcxproj">

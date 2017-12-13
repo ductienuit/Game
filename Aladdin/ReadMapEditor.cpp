@@ -13,6 +13,7 @@ ReadMapEditor::ReadMapEditor(const char *filepath, QuadTree *& _quadTree)
 	rect.top = 0;
 	_quadTree = new QuadTree(rect, 1);
 	_QuadTree = _quadTree;
+	int x = maps->GetNumObjectGroups();
 	for (size_t i = 0; i < maps->GetNumObjectGroups(); i++)
 	{
 		 const Tmx::ObjectGroup *_objectGroup = maps->GetObjectGroup(i);
@@ -23,7 +24,8 @@ ReadMapEditor::ReadMapEditor(const char *filepath, QuadTree *& _quadTree)
 
 			 if (_object->GetName() == "guardshort")
 			 {
-				GuardShort* _guardshort = new GuardShort(NORMAL, _object->GetX()+_object->GetWidth()/2, 688 - _object->GetY() - _object->GetHeight() / 2,NONE);
+				GuardShort* _guardshort = new GuardShort(NORMAL, _object->GetX()+_object->GetWidth()/2, 688 - _object->GetY() - _object->GetHeight() / 2,NONE,1000,1000);
+
 				ListGuardShort.push_back(_guardshort);
 				_QuadTree->InsertStaticObject(_guardshort);
 			 }
