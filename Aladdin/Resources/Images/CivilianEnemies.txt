@@ -66,4 +66,7 @@ guardsLu_Being_5	226	350	263	396
 
 
 
-guardsLu_far_00	18	360	54	399
+guardsLu_Far_00	60	366	99	398
+
+guardsLu_Far_01	18	360	54	399
+

@@ -41,7 +41,7 @@ void GuardLu::InIt()
 	_animations[NORMAL]->addFrameRect(eID::GUARDLU, "guardsLu_Being_", 9);
 
 	_animations[FREE] = new Animation(_sprite, 0.2f);
-	_animations[FREE]->addFrameRect(eID::GUARDLU, "guardsLu_far_", 1);
+	_animations[FREE]->addFrameRect(eID::GUARDLU, "guardsLu_Far_", 2);
 
 	//_sprite->drawBounding(false);
 
