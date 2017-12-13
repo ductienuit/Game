@@ -151,7 +151,6 @@ void GuardLu::UpdateStatus(float dt)
 		{
 			standing();
 			this->setStatus(eStatus::FREE);
-			return;
 		}
 	}
 }
