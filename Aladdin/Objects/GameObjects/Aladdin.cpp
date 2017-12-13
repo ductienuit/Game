@@ -904,7 +904,7 @@ void Aladdin::onKeyReleased(KeyEventArg * key_event)
 		{
 		}
 		else _animations[_currentAnimateIndex]->Restart(0);
-		standing();
+		//standing();
 		break;
 	}
 	case DIK_X:
@@ -1082,86 +1082,81 @@ void Aladdin::onCollisionBegin(CollisionEventArg * collision_event)
 
 	switch (collision_event->_otherObject->getId())
 	{
-	case eID::LAND:
-	{
-		auto land = (Land*)collision_event->_otherObject;
-		eLandType type = land->getType();
-		switch (collision_event->_sideCollision)
+		case eID::LAND:
 		{
-		case(eDirection::LEFT):
-		{
-			switch (type)
+			auto land = (Land*)collision_event->_otherObject;
+			eLandType type = land->getType();
+			switch (collision_event->_sideCollision)
 			{
-				case (eLandType::CHECKSTAIR1):
+			case(eDirection::LEFT):
+			{
+				switch (type)
 				{
-					Enter[0] = true;
-					Enter[1] = false;
-					TurnOn[0] = false;
-					TurnOn[1] = true;
-					TurnOn[2] = true;
-					TurnOn[3] = false;
-					break;
+					case (eLandType::CHECKSTAIR1):
+					{
+						Enter[0] = true;
+						Enter[1] = false;
+						TurnOn[0] = false;
+						TurnOn[1] = true;
+						TurnOn[2] = true;
+						TurnOn[3] = false;
+						break;
+					}
+					case (eLandType::CHECKSTAIR2):
+					{
+						Enter[0] = false;
+						Enter[1] = false;
+						TurnOn[0] = true;
+						TurnOn[1] = false;
+						TurnOn[2] = false;
+						TurnOn[3] = false;
+						break;
+					}
 				}
-				case (eLandType::CHECKSTAIR2):
+				break;
+			}
+			case(eDirection::RIGHT):
+			{
+				switch (type)
 				{
-					Enter[0] = false;
-					Enter[1] = false;
-					TurnOn[0] = true;
-					TurnOn[1] = false;
-					TurnOn[2] = false;
-					TurnOn[3] = false;
-					break;
+					case (eLandType::CHECKSTAIR3):
+					{
+						Enter[0] = false;//đi xuống không được
+						Enter[1] = true; //đi lên được
+						TurnOn[1] = true;
+						TurnOn[2] = false; 
+						TurnOn[3] = true;
+						break;
+					}
+					case (eLandType::CHECKSTAIR4):
+					{
+						Enter[0] = true;
+						Enter[1] = false;
+						TurnOn[2] = true;
+						TurnOn[3] = false;
+						auto gravity = (Gravity*)_listComponent["Gravity"];
+						gravity->setStatus(eGravityStatus::FALLING__DOWN);
+						break;
+					}
 				}
+				break;
+			}
 			}
 			break;
 		}
-		case(eDirection::RIGHT):
+		case eID::CAMEL:
 		{
-			switch (type)
+			switch (collision_event->_sideCollision)
 			{
-				case (eLandType::CHECKSTAIR3):
+				case TOP:
 				{
-					Enter[0] = false;//đi xuống không được
-					Enter[1] = true; //đi lên được
-					TurnOn[1] = true;
-					TurnOn[2] = false; 
-					TurnOn[3] = true;
-					break;
-				}
-				case (eLandType::CHECKSTAIR4):
-				{
-					Enter[0] = true;
-					Enter[1] = false;
-					TurnOn[2] = true;
-					TurnOn[3] = false;
-					auto gravity = (Gravity*)_listComponent["Gravity"];
-					gravity->setStatus(eGravityStatus::FALLING__DOWN);
-					break;
+					collision_event->_otherObject->setStatus(eStatus::BEHIT);
+					jumpDouble();
+					return;
 				}
 			}
-			break;
+			return;
 		}
-		}
-		break;
-	}
-	case eID::FALLINGPLATFORM:
-	{
-		switch (collision_event->_sideCollision)
-		{
-		case(eDirection::TOP):
-		{
-			auto temp = (FallingPlatform*)collision_event->_otherObject;
-			temp->startCount();
-			//Chạm đất
-			clearStatus();
-			auto gravity = (Gravity*)_listComponent["Gravity"];
-			gravity->setStatus(eGravityStatus::SHALLOWED);
-			standing();
-			break;
-		}
-		break;
-		}
-	}
 	}
 }
 
@@ -1430,7 +1425,7 @@ void Aladdin::updateStatusOneAction(float deltatime)
 
 
 	//XỬ LÍ NGOẠI LỆ
-	//Thêm hiệu ứng ATTACK thì phải thêm ngoại lệ vào đây
+	//Thêm hiệu ứng ATTACK thì phải thêm ngoại lệ vào temp
 	else if (isInStatus(eStatus::ATTACK) 
 		&& !isExist(temp) 
 		&& _animations[_currentAnimateIndex]->getIndex() >= 4)
@@ -1534,6 +1529,17 @@ void Aladdin::jump(eStatus status)
 
 	auto move = (Movement*)_listComponent["Movement"];
 	move->setVelocity(Vector2(move->getVelocity().x, ALADDIN_JUMP_VEL));
+
+	auto g = (Gravity*)_listComponent["Gravity"];
+	g->setStatus(eGravityStatus::FALLING__DOWN);
+}
+
+void Aladdin::jumpDouble()
+{
+	setStatus(JUMPING);
+
+	auto move = (Movement*)_listComponent["Movement"];
+	move->setVelocity(Vector2(move->getVelocity().x, ALADDIN_JUMP_DOUBLE_VEL));
 
 	auto g = (Gravity*)_listComponent["Gravity"];
 	g->setStatus(eGravityStatus::FALLING__DOWN);

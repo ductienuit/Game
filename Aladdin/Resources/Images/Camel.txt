@@ -1,0 +1,8 @@
+frame_name	left	top	right	bottom
+camel_0		0	0	150	60
+camel_1		150	0	300	60
+camel_2		300	0	450	60
+camel_3		450	0	600	60
+camel_4		600	0	750	60
+camel_5		750	0	900	60
+camel_6		900	0	1050	60

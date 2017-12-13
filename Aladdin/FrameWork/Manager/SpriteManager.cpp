@@ -96,6 +96,18 @@ void SpriteManager::LoadResource(LPD3DXSPRITE spriteHandle)
 	sp = new Sprite(spriteHandle, "Resources//Images//fallingplatform.png");
 	this->_listSprite.insert(pair<eID, Sprite*>(eID::FALLINGPLATFORM, sp));
 	this->LoadSpriteInfo(eID::FALLINGPLATFORM, "Resources//Images//fallingplatform.txt");
+
+	sp = new Sprite(spriteHandle, "Resources//Images//Guards.png");
+	this->_listSprite.insert(pair<eID, Sprite*>(eID::GUARDFAT, sp));
+	this->LoadSpriteInfo(eID::GUARDFAT, "Resources//Images//GuardsAll.txt");
+
+	sp = new Sprite(spriteHandle, "Resources//Images//BulletCamel.png");
+	this->_listSprite.insert(pair<eID, Sprite*>(eID::BULLETCAMEL, sp));
+	this->LoadSpriteInfo(eID::BULLETCAMEL, "Resources//Images//BulletCamel.txt");
+
+	sp = new Sprite(spriteHandle, "Resources//Images//Camel.png");
+	this->_listSprite.insert(pair<eID, Sprite*>(eID::CAMEL, sp));
+	this->LoadSpriteInfo(eID::CAMEL, "Resources//Images//Camel.txt");
 }
 
 Sprite * SpriteManager::getSprite(eID id)

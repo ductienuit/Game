@@ -1,0 +1,4 @@
+frame_name	left	top	right	bottom
+bullet_camel_0	830	41	854	52
+
+bullet_camel_1	865	42	877	51

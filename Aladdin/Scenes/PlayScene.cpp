@@ -106,6 +106,10 @@ bool PlayScene::InIt()
 	//_listObject.push_back(new Land(1430, 110, 43, 10, eDirection::TOP, eLandType::STAIR));
 	//platform
 
+	//Camel - Lac da
+	auto camel = new Camel(200, 50);
+	_listObject.push_back(camel);
+
 	//Fire
 	_listObject.push_back(new Fire(BEHIT, 458, 688 - 626, TOP));
 	_listObject.push_back(new Fire(BEHIT, 504, 688 - 626, TOP));
@@ -138,13 +142,17 @@ bool PlayScene::InIt()
 	guardThin->InIt();
 	_listObject.push_back(guardThin);*/
 
-	auto guardShort = new GuardShort(eStatus::MOVING_LEFT, 3100, 50, eDirection::LEFT, 2700, 3200);
+	auto guardfat = new GuardFat(eStatus::MOVING_LEFT, 200, 100, eDirection::LEFT);
+	guardfat->InIt();
+	_listObject.push_back(guardfat);
+
+	/*auto guardShort = new GuardShort(eStatus::MOVING_LEFT, 200, 100, eDirection::LEFT, 2700, 3200);
 	guardShort->InIt();
-	_listObject.push_back(guardShort);
+	_listObject.push_back(guardShort);*/
 
     _aladdin = new Aladdin();
 	_aladdin->InIt();
-	_aladdin->setPosition(6000,250);
+	_aladdin->setPosition(10,250);
 	_listObject.push_back(_aladdin);
 
 
@@ -195,6 +203,8 @@ void PlayScene::Update(float dt)
 		aladdin với nó và ngược lại ở for dưới*/
 		if (temp == eID::FALLINGPLATFORM) 
 			_aladdin->checkCollision(i, dt);
+		if (temp == eID::CAMEL)
+			_aladdin->checkCollision(i, dt);
 		if (i->getId() != eID::LAND || _aladdin->getId() == temp)
 			continue;
 		_aladdin->checkCollision(i, dt);
@@ -237,7 +247,7 @@ void PlayScene::Update(float dt)
 		}
 	}
 
-#pragma region TurnOn check stair
+	#pragma region TurnOn check stair
 	if (TurnOn[0]) {
 		_aladdin->checkCollision(CheckOn[0].back(), dt);
 	}
@@ -315,9 +325,12 @@ void PlayScene::UpdateViewport(BaseObject * aladdin)
 	// Bám theo object.
 	float y = aladdin->getPositionY() - WINDOWS_HEIGHT;
 	Vector2 new_position =
+		/*Khi max ở đây sẽ cho mình biết khi nào camera sẽ đi theo aladdin 
+		và khi nào không*/
 		Vector2(max(aladdin->getPositionX() - 320, 0),
-			max(aladdin->getPositionY() + 400, WINDOWS_HEIGHT));		// 320 va 400 khoảng cách tối đa giữa object và map -> hardcode
-																		// Không cho đi quá map.
+			max(aladdin->getPositionY() + 280, WINDOWS_HEIGHT));		
+	// 320 va 280 khoảng cách hardcode dựa vào test thực tế.
+																		
 	if (new_position.x + WINDOWS_WIDTH > worldsize.x)
 	{
 		new_position.x = worldsize.x - WINDOWS_WIDTH;

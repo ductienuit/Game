@@ -26,6 +26,8 @@
 #include"../Objects/Enemies/GuardThrowJar.h"
 #include"../Objects/Enemies/Fire.h"
 #include"../Objects/GameObjects/FallingPlatform.h"
+#include"../Objects/Enemies/GuardFat.h"
+#include"../Objects/GameObjects/Camel.h"
 
 #include"BackGround.h"
 #include"BackGroundFront.h"

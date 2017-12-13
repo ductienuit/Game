@@ -16,6 +16,7 @@ GuardFat::GuardFat(eStatus status, int posX, int posY, eDirection direction) :Ba
 
 void GuardFat::InIt()
 {
+
 	auto movement = new Movement(Vector2(0, 0), Vector2(0, 0), _sprite);
 	_listComponent["Movement"] = movement;
 
@@ -25,19 +26,25 @@ void GuardFat::InIt()
 	__hook(&CollisionBody::onCollisionBegin, collisionBody, &GuardFat::onCollisionBegin);
 	__hook(&CollisionBody::onCollisionEnd, collisionBody, &GuardFat::onCollisionEnd);
 
+	_animations[FREE] = new Animation(_sprite, 0.15f);
+	_animations[FREE]->addFrameRect(eID::GUARDFAT, "guardsFat_Near_0", 6);
+
 	_animations[MOVING_LEFT] = new Animation(_sprite, 0.15f);
-	_animations[MOVING_LEFT]->addFrameRect(eID::GUARDFAT, "guard_moving_0", 8);
+	_animations[MOVING_LEFT]->addFrameRect(eID::GUARDFAT, "guardsFat_Moving_0", 8);
 
 	_animations[MOVING_RIGHT] = new Animation(_sprite, 0.15f);
-	_animations[MOVING_RIGHT]->addFrameRect(eID::GUARDFAT, "guard_moving_0", 8);
+	_animations[MOVING_RIGHT]->addFrameRect(eID::GUARDFAT, "guardsFat_Moving_0", 8);
 
 	_animations[ATTACK] = new Animation(_sprite, 0.15f);
-	_animations[ATTACK]->addFrameRect(eID::GUARDFAT, "guardsThin_attack_0", 6);
+	_animations[ATTACK]->addFrameRect(eID::GUARDFAT, "guardsFat_AttackTwo_0", 5);
 
-	_animations[BEHIT] = new Animation(_sprite, 0.2f);
-	_animations[BEHIT]->addFrameRect(eID::GUARDFAT, "guards_being_attack_0", 9);
+	_animations[SITTING_DOWN| ATTACK] = new Animation(_sprite, 0.15f);
+	_animations[SITTING_DOWN | ATTACK]->addFrameRect(eID::GUARDFAT, "guardsFat_AttackOne_0", 6);
 
-	_animations[DYING] = new Animation(_sprite, 0.2f);
+	_animations[BEHIT] = new Animation(_sprite, 0.1f);
+	_animations[BEHIT]->addFrameRect(eID::GUARDFAT, "guardsFat_beingAttack_0", 6);
+
+	_animations[DYING] = new Animation(_sprite, 0.1f);
 	_animations[DYING]->addFrameRect(eID::GUARDFAT, "destroy_enermy_", 10);
 
 	_sprite->setOrigin(Vector2(0.5, 0));
@@ -70,11 +77,11 @@ void GuardFat::UpdateStatus(float dt)
 	case eStatus::BEHIT:
 	{
 		standing();
-		if (_animations[BEHIT]->getIndex() == 8)
+		if (_animations[BEHIT]->getIndex() == 5)
 		{
 			_animations[BEHIT]->setIndex(0);
 			removeStatus(BEHIT);
-			addStatus(MOVING_LEFT);
+			setStatus(ATTACK);
 
 			if (_hitpoint <= 0)
 			{
@@ -95,31 +102,48 @@ void GuardFat::UpdateStatus(float dt)
 	}
 	}
 
+	if (distanceBetweenAladdin().y > 0)
+		return;
 	//Aladdin đứng bên trái
-	if (distanceBetweenAladdin() < 0)
+	if (distanceBetweenAladdin().x <= 0)
 	{
-		float distance = -distanceBetweenAladdin();
+		float distance = -distanceBetweenAladdin().x;
 		if (distance < 100)
 		{
+			_sprite->setScaleX(-1.6);
 			this->setStatus(eStatus::ATTACK);
 			standing();
 			return;
 		}
-		this->setStatus(eStatus::MOVING_LEFT);
-		movingLeft();
-	}
-	else if (distanceBetweenAladdin() > 0)
-	{
-		float distance = distanceBetweenAladdin();
-		if (distance < 50)
+		else if (distance >= 100 && distance < 400)
 		{
-			this->clearStatus();
-			this->addStatus(eStatus::ATTACK);
+			this->setStatus(eStatus::MOVING_LEFT);
+			movingLeft();
+			return;
+		}
+		this->setStatus(eStatus::FREE);
+		standing();
+		return;
+	}
+	else /*if (distanceBetweenAladdin().x > 0)*/
+	{
+		float distance = distanceBetweenAladdin().x;
+		if (distance < 100)
+		{
+			_sprite->setScaleX(1.6);
+			this->setStatus(eStatus::ATTACK);
 			standing();
 			return;
 		}
-		this->setStatus(eStatus::MOVING_RIGHT);
-		movingRight();
+		else if (distance >= 100 && distance < 400)
+		{
+			this->setStatus(eStatus::MOVING_RIGHT);
+			movingRight();
+			return;
+		}
+		this->setStatus(eStatus::FREE);
+		standing();
+		return;
 	}
 }
 
@@ -143,30 +167,34 @@ void GuardFat::onCollisionBegin(CollisionEventArg *collision_event)
 	eID objectID = collision_event->_otherObject->getId();
 	switch (objectID)
 	{
-	case eID::ALADDIN:
-	{
-		if (collision_event->_otherObject->isInStatus(ATTACK))
+		case eID::ALADDIN:
 		{
-			//mạng sống còn 1 và bức ảnh ATTACK của aladdin bằng 1
-			if (collision_event->_otherObject->getIndex() == 1 && _hitpoint >= 1)
+			if (collision_event->_otherObject->isInStatus(SITTING_DOWN) && this->isInStatus(DYING) && isInStatus(DESTROY))
 			{
-				_hitpoint -= 1;
-				this->setStatus(eStatus::BEHIT);
+				this->setStatus(eStatus(SITTING_DOWN | ATTACK));
 			}
+			if (collision_event->_otherObject->isInStatus(ATTACK))
+			{
+				//mạng sống còn 1 và bức ảnh ATTACK của aladdin bằng 1
+				if (collision_event->_otherObject->getIndex() == 1 && _hitpoint >= 1)
+				{
+					_hitpoint -= 1;
+					this->setStatus(eStatus::BEHIT);
+				}
+				break;
+			}
+			else
+				/*DK1:Aladdin đang không bị đánh
+				DK2 bức ảnh status Attack của guardFat hiện tại là 4*/
+				if (collision_event->_otherObject->isInStatus(eStatus::BEHIT) == false
+					&&
+					this->_animations[ATTACK]->getIndex() == 4)
+				{
+					//Set status aladdin bị đánh
+					collision_event->_otherObject->setStatus(eStatus::BEHIT);
+				}
 			break;
 		}
-		else
-			/*DK1:Aladdin đang không bị đánh
-			DK2 bức ảnh status Attack của guarthin hiện tại là 5*/
-			if (collision_event->_otherObject->isInStatus(eStatus::BEHIT) == false
-				&&
-				this->_animations[ATTACK]->getIndex() == 5)
-			{
-				//Set status aladdin bị đánh
-				collision_event->_otherObject->setStatus(eStatus::BEHIT);
-			}
-		break;
-	}
 	}
 }
 
@@ -185,11 +213,15 @@ float GuardFat::checkCollision(BaseObject *object, float dt)
 	return 0.0f;
 }
 
-float GuardFat::distanceBetweenAladdin()
+Vector2 GuardFat::distanceBetweenAladdin()
 {
-	float xAla = _divingSprite->getPositionX();
+	float xAla = _divingSprite->getPositionX() + (_divingSprite->getBounding().right - _divingSprite->getBounding().left) / 2;
 	float x = this->getPositionX();
-	return xAla - x;
+
+	float yAla = _divingSprite->getPositionY();
+	float y = this->getPositionY();
+
+	return Vector2(xAla - x, yAla - y);
 }
 
 IComponent* GuardFat::getComponent(string componentName)

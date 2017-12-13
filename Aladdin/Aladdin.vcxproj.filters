@@ -159,9 +159,6 @@
     <ClCompile Include="Objects\Enemies\Jar.cpp">
       <Filter>Source Files\Object\Enemies</Filter>
     </ClCompile>
-    <ClCompile Include="Objects\Enemies\Knife.cpp">
-      <Filter>Header Files\Object\Enemies</Filter>
-    </ClCompile>
     <ClCompile Include="Objects\Enemies\KnifeShort.cpp">
       <Filter>Source Files\Object\Enemies</Filter>
     </ClCompile>
@@ -188,6 +185,12 @@
     </ClCompile>
     <ClCompile Include="AladdinGame.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Enemies\Knife.cpp">
+      <Filter>Source Files\Object\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\GameObjects\Camel.cpp">
+      <Filter>Source Files\Object\GameObjects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -275,9 +278,6 @@
     <ClInclude Include="FrameWork\QuadTree.h">
       <Filter>Header Files\FrameWork</Filter>
     </ClInclude>
-    <ClInclude Include="Objects\Enemies\Knife.h">
-      <Filter>Header Files\FrameWork</Filter>
-    </ClInclude>
     <ClInclude Include="Scenes\BackGround.h">
       <Filter>Header Files\Scenes</Filter>
     </ClInclude>
@@ -314,14 +314,20 @@
     <ClInclude Include="Objects\GameObjects\FallingPlatform.h">
       <Filter>Header Files\Object\GameObjects</Filter>
     </ClInclude>
-    <ClInclude Include="Objects\Enemies\Fire.h">
-      <Filter>Header Files\Object\GameObjects</Filter>
-    </ClInclude>
     <ClInclude Include="Objects\GameObjects\Land.h">
       <Filter>Header Files\Object\GameObjects</Filter>
     </ClInclude>
     <ClInclude Include="AladdinGame.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Enemies\Knife.h">
+      <Filter>Header Files\Object\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\GameObjects\Camel.h">
+      <Filter>Header Files\Object\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Enemies\Fire.h">
+      <Filter>Header Files\Object\Enemies</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

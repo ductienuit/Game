@@ -6,6 +6,7 @@
 #include "../../FrameWork/StopWatch.h"
 #include "../../FrameWork/IComponent.h"
 #include "../../FrameWork/Text.h"
+#include"../Enemies/BaseEnemy.h"
 #include"../GameObjects/Aladdin.h"
 
 using namespace std;
@@ -27,13 +28,14 @@ public:
 	void onCollisionEnd(CollisionEventArg*);
 	float checkCollision(BaseObject*, float);
 
-	float distanceBetweenAladdin();
+	Vector2 distanceBetweenAladdin();
 	void UpdateStatus(float dt);
 
 	IComponent* getComponent(string componentName);
 	Text* text;
 	~GuardFat();
 private:
+	Aladdin * aladdin;
 	void movingLeft();
 	void movingRight();
 	void standing();
