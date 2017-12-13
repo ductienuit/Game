@@ -94,6 +94,7 @@ RECT Camel::getBounding()
 {
 	RECT rect = BaseObject::getBounding();
 	rect.right -= 90;
+	rect.top -=50;
 
 	return rect;
 }

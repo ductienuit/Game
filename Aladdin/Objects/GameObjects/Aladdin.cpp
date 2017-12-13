@@ -1,6 +1,7 @@
 ﻿#include "ALADDIN.h"
 bool Enter[3];
 bool TurnOn[4];
+vector<BaseObject*> _listObject;
 
 Aladdin::Aladdin() : BaseObject(eID::ALADDIN)
 {

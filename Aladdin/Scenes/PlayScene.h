@@ -63,7 +63,7 @@ private:
 	void destroyObject();   
 
 	//Danh sach các đói tượng hoạt động rộng không thể đưa vào quadtree như Aladdin
-	vector<BaseObject*> _listObject;
+	//vector<BaseObject*> _listObject;
 
 	//Danh sách các đối tượng dùng để tạo trong quadtree
 	map<string, BaseObject*> _mapObject;

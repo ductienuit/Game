@@ -2,6 +2,7 @@
 #include<iostream>
 extern bool Enter[3];
 extern bool TurnOn[4];
+extern vector<BaseObject*> _listObject;
 using namespace std;
 ViewPort* PlayScene::_viewport = ViewPort::getInstance();
 PlayScene::PlayScene()
