@@ -1,19 +1,19 @@
 #ifndef __READMAPEDITOR_H__
 #define __READMAPEDITOR_H__
 
-#include"Resources\MapReader\Tmx.h"
-#include"Objects\BaseObject.h"
-#include"FrameWork\QuadTree.h"
-#include"Objects\Enemies\GuardLu.h"
-#include"Objects\Enemies\GuardShort.h"
-#include"Objects\Enemies\GuardThin.h"
-#include"Objects\Enemies\GuardThrowJar.h"
-#include"Objects\Enemies\Fire.h"
-#include"Objects\Enemies\GuardFat.h"
-#include"Objects\Enemies\KnifeThrower.h"
-#include"Objects\GameObjects\EatApple.h"
-#include"Objects\GameObjects\Land.h"
-#include"Objects\GameObjects\Camel.h"
+#include"../Resources/MapReader/Tmx.h"
+#include"../Objects/BaseObject.h"
+#include"../FrameWork/QuadTree.h"
+#include"../Objects/Enemies/GuardLu.h"
+#include"../Objects/Enemies/GuardShort.h"
+#include"../Objects/Enemies/GuardThin.h"
+#include"../Objects/Enemies/GuardThrowJar.h"
+#include"../Objects/Enemies/Fire.h"
+#include"../Objects/Enemies/GuardFat.h"
+#include"../Objects/Enemies/KnifeThrower.h"
+#include"../Objects/GameObjects/EatApple.h"
+#include"../Objects/GameObjects/Land.h"
+#include"../Objects/GameObjects/Camel.h"
 
 
 class ReadMapEditor
@@ -39,5 +39,6 @@ public:
 
 	
 	void UpDate(float detatime);
+	bool isContain(BaseObject*object, RECT rect);
 };
 #endif __READMAPEDITOR_H__

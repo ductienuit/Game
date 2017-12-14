@@ -1,4 +1,4 @@
-#include "ReadMapEditor.h"
+﻿#include "ReadMapEditor.h"
 
 
 
@@ -263,9 +263,13 @@ void ReadMapEditor::ListObject(RECT * rect)
 	for (size_t i = 0; i < ListGuardShort.size(); i++)
 	{
 		//kiem tra co trong rect camera khong
-
-		if (ListGuardShort[i]->getPositionX() > rect->left&&ListGuardShort[i]->getPositionX() < rect->right
-		&&ListGuardShort[i]->getPositionY() < rect->top&&ListGuardShort[i]->getPositionY() > rect->bottom)
+		float x = ListGuardShort[i]->getPositionX()/SCALECHARACTER.x;
+		float y = ListGuardShort[i]->getPositionY()/SCALECHARACTER.y;
+		bool check1 = x > rect->left;
+		bool check2 = x < rect->right;
+		bool check3 = y < rect->bottom;
+		bool check4 = y > rect->top;
+		if (check1 && check2 && check3 && check4)
 		{
 			GetList.push_back(ListGuardShort[i]);
 		}
@@ -274,8 +278,13 @@ void ReadMapEditor::ListObject(RECT * rect)
 
 	for (size_t i = 0; i < ListGuardLu.size(); i++)
 	{
-		if (ListGuardLu[i]->getPositionX() > rect->left&&ListGuardLu[i]->getPositionX() < rect->right
-			&&ListGuardLu[i]->getPositionY() < rect->top&&ListGuardLu[i]->getPositionY() > rect->bottom)
+		float x = ListGuardLu[i]->getPositionX() ;
+		float y = ListGuardLu[i]->getPositionY();
+		bool check1 = x > rect->left;
+		bool check2 = x < rect->right;
+		bool check3 = y < rect->bottom;
+		bool check4 = y > rect->top;
+		if (check1 && check2 && check3 && check4)
 		{
 			GetList.push_back(ListGuardLu[i]);
 		}
@@ -283,8 +292,13 @@ void ReadMapEditor::ListObject(RECT * rect)
 
 	for (size_t i = 0; i < ListGuardThin.size(); i++)
 	{
-		if (ListGuardThin[i]->getPositionX() > rect->left&&ListGuardThin[i]->getPositionX() < rect->right
-			&&ListGuardThin[i]->getPositionY() < rect->top&&ListGuardThin[i]->getPositionY() > rect->bottom)
+		float x = ListGuardThin[i]->getPositionX() ;
+		float y = ListGuardThin[i]->getPositionY();
+		bool check1 = x > rect->left;
+		bool check2 = x < rect->right;
+		bool check3 = y < rect->bottom;
+		bool check4 = y > rect->top;
+		if (check1 && check2 && check3 && check4)
 		{
 
 			GetList.push_back(ListGuardThin[i]);
@@ -293,8 +307,13 @@ void ReadMapEditor::ListObject(RECT * rect)
 
 	for (size_t i = 0; i < ListGuardFat.size(); i++)
 	{
-		if (ListGuardFat[i]->getPositionX() > rect->left&&ListGuardFat[i]->getPositionX() < rect->right
-			&&ListGuardFat[i]->getPositionY() < rect->top&&ListGuardFat[i]->getPositionY() > rect->bottom)
+		float x = ListGuardFat[i]->getPositionX() ;
+		float y = ListGuardFat[i]->getPositionY();
+		bool check1 = x > rect->left;
+		bool check2 = x < rect->right;
+		bool check3 = y < rect->bottom;
+		bool check4 = y > rect->top;
+		if (check1 && check2 && check3 && check4)
 		{
 
 			GetList.push_back(ListGuardFat[i]);
@@ -303,8 +322,13 @@ void ReadMapEditor::ListObject(RECT * rect)
 
 	for (size_t i = 0; i < ListGuardThrowJar.size(); i++)
 	{
-		if (ListGuardThrowJar[i]->getPositionX() > rect->left&&ListGuardThrowJar[i]->getPositionX() < rect->right
-			&&ListGuardThrowJar[i]->getPositionY() < rect->top&&ListGuardThrowJar[i]->getPositionY() > rect->bottom)
+		float x = ListGuardThrowJar[i]->getPositionX() ;
+		float y = ListGuardThrowJar[i]->getPositionY();
+		bool check1 = x > rect->left;
+		bool check2 = x < rect->right;
+		bool check3 = y < rect->bottom;
+		bool check4 = y > rect->top;
+		if (check1 && check2 && check3 && check4)
 		{
 
 			GetList.push_back(ListGuardThrowJar[i]);
@@ -313,8 +337,13 @@ void ReadMapEditor::ListObject(RECT * rect)
 
 	for (size_t i = 0; i < ListKnifeThrower.size(); i++)
 	{
-		if (ListKnifeThrower[i]->getPositionX() > rect->left&&ListKnifeThrower[i]->getPositionX() < rect->right
-			&&ListKnifeThrower[i]->getPositionY() < rect->top&&ListKnifeThrower[i]->getPositionY() > rect->bottom)
+		float x = ListKnifeThrower[i]->getPositionX() ;
+		float y = ListKnifeThrower[i]->getPositionY();
+		bool check1 = x > rect->left;
+		bool check2 = x < rect->right;
+		bool check3 = y < rect->bottom;
+		bool check4 = y > rect->top;
+		if (check1 && check2 && check3 && check4)
 		{
 
 			GetList.push_back(ListKnifeThrower[i]);
@@ -323,8 +352,13 @@ void ReadMapEditor::ListObject(RECT * rect)
 
 	for (size_t i = 0; i < ListFire.size(); i++)
 	{
-		if (ListFire[i]->getPositionX() > rect->left&&ListFire[i]->getPositionX() < rect->right
-			&&ListFire[i]->getPositionY() < rect->top&&ListFire[i]->getPositionY() > rect->bottom)
+		float x = ListFire[i]->getPositionX() ;
+		float y = ListFire[i]->getPositionY();
+		bool check1 = x > rect->left;
+		bool check2 = x < rect->right;
+		bool check3 = y < rect->bottom;
+		bool check4 = y > rect->top;
+		if (check1 && check2 && check3 && check4)
 		{
 
 			GetList.push_back(ListFire[i]);
@@ -333,8 +367,13 @@ void ReadMapEditor::ListObject(RECT * rect)
 
 	for (size_t i = 0; i < ListLand.size(); i++)
 	{
-		if (ListLand[i]->getPositionX() > rect->left&&ListLand[i]->getPositionX() < rect->right
-			&&ListLand[i]->getPositionY() < rect->top&&ListLand[i]->getPositionY() > rect->bottom)
+		float x = ListLand[i]->getPositionX() ;
+		float y = ListLand[i]->getPositionY();
+		bool check1 = x > rect->left;
+		bool check2 = x < rect->right;
+		bool check3 = y < rect->bottom;
+		bool check4 = y > rect->top;
+		if (check1 && check2 && check3 && check4)
 		{
 
 			GetList.push_back(ListLand[i]);
@@ -343,8 +382,13 @@ void ReadMapEditor::ListObject(RECT * rect)
 
 	for (size_t i = 0; i < ListEatApple.size(); i++)
 	{
-		if (ListEatApple[i]->getPositionX() > rect->left&&ListEatApple[i]->getPositionX() < rect->right
-			&&ListEatApple[i]->getPositionY() < rect->top&&ListEatApple[i]->getPositionY() > rect->bottom)
+		float x = ListEatApple[i]->getPositionX() ;
+		float y = ListEatApple[i]->getPositionY();
+		bool check1 = x > rect->left;
+		bool check2 = x < rect->right;
+		bool check3 = y < rect->bottom;
+		bool check4 = y > rect->top;
+		if (check1 && check2 && check3 && check4)
 		{
 
 			GetList.push_back(ListEatApple[i]);
@@ -353,8 +397,13 @@ void ReadMapEditor::ListObject(RECT * rect)
 
 	for (size_t i = 0; i < ListCamel.size(); i++)
 	{
-		if (ListCamel[i]->getPositionX() > rect->left&&ListCamel[i]->getPositionX() < rect->right
-			&&ListCamel[i]->getPositionY() < rect->top&&ListCamel[i]->getPositionY() > rect->bottom)
+		float x = ListCamel[i]->getPositionX() ;
+		float y = ListCamel[i]->getPositionY();
+		bool check1 = x > rect->left;
+		bool check2 = x < rect->right;
+		bool check3 = y < rect->bottom;
+		bool check4 = y > rect->top;
+		if (check1 && check2 && check3 && check4)
 		{
 
 			GetList.push_back(ListCamel[i]);
@@ -481,5 +530,12 @@ void ReadMapEditor::ListObject(RECT * rect)
 void ReadMapEditor::UpDate(float detatime)
 {
 
+}
+
+bool ReadMapEditor::isContain(BaseObject*object, RECT rect1)
+{
+	/*25/11 Đức Tiến đã sửa*/
+	RECT rect2 = object->getBounding();
+	return !(rect2.left > rect1.right || rect2.right < rect1.left || rect2.top < rect1.bottom || rect2.bottom > rect1.top);
 }
 
