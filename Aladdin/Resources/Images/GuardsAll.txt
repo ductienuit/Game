@@ -16,18 +16,13 @@ guard_moving_06	140	9	190	76
 
 guard_moving_07	99	11	135	76
 
+guardsThin_attack_00	811	78	855	158
+guardsThin_attack_01	668	87	722	156
+guardsThin_attack_02	412	97	564	156
+guardsThin_attack_03	237	97	381	156
+guardsThin_attack_04	105	96	220	156
+guardsThin_attack_05	37	95	86	156
 
-guardsThin_attack_00	452	82	489	156
-
-guardsThin_attack_01	396	96	445	156
-
-guardsThin_attack_02	297	98	389	156
-
-guardsThin_attack_03	209	97	295	156
-
-guardsThin_attack_04	129	96	206	156
-
-guardsThin_attack_05	75	96	116	156
 
 
 guards_being_attack_00	446	175	490	233
@@ -66,41 +61,32 @@ guardsFat_Moving_06	120	251	164	307
 guardsFat_Moving_07	69	253	116	307
 
 
-guardsFat_Near_00	449	317	493	370
-
-guardsFat_Near_01	405	316	442	370
-
-guardsFat_Near_02	346	317	400	370
-
-guardsFat_Near_03	283	317	341	370
-
-guardsFat_Near_04	228	317	277	370
-
-guardsFat_Near_05	176	317	220	370
+guardsFat_Near_00	590	317	657	370
+guardsFat_Near_01	497	316	550	370
+guardsFat_Near_02	357	317	448	370
+guardsFat_Near_03	246	315	341	370
+guardsFat_Near_04	139	317	216	370
+guardsFat_Near_05	31	315	98	370
 
 
-guardsFat_AttackOne_00	437	378	492	430
+guardsFat_AttackOne_00	737	377	816	430
 
-guardsFat_AttackOne_01	366	386	433	430
+guardsFat_AttackOne_01	612	384	711	430
 
-guardsFat_AttackOne_02	288	388	358	430
+guardsFat_AttackOne_02	482	383	585	430
 
-guardsFat_AttackOne_03	207	387	282	430
+guardsFat_AttackOne_03	339	386	451	430
 
-guardsFat_AttackOne_04	113	385	201	430
+guardsFat_AttackOne_04	172	383	311	430
 
-guardsFat_AttackOne_05	8	384	103	430
+guardsFat_AttackOne_05	8	382	163	430
 
 
-guardsFat_AttackTwo_00	449	447	492	507
-
-guardsFat_AttackTwo_01	394	434	437	507
-
-guardsFat_AttackTwo_02	330	441	382	507
-
-guardsFat_AttackTwo_03	206	451	320	507
-
-guardsFat_AttackTwo_04	107	434	198	507
+guardsFat_AttackTwo_00	550	446	603	507
+guardsFat_AttackTwo_01	419	433	507	507
+guardsFat_AttackTwo_02	330	438	403	507
+guardsFat_AttackTwo_03	154	448	320	507
+guardsFat_AttackTwo_04	4	438	138	513
 
 
 guardsFat_beingAttack_00	438	538	492	586
@@ -148,7 +134,6 @@ guardsShort_throw_04	319	682	346	702
 guardsShort_throw_05	283	677	308	700
 
 guardsShort_throw_06	248	676	273	698
-
 guardsShort_throw_07	224	678	237	700
 
 
@@ -210,13 +195,13 @@ guardsShort_dying_05	107	906	176	971
 guardsShort_dying_06	31	910	99	971
 
 
-destroy_enermy_0	0	991	44	1041
-destroy_enermy_0	44	991	99	1041
-destroy_enermy_0	99	991	148	1041
-destroy_enermy_0	148	991	199	1041
-destroy_enermy_0	199	991	250	1041
-destroy_enermy_0	250	991	300	1041
-destroy_enermy_0	300	991	345	1041
-destroy_enermy_0	345	991	396	1041
-destroy_enermy_0	396	991	446	1041
-destroy_enermy_0	446	991	490	1041
+destroy_enermy_00_00	20	1020	32	1030
+destroy_enermy_00_01	54	1005	95	1032
+destroy_enermy_00_02	102	1003	148	1033
+destroy_enermy_00_03	148	1003	206	1032
+destroy_enermy_00_04	209	1002	254	1032
+destroy_enermy_00_05	257	1002	294	1032
+destroy_enermy_00_06	305	1012	329	1033
+destroy_enermy_00_07	355	1013	378	1033
+destroy_enermy_00_08	405	1014	428	1033
+destroy_enermy_00_09	454	1014	475	1033
