@@ -177,9 +177,14 @@ void GuardLu::UpdateStatus(float dt)
 		movingLeft();
 		if (distance < 25)
 		{
-			this->clearStatus();
-			this->addStatus(eStatus::MOVING_RIGHT);
+			this->setStatus(eStatus::MOVING_RIGHT);
 			movingRight();
+		}
+		if (distance > 300)
+		{
+			standing();
+			this->setStatus(eStatus::FREE);
+			return;
 		}
 	}
 	else if (distanceBetweenAladdin() > 0)
@@ -200,6 +205,11 @@ void GuardLu::UpdateStatus(float dt)
 			this->clearStatus();
 			this->addStatus(eStatus::MOVING_LEFT);
 			movingLeft();
+		}
+		if (distance>250)
+		{
+			standing();
+			this->setStatus(eStatus::FREE);
 		}
 	}
 }

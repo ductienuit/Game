@@ -82,6 +82,10 @@
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">vs2010\x64\Release\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">pugixml</TargetName>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>C:\Users\Nguyen Thanh Huy\Desktop\hoc tap\Nam 2\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\Nguyen Thanh Huy\Desktop\hoc tap\Nam 2\Lib\x86;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>

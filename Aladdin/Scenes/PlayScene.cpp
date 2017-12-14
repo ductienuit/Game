@@ -131,10 +131,10 @@ bool PlayScene::InIt()
 	_backgroundfront = new BackGroundFront();
 	_backgroundfront->InIt();
 
-	////Complete
-	//auto guardLu = new GuardLu(eStatus::FREE, 200, 100, eDirection::LEFT);
-	//guardLu->InIt();
-	//_listObject.push_back(guardLu);
+	//Complete
+	auto guardLu = new GuardLu(eStatus::FREE, 200, 100, eDirection::LEFT);
+	guardLu->InIt();
+	_listObject.push_back(guardLu);
 
 	////COMPLETE throwJar but not Jar
 	//auto guardThrowJar = new ThrowJar(eStatus::FREE, 300, 300);
@@ -284,7 +284,7 @@ void PlayScene::Update(float dt)
 
 void PlayScene::Draw(LPD3DXSPRITE spriteHandle)
 {
-    //_background->Draw(spriteHandle,_viewport);
+    _background->Draw(spriteHandle,_viewport);
 	for each (auto object in _listObject)
 	{
 		if (object == nullptr || object->isInStatus(DESTROY))
@@ -292,7 +292,7 @@ void PlayScene::Draw(LPD3DXSPRITE spriteHandle)
 		object->Draw(spriteHandle, _viewport);
 		//object->ShowBB();
 	}
-	//_backgroundfront->Draw(spriteHandle, _viewport);
+	_backgroundfront->Draw(spriteHandle, _viewport);
 
 	for each(auto object in Stair[0])
 	{

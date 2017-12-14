@@ -1,12 +1,12 @@
 #ifndef __READMAPEDITOR_H__
 #define __READMAPEDITOR_H__
 
-#include"Resources\MapReader\Tmx.h"
-#include"Objects\BaseObject.h"
-#include"FrameWork\QuadTree.h"
-#include"Objects\Enemies\GuardLu.h"
-#include"Objects\Enemies\GuardShort.h"
-#include"Objects\Enemies\GuardThin.h"
+#include"../Resources/MapReader/Tmx.h"
+#include"../Objects/BaseObject.h"
+#include"../FrameWork/QuadTree.h"
+#include"../Objects/Enemies/GuardLu.h"
+#include"../Objects/Enemies/GuardShort.h"
+#include"../Objects/Enemies/GuardThin.h"
 
 class ReadMapEditor
 {
