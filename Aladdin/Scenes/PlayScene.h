@@ -14,7 +14,7 @@
 #include"../FrameWork/debug.h"
 #include"../FrameWork/Animation.h"
 #include"../FrameWork/QuadTree.h"
-#include"../ReadMapEditor.h"
+#include"../FrameWork/ReadMapEditor.h"
 
 #include"../Objects/GameObjects/Aladdin.h"
 #include"../Objects/GameObjects/Land.h"
