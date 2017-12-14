@@ -24,9 +24,9 @@ void PlayScene::setViewPort(ViewPort * viewport)
 
 bool PlayScene::InIt()
 {
-	mMap = new ReadMapEditor("Resources/Images/mapobject.tmx", _root);
+	//mMap = new ReadMapEditor("Resources/Images/mapobject.tmx", _root);
 
-	_activeObject = mMap->GetList(rect);
+	//_activeObject = mMap->GetList(rect);
 	//Chú ý: Top Left của land ở bên dưới chứ không ở trên
 	//  **********(B,R)
 	//	**********
@@ -113,7 +113,7 @@ bool PlayScene::InIt()
 
 
 	//Apple
-	//_listObject.push_back(new EatApple(600, 200));
+	_listObject.push_back(new EatApple(600, 100));
 	//Camel - Lac da
 	auto camel = new Camel(1000, 50);
 	_listObject.push_back(camel);
@@ -189,16 +189,15 @@ void PlayScene::Update(float dt)
 
 	Vector2 viewport_position = _viewport->getPositionWorld();
 	RECT viewport_in_transform = _viewport->getBounding();
-
 	// Hàm getlistobject của quadtree yêu cầu truyền vào một hình chữ nhật theo hệ top left, nên cần tính lại khung màn hình
 	RECT screen;
-	// left right không đổi dù hệ top-left hay hệ bot-left
-	screen.left = viewport_in_transform.left;
-	screen.right = viewport_in_transform.right;
-	screen.top = SIZEMAP.y - viewport_position.y;
-	screen.bottom = screen.top + _viewport->getHeight();
 
-	DrawRect(screen);
+	screen.left = viewport_in_transform.left / SCALEFACTOR.x;
+	screen.right = viewport_in_transform.right/ SCALEFACTOR.x;
+	screen.bottom = viewport_position.y / SCALEFACTOR.y;
+	screen.top = screen.bottom - 480/ SCALEFACTOR.y;
+
+
 
 	for each (auto object in _listObject)
 	{
@@ -285,7 +284,7 @@ void PlayScene::Update(float dt)
 
 void PlayScene::Draw(LPD3DXSPRITE spriteHandle)
 {
-    _background->Draw(spriteHandle,_viewport);
+    //_background->Draw(spriteHandle,_viewport);
 	for each (auto object in _listObject)
 	{
 		if (object == nullptr || object->isInStatus(DESTROY))
@@ -293,7 +292,7 @@ void PlayScene::Draw(LPD3DXSPRITE spriteHandle)
 		object->Draw(spriteHandle, _viewport);
 		//object->ShowBB();
 	}
-	_backgroundfront->Draw(spriteHandle, _viewport);
+	//_backgroundfront->Draw(spriteHandle, _viewport);
 
 	for each(auto object in Stair[0])
 	{

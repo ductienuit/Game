@@ -1,8 +1,0 @@
-frame_name	left	top	right	bottom
-item_spark_strip_0	0	0	150	40
-item_spark_strip_1	150	0	300	40
-item_spark_strip_2	300	0	450	40
-item_spark_strip_3	450	0	600	40
-item_spark_strip_4	600	0	750	40
-item_spark_strip_5	750	0	900	40
-item_spark_strip_6	900	0	1050	40

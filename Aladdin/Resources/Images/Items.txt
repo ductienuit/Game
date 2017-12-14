@@ -1,0 +1,12 @@
+frame_name	left	top	right	bottom
+item_spark_0	0	0	44	46
+item_spark_1	44	0	88	46
+item_spark_2	88	0	132	46
+item_spark_3	132	0	176	46
+item_spark_4	176	0	220	46
+item_spark_5	220	0	264	46
+item_spark_6	264	0	308	46
+item_spark_4	308	0	352	46
+item_spark_5	352	0	396	46
+item_spark_6	396	0	440	46
+eat_apple_0	24	47	41	62

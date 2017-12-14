@@ -192,9 +192,7 @@ void Aladdin::InIt()
 	_animations[eStatus::CLIMB_JUMP] = new Animation(_sprite, 0.2f);
 	_animations[eStatus::CLIMB_JUMP]->addFrameRect(eID::ALADDIN, 
 		"climb_jump_00", "climb_jump_01", "climb_jump_02",
-		"climb_jump_03", "climb_jump_03", "climb_jump_03",
-		"climb_jump_03", "climb_jump_03",
-		"climb_jump_03", "climb_jump_03",NULL);
+		"climb_jump_03", "climb_jump_03", "climb_jump_03", NULL);
 
 	_animations[eStatus::CLIMB | eStatus::THROW] = new Animation(_sprite, 0.14f);
 	_animations[eStatus::CLIMB | eStatus::THROW]->addFrameRect(eID::ALADDIN, "climb_throw_0", 5);
@@ -214,7 +212,6 @@ void Aladdin::InIt()
 	_firstAnimateStopWatch = new StopWatch();
 	_beAttackSW = new StopWatch();
 	this->setScale(SCALEALADDIN);
-
 }
 
 void Aladdin::Update(float deltatime)
@@ -487,10 +484,13 @@ void Aladdin::UpdateInput(float dt)
 	{
 		if (_input->isKeyDown(DIK_LEFT))
 		{
+			if (_input->isKeyDown(DIK_RIGHT))
+			{
+				break;
+			}
 			moveLeftJump();
 			removeStatus(eStatus::JUMPING_RIGHT);
 			addStatus(eStatus::JUMPING_LEFT);
-
 		}
 		else if (_input->isKeyPressed(DIK_Z))
 		{
@@ -523,6 +523,10 @@ void Aladdin::UpdateInput(float dt)
 	{
 		if (_input->isKeyDown(DIK_RIGHT))
 		{
+			if (_input->isKeyDown(DIK_LEFT))
+			{
+				break;
+			}
 			moveRightJump();
 			removeStatus(eStatus::JUMPING_LEFT);
 			addStatus(eStatus::JUMPING_RIGHT);
@@ -861,64 +865,64 @@ void Aladdin::onKeyReleased(KeyEventArg * key_event)
 {
 	switch (key_event->_key)
 	{
-	case DIK_RIGHT:
-	{
-		removeStatus(eStatus::MOVING_RIGHT);
-		if (!isInStatus(JUMPING_LEFT))
-			standing();
-		break;
-	}
-	case DIK_LEFT:
-	{
-		removeStatus(eStatus::MOVING_LEFT);
-		if (!isInStatus(JUMPING_RIGHT))
-			standing();
-		break;
-	}
-	case DIK_DOWN:
-	{
-		removeStatus(eStatus::SITTING_DOWN);
-
-		if (isInStatus(eStatus::CLIMB))
+		case DIK_RIGHT:
 		{
-		}
-		else _animations[_currentAnimateIndex]->Restart(0);
-		break;
-	}
-	case DIK_UP:
-	{
-		if (isInStatus(eStatus::ATTACK))
-		{
-			//Nếu đang trong attack thì không hủy look_up, hủy khi thực hiện xong hành động
+			removeStatus(eStatus::MOVING_RIGHT);
+			if (!isInStatus(JUMPING_LEFT) && !isInStatus(CLIMB_JUMP))
+				standing();
 			break;
 		}
-		else removeStatus(eStatus::LOOKING_UP);
-		//Chạy lại hình ảnh động muốn thực hiện. bắt đầu là 0. Phải có dòng 343
-		if (isInStatus(eStatus::CLIMB))
+		case DIK_LEFT:
 		{
+			removeStatus(eStatus::MOVING_LEFT);
+			if (!isInStatus(JUMPING_RIGHT) && !isInStatus(CLIMB_JUMP))
+				this->standing();
+			break;
 		}
-		else _animations[_currentAnimateIndex]->Restart(0);
-		//standing();
-		break;
-	}
-	case DIK_X:
-	{
-		//standing();
-		break;
-	}
-	case DIK_Z: //ném
-	{
-		//standing();
-		break;
+		case DIK_DOWN:
+		{
+			removeStatus(eStatus::SITTING_DOWN);
 
-	}
-	/*case DIK_C:
-	{
-	removeStatus(eStatus::JUMPING);
-	break;
-	}*/
-	default:
+			if (isInStatus(eStatus::CLIMB))
+			{
+			}
+			else _animations[_currentAnimateIndex]->Restart(0);
+			break;
+		}
+		case DIK_UP:
+		{
+			if (isInStatus(eStatus::ATTACK))
+			{
+				//Nếu đang trong attack thì không hủy look_up, hủy khi thực hiện xong hành động
+				break;
+			}
+			else removeStatus(eStatus::LOOKING_UP);
+			//Chạy lại hình ảnh động muốn thực hiện. bắt đầu là 0. Phải có dòng 343
+			if (isInStatus(eStatus::CLIMB))
+			{
+			}
+			else _animations[_currentAnimateIndex]->Restart(0);
+			//standing();
+			break;
+		}
+		case DIK_X:
+		{
+			//standing();
+			break;
+		}
+		case DIK_Z: //ném
+		{
+			//standing();
+			break;
+
+		}
+		/*case DIK_C:
+		{
+		removeStatus(eStatus::JUMPING);
 		break;
+		}*/
+		default:
+			break;
 	}
 	if (isInStatus(eStatus::NORMAL))  //Restart stop watch to count time change state normal2 of Aladdin
 	{
@@ -1244,10 +1248,15 @@ void Aladdin::updateStatus(float dt)
 	else if (isInStatus(eStatus::MOVING_LEFT))
 	{
 		moveLeft();
+		if (isInStatus(eStatus::THROW) && isInStatus(ATTACK))
+			removeStatus(THROW);
 	}
 	else if (isInStatus(eStatus::MOVING_RIGHT))
 	{
 		moveRight();
+
+		if (isInStatus(eStatus::THROW) && isInStatus(ATTACK))
+			removeStatus(THROW);
 	}
 }
 

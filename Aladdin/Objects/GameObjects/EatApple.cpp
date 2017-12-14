@@ -3,7 +3,6 @@
 EatApple::EatApple(int posX, int posY) :BaseObject(eID::APPLEEAT)
 {
 	_sprite = SpriteManager::getInstance()->getSprite(eID::APPLEEAT);
-	_itemSpark = SpriteManager::getInstance()->getSprite(eID::ITEMSPARK);
 	this->setStatus(NORMAL);
 	setScale(SCALEAPPLE);
 	this->setPosition(posX*SCALEFACTOR.x, posY*SCALEFACTOR.y, 1.0f);
@@ -18,11 +17,11 @@ void EatApple::InIt()
 
 	__hook(&CollisionBody::onCollisionBegin, collisionBody, &EatApple::onCollisionBegin);
 
-	_animations[NORMAL] = new Animation(_sprite, 10.0f);
-	_animations[NORMAL]->addFrameRect(eID::APPLEEAT, "apple_00", "apple_00", "apple_00", NULL);
+	_animations[NORMAL] = new Animation(_sprite, 0.1f);
+	_animations[NORMAL]->addFrameRect(eID::APPLEEAT, "eat_apple_0", "eat_apple_0", NULL);
 
-	_animations[BEHIT] = new Animation(_itemSpark, 0.05f);
-	_animations[BEHIT]->addFrameRect(eID::ITEMSPARK, "item_spark_strip_", 7);
+	_animations[BEHIT] = new Animation(_sprite, 0.12f);
+	_animations[BEHIT]->addFrameRect(eID::APPLEEAT, "item_spark_", 7);
 }
 
 void EatApple::Update(float deltatime)
@@ -32,6 +31,7 @@ void EatApple::Update(float deltatime)
 	if (_animations[BEHIT]->getIndex() >= 6)
 	{
 		_animations[BEHIT]->setIndex(0);
+		//apple+=10;
 		setStatus(DESTROY);
 	}
 }
@@ -58,8 +58,7 @@ void EatApple::onCollisionBegin(CollisionEventArg *collision_event)
 	{
 		case eID::ALADDIN:
 		{
-			//_sprite = _itemSpark;
-			//setStatus(BEHIT);
+			setStatus(BEHIT);
 			break;
 		}
 	}

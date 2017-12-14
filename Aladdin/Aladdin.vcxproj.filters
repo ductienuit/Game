@@ -58,6 +58,9 @@
     <Filter Include="Header Files\Scenes">
       <UniqueIdentifier>{39e7ce3d-1743-485d-b8c9-37d4468eda5f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\MapReader">
+      <UniqueIdentifier>{a3f33e16-6046-4740-a570-5c4e578b9885}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -199,64 +202,64 @@
       <Filter>Source Files\Object\GameObjects</Filter>
     </ClCompile>
     <ClCompile Include="Resources\MapReader\base64.cpp">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\MapReader</Filter>
     </ClCompile>
     <ClCompile Include="Resources\MapReader\miniz.c">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\MapReader</Filter>
     </ClCompile>
     <ClCompile Include="Resources\MapReader\tinyxml2.cpp">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\MapReader</Filter>
     </ClCompile>
     <ClCompile Include="Resources\MapReader\TmxEllipse.cpp">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\MapReader</Filter>
     </ClCompile>
     <ClCompile Include="Resources\MapReader\TmxImage.cpp">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\MapReader</Filter>
     </ClCompile>
     <ClCompile Include="Resources\MapReader\TmxImageLayer.cpp">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\MapReader</Filter>
     </ClCompile>
     <ClCompile Include="Resources\MapReader\TmxLayer.cpp">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\MapReader</Filter>
     </ClCompile>
     <ClCompile Include="Resources\MapReader\TmxMap.cpp">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\MapReader</Filter>
     </ClCompile>
     <ClCompile Include="Resources\MapReader\TmxObject.cpp">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\MapReader</Filter>
     </ClCompile>
     <ClCompile Include="Resources\MapReader\TmxObjectGroup.cpp">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\MapReader</Filter>
     </ClCompile>
     <ClCompile Include="Resources\MapReader\TmxPolygon.cpp">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\MapReader</Filter>
     </ClCompile>
     <ClCompile Include="Resources\MapReader\TmxPolyline.cpp">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\MapReader</Filter>
     </ClCompile>
     <ClCompile Include="Resources\MapReader\TmxPropertySet.cpp">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\MapReader</Filter>
     </ClCompile>
     <ClCompile Include="Resources\MapReader\TmxTerrain.cpp">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\MapReader</Filter>
     </ClCompile>
     <ClCompile Include="Resources\MapReader\TmxTerrainArray.cpp">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\MapReader</Filter>
     </ClCompile>
     <ClCompile Include="Resources\MapReader\TmxTile.cpp">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\MapReader</Filter>
     </ClCompile>
     <ClCompile Include="Resources\MapReader\TmxTileLayer.cpp">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\MapReader</Filter>
     </ClCompile>
     <ClCompile Include="Resources\MapReader\TmxTileOffset.cpp">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\MapReader</Filter>
     </ClCompile>
     <ClCompile Include="Resources\MapReader\TmxTileset.cpp">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\MapReader</Filter>
     </ClCompile>
     <ClCompile Include="Resources\MapReader\TmxUtil.cpp">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\MapReader</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -402,76 +405,76 @@
       <Filter>Header Files\Object\GameObjects</Filter>
     </ClInclude>
     <ClInclude Include="Resources\MapReader\base64.h">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\MapReader</Filter>
     </ClInclude>
     <ClInclude Include="Resources\MapReader\tinyxml2.h">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\MapReader</Filter>
     </ClInclude>
     <ClInclude Include="Resources\MapReader\Tmx.h">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\MapReader</Filter>
     </ClInclude>
     <ClInclude Include="Resources\MapReader\TmxEllipse.h">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\MapReader</Filter>
     </ClInclude>
     <ClInclude Include="Resources\MapReader\TmxImage.h">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\MapReader</Filter>
     </ClInclude>
     <ClInclude Include="Resources\MapReader\TmxImageLayer.h">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\MapReader</Filter>
     </ClInclude>
     <ClInclude Include="Resources\MapReader\TmxLayer.h">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\MapReader</Filter>
     </ClInclude>
     <ClInclude Include="Resources\MapReader\TmxMap.h">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\MapReader</Filter>
     </ClInclude>
     <ClInclude Include="Resources\MapReader\TmxMapTile.h">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\MapReader</Filter>
     </ClInclude>
     <ClInclude Include="Resources\MapReader\TmxObject.h">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\MapReader</Filter>
     </ClInclude>
     <ClInclude Include="Resources\MapReader\TmxObjectGroup.h">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\MapReader</Filter>
     </ClInclude>
     <ClInclude Include="Resources\MapReader\TmxPoint.h">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\MapReader</Filter>
     </ClInclude>
     <ClInclude Include="Resources\MapReader\TmxPolygon.h">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\MapReader</Filter>
     </ClInclude>
     <ClInclude Include="Resources\MapReader\TmxPolyline.h">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\MapReader</Filter>
     </ClInclude>
     <ClInclude Include="Resources\MapReader\TmxPropertySet.h">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\MapReader</Filter>
     </ClInclude>
     <ClInclude Include="Resources\MapReader\TmxTerrain.h">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\MapReader</Filter>
     </ClInclude>
     <ClInclude Include="Resources\MapReader\TmxTerrainArray.h">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\MapReader</Filter>
     </ClInclude>
     <ClInclude Include="Resources\MapReader\TmxTile.h">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\MapReader</Filter>
     </ClInclude>
     <ClInclude Include="Resources\MapReader\TmxTileLayer.h">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\MapReader</Filter>
     </ClInclude>
     <ClInclude Include="Resources\MapReader\TmxTileOffset.h">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\MapReader</Filter>
     </ClInclude>
     <ClInclude Include="Resources\MapReader\TmxTileset.h">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\MapReader</Filter>
     </ClInclude>
     <ClInclude Include="Resources\MapReader\TmxUtil.h">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\MapReader</Filter>
     </ClInclude>
     <ClInclude Include="Resources\MapReader\zconf.h">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\MapReader</Filter>
     </ClInclude>
     <ClInclude Include="Resources\MapReader\zlib.h">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\MapReader</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -481,7 +484,7 @@
     <None Include="ClassDiagram.cd" />
     <None Include="Objects\GameObjects\desktop.ini" />
     <None Include="Resources\Images\mapobject.tmx">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\MapReader</Filter>
     </None>
   </ItemGroup>
 </Project>

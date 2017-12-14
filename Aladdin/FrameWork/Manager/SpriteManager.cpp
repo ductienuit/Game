@@ -109,13 +109,9 @@ void SpriteManager::LoadResource(LPD3DXSPRITE spriteHandle)
 	this->_listSprite.insert(pair<eID, Sprite*>(eID::CAMEL, sp));
 	this->LoadSpriteInfo(eID::CAMEL, "Resources//Images//Camel.txt");
 
-	sp = new Sprite(spriteHandle, "Resources//Images//item_spark_strip.png");
-	this->_listSprite.insert(pair<eID, Sprite*>(eID::ITEMSPARK, sp));
-	this->LoadSpriteInfo(eID::ITEMSPARK, "Resources//Images//item_spark_strip.txt");
-	
-	sp = new Sprite(spriteHandle, "Resources//Images//AladdinAnimation.png");
+	sp = new Sprite(spriteHandle, "Resources//Images//Items.png");
 	this->_listSprite.insert(pair<eID, Sprite*>(eID::APPLEEAT, sp));
-	this->LoadSpriteInfo(eID::APPLEEAT, "Resources//Images//AladdinAnimation.txt");
+	this->LoadSpriteInfo(eID::APPLEEAT, "Resources//Images//Items.txt");
 }
 
 Sprite * SpriteManager::getSprite(eID id)
