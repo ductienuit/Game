@@ -132,18 +132,18 @@ bool PlayScene::InIt()
 	_backgroundfront->InIt();
 
 	//Complete
-	auto guardLu = new GuardLu(eStatus::FREE, 200, 100, eDirection::LEFT);
+	/*auto guardLu = new GuardLu(eStatus::FREE, 200, 100, eDirection::LEFT);
 	guardLu->InIt();
-	_listObject.push_back(guardLu);
+	_listObject.push_back(guardLu);*/
 
 	////COMPLETE throwJar but not Jar
 	//auto guardThrowJar = new ThrowJar(eStatus::FREE, 300, 300);
 	//guardThrowJar->InIt();
 	//_listObject.push_back(guardThrowJar);
 
-	//auto knifeThrower = new KnifeThrower(eStatus::MOVING_RIGHT, 200, 100, eDirection::LEFT);
-	//knifeThrower->InIt();
-	//_listObject.push_back(knifeThrower);
+	auto knifeThrower = new KnifeThrower(eStatus::MOVING_LEFT, 500, 100, eDirection::LEFT);
+	knifeThrower->InIt();
+	_listObject.push_back(knifeThrower);
 
 	////Complete
 	//auto guardThin = new GuardThin(eStatus::MOVING_LEFT, 200, 100, eDirection::LEFT);
