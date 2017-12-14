@@ -1,12 +1,20 @@
 #ifndef __READMAPEDITOR_H__
 #define __READMAPEDITOR_H__
 
-#include"../Resources/MapReader/Tmx.h"
-#include"../Objects/BaseObject.h"
-#include"../FrameWork/QuadTree.h"
-#include"../Objects/Enemies/GuardLu.h"
-#include"../Objects/Enemies/GuardShort.h"
-#include"../Objects/Enemies/GuardThin.h"
+#include"Resources\MapReader\Tmx.h"
+#include"Objects\BaseObject.h"
+#include"FrameWork\QuadTree.h"
+#include"Objects\Enemies\GuardLu.h"
+#include"Objects\Enemies\GuardShort.h"
+#include"Objects\Enemies\GuardThin.h"
+#include"Objects\Enemies\GuardThrowJar.h"
+#include"Objects\Enemies\Fire.h"
+#include"Objects\Enemies\GuardFat.h"
+#include"Objects\Enemies\KnifeThrower.h"
+#include"Objects\GameObjects\EatApple.h"
+#include"Objects\GameObjects\Land.h"
+#include"Objects\GameObjects\Camel.h"
+
 
 class ReadMapEditor
 {
@@ -17,9 +25,19 @@ public:
 	vector <GuardLu*> ListGuardLu;
 	vector <GuardThin*> ListGuardThin;
 	vector <GuardShort*> ListGuardShort;
+	vector <Fire*> ListFire;
+	vector <GuardFat*> ListGuardFat;
+	vector <GuardThrowJar*> ListGuardThrowJar;
+	vector <KnifeThrower*> ListKnifeThrower;
+	vector <Land*> ListLand;
+	vector <EatApple*> ListEatApple;
+	vector <Camel*> ListCamel;
+	vector <BaseObject*> GetList;
+
+	void ListObject(RECT *rect);
 	QuadTree* _QuadTree;
 
-	vector <BaseObject*> GetList(RECT* rect);
+	
 	void UpDate(float detatime);
 };
 #endif __READMAPEDITOR_H__

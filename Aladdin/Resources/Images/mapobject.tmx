@@ -1,35 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-down" width="1" height="1" tilewidth="4771" tileheight="688" nextobjectid="354">
+<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-down" width="1" height="1" tilewidth="4771" tileheight="688" nextobjectid="355">
  <objectgroup name="heart">
   <object id="312" x="2384" y="636.5" width="15" height="15"/>
   <object id="313" x="3225" y="380.333" width="16.3333" height="14.3333"/>
- </objectgroup>
- <objectgroup color="#ff0000" name="fire">
-  <object id="46" x="451" y="605" width="45" height="21"/>
-  <object id="47" x="500" y="606" width="39" height="20"/>
-  <object id="48" x="544" y="605" width="42" height="21"/>
-  <object id="49" x="820" y="610" width="60" height="16"/>
-  <object id="50" x="885" y="610" width="38" height="16"/>
-  <object id="51" x="929" y="610" width="31" height="15"/>
-  <object id="52" x="1001" y="610" width="38" height="16"/>
-  <object id="53" x="1044" y="611" width="34" height="15"/>
-  <object id="55" x="2010" y="646" width="47" height="14"/>
-  <object id="56" x="2061" y="646" width="35" height="14"/>
-  <object id="57" x="2100" y="646" width="44" height="14"/>
-  <object id="58" x="3066" y="641" width="48" height="16"/>
-  <object id="59" x="3120" y="641" width="46" height="16"/>
-  <object id="60" x="3172" y="640" width="54" height="16"/>
-  <object id="311" x="1080.67" y="611.667" width="41" height="16"/>
- </objectgroup>
- <objectgroup name="guardbig">
-  <object id="319" x="970.333" y="580" width="21" height="43.6667"/>
-  <object id="320" x="1649" y="229.333" width="31" height="45"/>
-  <object id="322" x="3284" y="604.5" width="38.5" height="54"/>
-  <object id="324" x="3753.5" y="602.5" width="37" height="53.5"/>
-  <object id="325" x="4301" y="605.5" width="31" height="52"/>
-  <object id="326" x="3685.67" y="438.333" width="25.3333" height="44.3333"/>
-  <object id="327" x="2990" y="245.333" width="27" height="46"/>
-  <object id="328" x="4460.67" y="158.333" width="29.3333" height="51"/>
  </objectgroup>
  <objectgroup name="guardshort">
   <object id="329" x="4600.33" y="170.667" width="33.6667" height="37.3333"/>
@@ -56,12 +29,37 @@
   <object id="309" x="3941" y="536.5" width="18.5" height="26.5"/>
   <object id="310" x="3300" y="363.5" width="20" height="23.5"/>
  </objectgroup>
- <objectgroup name="guardthin">
-  <object id="314" x="656" y="573.5" width="26.5" height="56.5"/>
+ <objectgroup name="camel">
+  <object id="354" x="1525.33" y="622" width="64" height="36"/>
  </objectgroup>
- <objectgroup color="#55557f" name="bar">
-  <object id="294" x="4354" y="305.333" width="411.333" height="9.33333"/>
-  <object id="295" x="4354.67" y="80.6667" width="204.667" height="6.66667"/>
+ <objectgroup color="#ffff7f" name="solid">
+  <object id="1" x="2" y="630" width="1150" height="10"/>
+  <object id="2" x="1475" y="665" width="694" height="6"/>
+  <object id="3" x="2243" y="664" width="527" height="8"/>
+  <object id="4" x="2818" y="662" width="1510" height="12"/>
+  <object id="108" x="1476" y="439" width="101" height="9"/>
+  <object id="109" x="1472" y="390" width="42" height="12"/>
+  <object id="111" x="1748" y="438" width="297" height="11"/>
+  <object id="112" x="1588" y="278" width="685" height="14"/>
+  <object id="114" x="2730" y="568" width="116" height="10"/>
+  <object id="115" x="2641" y="409" width="163" height="8"/>
+  <object id="116" x="2815" y="425" width="268" height="8"/>
+  <object id="117" x="2518" y="166" width="135" height="9"/>
+  <object id="118" x="2740" y="166" width="88" height="8"/>
+  <object id="119" x="2818" y="297" width="377" height="10"/>
+  <object id="120" x="2963" y="166" width="204" height="10"/>
+  <object id="122" x="3501" y="118" width="113" height="13"/>
+  <object id="123" x="3186" y="322" width="445" height="13"/>
+  <object id="124" x="3050.67" y="489.333" width="784" height="9.33333"/>
+  <object id="131" x="3602.67" y="214.667" width="696" height="10.6667"/>
+  <object id="132" x="4301.33" y="470.667" width="98.6667" height="9.33333"/>
+  <object id="133" x="4604" y="502.667" width="81.3333" height="9.33333"/>
+  <object id="134" x="4354.67" y="214.667" width="413.333" height="12"/>
+ </objectgroup>
+ <objectgroup color="#ff557f" name="spring">
+  <object id="165" x="3436" y="260" width="65.3333" height="5.33333"/>
+  <object id="167" x="3456.67" y="173.333" width="61.3333" height="7.33333"/>
+  <object id="170" x="4222" y="150" width="43" height="5"/>
  </objectgroup>
  <objectgroup color="#ffaa7f" name="apple">
   <object id="177" x="481.5" y="549" width="14" height="12"/>
@@ -159,29 +157,23 @@
   <object id="291" x="4304.5" y="32" width="16.5" height="12.5"/>
   <object id="293" x="4333" y="15.5" width="15.5" height="12.5"/>
  </objectgroup>
- <objectgroup color="#ffff7f" name="solid">
-  <object id="1" x="2" y="630" width="1150" height="10"/>
-  <object id="2" x="1475" y="665" width="694" height="6"/>
-  <object id="3" x="2243" y="664" width="527" height="8"/>
-  <object id="4" x="2818" y="662" width="1510" height="12"/>
-  <object id="108" x="1476" y="439" width="101" height="9"/>
-  <object id="109" x="1472" y="390" width="42" height="12"/>
-  <object id="111" x="1748" y="438" width="297" height="11"/>
-  <object id="112" x="1588" y="278" width="685" height="14"/>
-  <object id="114" x="2730" y="568" width="116" height="10"/>
-  <object id="115" x="2641" y="409" width="163" height="8"/>
-  <object id="116" x="2815" y="425" width="268" height="8"/>
-  <object id="117" x="2518" y="166" width="135" height="9"/>
-  <object id="118" x="2740" y="166" width="88" height="8"/>
-  <object id="119" x="2818" y="297" width="377" height="10"/>
-  <object id="120" x="2963" y="166" width="204" height="10"/>
-  <object id="122" x="3501" y="118" width="113" height="13"/>
-  <object id="123" x="3186" y="322" width="445" height="13"/>
-  <object id="124" x="3050.67" y="489.333" width="784" height="9.33333"/>
-  <object id="131" x="3602.67" y="214.667" width="696" height="10.6667"/>
-  <object id="132" x="4301.33" y="470.667" width="98.6667" height="9.33333"/>
-  <object id="133" x="4604" y="502.667" width="81.3333" height="9.33333"/>
-  <object id="134" x="4354.67" y="214.667" width="413.333" height="12"/>
+ <objectgroup color="#55557f" name="bar">
+  <object id="294" x="4354" y="305.333" width="411.333" height="9.33333"/>
+  <object id="295" x="4354.67" y="80.6667" width="204.667" height="6.66667"/>
+ </objectgroup>
+ <objectgroup color="#00ff7f" name="rope">
+  <object id="135" x="1545" y="160" width="4" height="223"/>
+  <object id="136" x="2088.67" y="352.667" width="6" height="270.667"/>
+  <object id="138" x="2696" y="113" width="6" height="208"/>
+  <object id="139" x="4712.67" y="380.667" width="7.33333" height="190.667"/>
+ </objectgroup>
+ <objectgroup name="enter">
+  <object id="156" x="4752" y="4" width="14" height="202"/>
+  <object id="162" x="2625" y="591" width="24" height="69"/>
+  <object id="164" x="2245" y="492" width="38" height="83"/>
+ </objectgroup>
+ <objectgroup name="guardlu">
+  <object id="351" x="2859.5" y="388.5" width="31" height="31"/>
  </objectgroup>
  <objectgroup color="#00557f" name="wall">
   <object id="142" x="1442" y="584" width="30" height="77"/>
@@ -194,21 +186,6 @@
   <object id="154" x="4302" y="61" width="48" height="192"/>
   <object id="296" x="4760.67" y="327.333" width="10.6667" height="286.667"/>
   <object id="341" x="2612" y="192" width="27.3333" height="212.667"/>
- </objectgroup>
- <objectgroup color="#00ff7f" name="rope">
-  <object id="135" x="1545" y="160" width="4" height="223"/>
-  <object id="136" x="2088.67" y="352.667" width="6" height="270.667"/>
-  <object id="138" x="2696" y="113" width="6" height="208"/>
-  <object id="139" x="4712.67" y="380.667" width="7.33333" height="190.667"/>
- </objectgroup>
- <objectgroup name="guardlu">
-  <object id="351" x="2859.5" y="388.5" width="31" height="31"/>
- </objectgroup>
- <objectgroup name="knifethrower">
-  <object id="342" x="1311" y="536" width="34.6667" height="42"/>
-  <object id="344" x="2468.25" y="493.5" width="29" height="36"/>
-  <object id="347" x="4328" y="425.667" width="31.6667" height="41.3333"/>
-  <object id="349" x="2549" y="119.333" width="31.6667" height="43.6667"/>
  </objectgroup>
  <objectgroup color="#c83016" name="stair">
   <object id="61" x="1146" y="611" width="40" height="14"/>
@@ -245,28 +222,53 @@
   <object id="107" x="4471" y="618" width="299" height="11"/>
   <object id="129" x="3928" y="439" width="147" height="10"/>
  </objectgroup>
- <objectgroup color="#ff557f" name="spring">
-  <object id="165" x="3436" y="260" width="65.3333" height="5.33333"/>
-  <object id="167" x="3456.67" y="173.333" width="61.3333" height="7.33333"/>
-  <object id="170" x="4222" y="150" width="43" height="5"/>
- </objectgroup>
  <objectgroup color="#5032c8" name="flatform">
   <object id="298" x="1617.33" y="434.667" width="61.3333" height="13.3333"/>
   <object id="299" x="4202.67" y="448.667" width="47.3333" height="9.33333"/>
   <object id="300" x="4105.33" y="462" width="37.3333" height="10"/>
+ </objectgroup>
+ <objectgroup name="knifethrower">
+  <object id="342" x="1311" y="536" width="34.6667" height="42"/>
+  <object id="344" x="2468.25" y="493.5" width="29" height="36"/>
+  <object id="347" x="4328" y="425.667" width="31.6667" height="41.3333"/>
+  <object id="349" x="2549" y="119.333" width="31.6667" height="43.6667"/>
+ </objectgroup>
+ <objectgroup name="guardbig">
+  <object id="319" x="970.333" y="580" width="21" height="43.6667"/>
+  <object id="320" x="1649" y="229.333" width="31" height="45"/>
+  <object id="322" x="3284" y="604.5" width="38.5" height="54"/>
+  <object id="324" x="3753.5" y="602.5" width="37" height="53.5"/>
+  <object id="325" x="4301" y="605.5" width="31" height="52"/>
+  <object id="326" x="3685.67" y="438.333" width="25.3333" height="44.3333"/>
+  <object id="327" x="2990" y="245.333" width="27" height="46"/>
+  <object id="328" x="4460.67" y="158.333" width="29.3333" height="51"/>
+ </objectgroup>
+ <objectgroup name="guardthin">
+  <object id="314" x="656" y="573.5" width="26.5" height="56.5"/>
+ </objectgroup>
+ <objectgroup color="#ff0000" name="fire">
+  <object id="46" x="451" y="605" width="45" height="21"/>
+  <object id="47" x="500" y="606" width="39" height="20"/>
+  <object id="48" x="544" y="605" width="42" height="21"/>
+  <object id="49" x="820" y="610" width="60" height="16"/>
+  <object id="50" x="885" y="610" width="38" height="16"/>
+  <object id="51" x="929" y="610" width="31" height="15"/>
+  <object id="52" x="1001" y="610" width="38" height="16"/>
+  <object id="53" x="1044" y="611" width="34" height="15"/>
+  <object id="55" x="2010" y="646" width="47" height="14"/>
+  <object id="56" x="2061" y="646" width="35" height="14"/>
+  <object id="57" x="2100" y="646" width="44" height="14"/>
+  <object id="58" x="3066" y="641" width="48" height="16"/>
+  <object id="59" x="3120" y="641" width="46" height="16"/>
+  <object id="60" x="3172" y="640" width="54" height="16"/>
+  <object id="311" x="1080.67" y="611.667" width="41" height="16"/>
  </objectgroup>
  <layer name="Tile Layer 1" width="1" height="1">
   <data encoding="csv">
 0
 </data>
  </layer>
- <objectgroup name="enter">
-  <object id="156" x="4752" y="4" width="14" height="202"/>
-  <object id="162" x="2625" y="591" width="24" height="69"/>
-  <object id="164" x="2245" y="492" width="38" height="83"/>
- </objectgroup>
  <imagelayer name="Image Layer 1">
   <image source="background.png" width="4771" height="688"/>
  </imagelayer>
- <group name="Group object"/>
 </map>

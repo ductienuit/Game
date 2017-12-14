@@ -1,6 +1,6 @@
 
-#ifndef _THROWJAR_H
-#define _THROWJAR_H
+#ifndef _GuardThrowJar_H
+#define _GuardThrowJar_H
 
 #include "../../FrameWork/Animation.h"
 #include "../../FrameWork/StopWatch.h"
@@ -10,13 +10,13 @@
 #include "BaseEnemy.h"
 using namespace std;
 
-#define THROWJAR_SPEED 0
-#define THROWJAR_SCORE 100
+#define GuardThrowJar_SPEED 0
+#define GuardThrowJar_SCORE 100
 
-class ThrowJar : public BaseEnemy
+class GuardThrowJar : public BaseEnemy
 {
 public:
-	ThrowJar(eStatus status, int posX, int posY);
+	GuardThrowJar(eStatus status, int posX, int posY);
 
 	void InIt() override;
 	void Update(float deltatime) override;
@@ -33,7 +33,7 @@ public:
 	IComponent* getComponent(string componentName);
 
 	Text* text;
-	~ThrowJar();
+	~GuardThrowJar();
 private:
 	void standing();
 	//void Throw(float deltatime);

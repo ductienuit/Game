@@ -198,6 +198,9 @@ void PlayScene::Update(float dt)
 	screen.top = screen.bottom - 480/ SCALEFACTOR.y;
 
 
+	DrawRect(*screen);
+	mMap->ListObject(screen);
+	_activeObject = mMap->GetList;
 
 	for each (auto object in _listObject)
 	{
