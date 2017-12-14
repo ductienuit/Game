@@ -26,7 +26,7 @@ bool PlayScene::InIt()
 {
 	mMap = new ReadMapEditor("Resources/Images/mapobject.tmx", _root);
 
-	_activeObject = mMap->GetList(rect);
+//	_activeObject = mMap->GetList(rect);
 	//Chú ý: Top Left của land ở bên dưới chứ không ở trên
 	//  **********(B,R)
 	//	**********
@@ -191,14 +191,17 @@ void PlayScene::Update(float dt)
 	RECT viewport_in_transform = _viewport->getBounding();
 
 	// Hàm getlistobject của quadtree yêu cầu truyền vào một hình chữ nhật theo hệ top left, nên cần tính lại khung màn hình
-	RECT screen;
+	RECT *screen;
+	screen = new RECT();
 	// left right không đổi dù hệ top-left hay hệ bot-left
-	screen.left = viewport_in_transform.left;
-	screen.right = viewport_in_transform.right;
-	screen.top = SIZEMAP.y - viewport_position.y;
-	screen.bottom = screen.top + _viewport->getHeight();
+	screen->left = viewport_in_transform.left;
+	screen->right = viewport_in_transform.right;
+	screen->top = SIZEMAP.y - viewport_position.y;
+	screen->bottom = screen->top + _viewport->getHeight();
 
-	DrawRect(screen);
+	DrawRect(*screen);
+	mMap->ListObject(screen);
+	_activeObject = mMap->GetList;
 
 	for each (auto object in _listObject)
 	{

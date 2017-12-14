@@ -1,8 +1,8 @@
 ﻿#include "GuardThrowJar.h"
 
-ThrowJar::ThrowJar(eStatus status, int posX, int posY) :BaseEnemy(eID::THROWJAR)
+GuardThrowJar::GuardThrowJar(eStatus status, int posX, int posY) :BaseEnemy(eID::GUARDTHROWJAR)
 {
-	_sprite = SpriteManager::getInstance()->getSprite(eID::THROWJAR);
+	_sprite = SpriteManager::getInstance()->getSprite(eID::GUARDTHROWJAR);
 	_sprite->setFrameRect(0, 0, 32.0f, 16.0f);
 
 	_divingSprite = SpriteManager::getInstance()->getSprite(eID::ALADDIN);
@@ -16,7 +16,7 @@ ThrowJar::ThrowJar(eStatus status, int posX, int posY) :BaseEnemy(eID::THROWJAR)
 	_score = 10;
 }
 
-void ThrowJar::InIt()
+void GuardThrowJar::InIt()
 {
 	jar->InIt();
 
@@ -26,23 +26,23 @@ void ThrowJar::InIt()
 	auto collisionBody = new CollisionBody(this);
 	_listComponent["CollisionBody"] = collisionBody;
 
-	__hook(&CollisionBody::onCollisionBegin, collisionBody, &ThrowJar::onCollisionBegin);
-	__hook(&CollisionBody::onCollisionEnd, collisionBody, &ThrowJar::onCollisionEnd);
+	__hook(&CollisionBody::onCollisionBegin, collisionBody, &GuardThrowJar::onCollisionBegin);
+	__hook(&CollisionBody::onCollisionEnd, collisionBody, &GuardThrowJar::onCollisionEnd);
 
 	_animations[FREE] = new Animation(_sprite, 0.2f);
-	_animations[FREE]->addFrameRect(eID::THROWJAR, "throwjar_0", "throwjar_0", NULL);
+	_animations[FREE]->addFrameRect(eID::GUARDTHROWJAR, "GuardThrowJar_0", "GuardThrowJar_0", NULL);
 
 	_animations[THROW] = new Animation(_sprite, 0.08f);
-	_animations[THROW]->addFrameRect(eID::THROWJAR, "throwjar_", 10);
+	_animations[THROW]->addFrameRect(eID::GUARDTHROWJAR, "GuardThrowJar_", 10);
 
 	_animations[DYING] = new Animation(_sprite, 0.1f);
-	_animations[DYING]->addFrameRect(eID::THROWJAR, "destroy_enermy_", 10);
+	_animations[DYING]->addFrameRect(eID::GUARDTHROWJAR, "destroy_enermy_", 10);
 
 	_sprite->drawBounding(false);
 	_canDrop = true;
 }
 
-void ThrowJar::Update(float deltatime)
+void GuardThrowJar::Update(float deltatime)
 {
 	eStatus temp = this->getStatus();
 	_animations[temp]->Update(deltatime);
@@ -59,7 +59,7 @@ void ThrowJar::Update(float deltatime)
 	}
 }
 
-void ThrowJar::UpdateStatus(float dt)
+void GuardThrowJar::UpdateStatus(float dt)
 {
 	switch (this->getStatus())
 	{
@@ -155,14 +155,14 @@ void ThrowJar::UpdateStatus(float dt)
 	}
 }
 
-void ThrowJar::Draw(LPD3DXSPRITE spritehandle, ViewPort* viewport)
+void GuardThrowJar::Draw(LPD3DXSPRITE spritehandle, ViewPort* viewport)
 {
 	_animations[this->getStatus()]->Draw(spritehandle, viewport);
 	//text->Draw();
 	jar->Draw(spritehandle, viewport);
 }
 
-void ThrowJar::Release()
+void GuardThrowJar::Release()
 {
 	for (auto component : _listComponent)
 	{
@@ -173,7 +173,7 @@ void ThrowJar::Release()
 	jar->Release();
 }
 
-void ThrowJar::onCollisionBegin(CollisionEventArg *collision_event)
+void GuardThrowJar::onCollisionBegin(CollisionEventArg *collision_event)
 {
 	eID objectID = collision_event->_otherObject->getId();
 	switch (objectID)
@@ -196,23 +196,23 @@ void ThrowJar::onCollisionBegin(CollisionEventArg *collision_event)
 	}
 }
 
-void ThrowJar::onCollisionEnd(CollisionEventArg *)
+void GuardThrowJar::onCollisionEnd(CollisionEventArg *)
 {
 }
 
-float ThrowJar::checkCollision(BaseObject *object, float dt)
+float GuardThrowJar::checkCollision(BaseObject *object, float dt)
 {
 	if (object == this)
 		return 0.0f;
 	auto collisionBody = (CollisionBody*)_listComponent["CollisionBody"];
 	//Check collision enermy(this) với aladdin(object)
-	/*Ưu tiên check ThrowJar trước, sau đó đến Jar*/
+	/*Ưu tiên check GuardThrowJar trước, sau đó đến Jar*/
 	if(!collisionBody->checkCollision(object, dt, true))
 		jar->checkCollision(object, dt);
 	return 0.0f;
 }
 
-Vector2 ThrowJar::distanceBetweenAladdin()
+Vector2 GuardThrowJar::distanceBetweenAladdin()
 {
 	float xAla = _divingSprite->getPositionX() + (_divingSprite->getBounding().right - _divingSprite->getBounding().left) / 2;
 	float x = this->getPositionX();
@@ -223,16 +223,16 @@ Vector2 ThrowJar::distanceBetweenAladdin()
 	return Vector2(xAla - x,yAla-y);
 }
 
-IComponent* ThrowJar::getComponent(string componentName)
+IComponent* GuardThrowJar::getComponent(string componentName)
 {
 	return _listComponent.find(componentName)->second;
 }
 
-ThrowJar::~ThrowJar()
+GuardThrowJar::~GuardThrowJar()
 {
 }
 
-void ThrowJar::standing()
+void GuardThrowJar::standing()
 {
 	auto move = (Movement*)this->_listComponent["Movement"];
 	move->setVelocity(VECTOR2ZERO);
