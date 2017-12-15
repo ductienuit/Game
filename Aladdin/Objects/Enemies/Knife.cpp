@@ -28,19 +28,19 @@ void Knife::InIt()
 	__hook(&CollisionBody::onCollisionBegin, collisionBody, &Knife::onCollisionBegin);
 	__hook(&CollisionBody::onCollisionEnd, collisionBody, &Knife::onCollisionEnd);
 
-	_animations[THROW_LEFT_NEAR] = new Animation(_sprite, 0.12f);
+	_animations[THROW_LEFT_NEAR] = new Animation(_sprite, 0.1f);
 	_animations[THROW_LEFT_NEAR]->addFrameRect(eID::KNIFE, "guardsShort_throw_01", "guardsShort_throw_02", "guardsShort_throw_03", "guardsShort_throw_04"
 		, "guardsShort_throw_05", "guardsShort_throw_06", "guardsShort_throw_07", NULL);
 
-	_animations[THROW_RIGHT_NEAR] = new Animation(_sprite, 0.12f);
+	_animations[THROW_RIGHT_NEAR] = new Animation(_sprite, 0.1f);
 	_animations[THROW_RIGHT_NEAR]->addFrameRect(eID::KNIFE, "guardsShort_throw_01", "guardsShort_throw_02", "guardsShort_throw_03", "guardsShort_throw_04"
 		, "guardsShort_throw_05", "guardsShort_throw_06", "guardsShort_throw_07", NULL);
 	
-	_animations[THROW_LEFT_FAR] = new Animation(_sprite, 0.12f);
+	_animations[THROW_LEFT_FAR] = new Animation(_sprite, 0.1f);
 	_animations[THROW_LEFT_FAR]->addFrameRect(eID::KNIFE, "guardsShort_throw_01", "guardsShort_throw_02", "guardsShort_throw_03", "guardsShort_throw_04"
 		, "guardsShort_throw_05", "guardsShort_throw_06", "guardsShort_throw_07", NULL);
 
-	_animations[THROW_RIGHT_FAR] = new Animation(_sprite, 0.12f);
+	_animations[THROW_RIGHT_FAR] = new Animation(_sprite, 0.1f);
 	_animations[THROW_RIGHT_FAR]->addFrameRect(eID::KNIFE, "guardsShort_throw_01", "guardsShort_throw_02", "guardsShort_throw_03", "guardsShort_throw_04"
 		, "guardsShort_throw_05", "guardsShort_throw_06", "guardsShort_throw_07", NULL);
 	//_sprite->drawBounding(false);
@@ -144,83 +144,91 @@ Knife::~Knife()
 
 void Knife::ThrowLeftFar()
 {
-	if (_animations[_status]->getIndex() != 6)
+	if (count < 70)
 	{
-		if (_animations[_status]->getIndex() < 3)
+		if (count < 30)
 		{
-			_currentPosition.x -= 15;
-			_currentPosition.y += 20;
+			_currentPosition.x -= 5;
+			_currentPosition.y += 10;
 		}
 		else
 		{
-			_currentPosition.x -= 15;
-			_currentPosition.y -= 20;
-		}
+			_currentPosition.x -= 7;
+			_currentPosition.y -= 10;
+		};
+		count++;
 		this->setPosition(_currentPosition.x, _currentPosition.y);
 	}
 	else
 	{
 		_currentPosition = _originPosition;
+		count = 0;
 		this->setPosition(_originPosition.x, _originPosition.y);
 	}
 }
 
 void Knife::ThrowRightFar()
 {
-	if (_animations[_status]->getIndex() != 6)
+	if(count < 70)
 	{
-		if (_animations[_status]->getIndex() < 3)
+		if (count < 30)
 		{
-			_currentPosition.x += 15;
-			_currentPosition.y += 20;
+			_currentPosition.x += 5;
+			_currentPosition.y += 10;
 		}
 		else
 		{
-			_currentPosition.x += 15;
-			_currentPosition.y -= 20;
+			_currentPosition.x += 7;
+			_currentPosition.y -= 10;
 		};
+		count++;
 		this->setPosition(_currentPosition.x, _currentPosition.y);
 	}
 	else
 	{
 		_currentPosition = _originPosition;
+		count = 0;
 		this->setPosition(_originPosition.x, _originPosition.y);
 	}
 }
 
 bool Knife::canChangeThrowDirection()
 {
-	if (_animations[_status]->getIndex() == 6)
+	if (count == 0)
 		return true;
 	return false;
 }
 
 void Knife::ThrowLeftNear()
 {
-	if (_animations[_status]->getIndex() != 6)
+	if (count < 50)
 	{
-		_currentPosition.x -= 15;
-		_currentPosition.y -= 10;
+		_currentPosition.x -= 7;
+		_currentPosition.y -= 3;
 		this->setPosition(_currentPosition.x, _currentPosition.y);
+		count++;
 	}
 	else
 	{
 		_currentPosition = _originPosition;
 		this->setPosition(_originPosition.x, _originPosition.y);
+		count = 0;
 	}
 }
 
 void Knife::ThrowRightNear()
 {
-	if (_animations[_status]->getIndex() != 6)
+	if (count < 50)
 	{
-		_currentPosition.x += 15;
-		_currentPosition.y -= 10;
+		_currentPosition.x += 7;
+		_currentPosition.y -= 3;
 		this->setPosition(_currentPosition.x, _currentPosition.y);
+		count++;
 	}
 	else
 	{
 		_currentPosition = _originPosition;
 		this->setPosition(_originPosition.x, _originPosition.y);
+		count = 0;
 	}
 }

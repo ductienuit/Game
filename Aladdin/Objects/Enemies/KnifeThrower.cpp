@@ -32,10 +32,10 @@ void KnifeThrower::InIt()
 	__hook(&CollisionBody::onCollisionBegin, collisionBody, &KnifeThrower::onCollisionBegin);
 	__hook(&CollisionBody::onCollisionEnd, collisionBody, &KnifeThrower::onCollisionEnd);
 
-	_animations[MOVING_LEFT] = new Animation(_sprite, 0.1f);
+	_animations[MOVING_LEFT] = new Animation(_sprite, 0.11f);
 	_animations[MOVING_LEFT]->addFrameRect(eID::KNIFETHROWER, "knifeThrowers_attack_0", 10);
 
-	_animations[MOVING_RIGHT] = new Animation(_sprite, 0.1f);
+	_animations[MOVING_RIGHT] = new Animation(_sprite, 0.11f);
 	_animations[MOVING_RIGHT]->addFrameRect(eID::KNIFETHROWER, "knifeThrowers_attack_0", 10);
 
 	_animations[DYING] = new Animation(_sprite, 0.05f);
@@ -150,21 +150,20 @@ void KnifeThrower::UpdateStatus(float dt)
 		this->addStatus(eStatus::MOVING_LEFT);
 		movingLeft();
 
-		if (-distanceBetweenAladdin() < 350)
+		if (knife->canChangeThrowDirection())
 		{
-			if (knife->canChangeThrowDirection())
+			if (-distanceBetweenAladdin() < 300)
 			{
-				if (-distanceBetweenAladdin() < 300)
-				{
-					knife->setStatus(eStatus::THROW_LEFT_NEAR);
-				}
-				else
-				{
-					knife->setStatus(eStatus::THROW_LEFT_FAR);
-				}
+				knife->setStatus(eStatus::THROW_LEFT_NEAR);
 			}
-			return;
+
+
+			if (-distanceBetweenAladdin() > 350)
+			{
+				knife->setStatus(eStatus::THROW_LEFT_FAR);
+			}
 		}
+		return;
 	}
 	else
 	{
@@ -172,21 +171,20 @@ void KnifeThrower::UpdateStatus(float dt)
 		this->addStatus(eStatus::MOVING_RIGHT);
 		movingRight();
 
-		if (distanceBetweenAladdin() < 350)
+		if (knife->canChangeThrowDirection())
 		{
-			if (knife->canChangeThrowDirection())
+			if (distanceBetweenAladdin() < 300)
 			{
-				if (distanceBetweenAladdin() < 300)
-				{
-					knife->setStatus(eStatus::THROW_RIGHT_NEAR);
-				}
-				else
-				{
-					knife->setStatus(eStatus::THROW_RIGHT_FAR);
-				}
+				knife->setStatus(eStatus::THROW_RIGHT_NEAR);
 			}
-			return;
+
+			
+			if(distanceBetweenAladdin() > 350)
+			{
+				knife->setStatus(eStatus::THROW_RIGHT_FAR);
+			}
 		}
+		return;
 	}
 }
 

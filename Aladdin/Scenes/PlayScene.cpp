@@ -112,9 +112,9 @@ bool PlayScene::InIt()
 	//guardThrowJar->InIt();
 	//_listObject.push_back(guardThrowJar);
 
-	//auto knifeThrower = new KnifeThrower(eStatus::MOVING_RIGHT, 200, 100, eDirection::LEFT);
-	//knifeThrower->InIt();
-	//_listObject.push_back(knifeThrower);
+	auto knifeThrower = new KnifeThrower(eStatus::MOVING_LEFT, 500, 100, eDirection::LEFT);
+	knifeThrower->InIt();
+	_listObject.push_back(knifeThrower);
 
 	////Complete
 	//auto guardThin = new GuardThin(eStatus::MOVING_LEFT, 200, 100, eDirection::LEFT);

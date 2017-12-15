@@ -37,6 +37,7 @@ public:
 	~Knife();
 private:
 	
+	int count = 0;
 	map<string, IComponent*> _listComponent;
 	map<int, Animation*> _animations;
 	Vector2 _originPosition;
