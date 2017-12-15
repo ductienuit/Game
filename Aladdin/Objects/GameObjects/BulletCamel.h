@@ -1,37 +1,43 @@
-#ifndef _CAMEL_H
-#define _CAMEL_H
+#ifndef _BULLETCAMEL_H
+#define _BULLETCAMEL_H
 
 #include "../../FrameWork/Animation.h"
 #include "../../FrameWork/StopWatch.h"
 #include "../../FrameWork/IComponent.h"
 #include "../../FrameWork/Text.h"
-#include"../../FrameWork/CollisionBody.h"
 #include "../BaseObject.h"
-#include "BulletCamel.h"
+#include"../../FrameWork/CollisionBody.h"
+using namespace std;
 
+#define BULLETCAMEL_SPEED 300
+#define BULLETCAMEL_GRAVITY 800
+#define BULLETCAMEL_JUMP 0
 
-class Camel :public BaseObject
+class BulletCamel : public BaseObject
 {
 public:
-	Camel(int posX, int posY);
+	BulletCamel(eStatus status, int posX, int posY, eDirection direction);
 	void InIt() override;
 	void Update(float deltatime) override;
 	void Draw(LPD3DXSPRITE, ViewPort*) override;
 	void Release() override;
 
-	void UpdateStatus();
-
 	void onCollisionBegin(CollisionEventArg*);
 	void onCollisionEnd(CollisionEventArg*);
 	float checkCollision(BaseObject*, float);
 
-	RECT getBounding() override;
-	~Camel();
+	IComponent* getComponent(string componentName);
+
+	Text* text;
+
+	void Shoot(float x, float y);
+	~BulletCamel();
 private:
-	BulletCamel *bulletCamel;
+
 	map<string, IComponent*> _listComponent;
 	map<int, Animation*> _animations;
-	Text* text;
+	Sprite *_divingSprite;
+	Vector2 _originPosition;
+	Vector2 _currentPosition;
 };
-#endif _CAMEL_H
-
+#endif _BULLETCAMEL_H

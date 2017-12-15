@@ -261,6 +261,9 @@
     <ClCompile Include="FrameWork\ReadMapEditor.cpp">
       <Filter>Source Files\FrameWork</Filter>
     </ClCompile>
+    <ClCompile Include="Objects\GameObjects\BulletCamel.cpp">
+      <Filter>Source Files\Object\GameObjects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FrameWork\Animation.h">
@@ -475,6 +478,9 @@
     </ClInclude>
     <ClInclude Include="FrameWork\ReadMapEditor.h">
       <Filter>Header Files\FrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\GameObjects\BulletCamel.h">
+      <Filter>Header Files\Object\GameObjects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

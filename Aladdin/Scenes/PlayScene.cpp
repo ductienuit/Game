@@ -94,12 +94,18 @@ bool PlayScene::InIt()
 	_listObject.push_back(new Land(4437, 688-635-16, 38, 16, eDirection::TOP, eLandType::STAIR));
 	_listObject.push_back(new Land(4476, 688 -626-11, 299, 11, eDirection::TOP, eLandType::STAIR));
 
+
 	//Background
 	_background = new BackGround();
 	_background->InIt();
 
 	_backgroundfront = new BackGroundFront();
 	_backgroundfront->InIt();
+
+	//Complete
+	auto guardLu = new GuardLu(eStatus::FREE, 200, 100, eDirection::LEFT);
+	guardLu->InIt();
+	_listObject.push_back(guardLu);
 
 	////COMPLETE throwJar but not Jar
 	//auto guardThrowJar = new ThrowJar(eStatus::FREE, 300, 300);
