@@ -25,23 +25,21 @@ ReadMapEditor::ReadMapEditor(const char *filepath, QuadTree *& _quadTree)
 				Tmx::Object* _object = _objectGroup->GetObjects().at(j);
 
 
-				GuardShort* _guardshort = new GuardShort(MOVING_LEFT, _object->GetX() + _object->GetWidth() / 2, 688 - _object->GetY() - _object->GetHeight() / 2, NONE, 1000, 1000);
+				GuardShort* _guardshort = new GuardShort(MOVING_LEFT, _object->GetX(), 688 - _object->GetY() - _object->GetHeight(), NONE, 1000, 1000);
 
 				ListGuardShort.push_back(_guardshort);
 				_QuadTree->InsertStaticObject(_guardshort);
 			}
 		}
 
-		//const Tmx::ObjectGroup *_objectGroup = maps->GetObjectGroup(i);
 		if (_objectGroup->GetName() == "guardthin")
 		{
-
 			for (size_t j = 0; j < _objectGroup->GetNumObjects(); j++)
 			{
 				Tmx::Object* _object = _objectGroup->GetObjects().at(j);
 
 
-				GuardThin* _guardthin = new GuardThin(MOVING_LEFT, _object->GetX() + _object->GetWidth() / 2, 688 - _object->GetY() - _object->GetHeight() / 2, NONE);
+				GuardThin* _guardthin = new GuardThin(MOVING_LEFT, _object->GetX(), 688 - _object->GetY() - _object->GetHeight(), NONE);
 
 				ListGuardThin.push_back(_guardthin);
 				_QuadTree->InsertStaticObject(_guardthin);
@@ -70,7 +68,7 @@ ReadMapEditor::ReadMapEditor(const char *filepath, QuadTree *& _quadTree)
 				Tmx::Object* _object = _objectGroup->GetObjects().at(j);
 
 
-				Fire* _fire = new Fire(BEHIT, _object->GetX() + _object->GetWidth() / 2, 688 - _object->GetY() - _object->GetHeight() / 2, NONE);
+				Fire* _fire = new Fire(BEHIT, _object->GetX(), 688 - _object->GetY() - _object->GetHeight(), NONE);
 
 				ListFire.push_back(_fire);
 				_QuadTree->InsertStaticObject(_fire);
@@ -84,7 +82,7 @@ ReadMapEditor::ReadMapEditor(const char *filepath, QuadTree *& _quadTree)
 				Tmx::Object* _object = _objectGroup->GetObjects().at(j);
 
 
-				GuardFat* _guardFat = new GuardFat(FREE, _object->GetX() + _object->GetWidth() / 2, 688 - _object->GetY() - _object->GetHeight() / 2, NONE);
+				GuardFat* _guardFat = new GuardFat(FREE, _object->GetX() , 688 - _object->GetY() - _object->GetHeight(), NONE);
 
 				ListGuardFat.push_back(_guardFat);
 				_QuadTree->InsertStaticObject(_guardFat);
@@ -111,7 +109,7 @@ ReadMapEditor::ReadMapEditor(const char *filepath, QuadTree *& _quadTree)
 			{
 				Tmx::Object* _object = _objectGroup->GetObjects().at(j);
 
-				KnifeThrower* _knifeThrower = new KnifeThrower(MOVING_LEFT, _object->GetX() + _object->GetWidth() / 2, 688 - _object->GetY() - _object->GetHeight() / 2, NONE);
+				KnifeThrower* _knifeThrower = new KnifeThrower(MOVING_LEFT, _object->GetX(), 688 - _object->GetY() - _object->GetHeight(), NONE);
 
 				ListKnifeThrower.push_back(_knifeThrower);
 				_QuadTree->InsertStaticObject(_knifeThrower);
@@ -124,7 +122,7 @@ ReadMapEditor::ReadMapEditor(const char *filepath, QuadTree *& _quadTree)
 				{
 					Tmx::Object* _object = _objectGroup->GetObjects().at(j);
 
-					Land* _stair = new Land(_object->GetX(),688-_object->GetY(),_object->GetWidth(),_object->GetHeight(),NONE ,STAIR);
+					Land* _stair = new Land(_object->GetX(),688-_object->GetY()- _object->GetHeight(),_object->GetWidth(),_object->GetHeight(),NONE ,STAIR);
 
 					ListLand.push_back(_stair);
 					_QuadTree->InsertStaticObject(_stair);
@@ -137,7 +135,7 @@ ReadMapEditor::ReadMapEditor(const char *filepath, QuadTree *& _quadTree)
 			{
 				Tmx::Object* _object = _objectGroup->GetObjects().at(j);
 
-				Land* _wall = new Land(_object->GetX(), 688 - _object->GetY(), _object->GetWidth(), _object->GetHeight(), NONE, WALL);
+				Land* _wall = new Land(_object->GetX(), 688 - _object->GetY()- _object->GetHeight(), _object->GetWidth(), _object->GetHeight(), NONE, WALL);
 
 				ListLand.push_back(_wall);
 				_QuadTree->InsertStaticObject(_wall);
@@ -150,7 +148,7 @@ ReadMapEditor::ReadMapEditor(const char *filepath, QuadTree *& _quadTree)
 			{
 				Tmx::Object* _object = _objectGroup->GetObjects().at(j);
 
-				Land* _flatform = new Land(_object->GetX(), 688 - _object->GetY(), _object->GetWidth(), _object->GetHeight(), NONE, PLATFORM);
+				Land* _flatform = new Land(_object->GetX(), 688 - _object->GetY()- _object->GetHeight(), _object->GetWidth(), _object->GetHeight(), NONE, PLATFORM);
 
 				ListLand.push_back(_flatform);
 				_QuadTree->InsertStaticObject(_flatform);
@@ -163,8 +161,7 @@ ReadMapEditor::ReadMapEditor(const char *filepath, QuadTree *& _quadTree)
 			{
 				Tmx::Object* _object = _objectGroup->GetObjects().at(j);
 
-				Land* _rope = new Land(_object->GetX(), 688 - _object->GetY(), _object->GetWidth(), _object->GetHeight(), NONE, ROPE);
-
+				Land* _rope = new Land(_object->GetX(), 688 - _object->GetY()- _object->GetHeight(), _object->GetWidth(), _object->GetHeight(), NONE, ROPE);
 				ListLand.push_back(_rope);
 				_QuadTree->InsertStaticObject(_rope);
 			}
@@ -176,7 +173,7 @@ ReadMapEditor::ReadMapEditor(const char *filepath, QuadTree *& _quadTree)
 			{
 				Tmx::Object* _object = _objectGroup->GetObjects().at(j);
 
-				Land* _bar = new Land(_object->GetX(), 688 - _object->GetY(), _object->GetWidth(), _object->GetHeight(), NONE, BAR);
+				Land* _bar = new Land(_object->GetX(), 688 - _object->GetY() - _object->GetHeight(), _object->GetWidth(), _object->GetHeight(), NONE, BAR);
 
 				ListLand.push_back(_bar);
 				_QuadTree->InsertStaticObject(_bar);
@@ -202,7 +199,7 @@ ReadMapEditor::ReadMapEditor(const char *filepath, QuadTree *& _quadTree)
 			{
 				Tmx::Object* _object = _objectGroup->GetObjects().at(j);
 
-				Land* _solid = new Land(_object->GetX(), 688 - _object->GetY(), _object->GetWidth(), _object->GetHeight(), NONE, SOLID);
+				Land* _solid = new Land(_object->GetX(), 688 - _object->GetY() - _object->GetHeight(), _object->GetWidth(), _object->GetHeight(), NONE, SOLID);
 
 				ListLand.push_back(_solid);
 				_QuadTree->InsertStaticObject(_solid);
@@ -216,7 +213,7 @@ ReadMapEditor::ReadMapEditor(const char *filepath, QuadTree *& _quadTree)
 				Tmx::Object* _object = _objectGroup->GetObjects().at(j);
 
 
-				EatApple* _apple = new EatApple( _object->GetX() , 688 - _object->GetY() );
+				EatApple* _apple = new EatApple( _object->GetX() , 688 - _object->GetY() - _object->GetHeight());
 
 				ListEatApple.push_back(_apple);
 				_QuadTree->InsertStaticObject(_apple);
@@ -230,7 +227,7 @@ ReadMapEditor::ReadMapEditor(const char *filepath, QuadTree *& _quadTree)
 				Tmx::Object* _object = _objectGroup->GetObjects().at(j);
 
 
-				Camel* _camel = new Camel(_object->GetX(), 688 - _object->GetY());
+				Camel* _camel = new Camel(_object->GetX(), 688 - _object->GetY()-_object->GetHeight());
 
 				ListCamel.push_back(_camel);
 				_QuadTree->InsertStaticObject(_camel);
@@ -311,20 +308,10 @@ void ReadMapEditor::ListObject(RECT * rect)
 
 	for (size_t i = 0; i < ListLand.size(); i++)
 	{
-		/*float x = ListLand[i]->getPositionX() ;
-		float y = ListLand[i]->getPositionY();
-		bool check1 = x > rect->left;
-		bool check2 = x < rect->right;
-		bool check3 = y < rect->bottom;
-		bool check4 = y > rect->top;
-		if (check1 && check2 && check3 && check4)
+		if (isContain(ListLand[i], *rect))
 		{
 			GetList.push_back(ListLand[i]);
-		}*/
-		if (isContain(ListLand[i],*rect))
-		{
-			GetList.push_back(ListLand[i]);
-		}
+		}		
 	}
 
 	for (size_t i = 0; i < ListEatApple.size(); i++)
@@ -471,6 +458,8 @@ bool ReadMapEditor::isContain(BaseObject*object, RECT rect1)
 {
 	/*25/11 Đức Tiến đã sửa*/
 	RECT rect2 = object->getBounding();
+	swap(rect2.top, rect2.bottom);
 	return !(rect2.left > rect1.right || rect2.right < rect1.left || rect2.top > rect1.bottom || rect2.bottom < rect1.top);
 }
+
 

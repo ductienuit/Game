@@ -4,7 +4,11 @@ Jar::Jar(eStatus status, int posX, int posY, eDirection direction) :BaseEnemy(eI
 {
 	_sprite = SpriteManager::getInstance()->getSprite(eID::JAR);
 	_originPosition = Vector2(posX, posY);
-	_sprite->setFrameRect(0, 0, 32.0f, 16.0f);
+	//_sprite->setFrameRect(0, 0, 32.0f, 16.0f);
+	/*Dòng dưới để set framewidth hoặc height
+	để vừa vào khởi tạo không bị sai collison.
+	Hàm InIt sẽ tự động cập nhật lại khi set status*/
+	_sprite->setFrameRect(0, 0, 10.0f, 10.0f);
 
 	_divingSprite = SpriteManager::getInstance()->getSprite(eID::ALADDIN);
 	Vector2 v(direction * JAR_GRAVITY, 0);

@@ -21,7 +21,6 @@ void Land::Update(float deltatime)
 
 void Land::Draw(LPD3DXSPRITE spriteHandle, ViewPort* viewport)
 {
-	_sprite->Render();
 }
 
 void Land::Release()

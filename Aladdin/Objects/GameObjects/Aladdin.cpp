@@ -993,7 +993,7 @@ void Aladdin::onCollisionBegin(CollisionEventArg * collision_event)
 					_canUp = false;
 					break;
 				}
-				case (eLandType::CLIMBABLE0):
+				case (eLandType::ROPE):
 				{
 					_canUp = true;
 					clearStatus();
@@ -1010,7 +1010,7 @@ void Aladdin::onCollisionBegin(CollisionEventArg * collision_event)
 			{
 				switch (type)
 				{
-					case (eLandType::CLIMBABLE0):
+					case (eLandType::ROPE):
 					{
 						clearStatus();
 						_canUp = true;
@@ -1034,7 +1034,7 @@ void Aladdin::onCollisionBegin(CollisionEventArg * collision_event)
 			{
 				switch (type)
 				{
-					case (eLandType::CLIMBABLE0):
+					case (eLandType::ROPE):
 					{
 						clearStatus();
 						_canUp = true;
@@ -1169,7 +1169,7 @@ void Aladdin::onCollisionEnd(CollisionEventArg * collision_event)
 
 			switch (type)
 			{
-				case (eLandType::CLIMBABLE0):
+				case (eLandType::ROPE):
 				{
 					if (isInStatus(eStatus::JUMPING))
 					{

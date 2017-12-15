@@ -3,7 +3,11 @@
 Knife::Knife(eStatus status, int posX, int posY, eDirection direction) :BaseEnemy(eID::KNIFE)
 {
 	_sprite = SpriteManager::getInstance()->getSprite(eID::KNIFE);
-	_sprite->setFrameRect(0, 0, 32.0f, 16.0f);
+	//_sprite->setFrameRect(0, 0, 32.0f, 16.0f);
+	/*Dòng dưới để set framewidth hoặc height
+	để vừa vào khởi tạo không bị sai collison.
+	Hàm InIt sẽ tự động cập nhật lại khi set status*/
+	_sprite->setFrameRect(0, 0, 5.0f, 5.0f);
 	_originPosition = Vector2(posX, posY + 100);
 	_currentPosition = Vector2(_originPosition.x, _originPosition.y);
 

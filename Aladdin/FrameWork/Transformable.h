@@ -21,6 +21,8 @@ public:
 	virtual void	setPositionX(float x);
 	virtual void	setPositionY(float y);
 
+	virtual Vector2	getPositionViewPort();
+
 	virtual Vector2 getScale();
 	virtual void    setScale(Vector2 scale);
 	virtual void    setScale(float scale);

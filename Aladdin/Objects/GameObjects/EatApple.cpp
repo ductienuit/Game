@@ -3,6 +3,7 @@
 EatApple::EatApple(int posX, int posY) :BaseObject(eID::APPLEEAT)
 {
 	_sprite = SpriteManager::getInstance()->getSprite(eID::APPLEEAT);
+	_sprite->setFrameRect(0, 0, 5.0f, 5.0f);
 	this->setStatus(NORMAL);
 	setScale(SCALEAPPLE);
 	this->setPosition(posX*SCALEFACTOR.x, posY*SCALEFACTOR.y, 1.0f);
@@ -75,7 +76,7 @@ float EatApple::checkCollision(BaseObject *object, float dt)
 		return 0.0f;
 	auto collisionBody = (CollisionBody*)_listComponent["CollisionBody"];
 
-	//Check collision enermy(this) với aladdin(object)
+	//Check collision táo với aladdin(object)
 	collisionBody->checkCollision(object, dt, true);
 	return 0.0f;
 }

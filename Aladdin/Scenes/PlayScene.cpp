@@ -40,9 +40,9 @@ bool PlayScene::InIt()
 	_listObject.push_back(new Land(1432, 0, 51, 110, eDirection::INSIDE, eLandType::WALL));
 
 	//Dây và cục chặn
-	_listObject.push_back(new Land(2084, 105, 10, 200, eDirection::INSIDE, eLandType::CLIMBABLE0));
+	_listObject.push_back(new Land(2084, 105, 10, 200, eDirection::INSIDE, eLandType::ROPE));
 	_listObject.push_back(new Land(2084, 333, 20, 20, eDirection::BOTTOM, eLandType::STOP));
-	_listObject.push_back(new Land(1541, 688-333, 10, 157, eDirection::INSIDE, eLandType::CLIMBABLE0));
+	_listObject.push_back(new Land(1541, 688-333, 10, 157, eDirection::INSIDE, eLandType::ROPE));
 	_listObject.push_back(new Land(1541, 688-149, 20, 20, eDirection::BOTTOM, eLandType::STOP));
 
 	//Thanh xà ngang
@@ -52,12 +52,6 @@ bool PlayScene::InIt()
 	_listObject.push_back(new Land(5, 50, 1454, 10, eDirection::TOP, eLandType::SOLID));
 	//Miến gỗ đứng rớt
 	_listObject.push_back(new FallingPlatform(1641, 239, eDirection::TOP));
-
-	//Miến gỗ đứng ko rớt
-	_listObject.push_back(new Land(1757, 239, 284, 10, eDirection::TOP, eLandType::SOLID));
-	_listObject.push_back(new Land(1477, 688-451, 102, 10, eDirection::TOP, eLandType::SOLID));
-	_listObject.push_back(new Land(1477, 688-402, 40, 10, eDirection::TOP, eLandType::SOLID));
-	_listObject.push_back(new Land(1585, 688 - 292, 685, 10, eDirection::TOP, eLandType::SOLID));
 	//Bật thang 1
 	_listObject.push_back(new Land(1146, 0, 43, 71, eDirection::TOP, eLandType::STAIR));
 	_listObject.push_back(new Land(1189, 0, 43, 79, eDirection::TOP, eLandType::STAIR));
@@ -99,30 +93,6 @@ bool PlayScene::InIt()
 	_listObject.push_back(new Land(4397, 688-643-16, 38, 16, eDirection::TOP, eLandType::STAIR));
 	_listObject.push_back(new Land(4437, 688-635-16, 38, 16, eDirection::TOP, eLandType::STAIR));
 	_listObject.push_back(new Land(4476, 688 -626-11, 299, 11, eDirection::TOP, eLandType::STAIR));
-	////Bậc thang 5
-	//_listObject.push_back(new Land(1146, 0, 43, 71, eDirection::TOP, eLandType::STAIR));
-	//_listObject.push_back(new Land(1189, 0, 43, 79, eDirection::TOP, eLandType::STAIR));
-	//_listObject.push_back(new Land(1229, 0, 43, 87, eDirection::TOP, eLandType::STAIR));
-	//_listObject.push_back(new Land(1266, 0, 43, 95, eDirection::TOP, eLandType::STAIR));
-	//_listObject.push_back(new Land(1307, 0, 43, 103, eDirection::TOP, eLandType::STAIR));
-	//_listObject.push_back(new Land(1347, 0, 43, 111, eDirection::TOP, eLandType::STAIR));
-	//_listObject.push_back(new Land(1387, 0, 43, 119, eDirection::TOP, eLandType::STAIR));
-	//_listObject.push_back(new Land(1430, 110, 43, 10, eDirection::TOP, eLandType::STAIR));
-	//platform
-
-
-
-	//Apple
-	_listObject.push_back(new EatApple(600, 100));
-	//Camel - Lac da
-	auto camel = new Camel(1000, 50);
-	_listObject.push_back(camel);
-
-	//Fire
-	_listObject.push_back(new Fire(BEHIT, 458, 688 - 626, TOP));
-	_listObject.push_back(new Fire(BEHIT, 504, 688 - 626, TOP));
-	_listObject.push_back(new Fire(BEHIT, 551, 688 - 626, TOP));
-
 
 	//Background
 	_background = new BackGround();
@@ -130,11 +100,6 @@ bool PlayScene::InIt()
 
 	_backgroundfront = new BackGroundFront();
 	_backgroundfront->InIt();
-
-	//Complete
-	auto guardLu = new GuardLu(eStatus::FREE, 200, 100, eDirection::LEFT);
-	guardLu->InIt();
-	_listObject.push_back(guardLu);
 
 	////COMPLETE throwJar but not Jar
 	//auto guardThrowJar = new ThrowJar(eStatus::FREE, 300, 300);
@@ -160,11 +125,9 @@ bool PlayScene::InIt()
 
     _aladdin = new Aladdin();
 	_aladdin->InIt();
-	_aladdin->setPosition(10,250);
+	_aladdin->setPosition(3000,250);
 	_listObject.push_back(_aladdin);
 
-	_camera = new CameraVirtual(Vector2(0, 0));  //Khởi tạo bằng vị trí của aladdin
-	_listObject.push_back(_camera);
 
 	for each (auto object in _listObject)
 	{
@@ -193,18 +156,10 @@ void PlayScene::Update(float dt)
 	//// Hàm getlistobject của quadtree yêu cầu truyền vào một hình chữ nhật theo hệ top left, nên cần tính lại khung màn hình
 	
 	RECT screenx;
-
-
-	Vector3 positionViewPort;
-	positionViewPort = ViewPort::getInstance()->getPositionInViewPort(&Vector3(viewport_position.x, viewport_position.y, 1));
-
-	screenx.left = viewport_position.x;
-	screenx.right = viewport_position.x +640;
-	screenx.bottom = viewport_position.y;
-	screenx.top = screenx.bottom - WINDOWS_HEIGHT;
-	DrawRect(screenx);
-
-
+	screenx.top = viewport_in_transform.bottom;
+	screenx.bottom = viewport_in_transform.top;
+	screenx.left = viewport_in_transform.left;
+	screenx.right = viewport_in_transform.left + WINDOWS_WIDTH;
 
 	//RECT screenx;
 	//screenx.left = _camera->getBounding().left;// / SCALEFACTOR.x;
@@ -224,7 +179,7 @@ void PlayScene::Update(float dt)
 		throw exception("Loi");*/
 #if _DEBUG
 	t = clock() - t;
-	__debugoutput((float)t / CLOCKS_PER_SEC);
+	//__debugoutput((float)t / CLOCKS_PER_SEC);
 #endif
 
 	//for each (auto object in _listObject)
@@ -232,7 +187,6 @@ void PlayScene::Update(float dt)
 	//	object->Update(dt); //Update ala và camera
 	//}
 	_aladdin->Update(dt);
-	_camera->Update(dt);
 
 	for each (auto object in _activeObject)
 	{
@@ -319,7 +273,7 @@ void PlayScene::Update(float dt)
 
 void PlayScene::Draw(LPD3DXSPRITE spriteHandle)
 {
-    //_background->Draw(spriteHandle,_viewport);
+    _background->Draw(spriteHandle,_viewport);
 	for each (auto object in _activeObject)
 	{
 		if (object == nullptr || object->isInStatus(DESTROY))
@@ -328,7 +282,6 @@ void PlayScene::Draw(LPD3DXSPRITE spriteHandle)
 		object->ShowBB();
 	}
 	_aladdin->Draw(spriteHandle, _viewport);
-	//_camera->ShowBB();
 	//_backgroundfront->Draw(spriteHandle, _viewport);
 
 	for each(auto object in Stair[0])
@@ -398,6 +351,4 @@ void PlayScene::UpdateViewport(BaseObject * aladdin)
 		new_position.x = worldsize.x - WINDOWS_WIDTH;
 	}
 	_viewport->setPositionWorld(new_position);
-	//Cập nhật camera ảo là hình chữ nhật chứa camera ấy
-	_camera->setPosition(new_position.x,new_position.y); 
 }

@@ -10,7 +10,7 @@ GuardShort::GuardShort(eStatus status, int posX, int posY, eDirection direction,
 	Vector2 a(0, 0);
 	this->_listComponent.insert(pair<string, IComponent*>("Movement", new Movement(a, v, this->_sprite)));
 	this->setStatus(status);
-	this->setPosition(posX, posY, 1.0f);
+	this->setPosition(posX*SCALECHARACTER.x, posY*SCALECHARACTER.y, 1.0f);
 	_minMove = minMove;
 	_maxMove = maxMove;
 	text = new Text("Arial", "", 10, 25);

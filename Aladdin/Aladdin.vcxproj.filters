@@ -61,12 +61,6 @@
     <Filter Include="Resource Files\MapReader">
       <UniqueIdentifier>{a3f33e16-6046-4740-a570-5c4e578b9885}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Object\CameraVirtual">
-      <UniqueIdentifier>{664c2c8a-ef24-4a4e-a9dd-af23978db2f7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Object\CameraVirtual">
-      <UniqueIdentifier>{d9782f67-2cc5-4d8a-ba33-02868bb24ae9}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -266,9 +260,6 @@
     </ClCompile>
     <ClCompile Include="FrameWork\ReadMapEditor.cpp">
       <Filter>Source Files\FrameWork</Filter>
-    </ClCompile>
-    <ClCompile Include="Objects\CameraVirtual\CameraVirtual.cpp">
-      <Filter>Source Files\Object\CameraVirtual</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -484,9 +475,6 @@
     </ClInclude>
     <ClInclude Include="FrameWork\ReadMapEditor.h">
       <Filter>Header Files\FrameWork</Filter>
-    </ClInclude>
-    <ClInclude Include="Objects\CameraVirtual\CameraVirtual.h">
-      <Filter>Header Files\Object\CameraVirtual</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -58,6 +58,11 @@ void Transformable::setPositionY(float y)
 		_position.y = y;
 }
 
+Vector2 Transformable::getPositionViewPort()
+{
+	return _positionViewport;
+}
+
 Vector2 Transformable::getScale()
 {
 	return _scale;

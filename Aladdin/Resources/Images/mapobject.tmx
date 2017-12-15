@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-down" width="1" height="1" tilewidth="4771" tileheight="688" nextobjectid="355">
+<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-down" width="1" height="1" tilewidth="4771" tileheight="688" nextobjectid="380">
  <objectgroup name="heart">
   <object id="312" x="2384" y="636.5" width="15" height="15"/>
   <object id="313" x="3225" y="380.333" width="16.3333" height="14.3333"/>
  </objectgroup>
  <objectgroup name="guardshort">
   <object id="329" x="4600.33" y="170.667" width="33.6667" height="37.3333"/>
-  <object id="330" x="1712.67" y="611.333" width="34.6667" height="50.3333"/>
+  <object id="330" x="1712.67" y="613.333" width="34.6667" height="50.3333"/>
   <object id="331" x="1907" y="388" width="34" height="46.6667"/>
   <object id="332" x="2054" y="230" width="37" height="44.5"/>
   <object id="333" x="3481.5" y="610" width="46.5" height="46.5"/>
@@ -30,17 +30,17 @@
   <object id="310" x="3300" y="363.5" width="20" height="23.5"/>
  </objectgroup>
  <objectgroup name="camel">
-  <object id="354" x="1525.33" y="622" width="64" height="36"/>
+  <object id="354" x="1506.33" y="600" width="150" height="60"/>
  </objectgroup>
  <objectgroup color="#ffff7f" name="solid">
-  <object id="1" x="2" y="630" width="1150" height="10"/>
-  <object id="2" x="1475" y="665" width="694" height="6"/>
+  <object id="1" x="2" y="630" width="1431" height="10"/>
+  <object id="2" x="1475" y="665" width="731.333" height="6"/>
   <object id="3" x="2243" y="664" width="527" height="8"/>
   <object id="4" x="2818" y="662" width="1510" height="12"/>
   <object id="108" x="1476" y="439" width="101" height="9"/>
   <object id="109" x="1472" y="390" width="42" height="12"/>
   <object id="111" x="1748" y="438" width="297" height="11"/>
-  <object id="112" x="1588" y="278" width="685" height="14"/>
+  <object id="112" x="1588" y="279" width="685" height="14"/>
   <object id="114" x="2730" y="568" width="116" height="10"/>
   <object id="115" x="2641" y="409" width="163" height="8"/>
   <object id="116" x="2815" y="425" width="268" height="8"/>
@@ -188,13 +188,13 @@
   <object id="341" x="2612" y="192" width="27.3333" height="212.667"/>
  </objectgroup>
  <objectgroup color="#c83016" name="stair">
-  <object id="61" x="1146" y="611" width="40" height="14"/>
-  <object id="63" x="1191" y="602" width="37" height="17"/>
-  <object id="64" x="1231" y="594" width="36" height="18"/>
-  <object id="65" x="1270" y="586" width="40" height="18"/>
-  <object id="68" x="1313" y="579" width="37" height="20"/>
-  <object id="69" x="1353" y="570" width="36" height="24"/>
-  <object id="72" x="1392" y="562" width="105" height="15"/>
+  <object id="61" x="1148" y="619" width="40" height="14"/>
+  <object id="63" x="1191" y="608" width="37" height="17"/>
+  <object id="64" x="1231" y="600" width="36" height="18"/>
+  <object id="65" x="1270" y="592" width="40" height="18"/>
+  <object id="68" x="1313" y="584" width="37" height="20"/>
+  <object id="69" x="1353" y="576" width="36" height="24"/>
+  <object id="72" x="1392" y="568" width="85.6667" height="15"/>
   <object id="73" x="2588" y="658" width="29" height="2"/>
   <object id="75" x="2563" y="650" width="21" height="9"/>
   <object id="76" x="2531" y="642" width="29" height="9"/>
@@ -206,14 +206,14 @@
   <object id="82" x="2322" y="594" width="28" height="18"/>
   <object id="83" x="2290" y="587" width="28" height="13"/>
   <object id="84" x="2243" y="579" width="43" height="14"/>
-  <object id="88" x="2289" y="569" width="36" height="11"/>
-  <object id="89" x="2328" y="562" width="28" height="11"/>
-  <object id="90" x="2358" y="554" width="30" height="12"/>
-  <object id="93" x="2392" y="548" width="30" height="13"/>
-  <object id="96" x="2426" y="539" width="29" height="15"/>
-  <object id="97" x="2459" y="531" width="47" height="16"/>
-  <object id="98" x="2511" y="523" width="44" height="18"/>
-  <object id="99" x="2559" y="514" width="188" height="10"/>
+  <object id="88" x="2289" y="575" width="36" height="11"/>
+  <object id="89" x="2328" y="568" width="28" height="11"/>
+  <object id="90" x="2358" y="560" width="30" height="12"/>
+  <object id="93" x="2392" y="552" width="30" height="13"/>
+  <object id="96" x="2426" y="544" width="29" height="15"/>
+  <object id="97" x="2459" y="536" width="47" height="16"/>
+  <object id="98" x="2511" y="527" width="44" height="18"/>
+  <object id="99" x="2559" y="525" width="188" height="10"/>
   <object id="100" x="3841" y="466" width="32" height="25"/>
   <object id="101" x="3877" y="451" width="48" height="13"/>
   <object id="104" x="4336" y="643" width="48" height="20"/>
@@ -228,13 +228,13 @@
   <object id="300" x="4105.33" y="462" width="37.3333" height="10"/>
  </objectgroup>
  <objectgroup name="knifethrower">
-  <object id="342" x="1311" y="536" width="34.6667" height="42"/>
+  <object id="342" x="1324" y="498" width="34.6667" height="86"/>
   <object id="344" x="2468.25" y="493.5" width="29" height="36"/>
   <object id="347" x="4328" y="425.667" width="31.6667" height="41.3333"/>
   <object id="349" x="2549" y="119.333" width="31.6667" height="43.6667"/>
  </objectgroup>
  <objectgroup name="guardbig">
-  <object id="319" x="970.333" y="580" width="21" height="43.6667"/>
+  <object id="319" x="970.333" y="586" width="21" height="43.6667"/>
   <object id="320" x="1649" y="229.333" width="31" height="45"/>
   <object id="322" x="3284" y="604.5" width="38.5" height="54"/>
   <object id="324" x="3753.5" y="602.5" width="37" height="53.5"/>
@@ -247,21 +247,21 @@
   <object id="314" x="656" y="573.5" width="26.5" height="56.5"/>
  </objectgroup>
  <objectgroup color="#ff0000" name="fire">
-  <object id="46" x="451" y="605" width="45" height="21"/>
-  <object id="47" x="500" y="606" width="39" height="20"/>
-  <object id="48" x="544" y="605" width="42" height="21"/>
-  <object id="49" x="820" y="610" width="60" height="16"/>
-  <object id="50" x="885" y="610" width="38" height="16"/>
-  <object id="51" x="929" y="610" width="31" height="15"/>
-  <object id="52" x="1001" y="610" width="38" height="16"/>
-  <object id="53" x="1044" y="611" width="34" height="15"/>
-  <object id="55" x="2010" y="646" width="47" height="14"/>
-  <object id="56" x="2061" y="646" width="35" height="14"/>
-  <object id="57" x="2100" y="646" width="44" height="14"/>
+  <object id="46" x="476.667" y="605" width="32.3333" height="21"/>
+  <object id="47" x="513.333" y="606" width="29.6667" height="20"/>
+  <object id="48" x="548" y="606.333" width="36" height="19.6667"/>
   <object id="58" x="3066" y="641" width="48" height="16"/>
   <object id="59" x="3120" y="641" width="46" height="16"/>
   <object id="60" x="3172" y="640" width="54" height="16"/>
-  <object id="311" x="1080.67" y="611.667" width="41" height="16"/>
+  <object id="356" x="851.408" y="608.167" width="31.3068" height="17"/>
+  <object id="358" x="888.013" y="608.167" width="31.3068" height="17"/>
+  <object id="359" x="924.013" y="608.167" width="31.3068" height="17"/>
+  <object id="360" x="1061.32" y="607.833" width="31.3068" height="17"/>
+  <object id="361" x="1024.71" y="607.833" width="31.3068" height="17"/>
+  <object id="362" x="1097.32" y="607.833" width="31.3068" height="17"/>
+  <object id="363" x="2072.65" y="644.833" width="31.3068" height="17"/>
+  <object id="364" x="2036.04" y="644.833" width="31.3068" height="17"/>
+  <object id="365" x="2108.65" y="644.833" width="31.3068" height="17"/>
  </objectgroup>
  <layer name="Tile Layer 1" width="1" height="1">
   <data encoding="csv">
