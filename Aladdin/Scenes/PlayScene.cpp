@@ -115,7 +115,7 @@ bool PlayScene::InIt()
 	//Apple
 	_listObject.push_back(new EatApple(600, 100));
 	//Camel - Lac da
-	auto camel = new Camel(1000, 50);
+	auto camel = new Camel(100, 50);
 	_listObject.push_back(camel);
 
 	//Fire
@@ -132,9 +132,9 @@ bool PlayScene::InIt()
 	_backgroundfront->InIt();
 
 	//Complete
-	auto guardLu = new GuardLu(eStatus::FREE, 200, 100, eDirection::LEFT);
+	/*auto guardLu = new GuardLu(eStatus::FREE, 200, 100, eDirection::LEFT);
 	guardLu->InIt();
-	_listObject.push_back(guardLu);
+	_listObject.push_back(guardLu);*/
 
 	////COMPLETE throwJar but not Jar
 	//auto guardThrowJar = new ThrowJar(eStatus::FREE, 300, 300);

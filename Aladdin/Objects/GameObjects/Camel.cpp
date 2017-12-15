@@ -16,6 +16,9 @@ void Camel::InIt()
 	auto collisionBody = new CollisionBody(this);
 	_listComponent["CollisionBody"] = collisionBody;
 
+	bulletCamel = new BulletCamel(eStatus::THROW, this->getPositionX(), this->getPositionY() + 500, eDirection::RIGHT);
+	bulletCamel->InIt();
+
 	__hook(&CollisionBody::onCollisionBegin, collisionBody, &Camel::onCollisionBegin);
 	__hook(&CollisionBody::onCollisionEnd, collisionBody, &Camel::onCollisionEnd);
 
@@ -29,14 +32,21 @@ void Camel::InIt()
 void Camel::Update(float deltatime)
 {
 	_animations[this->getStatus()]->Update(deltatime);
+	bulletCamel->Update(deltatime);
 
 	UpdateStatus();
+
+	for (auto it = _listComponent.begin(); it != _listComponent.end(); it++)
+	{
+		it->second->Update(deltatime);
+	}
 }
 
 void Camel::Draw(LPD3DXSPRITE spritehandle, ViewPort* viewport)
 {
 	_sprite->UpdatePosition();
 	_animations[this->getStatus()]->Draw(spritehandle, viewport);
+	bulletCamel->Draw(spritehandle, viewport);
 }
 
 void Camel::Release()
@@ -47,10 +57,16 @@ void Camel::Release()
 	}
 	_listComponent.clear();
 	SAFE_DELETE(this->_sprite);
+	bulletCamel->Release();
 }
 
 void Camel::UpdateStatus()
 {
+	if (_animations[BEHIT]->getIndex() == 4)
+	{
+		bulletCamel->Shoot(this->getPositionX(), this->getPositionY());
+	}
+
 	if (_animations[BEHIT]->getIndex() >= 6)
 	{
 		_animations[BEHIT]->setIndex(0);
@@ -60,19 +76,19 @@ void Camel::UpdateStatus()
 
 void Camel::onCollisionBegin(CollisionEventArg *collision_event)
 {
-	/*eID objectID = collision_event->_otherObject->getId();
-	switch (objectID)
-	{
-		case eID::ALADDIN:
-		{
-			if (collision_event->_otherObject->isInStatus(eStatus::JUMPING))
-			{
-				this->setStatus(BEHIT);
-				collision_event->_otherObject->setStatus(eStatus::JUMPING);			
-			}
-			break;
-		}
-	}*/
+	//eID objectID = collision_event->_otherObject->getId();
+	//switch (objectID)
+	//{
+	//	case eID::ALADDIN:
+	//	{
+	//		if (collision_event->_otherObject->isInStatus(eStatus::JUMPING))
+	//		{
+	//			this->setStatus(BEHIT);
+	//			collision_event->_otherObject->setStatus(eStatus::JUMPING);			
+	//		}
+	//		break;
+	//	}
+	//}
 }
 
 void Camel::onCollisionEnd(CollisionEventArg *)
