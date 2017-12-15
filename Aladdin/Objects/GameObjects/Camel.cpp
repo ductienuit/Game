@@ -7,6 +7,7 @@ Camel::Camel(int posX, int posY) :BaseObject(eID::CAMEL)
 
 	this->setStatus(NORMAL);
 	this->setPosition(posX*SCALECHARACTER.x, posY*SCALECHARACTER.y, 1.0f);
+	this->setOrigin(ORIGINZERO);
 	text = new Text("Arial", "", 10, 25);
 	InIt();
 }

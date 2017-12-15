@@ -41,10 +41,6 @@ public:
 	*/
 	void Render(LPD3DXSPRITE spriteHandle);
 	/*
-	Render land, just change position in viewport
-	*/
-	void Render();
-	/*
 	vẽ hình với viewport
 	*/
 	void Render(LPD3DXSPRITE spriteHandle, ViewPort* viewport);
@@ -67,6 +63,7 @@ public:
 	void setZIndex(float z);
 
 	RECT getBounding();
+	RECT getBoundingDraw();
 
 	void setFrameRect(RECT rect);
 	void setFrameRect(float top, float right, float bottom, float left);
@@ -124,6 +121,7 @@ private:
 	D3DXCOLOR			_color;							// Màu ảnh, set cứng 255 255 255
 
 	RECT				_bound;							// Rect chứa sprite để kiểm tra va chạm
+	RECT                _boundDraw;                     //Hinh chu nhat de ve line
 
 	int					_totalFrames;					// tổng số frame
 	int					_columns;						// số cột
@@ -140,7 +138,8 @@ private:
 
 	void				setFrameRect();
 	void				setCurrentFrame();
-	void				UpdateBounding();                
+	void				UpdateBounding();     
+	void				UpdateBoundingDraw();
 
 	Vector2				RotatePointAroundOrigin(Vector2 point, float angle, Vector2 origin);
 

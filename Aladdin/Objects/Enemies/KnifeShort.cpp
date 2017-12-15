@@ -3,7 +3,10 @@
 KnifeShort::KnifeShort(eStatus status, int posX, int posY, eDirection direction)
 {
 	_sprite = SpriteManager::getInstance()->getSprite(eID::KNIFE);
-	_sprite->setFrameRect(0, 0, 32.0f, 16.0f);
+	/*Dòng dưới để set framewidth hoặc height
+	để vừa vào khởi tạo không bị sai collison.
+	Hàm InIt sẽ tự động cập nhật lại khi set status*/
+	_sprite->setFrameRect(0, 0, 5.0f, 5.0f);
 	_originPosition = Vector2(posX - 120, posY + 60);
 
 	_divingSprite = SpriteManager::getInstance()->getSprite(eID::ALADDIN);
@@ -13,6 +16,7 @@ KnifeShort::KnifeShort(eStatus status, int posX, int posY, eDirection direction)
 	this->setStatus(status);
 	this->setPosition(posX, posY, 1.0f);
 	text = new Text("Arial", "", 10, 25);
+	InIt();
 }
 
 void KnifeShort::InIt()

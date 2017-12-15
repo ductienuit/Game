@@ -8,12 +8,13 @@ GuardThrowJar::GuardThrowJar(eStatus status, int posX, int posY) :BaseEnemy(eID:
 	_divingSprite = SpriteManager::getInstance()->getSprite(eID::ALADDIN);
 
 	this->setStatus(status);
-	this->setPosition(posX, posY, 1.0f);
+	this->setPosition(posX*SCALECHARACTER.x, posY*SCALECHARACTER.y, 1.0f);
 	text = new Text("Arial", "", 10, 25);
 
 	jar = new Jar(eStatus::DROP, posX, posY, eDirection::BOTTOM);
 
 	_score = 10;
+	InIt();
 }
 
 void GuardThrowJar::InIt()

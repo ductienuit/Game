@@ -31,6 +31,8 @@
 #include"../Objects/GameObjects/Camel.h"
 #include"../Objects/GameObjects/EatApple.h"
 
+#include<time.h>
+
 #include"BackGround.h"
 #include"BackGroundFront.h"
 using namespace std;
@@ -59,7 +61,6 @@ public:
 private:
 	//Quadtree
 	QuadTree* _root;
-	RECT test;
 
 	//Nếu object hết hạn sử dụng thì hủy đối tượng
 	void destroyObject();   

@@ -3,15 +3,18 @@
 GuardFat::GuardFat(eStatus status, int posX, int posY, eDirection direction) :BaseEnemy(eID::GUARDFAT)
 {
 	_sprite = SpriteManager::getInstance()->getSprite(eID::GUARDFAT);
-	_sprite->setFrameRect(0, 0, 32.0f, 16.0f);
+	/*Dòng dưới để set framewidth hoặc height
+	để vừa vào khởi tạo không bị sai collison.
+	Hàm InIt sẽ tự động cập nhật lại khi set status*/
+	_sprite->setFrameRect(0, 0, 5.0f, 5.0f);
 
 	_divingSprite = SpriteManager::getInstance()->getSprite(eID::ALADDIN);
 	Vector2 v(direction * GUARDFAT_SPEED, 0);
 	Vector2 a(0, 0);
 	this->_listComponent.insert(pair<string, IComponent*>("Movement", new Movement(a, v, this->_sprite)));
 	this->setStatus(status);
-	this->setPosition(posX, posY, 1.0f);
-
+	this->setPosition(posX*SCALECHARACTER.x, posY*SCALECHARACTER.y, 1.0f);
+	InIt();
 }
 
 void GuardFat::InIt()

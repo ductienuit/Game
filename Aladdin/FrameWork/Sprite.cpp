@@ -50,7 +50,7 @@ Sprite::Sprite(LPD3DXSPRITE spriteHandle, LPCSTR filePath, int totalFrames, int 
 Sprite::Sprite(int x, int y, int w, int h, Vector2 scale, int totalFrames, int cols)
 {
 	_origin = ORIGINZERO;
-	_scale = SCALEFACTOR;
+	_scale = Vector2(1.6f, 1.92f);
 	_zIndex = 0;
 	_rotate = 0.0f;
 	_position.x = x*SCALEFACTOR.x; //Phải nhân để ra đúng tọa độ scale
@@ -81,19 +81,9 @@ Sprite::Sprite(int x, int y, int w, int h, Vector2 scale, int totalFrames, int c
 		NULL
 	);
 }
-
 void Sprite::Release()
 {
 	this->_texture.Release();
-}
-
-void Sprite::Render()
-{
-	Vector3 positionViewPort;
-	positionViewPort = ViewPort::getInstance()->getPositionInViewPort(&Vector3(_position.x, _position.y, 1));
-	_positionViewport.x = positionViewPort.x;
-	_positionViewport.y = positionViewPort.y;
-	this->UpdateBounding();
 }
 
 void Sprite::Render(LPD3DXSPRITE spriteHandle)
@@ -114,32 +104,7 @@ void Sprite::Render(LPD3DXSPRITE spriteHandle, ViewPort* viewport)
 		_origin,
 		_zIndex
 	);
-	Vector3 positionViewPort;
-	positionViewPort = ViewPort::getInstance()->getPositionInViewPort(&Vector3(_position.x, _position.y, 1));
-	_positionViewport.x = positionViewPort.x;
-	_positionViewport.y = positionViewPort.y;
 	this->UpdateBounding();
-	////Vẽ bounding để xem
-	//if (_surface == nullptr || _isDrawBounding == false)
-	//{
-	//	return;
-	//}
-
-	//RECT r;
-	//r.top = WINDOWS_HEIGHT - _bound.top;
-	//r.left = _bound.left;
-	//r.bottom = WINDOWS_HEIGHT - _bound.bottom;
-	//r.right = _bound.right;
-
-	//DeviceManager::getInstance()->getDevice()->ColorFill(_surface, NULL, D3DXCOLOR(1.0f, 0.0f, 1.0f, 1.0f));
-
-	//DeviceManager::getInstance()->getDevice()->StretchRect(
-	//	_surface,
-	//	NULL,
-	//	DeviceManager::getInstance()->getSurface(),
-	//	&r,
-	//	D3DTEXF_NONE
-	//);
 }
 
 void Sprite::setPosition(float x, float y, float z)
@@ -166,12 +131,7 @@ void Sprite::setPositionX(float x)
 {
 	if (x == _position.x)
 		return;
-
 	_position.x = x;
-	Vector3 positionViewPort;
-	positionViewPort = ViewPort::getInstance()->getPositionInViewPort(&Vector3(_position.x, _position.y, 1));
-	_positionViewport.x = positionViewPort.x;
-	_positionViewport.y = positionViewPort.y;
 	this->UpdateBounding();
 }
 
@@ -282,6 +242,12 @@ void Sprite::setZIndex(float z)
 RECT Sprite::getBounding()
 {
 	return _bound;
+}
+
+RECT Sprite::getBoundingDraw()
+{
+	UpdateBoundingDraw();
+	return _boundDraw;
 }
 
 void Sprite::setFrameRect(RECT rect)
@@ -461,21 +427,49 @@ void Sprite::UpdateBounding()
 	float scaleW = _frameWidth * abs(_scale.x);
 	float scaleH = _frameHeight * abs(_scale.y);
 
-	this->_bound.left = _positionViewport.x - scaleW * _origin.x;
-	this->_bound.top = WINDOWS_HEIGHT- _positionViewport.y- scaleH * _origin.y;
+	this->_bound.left = _position.x - scaleW * _origin.x;
+	this->_bound.bottom = _position.y - scaleH * _origin.y;
 	this->_bound.right = _bound.left + scaleW;
-	this->_bound.bottom = _bound.top +scaleH;
+	this->_bound.top = _bound.bottom + scaleH;
 
 	// 4 điểm của hcn
 	Vector2 p1 = Vector2(_bound.left, _bound.top);
 	Vector2 p2 = Vector2(_bound.right, _bound.top);
 	Vector2 p3 = Vector2(_bound.right, _bound.bottom);
 	Vector2 p4 = Vector2(_bound.left, _bound.bottom);
+	_anchorPoint = Vector2(_bound.left + scaleW * _origin.x, _bound.bottom + scaleH * _origin.y);
 
 	_bound.left = min(min(p1.x, p2.x), min(p3.x, p4.x));
 	_bound.top = max(max(p1.y, p2.y), max(p3.y, p4.y));
 	_bound.right = max(max(p1.x, p2.x), max(p3.x, p4.x));
 	_bound.bottom = min(min(p1.y, p2.y), min(p3.y, p4.y));
+}
+
+void Sprite::UpdateBoundingDraw()
+{
+	Vector3 positionViewPort;
+	positionViewPort = ViewPort::getInstance()->getPositionInViewPort(&Vector3(_position.x, _position.y, 1));
+	_positionViewport.x = positionViewPort.x;
+	_positionViewport.y = positionViewPort.y;
+
+	float scaleW = _frameWidth * abs(_scale.x);
+	float scaleH = _frameHeight * abs(_scale.y);
+
+	this->_boundDraw.left = _positionViewport.x - scaleW * _origin.x;
+	this->_boundDraw.top = WINDOWS_HEIGHT - _positionViewport.y - scaleH * _origin.y;
+	this->_boundDraw.right = _boundDraw.left + scaleW;
+	this->_boundDraw.bottom = _boundDraw.top + scaleH;
+
+	// 4 điểm của hcn
+	Vector2 p1 = Vector2(_boundDraw.left, _boundDraw.top);
+	Vector2 p2 = Vector2(_boundDraw.right, _boundDraw.top);
+	Vector2 p3 = Vector2(_boundDraw.right, _boundDraw.bottom);
+	Vector2 p4 = Vector2(_boundDraw.left, _boundDraw.bottom);
+
+	_boundDraw.left = min(min(p1.x, p2.x), min(p3.x, p4.x));
+	_boundDraw.top = max(max(p1.y, p2.y), max(p3.y, p4.y));
+	_boundDraw.right = max(max(p1.x, p2.x), max(p3.x, p4.x));
+	_boundDraw.bottom = min(min(p1.y, p2.y), min(p3.y, p4.y));
 
 }
 
