@@ -233,6 +233,20 @@ ReadMapEditor::ReadMapEditor(const char *filepath, QuadTree *& _quadTree)
 				_QuadTree->InsertStaticObject(_camel);
 			}
 		}
+
+		/*if (_objectGroup->GetName() == "restartpoint")
+		{
+			for (size_t j = 0; j < _objectGroup->GetNumObjects(); j++)
+			{
+				Tmx::Object* _object = _objectGroup->GetObjects().at(j);
+
+
+				RestartPoint* _restart = new RestartPoint(_object->GetX(), 688 - _object->GetY() - _object->GetHeight());
+
+				ListRestartPoint.push_back(_restart);
+				_QuadTree->InsertStaticObject(_restart);
+			}
+		}*/
 	}
 }
 
@@ -329,6 +343,15 @@ void ReadMapEditor::ListObject(RECT * rect)
 		{
 
 			GetList.push_back(ListCamel[i]);
+		}
+	}
+
+	for (size_t i = 0; i < ListRestartPoint.size(); i++)
+	{
+		if (isContain(ListRestartPoint[i], *rect))
+		{
+
+			GetList.push_back(ListRestartPoint[i]);
 		}
 	}
 }

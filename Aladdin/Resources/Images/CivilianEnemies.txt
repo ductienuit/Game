@@ -63,38 +63,28 @@ guardsLu_free_4	186	350	223	396
 guardsLu_free_5	226	350	263	396
 
 
+knifeThrowers_attack_00	7	156	56	238
 
-knifeThrowers_attack_00	618	160	689	238
+knifeThrowers_attack_01	78	151	135	238
 
+knifeThrowers_attack_02	165	154	210	238
 
-knifeThrowers_attack_01	572	159	620	238
+knifeThrowers_attack_03	246	157	299	238
 
+knifeThrowers_attack_04	310	158	385	238
 
-knifeThrowers_attack_02	490	156	566	238
+knifeThrowers_attack_05	427	166	490	238
 
+knifeThrowers_attack_06	530	154	595	238
 
-knifeThrowers_attack_03	440	151	490	238
+knifeThrowers_attack_07	614	149	674	238
 
+knifeThrowers_attack_08	678	154	771	238
 
-knifeThrowers_attack_04	376	158	432	238
+knifeThrowers_attack_09	809	157	861	238
 
+knifeThrowers_attack_10	884	158	958	238
 
-knifeThrowers_attack_05	314	170	369	238
-
-
-knifeThrowers_attack_06	230	160	304	238
-
-
-knifeThrowers_attack_07	179	160	230	238
-
-
-knifeThrowers_attack_08	117	156	166	238
-
-
-knifeThrowers_attack_09	67	152	119	238
-
-
-knifeThrowers_attack_10	3	157	56	238
 
 throwjar_0		11	35	22	57
 
