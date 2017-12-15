@@ -115,9 +115,9 @@ bool PlayScene::InIt()
 	//guardThin->InIt();
 	//_listObject.push_back(guardThin);
 
-	//auto guardfat = new GuardFat(eStatus::MOVING_LEFT, 200, 100, eDirection::LEFT);
-	//guardfat->InIt();
-	//_listObject.push_back(guardfat);
+	/*auto guardfat = new GuardFat(eStatus::MOVING_LEFT, 200, 120, eDirection::LEFT);
+	guardfat->InIt();
+	_listObject.push_back(guardfat);*/
 
 	//auto guardShort = new GuardShort(eStatus::MOVING_LEFT, 200, 100, eDirection::LEFT, 2700, 3200);
 	//guardShort->InIt();
