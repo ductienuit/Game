@@ -30,6 +30,8 @@
 #include"../Objects/Enemies/GuardFat.h"
 #include"../Objects/GameObjects/Camel.h"
 #include"../Objects/GameObjects/EatApple.h"
+#include"../Objects/CameraVirtual/CameraVirtual.h"
+#include<time.h>
 
 #include"BackGround.h"
 #include"BackGroundFront.h"
@@ -59,7 +61,7 @@ public:
 private:
 	//Quadtree
 	QuadTree* _root;
-	RECT test;
+	CameraVirtual* _camera; //camera này chỉ dùng để chứa _bound. Sử dụng cho va chạm
 
 	//Nếu object hết hạn sử dụng thì hủy đối tượng
 	void destroyObject();   

@@ -14,6 +14,7 @@ GuardThrowJar::GuardThrowJar(eStatus status, int posX, int posY) :BaseEnemy(eID:
 	jar = new Jar(eStatus::DROP, posX, posY, eDirection::BOTTOM);
 
 	_score = 10;
+	InIt();
 }
 
 void GuardThrowJar::InIt()

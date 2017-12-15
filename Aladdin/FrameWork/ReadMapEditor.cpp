@@ -25,7 +25,7 @@ ReadMapEditor::ReadMapEditor(const char *filepath, QuadTree *& _quadTree)
 				Tmx::Object* _object = _objectGroup->GetObjects().at(j);
 
 
-				GuardShort* _guardshort = new GuardShort(NORMAL, _object->GetX() + _object->GetWidth() / 2, 688 - _object->GetY() - _object->GetHeight() / 2, NONE, 1000, 1000);
+				GuardShort* _guardshort = new GuardShort(MOVING_LEFT, _object->GetX() + _object->GetWidth() / 2, 688 - _object->GetY() - _object->GetHeight() / 2, NONE, 1000, 1000);
 
 				ListGuardShort.push_back(_guardshort);
 				_QuadTree->InsertStaticObject(_guardshort);
@@ -41,7 +41,7 @@ ReadMapEditor::ReadMapEditor(const char *filepath, QuadTree *& _quadTree)
 				Tmx::Object* _object = _objectGroup->GetObjects().at(j);
 
 
-				GuardThin* _guardthin = new GuardThin(NORMAL, _object->GetX() + _object->GetWidth() / 2, 688 - _object->GetY() - _object->GetHeight() / 2, NONE);
+				GuardThin* _guardthin = new GuardThin(MOVING_LEFT, _object->GetX() + _object->GetWidth() / 2, 688 - _object->GetY() - _object->GetHeight() / 2, NONE);
 
 				ListGuardThin.push_back(_guardthin);
 				_QuadTree->InsertStaticObject(_guardthin);
@@ -56,7 +56,7 @@ ReadMapEditor::ReadMapEditor(const char *filepath, QuadTree *& _quadTree)
 				Tmx::Object* _object = _objectGroup->GetObjects().at(j);
 
 
-				GuardLu* _guardlu = new GuardLu(NORMAL, _object->GetX() + _object->GetWidth() / 2, 688 - _object->GetY() - _object->GetHeight() / 2, NONE);
+				GuardLu* _guardlu = new GuardLu(FREE, _object->GetX() + _object->GetWidth() / 2, 688 - _object->GetY() - _object->GetHeight() / 2, NONE);
 
 				ListGuardLu.push_back(_guardlu);
 				_QuadTree->InsertStaticObject(_guardlu);
@@ -70,7 +70,7 @@ ReadMapEditor::ReadMapEditor(const char *filepath, QuadTree *& _quadTree)
 				Tmx::Object* _object = _objectGroup->GetObjects().at(j);
 
 
-				Fire* _fire = new Fire(NORMAL, _object->GetX() + _object->GetWidth() / 2, 688 - _object->GetY() - _object->GetHeight() / 2, NONE);
+				Fire* _fire = new Fire(BEHIT, _object->GetX() + _object->GetWidth() / 2, 688 - _object->GetY() - _object->GetHeight() / 2, NONE);
 
 				ListFire.push_back(_fire);
 				_QuadTree->InsertStaticObject(_fire);
@@ -84,7 +84,7 @@ ReadMapEditor::ReadMapEditor(const char *filepath, QuadTree *& _quadTree)
 				Tmx::Object* _object = _objectGroup->GetObjects().at(j);
 
 
-				GuardFat* _guardFat = new GuardFat(NORMAL, _object->GetX() + _object->GetWidth() / 2, 688 - _object->GetY() - _object->GetHeight() / 2, NONE);
+				GuardFat* _guardFat = new GuardFat(FREE, _object->GetX() + _object->GetWidth() / 2, 688 - _object->GetY() - _object->GetHeight() / 2, NONE);
 
 				ListGuardFat.push_back(_guardFat);
 				_QuadTree->InsertStaticObject(_guardFat);
@@ -98,7 +98,7 @@ ReadMapEditor::ReadMapEditor(const char *filepath, QuadTree *& _quadTree)
 				Tmx::Object* _object = _objectGroup->GetObjects().at(j);
 
 
-				GuardThrowJar* _guardThrowJar = new GuardThrowJar(NORMAL, _object->GetX() + _object->GetWidth() / 2, 688 - _object->GetY() - _object->GetHeight() / 2);
+				GuardThrowJar* _guardThrowJar = new GuardThrowJar(FREE, _object->GetX() + _object->GetWidth() / 2, 688 - _object->GetY() - _object->GetHeight() / 2);
 
 				ListGuardThrowJar.push_back(_guardThrowJar);
 				_QuadTree->InsertStaticObject(_guardThrowJar);
@@ -111,7 +111,7 @@ ReadMapEditor::ReadMapEditor(const char *filepath, QuadTree *& _quadTree)
 			{
 				Tmx::Object* _object = _objectGroup->GetObjects().at(j);
 
-				KnifeThrower* _knifeThrower = new KnifeThrower(NORMAL, _object->GetX() + _object->GetWidth() / 2, 688 - _object->GetY() - _object->GetHeight() / 2, NONE);
+				KnifeThrower* _knifeThrower = new KnifeThrower(MOVING_LEFT, _object->GetX() + _object->GetWidth() / 2, 688 - _object->GetY() - _object->GetHeight() / 2, NONE);
 
 				ListKnifeThrower.push_back(_knifeThrower);
 				_QuadTree->InsertStaticObject(_knifeThrower);
@@ -209,19 +209,6 @@ ReadMapEditor::ReadMapEditor(const char *filepath, QuadTree *& _quadTree)
 			}
 		}
 
-		if (_objectGroup->GetName() == "solid")
-		{
-			for (size_t j = 0; j < _objectGroup->GetNumObjects(); j++)
-			{
-				Tmx::Object* _object = _objectGroup->GetObjects().at(j);
-
-				Land* _solid = new Land(_object->GetX(), 688 - _object->GetY(), _object->GetWidth(), _object->GetHeight(), NONE, SOLID);
-
-				ListLand.push_back(_solid);
-				_QuadTree->InsertStaticObject(_solid);
-			}
-		}
-
 		if (_objectGroup->GetName() == "apple")
 		{
 			for (size_t j = 0; j < _objectGroup->GetNumObjects(); j++)
@@ -249,7 +236,6 @@ ReadMapEditor::ReadMapEditor(const char *filepath, QuadTree *& _quadTree)
 				_QuadTree->InsertStaticObject(_camel);
 			}
 		}
-
 	}
 }
 
@@ -260,16 +246,10 @@ ReadMapEditor::~ReadMapEditor()
 
 void ReadMapEditor::ListObject(RECT * rect)
 {
+	GetList.clear();
 	for (size_t i = 0; i < ListGuardShort.size(); i++)
 	{
-		//kiem tra co trong rect camera khong
-		float x = ListGuardShort[i]->getPositionX()/SCALECHARACTER.x;
-		float y = ListGuardShort[i]->getPositionY()/SCALECHARACTER.y;
-		bool check1 = x > rect->left;
-		bool check2 = x < rect->right;
-		bool check3 = y < rect->bottom;
-		bool check4 = y > rect->top;
-		if (check1 && check2 && check3 && check4)
+		if (isContain(ListGuardShort[i], *rect))
 		{
 			GetList.push_back(ListGuardShort[i]);
 		}
@@ -278,13 +258,7 @@ void ReadMapEditor::ListObject(RECT * rect)
 
 	for (size_t i = 0; i < ListGuardLu.size(); i++)
 	{
-		float x = ListGuardLu[i]->getPositionX() ;
-		float y = ListGuardLu[i]->getPositionY();
-		bool check1 = x > rect->left;
-		bool check2 = x < rect->right;
-		bool check3 = y < rect->bottom;
-		bool check4 = y > rect->top;
-		if (check1 && check2 && check3 && check4)
+		if (isContain(ListGuardLu[i], *rect))
 		{
 			GetList.push_back(ListGuardLu[i]);
 		}
@@ -292,13 +266,7 @@ void ReadMapEditor::ListObject(RECT * rect)
 
 	for (size_t i = 0; i < ListGuardThin.size(); i++)
 	{
-		float x = ListGuardThin[i]->getPositionX() ;
-		float y = ListGuardThin[i]->getPositionY();
-		bool check1 = x > rect->left;
-		bool check2 = x < rect->right;
-		bool check3 = y < rect->bottom;
-		bool check4 = y > rect->top;
-		if (check1 && check2 && check3 && check4)
+		if (isContain(ListGuardThin[i], *rect))
 		{
 
 			GetList.push_back(ListGuardThin[i]);
@@ -307,13 +275,7 @@ void ReadMapEditor::ListObject(RECT * rect)
 
 	for (size_t i = 0; i < ListGuardFat.size(); i++)
 	{
-		float x = ListGuardFat[i]->getPositionX() ;
-		float y = ListGuardFat[i]->getPositionY();
-		bool check1 = x > rect->left;
-		bool check2 = x < rect->right;
-		bool check3 = y < rect->bottom;
-		bool check4 = y > rect->top;
-		if (check1 && check2 && check3 && check4)
+		if (isContain(ListGuardFat[i], *rect))
 		{
 
 			GetList.push_back(ListGuardFat[i]);
@@ -322,13 +284,7 @@ void ReadMapEditor::ListObject(RECT * rect)
 
 	for (size_t i = 0; i < ListGuardThrowJar.size(); i++)
 	{
-		float x = ListGuardThrowJar[i]->getPositionX() ;
-		float y = ListGuardThrowJar[i]->getPositionY();
-		bool check1 = x > rect->left;
-		bool check2 = x < rect->right;
-		bool check3 = y < rect->bottom;
-		bool check4 = y > rect->top;
-		if (check1 && check2 && check3 && check4)
+		if (isContain(ListGuardThrowJar[i], *rect))
 		{
 
 			GetList.push_back(ListGuardThrowJar[i]);
@@ -337,13 +293,7 @@ void ReadMapEditor::ListObject(RECT * rect)
 
 	for (size_t i = 0; i < ListKnifeThrower.size(); i++)
 	{
-		float x = ListKnifeThrower[i]->getPositionX() ;
-		float y = ListKnifeThrower[i]->getPositionY();
-		bool check1 = x > rect->left;
-		bool check2 = x < rect->right;
-		bool check3 = y < rect->bottom;
-		bool check4 = y > rect->top;
-		if (check1 && check2 && check3 && check4)
+		if (isContain(ListKnifeThrower[i], *rect))
 		{
 
 			GetList.push_back(ListKnifeThrower[i]);
@@ -352,13 +302,7 @@ void ReadMapEditor::ListObject(RECT * rect)
 
 	for (size_t i = 0; i < ListFire.size(); i++)
 	{
-		float x = ListFire[i]->getPositionX() ;
-		float y = ListFire[i]->getPositionY();
-		bool check1 = x > rect->left;
-		bool check2 = x < rect->right;
-		bool check3 = y < rect->bottom;
-		bool check4 = y > rect->top;
-		if (check1 && check2 && check3 && check4)
+		if (isContain(ListFire[i], *rect))
 		{
 
 			GetList.push_back(ListFire[i]);
@@ -367,7 +311,7 @@ void ReadMapEditor::ListObject(RECT * rect)
 
 	for (size_t i = 0; i < ListLand.size(); i++)
 	{
-		float x = ListLand[i]->getPositionX() ;
+		/*float x = ListLand[i]->getPositionX() ;
 		float y = ListLand[i]->getPositionY();
 		bool check1 = x > rect->left;
 		bool check2 = x < rect->right;
@@ -375,20 +319,17 @@ void ReadMapEditor::ListObject(RECT * rect)
 		bool check4 = y > rect->top;
 		if (check1 && check2 && check3 && check4)
 		{
-
+			GetList.push_back(ListLand[i]);
+		}*/
+		if (isContain(ListLand[i],*rect))
+		{
 			GetList.push_back(ListLand[i]);
 		}
 	}
 
 	for (size_t i = 0; i < ListEatApple.size(); i++)
 	{
-		float x = ListEatApple[i]->getPositionX() ;
-		float y = ListEatApple[i]->getPositionY();
-		bool check1 = x > rect->left;
-		bool check2 = x < rect->right;
-		bool check3 = y < rect->bottom;
-		bool check4 = y > rect->top;
-		if (check1 && check2 && check3 && check4)
+		if (isContain(ListEatApple[i], *rect))
 		{
 
 			GetList.push_back(ListEatApple[i]);
@@ -397,13 +338,7 @@ void ReadMapEditor::ListObject(RECT * rect)
 
 	for (size_t i = 0; i < ListCamel.size(); i++)
 	{
-		float x = ListCamel[i]->getPositionX() ;
-		float y = ListCamel[i]->getPositionY();
-		bool check1 = x > rect->left;
-		bool check2 = x < rect->right;
-		bool check3 = y < rect->bottom;
-		bool check4 = y > rect->top;
-		if (check1 && check2 && check3 && check4)
+		if (isContain(ListCamel[i], *rect))
 		{
 
 			GetList.push_back(ListCamel[i]);
@@ -536,6 +471,6 @@ bool ReadMapEditor::isContain(BaseObject*object, RECT rect1)
 {
 	/*25/11 Đức Tiến đã sửa*/
 	RECT rect2 = object->getBounding();
-	return !(rect2.left > rect1.right || rect2.right < rect1.left || rect2.top < rect1.bottom || rect2.bottom > rect1.top);
+	return !(rect2.left > rect1.right || rect2.right < rect1.left || rect2.top > rect1.bottom || rect2.bottom < rect1.top);
 }
 

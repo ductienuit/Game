@@ -13,6 +13,7 @@ KnifeShort::KnifeShort(eStatus status, int posX, int posY, eDirection direction)
 	this->setStatus(status);
 	this->setPosition(posX, posY, 1.0f);
 	text = new Text("Arial", "", 10, 25);
+	InIt();
 }
 
 void KnifeShort::InIt()

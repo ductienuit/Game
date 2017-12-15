@@ -70,7 +70,9 @@ enum eID
 	BULLETCAMEL,
 
 	APPLEEAT,
-	ITEMSPARK
+	ITEMSPARK,
+
+	CAMERAVIRTUAL, //Camera ao, dung de lay bounding
 };
 
 enum eDirection

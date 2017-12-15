@@ -11,7 +11,7 @@ GuardFat::GuardFat(eStatus status, int posX, int posY, eDirection direction) :Ba
 	this->_listComponent.insert(pair<string, IComponent*>("Movement", new Movement(a, v, this->_sprite)));
 	this->setStatus(status);
 	this->setPosition(posX, posY, 1.0f);
-
+	InIt();
 }
 
 void GuardFat::InIt()

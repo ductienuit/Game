@@ -163,7 +163,8 @@ bool PlayScene::InIt()
 	_aladdin->setPosition(10,250);
 	_listObject.push_back(_aladdin);
 
-
+	_camera = new CameraVirtual(Vector2(0, 0));  //Khởi tạo bằng vị trí của aladdin
+	_listObject.push_back(_camera);
 
 	for each (auto object in _listObject)
 	{
@@ -189,21 +190,51 @@ void PlayScene::Update(float dt)
 
 	Vector2 viewport_position = _viewport->getPositionWorld();
 	RECT viewport_in_transform = _viewport->getBounding();
-	// Hàm getlistobject của quadtree yêu cầu truyền vào một hình chữ nhật theo hệ top left, nên cần tính lại khung màn hình
-	RECT screen;
-
-	screen.left = viewport_in_transform.left;// / SCALEFACTOR.x;
-	screen.right = viewport_in_transform.right;// / SCALEFACTOR.x;
-	screen.bottom = viewport_position.y;// / SCALEFACTOR.y;
-	screen.top = screen.bottom - 480;// / SCALEFACTOR.y;
+	//// Hàm getlistobject của quadtree yêu cầu truyền vào một hình chữ nhật theo hệ top left, nên cần tính lại khung màn hình
+	
+	RECT screenx;
 
 
-	DrawRect(screen);
-	mMap->ListObject(&screen);
+	Vector3 positionViewPort;
+	positionViewPort = ViewPort::getInstance()->getPositionInViewPort(&Vector3(viewport_position.x, viewport_position.y, 1));
+
+	screenx.left = viewport_position.x;
+	screenx.right = viewport_position.x +640;
+	screenx.bottom = viewport_position.y;
+	screenx.top = screenx.bottom - WINDOWS_HEIGHT;
+	DrawRect(screenx);
+
+
+
+	//RECT screenx;
+	//screenx.left = _camera->getBounding().left;// / SCALEFACTOR.x;
+	//screenx.right = _camera->getBounding().right;// / SCALEFACTOR.x;
+	//screenx.bottom = _camera->getBounding().top;// / SCALEFACTOR.y; 
+	//screenx.top = _camera->getBounding().bottom;// / SCALEFACTOR.y;
+	//DrawRect(screenx);
+
+#if _DEBUG									 // clock_t để test thời gian chạy đoạn code update (milisecond)
+	clock_t t;
+	t = clock();
+#endif
+	_activeObject.clear();
+	mMap->ListObject(&screenx);	
 	_activeObject = mMap->GetList;
-	int x = _activeObject.size();
+	/*if (_activeObject.size() != 0)
+		throw exception("Loi");*/
+#if _DEBUG
+	t = clock() - t;
+	__debugoutput((float)t / CLOCKS_PER_SEC);
+#endif
 
-	for each (auto object in _listObject)
+	//for each (auto object in _listObject)
+	//{
+	//	object->Update(dt); //Update ala và camera
+	//}
+	_aladdin->Update(dt);
+	_camera->Update(dt);
+
+	for each (auto object in _activeObject)
 	{
 		if (object == nullptr || object->isInStatus(DESTROY)|| object->getId()==LAND)
 			continue;
@@ -214,7 +245,7 @@ void PlayScene::Update(float dt)
 
 	/*Check collision aladdin with land
 	@i Object*/
-	for (auto i : _listObject)
+	for (auto i : _activeObject)
 	{
 		// i la Enermy va aladdin
 		if (i == nullptr)
@@ -235,7 +266,7 @@ void PlayScene::Update(float dt)
 
 	/*Check collision (*1)enermy with (*2)aladdin (chú ý thứ tự )
 	@i Enermyobject*/
-	for (auto obj : _listObject)
+	for (auto obj : _activeObject)
 	{
 		// obj la Enermy va aladdin
 		if (obj == nullptr)
@@ -288,20 +319,22 @@ void PlayScene::Update(float dt)
 
 void PlayScene::Draw(LPD3DXSPRITE spriteHandle)
 {
-    _background->Draw(spriteHandle,_viewport);
-	for each (auto object in _listObject)
+    //_background->Draw(spriteHandle,_viewport);
+	for each (auto object in _activeObject)
 	{
 		if (object == nullptr || object->isInStatus(DESTROY))
 			continue;
 		object->Draw(spriteHandle, _viewport);
-		//object->ShowBB();
+		object->ShowBB();
 	}
-	_backgroundfront->Draw(spriteHandle, _viewport);
+	_aladdin->Draw(spriteHandle, _viewport);
+	//_camera->ShowBB();
+	//_backgroundfront->Draw(spriteHandle, _viewport);
 
 	for each(auto object in Stair[0])
 	{
 		object->Draw(spriteHandle, _viewport);
-		//object->ShowBB();
+		object->ShowBB();
 	}
 	for each(auto object in Stair[1])
 	{
@@ -336,6 +369,13 @@ void PlayScene::Release()
 	{
 		object->Release();
 	}
+
+	for each (auto object in _activeObject)
+	{
+		object->Release();
+	}
+	_background->Release();
+	_backgroundfront->Release();
 }
 
 void PlayScene::UpdateViewport(BaseObject * aladdin)
@@ -358,4 +398,6 @@ void PlayScene::UpdateViewport(BaseObject * aladdin)
 		new_position.x = worldsize.x - WINDOWS_WIDTH;
 	}
 	_viewport->setPositionWorld(new_position);
+	//Cập nhật camera ảo là hình chữ nhật chứa camera ấy
+	_camera->setPosition(new_position.x,new_position.y); 
 }

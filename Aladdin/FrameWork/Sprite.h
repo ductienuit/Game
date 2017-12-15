@@ -29,6 +29,9 @@ public:
 	/*Khởi tạo sprite cho land, chú ý: Chỉ sử dụng bounding để xét va chạm*/
 	Sprite(int x, int y, int w, int h,Vector2 scale = SCALEFACTOR, int totalFrames = 1, int cols = 1);
 
+	/*Khởi tạo sprite cho camera, chú ý: Chỉ sử dụng bounding để xét va chạm*/
+	Sprite(int x, int y, int w, int h,bool isCamera, int totalFrames = 1, int cols = 1);
+
 	~Sprite();
 
 	/*
@@ -44,6 +47,10 @@ public:
 	Render land, just change position in viewport
 	*/
 	void Render();
+	/*
+	Render camera virtual
+	*/
+	void RenderCamera();
 	/*
 	vẽ hình với viewport
 	*/

@@ -14,6 +14,7 @@ GuardShort::GuardShort(eStatus status, int posX, int posY, eDirection direction,
 	_minMove = minMove;
 	_maxMove = maxMove;
 	text = new Text("Arial", "", 10, 25);
+	InIt();
 }
 
 void GuardShort::InIt()

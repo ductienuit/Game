@@ -82,6 +82,41 @@ Sprite::Sprite(int x, int y, int w, int h, Vector2 scale, int totalFrames, int c
 	);
 }
 
+Sprite::Sprite(int x, int y, int w, int h, bool isCamera, int totalFrames, int cols)
+{
+	_origin = ORIGINZERO;
+	_scale = SCALEONE;
+	_zIndex = 0;
+	_rotate = 0.0f;
+	_position.x = x; 
+	_position.y = y;
+
+	_totalFrames = totalFrames;
+	_columns = cols;
+	_textureWidth = w;
+	_textureHeight = h;
+	_frameWidth = _textureWidth;
+	_frameHeight = _textureHeight;
+	_index = 0;
+	_currentFrame = Vector2(0, 0);
+
+	this->setIndex(0);
+	this->UpdateBounding();
+
+	_isDrawBounding = false;
+	_surface = nullptr;
+
+	//create surface
+	DeviceManager::getInstance()->getDevice()->CreateOffscreenPlainSurface(
+		WINDOWS_WIDTH,
+		WINDOWS_HEIGHT,
+		D3DFMT_X8R8G8B8,
+		D3DPOOL_DEFAULT,
+		&_surface,
+		NULL
+	);
+}
+
 void Sprite::Release()
 {
 	this->_texture.Release();
@@ -93,6 +128,12 @@ void Sprite::Render()
 	positionViewPort = ViewPort::getInstance()->getPositionInViewPort(&Vector3(_position.x, _position.y, 1));
 	_positionViewport.x = positionViewPort.x;
 	_positionViewport.y = positionViewPort.y;
+	this->UpdateBounding();
+}
+
+void Sprite::RenderCamera()
+{
+	_positionViewport = _position;
 	this->UpdateBounding();
 }
 

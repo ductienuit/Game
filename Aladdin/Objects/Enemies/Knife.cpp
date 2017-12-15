@@ -13,6 +13,7 @@ Knife::Knife(eStatus status, int posX, int posY, eDirection direction) :BaseEnem
 	this->setStatus(status);
 	this->setPosition(posX, posY, 1.0f);
 	text = new Text("Arial", "", 10, 25);
+	InIt();
 }
 
 void Knife::InIt()

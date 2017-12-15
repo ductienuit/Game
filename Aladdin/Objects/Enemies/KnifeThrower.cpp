@@ -12,6 +12,7 @@ KnifeThrower::KnifeThrower(eStatus status, int posX, int posY, eDirection direct
 	this->setStatus(status);
 	this->setPosition(posX, posY, 1.0f);
 	text = new Text("Arial", "", 10, 25);
+	InIt();
 }
 
 void KnifeThrower::InIt()
