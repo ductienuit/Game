@@ -30,7 +30,7 @@ enum eStatus
 	SITTING_DOWN =	(1 << 4),				// 01000 = 2^3
 	STOPWALK =		(1 << 5),			//Aladdin sẽ là dừng
 	LOOKING_UP =	(1 << 6),				// 2^5
-	THROW =			(1 << 7),			//Ném táo.
+	DESTROY =		(1 << 7),			//Ném táo.
 	FREE =			(1 << 8),			//Trạng thái sau trạng thái normal khi chờ player rờ phím
 	JUMPING_LEFT =  (1 << 9),			//Đang moveLeft nhấn C
 	JUMPING_RIGHT = (1 << 10),			//Đang moveRight nhấn C
@@ -45,7 +45,9 @@ enum eStatus
 	THROW_RIGHT_NEAR =	(1 << 19),		//Trang thai cua knife
 	THROW_LEFT_FAR =	(1 << 20),		//Trang thai cua knife
 	THROW_RIGHT_FAR =	(1 << 21),		//Trang thai cua knife
-	DESTROY			=   (1 << 22),
+	THROW			=   (1 << 22),
+	THROW_LEFT		=	(1 << 23),
+	THROW_RIGHT		=	(1 << 24)
 };
 
 enum eID

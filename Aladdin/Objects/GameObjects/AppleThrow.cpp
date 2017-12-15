@@ -5,6 +5,7 @@ AppleThrow::AppleThrow(eStatus status, int posX, int posY, eDirection direction)
 	_sprite = SpriteManager::getInstance()->getSprite(eID::APPLETHROW);
 	_sprite->setFrameRect(0, 0, 32.0f, 16.0f);
 	_originPosition = Vector2(posX - 120, posY + 60);
+	_currentPosition = Vector2(_originPosition.x, _originPosition.y);
 
 	_divingSprite = SpriteManager::getInstance()->getSprite(eID::ALADDIN);
 	Vector2 v(direction * APPLETHROW_SPEED, 0);
@@ -28,10 +29,28 @@ void AppleThrow::InIt()
 	_animations[THROW] = new Animation(_sprite, 0.5f);
 	_animations[THROW]->addFrameRect(eID::APPLETHROW, "apple_00", "apple_00", "apple_00", NULL);
 
+	_animations[THROW_LEFT] = new Animation(_sprite, 0.5f);
+	_animations[THROW_LEFT]->addFrameRect(eID::APPLETHROW, "apple_00", "apple_00", "apple_00", NULL);
+
+	_animations[THROW_RIGHT] = new Animation(_sprite, 0.5f);
+	_animations[THROW_RIGHT]->addFrameRect(eID::APPLETHROW, "apple_00", "apple_00", "apple_00", NULL);
+
 }
 void AppleThrow::Update(float deltatime)
 {
 	_animations[this->getStatus()]->Update(deltatime);
+
+	switch (this->getStatus())
+	{
+	case THROW_RIGHT:
+		throwRight();
+		break;
+	case THROW_LEFT:
+		throwLeft();
+		break;
+	default:
+		break;
+	}
 
 	// update component để sau cùng để sửa bên trên sau đó nó cập nhật đúng
 	for (auto it = _listComponent.begin(); it != _listComponent.end(); it++)
@@ -80,22 +99,48 @@ AppleThrow::~AppleThrow()
 
 void AppleThrow::movingLeft(float x, float y)
 {
-	_sprite->setScaleX(-1.6);
-	auto move = (Movement*)this->_listComponent["Movement"];
-	move->setVelocity(Vector2(-APPLETHROW_SPEED, -APPLETHROW_JUMP));
-	
-	x = x - 40;
-	y = y + 80;
-	this->setPosition(x, y);
+	this->setStatus(eStatus::THROW_LEFT);
+	count = 0;
+	_currentPosition.x = x - 60;
+	_currentPosition.y = y + 90;
 }
 
 void AppleThrow::movingRight(float x, float y)
 {
-	_sprite->setScaleX(1.6);
-	auto move = (Movement*)this->_listComponent["Movement"];
-	move->setVelocity(Vector2(APPLETHROW_SPEED, -APPLETHROW_JUMP));
+	this->setStatus(eStatus::THROW_RIGHT);
+	count = 0;
+	_currentPosition.x = x + 60;
+	_currentPosition.y = y + 90;
+}
 
-	x = x + 40;
-	y = y + 80;
-	this->setPosition(x, y);
+void AppleThrow::throwLeft()
+{
+	if (count < 25)
+	{
+		_currentPosition.x -= 4;
+		_currentPosition.y += 2;
+	}
+	else
+	{
+		_currentPosition.x -= 8;
+		_currentPosition.y -= 4;
+	};
+	count++;
+	this->setPosition(_currentPosition.x, _currentPosition.y);
+}
+
+void AppleThrow::throwRight()
+{
+	if (count < 25)
+	{
+		_currentPosition.x += 4;
+		_currentPosition.y += 2;
+	}
+	else
+	{
+		_currentPosition.x += 8;
+		_currentPosition.y -= 4;
+	};
+	count++;
+	this->setPosition(_currentPosition.x, _currentPosition.y);
 }

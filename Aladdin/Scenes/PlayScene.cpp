@@ -103,9 +103,9 @@ bool PlayScene::InIt()
 	_backgroundfront->InIt();
 
 	//Complete
-	auto guardLu = new GuardLu(eStatus::FREE, 200, 100, eDirection::LEFT);
+	/*auto guardLu = new GuardLu(eStatus::FREE, 200, 100, eDirection::LEFT);
 	guardLu->InIt();
-	_listObject.push_back(guardLu);
+	_listObject.push_back(guardLu);*/
 
 	////COMPLETE throwJar but not Jar
 	//auto guardThrowJar = new ThrowJar(eStatus::FREE, 300, 300);
