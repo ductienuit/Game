@@ -31,13 +31,16 @@ public:
 	Text* text;
 	void movingLeft(float x, float y);
 	void movingRight(float x, float y);
+	void throwLeft();
+	void throwRight();
 	~AppleThrow();
 private:
 
-
+	int count = 0;
 	map<string, IComponent*> _listComponent;
 	map<int, Animation*> _animations;
 	Sprite *_divingSprite;
 	Vector2 _originPosition;
+	Vector2 _currentPosition;
 };
 #endif _APPLETHROW_H
