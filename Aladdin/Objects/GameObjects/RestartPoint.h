@@ -28,5 +28,6 @@ private:
 	map<string, IComponent*> _listComponent;
 	map<int, Animation*> _animations;
 	Text* text;
+	bool _canTurn;
 };
 #endif _RESTARTPOINT_H

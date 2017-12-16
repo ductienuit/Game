@@ -22,18 +22,22 @@ void RestartPoint::InIt()
 
 	_animations[BEHIT] = new Animation(_sprite, 0.12f);
 	_animations[BEHIT]->addFrameRect(eID::RESTARTPOINT, "genie_restart_point_0", 10);
+
+	_animations[FREE] = new Animation(_sprite, 0.12f);
+	_animations[FREE]->addFrameRect(eID::RESTARTPOINT, "genie_restart_point_09", "genie_restart_point_09", "genie_restart_point_09", NULL);
+
+	_canTurn = true;
 }
 
 void RestartPoint::Update(float deltatime)
 {
 	_animations[this->getStatus()]->Update(deltatime);
 
-	if (_animations[BEHIT]->getIndex() >= 6)
+	if (_animations[BEHIT]->getIndex() >= 9)
 	{
-		_animations[BEHIT]->setIndex(0);
-		//apple+=10;
-		setStatus(DESTROY);
+		_canTurn = false;
 	}
+
 }
 
 void RestartPoint::Draw(LPD3DXSPRITE spritehandle, ViewPort* viewport)
@@ -54,11 +58,19 @@ void RestartPoint::Release()
 void RestartPoint::onCollisionBegin(CollisionEventArg *collision_event)
 {
 	eID objectID = collision_event->_otherObject->getId();
-	switch (objectID)
+	
+	 switch (objectID)
 	{
 	case eID::ALADDIN:
 	{
-		setStatus(BEHIT);
+		if (_canTurn)
+		{
+			setStatus(BEHIT);
+		}
+		else
+		{
+			setStatus(FREE);
+		}
 		break;
 	}
 	}

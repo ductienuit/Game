@@ -234,7 +234,7 @@ ReadMapEditor::ReadMapEditor(const char *filepath, QuadTree *& _quadTree)
 			}
 		}
 
-		/*if (_objectGroup->GetName() == "restartpoint")
+		if (_objectGroup->GetName() == "restartpoint")
 		{
 			for (size_t j = 0; j < _objectGroup->GetNumObjects(); j++)
 			{
@@ -246,7 +246,7 @@ ReadMapEditor::ReadMapEditor(const char *filepath, QuadTree *& _quadTree)
 				ListRestartPoint.push_back(_restart);
 				_QuadTree->InsertStaticObject(_restart);
 			}
-		}*/
+		}
 	}
 }
 
