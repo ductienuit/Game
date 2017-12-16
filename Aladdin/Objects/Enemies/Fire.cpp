@@ -74,7 +74,10 @@ void Fire::onCollisionBegin(CollisionEventArg *collision_event)
 				this->setStatus(BEHIT);
 
 				if (_animations[BEHIT]->getIndex() == 3)
-				{	//Set status aladdin bị đánh
+				{	
+					if(collision_event->_otherObject->isInStatus(CLIMB))
+						collision_event->_otherObject->savePreStatus();
+					//Set status aladdin bị đánh
 					collision_event->_otherObject->setStatus(eStatus::BEHIT);
 					//score--
 				}
@@ -102,6 +105,14 @@ float Fire::checkCollision(BaseObject *object, float dt)
 IComponent* Fire::getComponent(string componentName)
 {
 	return _listComponent.find(componentName)->second;
+}
+
+RECT Fire::getBounding()
+{
+	RECT rect = BaseObject::getBounding();
+	rect.top -= 50;
+
+	return rect;
 }
 
 Fire::~Fire()

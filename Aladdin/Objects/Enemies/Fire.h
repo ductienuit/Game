@@ -26,6 +26,7 @@ public:
 
 	IComponent* getComponent(string componentName);
 
+	RECT getBounding() override;
 	Text* text;
 	~Fire();
 private:

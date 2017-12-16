@@ -56,6 +56,10 @@ void BaseObject::clearStatus()
 	this->setStatus(eStatus(this->getStatus() & eStatus::NORMAL));
 }
 
+void BaseObject::savePreStatus()
+{
+	_preStatus = _status;
+}
 Vector2 BaseObject::getPosition()
 {
 	return _sprite->getPosition();

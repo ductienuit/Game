@@ -51,6 +51,7 @@ public:
 	int		getIndex() override;
 
 	void	Stop() override;
+
 private:
 	map<int, Animation*> _animations;
 	map<string, IComponent*> _listComponent;

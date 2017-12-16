@@ -811,14 +811,15 @@ void Aladdin::UpdateInput(float dt)
 	}
 	case(eStatus::BEHIT):
 	{
+		standing();
 		//Làm ảnh mờ khi bị đánh
 		this->setOpacity(0.7);
-		//Tự hủy khi đế một bức ảnh nào đó
+		//Tự hủy khi đế một bức ảnh n
 		if (_animations[_currentAnimateIndex]->getIndex()== 5)
 		{
 			_animations[_currentAnimateIndex]->setIndex(0);
+			this->setStatus(_preStatus);
 			this->setOpacity(1.0f);
-			this->clearStatus();
 		}
 		break;
 	}
@@ -1258,6 +1259,15 @@ void Aladdin::updateStatus(float dt)
 		if (isInStatus(eStatus::THROW) && isInStatus(ATTACK))
 			removeStatus(THROW);
 	}
+	////set preority
+	//if (isInStatus(eStatus(BEHIT | CLIMB_JUMP)))
+	//{
+	//	setStatus(BEHIT);
+	//}
+	//if (isInStatus(eStatus(MOVING_LEFT | CLIMB_JUMP)))
+	//{
+	//	setStatus(BEHIT);
+	//}
 }
 
 void Aladdin::updateStatusOneAction(float deltatime)

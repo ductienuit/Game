@@ -35,6 +35,7 @@ public:
 	virtual void removeStatus(eStatus status);
 	virtual bool isInStatus(eStatus status);
 	virtual void clearStatus();
+	virtual void savePreStatus();
 
 	virtual Vector2 getPosition();
 	virtual float   getPositionX();
@@ -95,6 +96,7 @@ protected:
 	// khởi tạo animation thì reference đến sprite
 	eID			_id;
 	eStatus		_status;
+	eStatus		_preStatus;
 	eDirection	_physicsSide;
 	//FLAG
 	bool		_canUp;
