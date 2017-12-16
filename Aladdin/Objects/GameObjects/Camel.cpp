@@ -65,7 +65,7 @@ void Camel::UpdateStatus()
 {
 	if (_animations[BEHIT]->getIndex() == 4)
 	{
-		bulletCamel->Shoot(this->getPositionX(), this->getPositionY());
+		bulletCamel->Shoot(this->getPositionX() + 140, this->getPositionY());
 	}
 
 	if (_animations[BEHIT]->getIndex() >= 6)
