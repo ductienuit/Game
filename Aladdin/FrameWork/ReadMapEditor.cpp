@@ -220,6 +220,22 @@ ReadMapEditor::ReadMapEditor(const char *filepath, QuadTree *& _quadTree)
 			}
 		}
 
+
+		if (_objectGroup->GetName() == "heart")
+		{
+			for (size_t j = 0; j < _objectGroup->GetNumObjects(); j++)
+			{
+				Tmx::Object* _object = _objectGroup->GetObjects().at(j);
+
+
+				EatHeart* _heart = new EatHeart(_object->GetX(), 688 - _object->GetY() - _object->GetHeight());
+
+				ListEatHeart.push_back(_heart);
+				_QuadTree->InsertStaticObject(_heart);
+			}
+		}
+
+
 		if (_objectGroup->GetName() == "camel")
 		{
 			for (size_t j = 0; j < _objectGroup->GetNumObjects(); j++)
@@ -323,6 +339,17 @@ void ReadMapEditor::ListObject(RECT * rect)
 		}
 	}
 
+
+	for (size_t i = 0; i < ListEatHeart.size(); i++)
+	{
+		if (isContain(ListEatHeart[i], *rect))
+		{
+
+			GetList.push_back(ListEatHeart[i]);
+		}
+	}
+
+
 	for (size_t i = 0; i < ListCamel.size(); i++)
 	{
 		if (isContain(ListCamel[i], *rect))
@@ -333,8 +360,8 @@ void ReadMapEditor::ListObject(RECT * rect)
 	}
 }
 
-//vector<BaseObject*> ReadMapEditor::GetList(RECT * rect)
-//{
+vector<BaseObject*> ReadMapEditor::GetList(RECT * rect)
+{
 //	kiem tra listguardshort
 //	size_t x = ListGuardShort.size();
 //	for (size_t i = 0; i < ListGuardShort.size(); i++)
@@ -435,6 +462,16 @@ void ReadMapEditor::ListObject(RECT * rect)
 //			GetList(rect).push_back(ListEatApple[i]);
 //		}
 //	}
+//
+    for (size_t i = 0; i < ListEatHeart.size(); i++)
+	{
+		if (ListEatHeart[i]->getPositionX() > rect->left&&ListEatHeart[i]->getPositionX() < rect->right
+			&&ListEatHeart[i]->getPositionY() < rect->top&&ListEatHeart[i]->getPositionY() > rect->bottom)
+		{
+
+			GetList(rect).push_back(ListEatHeart[i]);
+		}
+	}
 //
 //	for (size_t i = 0; i < ListCamel.size(); i++)
 //	{

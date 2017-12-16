@@ -72,6 +72,7 @@ enum eID
 	BULLETCAMEL,
 
 	APPLEEAT,
+	HEARTEAT,
 	ITEMSPARK,
 
 	CAMERAVIRTUAL, //Camera ao, dung de lay bounding
@@ -109,6 +110,7 @@ enum eLandType
 #define COLOR_KEY D3DXCOLOR(1.0f, 0.0f, 1.0f, 1.0f)				// màu khi mà load hình nó bỏ qua > trong suốt
 #define SCALEFACTOR D3DXVECTOR2(1.6f,1.92f)
 #define SCALEAPPLE D3DXVECTOR2(2.0f,2.0f)
+#define SCALEHEART D3DXVECTOR2(2.0f,2.0f)
 #define SCALECHARACTER D3DXVECTOR2(1.6f,1.92f)
 #define SCALEALADDIN D3DXVECTOR2(1.8f,2.16f)
 #define SCALEMAP D3DXVECTOR2(1.6f,1.92f)
