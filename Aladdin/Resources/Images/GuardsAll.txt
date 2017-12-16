@@ -180,19 +180,13 @@ guardsShort_attack_03	127	855	192	899
 guardsShort_attack_04	70	847	114	899
 
 
-guardsShort_dying_00	439	919	494	971
-
-guardsShort_dying_01	380	920	435	971
-
-guardsShort_dying_02	319	921	374	971
-
-guardsShort_dying_03	258	921	313	971
-
-guardsShort_dying_04	187	923	252	971
-
-guardsShort_dying_05	107	906	176	971
-
-guardsShort_dying_06	31	910	99	971
+guardsShort_dying_00	647	919	702	971
+guardsShort_dying_01	573	920	628	971
+guardsShort_dying_02	487	921	542	971
+guardsShort_dying_03	398	921	454	971
+guardsShort_dying_04	278	921	352	972
+guardsShort_dying_05	143	914	246	980
+guardsShort_dying_06	18	916	119	977
 
 
 destroy_enermy_00_00	20	1020	32	1030
