@@ -22,7 +22,7 @@ void EatApple::InIt()
 	_animations[NORMAL]->addFrameRect(eID::APPLEEAT, "eat_apple_0", "eat_apple_0", NULL);
 
 	_animations[BEHIT] = new Animation(_sprite, 0.12f);
-	_animations[BEHIT]->addFrameRect(eID::APPLEEAT, "item_spark_", 7);
+	_animations[BEHIT]->addFrameRect(eID::APPLEEAT, "item_spark_", 12);
 }
 
 void EatApple::Update(float deltatime)

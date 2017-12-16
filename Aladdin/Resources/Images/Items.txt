@@ -1,12 +1,37 @@
 frame_name	left	top	right	bottom
-item_spark_0	0	0	44	46
-item_spark_1	44	0	88	46
-item_spark_2	88	0	132	46
-item_spark_3	132	0	176	46
-item_spark_4	176	0	220	46
-item_spark_5	220	0	264	46
-item_spark_6	264	0	308	46
-item_spark_4	308	0	352	46
-item_spark_5	352	0	396	46
-item_spark_6	396	0	440	46
-eat_apple_0	24	47	41	62
+item_spark_0	13	19	19	25
+
+item_spark_1	55	13	65	29
+item_spark_2	99	11	111	29
+
+item_spark_3	137	7	159	31
+
+item_spark_4	177	5	211	37
+
+item_spark_5	221	1	235	35
+
+item_spark_6	241	5	279	39
+
+item_spark_7	287	7	319	35
+
+item_spark_8	327	11	361	37
+
+item_spark_9	371	15	405	37
+
+item_spark_10	419	19	453	39
+
+item_spark_11	463	25	475	39
+
+
+eat_apple_0	352	96	363	108
+
+genie_restart_point_00	30	503	50	536
+genie_restart_point_01	60	507	84	536
+genie_restart_point_02	89	516	123	536
+genie_restart_point_03	130	504	150	538
+genie_restart_point_04	156	504	179	538
+genie_restart_point_05	185	505	211	538
+genie_restart_point_06	218	505	242	539
+genie_restart_point_07	250	506	270	540
+genie_restart_point_08	281	507	305	540
+genie_restart_point_09	313	508	336	541

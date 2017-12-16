@@ -14,6 +14,7 @@
 #include"../Objects/GameObjects/EatApple.h"
 #include"../Objects/GameObjects/Land.h"
 #include"../Objects/GameObjects/Camel.h"
+#include"../Objects/GameObjects/RestartPoint.h"
 
 
 class ReadMapEditor
@@ -33,6 +34,7 @@ public:
 	vector <EatApple*> ListEatApple;
 	vector <Camel*> ListCamel;
 	vector <BaseObject*> GetList;
+	vector <RestartPoint*> ListRestartPoint;
 
 	void ListObject(RECT *rect);
 	QuadTree* _QuadTree;
