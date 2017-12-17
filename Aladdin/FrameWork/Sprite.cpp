@@ -244,9 +244,9 @@ RECT Sprite::getBounding()
 	return _bound;
 }
 
-RECT Sprite::getBoundingDraw()
+RECT Sprite::getBoundingDraw(RECT bound)
 {
-	UpdateBoundingDraw();
+	UpdateBoundingDraw(bound);
 	return _boundDraw;
 }
 
@@ -445,15 +445,18 @@ void Sprite::UpdateBounding()
 	_bound.bottom = min(min(p1.y, p2.y), min(p3.y, p4.y));
 }
 
-void Sprite::UpdateBoundingDraw()
+void Sprite::UpdateBoundingDraw(RECT bound)
 {
 	Vector3 positionViewPort;
 	positionViewPort = ViewPort::getInstance()->getPositionInViewPort(&Vector3(_position.x, _position.y, 1));
 	_positionViewport.x = positionViewPort.x;
 	_positionViewport.y = positionViewPort.y;
 
-	float scaleW = _frameWidth * abs(_scale.x);
-	float scaleH = _frameHeight * abs(_scale.y);
+	float width = abs(bound.right - bound.left);
+	float height = abs(bound.top - bound.bottom);
+
+	float scaleW = width;
+	float scaleH = height;
 
 	this->_boundDraw.left = _positionViewport.x - scaleW * _origin.x;
 	this->_boundDraw.top = WINDOWS_HEIGHT - _positionViewport.y - scaleH * _origin.y;

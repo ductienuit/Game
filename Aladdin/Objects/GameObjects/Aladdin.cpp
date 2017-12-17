@@ -631,6 +631,35 @@ void Aladdin::UpdateInput(float dt)
 		}
 		break;
 	}
+	case(eStatus::DROP):
+	{
+		if (_input->isKeyDown(DIK_LEFT))
+			moveLeftJump();
+		else if (_input->isKeyDown(DIK_RIGHT))
+			moveRightJump();
+		else if (_input->isKeyPressed(DIK_Z))
+		{
+			removeStatus(DROP);
+			setStatus((eStatus)(JUMPING|THROW));
+			appleThrow->addStatus(eStatus::THROW);
+			if (getScale().x > 0)
+			{
+				appleThrow->movingRight(this->getPositionX(), this->getPositionY());
+			}
+			else if (getScale().x < 0)
+			{
+				appleThrow->movingLeft(this->getPositionX(), this->getPositionY());
+			}
+
+		}
+		else if (_input->isKeyPressed(DIK_X))
+		{
+			removeStatus(DROP);
+			setStatus((eStatus)(JUMPING | ATTACK));
+		}
+		break;
+		break;
+	}
 	case(eStatus::SITTING_DOWN):
 	{
 		if (_animations[_currentAnimateIndex]->getIndex() >= 3)
@@ -1224,7 +1253,7 @@ void Aladdin::onCollisionEnd(CollisionEventArg * collision_event)
 				}
 				case (eLandType::SOLID):
 				{
-					eStatus temp = (eStatus)(JUMPING);
+					eStatus temp = (eStatus)(JUMPING|JUMPING_LEFT|JUMPING_RIGHT);
 					if (!isExist(temp))				
 						setStatus(DROP);
 					auto g = (Gravity*)_listComponent["Gravity"];

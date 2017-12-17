@@ -3,8 +3,6 @@
 
 #include "define.h"
 #include "../Objects/BaseObject.h"
-#include"../pugixml-1.7/src/pugixml.hpp"
-using namespace pugi;
 
 class QuadTree
 {

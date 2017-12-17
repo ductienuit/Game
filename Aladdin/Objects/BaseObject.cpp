@@ -234,7 +234,7 @@ eDirection BaseObject::getPhysicsBodySide()
 
 void BaseObject::ShowBB()
 {
-	RECT BBox = _sprite->getBoundingDraw();
+	RECT BBox = _sprite->getBoundingDraw(this->getBounding());
 	float top = WINDOWS_HEIGHT - BBox.top;
 	float left = BBox.left;
 	float right = BBox.right;

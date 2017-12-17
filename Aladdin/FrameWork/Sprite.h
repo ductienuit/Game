@@ -63,7 +63,7 @@ public:
 	void setZIndex(float z);
 
 	RECT getBounding();
-	RECT getBoundingDraw();
+	RECT getBoundingDraw(RECT);
 
 	void setFrameRect(RECT rect);
 	void setFrameRect(float top, float right, float bottom, float left);
@@ -139,7 +139,7 @@ private:
 	void				setFrameRect();
 	void				setCurrentFrame();
 	void				UpdateBounding();     
-	void				UpdateBoundingDraw();
+	void				UpdateBoundingDraw(RECT);
 
 	Vector2				RotatePointAroundOrigin(Vector2 point, float angle, Vector2 origin);
 

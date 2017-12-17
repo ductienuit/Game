@@ -276,11 +276,6 @@
     <None Include="Objects\GameObjects\desktop.ini" />
     <None Include="Resources\Images\mapobject.tmx" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="pugixml-1.7\scripts\pugixml_vs2010.vcxproj">
-      <Project>{89a1e353-e2dc-495c-b403-742be206aced}</Project>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
