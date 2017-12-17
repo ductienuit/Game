@@ -466,7 +466,6 @@ void Aladdin::UpdateInput(float dt)
 		else if (_input->isKeyPressed(DIK_C))
 		{
 			removeStatus(eStatus::STOPWALK);
-			removeStatus(eStatus::FREE);
 			jump(eStatus::JUMPING);
 		}
 		break;
