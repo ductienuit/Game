@@ -1272,6 +1272,15 @@ void Aladdin::onCollisionEnd(CollisionEventArg * collision_event)
 					g->setStatus(eGravityStatus::FALLING__DOWN);
 					break;
 				}
+				case(eLandType::BAR):
+				{
+					eStatus temp = (eStatus)(JUMPING | JUMPING_LEFT | JUMPING_RIGHT);
+					if (!isExist(temp))
+						setStatus(DROP);
+					auto g = (Gravity*)_listComponent["Gravity"];
+					g->setStatus(eGravityStatus::FALLING__DOWN);
+					break;
+				}
 			}
 			break;
 		}
