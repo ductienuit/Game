@@ -58,6 +58,7 @@ void BaseObject::clearStatus()
 
 void BaseObject::savePreStatus()
 {
+	removeStatus((eStatus)(MOVING_LEFT | MOVING_RIGHT));
 	_preStatus = _status;
 }
 Vector2 BaseObject::getPosition()
