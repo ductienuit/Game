@@ -244,8 +244,6 @@ void Aladdin::Update(float deltatime)
 
 	//Set lại bounding của aladdin
 	setBounding(_sprite->getBounding());
-	float x = this->getPositionX();
-	float y = this->getPositionY();
 }
 
 void Aladdin::UpdateInput(float dt)
@@ -878,11 +876,11 @@ void Aladdin::UpdateInput(float dt)
 	}
 	case(eStatus::BEHIT):
 	{
-		standing();
+		Stop(false);
 		//Làm ảnh mờ khi bị đánh
 		this->setOpacity(0.7);
 		//Tự hủy khi đế một bức ảnh n
-		if (_animations[_currentAnimateIndex]->getIndex()== 5)
+		if (_animations[_currentAnimateIndex]->getIndex()== 4)
 		{
 			_animations[_currentAnimateIndex]->setIndex(0);
 			this->setStatus(_preStatus);
@@ -1037,6 +1035,17 @@ void Aladdin::onCollisionBegin(CollisionEventArg * collision_event)
 					auto gravity = (Gravity*)_listComponent["Gravity"];
 					gravity->setStatus(eGravityStatus::SHALLOWED);
 					standing();
+					break;
+				}
+				case (eLandType::BAR):
+				{
+					if (isInStatus(eStatus(JUMPING | SWING)))
+						return;
+					clearStatus();
+					addStatus(eStatus::SWING);
+					float y = land->getPositionY();
+					setPositionY(y - 150); //set cứng khi va chạm với Bar thì cho giảm y
+					swing();
 					break;
 				}
 				}
@@ -1268,15 +1277,6 @@ void Aladdin::onCollisionEnd(CollisionEventArg * collision_event)
 				}
 				case (eLandType::STAIR):
 				{
-					auto g = (Gravity*)_listComponent["Gravity"];
-					g->setStatus(eGravityStatus::FALLING__DOWN);
-					break;
-				}
-				case(eLandType::BAR):
-				{
-					eStatus temp = (eStatus)(JUMPING | JUMPING_LEFT | JUMPING_RIGHT);
-					if (!isExist(temp))
-						setStatus(DROP);
 					auto g = (Gravity*)_listComponent["Gravity"];
 					g->setStatus(eGravityStatus::FALLING__DOWN);
 					break;
@@ -1577,6 +1577,12 @@ void Aladdin::Stop()
 
 	auto g = (Gravity*)_listComponent["Gravity"];
 	g->setStatus(eGravityStatus::SHALLOWED);
+}
+
+void Aladdin::Stop(bool stopanimation)
+{
+	auto move = (Movement*)_listComponent["Movement"];
+	move->setVelocity(Vector2(0,this->getVelocity().y));
 }
 
 void Aladdin::Draw(LPD3DXSPRITE spriteHandle, ViewPort* viewport)

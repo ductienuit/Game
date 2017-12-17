@@ -76,7 +76,8 @@ enum eID
 
 	RESTARTPOINT,
 
-	CAMERAVIRTUAL, //Camera ao, dung de lay bounding
+	SKY,
+	SAND
 };
 
 enum eDirection

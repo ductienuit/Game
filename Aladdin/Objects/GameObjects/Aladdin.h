@@ -51,6 +51,7 @@ public:
 	int		getIndex() override;
 
 	void	Stop() override;
+	void	Stop(bool);
 
 private:
 	map<int, Animation*> _animations;

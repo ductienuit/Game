@@ -91,7 +91,6 @@ private:
 	vector<BaseObject*> Solid;			//Đất
 	vector<BaseObject*> Spring;			//Cục nhún
 	vector<BaseObject*> Platform;		//Thanh gỗ
-	vector<BaseObject*> Stair[2];
 	vector<BaseObject*> CheckOn[4];
 
 	//Main background

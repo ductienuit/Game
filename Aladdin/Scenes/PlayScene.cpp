@@ -3,6 +3,7 @@
 extern bool Enter[3];
 extern bool TurnOn[4];
 extern vector<BaseObject*> _listObject;
+vector<BaseObject*> Stair[2];
 using namespace std;
 ViewPort* PlayScene::_viewport = ViewPort::getInstance();
 PlayScene::PlayScene()
@@ -35,65 +36,16 @@ bool PlayScene::InIt()
 	//	**********
 	//  **********
 	// (T,L) (x,y)
-	TurnOn[0] = true;
-	//Tường
-	_listObject.push_back(new Land(1432, 0, 51, 110, eDirection::INSIDE, eLandType::WALL));
 
-	//Dây và cục chặn
-	_listObject.push_back(new Land(2084, 105, 10, 200, eDirection::INSIDE, eLandType::ROPE));
-	_listObject.push_back(new Land(2084, 333, 20, 20, eDirection::BOTTOM, eLandType::STOP));
-	_listObject.push_back(new Land(1541, 688-333, 10, 157, eDirection::INSIDE, eLandType::ROPE));
-	_listObject.push_back(new Land(1541, 688-149, 20, 20, eDirection::BOTTOM, eLandType::STOP));
-
-	//Thanh xà ngang
-	_listObject.push_back(new Land(130, 850, 800, 30, eDirection::BOTTOM, eLandType::BAR));
-	//Nền
-	_listObject.push_back(new Land(1454, 12, 4771, 10, eDirection::TOP, eLandType::SOLID));
-	_listObject.push_back(new Land(5, 50, 1454, 10, eDirection::TOP, eLandType::SOLID));
-	//Miến gỗ đứng rớt
-	_listObject.push_back(new FallingPlatform(1641, 239, eDirection::TOP));
-	//Bật thang 1
-	_listObject.push_back(new Land(1146, 0, 43, 71, eDirection::TOP, eLandType::STAIR));
-	_listObject.push_back(new Land(1189, 0, 43, 79, eDirection::TOP, eLandType::STAIR));
-	_listObject.push_back(new Land(1229, 0, 43, 87, eDirection::TOP, eLandType::STAIR));
-	_listObject.push_back(new Land(1266, 0, 43, 95, eDirection::TOP, eLandType::STAIR));
-	_listObject.push_back(new Land(1307, 0, 43, 103, eDirection::TOP, eLandType::STAIR));
-	_listObject.push_back(new Land(1347, 0, 43, 111, eDirection::TOP, eLandType::STAIR));
-	_listObject.push_back(new Land(1387, 0, 43, 119, eDirection::TOP, eLandType::STAIR));
-	_listObject.push_back(new Land(1430, 110, 43, 10, eDirection::TOP, eLandType::STAIR));
+	TurnOn[0] = true;	
 	//Bật thang 2
-	Enter[0] = false;  //Check 1
+	Enter[0] = false; //Check 1
 	CheckOn[0].push_back(new Land(2660, 688-67-591, 5, 67, eDirection::TOP, eLandType::CHECKSTAIR1));
 	CheckOn[1].push_back(new Land(2645, 688 - 67 - 593, 5, 67, eDirection::TOP, eLandType::CHECKSTAIR2));
-	Stair[0].push_back(new Land(2563, 688 - 9-650, 27, 9, eDirection::TOP, eLandType::STAIR));
-	Stair[0].push_back(new Land(2531, 688 - 9-642, 30, 9, eDirection::TOP, eLandType::STAIR));
-	Stair[0].push_back(new Land(2499, 688 - 11-635, 30, 11, eDirection::TOP, eLandType::STAIR));
-	Stair[0].push_back(new Land(2466, 688 - 12-627, 30, 12, eDirection::TOP, eLandType::STAIR));
-	Stair[0].push_back(new Land(2435, 688 - 9-620, 35, 9, eDirection::TOP, eLandType::STAIR));
-	Stair[0].push_back(new Land(2388, 688 - 13-610, 43, 13, eDirection::TOP, eLandType::STAIR));
-	Stair[0].push_back(new Land(2355, 688 - 14-603, 30, 14, eDirection::TOP, eLandType::STAIR));
-	Stair[0].push_back(new Land(2322, 688 - 18-594, 32, 18, eDirection::TOP, eLandType::STAIR));
-	Stair[0].push_back(new Land(2290, 688 - 13-587, 34, 13, eDirection::TOP, eLandType::STAIR));
-	_listObject.push_back(new Land(2243, 688 - 14-579, 45, 14, eDirection::TOP, eLandType::SOLID));
 	//Bậc thang 3
 	Enter[1] = false;  //Check 2
 	CheckOn[2].push_back(new Land(2245, 688 - 86 - 492, 5, 86, eDirection::TOP, eLandType::CHECKSTAIR3));
 	CheckOn[3].push_back(new Land(2269, 688 - 83 - 493, 5, 83, eDirection::TOP, eLandType::CHECKSTAIR4));
-	Stair[1].push_back(new Land(2289, 688 - 10 - 578, 36, 10, eDirection::TOP, eLandType::STAIR));
-	Stair[1].push_back(new Land(2328, 688 -565-10, 28, 10, eDirection::TOP, eLandType::STAIR));
-	Stair[1].push_back(new Land(2358, 688 -560-10, 30, 10, eDirection::TOP, eLandType::STAIR));
-	Stair[1].push_back(new Land(2392, 688 -555-10, 30, 10, eDirection::TOP, eLandType::STAIR));
-	Stair[1].push_back(new Land(2426, 688 -539-15, 29, 10, eDirection::TOP, eLandType::STAIR));
-	Stair[1].push_back(new Land(2459, 688 -531-16, 47, 10, eDirection::TOP, eLandType::STAIR));
-	Stair[1].push_back(new Land(2511, 688 -530-10, 45, 10, eDirection::TOP, eLandType::STAIR));
-	Stair[1].push_back(new Land(2559, 688 -520-10, 188, 10, eDirection::TOP, eLandType::STAIR));
-
-	//Bậc thang 4
-	_listObject.push_back(new Land(4346, 688-13-650, 48, 13, eDirection::TOP, eLandType::STAIR));
-	_listObject.push_back(new Land(4397, 688-643-16, 38, 16, eDirection::TOP, eLandType::STAIR));
-	_listObject.push_back(new Land(4437, 688-635-16, 38, 16, eDirection::TOP, eLandType::STAIR));
-	_listObject.push_back(new Land(4476, 688 -626-11, 299, 11, eDirection::TOP, eLandType::STAIR));
-
 
 	//Background
 	_background = new BackGround();
@@ -102,48 +54,13 @@ bool PlayScene::InIt()
 	_backgroundfront = new BackGroundFront();
 	_backgroundfront->InIt();
 
-	//Complete
-	/*auto guardLu = new GuardLu(eStatus::FREE, 200, 100, eDirection::LEFT);
-	guardLu->InIt();
-	_listObject.push_back(guardLu);*/
 
-	////COMPLETE throwJar but not Jar
-	//auto guardThrowJar = new ThrowJar(eStatus::FREE, 300, 300);
-	//guardThrowJar->InIt();
-	//_listObject.push_back(guardThrowJar);
-
-	//auto knifeThrower = new KnifeThrower(eStatus::MOVING_LEFT, 500, 100, eDirection::LEFT);
-	//knifeThrower->InIt();
-	//_listObject.push_back(knifeThrower);
-
-	////Complete
-	//auto guardThin = new GuardThin(eStatus::MOVING_LEFT, 200, 100, eDirection::LEFT);
-	//guardThin->InIt();
-	//_listObject.push_back(guardThin);
-
-	/*auto guardfat = new GuardFat(eStatus::MOVING_LEFT, 200, 120, eDirection::LEFT);
-	guardfat->InIt();
-	_listObject.push_back(guardfat);*/
-
-	//auto guardShort = new GuardShort(eStatus::MOVING_LEFT, 200, 100, eDirection::LEFT, 2700, 3200);
-	//guardShort->InIt();
-	//_listObject.push_back(guardShort);
-
-	/*auto restartPoint = new RestartPoint(100, 100);
-	restartPoint->InIt();
-	_listObject.push_back(restartPoint);*/
-	//_listObject.push_back(new RestartPoint(2000, 100));
 
     _aladdin = new Aladdin();
 	_aladdin->InIt();
-	_aladdin->setPosition(3000, 250);
+	_aladdin->setPosition(7000, 600);
 	_listObject.push_back(_aladdin);
 
-
-	for each (auto object in _listObject)
-	{
-		object->getSprite()->UpdatePosition();
-	}
 	return true;
 }
 
@@ -154,12 +71,6 @@ void PlayScene::UpdateInput(float dt)
 
 void PlayScene::Update(float dt)
 {
-
-	/*char str[100];
-	sprintf(str, "delta time: %f", dt);
-	_text->setText(str);*/
-	
-	
 	this->UpdateViewport(_aladdin);
 
 	Vector2 viewport_position = _viewport->getPositionWorld();
@@ -172,13 +83,6 @@ void PlayScene::Update(float dt)
 	screenx.left = viewport_in_transform.left;
 	screenx.right = viewport_in_transform.left + WINDOWS_WIDTH;
 
-	//RECT screenx;
-	//screenx.left = _camera->getBounding().left;// / SCALEFACTOR.x;
-	//screenx.right = _camera->getBounding().right;// / SCALEFACTOR.x;
-	//screenx.bottom = _camera->getBounding().top;// / SCALEFACTOR.y; 
-	//screenx.top = _camera->getBounding().bottom;// / SCALEFACTOR.y;
-	//DrawRect(screenx);
-
 #if _DEBUG									 // clock_t để test thời gian chạy đoạn code update (milisecond)
 	clock_t t;
 	t = clock();
@@ -186,17 +90,11 @@ void PlayScene::Update(float dt)
 	_activeObject.clear();
 	mMap->ListObject(&screenx);	
 	_activeObject = mMap->GetList;
-	/*if (_activeObject.size() != 0)
-		throw exception("Loi");*/
 #if _DEBUG
 	t = clock() - t;
-	//__debugoutput((float)t / CLOCKS_PER_SEC);
+	__debugoutput((float)t / CLOCKS_PER_SEC);
 #endif
 
-	//for each (auto object in _listObject)
-	//{
-	//	object->Update(dt); //Update ala và camera
-	//}
 	_aladdin->Update(dt);
 
 	for each (auto object in _activeObject)
@@ -205,8 +103,6 @@ void PlayScene::Update(float dt)
 			continue;
 		object->Update(dt);
 	}
-
-	//Cải tiến. Chia ra 2 list một cho enermy 1 cho land
 
 	/*Check collision aladdin with land
 	@i Object*/
@@ -293,7 +189,7 @@ void PlayScene::Draw(LPD3DXSPRITE spriteHandle)
 		object->ShowBB();
 	}
 	_aladdin->Draw(spriteHandle, _viewport);
-	//_backgroundfront->Draw(spriteHandle, _viewport);
+	
 
 	for each(auto object in Stair[0])
 	{
@@ -325,6 +221,7 @@ void PlayScene::Draw(LPD3DXSPRITE spriteHandle)
 	}
 
 #pragma endregion
+	_backgroundfront->Draw(spriteHandle, _viewport);
 }
 
 void PlayScene::Release()

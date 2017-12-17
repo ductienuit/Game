@@ -1,0 +1,7 @@
+frame_name	left	top	right	bottom
+sky_0		0	0	512	64
+sky_1		512	0	1024	64
+sky_2		1024	0	1536	64
+sky_3		1536	0	2048	64
+land_0		2048	0	2560	64
+land_1		2560	0	3072	64

@@ -1,5 +1,5 @@
 ﻿#include "ReadMapEditor.h"
-
+extern 	vector<BaseObject*> Stair[2];
 
 
 ReadMapEditor::ReadMapEditor(const char *filepath, QuadTree *& _quadTree)
@@ -54,7 +54,7 @@ ReadMapEditor::ReadMapEditor(const char *filepath, QuadTree *& _quadTree)
 				Tmx::Object* _object = _objectGroup->GetObjects().at(j);
 
 
-				GuardLu* _guardlu = new GuardLu(FREE, _object->GetX() + _object->GetWidth() / 2, 688 - _object->GetY() - _object->GetHeight() / 2, NONE);
+				GuardLu* _guardlu = new GuardLu(FREE, _object->GetX(), 688 - _object->GetY() - _object->GetHeight(), NONE);
 
 				ListGuardLu.push_back(_guardlu);
 				_QuadTree->InsertStaticObject(_guardlu);
@@ -129,6 +129,32 @@ ReadMapEditor::ReadMapEditor(const char *filepath, QuadTree *& _quadTree)
 				}
 		}
 
+		if (_objectGroup->GetName() == "stair1")
+		{
+			for (size_t j = 0; j < _objectGroup->GetNumObjects(); j++)
+			{
+				Tmx::Object* _object = _objectGroup->GetObjects().at(j);
+
+				Land* _stair = new Land(_object->GetX(), 688 - _object->GetY() - _object->GetHeight(), _object->GetWidth(), _object->GetHeight(), NONE, STAIR);
+
+				Stair[0].push_back(_stair);
+				_QuadTree->InsertStaticObject(_stair);
+			}
+		}
+
+		if (_objectGroup->GetName() == "stair2")
+		{
+			for (size_t j = 0; j < _objectGroup->GetNumObjects(); j++)
+			{
+				Tmx::Object* _object = _objectGroup->GetObjects().at(j);
+
+				Land* _stair = new Land(_object->GetX(), 688 - _object->GetY() - _object->GetHeight(), _object->GetWidth(), _object->GetHeight(), NONE, STAIR);
+
+				Stair[1].push_back(_stair);
+				_QuadTree->InsertStaticObject(_stair);
+			}
+		}
+
 		if (_objectGroup->GetName() == "wall")
 		{
 			for (size_t j = 0; j < _objectGroup->GetNumObjects(); j++)
@@ -142,15 +168,14 @@ ReadMapEditor::ReadMapEditor(const char *filepath, QuadTree *& _quadTree)
 			}
 		}
 
-		if (_objectGroup->GetName() == "flatform")
+		if (_objectGroup->GetName() == "fallingplatform")
 		{
 			for (size_t j = 0; j < _objectGroup->GetNumObjects(); j++)
 			{
 				Tmx::Object* _object = _objectGroup->GetObjects().at(j);
 
-				Land* _flatform = new Land(_object->GetX(), 688 - _object->GetY()- _object->GetHeight(), _object->GetWidth(), _object->GetHeight(), NONE, PLATFORM);
-
-				ListLand.push_back(_flatform);
+				FallingPlatform* _flatform = new FallingPlatform(_object->GetX(), 688 - _object->GetY()- _object->GetHeight(),NONE);
+				ListFallingPlatform.push_back(_flatform);
 				_QuadTree->InsertStaticObject(_flatform);
 			}
 		}
@@ -164,6 +189,18 @@ ReadMapEditor::ReadMapEditor(const char *filepath, QuadTree *& _quadTree)
 				Land* _rope = new Land(_object->GetX(), 688 - _object->GetY()- _object->GetHeight(), _object->GetWidth(), _object->GetHeight(), NONE, ROPE);
 				ListLand.push_back(_rope);
 				_QuadTree->InsertStaticObject(_rope);
+			}
+		}
+
+		if (_objectGroup->GetName() == "stop")
+		{
+			for (size_t j = 0; j < _objectGroup->GetNumObjects(); j++)
+			{
+				Tmx::Object* _object = _objectGroup->GetObjects().at(j);
+
+				Land* _stop = new Land(_object->GetX(), 688 - _object->GetY() - _object->GetHeight(), _object->GetWidth(), _object->GetHeight(), NONE, STOP);
+				ListLand.push_back(_stop);
+				_QuadTree->InsertStaticObject(_stop);
 			}
 		}
 
@@ -354,6 +391,16 @@ void ReadMapEditor::ListObject(RECT * rect)
 			GetList.push_back(ListRestartPoint[i]);
 		}
 	}
+
+	for each(auto i in ListFallingPlatform)
+	{
+		if (isContain(i, *rect))
+		{
+
+			GetList.push_back(i);
+		}
+	}
+
 }
 
 //vector<BaseObject*> ReadMapEditor::GetList(RECT * rect)

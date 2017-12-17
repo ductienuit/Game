@@ -15,6 +15,7 @@
 #include"../Objects/GameObjects/Land.h"
 #include"../Objects/GameObjects/Camel.h"
 #include"../Objects/GameObjects/RestartPoint.h"
+#include"../Objects/GameObjects/FallingPlatform.h"
 
 
 class ReadMapEditor
@@ -35,6 +36,7 @@ public:
 	vector <Camel*> ListCamel;
 	vector <BaseObject*> GetList;
 	vector <RestartPoint*> ListRestartPoint;
+	vector<FallingPlatform*> ListFallingPlatform;
 
 	void ListObject(RECT *rect);
 	QuadTree* _QuadTree;
