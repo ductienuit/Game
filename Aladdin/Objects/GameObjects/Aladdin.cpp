@@ -58,6 +58,10 @@ void Aladdin::InIt()
 	_animations[eStatus::JUMPING] = new Animation(_sprite, 0.095f);
 	_animations[eStatus::JUMPING]->addFrameRect(eID::ALADDIN, "jump_up_", 10);
 
+
+	_animations[eStatus::DROP] = new Animation(_sprite, 0.095f);
+	_animations[eStatus::DROP]->addFrameRect(eID::ALADDIN, "jump_up_5", "jump_up_6", "jump_up_7", "jump_up_8", "jump_up_9", NULL);
+
 	_animations[eStatus::JUMPING_RIGHT] = new Animation(_sprite, 0.15f);
 	_animations[eStatus::JUMPING_RIGHT]->addFrameRect(eID::ALADDIN, "jump_left_right_", 8);
 
@@ -429,6 +433,41 @@ void Aladdin::UpdateInput(float dt)
 				removeStatus(eStatus::STOPWALK);
 				addStatus(eStatus::MOVING_RIGHT);
 			}
+		}
+		else if (_input->isKeyDown(DIK_DOWN))
+		{
+			removeStatus(eStatus::STOPWALK);
+			addStatus(eStatus::SITTING_DOWN);
+		}
+		else if (_input->isKeyDown(DIK_UP))
+		{
+			removeStatus(eStatus::STOPWALK);
+			addStatus(eStatus::LOOKING_UP);
+		}
+		else if (_input->isKeyPressed(DIK_X)) //chém
+		{
+			removeStatus(eStatus::STOPWALK);
+			addStatus(eStatus::ATTACK);  //chém
+		}
+		else if (_input->isKeyDown(DIK_Z)) //ném
+		{
+			removeStatus(eStatus::STOPWALK);
+			addStatus(eStatus::THROW);
+			appleThrow->addStatus(eStatus::THROW);
+			if (getScale().x > 0)
+			{
+				appleThrow->movingRight(this->getPositionX(), this->getPositionY());
+			}
+			else if (getScale().x < 0)
+			{
+				appleThrow->movingLeft(this->getPositionX(), this->getPositionY());
+			}
+		}
+		else if (_input->isKeyPressed(DIK_C))
+		{
+			removeStatus(eStatus::STOPWALK);
+			removeStatus(eStatus::FREE);
+			jump(eStatus::JUMPING);
 		}
 		break;
 	}
@@ -941,7 +980,8 @@ void Aladdin::onCollisionBegin(CollisionEventArg * collision_event)
 			eLandType type = land->getType();
 			if (type == eLandType::WALL)
 			{
-				standing();
+				auto move = (Movement*)_listComponent["Movement"];
+				move->setVelocity(Vector2(0, move->getVelocity().y));
 
 				//set trạng thái chỉ khi đi ngược hướng va chạm mới set lại trạng thái khác
 				this->setStatus(eStatus::STOPWALK);
@@ -1185,6 +1225,9 @@ void Aladdin::onCollisionEnd(CollisionEventArg * collision_event)
 				}
 				case (eLandType::SOLID):
 				{
+					eStatus temp = (eStatus)(JUMPING);
+					if (!isExist(temp))				
+						setStatus(DROP);
 					auto g = (Gravity*)_listComponent["Gravity"];
 					g->setStatus(eGravityStatus::FALLING__DOWN);
 					break;

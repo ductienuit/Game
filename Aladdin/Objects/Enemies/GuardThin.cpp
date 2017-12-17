@@ -164,6 +164,9 @@ void GuardThin::onCollisionBegin(CollisionEventArg *collision_event)
 					&&
 					this->_animations[ATTACK]->getIndex() == 5)
 			{
+
+					//Lưu trạng thái trước khi hết bị đánh set lại cái trạng thái cũ
+					collision_event->_otherObject->savePreStatus();
 				//Set status aladdin bị đánh
 				collision_event->_otherObject->setStatus(eStatus::BEHIT);
 			}

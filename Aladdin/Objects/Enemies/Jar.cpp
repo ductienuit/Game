@@ -85,6 +85,9 @@ void Jar::onCollisionBegin(CollisionEventArg *collision_event)
 		DK2 bức ảnh status Attack của guardlu hiện tại là 3*/
 		if (collision_event->_otherObject->isInStatus(eStatus::BEHIT) == false && !isInStatus(DESTROY))
 		{
+
+			//Lưu trạng thái trước khi hết bị đánh set lại cái trạng thái cũ
+			collision_event->_otherObject->savePreStatus();
 			//Set status aladdin bị đánh
 			collision_event->_otherObject->setStatus(eStatus::BEHIT);
 			this->setStatus(DESTROY);

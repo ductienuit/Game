@@ -70,6 +70,9 @@ void KnifeShort::onCollisionBegin(CollisionEventArg *collision_event)
 		/*DK1:Aladdin đang không bị đánh*/
 		if (collision_event->_otherObject->isInStatus(eStatus::BEHIT) == false && !isInStatus(DESTROY))
 		{
+
+			//Lưu trạng thái trước khi hết bị đánh set lại cái trạng thái cũ
+			collision_event->_otherObject->savePreStatus();
 			//Set status aladdin bị đánh
 			collision_event->_otherObject->setStatus(eStatus::BEHIT);
 		}
