@@ -76,8 +76,6 @@ enum eID
 
 	RESTARTPOINT,
 
-	SKY,
-	SAND
 };
 
 enum eDirection
@@ -118,6 +116,10 @@ enum eLandType
 #define SCALEONE D3DXVECTOR2(1.0f,1.0f)
 #define ORIGINCHARACTER D3DXVECTOR2(0.5f, 0.0f)
 #define ORIGINZERO D3DXVECTOR2(0.0f, 0.0f)
+
+
+
+
 
 typedef D3DXVECTOR2 Vector2;
 typedef D3DXVECTOR3 Vector3;

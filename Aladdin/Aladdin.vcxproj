@@ -163,7 +163,6 @@
     <ClCompile Include="Resources\MapReader\TmxTileset.cpp" />
     <ClCompile Include="Resources\MapReader\TmxUtil.cpp" />
     <ClCompile Include="Objects\GameObjects\RestartPoint.cpp" />
-    <ClCompile Include="Scenes\Sand.cpp" />
     <ClCompile Include="Scenes\BackGround.cpp" />
     <ClCompile Include="Objects\Enemies\GuardShort.cpp" />
     <ClCompile Include="Objects\Enemies\BaseEnemy.cpp" />
@@ -194,7 +193,6 @@
     <ClCompile Include="Objects\Enemies\Knife.cpp" />
     <ClCompile Include="FrameWork\QuadTree.cpp" />
     <ClCompile Include="FrameWork\Utils.cpp" />
-    <ClCompile Include="Scenes\Sky.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AladdinGame.h" />
@@ -238,7 +236,6 @@
     <ClInclude Include="Resources\MapReader\zconf.h" />
     <ClInclude Include="Resources\MapReader\zlib.h" />
     <ClInclude Include="Objects\GameObjects\RestartPoint.h" />
-    <ClInclude Include="Scenes\Sand.h" />
     <ClInclude Include="Scenes\BackGround.h" />
     <ClInclude Include="Objects\Enemies\GuardShort.h" />
     <ClInclude Include="Objects\Enemies\BaseEnemy.h" />
@@ -270,7 +267,6 @@
     <ClInclude Include="Objects\Enemies\Knife.h" />
     <ClInclude Include="FrameWork\QuadTree.h" />
     <ClInclude Include="FrameWork\Utils.h" />
-    <ClInclude Include="Scenes\Sky.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Cach code.txt" />
