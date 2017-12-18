@@ -115,16 +115,7 @@ void SpriteManager::LoadResource(LPD3DXSPRITE spriteHandle)
 
 	sp = new Sprite(spriteHandle, "Resources//Images//Items.png");
 	this->_listSprite.insert(pair<eID, Sprite*>(eID::RESTARTPOINT, sp));
-	this->LoadSpriteInfo(eID::RESTARTPOINT, "Resources//Images//Items.txt");
-
-	sp = new Sprite(spriteHandle, "Resources//Images//sky.png");
-	this->_listSprite.insert(pair<eID, Sprite*>(eID::SKY, sp));
-	this->LoadSpriteInfo(eID::SKY, "Resources//Images//sky.txt");
-
-	sp = new Sprite(spriteHandle, "Resources//Images//sky.png");
-	this->_listSprite.insert(pair<eID, Sprite*>(eID::SAND, sp));
-	this->LoadSpriteInfo(eID::SAND, "Resources//Images//sky.txt");
-	
+	this->LoadSpriteInfo(eID::RESTARTPOINT, "Resources//Images//Items.txt");	
 }
 
 Sprite * SpriteManager::getSprite(eID id)

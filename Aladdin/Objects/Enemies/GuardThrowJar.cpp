@@ -11,7 +11,7 @@ GuardThrowJar::GuardThrowJar(eStatus status, int posX, int posY) :BaseEnemy(eID:
 	this->setPosition(posX*SCALECHARACTER.x, posY*SCALECHARACTER.y, 1.0f);
 	text = new Text("Arial", "", 10, 25);
 
-	jar = new Jar(eStatus::DROP, posX, posY, eDirection::BOTTOM);
+	//new Jar(eStatus::DROP, posX, posY, eDirection::BOTTOM);
 
 	_score = 10;
 	InIt();
@@ -19,8 +19,6 @@ GuardThrowJar::GuardThrowJar(eStatus status, int posX, int posY) :BaseEnemy(eID:
 
 void GuardThrowJar::InIt()
 {
-	jar->InIt();
-
 	auto movement = new Movement(Vector2(0, 0), Vector2(0, 0), _sprite);
 	_listComponent["Movement"] = movement;
 
@@ -51,7 +49,17 @@ void GuardThrowJar::Update(float deltatime)
 	this->UpdateStatus(deltatime);
 
 	//Jar là cái lu
-	jar->Update(deltatime);
+	for (int i = 0; i < _listJar.size(); i++)
+	{
+		if (_listJar[i]->isInStatus(DESTROY))
+		{
+			_listJar[i]->Release();
+			delete _listJar[i];
+			_listJar.erase(_listJar.begin() + i);
+		}
+		else 
+			_listJar[i]->Update(deltatime);
+	}
 
 	// update component để sau cùng để sửa bên trên sau đó nó cập nhật đúng
 	for (auto it = _listComponent.begin(); it != _listComponent.end(); it++)
@@ -93,19 +101,17 @@ void GuardThrowJar::UpdateStatus(float dt)
 		{
 			this->clearStatus();
 			this->addStatus(eStatus::THROW);
-			jar->addStatus(eStatus::DROP);
 			if (_animations[_status]->getIndex() == 6)
 			{
-				jar->Drop();
+				_listJar.push_back(new Jar(eStatus::DROP, this->getPositionX(), this->getPositionY(), eDirection::BOTTOM));
 			}
 			return;
 		}
 		else if (distance > 80)
 		{
-			jar->addStatus(eStatus::DROP);
 			if (_animations[_status]->getIndex() == 6)
 			{
-				jar->Drop();
+				//_listJar.push_back(new Jar(eStatus::DROP, this->getPositionX(), this->getPositionY(), eDirection::BOTTOM));
 			}
 			if (isInStatus(THROW) && _animations[this->getStatus()]->getIndex() >= 9)
 			{
@@ -127,19 +133,17 @@ void GuardThrowJar::UpdateStatus(float dt)
 		{
 			this->clearStatus();
 			this->addStatus(eStatus::THROW);
-			jar->addStatus(eStatus::DROP);
 			if (_animations[_status]->getIndex() == 6)
 			{
-				jar->Drop();
+				//_listJar.push_back(new Jar(eStatus::DROP, this->getPositionX(), this->getPositionY(), eDirection::BOTTOM));
 			}
 			return;
 		}
 		else if (distance > 80)
 		{
-			jar->addStatus(eStatus::DROP);
 			if (_animations[_status]->getIndex() == 6)
 			{
-				jar->Drop();
+				//_listJar.push_back(new Jar(eStatus::DROP, this->getPositionX(), this->getPositionY(), eDirection::BOTTOM));
 			}
 			if (isInStatus(THROW) && _animations[this->getStatus()]->getIndex() >= 9)
 			{
@@ -160,18 +164,35 @@ void GuardThrowJar::Draw(LPD3DXSPRITE spritehandle, ViewPort* viewport)
 {
 	_animations[this->getStatus()]->Draw(spritehandle, viewport);
 	//text->Draw();
-	jar->Draw(spritehandle, viewport);
+	//Jar là cái lu
+	for (int i = 0; i < _listJar.size(); i++)
+	{
+		if (_listJar[i]->isInStatus(DESTROY))
+		{
+			_listJar[i]->Release();
+			delete _listJar[i];
+			_listJar.erase(_listJar.begin() + i);
+		}
+		else
+			_listJar[i]->Draw(spritehandle, viewport);
+	}
 }
 
 void GuardThrowJar::Release()
 {
+	for (int i = 0; i < _listJar.size(); i++)
+	{
+		_listJar[i]->Release();
+		delete _listJar[i];
+	}
+	_listJar.clear();
+
 	for (auto component : _listComponent)
 	{
 		delete component.second;
 	}
 	_listComponent.clear();
 	SAFE_DELETE(this->_sprite);
-	jar->Release();
 }
 
 void GuardThrowJar::onCollisionBegin(CollisionEventArg *collision_event)
@@ -208,8 +229,13 @@ float GuardThrowJar::checkCollision(BaseObject *object, float dt)
 	auto collisionBody = (CollisionBody*)_listComponent["CollisionBody"];
 	//Check collision enermy(this) với aladdin(object)
 	/*Ưu tiên check GuardThrowJar trước, sau đó đến Jar*/
-	if(!collisionBody->checkCollision(object, dt, true))
-		jar->checkCollision(object, dt);
+	if (!collisionBody->checkCollision(object, dt, true))
+	{
+		for (int i = 0; i < _listJar.size(); i++)
+		{
+			_listJar[i]->checkCollision(object, dt);
+		}
+	}
 	return 0.0f;
 }
 

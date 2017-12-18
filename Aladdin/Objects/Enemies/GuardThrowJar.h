@@ -38,7 +38,7 @@ private:
 	void standing();
 	//void Throw(float deltatime);
 
-	Jar* jar;
+	vector<Jar*> _listJar;
 	map<string, IComponent*> _listComponent;
 	map<int, Animation*> _animations;
 	Sprite *_divingSprite;
