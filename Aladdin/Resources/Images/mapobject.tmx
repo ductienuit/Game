@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-down" width="1" height="1" tilewidth="4771" tileheight="688" nextobjectid="381">
+<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-down" width="1" height="1" tilewidth="4771" tileheight="688" nextobjectid="393">
+ <imagelayer name="Image Layer 1">
+  <image source="background.png" width="4771" height="688"/>
+ </imagelayer>
  <objectgroup name="heart">
   <object id="312" x="2386" y="640.5" width="20" height="20"/>
   <object id="313" x="3211" y="379.333" width="20" height="20"/>
+ </objectgroup>
+ <objectgroup color="#00aaff" name="restartpoint">
+  <object id="382" x="2696.42" y="471.917" width="28.25" height="42.0417"/>
+  <object id="390" x="3496.5" y="449" width="20.25" height="32.25"/>
+  <object id="392" x="3673.67" y="179" width="18.3333" height="30.6667"/>
  </objectgroup>
  <objectgroup name="guardshort">
   <object id="329" x="4600.33" y="164.667" width="35" height="50"/>
@@ -294,7 +302,4 @@
 0
 </data>
  </layer>
- <imagelayer name="Image Layer 1">
-  <image source="background.png" width="4771" height="688"/>
- </imagelayer>
 </map>

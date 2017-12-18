@@ -1,27 +1,16 @@
 frame_name	left	top	right	bottom
 item_spark_0	13	19	19	25
-
 item_spark_1	55	13	65	29
 item_spark_2	99	11	111	29
-
 item_spark_3	137	7	159	31
-
 item_spark_4	177	5	211	37
-
 item_spark_5	221	1	235	35
-
 item_spark_6	241	5	279	39
-
 item_spark_7	287	7	319	35
-
 item_spark_8	327	11	361	37
-
 item_spark_9	371	15	405	37
-
 item_spark_10	419	19	453	39
-
 item_spark_11	463	25	475	39
-
 
 eat_apple_0	352	96	363	108
 
@@ -35,3 +24,33 @@ genie_restart_point_06	218	505	242	539
 genie_restart_point_07	250	506	270	540
 genie_restart_point_08	281	507	305	540
 genie_restart_point_09	313	508	336	541
+
+restart_point_0	18	575	90	653
+
+restart_point_1	95	584	159	653
+
+restart_point_2	166	620	186	653
+
+restart_point_3	219	615	245	653
+
+restart_point_4	270	606	300	653
+
+restart_point_5	313	594	343	653
+
+restart_point_6	354	584	394	653
+
+restart_point_7	409	572	453	653
+
+restart_point_8	468	568	512	653
+
+restart_point_9	521	564	595	653
+
+restart_point_10	611	551	667	653
+
+restart_point_11	675	531	763	653
+
+restart_point_12	773	515	847	653
+
+restart_point_13	883	506	949	653
+
+

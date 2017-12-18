@@ -372,4 +372,33 @@ run_throw_04	363	3887	411	3949
 run_throw_05	475	3897	510	3949
 
 
+restart_point_0		2	2472	66	2541
+
+restart_point_1		77	2475	135	2541
+
+restart_point_2		143	2508	163	2541
+
+restart_point_3		173	2503	196	2541
+
+restart_point_4		205	2495	230	2541
+
+restart_point_5		243	2483	270	2541
+
+restart_point_6		278	2474	316	2541
+
+restart_point_7		333	2461	370	2541
+
+restart_point_8		382	2460	424	2544
+
+restart_point_9		442	2454	495	2541
+
+restart_point_10	510	2441	553	2541
+
+restart_point_11	563	2427	613	2541
+
+restart_point_12	623	2409	668	2541
+
+restart_point_13	682	2400	722	2541
+
+
 apple_00	372	23	381	32

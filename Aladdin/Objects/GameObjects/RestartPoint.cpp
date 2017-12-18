@@ -26,6 +26,9 @@ void RestartPoint::InIt()
 	_animations[FREE] = new Animation(_sprite, 0.12f);
 	_animations[FREE]->addFrameRect(eID::RESTARTPOINT, "genie_restart_point_09", "genie_restart_point_09", "genie_restart_point_09", NULL);
 
+	_animations[RESTART] = new Animation(_sprite, 0.12f);
+	_animations[RESTART]->addFrameRect(eID::RESTARTPOINT, "restart_point_", 14);
+	
 	_canTurn = true;
 }
 
@@ -69,7 +72,7 @@ void RestartPoint::onCollisionBegin(CollisionEventArg *collision_event)
 		}
 		else
 		{
-			setStatus(FREE);
+			setStatus(RESTART);
 		}
 		break;
 	}
@@ -79,6 +82,8 @@ void RestartPoint::onCollisionBegin(CollisionEventArg *collision_event)
 
 void RestartPoint::onCollisionEnd(CollisionEventArg *)
 {
+	this->clearStatus();
+	this->setStatus(FREE);
 }
 
 float RestartPoint::checkCollision(BaseObject *object, float dt)
