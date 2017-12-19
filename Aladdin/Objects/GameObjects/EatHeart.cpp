@@ -19,10 +19,10 @@ void EatHeart::InIt()
 	__hook(&CollisionBody::onCollisionBegin, collisionBody, &EatHeart::onCollisionBegin);
 
 	_animations[NORMAL] = new Animation(_sprite, 0.1f);
-	_animations[NORMAL]->addFrameRect(eID::HEARTEAT, "eat_heart_0", "eat_heart_0", NULL);
+	_animations[NORMAL]->addFrameRect(eID::HEARTEAT, "eat_heart_0", 4);
 
 	_animations[BEHIT] = new Animation(_sprite, 0.12f);
-	_animations[BEHIT]->addFrameRect(eID::HEARTEAT, "item_spark_", 12);
+	_animations[BEHIT]->addFrameRect(eID::HEARTEAT, "item_spark_0", 12);
 }
 
 void EatHeart::Update(float deltatime)

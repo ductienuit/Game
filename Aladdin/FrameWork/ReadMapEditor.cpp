@@ -360,8 +360,8 @@ void ReadMapEditor::ListObject(RECT * rect)
 	}
 }
 
-vector<BaseObject*> ReadMapEditor::GetList(RECT * rect)
-{
+//vector<BaseObject*> ReadMapEditor::GetList(RECT * rect)
+//{
 //	kiem tra listguardshort
 //	size_t x = ListGuardShort.size();
 //	for (size_t i = 0; i < ListGuardShort.size(); i++)
@@ -463,7 +463,7 @@ vector<BaseObject*> ReadMapEditor::GetList(RECT * rect)
 //		}
 //	}
 //
-    for (size_t i = 0; i < ListEatHeart.size(); i++)
+ /*   for (size_t i = 0; i < ListEatHeart.size(); i++)
 	{
 		if (ListEatHeart[i]->getPositionX() > rect->left&&ListEatHeart[i]->getPositionX() < rect->right
 			&&ListEatHeart[i]->getPositionY() < rect->top&&ListEatHeart[i]->getPositionY() > rect->bottom)
@@ -471,7 +471,7 @@ vector<BaseObject*> ReadMapEditor::GetList(RECT * rect)
 
 			GetList(rect).push_back(ListEatHeart[i]);
 		}
-	}
+	}*/
 //
 //	for (size_t i = 0; i < ListCamel.size(); i++)
 //	{
