@@ -288,7 +288,7 @@ void PlayScene::Draw(LPD3DXSPRITE spriteHandle)
 		object->ShowBB();
 	}
 	_aladdin->Draw(spriteHandle, _viewport);
-	//_backgroundfront->Draw(spriteHandle, _viewport);
+	_backgroundfront->Draw(spriteHandle, _viewport);
 
 	for each(auto object in Stair[0])
 	{

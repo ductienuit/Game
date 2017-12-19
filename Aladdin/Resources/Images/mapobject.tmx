@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-down" width="1" height="1" tilewidth="4771" tileheight="688" nextobjectid="393">
+<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-down" width="1" height="1" tilewidth="4771" tileheight="688" nextobjectid="396">
  <objectgroup name="heart">
-  <object id="391" x="2348" y="626" width="20" height="20"/>
-  <object id="392" x="298" y="535" width="18" height="18"/>
+  <object id="393" x="2390" y="628" width="17" height="18"/>
+  <object id="395" x="2018" y="196" width="17" height="16"/>
  </objectgroup>
  <objectgroup name="guardshort">
   <object id="329" x="4600.33" y="170.667" width="33.6667" height="37.3333"/>
