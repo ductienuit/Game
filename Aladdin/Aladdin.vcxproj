@@ -22,7 +22,7 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{F4CF6139-2E28-4211-8EC4-C5CF060A9775}</ProjectGuid>
     <RootNamespace>Aladdin</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -142,6 +142,7 @@
     <ClCompile Include="Objects\GameObjects\FallingPlatform.cpp" />
     <ClCompile Include="Objects\GameObjects\Land.cpp" />
     <ClCompile Include="FrameWork\ReadMapEditor.cpp" />
+    <ClCompile Include="Objects\GameObjects\Spring.cpp" />
     <ClCompile Include="Resources\MapReader\base64.cpp" />
     <ClCompile Include="Resources\MapReader\miniz.c" />
     <ClCompile Include="Resources\MapReader\tinyxml2.cpp" />
@@ -211,6 +212,7 @@
     <ClInclude Include="Objects\GameObjects\FallingPlatform.h" />
     <ClInclude Include="Objects\GameObjects\Land.h" />
     <ClInclude Include="FrameWork\ReadMapEditor.h" />
+    <ClInclude Include="Objects\GameObjects\Spring.h" />
     <ClInclude Include="Resources\MapReader\base64.h" />
     <ClInclude Include="Resources\MapReader\tinyxml2.h" />
     <ClInclude Include="Resources\MapReader\Tmx.h" />

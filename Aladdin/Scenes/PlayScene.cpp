@@ -125,14 +125,18 @@ bool PlayScene::InIt()
 	guardfat->InIt();
 	_listObject.push_back(guardfat);*/
 
-	//auto guardShort = new GuardShort(eStatus::MOVING_LEFT, 200, 100, eDirection::LEFT, 2700, 3200);
-	//guardShort->InIt();
-	//_listObject.push_back(guardShort);
+	/*auto guardShort = new GuardShort(eStatus::MOVING_LEFT, 2900, 350, eDirection::LEFT, 2700, 3200);
+	guardShort->InIt();
+	_listObject.push_back(guardShort);*/
 
 	/*auto restartPoint = new RestartPoint(100, 100);
 	restartPoint->InIt();
 	_listObject.push_back(restartPoint);*/
 	//_listObject.push_back(new RestartPoint(2000, 100));
+
+	auto spring = new Spring(3100, 250);
+	spring->InIt();
+	_listObject.push_back(spring);
 
     _aladdin = new Aladdin();
 	_aladdin->InIt();

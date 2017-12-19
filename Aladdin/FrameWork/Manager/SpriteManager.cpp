@@ -42,7 +42,10 @@ void SpriteManager::LoadResource(LPD3DXSPRITE spriteHandle)
 	this->_listSprite.insert(pair<eID, Sprite*>(eID::ALADDIN, sp));
 	this->LoadSpriteInfo(eID::ALADDIN, "Resources//Images//AladdinAnimation.txt");
 
-
+	sp = new Sprite(spriteHandle, "Resources//Images//Aerobatic.png");
+	this->_listSprite.insert(pair<eID, Sprite*>(eID::ALADDIN, sp));
+	this->LoadSpriteInfo(eID::ALADDIN, "Resources//Images//Aerobatic.txt");
+	
 	sp = new Sprite(spriteHandle, "Resources//Images//Guards.png");
 	this->_listSprite.insert(pair<eID, Sprite*>(eID::GUARDTHIN, sp));
 	this->LoadSpriteInfo(eID::GUARDTHIN, "Resources//Images//GuardsAll.txt");
@@ -116,6 +119,10 @@ void SpriteManager::LoadResource(LPD3DXSPRITE spriteHandle)
 	sp = new Sprite(spriteHandle, "Resources//Images//Items.png");
 	this->_listSprite.insert(pair<eID, Sprite*>(eID::RESTARTPOINT, sp));
 	this->LoadSpriteInfo(eID::RESTARTPOINT, "Resources//Images//Items.txt");
+
+	sp = new Sprite(spriteHandle, "Resources//Images//Spring.png");
+	this->_listSprite.insert(pair<eID, Sprite*>(eID::SPRING, sp));
+	this->LoadSpriteInfo(eID::SPRING, "Resources//Images//Spring.txt");
 }
 
 Sprite * SpriteManager::getSprite(eID id)

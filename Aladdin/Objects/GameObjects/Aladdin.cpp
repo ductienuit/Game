@@ -58,6 +58,8 @@ void Aladdin::InIt()
 	_animations[eStatus::JUMPING] = new Animation(_sprite, 0.095f);
 	_animations[eStatus::JUMPING]->addFrameRect(eID::ALADDIN, "jump_up_", 10);
 
+	_animations[eStatus::AEROBATIC] = new Animation(_sprite, 0.1f);
+	_animations[eStatus::AEROBATIC]->addFrameRect(eID::ALADDIN, "Aerobatic_0", 7);
 
 	_animations[eStatus::DROP] = new Animation(_sprite, 0.095f);
 	_animations[eStatus::DROP]->addFrameRect(eID::ALADDIN, "jump_up_5", "jump_up_6", "jump_up_7", "jump_up_8", "jump_up_9", NULL);
@@ -1219,6 +1221,7 @@ void Aladdin::onCollisionBegin(CollisionEventArg * collision_event)
 				{
 					collision_event->_otherObject->setStatus(eStatus::BEHIT);
 					jumpDouble();
+					//aerobatic();
 					return;
 				}
 			}
@@ -1535,7 +1538,7 @@ void Aladdin::updateCurrentAnimateIndex()
 	eStatus temp = (eStatus)(LOOKING_UP	 | SITTING_DOWN | MOVING_LEFT
 						| MOVING_RIGHT	 | JUMPING_LEFT | JUMPING_RIGHT
 						| JUMPING		 | CLIMB		| SWING
-						| ATTACK		 | DROP			| DYING| THROW);
+						| ATTACK		 | DROP			| DYING| THROW | AEROBATIC);
 	if (isInStatus(NORMAL1) && isExist(temp))
 	{
 		removeStatus(eStatus::NORMAL1);
@@ -1633,6 +1636,17 @@ void Aladdin::jumpDouble()
 
 	auto move = (Movement*)_listComponent["Movement"];
 	move->setVelocity(Vector2(move->getVelocity().x, ALADDIN_JUMP_DOUBLE_VEL));
+
+	auto g = (Gravity*)_listComponent["Gravity"];
+	g->setStatus(eGravityStatus::FALLING__DOWN);
+}
+
+void Aladdin::aerobatic()
+{
+	setStatus(AEROBATIC);
+
+	auto move = (Movement*)_listComponent["Movement"];
+	move->setVelocity(Vector2(move->getVelocity().x, ALADDIN_JUMP_VEL));
 
 	auto g = (Gravity*)_listComponent["Gravity"];
 	g->setStatus(eGravityStatus::FALLING__DOWN);

@@ -1,0 +1,20 @@
+frame_name	left	top	right	bottom
+Spring_0	1	13	87	49
+
+Spring_1	91	35	171	65
+
+Spring_2	181	1	251	49
+
+Spring_3	271	35	351	65
+
+Spring_4	361	1	431	49
+
+Spring_5	451	35	535	63
+
+Spring_6	541	5	623	49
+
+Spring_7	631	7	720	50
+
+Spring_8	720	7	803	50
+
+Spring_9	811	9	895	49

@@ -70,6 +70,8 @@ private:
 	void sitDown();
 	void swingSword();
 
+	void aerobatic();
+
 	void moveLeftJump();
 	void moveRightJump();
 
