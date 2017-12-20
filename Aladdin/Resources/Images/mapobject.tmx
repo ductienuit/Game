@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-down" width="1" height="1" tilewidth="4771" tileheight="688" nextobjectid="408">
+<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-down" width="1" height="1" tilewidth="4771" tileheight="688" nextobjectid="410">
  <objectgroup name="heart">
   <object id="312" x="2378" y="638.5" width="20" height="20"/>
   <object id="313" x="3211" y="379.333" width="20" height="20"/>
@@ -295,6 +295,7 @@
  </objectgroup>
  <objectgroup name="guardthin">
   <object id="314" x="656" y="568.833" width="40" height="60"/>
+  <object id="409" x="2717" y="346" width="40" height="60"/>
  </objectgroup>
  <objectgroup color="#ff0000" name="fire">
   <object id="46" x="466" y="608" width="40" height="20"/>
