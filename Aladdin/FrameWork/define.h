@@ -76,6 +76,8 @@ enum eID
 	HEARTEAT,
 	ITEMSPARK,
 
+	COINEAT,
+
 	RESTARTPOINT,
 
 };

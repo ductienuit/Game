@@ -2,15 +2,23 @@ frame_name	left	top	right	bottom
 standing_0	3	8	40	58
 standing_1	47	11	88	58
 standing_2	95	6	135	58
+
 standing_3	143	3	187	58
+
 standing_4	197	7	238	58
+
 standing_5	250	7	292	58
 standing_6	303	5	347	58
+
 free_0	25	115	86	169
+
 free_1	102	113	180	169
 free_2	191	111	266	169
+
 free_3	283	111	340	169
+
 free_4	372	112	431	169
+
 free_5	463	112	520	169
 
 free_6	551	111	612	169

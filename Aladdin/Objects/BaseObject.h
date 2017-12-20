@@ -23,6 +23,7 @@ public:
 	BaseObject(eID id);
 	virtual ~BaseObject();
 
+
 	virtual void InIt() = 0;
 	virtual void Update(float deltatime) = 0;
 	virtual void Draw(LPD3DXSPRITE, ViewPort*) = 0;
