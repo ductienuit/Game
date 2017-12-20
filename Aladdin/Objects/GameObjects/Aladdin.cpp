@@ -296,6 +296,12 @@ void Aladdin::UpdateInput(float dt)
 		{
 			jump(eStatus::JUMPING);
 		}
+		else if (_input->isKeyPressed(DIK_H))
+		{
+			_restartPoint->setStatus(STOPWALK);
+			setOpacity(0.0);
+			setPosition(_restartPoint->getPosition());
+		}
 		break;
 	}
 	case(eStatus::NORMAL1):
@@ -1584,6 +1590,12 @@ void Aladdin::Stop(bool stopanimation)
 	auto move = (Movement*)_listComponent["Movement"];
 	move->setVelocity(Vector2(0,this->getVelocity().y));
 }
+
+void Aladdin::SetRestartPoint(BaseObject *restartpoint)
+{
+	_restartPoint = restartpoint;
+}
+
 
 void Aladdin::Draw(LPD3DXSPRITE spriteHandle, ViewPort* viewport)
 {

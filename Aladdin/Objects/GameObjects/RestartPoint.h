@@ -6,7 +6,7 @@
 #include "../../FrameWork/StopWatch.h"
 #include "../../FrameWork/IComponent.h"
 #include "../../FrameWork/Text.h"
-#include"../../FrameWork/CollisionBody.h"
+#include "../../FrameWork/CollisionBody.h"
 #include "../BaseObject.h"
 
 using namespace std;
@@ -23,11 +23,16 @@ public:
 	void onCollisionBegin(CollisionEventArg*);
 	void onCollisionEnd(CollisionEventArg*);
 	float checkCollision(BaseObject*, float);
+
 	~RestartPoint();
 private:
 	map<string, IComponent*> _listComponent;
 	map<int, Animation*> _animations;
 	Text* text;
 	bool _canTurn;
+	
+	StopWatch* _firstAnimateStopWatch;
+	StopWatch* _normalAnimateStopWatch;
+	StopWatch* _beAttackSW;
 };
 #endif _RESTARTPOINT_H

@@ -265,3 +265,8 @@ int BaseObject::getIndex()
 {
 	return 0;
 }
+
+void BaseObject::SetRestartPoint(BaseObject *)
+{
+	//do nothing
+}

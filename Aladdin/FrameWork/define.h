@@ -48,7 +48,6 @@ enum eStatus
 	THROW			 =   (1 << 22),
 	THROW_LEFT	   	 =	(1 << 23),
 	THROW_RIGHT		 =	(1 << 24),
-	RESTART	   		 =   (1 << 25),		//Hồi Sinh
 };
 
 enum eID

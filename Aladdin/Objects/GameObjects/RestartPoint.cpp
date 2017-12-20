@@ -26,8 +26,8 @@ void RestartPoint::InIt()
 	_animations[FREE] = new Animation(_sprite, 0.12f);
 	_animations[FREE]->addFrameRect(eID::RESTARTPOINT, "genie_restart_point_09", "genie_restart_point_09", "genie_restart_point_09", NULL);
 
-	_animations[RESTART] = new Animation(_sprite, 0.12f);
-	_animations[RESTART]->addFrameRect(eID::RESTARTPOINT, "restart_point_", 14);
+	_animations[STOPWALK] = new Animation(_sprite, 0.12f);
+	_animations[STOPWALK]->addFrameRect(eID::RESTARTPOINT, "restart_point_", 14);
 	
 	_canTurn = true;
 }
@@ -36,10 +36,8 @@ void RestartPoint::Update(float deltatime)
 {
 	_animations[this->getStatus()]->Update(deltatime);
 
-	if (_animations[BEHIT]->getIndex() >= 9)
-	{
-		_canTurn = false;
-	}
+	
+
 
 }
 
@@ -61,29 +59,37 @@ void RestartPoint::Release()
 void RestartPoint::onCollisionBegin(CollisionEventArg *collision_event)
 {
 	eID objectID = collision_event->_otherObject->getId();
-	
 	 switch (objectID)
 	{
 	case eID::ALADDIN:
 	{
+		if (_animations[STOPWALK]->getIndex() >= 10)
+		{
+			collision_event->_otherObject->setOpacity(1.0);
+		}
 		if (_canTurn)
 		{
 			setStatus(BEHIT);
+			collision_event->_otherObject->SetRestartPoint(this);
+			if (_animations[BEHIT]->getIndex() >= 8)
+			{
+				_canTurn = false;
+				_animations[BEHIT]->setIndex(9);
+			}
 		}
 		else
 		{
-			setStatus(RESTART);
+			setStatus(FREE);
 		}
 		break;
 	}
 	}
-
 }
 
 void RestartPoint::onCollisionEnd(CollisionEventArg *)
 {
-	this->clearStatus();
-	this->setStatus(FREE);
+	//this->clearStatus();
+	//this->setStatus(STOPWALK);
 }
 
 float RestartPoint::checkCollision(BaseObject *object, float dt)
@@ -97,6 +103,8 @@ float RestartPoint::checkCollision(BaseObject *object, float dt)
 	return 0.0f;
 }
 
+
 RestartPoint::~RestartPoint()
 {
+
 }
