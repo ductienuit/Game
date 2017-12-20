@@ -15,7 +15,7 @@ using namespace std;
 class Jar : public BaseEnemy
 {
 public:
-	Jar(eStatus status, int posX, int posY, eDirection direction);
+	Jar(eStatus status, int posX, int posY, eDirection direction,int distancebroken);
 	void InIt() override;
 	void Update(float deltatime) override;
 	void Draw(LPD3DXSPRITE, ViewPort*) override;
@@ -31,7 +31,6 @@ public:
 	Text* text;
 	map<int, Animation*> _animations;
 	void standing();
-	void Drop();
 	~Jar();
 private:
 	void movingDown();
@@ -42,5 +41,6 @@ private:
 	Sprite *_divingSprite;
 	Vector2 _originPosition;
 	eStatus _currentAnimateIndex;
+	int _distancebroken;
 };
 #endif

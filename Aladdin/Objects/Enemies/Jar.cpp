@@ -1,7 +1,8 @@
 ﻿#include "Jar.h"
 
-Jar::Jar(eStatus status, int posX, int posY, eDirection direction) :BaseEnemy(eID::JAR)
+Jar::Jar(eStatus status, int posX, int posY, eDirection direction, int distancebroken) :BaseEnemy(eID::JAR)
 {
+	_distancebroken = distancebroken;
 	_sprite = SpriteManager::getInstance()->getSprite(eID::JAR);
 	_originPosition = Vector2(posX, posY);
 	//_sprite->setFrameRect(0, 0, 32.0f, 16.0f);
@@ -43,22 +44,26 @@ void Jar::Update(float deltatime)
 		{
 
 			float x = this->getPositionX();
-			float y = this->getPositionY() - JAR_VELOCITY;
+			float y = this->getPositionY();
+			if (y <= _originPosition.y - _distancebroken)
+				setStatus(DYING);
+			y -= JAR_VELOCITY;
 			this->setPosition(x, y);
 			break;
 		}
 		case DYING:
 		{
 			standing();
-			if (_animations[DYING]->getIndex() == 9)
+			if (_animations[DYING]->getIndex() >= 8)
 			{
 				_animations[DYING]->setIndex(0);
 				this->setStatus(DESTROY);
 				//score+=10;
+				return;
 			}
-			return;
 			break;
 		}
+		break;
 	}
 	_animations[this->getStatus()]->Update(deltatime);
 
@@ -101,7 +106,7 @@ void Jar::onCollisionBegin(CollisionEventArg *collision_event)
 			collision_event->_otherObject->savePreStatus();
 			//Set status aladdin bị đánh
 			collision_event->_otherObject->setStatus(eStatus::BEHIT);
-			this->setStatus(DESTROY);
+			//this->setStatus(DESTROY);
 		}
 		break;
 	}
@@ -117,6 +122,8 @@ void Jar::onCollisionEnd(CollisionEventArg *)
 float Jar::checkCollision(BaseObject *object, float dt)
 {
 	if (object == this)
+		return 0.0f;
+	if (isInStatus(DYING))
 		return 0.0f;
 	auto collisionBody = (CollisionBody*)_listComponent["CollisionBody"];
 
@@ -137,21 +144,14 @@ Jar::~Jar()
 
 void Jar::standing()
 {
-	auto move = (Movement*)this->_listComponent["Movement"];
-	move->setVelocity(VECTOR2ZERO);
+	/*auto move = (Movement*)this->_listComponent["Movement"];
+	move->setVelocity(VECTOR2ZERO);*/
 }
 
 void Jar::movingDown()
 {
 	auto move = (Movement*)this->_listComponent["Movement"];
 	move->setVelocity(Vector2(move->getVelocity().x, -JAR_GRAVITY));
-}
-
-void Jar::Drop()
-{
-	float x = _originPosition.x;
-	float y = _originPosition.y - JAR_VELOCITY;
-	this->setPosition(x, y);
 }
 
 float Jar::PositionY()

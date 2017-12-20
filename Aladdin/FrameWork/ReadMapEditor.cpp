@@ -1,9 +1,27 @@
 ﻿#include "ReadMapEditor.h"
 extern 	vector<BaseObject*> Stair[2];
-
+map<int, int> distanceThrowJar;
 
 ReadMapEditor::ReadMapEditor(const char *filepath, QuadTree *& _quadTree)
 {
+	#pragma region DistanceBrokenJar
+	distanceThrowJar[0] = 148 * 1.92;
+	distanceThrowJar[1] = 116 * 1.92;
+	distanceThrowJar[2] = 88 * 1.92;
+	distanceThrowJar[3] = 88 * 1.92;
+	distanceThrowJar[4] = 102 * 1.92;
+	distanceThrowJar[5] = 102 * 1.92;
+	distanceThrowJar[6] = 102 * 1.92;
+	distanceThrowJar[7] = 97 * 1.92;
+	distanceThrowJar[8] = 98 * 1.92;
+	distanceThrowJar[9] = 106 * 1.92;
+#pragma endregion
+
+
+
+
+
+
 	maps = new Tmx::Map();
 	maps->ParseFile(filepath);
 	RECT rect;
@@ -96,7 +114,7 @@ ReadMapEditor::ReadMapEditor(const char *filepath, QuadTree *& _quadTree)
 				Tmx::Object* _object = _objectGroup->GetObjects().at(j);
 
 
-				GuardThrowJar* _guardThrowJar = new GuardThrowJar(FREE, _object->GetX() + _object->GetWidth() / 2, 688 - _object->GetY() - _object->GetHeight() / 2);
+				GuardThrowJar* _guardThrowJar = new GuardThrowJar(FREE, _object->GetX()+16, 688 - _object->GetY() - _object->GetHeight(),distanceThrowJar[(int)(j)]);
 
 				ListGuardThrowJar.push_back(_guardThrowJar);
 				_QuadTree->InsertStaticObject(_guardThrowJar);
@@ -531,5 +549,3 @@ bool ReadMapEditor::isContain(BaseObject*object, RECT rect1)
 	swap(rect2.top, rect2.bottom);
 	return !(rect2.left > rect1.right || rect2.right < rect1.left || rect2.top > rect1.bottom || rect2.bottom < rect1.top);
 }
-
-
