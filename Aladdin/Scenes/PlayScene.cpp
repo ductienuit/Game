@@ -3,8 +3,14 @@
 extern bool Enter[3];
 extern bool TurnOn[4];
 extern vector<BaseObject*> _listObject;
+extern vector<BaseObject*> listFireActive;
+
+
 vector<BaseObject*> Stair[2];
 using namespace std;
+
+
+
 ViewPort* PlayScene::_viewport = ViewPort::getInstance();
 PlayScene::PlayScene()
 {

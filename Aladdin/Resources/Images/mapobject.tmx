@@ -279,7 +279,7 @@
   <object id="349" x="2549" y="107.333" width="40" height="60"/>
  </objectgroup>
  <objectgroup name="guardbig">
-  <object id="319" x="959.333" y="577.333" width="40" height="50"/>
+  <object id="319" x="967.333" y="577.333" width="40" height="50"/>
   <object id="320" x="1650" y="227" width="40" height="50"/>
   <object id="322" x="3284" y="610.167" width="40" height="50"/>
   <object id="324" x="3753.5" y="610.5" width="40" height="50"/>
@@ -296,9 +296,9 @@
   <object id="46" x="466" y="608" width="40" height="20"/>
   <object id="47" x="509" y="608" width="40" height="20"/>
   <object id="48" x="553" y="607" width="40" height="20"/>
-  <object id="49" x="833" y="609" width="40" height="20"/>
-  <object id="50" x="878" y="608.667" width="40" height="20"/>
-  <object id="51" x="923.667" y="608.333" width="40" height="20"/>
+  <object id="49" x="830" y="609" width="40" height="20"/>
+  <object id="50" x="873" y="608.667" width="40" height="20"/>
+  <object id="51" x="917.667" y="608.333" width="40" height="20"/>
   <object id="52" x="1011.33" y="609.333" width="40" height="20"/>
   <object id="53" x="1053" y="608.667" width="40" height="20"/>
   <object id="55" x="2022" y="641.667" width="40" height="20"/>

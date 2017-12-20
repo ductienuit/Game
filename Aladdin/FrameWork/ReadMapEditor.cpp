@@ -1,5 +1,6 @@
 ﻿#include "ReadMapEditor.h"
 extern 	vector<BaseObject*> Stair[2];
+vector<BaseObject*> listFireActive;
 map<int, int> distanceThrowJar;
 
 ReadMapEditor::ReadMapEditor(const char *filepath, QuadTree *& _quadTree)
@@ -340,6 +341,7 @@ ReadMapEditor::~ReadMapEditor()
 void ReadMapEditor::ListObject(RECT * rect)
 {
 	GetList.clear();
+	listFireActive.clear();
 	for (size_t i = 0; i < ListGuardShort.size(); i++)
 	{
 		if (isContain(ListGuardShort[i], *rect))
@@ -397,7 +399,7 @@ void ReadMapEditor::ListObject(RECT * rect)
 	{
 		if (isContain(ListFire[i], *rect))
 		{
-
+			listFireActive.push_back(ListFire[i]);
 			GetList.push_back(ListFire[i]);
 		}
 	}

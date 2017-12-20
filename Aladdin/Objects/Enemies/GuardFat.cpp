@@ -1,4 +1,5 @@
 ﻿#include "GuardFat.h"
+extern vector<BaseObject*> listFireActive;
 
 GuardFat::GuardFat(eStatus status, int posX, int posY, eDirection direction) :BaseEnemy(eID::GUARDFAT)
 {
@@ -49,6 +50,11 @@ void GuardFat::InIt()
 
 	_animations[DYING] = new Animation(_sprite, 0.1f);
 	_animations[DYING]->addFrameRect(eID::GUARDFAT, "destroy_enermy_", 10);
+
+	//guardsFat_burn_0
+	//bị bỏng
+	_animations[eStatus::STOPWALK] = new Animation(_sprite, 0.1f);
+	_animations[eStatus::STOPWALK]->addFrameRect(eID::GUARDFAT, "guardsFat_burn_0", 9);
 
 	_sprite->setOrigin(Vector2(0.5, 0));
 
@@ -202,12 +208,17 @@ void GuardFat::onCollisionBegin(CollisionEventArg *collision_event)
 				}
 			break;
 		}
+		case eID::FIRE:
+		{
+			setStatus(STOPWALK);
+			break;
+		}
 	}
 }
 
 void GuardFat::onCollisionEnd(CollisionEventArg *)
 {
-	//do nothing
+//	setStatus(FREE);
 }
 
 float GuardFat::checkCollision(BaseObject *object, float dt)
@@ -215,9 +226,31 @@ float GuardFat::checkCollision(BaseObject *object, float dt)
 	if (object == this)
 		return 0.0f;
 	auto collisionBody = (CollisionBody*)_listComponent["CollisionBody"];
+
+	if(!isInStatus(ATTACK))
+		//Check guard Fat với lửa
+		for each(auto fire in listFireActive)
+		{
+			collisionBody->checkCollision(fire, dt,true);
+		}
+
+
 	//Check collision enermy(this) với aladdin(object)
 	collisionBody->checkCollision(object, dt, true);
+
 	return 0.0f;
+}
+
+RECT GuardFat::getBounding()
+{
+	RECT r = BaseObject::getBounding();
+	//if (isInStatus(FREE))
+	//{
+	//	float distancex = abs(r.right - r.left) / 3.0f;
+	//	r.left = r.left + distancex;
+	//	r.right = r.right - distancex;
+	//}
+	return r;
 }
 
 Vector2 GuardFat::distanceBetweenAladdin()

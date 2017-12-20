@@ -82,6 +82,10 @@ bool CollisionBody::checkCollision(BaseObject* otherObject, float dt, bool isEne
 		__raise onCollisionBegin(e);
 		return true;
 	}
+	else {
+		CollisionEventArg* e = new CollisionEventArg(_preObject); //Đối số PreObject thứ 2 không sử dụng
+		__raise onCollisionEnd(e);
+	}
 	return false;
 }
 
