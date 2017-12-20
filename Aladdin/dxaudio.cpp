@@ -1167,7 +1167,7 @@ CSound *LoadSound(string filename)
 	wstring str = wstring(filename.begin(),filename.end());
 
 #else
-	string str = to_string(var);
+	string str = to_string(var);	
 
 #endif // UNICOE
 
