@@ -31,6 +31,7 @@
 #include"../Objects/GameObjects/Camel.h"
 #include"../Objects/GameObjects/EatApple.h"
 #include"../Objects/GameObjects/RestartPoint.h"
+#include"../Objects/GameObjects/EatCoin.h"
 #include"../Objects/GameObjects/Spring.h"
 #include"../Objects/GameObjects/EatHeart.h"
 

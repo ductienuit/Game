@@ -19,6 +19,7 @@
 #include"../Objects/GameObjects/FallingPlatform.h"
 #include"../Objects/GameObjects/Spring.h"
 
+#include"../Objects/GameObjects/EatCoin.h"
 
 
 class ReadMapEditor
@@ -38,6 +39,7 @@ public:
 	vector <EatApple*> ListEatApple;
 	vector <EatHeart*> ListEatHeart;
  	vector <Camel*> ListCamel;
+	vector <EatCoin*> ListEatCoin;
 	vector <BaseObject*> GetList;
 	vector <RestartPoint*> ListRestartPoint;
 	vector<FallingPlatform*> ListFallingPlatform;
