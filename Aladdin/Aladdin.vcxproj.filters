@@ -488,6 +488,12 @@
     <ClInclude Include="Objects\GameObjects\BulletCamel.h">
       <Filter>Header Files\Object\GameObjects</Filter>
     </ClInclude>
+    <ClInclude Include="Objects\GameObjects\EatHeart.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\GameObjects\RestartPoint.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="Cach code.txt" />
