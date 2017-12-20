@@ -134,13 +134,9 @@ bool PlayScene::InIt()
 	_listObject.push_back(restartPoint);*/
 	//_listObject.push_back(new RestartPoint(2000, 100));
 
-	auto spring = new Spring(3100, 250);
-	spring->InIt();
-	_listObject.push_back(spring);
-
     _aladdin = new Aladdin();
 	_aladdin->InIt();
-	_aladdin->setPosition(3000, 250);
+	_aladdin->setPosition(250, 250);
 	_listObject.push_back(_aladdin);
 
 
@@ -226,6 +222,8 @@ void PlayScene::Update(float dt)
 		if (temp == eID::FALLINGPLATFORM) 
 			_aladdin->checkCollision(i, dt);
 		if (temp == eID::CAMEL)
+			_aladdin->checkCollision(i, dt);
+		if (temp == eID::SPRING)
 			_aladdin->checkCollision(i, dt);
 		if (i->getId() != eID::LAND || _aladdin->getId() == temp)
 			continue;

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-down" width="1" height="1" tilewidth="4771" tileheight="688" nextobjectid="388">
+<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-down" width="1" height="1" tilewidth="4771" tileheight="688" nextobjectid="393">
  <objectgroup name="heart">
   <object id="312" x="2384" y="636.5" width="15" height="15"/>
   <object id="313" x="3225" y="380.333" width="16.3333" height="14.3333"/>

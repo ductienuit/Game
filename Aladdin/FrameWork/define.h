@@ -79,9 +79,7 @@ enum eID
 
 	CAMERAVIRTUAL, //Camera ao, dung de lay bounding
 
-	SPRING,
-	//AEROBATIC_
-
+	SPRING
 };
 
 enum eDirection
@@ -98,7 +96,6 @@ enum eLandType
 {
 	ROPE,	//Dây
 	SOLID,	//Nền đất
-	//SPRING,	//Cái bật nhảy
 	PLATFORM, //Tấm gỗ
 	BAR,  //Thanh xà ngang
 	CLIMBABLE0,//Dây 1
