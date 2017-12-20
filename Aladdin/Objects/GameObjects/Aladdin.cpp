@@ -876,7 +876,7 @@ void Aladdin::UpdateInput(float dt)
 	}
 	case(eStatus::BEHIT):
 	{
-		Stop(false);
+		//Stop(false);
 		//Làm ảnh mờ khi bị đánh
 		this->setOpacity(0.7);
 		//Tự hủy khi đế một bức ảnh n
