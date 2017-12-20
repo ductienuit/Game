@@ -1,7 +1,8 @@
 ﻿#include "Jar.h"
 
-Jar::Jar(eStatus status, int posX, int posY, eDirection direction) :BaseEnemy(eID::JAR)
+Jar::Jar(eStatus status, int posX, int posY, eDirection direction, int distancebroken) :BaseEnemy(eID::JAR)
 {
+	_distancebroken = distancebroken;
 	_sprite = SpriteManager::getInstance()->getSprite(eID::JAR);
 	_originPosition = Vector2(posX, posY);
 	//_sprite->setFrameRect(0, 0, 32.0f, 16.0f);
@@ -11,9 +12,6 @@ Jar::Jar(eStatus status, int posX, int posY, eDirection direction) :BaseEnemy(eI
 	_sprite->setFrameRect(0, 0, 10.0f, 10.0f);
 
 	_divingSprite = SpriteManager::getInstance()->getSprite(eID::ALADDIN);
-	Vector2 v(direction * JAR_GRAVITY, 0);
-	Vector2 a(0, 0);
-	this->_listComponent.insert(pair<string, IComponent*>("Movement", new Movement(a, v, this->_sprite)));
 	this->setStatus(status);
 	this->setPosition(posX, posY, 1.0f);
 	text = new Text("Arial", "", 10, 25);
@@ -30,27 +28,45 @@ void Jar::InIt()
 	_animations[DROP] = new Animation(_sprite, 0.1f);
 	_animations[DROP]->addFrameRect(eID::JAR, "jar_falling_", 6);
 
-	_animations[DROP | DESTROY] = new Animation(_sprite, 0.1f);
-	_animations[DROP | DESTROY]->addFrameRect(eID::JAR, "jar_broken_", 9);
 
-	_animations[DESTROY] = new Animation(_sprite, 0.05f);
-	_animations[DESTROY]->addFrameRect(eID::JAR, "jar_broken_", 9);
+	_animations[DYING] = new Animation(_sprite, 0.05f);
+	_animations[DYING]->addFrameRect(eID::JAR, "jar_broken_", 9);
+
 }
 
 void Jar::Update(float deltatime)
 {
+	switch (this->getStatus())
+	{
+		case DESTROY:
+			return;
+		case DROP:
+		{
+
+			float x = this->getPositionX();
+			float y = this->getPositionY();
+			if (y <= _originPosition.y - _distancebroken)
+				setStatus(DYING);
+			y -= JAR_VELOCITY;
+			this->setPosition(x, y);
+			break;
+		}
+		case DYING:
+		{
+			standing();
+			if (_animations[DYING]->getIndex() >= 8)
+			{
+				_animations[DYING]->setIndex(0);
+				this->setStatus(DESTROY);
+				//score+=10;
+				return;
+			}
+			break;
+		}
+		break;
+	}
 	_animations[this->getStatus()]->Update(deltatime);
 
-	if (isInStatus(DESTROY))
-	{
-		if (_animations[DESTROY]->getIndex() >= 8)
-			removeStatus(DESTROY);
-	}
-
-
-	float x = this->getPositionX();
-	float y = this->getPositionY() - JAR_VELOCITY;
-	this->setPosition(x, y);
 
 	// update component để sau cùng để sửa bên trên sau đó nó cập nhật đúng
 	for (auto it = _listComponent.begin(); it != _listComponent.end(); it++)
@@ -85,12 +101,12 @@ void Jar::onCollisionBegin(CollisionEventArg *collision_event)
 		DK2 bức ảnh status Attack của guardlu hiện tại là 3*/
 		if (collision_event->_otherObject->isInStatus(eStatus::BEHIT) == false && !isInStatus(DESTROY))
 		{
-
+			this->setStatus(DYING);
 			//Lưu trạng thái trước khi hết bị đánh set lại cái trạng thái cũ
 			collision_event->_otherObject->savePreStatus();
 			//Set status aladdin bị đánh
 			collision_event->_otherObject->setStatus(eStatus::BEHIT);
-			this->setStatus(DESTROY);
+			//this->setStatus(DESTROY);
 		}
 		break;
 	}
@@ -106,6 +122,8 @@ void Jar::onCollisionEnd(CollisionEventArg *)
 float Jar::checkCollision(BaseObject *object, float dt)
 {
 	if (object == this)
+		return 0.0f;
+	if (isInStatus(DYING))
 		return 0.0f;
 	auto collisionBody = (CollisionBody*)_listComponent["CollisionBody"];
 
@@ -126,21 +144,14 @@ Jar::~Jar()
 
 void Jar::standing()
 {
-	auto move = (Movement*)this->_listComponent["Movement"];
-	move->setVelocity(VECTOR2ZERO);
+	/*auto move = (Movement*)this->_listComponent["Movement"];
+	move->setVelocity(VECTOR2ZERO);*/
 }
 
 void Jar::movingDown()
 {
 	auto move = (Movement*)this->_listComponent["Movement"];
 	move->setVelocity(Vector2(move->getVelocity().x, -JAR_GRAVITY));
-}
-
-void Jar::Drop()
-{
-	float x = _originPosition.x;
-	float y = _originPosition.y - JAR_VELOCITY;
-	this->setPosition(x, y);
 }
 
 float Jar::PositionY()

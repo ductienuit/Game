@@ -1,7 +1,8 @@
 ﻿#include "GuardThrowJar.h"
 
-GuardThrowJar::GuardThrowJar(eStatus status, int posX, int posY) :BaseEnemy(eID::GUARDTHROWJAR)
+GuardThrowJar::GuardThrowJar(eStatus status, int posX, int posY, int distancebroken) :BaseEnemy(eID::GUARDTHROWJAR)
 {
+	_distancebroken = distancebroken;
 	_sprite = SpriteManager::getInstance()->getSprite(eID::GUARDTHROWJAR);
 	_sprite->setFrameRect(0, 0, 32.0f, 16.0f);
 
@@ -11,7 +12,7 @@ GuardThrowJar::GuardThrowJar(eStatus status, int posX, int posY) :BaseEnemy(eID:
 	this->setPosition(posX*SCALECHARACTER.x, posY*SCALECHARACTER.y, 1.0f);
 	text = new Text("Arial", "", 10, 25);
 
-	jar = new Jar(eStatus::DROP, posX, posY, eDirection::BOTTOM);
+	//new Jar(eStatus::DROP, posX, posY, eDirection::BOTTOM);
 
 	_score = 10;
 	InIt();
@@ -19,8 +20,6 @@ GuardThrowJar::GuardThrowJar(eStatus status, int posX, int posY) :BaseEnemy(eID:
 
 void GuardThrowJar::InIt()
 {
-	jar->InIt();
-
 	auto movement = new Movement(Vector2(0, 0), Vector2(0, 0), _sprite);
 	_listComponent["Movement"] = movement;
 
@@ -31,10 +30,10 @@ void GuardThrowJar::InIt()
 	__hook(&CollisionBody::onCollisionEnd, collisionBody, &GuardThrowJar::onCollisionEnd);
 
 	_animations[FREE] = new Animation(_sprite, 0.2f);
-	_animations[FREE]->addFrameRect(eID::GUARDTHROWJAR, "GuardThrowJar_0", "GuardThrowJar_0", NULL);
+	_animations[FREE]->addFrameRect(eID::GUARDTHROWJAR, "throwjar_12", "throwjar_12", NULL);
 
-	_animations[THROW] = new Animation(_sprite, 0.08f);
-	_animations[THROW]->addFrameRect(eID::GUARDTHROWJAR, "GuardThrowJar_", 10);
+	_animations[THROW] = new Animation(_sprite, 0.13f);
+	_animations[THROW]->addFrameRect(eID::GUARDTHROWJAR, "throwjar_", 10);
 
 	_animations[DYING] = new Animation(_sprite, 0.1f);
 	_animations[DYING]->addFrameRect(eID::GUARDTHROWJAR, "destroy_enermy_", 10);
@@ -50,13 +49,16 @@ void GuardThrowJar::Update(float deltatime)
 
 	this->UpdateStatus(deltatime);
 
-	//Jar là cái lu
-	jar->Update(deltatime);
-
 	// update component để sau cùng để sửa bên trên sau đó nó cập nhật đúng
 	for (auto it = _listComponent.begin(); it != _listComponent.end(); it++)
 	{
 		it->second->Update(deltatime);
+	}
+
+	//Jar là cái lu
+	for (int i = 0; i < _listJar.size(); i++)
+	{
+		_listJar[i]->Update(deltatime);
 	}
 }
 
@@ -79,99 +81,67 @@ void GuardThrowJar::UpdateStatus(float dt)
 		}
 	}
 
-
-
-
-
 	if (distanceBetweenAladdin().y > 0)
 		return;
-	if (distanceBetweenAladdin() < 0)
-	{
-		float distance = -distanceBetweenAladdin().x;
+	float distance = -distanceBetweenAladdin().x;
 
-		if (distance <= 80)
+	if (distance <= 80)
+	{
+		this->setStatus(eStatus::THROW);
+		if (_animations[_status]->getIndex() == 6)
 		{
-			this->clearStatus();
-			this->addStatus(eStatus::THROW);
-			jar->addStatus(eStatus::DROP);
-			if (_animations[_status]->getIndex() == 6)
-			{
-				jar->Drop();
-			}
-			return;
+			_animations[this->getStatus()]->setIndex(0);
+			setStatus(FREE);
+			_listJar.push_back(new Jar(eStatus::DROP, this->getPositionX(), this->getPositionY(), eDirection::BOTTOM,_distancebroken));
 		}
-		else if (distance > 80)
-		{
-			jar->addStatus(eStatus::DROP);
-			if (_animations[_status]->getIndex() == 6)
-			{
-				jar->Drop();
-			}
-			if (isInStatus(THROW) && _animations[this->getStatus()]->getIndex() >= 9)
-			{
-				_animations[this->getStatus()]->setIndex(0);
-				removeStatus(eStatus::THROW);
-				this->addStatus(FREE);
-			}
-			return;
-		}
-		this->clearStatus();
-		this->addStatus(FREE);
 		return;
 	}
-	//-----------------------------------------------------------------------------
-	else if (distanceBetweenAladdin() > 0)
+	else if (distance > 80)
 	{
-		float distance = distanceBetweenAladdin().x;
-		if (distance <= 80)
+		if (isInStatus(THROW) && _animations[this->getStatus()]->getIndex() >= 9)
 		{
-			this->clearStatus();
-			this->addStatus(eStatus::THROW);
-			jar->addStatus(eStatus::DROP);
-			if (_animations[_status]->getIndex() == 6)
-			{
-				jar->Drop();
-			}
-			return;
+			_animations[this->getStatus()]->setIndex(0);
+			removeStatus(eStatus::THROW);
+			this->addStatus(FREE);
 		}
-		else if (distance > 80)
-		{
-			jar->addStatus(eStatus::DROP);
-			if (_animations[_status]->getIndex() == 6)
-			{
-				jar->Drop();
-			}
-			if (isInStatus(THROW) && _animations[this->getStatus()]->getIndex() >= 9)
-			{
-
-				_animations[this->getStatus()]->setIndex(0);
-				removeStatus(eStatus::THROW);
-				this->addStatus(FREE);
-			}
-			return;
-		}
-		this->clearStatus();
-		this->addStatus(FREE);
 		return;
 	}
+	this->clearStatus();
+	this->addStatus(FREE);
+	return;
 }
 
 void GuardThrowJar::Draw(LPD3DXSPRITE spritehandle, ViewPort* viewport)
 {
 	_animations[this->getStatus()]->Draw(spritehandle, viewport);
-	//text->Draw();
-	jar->Draw(spritehandle, viewport);
+	for (int i = 0; i < _listJar.size(); i++)
+	{
+		if (_listJar[i]->isInStatus(DESTROY))
+		{
+			_listJar[i]->Release();
+			delete _listJar[i];
+			_listJar.erase(_listJar.begin() + i);
+		}
+		else
+			_listJar[i]->Draw(spritehandle, viewport);
+	}
 }
 
 void GuardThrowJar::Release()
 {
+	for (int i = 0; i < _listJar.size(); i++)
+	{
+		_listJar[i]->Release();
+		delete _listJar[i];
+	}
+	_listJar.clear();
+
 	for (auto component : _listComponent)
 	{
 		delete component.second;
 	}
 	_listComponent.clear();
 	SAFE_DELETE(this->_sprite);
-	jar->Release();
 }
 
 void GuardThrowJar::onCollisionBegin(CollisionEventArg *collision_event)
@@ -208,8 +178,13 @@ float GuardThrowJar::checkCollision(BaseObject *object, float dt)
 	auto collisionBody = (CollisionBody*)_listComponent["CollisionBody"];
 	//Check collision enermy(this) với aladdin(object)
 	/*Ưu tiên check GuardThrowJar trước, sau đó đến Jar*/
-	if(!collisionBody->checkCollision(object, dt, true))
-		jar->checkCollision(object, dt);
+	if (!collisionBody->checkCollision(object, dt, true))
+	{
+		for (int i = 0; i < _listJar.size(); i++)
+		{
+			_listJar[i]->checkCollision(object, dt);
+		}
+	}
 	return 0.0f;
 }
 
