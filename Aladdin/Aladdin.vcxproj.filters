@@ -276,6 +276,15 @@
     <ClCompile Include="Objects\GameObjects\EatCoin.cpp">
       <Filter>Source Files\Object\GameObjects</Filter>
     </ClCompile>
+    <ClCompile Include="Scenes\IntroScene.cpp">
+      <Filter>Source Files\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Scenes\EndScene.cpp">
+      <Filter>Source Files\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Scenes\BossScene.cpp">
+      <Filter>Source Files\Scenes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FrameWork\Animation.h">
@@ -494,11 +503,26 @@
     <ClInclude Include="Objects\GameObjects\BulletCamel.h">
       <Filter>Header Files\Object\GameObjects</Filter>
     </ClInclude>
-    <ClInclude Include="Objects\GameObjects\EatHeart.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Objects\GameObjects\Spring.h">
+      <Filter>Header Files\Object\GameObjects</Filter>
     </ClInclude>
     <ClInclude Include="Objects\GameObjects\RestartPoint.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Object\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\GameObjects\EatHeart.h">
+      <Filter>Header Files\Object\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\GameObjects\EatCoin.h">
+      <Filter>Header Files\Object\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenes\IntroScene.h">
+      <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenes\EndScene.h">
+      <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenes\BossScene.h">
+      <Filter>Header Files\Scenes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
