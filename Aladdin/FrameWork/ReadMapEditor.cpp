@@ -220,6 +220,17 @@ ReadMapEditor::ReadMapEditor(const char *filepath, QuadTree *& _quadTree)
 			}
 		}
 
+		if (_objectGroup->GetName() == "coin")
+		{
+			for (size_t j = 0; j < _objectGroup->GetNumObjects(); j++)
+			{
+				Tmx::Object* _object = _objectGroup->GetObjects().at(j);
+				EatCoin* _coin = new EatCoin(_object->GetX(), 688 - _object->GetY() - _object->GetHeight());
+				ListEatCoin.push_back(_coin);
+				_QuadTree->InsertStaticObject(_coin);
+			}
+		}
+
 		if (_objectGroup->GetName() == "camel")
 		{
 			for (size_t j = 0; j < _objectGroup->GetNumObjects(); j++)
@@ -332,8 +343,15 @@ void ReadMapEditor::ListObject(RECT * rect)
 	{
 		if (isContain(ListEatApple[i], *rect))
 		{
-
 			GetList.push_back(ListEatApple[i]);
+		}
+	}
+
+	for (size_t i = 0; i < ListEatCoin.size(); i++)
+	{
+		if (isContain(ListEatCoin[i], *rect))
+		{
+			GetList.push_back(ListEatCoin[i]);
 		}
 	}
 
@@ -341,7 +359,6 @@ void ReadMapEditor::ListObject(RECT * rect)
 	{
 		if (isContain(ListCamel[i], *rect))
 		{
-
 			GetList.push_back(ListCamel[i]);
 		}
 	}
@@ -350,7 +367,6 @@ void ReadMapEditor::ListObject(RECT * rect)
 	{
 		if (isContain(ListRestartPoint[i], *rect))
 		{
-
 			GetList.push_back(ListRestartPoint[i]);
 		}
 	}

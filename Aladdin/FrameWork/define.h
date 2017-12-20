@@ -74,6 +74,8 @@ enum eID
 	APPLEEAT,
 	ITEMSPARK,
 
+	COINEAT,
+
 	RESTARTPOINT,
 
 	CAMERAVIRTUAL, //Camera ao, dung de lay bounding

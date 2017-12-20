@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-down" width="1" height="1" tilewidth="4771" tileheight="688" nextobjectid="388">
+<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-down" width="1" height="1" tilewidth="4771" tileheight="688" nextobjectid="394">
  <objectgroup name="heart">
   <object id="312" x="2384" y="636.5" width="15" height="15"/>
   <object id="313" x="3225" y="380.333" width="16.3333" height="14.3333"/>
+ </objectgroup>
+ <objectgroup name="coin">
+  <object id="388" x="2335" y="635" width="14" height="14"/>
+  <object id="389" x="2652" y="624" width="14" height="13"/>
+  <object id="390" x="2699" y="624" width="13" height="14"/>
+  <object id="392" x="2634.5" y="236" width="16.5" height="16"/>
+  <object id="393" x="2634" y="265" width="18" height="17"/>
  </objectgroup>
  <objectgroup name="guardshort">
   <object id="329" x="4600.33" y="170.667" width="33.6667" height="37.3333"/>

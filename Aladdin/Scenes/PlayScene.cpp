@@ -112,10 +112,14 @@ bool PlayScene::InIt()
 	//guardThrowJar->InIt();
 	//_listObject.push_back(guardThrowJar);
 
-	//auto knifeThrower = new KnifeThrower(eStatus::MOVING_LEFT, 500, 100, eDirection::LEFT);
-	//knifeThrower->InIt();
-	//_listObject.push_back(knifeThrower);
-
+	/*auto knifeThrower = new KnifeThrower(eStatus::MOVING_LEFT, 500, 100, eDirection::LEFT);
+	knifeThrower->InIt();
+	_listObject.push_back(knifeThrower);*/
+/*
+	auto coin = new EatCoin( 100, 400);
+	coin->InIt();
+	_listObject.push_back(coin);
+*/
 	////Complete
 	//auto guardThin = new GuardThin(eStatus::MOVING_LEFT, 200, 100, eDirection::LEFT);
 	//guardThin->InIt();
@@ -293,7 +297,7 @@ void PlayScene::Draw(LPD3DXSPRITE spriteHandle)
 		object->ShowBB();
 	}
 	_aladdin->Draw(spriteHandle, _viewport);
-	//_backgroundfront->Draw(spriteHandle, _viewport);
+	_backgroundfront->Draw(spriteHandle, _viewport);
 
 	for each(auto object in Stair[0])
 	{

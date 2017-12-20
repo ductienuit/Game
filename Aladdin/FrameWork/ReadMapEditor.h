@@ -15,6 +15,7 @@
 #include"../Objects/GameObjects/Land.h"
 #include"../Objects/GameObjects/Camel.h"
 #include"../Objects/GameObjects/RestartPoint.h"
+#include"../Objects/GameObjects/EatCoin.h"
 
 
 class ReadMapEditor
@@ -32,6 +33,7 @@ public:
 	vector <KnifeThrower*> ListKnifeThrower;
 	vector <Land*> ListLand;
 	vector <EatApple*> ListEatApple;
+	vector <EatCoin*> ListEatCoin;
 	vector <Camel*> ListCamel;
 	vector <BaseObject*> GetList;
 	vector <RestartPoint*> ListRestartPoint;

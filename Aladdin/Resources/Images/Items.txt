@@ -1,27 +1,16 @@
 frame_name	left	top	right	bottom
 item_spark_0	13	19	19	25
-
 item_spark_1	55	13	65	29
 item_spark_2	99	11	111	29
-
 item_spark_3	137	7	159	31
-
 item_spark_4	177	5	211	37
-
 item_spark_5	221	1	235	35
-
 item_spark_6	241	5	279	39
-
 item_spark_7	287	7	319	35
-
 item_spark_8	327	11	361	37
-
 item_spark_9	371	15	405	37
-
 item_spark_10	419	19	453	39
-
 item_spark_11	463	25	475	39
-
 
 eat_apple_0	352	96	363	108
 
@@ -35,3 +24,22 @@ genie_restart_point_06	218	505	242	539
 genie_restart_point_07	250	506	270	540
 genie_restart_point_08	281	507	305	540
 genie_restart_point_09	313	508	336	541
+
+coin_00		351	190	368	206
+
+coin_01		374	190	391	206
+
+coin_02		397	190	414	206
+
+coin_03		420	190	437	206
+
+coin_04		443	189	460	206
+
+coin_05		465	184	497	209
+
+coin_06		503	187	526	207
+
+coin_07		533	191	550	207
+
+coin_08		556	191	573	207
+
