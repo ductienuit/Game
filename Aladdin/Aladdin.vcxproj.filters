@@ -267,6 +267,12 @@
     <ClCompile Include="Objects\GameObjects\RestartPoint.cpp">
       <Filter>Source Files\Object\GameObjects</Filter>
     </ClCompile>
+    <ClCompile Include="FrameWork\Manager\SoundManager.cpp">
+      <Filter>Source Files\FrameWork\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="dxaudio.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FrameWork\Animation.h">
@@ -487,6 +493,12 @@
     </ClInclude>
     <ClInclude Include="Objects\GameObjects\RestartPoint.h">
       <Filter>Header Files\Object\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="dxaudio.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameWork\Manager\SoundManager.h">
+      <Filter>Header Files\FrameWork\Manager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

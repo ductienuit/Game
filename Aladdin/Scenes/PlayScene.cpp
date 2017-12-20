@@ -50,6 +50,7 @@ bool PlayScene::InIt()
 	//Background
 	_background = new BackGround();
 	_background->InIt();
+	SoundManager::getInstance()->PlayLoop(eSoundId::BACKGROUND_STAGE);
 
 	_backgroundfront = new BackGroundFront();
 	_backgroundfront->InIt();

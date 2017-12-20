@@ -127,6 +127,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AladdinGame.cpp" />
+    <ClCompile Include="dxaudio.cpp" />
     <ClCompile Include="Objects\GameObjects\BulletCamel.cpp" />
     <ClCompile Include="Objects\GameObjects\EatApple.cpp" />
     <ClCompile Include="Objects\GameObjects\Camel.cpp" />
@@ -193,9 +194,11 @@
     <ClCompile Include="Objects\Enemies\Knife.cpp" />
     <ClCompile Include="FrameWork\QuadTree.cpp" />
     <ClCompile Include="FrameWork\Utils.cpp" />
+    <ClCompile Include="FrameWork\Manager\SoundManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AladdinGame.h" />
+    <ClInclude Include="dxaudio.h" />
     <ClInclude Include="Objects\GameObjects\BulletCamel.h" />
     <ClInclude Include="Objects\GameObjects\EatApple.h" />
     <ClInclude Include="Objects\GameObjects\Camel.h" />
@@ -267,6 +270,7 @@
     <ClInclude Include="Objects\Enemies\Knife.h" />
     <ClInclude Include="FrameWork\QuadTree.h" />
     <ClInclude Include="FrameWork\Utils.h" />
+    <ClInclude Include="FrameWork\Manager\SoundManager.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Cach code.txt" />

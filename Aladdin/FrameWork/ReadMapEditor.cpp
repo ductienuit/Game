@@ -402,7 +402,7 @@ void ReadMapEditor::ListObject(RECT * rect)
 	}
 
 }
-
+//đệ quy sai
 //vector<BaseObject*> ReadMapEditor::GetList(RECT * rect)
 //{
 //	kiem tra listguardshort
