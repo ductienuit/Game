@@ -69,11 +69,6 @@
   <object id="355" x="2596.67" y="521.333" width="149.333" height="10"/>
   <object id="84" x="2241" y="580" width="45" height="15"/>
   <object id="356" x="4341" y="671" width="429" height="9"/>
-  <object id="357" x="3435" y="254" width="61" height="11"/>
-  <object id="358" x="3460" y="174" width="61" height="14"/>
-  <object id="359" x="4240" y="140" width="54" height="12"/>
-  <object id="360" x="4273" y="83" width="26" height="14"/>
-  <object id="361" x="4205" y="167" width="33" height="15"/>
   <object id="363" x="3" y="638" width="1150" height="10"/>
   <object id="364" x="1475.17" y="672" width="729.667" height="10"/>
   <object id="365" x="2245" y="670" width="530" height="10"/>
@@ -100,7 +95,7 @@
  <objectgroup color="#ff557f" name="spring">
   <object id="165" x="3436" y="256" width="60" height="7"/>
   <object id="167" x="3459.67" y="178.333" width="60" height="7"/>
-  <object id="170" x="4218" y="144" width="60" height="7"/>
+  <object id="170" x="4219" y="140" width="60" height="7"/>
  </objectgroup>
  <objectgroup name="stop">
   <object id="370" x="2085" y="311" width="13" height="15"/>
@@ -245,7 +240,7 @@
  </objectgroup>
  <objectgroup color="#00557f" name="wall">
   <object id="142" x="1437" y="586" width="35" height="80"/>
-  <object id="146" x="1448.67" y="65.3333" width="25" height="385"/>
+  <object id="146" x="1448.67" y="65.3333" width="25" height="359.667"/>
   <object id="148" x="2205.67" y="297.667" width="35" height="390"/>
   <object id="149" x="2775" y="581" width="40" height="105"/>
   <object id="150" x="3013" y="437.5" width="35" height="60"/>

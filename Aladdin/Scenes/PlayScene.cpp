@@ -58,7 +58,7 @@ bool PlayScene::InIt()
 
     _aladdin = new Aladdin();
 	_aladdin->InIt();
-	_aladdin->setPosition(7000, 600);
+	_aladdin->setPosition(100,1000);
 	_listObject.push_back(_aladdin);
 
 	return true;
@@ -118,6 +118,8 @@ void PlayScene::Update(float dt)
 		if (temp == eID::FALLINGPLATFORM) 
 			_aladdin->checkCollision(i, dt);
 		if (temp == eID::CAMEL)
+			_aladdin->checkCollision(i, dt);
+		if(temp==eID::SPRING)
 			_aladdin->checkCollision(i, dt);
 		if (i->getId() != eID::LAND || _aladdin->getId() == temp)
 			continue;
@@ -257,6 +259,10 @@ void PlayScene::UpdateViewport(BaseObject * aladdin)
 	if (new_position.x + WINDOWS_WIDTH > worldsize.x)
 	{
 		new_position.x = worldsize.x - WINDOWS_WIDTH;
+	}
+	if (new_position.y > worldsize.y)
+	{
+		new_position.y = worldsize.y;
 	}
 	_viewport->setPositionWorld(new_position);
 }

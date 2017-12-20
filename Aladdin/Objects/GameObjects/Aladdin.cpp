@@ -890,6 +890,13 @@ void Aladdin::UpdateInput(float dt)
 			}
 			break;
 		}
+		case(eStatus::AEROBATIC):
+		{
+			if (_input->isKeyDown(DIK_LEFT))
+				moveLeft();
+			if (_input->isKeyDown(DIK_RIGHT))
+				moveRight();
+		}
 	}
 
 	if (isInStatus(eStatus::CLIMB))
@@ -1364,17 +1371,7 @@ void Aladdin::updateStatus(float dt)
 			removeStatus(THROW);
 	}
 
-	if (isInStatus(eStatus::AEROBATIC))
-	{
-		if (_input->isKeyDown(DIK_LEFT))
-		{
-			moveLeft();
-		}
-		if (_input->isKeyDown(DIK_RIGHT))
-		{
-			moveRight();
-		}
-	}
+
 }
 
 void Aladdin::updateStatusOneAction(float deltatime)
@@ -1687,7 +1684,7 @@ void Aladdin::aerobatic()
 	setStatus(AEROBATIC);
 
 	auto move = (Movement*)_listComponent["Movement"];
-	move->setVelocity(Vector2(move->getVelocity().x, ALADDIN_JUMP_VEL));
+	move->setVelocity(Vector2(move->getVelocity().x, ALADDIN_AEROBATIC_VEL));
 
 	auto g = (Gravity*)_listComponent["Gravity"];
 	g->setStatus(eGravityStatus::FALLING__DOWN);
