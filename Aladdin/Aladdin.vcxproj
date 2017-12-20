@@ -143,6 +143,7 @@
     <ClCompile Include="Objects\GameObjects\FallingPlatform.cpp" />
     <ClCompile Include="Objects\GameObjects\Land.cpp" />
     <ClCompile Include="FrameWork\ReadMapEditor.cpp" />
+    <ClCompile Include="Objects\GameObjects\Spring.cpp" />
     <ClCompile Include="Resources\MapReader\base64.cpp" />
     <ClCompile Include="Resources\MapReader\miniz.c" />
     <ClCompile Include="Resources\MapReader\tinyxml2.cpp" />
@@ -213,6 +214,7 @@
     <ClInclude Include="Objects\GameObjects\FallingPlatform.h" />
     <ClInclude Include="Objects\GameObjects\Land.h" />
     <ClInclude Include="FrameWork\ReadMapEditor.h" />
+    <ClInclude Include="Objects\GameObjects\Spring.h" />
     <ClInclude Include="Resources\MapReader\base64.h" />
     <ClInclude Include="Resources\MapReader\tinyxml2.h" />
     <ClInclude Include="Resources\MapReader\Tmx.h" />

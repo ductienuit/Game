@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-down" width="1" height="1" tilewidth="4771" tileheight="688" nextobjectid="381">
+<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-down" width="1" height="1" tilewidth="4771" tileheight="688" nextobjectid="383">
  <objectgroup name="heart">
   <object id="393" x="2390" y="628" width="17" height="18"/>
   <object id="396" x="1928" y="173" width="17" height="18"/>
@@ -82,7 +82,7 @@
   <object id="370" x="2085" y="311" width="13" height="15"/>
   <object id="372" x="1540" y="126.5" width="16" height="23.5"/>
   <object id="373" x="2690.67" y="70.6667" width="19.3333" height="15.3333"/>
-  <object id="374" x="4708" y="339" width="14.5" height="13"/>
+  <object id="381" x="4707.33" y="346.667" width="16.6667" height="18"/>
  </objectgroup>
  <objectgroup color="#ffaa7f" name="apple">
   <object id="177" x="481.5" y="549" width="14" height="14"/>
@@ -181,14 +181,14 @@
   <object id="293" x="4333" y="15.5" width="14" height="14"/>
  </objectgroup>
  <objectgroup color="#55557f" name="bar">
-  <object id="294" x="4401" y="300.333" width="364" height="10"/>
+  <object id="294" x="4420.33" y="303.333" width="344.667" height="10"/>
   <object id="295" x="4354.67" y="75.6667" width="205" height="10"/>
  </objectgroup>
  <objectgroup color="#00ff7f" name="rope">
   <object id="135" x="1545" y="202" width="5" height="145"/>
   <object id="136" x="2088.67" y="372.667" width="5" height="197"/>
   <object id="138" x="2696" y="137.667" width="5" height="183.333"/>
-  <object id="139" x="4712.67" y="391.5" width="5" height="162.167"/>
+  <object id="139" x="4712.67" y="399.5" width="5" height="154.167"/>
  </objectgroup>
  <objectgroup name="stair1">
   <object id="83" x="2289" y="589" width="30" height="10"/>
@@ -228,7 +228,6 @@
   <object id="151" x="3168" y="4" width="20" height="175"/>
   <object id="153" x="3570" y="134" width="30" height="185"/>
   <object id="154" x="4302" y="79" width="50" height="175"/>
-  <object id="296" x="4760.67" y="324.333" width="10" height="290"/>
   <object id="341" x="2608" y="178" width="30" height="240"/>
  </objectgroup>
  <objectgroup color="#c83016" name="stair">

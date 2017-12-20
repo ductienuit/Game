@@ -223,9 +223,9 @@ ReadMapEditor::ReadMapEditor(const char *filepath, QuadTree *& _quadTree)
 			{
 				Tmx::Object* _object = _objectGroup->GetObjects().at(j);
 
-				Land* _spring = new Land(_object->GetX(), 688 - _object->GetY(), _object->GetWidth(), _object->GetHeight(), NONE, SPRING);
+				Spring* _spring = new Spring(_object->GetX(), 688 - _object->GetY() - _object->GetHeight());
 
-				ListLand.push_back(_spring);
+				ListSpring.push_back(_spring);
 				_QuadTree->InsertStaticObject(_spring);
 			}
 		}
@@ -425,6 +425,16 @@ void ReadMapEditor::ListObject(RECT * rect)
 		{
 
 			GetList.push_back(i);
+		}
+	}
+
+
+	for (size_t i = 0; i < ListSpring.size(); i++)
+	{
+		if (isContain(ListSpring[i], *rect))
+		{
+
+			GetList.push_back(ListSpring[i]);
 		}
 	}
 

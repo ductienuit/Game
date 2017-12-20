@@ -270,6 +270,9 @@
     <ClCompile Include="Objects\GameObjects\EatHeart.cpp">
       <Filter>Source Files\Object\GameObjects</Filter>
     </ClCompile>
+    <ClCompile Include="Objects\GameObjects\Spring.cpp">
+      <Filter>Source Files\Object\GameObjects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FrameWork\Animation.h">
@@ -493,6 +496,9 @@
     </ClInclude>
     <ClInclude Include="Objects\GameObjects\RestartPoint.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\GameObjects\Spring.h">
+      <Filter>Header Files\Object\GameObjects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

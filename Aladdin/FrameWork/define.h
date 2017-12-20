@@ -48,7 +48,8 @@ enum eStatus
 	THROW_RIGHT_FAR =	(1 << 21),		//Trang thai cua knife
 	THROW			=   (1 << 22),
 	THROW_LEFT		=	(1 << 23),
-	THROW_RIGHT		=	(1 << 24)
+	THROW_RIGHT		=	(1 << 24),
+	AEROBATIC		=	(1 << 25)
 };
 
 enum eID
@@ -78,6 +79,8 @@ enum eID
 
 	RESTARTPOINT,
 
+
+	SPRING
 };
 
 enum eDirection
@@ -94,7 +97,6 @@ enum eLandType
 {
 	ROPE,	//Dây
 	SOLID,	//Nền đất
-	SPRING,	//Cái bật nhảy
 	PLATFORM, //Tấm gỗ
 	BAR,  //Thanh xà ngang
 	CLIMBABLE0,//Dây 1

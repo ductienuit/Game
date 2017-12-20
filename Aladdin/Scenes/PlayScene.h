@@ -30,7 +30,10 @@
 #include"../Objects/Enemies/GuardFat.h"
 #include"../Objects/GameObjects/Camel.h"
 #include"../Objects/GameObjects/EatApple.h"
+#include"../Objects/GameObjects/RestartPoint.h"
+#include"../Objects/GameObjects/Spring.h"
 #include"../Objects/GameObjects/EatHeart.h"
+
 
 
 #include<time.h>
@@ -90,7 +93,7 @@ private:
 	vector<BaseObject*> Bar;			//Thanh xà ngang
 	vector<BaseObject*> Rope;			//Dây
 	vector<BaseObject*> Solid;			//Đất
-	vector<BaseObject*> Spring;			//Cục nhún
+	//vector<BaseObject*> Spring;			//Cục nhún			=> what is this Spring???
 	vector<BaseObject*> Platform;		//Thanh gỗ
 	vector<BaseObject*> CheckOn[4];
 
