@@ -2,8 +2,8 @@
 #define __BACKGROUNDFRONT_H__
 
 #include"../Objects/BaseObject.h"
-#include "../../FrameWork/define.h"
-#include"../../FrameWork/ViewPort.h"
+#include "../FrameWork/define.h"
+#include"../FrameWork/ViewPort.h"
 
 class BackGroundFront:public BaseObject
 {

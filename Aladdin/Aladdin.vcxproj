@@ -28,7 +28,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -127,6 +127,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AladdinGame.cpp" />
+    <ClCompile Include="Objects\GameObjects\EatHeart.cpp" />
     <ClCompile Include="Objects\GameObjects\BulletCamel.cpp" />
     <ClCompile Include="Objects\GameObjects\EatApple.cpp" />
     <ClCompile Include="Objects\GameObjects\Camel.cpp" />
@@ -196,6 +197,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AladdinGame.h" />
+    <ClInclude Include="Objects\GameObjects\EatHeart.h" />
     <ClInclude Include="Objects\GameObjects\BulletCamel.h" />
     <ClInclude Include="Objects\GameObjects\EatApple.h" />
     <ClInclude Include="Objects\GameObjects\Camel.h" />

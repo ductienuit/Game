@@ -12,6 +12,7 @@
 #include"../Objects/Enemies/GuardFat.h"
 #include"../Objects/Enemies/KnifeThrower.h"
 #include"../Objects/GameObjects/EatApple.h"
+#include"../Objects/GameObjects/EatHeart.h"
 #include"../Objects/GameObjects/Land.h"
 #include"../Objects/GameObjects/Camel.h"
 #include"../Objects/GameObjects/RestartPoint.h"
@@ -33,7 +34,8 @@ public:
 	vector <KnifeThrower*> ListKnifeThrower;
 	vector <Land*> ListLand;
 	vector <EatApple*> ListEatApple;
-	vector <Camel*> ListCamel;
+	vector <EatHeart*> ListEatHeart;
+ 	vector <Camel*> ListCamel;
 	vector <BaseObject*> GetList;
 	vector <RestartPoint*> ListRestartPoint;
 	vector<FallingPlatform*> ListFallingPlatform;
