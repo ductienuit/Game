@@ -301,7 +301,6 @@ void ReadMapEditor::ListObject(RECT * rect)
 		{
 			GetList.push_back(ListGuardShort[i]);
 		}
-
 	}
 
 	for (size_t i = 0; i < ListGuardLu.size(); i++)

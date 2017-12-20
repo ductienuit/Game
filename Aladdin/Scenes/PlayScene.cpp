@@ -54,8 +54,6 @@ bool PlayScene::InIt()
 	_backgroundfront = new BackGroundFront();
 	_backgroundfront->InIt();
 
-
-
     _aladdin = new Aladdin();
 	_aladdin->InIt();
 	_aladdin->setPosition(4200, 600);
