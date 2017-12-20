@@ -11,8 +11,8 @@ GuardShort::GuardShort(eStatus status, int posX, int posY, eDirection direction,
 	this->_listComponent.insert(pair<string, IComponent*>("Movement", new Movement(a, v, this->_sprite)));
 	this->setStatus(status);
 	this->setPosition(posX*SCALECHARACTER.x, posY*SCALECHARACTER.y, 1.0f);
-	_minMove = minMove;
-	_maxMove = maxMove;
+	_minMove = getPositionX() - 50; //- minMove;
+	_maxMove = getPositionX() + 100; //+ maxMove;
 	text = new Text("Arial", "", 10, 25);
 	InIt();
 }
@@ -37,7 +37,7 @@ void GuardShort::InIt()
 	_animations[MOVING_RIGHT] = new Animation(_sprite, 0.15f);
 	_animations[MOVING_RIGHT]->addFrameRect(eID::GUARDSHORT, "guardsShort_Moving_0", 8);
 
-	_animations[THROW] = new Animation(_sprite, 0.1f);
+	_animations[THROW] = new Animation(_sprite, 0.2f);
 	_animations[THROW]->addFrameRect(eID::GUARDSHORT, "guardsShort_attack_00" , "guardsShort_attack_01" , "guardsShort_attack_02"
 		, "guardsShort_attack_03" , "guardsShort_attack_04" , "guardsShort_attack_00", "guardsShort_attack_00", NULL);
 
@@ -48,7 +48,7 @@ void GuardShort::InIt()
 	_animations[BEHIT]->addFrameRect(eID::GUARDSHORT, "guardsShort_dying_0", 7);
 
 	_animations[DYING] = new Animation(_sprite, 0.2f);
-	_animations[DYING]->addFrameRect(eID::GUARDTHIN, "destroy_enermy_", 10);
+	_animations[DYING]->addFrameRect(eID::GUARDSHORT, "destroy_enermy_", 10);
 
 	_canThrow = false;
 	_hitpoint = 2;// Chú ý 2 lần đánh chứ không phải 3
@@ -101,8 +101,8 @@ void GuardShort::onCollisionBegin(CollisionEventArg *collision_event)
 				//mạng sống còn 1 và bức ảnh ATTACK của aladdin bằng 1
 				if (collision_event->_otherObject->getIndex() == 4 && _hitpoint >= 1)
 				{
-					_hitpoint -= 1;
-					this->setStatus(eStatus::BEHIT);
+					_hitpoint = 0;
+					this->setStatus(eStatus::DYING);
 				}
 				break;
 			}
