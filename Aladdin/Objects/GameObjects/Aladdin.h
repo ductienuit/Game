@@ -2,13 +2,14 @@
 #define __ALADDIN_H__
 
 #include "../../FrameWork/define.h"
-#include"../../FrameWork/Animation.h"
+#include "../../FrameWork/Animation.h"
 #include "../../FrameWork/InputController.h"
-#include"../../FrameWork/IComponent.h"
-#include"../../FrameWork/StopWatch.h"
-#include"../BaseObject.h"
-#include"../../FrameWork/CollisionBody.h"
+#include "../../FrameWork/IComponent.h"
+#include "../../FrameWork/StopWatch.h"
+#include "../BaseObject.h"
+#include "../../FrameWork/CollisionBody.h"
 #include "AppleThrow.h"
+#include"RestartPoint.h"
 
 #include"Land.h"
 #include"FallingPlatform.h"
@@ -54,6 +55,10 @@ public:
 	void	Stop() override;
 	void	Stop(bool);
 
+
+	// Hồi Sinh
+	void SetRestartPoint(BaseObject*) override;
+
 private:
 	map<int, Animation*> _animations;
 	map<string, IComponent*> _listComponent;
@@ -61,6 +66,7 @@ private:
 	RECT _boundAla;
 	BaseObject* landstop;
 	BaseObject* _preObjectColli;  //Đối tượng va chạm trước đó
+	BaseObject* _restartPoint;
 
 	void onKeyReleased(KeyEventArg* key_event);
 

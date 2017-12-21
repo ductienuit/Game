@@ -91,6 +91,9 @@ public:
 	virtual void		ShowBB();
 	virtual void		StopUp();
 	virtual int			getIndex(); //Index of Animations
+	
+	// Hồi Sinh
+	virtual void SetRestartPoint(BaseObject*);
 protected:
 	Sprite*		_sprite;
 	// nếu muốn dùng animation thì class kế thừa khai báo animation
