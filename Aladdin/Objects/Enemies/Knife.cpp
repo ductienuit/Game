@@ -105,6 +105,12 @@ void Knife::onCollisionBegin(CollisionEventArg *collision_event)
 	case eID::ALADDIN:
 	{
 		/*DK1:Aladdin đang không bị đánh*/
+		if (collision_event->_otherObject->isInStatus(eStatus::ATTACK))
+		{
+			//#1 giao bay nguoc
+			break;
+		}
+		/*DK1:Aladdin đang không bị đánh*/
 		if (collision_event->_otherObject->isInStatus(eStatus::BEHIT) == false && !isInStatus(DESTROY))
 		{
 
@@ -112,7 +118,7 @@ void Knife::onCollisionBegin(CollisionEventArg *collision_event)
 			collision_event->_otherObject->savePreStatus();
 			//Set status aladdin bị đánh
 			collision_event->_otherObject->setStatus(eStatus::BEHIT);
-			//this->setStatus(DESTROY);
+			ScoreAladdin::getInstance()->plusHealth(-10);
 		}
 		break;
 	}

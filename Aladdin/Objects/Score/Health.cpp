@@ -7,7 +7,7 @@ Health::Health(int posX, int posY) :BaseObject(eID::HEALTH)
 	this->setStatus(NORMAL);
 	this->setPosition(posX*SCALECHARACTER.x, posY*SCALECHARACTER.y, 1.0f);
 	this->setOrigin(ORIGINZERO);
-	setScale(SCALEONE);
+	setScale(SCALEHEALTH);
 	InIt();
 }
 
@@ -52,6 +52,8 @@ void Health::Update(float deltatime)
 {
 
 	strStatus = ScoreAladdin::getInstance()->getHealth();
+	if (strStatus < 0)
+		strStatus = 0;
 
 	_animations[strStatus]->Update(deltatime);
 

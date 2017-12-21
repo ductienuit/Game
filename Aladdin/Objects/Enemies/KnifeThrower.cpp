@@ -92,6 +92,7 @@ void KnifeThrower::onCollisionBegin(CollisionEventArg *collision_event)
 			if (collision_event->_otherObject->getIndex() == 3)
 			{
 				this->setStatus(eStatus::DYING);
+				ScoreAladdin::getInstance()->plusScore(10);
 			}
 			break;
 		}

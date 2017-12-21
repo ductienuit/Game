@@ -8,6 +8,7 @@
 #include "../../FrameWork/Text.h"
 #include"../Enemies/BaseEnemy.h"
 #include"../GameObjects/Aladdin.h"
+#include"../Score/ScoreAladdin.h"
 
 using namespace std;
 

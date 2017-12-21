@@ -26,6 +26,11 @@ void ScoreAladdin::plusHealth(int value)
 	_health += value;
 }
 
+void ScoreAladdin::setHealth(int value)
+{
+	_health = value;
+}
+
 int ScoreAladdin::getHealth()
 {
 	return _health;

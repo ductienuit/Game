@@ -32,7 +32,8 @@ void EatHeart::Update(float deltatime)
 	if (_animations[BEHIT]->getIndex() >= 6)
 	{
 		_animations[BEHIT]->setIndex(0);
-		//apple+=10;
+
+		ScoreAladdin::getInstance()->setHealth(100);
 		setStatus(DESTROY);
 	}
 }

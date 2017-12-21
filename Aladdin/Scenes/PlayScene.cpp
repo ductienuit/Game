@@ -190,7 +190,6 @@ void PlayScene::Draw(LPD3DXSPRITE spriteHandle)
 	}
 	_aladdin->Draw(spriteHandle, _viewport);
 	_aladdin->ShowBB();
-	_health->Draw(spriteHandle, _viewport);
 
 	for each(auto object in Stair[0])
 	{
@@ -223,6 +222,8 @@ void PlayScene::Draw(LPD3DXSPRITE spriteHandle)
 
 #pragma endregion
 	_backgroundfront->Draw(spriteHandle, _viewport);
+
+	_health->Draw(spriteHandle, _viewport);
 }
 
 void PlayScene::Release()
@@ -264,5 +265,6 @@ void PlayScene::UpdateViewport(BaseObject * aladdin)
 	{
 		new_position.y = worldsize.y;
 	}
+	_health->setPosition(new_position.x,new_position.y-50);
 	_viewport->setPositionWorld(new_position);
 }

@@ -116,6 +116,7 @@ enum eLandType
 #define C_WHITE D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f)				// màu trắnng
 #define COLOR_KEY D3DXCOLOR(1.0f, 0.0f, 1.0f, 1.0f)				// màu khi mà load hình nó bỏ qua > trong suốt
 #define SCALEFACTOR D3DXVECTOR2(1.6f,1.92f)
+#define SCALEHEALTH D3DXVECTOR2(1.5f,1.5f)
 #define SCALEAPPLE D3DXVECTOR2(2.0f,2.0f)
 #define SCALEHEART D3DXVECTOR2(2.0f,2.0f)
 #define SCALECHARACTER D3DXVECTOR2(1.6f,1.92f)

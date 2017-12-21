@@ -6,6 +6,7 @@
 #include "../../FrameWork/StopWatch.h"
 #include "../../FrameWork/IComponent.h"
 #include "../../FrameWork/Text.h"
+#include"../Score/ScoreAladdin.h"
 #include "BaseEnemy.h"
 using namespace std;
 

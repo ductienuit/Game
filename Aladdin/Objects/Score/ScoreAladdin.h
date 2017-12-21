@@ -15,6 +15,7 @@ public:
 	static ScoreAladdin*    getInstance();
 	static void				plusScore(int value);
 	static void				plusHealth(int value);
+	static void				setHealth(int value);
 	static int			    getHealth();
 	static int				getScore();
 	void					Release();
