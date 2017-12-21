@@ -2,7 +2,6 @@
 USEGAME_FRAMEWORK
 
 
-
 AladdinGame::~AladdinGame()
 {
 }

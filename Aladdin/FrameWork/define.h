@@ -82,7 +82,8 @@ enum eID
 	RESTARTPOINT,
 
 
-	SPRING
+	SPRING,
+	HEALTH
 };
 
 enum eDirection

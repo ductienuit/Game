@@ -127,6 +127,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AladdinGame.cpp" />
+    <ClCompile Include="Objects\Score\Health.cpp" />
     <ClCompile Include="Scenes\BossScene.cpp" />
     <ClCompile Include="Scenes\EndScene.cpp" />
     <ClCompile Include="Scenes\IntroScene.cpp" />
@@ -199,9 +200,11 @@
     <ClCompile Include="Objects\Enemies\Knife.cpp" />
     <ClCompile Include="FrameWork\QuadTree.cpp" />
     <ClCompile Include="FrameWork\Utils.cpp" />
+    <ClCompile Include="Objects\Score\ScoreAladdin.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AladdinGame.h" />
+    <ClInclude Include="Objects\Score\Health.h" />
     <ClInclude Include="Scenes\BossScene.h" />
     <ClInclude Include="Scenes\EndScene.h" />
     <ClInclude Include="Scenes\IntroScene.h" />
@@ -279,6 +282,7 @@
     <ClInclude Include="Objects\Enemies\Knife.h" />
     <ClInclude Include="FrameWork\QuadTree.h" />
     <ClInclude Include="FrameWork\Utils.h" />
+    <ClInclude Include="Objects\Score\ScoreAladdin.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Cach code.txt" />

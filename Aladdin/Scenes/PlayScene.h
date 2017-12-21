@@ -35,6 +35,9 @@
 #include"../Objects/GameObjects/Spring.h"
 #include"../Objects/GameObjects/EatHeart.h"
 
+#include"../Objects/Score/Health.h"
+#include"../Objects/Score/ScoreAladdin.h"
+
 
 
 #include<time.h>
@@ -60,49 +63,25 @@ public:
 
 	void setViewPort(ViewPort* viewport);
 	void UpdateViewport(BaseObject* aladdin);
-
-	//Trả về một đối tượng theo id
-	//id để dịnh danh một đối tượng
-	BaseObject* getObject(eID id);
 private:
 	//Quadtree
-	QuadTree* _root;
-
-	//Nếu object hết hạn sử dụng thì hủy đối tượng
-	void destroyObject();   
-
-	//Danh sach các đói tượng hoạt động rộng không thể đưa vào quadtree như Aladdin
-	//vector<BaseObject*> _listObject;
-
+	QuadTree*				 _root;
 	//Danh sách các đối tượng dùng để tạo trong quadtree
 	map<string, BaseObject*> _mapObject;
-
 	/*
 	Danh sách các đối tượng nằm trong camera
 	Mỗi vòng lặp sẽ truyền vào rect camera và trả về các object nằm trong*/
-	vector<BaseObject*> _activeObject;
-
-	/* 
-	Danh sách những đối tượng được UpdateInput
-	*/
-	vector<IControlable*> _listControlObject;
-
-	Aladdin* _aladdin;
-	BaseObject* _weaponmanager;
-
-	/*Danh sách các đối tượng va chạm mềm*/
-	vector<BaseObject*> Bar;			//Thanh xà ngang
-	vector<BaseObject*> Rope;			//Dây
-	vector<BaseObject*> Solid;			//Đất
-	//vector<BaseObject*> Spring;			//Cục nhún			=> what is this Spring???
-	vector<BaseObject*> Platform;		//Thanh gỗ
-	vector<BaseObject*> CheckOn[4];
+	vector<BaseObject*>		 _activeObject;
+	Aladdin*				 _aladdin;
+	ScoreAladdin*			 _scoreAla;
+	Health*					 _health;
+	BaseObject*				 _weaponmanager;
+	vector<BaseObject*>		 CheckOn[4];
 
 	//Main background
-	BackGround* _background;
+	BackGround*				 _background;
 	//Front background
-	BackGroundFront* _backgroundfront;
-	//Sky background;
+	BackGroundFront*		 _backgroundfront;
 
 	//Chuyển đổi tọa độ word sang viewport
 	static ViewPort* _viewport;

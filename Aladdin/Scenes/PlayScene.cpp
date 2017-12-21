@@ -32,17 +32,6 @@ void PlayScene::setViewPort(ViewPort * viewport)
 bool PlayScene::InIt()
 {
 	mMap = new ReadMapEditor("Resources/Images/mapobject.tmx", _root);
-
-	//_activeObject = mMap->GetList(rect);
-	//Chú ý: Top Left của land ở bên dưới chứ không ở trên
-	//  **********(B,R)
-	//	**********
-	//  **********
-	//  **********
-	//	**********
-	//  **********
-	// (T,L) (x,y)
-
 	TurnOn[0] = true;	
 	//Bật thang 2
 	Enter[0] = false; //Check 1
@@ -60,11 +49,13 @@ bool PlayScene::InIt()
 	_backgroundfront = new BackGroundFront();
 	_backgroundfront->InIt();
 
+	_health = new Health(100, 100);
 
+	_scoreAla = ScoreAladdin::getInstance();
 
     _aladdin = new Aladdin();
 	_aladdin->InIt();
-	_aladdin->setPosition(2000, 600);
+	_aladdin->setPosition(100, 600);
 	_listObject.push_back(_aladdin);
 
 	return true;
@@ -89,19 +80,20 @@ void PlayScene::Update(float dt)
 	screenx.left = viewport_in_transform.left;
 	screenx.right = viewport_in_transform.left + WINDOWS_WIDTH;
 
-#if _DEBUG									 // clock_t để test thời gian chạy đoạn code update (milisecond)
-	clock_t t;
-	t = clock();
-#endif
+//#if _DEBUG									 // clock_t để test thời gian chạy đoạn code update (milisecond)
+//	clock_t t;
+//	t = clock();
+//#endif
 	_activeObject.clear();
 	mMap->ListObject(&screenx);	
 	_activeObject = mMap->GetList;
-#if _DEBUG
-	t = clock() - t;
-	__debugoutput((float)t / CLOCKS_PER_SEC);
-#endif
+//#if _DEBUG
+//	t = clock() - t;
+//	__debugoutput((float)t / CLOCKS_PER_SEC);
+//#endif
 
 	_aladdin->Update(dt);
+	_health->Update(dt);
 
 	for each (auto object in _activeObject)
 	{
@@ -110,8 +102,7 @@ void PlayScene::Update(float dt)
 		object->Update(dt);
 	}
 
-	/*Check collision aladdin with land
-	@i Object*/
+	/*Check collision aladdin with land*/
 	for (auto i : _activeObject)
 	{
 		// i la Enermy va aladdin
@@ -133,8 +124,7 @@ void PlayScene::Update(float dt)
 	}
 
 
-	/*Check collision (*1)enermy with (*2)aladdin (chú ý thứ tự )
-	@i Enermyobject*/
+	/*Check collision (*1)enermy with (*2)aladdin (chú ý thứ tự )*/
 	for (auto obj : _activeObject)
 	{
 		// obj la Enermy va aladdin
@@ -184,6 +174,8 @@ void PlayScene::Update(float dt)
 	}
 
 #pragma endregion
+
+	_health->Update(dt);
 }
 
 void PlayScene::Draw(LPD3DXSPRITE spriteHandle)
@@ -198,6 +190,7 @@ void PlayScene::Draw(LPD3DXSPRITE spriteHandle)
 	}
 	_aladdin->Draw(spriteHandle, _viewport);
 	_aladdin->ShowBB();
+	_health->Draw(spriteHandle, _viewport);
 
 	for each(auto object in Stair[0])
 	{
@@ -245,6 +238,7 @@ void PlayScene::Release()
 	}
 	_background->Release();
 	_backgroundfront->Release();
+	_health->Release();
 }
 
 void PlayScene::UpdateViewport(BaseObject * aladdin)
