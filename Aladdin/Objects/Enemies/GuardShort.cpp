@@ -12,7 +12,7 @@ GuardShort::GuardShort(eStatus status, int posX, int posY, eDirection direction,
 	this->setStatus(status);
 	this->setPosition(posX*SCALECHARACTER.x, posY*SCALECHARACTER.y, 1.0f);
 	_minMove = getPositionX() - 50; //- minMove;
-	_maxMove = getPositionX() + 100; //+ maxMove;
+	_maxMove = getPositionX() + 50; //+ maxMove;
 	text = new Text("Arial", "", 10, 25);
 	InIt();
 }
