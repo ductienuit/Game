@@ -300,6 +300,12 @@
     <ClCompile Include="Objects\Score\Health.cpp">
       <Filter>Source Files\Score</Filter>
     </ClCompile>
+    <ClCompile Include="Objects\Score\Coin.cpp">
+      <Filter>Source Files\Score</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\GameObjects\Boom.cpp">
+      <Filter>Source Files\Object\GameObjects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FrameWork\Animation.h">
@@ -547,6 +553,12 @@
     </ClInclude>
     <ClInclude Include="Objects\Score\Health.h">
       <Filter>Header Files\Score</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Score\Coin.h">
+      <Filter>Header Files\Score</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\GameObjects\Boom.h">
+      <Filter>Header Files\Object\GameObjects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

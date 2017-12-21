@@ -18,6 +18,7 @@
 #include"../Objects/GameObjects/RestartPoint.h"
 #include"../Objects/GameObjects/FallingPlatform.h"
 #include"../Objects/GameObjects/Spring.h"
+#include"../Objects/GameObjects/Boom.h"
 
 #include"../Objects/GameObjects/EatCoin.h"
 
@@ -44,6 +45,7 @@ public:
 	vector <RestartPoint*> ListRestartPoint;
 	vector<FallingPlatform*> ListFallingPlatform;
 	vector <Spring*> ListSpring;
+	vector <Boom*> ListBoom;
 
 	void ListObject(RECT *rect);
 	QuadTree* _QuadTree;

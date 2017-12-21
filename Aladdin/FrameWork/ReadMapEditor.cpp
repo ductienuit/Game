@@ -330,6 +330,17 @@ ReadMapEditor::ReadMapEditor(const char *filepath, QuadTree *& _quadTree)
 				_QuadTree->InsertStaticObject(_restart);
 			}
 		}
+
+		if (_objectGroup->GetName() == "boom")
+		{
+			for (size_t j = 0; j < _objectGroup->GetNumObjects(); j++)
+			{
+				Tmx::Object* _object = _objectGroup->GetObjects().at(j);
+				Boom* _boom = new Boom(_object->GetX(), 688 - _object->GetY() - _object->GetHeight());
+				ListBoom.push_back(_boom);
+				_QuadTree->InsertStaticObject(_boom);
+			}
+		}
 	}
 }
 
@@ -427,6 +438,14 @@ void ReadMapEditor::ListObject(RECT * rect)
 		}
 	}
 
+	for (size_t i = 0; i < ListBoom.size(); i++)
+	{
+		if (isContain(ListBoom[i], *rect))
+		{
+
+			GetList.push_back(ListBoom[i]);
+		}
+	}
 
 	for (size_t i = 0; i < ListEatHeart.size(); i++)
 	{

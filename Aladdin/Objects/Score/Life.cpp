@@ -19,7 +19,7 @@ void Life::InIt()
 void Life::Update(float deltatime)
 {
 	Vector2 newPosition = ViewPort::getInstance()->getPositionWorld();
-	setPosition(newPosition.x+20, newPosition.y - WINDOWS_HEIGHT+50);
+	setPosition(newPosition.x + 20, newPosition.y - WINDOWS_HEIGHT + 50);
 
 	_animations[_status]->Update(deltatime);
 

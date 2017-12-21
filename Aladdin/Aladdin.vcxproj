@@ -127,6 +127,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AladdinGame.cpp" />
+    <ClCompile Include="Objects\GameObjects\Boom.cpp" />
+    <ClCompile Include="Objects\Score\Coin.cpp" />
     <ClCompile Include="Objects\Score\Life.cpp" />
     <ClCompile Include="Objects\Score\Health.cpp" />
     <ClCompile Include="Scenes\BossScene.cpp" />
@@ -205,6 +207,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AladdinGame.h" />
+    <ClInclude Include="Objects\GameObjects\Boom.h" />
+    <ClInclude Include="Objects\Score\Coin.h" />
     <ClInclude Include="Objects\Score\Life.h" />
     <ClInclude Include="Objects\Score\Health.h" />
     <ClInclude Include="Scenes\BossScene.h" />

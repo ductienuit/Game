@@ -38,6 +38,7 @@
 #include"../Objects/Score/Health.h"
 #include"../Objects/Score/InforAladdin.h"
 #include"../Objects/Score/Life.h"
+#include"../Objects/Score/Coin.h"
 
 
 

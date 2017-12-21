@@ -1,0 +1,4 @@
+frame_name	left	top	right	bottom
+coin_00	270	3410	287	3426
+
+coin_01	297	3410	314	3426
