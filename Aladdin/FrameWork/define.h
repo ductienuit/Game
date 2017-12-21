@@ -87,7 +87,10 @@ enum eID
 	HEALTH,
 	LIFE,
 	COIN,
-	BOOM
+	BOOM,
+	APPLE,
+	ALPHABET,
+	LETTER
 };
 
 enum eDirection

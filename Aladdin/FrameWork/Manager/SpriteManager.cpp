@@ -148,6 +148,14 @@ void SpriteManager::LoadResource(LPD3DXSPRITE spriteHandle)
 	sp = new Sprite(spriteHandle, "Resources//Images//Boom.png");
 	this->_listSprite.insert(pair<eID, Sprite*>(eID::BOOM, sp));
 	this->LoadSpriteInfo(eID::BOOM, "Resources//Images//Boom.txt");
+
+	sp = new Sprite(spriteHandle, "Resources//Images//Items.png");
+	this->_listSprite.insert(pair<eID, Sprite*>(eID::APPLE, sp));
+	this->LoadSpriteInfo(eID::APPLE, "Resources//Images//Items.txt");
+
+	sp = new Sprite(spriteHandle, "Resources//Images//alphabet.png");
+	this->_listSprite.insert(pair<eID, Sprite*>(eID::LETTER, sp));
+	this->LoadSpriteInfo(eID::LETTER, "Resources//Images//alphabet.txt");
 }
 
 Sprite * SpriteManager::getSprite(eID id)

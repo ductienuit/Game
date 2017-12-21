@@ -23,11 +23,19 @@ public:
 	static void				plusLife(int value);
 	static int				getLife();
 
+	static void				plusCoin(int value);
+	static int				getCoin();
+
+	static void				plusApple(int value);
+	static int				getApple();
+
 	void					Release();
 private:
 	static InforAladdin*    _instance;
 	static int _health;
 	static int _score;
+	static int _coin;
+	static int _apple;
 	static int _life;
 };
 typedef InforAladdin *pInforAladdin;

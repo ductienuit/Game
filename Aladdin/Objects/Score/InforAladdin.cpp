@@ -6,6 +6,9 @@ InforAladdin* InforAladdin::_instance = nullptr;
 int InforAladdin::_score = 100;
 int InforAladdin::_health = 120;
 int InforAladdin::_life = 3;
+int InforAladdin::_coin = 0;
+int InforAladdin::_apple = 15;
+
 InforAladdin::~InforAladdin()
 {
 }
@@ -58,6 +61,26 @@ int InforAladdin::getScore()
 
 InforAladdin::InforAladdin(void)
 {
+}
+
+void InforAladdin::plusCoin(int value)
+{
+	_coin += value;
+}
+
+int InforAladdin::getCoin()
+{
+	return _coin;
+}
+
+void InforAladdin::plusApple(int value)
+{
+	_apple += value;
+}
+
+int InforAladdin::getApple()
+{
+	return _apple;
 }
 
 void InforAladdin::Release()

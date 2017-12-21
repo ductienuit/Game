@@ -58,6 +58,7 @@ bool PlayScene::InIt()
 	_listScore.push_back(new Health(_aladdin));
 	_listScore.push_back(new Life());
 	_listScore.push_back(new Coin());
+	_listScore.push_back(new Apple());
 
 	return true;
 }
