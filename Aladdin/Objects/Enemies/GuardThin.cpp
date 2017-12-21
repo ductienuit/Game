@@ -50,6 +50,7 @@ void GuardThin::InIt()
 
 void GuardThin::Update(float deltatime)
 {
+	
 	_animations[this->getStatus()]->Update(deltatime);
 
 	this->UpdateStatus(deltatime);
@@ -57,6 +58,7 @@ void GuardThin::Update(float deltatime)
 	//update component để sau cùng để sửa bên trên sau đó nó cập nhật đúng
 	for (auto it = _listComponent.begin(); it != _listComponent.end(); it++)
 	{
+		
 		it->second->Update(deltatime);
 	}
 }
@@ -164,7 +166,8 @@ void GuardThin::onCollisionBegin(CollisionEventArg *collision_event)
 					&&
 					this->_animations[ATTACK]->getIndex() == 5)
 			{
-
+					//âm thanh
+					SoundManager::getInstance()->PlaySound("Resources/Audio/HighSword.wav", 0);
 					//Lưu trạng thái trước khi hết bị đánh set lại cái trạng thái cũ
 					collision_event->_otherObject->savePreStatus();
 				//Set status aladdin bị đánh

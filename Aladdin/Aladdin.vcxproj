@@ -127,7 +127,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AladdinGame.cpp" />
-    <ClCompile Include="dxaudio.cpp" />
+    <ClCompile Include="FrameWork\C_Sound.cpp" />
     <ClCompile Include="Objects\GameObjects\BulletCamel.cpp" />
     <ClCompile Include="Objects\GameObjects\EatApple.cpp" />
     <ClCompile Include="Objects\GameObjects\Camel.cpp" />
@@ -198,7 +198,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AladdinGame.h" />
-    <ClInclude Include="dxaudio.h" />
+    <ClInclude Include="FrameWork\C_Sound.h" />
     <ClInclude Include="Objects\GameObjects\BulletCamel.h" />
     <ClInclude Include="Objects\GameObjects\EatApple.h" />
     <ClInclude Include="Objects\GameObjects\Camel.h" />

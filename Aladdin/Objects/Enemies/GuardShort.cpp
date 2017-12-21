@@ -101,10 +101,12 @@ void GuardShort::onCollisionBegin(CollisionEventArg *collision_event)
 				//mạng sống còn 1 và bức ảnh ATTACK của aladdin bằng 1
 				if (collision_event->_otherObject->getIndex() == 4 && _hitpoint >= 1)
 				{
+					
 					_hitpoint -= 1;
 					this->setStatus(eStatus::BEHIT);
 				}
 				break;
+				
 			}
 			break;
 		}
@@ -169,6 +171,9 @@ void GuardShort::UpdateStatus(float dt)
 		}
 	}
 	this->clearStatus();
+
+
+
 	if (_minMove < this->getPositionX() && this->getPositionX() < _maxMove)
 	{
 		if (distanceBetweenAladdin() < 0)
@@ -187,7 +192,12 @@ void GuardShort::UpdateStatus(float dt)
 				standing();
 				knife->addStatus(eStatus::THROW);
 				if (_animations[_status]->getIndex() == 2)
+				{
+					////âm thanh
+					//SoundManager::getInstance()->PlaySound("Resources/Audio/HighSword.wav", 0);
 					knife->movingLeft(this->getPositionX(), this->getPositionY());
+					
+				}
 				_canThrow = true;
 			}
 		}
@@ -202,7 +212,11 @@ void GuardShort::UpdateStatus(float dt)
 				standing();
 				knife->addStatus(eStatus::THROW);
 				if (_animations[_status]->getIndex() == 2)
+				{
+					////âm thanh
+					//SoundManager::getInstance()->PlaySound("Resources/Audio/HighSword.wav", 0);
 					knife->movingRight(this->getPositionX(), this->getPositionY());
+				}
 				_canThrow = true;
 			}
 			else if (distance > 200)
@@ -218,7 +232,11 @@ void GuardShort::UpdateStatus(float dt)
 		standing();
 		knife->addStatus(eStatus::THROW);
 		if (_animations[_status]->getIndex() == 2)
+		{
+			//âm thanh
+			SoundManager::getInstance()->PlaySound("Resources/Audio/HighSword.wav", 0);
 			knife->movingLeft(this->getPositionX(), this->getPositionY());
+		}
 		_canThrow = true;
 	}
 	else if (distanceBetweenAladdin() > 0 && xAla > _minMove && this->getPositionX() < _maxMove)
@@ -232,7 +250,11 @@ void GuardShort::UpdateStatus(float dt)
 		standing();
 		knife->addStatus(eStatus::THROW);
 		if (_animations[_status]->getIndex() == 2)
+		{
+			//âm thanh
+			SoundManager::getInstance()->PlaySound("Resources/Audio/HighSword.wav", 0);
 			knife->movingRight(this->getPositionX(), this->getPositionY());
+		}
 		_canThrow = true;
 	}
 	else if (distanceBetweenAladdin() < 0 && xAla < _maxMove)

@@ -58,6 +58,7 @@ void KnifeThrower::Update(float deltatime)
 	// update component để sau cùng để sửa bên trên sau đó nó cập nhật đúng
 	for (auto it = _listComponent.begin(); it != _listComponent.end(); it++)
 	{
+
 		it->second->Update(deltatime);
 	}
 }

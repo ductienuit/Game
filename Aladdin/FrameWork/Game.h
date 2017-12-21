@@ -39,6 +39,7 @@ protected:
 	pInputController    _input;               //Quản lí các nút bấm
 	static Graphics*	_graphics;            //Dùng khởi tạo Window and pointer window hwnd
 	LPD3DXSPRITE		_spriteHandler;
+
 private:
 	float		        _frameRate;				  // time for 1 frame, milisecond
 	float			    _oldTime;

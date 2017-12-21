@@ -75,6 +75,8 @@ void Fire::onCollisionBegin(CollisionEventArg *collision_event)
 
 				if (_animations[BEHIT]->getIndex() == 3)
 				{	
+					//âm thanh
+					SoundManager::getInstance()->PlaySound("Resources/Audio/FireFromCoal.wav", 0);
 					//Lưu trạng thái trước khi hết bị đánh set lại cái trạng thái cũ
 					collision_event->_otherObject->savePreStatus();
 					//Set status aladdin bị đánh

@@ -5,6 +5,7 @@
 #include"../Objects/BaseObject.h"
 #include "../FrameWork/define.h"
 #include"../FrameWork/ViewPort.h"
+#include"../FrameWork/Manager/SoundManager.h"
 
 class BackGround:public BaseObject
 {

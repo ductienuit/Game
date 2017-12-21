@@ -270,7 +270,7 @@
     <ClCompile Include="FrameWork\Manager\SoundManager.cpp">
       <Filter>Source Files\FrameWork\Manager</Filter>
     </ClCompile>
-    <ClCompile Include="dxaudio.cpp">
+    <ClCompile Include="FrameWork\C_Sound.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -494,11 +494,11 @@
     <ClInclude Include="Objects\GameObjects\RestartPoint.h">
       <Filter>Header Files\Object\GameObjects</Filter>
     </ClInclude>
-    <ClInclude Include="dxaudio.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="FrameWork\Manager\SoundManager.h">
       <Filter>Header Files\FrameWork\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameWork\C_Sound.h">
+      <Filter>Header Files\FrameWork</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

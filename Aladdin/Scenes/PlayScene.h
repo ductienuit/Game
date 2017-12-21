@@ -17,6 +17,7 @@
 #include"../FrameWork/ReadMapEditor.h"
 #include"../FrameWork/Manager/SoundManager.h"
 
+
 #include"../Objects/GameObjects/Aladdin.h"
 #include"../Objects/GameObjects/Land.h"
 #include"../Objects/Enemies/GuardThin.h"
@@ -104,7 +105,7 @@ private:
 	static ViewPort* _viewport;
 
 	Sprite* sprite;
-
+	
 	Animation* _animation;
 	//map object
 	ReadMapEditor* mMap;

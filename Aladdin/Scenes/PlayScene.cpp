@@ -46,11 +46,11 @@ bool PlayScene::InIt()
 	Enter[1] = false;  //Check 2
 	CheckOn[2].push_back(new Land(2245, 688 - 86 - 492, 5, 86, eDirection::TOP, eLandType::CHECKSTAIR3));
 	CheckOn[3].push_back(new Land(2269, 688 - 83 - 493, 5, 83, eDirection::TOP, eLandType::CHECKSTAIR4));
-
 	//Background
 	_background = new BackGround();
 	_background->InIt();
-	SoundManager::getInstance()->PlayLoop(eSoundId::BACKGROUND_STAGE);
+	
+	//SoundManager::getInstance()->PlayLoop(eSoundId::BACKGROUND_STAGE);
 
 	_backgroundfront = new BackGroundFront();
 	_backgroundfront->InIt();
@@ -59,9 +59,10 @@ bool PlayScene::InIt()
 
     _aladdin = new Aladdin();
 	_aladdin->InIt();
-	_aladdin->setPosition(7000, 600);
+	_aladdin->setPosition(500, 600);
 	_listObject.push_back(_aladdin);
-
+	//âm thanh
+	SoundManager::getInstance()->PlaySound("Resources/Audio/PrinceAli.mp3", 1);
 	return true;
 }
 

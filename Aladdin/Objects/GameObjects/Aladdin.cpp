@@ -257,6 +257,7 @@ void Aladdin::UpdateInput(float dt)
 		{
 			addStatus(eStatus::NORMAL1);
 			_normalAnimateStopWatch->restart();  //Chuyển sang trạng thái normal1 thì mình khởi động lại đồng hồ đếm
+			
 		}
 
 		if (_input->isKeyDown(DIK_LEFT))
@@ -1228,6 +1229,8 @@ void Aladdin::onCollisionBegin(CollisionEventArg * collision_event)
 				{
 					collision_event->_otherObject->setStatus(eStatus::BEHIT);
 					jumpDouble();
+					//âm thanh
+					SoundManager::getInstance()->PlaySound("Resources/Audio/CamelSpit.wav", 0);
 					return;
 				}
 			}
