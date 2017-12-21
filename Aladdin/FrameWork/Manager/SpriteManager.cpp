@@ -136,6 +136,10 @@ void SpriteManager::LoadResource(LPD3DXSPRITE spriteHandle)
 	sp = new Sprite(spriteHandle, "Resources//Images//alluneed.png");
 	this->_listSprite.insert(pair<eID, Sprite*>(eID::HEALTH, sp));
 	this->LoadSpriteInfo(eID::HEALTH, "Resources//Images//health.txt");
+
+	sp = new Sprite(spriteHandle, "Resources//Images//AladdinAnimation.png");
+	this->_listSprite.insert(pair<eID, Sprite*>(eID::LIFE, sp));
+	this->LoadSpriteInfo(eID::LIFE, "Resources//Images//life.txt");
 }
 
 Sprite * SpriteManager::getSprite(eID id)

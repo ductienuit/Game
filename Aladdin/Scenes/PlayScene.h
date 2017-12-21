@@ -37,6 +37,7 @@
 
 #include"../Objects/Score/Health.h"
 #include"../Objects/Score/InforAladdin.h"
+#include"../Objects/Score/Life.h"
 
 
 
@@ -74,7 +75,6 @@ private:
 	vector<BaseObject*>		 _activeObject;
 	Aladdin*				 _aladdin;
 	InforAladdin*			 _scoreAla;
-	Health*					 _health;
 	BaseObject*				 _weaponmanager;
 	vector<BaseObject*>		 CheckOn[4];
 
@@ -82,6 +82,7 @@ private:
 	BackGround*				 _background;
 	//Front background
 	BackGroundFront*		 _backgroundfront;
+	vector<BaseObject*>		_listScore;
 
 	//Chuyển đổi tọa độ word sang viewport
 	static ViewPort* _viewport;

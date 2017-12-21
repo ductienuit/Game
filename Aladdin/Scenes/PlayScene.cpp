@@ -52,9 +52,11 @@ bool PlayScene::InIt()
     _aladdin = new Aladdin();
 	_aladdin->InIt();
 	_aladdin->setPosition(100, 600);
+
 	_listObject.push_back(_aladdin);
 
-	_health = new Health(_aladdin);
+	_listScore.push_back(new Health(_aladdin));
+	_listScore.push_back(new Life());
 
 	return true;
 }
@@ -91,7 +93,6 @@ void PlayScene::Update(float dt)
 //#endif
 
 	_aladdin->Update(dt);
-	_health->Update(dt);
 
 
 	for each (auto object in _activeObject)
@@ -174,7 +175,9 @@ void PlayScene::Update(float dt)
 
 #pragma endregion
 
-	_health->Update(dt);
+
+	for each(auto score in _listScore)
+		score->Update(dt);
 }
 
 void PlayScene::Draw(LPD3DXSPRITE spriteHandle)
@@ -222,7 +225,8 @@ void PlayScene::Draw(LPD3DXSPRITE spriteHandle)
 #pragma endregion
 	_backgroundfront->Draw(spriteHandle, _viewport);
 
-	_health->Draw(spriteHandle, _viewport);
+	for each(auto score in _listScore)
+		score->Draw(spriteHandle, _viewport);
 }
 
 void PlayScene::Release()
@@ -238,7 +242,10 @@ void PlayScene::Release()
 	}
 	_background->Release();
 	_backgroundfront->Release();
-	_health->Release();
+	for each (auto object in _listScore)
+	{
+		object->Release();
+	}
 }
 
 void PlayScene::UpdateViewport(BaseObject * aladdin)
@@ -264,6 +271,5 @@ void PlayScene::UpdateViewport(BaseObject * aladdin)
 	{
 		new_position.y = worldsize.y;
 	}
-	_health->setPosition(new_position.x,new_position.y-50);
 	_viewport->setPositionWorld(new_position);
 }

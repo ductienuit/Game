@@ -1,0 +1,6 @@
+frame_name	left	top	right	bottom
+life_00	25	3543	47	3568
+
+life_01	57	3542	81	3568
+
+life_02	91	3542	115	3568

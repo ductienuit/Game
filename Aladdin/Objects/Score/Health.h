@@ -2,13 +2,11 @@
 #define _HEALTH_H
 
 #include "../../FrameWork/Animation.h"
-#include "../../FrameWork/StopWatch.h"
-#include "../../FrameWork/IComponent.h"
 #include "../../FrameWork/Text.h"
-#include"../../FrameWork/CollisionBody.h"
 #include "../BaseObject.h"
 #include"../Score/InforAladdin.h"
 #include"../GameObjects/Aladdin.h"
+#include"../../FrameWork/ViewPort.h"
 
 class Health :public BaseObject
 {

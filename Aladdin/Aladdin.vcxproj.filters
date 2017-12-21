@@ -61,6 +61,12 @@
     <Filter Include="Resource Files\MapReader">
       <UniqueIdentifier>{a3f33e16-6046-4740-a570-5c4e578b9885}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Score">
+      <UniqueIdentifier>{ebf70ff7-8f86-4c6d-89d1-bf638c565ad3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Score">
+      <UniqueIdentifier>{3d8f4f6d-1899-4908-bf20-85001f80621a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -285,11 +291,14 @@
     <ClCompile Include="Scenes\BossScene.cpp">
       <Filter>Source Files\Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="Objects\Score\Health.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Objects\Score\Life.cpp">
+      <Filter>Source Files\Score</Filter>
     </ClCompile>
     <ClCompile Include="Objects\Score\InforAladdin.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Score</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Score\Health.cpp">
+      <Filter>Source Files\Score</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -530,11 +539,14 @@
     <ClInclude Include="Scenes\BossScene.h">
       <Filter>Header Files\Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="Objects\Score\Health.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Objects\Score\Life.h">
+      <Filter>Header Files\Score</Filter>
     </ClInclude>
     <ClInclude Include="Objects\Score\InforAladdin.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Score</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Score\Health.h">
+      <Filter>Header Files\Score</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

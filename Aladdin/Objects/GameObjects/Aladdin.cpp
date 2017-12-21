@@ -1384,7 +1384,8 @@ void Aladdin::updateStatus(float dt)
 			removeStatus(THROW);
 	}
 
-
+	if (isInStatus(CLIMB_JUMP))
+		removeStatus(BEHIT);
 }
 
 void Aladdin::updateStatusOneAction(float deltatime)

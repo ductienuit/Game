@@ -57,6 +57,9 @@ void Health::InIt()
 
 void Health::Update(float deltatime)
 {
+	Vector2 newPosition = ViewPort::getInstance()->getPositionWorld();
+	setPosition(newPosition.x, newPosition.y - 50);
+
 	iStatus = InforAladdin::getInstance()->getHealth();
 	if (iStatus <= 0)
 	{
