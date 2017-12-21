@@ -24,33 +24,3 @@ genie_restart_point_06	218	505	242	539
 genie_restart_point_07	250	506	270	540
 genie_restart_point_08	281	507	305	540
 genie_restart_point_09	313	508	336	541
-
-restart_point_0	18	575	90	653
-
-restart_point_1	95	584	159	653
-
-restart_point_2	166	620	186	653
-
-restart_point_3	219	615	245	653
-
-restart_point_4	270	606	300	653
-
-restart_point_5	313	594	343	653
-
-restart_point_6	354	584	394	653
-
-restart_point_7	409	572	453	653
-
-restart_point_8	468	568	512	653
-
-restart_point_9	521	564	595	653
-
-restart_point_10	611	551	667	653
-
-restart_point_11	675	531	763	653
-
-restart_point_12	773	515	847	653
-
-restart_point_13	883	506	949	653
-
-

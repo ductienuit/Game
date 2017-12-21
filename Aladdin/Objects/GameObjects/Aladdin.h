@@ -9,6 +9,7 @@
 #include "../BaseObject.h"
 #include "../../FrameWork/CollisionBody.h"
 #include "AppleThrow.h"
+#include"RestartPoint.h"
 
 #include"Land.h"
 #include"FallingPlatform.h"

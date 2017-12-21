@@ -204,6 +204,9 @@ void Aladdin::InIt()
 	_animations[eStatus::CLIMB | eStatus::ATTACK] = new Animation(_sprite, 0.14f);
 	_animations[eStatus::CLIMB | eStatus::ATTACK]->addFrameRect(eID::ALADDIN, "climb_attack_0", 7);
 
+	_animations[REVIVAL] = new Animation(_sprite, 0.12f);
+	_animations[REVIVAL]->addFrameRect(eID::ALADDIN, "restart_point_", 14);
+
 	_sprite->drawBounding(false);
 
 	//Set lại bouding cho riêng aladdin để xét va chạm
@@ -216,6 +219,7 @@ void Aladdin::InIt()
 	_firstAnimateStopWatch = new StopWatch();
 	_beAttackSW = new StopWatch();
 	this->setScale(SCALEALADDIN);
+	SetRestartPoint(new RestartPoint(100,50));
 }
 
 void Aladdin::Update(float deltatime)
@@ -298,9 +302,13 @@ void Aladdin::UpdateInput(float dt)
 		}
 		else if (_input->isKeyPressed(DIK_H))
 		{
-			_restartPoint->setStatus(STOPWALK);
-			setOpacity(0.0);
+			_restartPoint->clearStatus();
+
+			__unhook((CollisionBody*)_listComponent["CollisionBody"]);
+			__unhook((CollisionBody*)_listComponent["CollisionBody"]);
+
 			setPosition(_restartPoint->getPosition());
+			setStatus(eStatus::REVIVAL);
 		}
 		break;
 	}
@@ -414,13 +422,13 @@ void Aladdin::UpdateInput(float dt)
 	}
 	case(eStatus::STOPWALK):
 	{
-		if (_input->isKeyDown(DIK_LEFT)) 
+		if (_input->isKeyDown(DIK_LEFT))
 		{
 			/*1. Nhấn LeftArrow
-			  2. Hướng aladdin là right 
+			  2. Hướng aladdin là right
 			  => scale.x > 0
 			  3. Hủy StopWalk và chuyển sang moving left*/
-			if (getScale().x > 0) 
+			if (getScale().x > 0)
 			{
 				removeStatus(eStatus::STOPWALK);
 				addStatus(eStatus::MOVING_LEFT);
@@ -644,7 +652,7 @@ void Aladdin::UpdateInput(float dt)
 		else if (_input->isKeyPressed(DIK_Z))
 		{
 			removeStatus(DROP);
-			setStatus((eStatus)(JUMPING|THROW));
+			setStatus((eStatus)(JUMPING | THROW));
 			appleThrow->addStatus(eStatus::THROW);
 			if (getScale().x > 0)
 			{
@@ -886,7 +894,7 @@ void Aladdin::UpdateInput(float dt)
 		//Làm ảnh mờ khi bị đánh
 		this->setOpacity(0.7);
 		//Tự hủy khi đế một bức ảnh n
-		if (_animations[_currentAnimateIndex]->getIndex()== 4)
+		if (_animations[_currentAnimateIndex]->getIndex() == 4)
 		{
 			_animations[_currentAnimateIndex]->setIndex(0);
 			this->setStatus(_preStatus);
@@ -894,8 +902,24 @@ void Aladdin::UpdateInput(float dt)
 		}
 		break;
 	}
-	}
+	case(eStatus::REVIVAL):
+	{
+		if (_animations[REVIVAL]->getIndex()>= 13)
+		{
+			_animations[_currentAnimateIndex]->setIndex(0);
+			setPosition(_restartPoint->getPosition().x, _restartPoint->getPosition().y - 20);
+			_restartPoint->setStatus(NORMAL);
+			setStatus(NORMAL);
 
+			__hook(&CollisionBody::onCollisionBegin, (CollisionBody*)_listComponent["CollisionBody"], &Aladdin::onCollisionBegin);
+			__hook(&CollisionBody::onCollisionEnd, (CollisionBody*)_listComponent["CollisionBody"], &Aladdin::onCollisionEnd);
+			
+			auto g = (Gravity*)_listComponent["Gravity"];
+			g->setStatus(eGravityStatus::FALLING__DOWN);
+		}
+		break;
+	}
+	}
 	if (isInStatus(eStatus::CLIMB))
 	{
 		if (isInStatus(eStatus::JUMPING))
@@ -1479,10 +1503,8 @@ void Aladdin::updateStatusOneAction(float deltatime)
 	//	_animations[_currentAnimateIndex]->setIndex(0);
 	//	removeStatus(eStatus::JUMPING);
 	//}
-
-
-
 	//JUMP
+
 	else if (isInStatus(eStatus(THROW | JUMPING)) && _animations[_currentAnimateIndex]->getIndex() >= 4)
 	{
 		_animations[_currentAnimateIndex]->setIndex(0);
@@ -1518,9 +1540,8 @@ void Aladdin::updateStatusOneAction(float deltatime)
 		_animations[_currentAnimateIndex]->setIndex(6);
 		removeStatus(eStatus::ATTACK);
 		addStatus(eStatus::JUMPING_LEFT);
-	}
-
-
+	}	
+	
 
 
 	//XỬ LÍ NGOẠI LỆ
@@ -1595,7 +1616,6 @@ void Aladdin::SetRestartPoint(BaseObject *restartpoint)
 {
 	_restartPoint = restartpoint;
 }
-
 
 void Aladdin::Draw(LPD3DXSPRITE spriteHandle, ViewPort* viewport)
 {
