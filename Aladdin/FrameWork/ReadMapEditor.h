@@ -19,7 +19,6 @@
 #include"../Objects/GameObjects/FallingPlatform.h"
 #include"../Objects/GameObjects/Spring.h"
 #include"../Objects/GameObjects/Boom.h"
-
 #include"../Objects/GameObjects/EatCoin.h"
 
 
@@ -29,23 +28,24 @@ public:
 	ReadMapEditor(const char* filepath,QuadTree* &_quadTree);
 	~ReadMapEditor();
 	Tmx::Map* maps;
-	vector <GuardLu*> ListGuardLu;
-	vector <GuardThin*> ListGuardThin;
-	vector <GuardShort*> ListGuardShort;
-	vector <Fire*> ListFire;
-	vector <GuardFat*> ListGuardFat;
-	vector <GuardThrowJar*> ListGuardThrowJar;
-	vector <KnifeThrower*> ListKnifeThrower;
-	vector <Land*> ListLand;
-	vector <EatApple*> ListEatApple;
-	vector <EatHeart*> ListEatHeart;
- 	vector <Camel*> ListCamel;
-	vector <EatCoin*> ListEatCoin;
-	vector <BaseObject*> GetList;
-	vector <RestartPoint*> ListRestartPoint;
-	vector<FallingPlatform*> ListFallingPlatform;
-	vector <Spring*> ListSpring;
-	vector <Boom*> ListBoom;
+	vector <BaseObject*>     GetList;
+
+	vector <BaseObject*>	 ListBoom;
+	vector <BaseObject*>	 ListGuardLu;
+	vector <BaseObject*>	 ListGuardThin;
+	vector <BaseObject*>	 ListGuardShort;
+	vector <BaseObject*>	 ListFire;
+	vector <BaseObject*>	 ListGuardFat;
+	vector <BaseObject*>     ListGuardThrowJar;
+	vector <BaseObject*>     ListKnifeThrower;
+	vector <BaseObject*>	 ListLand;
+	vector <BaseObject*>	 ListEatApple;
+	vector <BaseObject*>	 ListEatHeart;
+ 	vector <BaseObject*>	 ListCamel;
+	vector <BaseObject*>	 ListEatCoin;
+	vector <BaseObject*>	 ListRestartPoint;
+	vector <BaseObject*>	 ListFallingPlatform;
+	vector <BaseObject*>	 ListSpring;
 
 	void ListObject(RECT *rect);
 	QuadTree* _QuadTree;

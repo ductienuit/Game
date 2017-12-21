@@ -1,5 +1,5 @@
 ﻿#include "Boom.h"
-
+extern vector<BaseObject*> listActive;
 Boom::Boom(int posX, int posY) : BaseObject(eID::BOOM)
 {
 	_sprite = SpriteManager::getInstance()->getSprite(eID::BOOM);
@@ -59,6 +59,22 @@ void Boom::onCollisionBegin(CollisionEventArg *collision_event)
 	{
 	case eID::ALADDIN:
 	{
+		vector<BaseObject*> _listActive;
+		_listActive = listActive;
+		for each(auto object in _listActive)
+		{
+			// obj la Enermy va aladdin
+			if (object == nullptr)
+				continue;
+
+			eID temp = object->getId();
+			if (temp == APPLEEAT || temp == COIN || temp == LAND ||
+				temp == ALADDIN || object->getStatus() == DESTROY)
+				continue;
+			object->setStatus(DYING);
+		}
+
+
 		setStatus(BEHIT);
 		break;
 	}

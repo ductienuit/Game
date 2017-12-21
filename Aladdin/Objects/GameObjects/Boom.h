@@ -7,6 +7,7 @@
 #include "../../FrameWork/Text.h"
 #include"../../FrameWork/CollisionBody.h"
 #include "../BaseObject.h"
+#include"../../FrameWork/ReadMapEditor.h"
 
 using namespace std;
 

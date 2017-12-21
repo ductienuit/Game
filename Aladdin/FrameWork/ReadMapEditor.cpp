@@ -1,6 +1,7 @@
 ﻿#include "ReadMapEditor.h"
 extern 	vector<BaseObject*> Stair[2];
 vector<BaseObject*> listFireActive;
+vector<BaseObject*> listActive;
 map<int, int> distanceThrowJar;
 
 ReadMapEditor::ReadMapEditor(const char *filepath, QuadTree *& _quadTree)
@@ -17,11 +18,6 @@ ReadMapEditor::ReadMapEditor(const char *filepath, QuadTree *& _quadTree)
 	distanceThrowJar[8] = 98 * 1.92;
 	distanceThrowJar[9] = 106 * 1.92;
 #pragma endregion
-
-
-
-
-
 
 	maps = new Tmx::Map();
 	maps->ParseFile(filepath);
@@ -491,7 +487,7 @@ void ReadMapEditor::ListObject(RECT * rect)
 			GetList.push_back(ListSpring[i]);
 		}
 	}
-
+	listActive = GetList;
 }
 
 //vector<BaseObject*> ReadMapEditor::GetList(RECT * rect)
