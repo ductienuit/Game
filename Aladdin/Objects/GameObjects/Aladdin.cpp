@@ -909,7 +909,7 @@ void Aladdin::UpdateInput(float dt)
 		if (_animations[REVIVAL]->getIndex()>= 13)
 		{
 			_animations[_currentAnimateIndex]->setIndex(0);
-			setPosition(_restartPoint->getPosition().x, _restartPoint->getPosition().y - 20);
+			setPosition(_restartPoint->getPosition().x, _restartPoint->getPosition().y - 15);
 			_restartPoint->setStatus(NORMAL);
 			setStatus(NORMAL);
 
