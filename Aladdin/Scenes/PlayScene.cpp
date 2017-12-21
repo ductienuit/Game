@@ -5,10 +5,8 @@ extern bool TurnOn[4];
 extern vector<BaseObject*> _listObject;
 extern vector<BaseObject*> listFireActive;
 
-
 vector<BaseObject*> Stair[2];
 using namespace std;
-
 
 
 ViewPort* PlayScene::_viewport = ViewPort::getInstance();
@@ -49,14 +47,14 @@ bool PlayScene::InIt()
 	_backgroundfront = new BackGroundFront();
 	_backgroundfront->InIt();
 
-	_health = new Health(100, 100);
-
-	_scoreAla = ScoreAladdin::getInstance();
+	_scoreAla = InforAladdin::getInstance();
 
     _aladdin = new Aladdin();
 	_aladdin->InIt();
 	_aladdin->setPosition(100, 600);
 	_listObject.push_back(_aladdin);
+
+	_health = new Health(_aladdin);
 
 	return true;
 }
@@ -94,6 +92,7 @@ void PlayScene::Update(float dt)
 
 	_aladdin->Update(dt);
 	_health->Update(dt);
+
 
 	for each (auto object in _activeObject)
 	{

@@ -78,7 +78,7 @@ void GuardThin::UpdateStatus(float dt)
 
 				if (_hitpoint <= 0)
 				{
-					ScoreAladdin::getInstance()->plusScore(10);
+					InforAladdin::getInstance()->plusScore(10);
 					this->setStatus(DYING);
 				}
 			}
@@ -169,7 +169,7 @@ void GuardThin::onCollisionBegin(CollisionEventArg *collision_event)
 					collision_event->_otherObject->savePreStatus();
 				//Set status aladdin bị đánh
 				collision_event->_otherObject->setStatus(eStatus::BEHIT);
-				ScoreAladdin::getInstance()->plusHealth(-10);
+				InforAladdin::getInstance()->plusHealth(-10);
 			}
 			break;
 		}

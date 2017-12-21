@@ -7,12 +7,13 @@
 #include "../../FrameWork/Text.h"
 #include"../../FrameWork/CollisionBody.h"
 #include "../BaseObject.h"
-#include"../Score/ScoreAladdin.h"
+#include"../Score/InforAladdin.h"
+#include"../GameObjects/Aladdin.h"
 
 class Health :public BaseObject
 {
 public:
-	Health(int posX=100, int posY=100);
+	Health(BaseObject* aladdin, int posX = 100, int posY = 100);
 	void InIt() override;
 	void Update(float deltatime) override;
 	void Draw(LPD3DXSPRITE, ViewPort*) override;
@@ -23,6 +24,7 @@ public:
 	~Health();
 private:
 	map<int, Animation*> _animations;
-	int strStatus;
+	int iStatus;
+	Aladdin* _aladdin;   //Set status for aladdin
 };
 #endif _HEALTH_H

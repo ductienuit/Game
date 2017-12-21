@@ -288,7 +288,7 @@
     <ClCompile Include="Objects\Score\Health.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Objects\Score\ScoreAladdin.cpp">
+    <ClCompile Include="Objects\Score\InforAladdin.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -533,7 +533,7 @@
     <ClInclude Include="Objects\Score\Health.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Objects\Score\ScoreAladdin.h">
+    <ClInclude Include="Objects\Score\InforAladdin.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

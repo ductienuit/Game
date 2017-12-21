@@ -7,24 +7,30 @@ GAME_FRAMEWORK
 GAME_FRAMEWORK_BEGIN
 
 
-class ScoreAladdin
+class InforAladdin
 {
 public:
-	ScoreAladdin(void);
-	~ScoreAladdin(void);
-	static ScoreAladdin*    getInstance();
+	InforAladdin(void);
+	~InforAladdin(void);
+	static InforAladdin*    getInstance();
 	static void				plusScore(int value);
+	static int				getScore();
+
 	static void				plusHealth(int value);
 	static void				setHealth(int value);
 	static int			    getHealth();
-	static int				getScore();
+
+	static void				plusLife(int value);
+	static int				getLife();
+
 	void					Release();
 private:
-	static ScoreAladdin*    _instance;
+	static InforAladdin*    _instance;
 	static int _health;
 	static int _score;
+	static int _life;
 };
-typedef ScoreAladdin *pScoreAladdin;
+typedef InforAladdin *pInforAladdin;
 GAME_FRAMEWORK_END
 
 #endif //!__SCORE_ALADDIN_H__

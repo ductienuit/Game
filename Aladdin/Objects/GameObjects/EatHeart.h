@@ -6,7 +6,7 @@
 #include "../../FrameWork/IComponent.h"
 #include "../../FrameWork/Text.h"
 #include"../../FrameWork/CollisionBody.h"
-#include"../Score/ScoreAladdin.h"
+#include"../Score/InforAladdin.h"
 #include "../BaseObject.h"
 
 using namespace std;

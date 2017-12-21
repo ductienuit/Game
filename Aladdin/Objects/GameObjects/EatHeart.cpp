@@ -33,7 +33,7 @@ void EatHeart::Update(float deltatime)
 	{
 		_animations[BEHIT]->setIndex(0);
 
-		ScoreAladdin::getInstance()->setHealth(100);
+		InforAladdin::getInstance()->plusHealth(50);
 		setStatus(DESTROY);
 	}
 }

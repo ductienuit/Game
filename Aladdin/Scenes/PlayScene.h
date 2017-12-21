@@ -36,7 +36,7 @@
 #include"../Objects/GameObjects/EatHeart.h"
 
 #include"../Objects/Score/Health.h"
-#include"../Objects/Score/ScoreAladdin.h"
+#include"../Objects/Score/InforAladdin.h"
 
 
 
@@ -73,7 +73,7 @@ private:
 	Mỗi vòng lặp sẽ truyền vào rect camera và trả về các object nằm trong*/
 	vector<BaseObject*>		 _activeObject;
 	Aladdin*				 _aladdin;
-	ScoreAladdin*			 _scoreAla;
+	InforAladdin*			 _scoreAla;
 	Health*					 _health;
 	BaseObject*				 _weaponmanager;
 	vector<BaseObject*>		 CheckOn[4];

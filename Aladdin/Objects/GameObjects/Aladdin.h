@@ -58,6 +58,7 @@ public:
 
 	// Hồi Sinh
 	void SetRestartPoint(BaseObject*) override;
+	void Revival();
 
 private:
 	map<int, Animation*> _animations;

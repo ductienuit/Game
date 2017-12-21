@@ -221,7 +221,7 @@ void Aladdin::InIt()
 	_firstAnimateStopWatch = new StopWatch();
 	_beAttackSW = new StopWatch();
 	this->setScale(SCALEALADDIN);
-	SetRestartPoint(new RestartPoint(100,50));
+	_restartPoint = nullptr;
 }
 
 void Aladdin::Update(float deltatime)
@@ -256,64 +256,54 @@ void Aladdin::UpdateInput(float dt)
 {
 	switch (_status)
 	{
-	case(eStatus::NORMAL):
-	{
-		//Change normal to free animation after 4 second
-		if (_firstAnimateStopWatch->isStopWatch(4000))
+		case(eStatus::NORMAL):
 		{
-			addStatus(eStatus::NORMAL1);
-			_normalAnimateStopWatch->restart();  //Chuyển sang trạng thái normal1 thì mình khởi động lại đồng hồ đếm
-		}
-
-		if (_input->isKeyDown(DIK_LEFT))
-		{
-			addStatus(eStatus::MOVING_LEFT);
-		}
-		else if (_input->isKeyDown(DIK_RIGHT))
-		{
-			addStatus(eStatus::MOVING_RIGHT);
-		}
-		else if (_input->isKeyDown(DIK_DOWN))
-		{
-			addStatus(eStatus::SITTING_DOWN);
-		}
-		else if (_input->isKeyDown(DIK_UP))
-		{
-			addStatus(eStatus::LOOKING_UP);
-		}
-		else if (_input->isKeyPressed(DIK_X))
-		{
-			addStatus(eStatus::ATTACK);  //chém
-		}
-		else if (_input->isKeyPressed(DIK_Z)) //ném
-		{
-			addStatus(eStatus::THROW);
-			appleThrow->addStatus(eStatus::THROW);
-			if (getScale().x > 0)
+			//Change normal to free animation after 4 second
+			if (_firstAnimateStopWatch->isStopWatch(4000))
 			{
-				appleThrow->movingRight(this->getPositionX(), this->getPositionY());
+				addStatus(eStatus::NORMAL1);
+				_normalAnimateStopWatch->restart();  //Chuyển sang trạng thái normal1 thì mình khởi động lại đồng hồ đếm
 			}
-			else if (getScale().x < 0)
+
+			if (_input->isKeyDown(DIK_LEFT))
 			{
-				appleThrow->movingLeft(this->getPositionX(), this->getPositionY());
+				addStatus(eStatus::MOVING_LEFT);
 			}
-		}
-		else if (_input->isKeyPressed(DIK_C))
-		{
-			jump(eStatus::JUMPING);
-		}
-		else if (_input->isKeyPressed(DIK_H))
-		{
-			_restartPoint->clearStatus();
-
-			__unhook((CollisionBody*)_listComponent["CollisionBody"]);
-			__unhook((CollisionBody*)_listComponent["CollisionBody"]);
-
-			setPosition(_restartPoint->getPosition());
-			setStatus(eStatus::REVIVAL);
-		}
-		break;
-		}
+			else if (_input->isKeyDown(DIK_RIGHT))
+			{
+				addStatus(eStatus::MOVING_RIGHT);
+			}
+			else if (_input->isKeyDown(DIK_DOWN))
+			{
+				addStatus(eStatus::SITTING_DOWN);
+			}
+			else if (_input->isKeyDown(DIK_UP))
+			{
+				addStatus(eStatus::LOOKING_UP);
+			}
+			else if (_input->isKeyPressed(DIK_X))
+			{
+				addStatus(eStatus::ATTACK);  //chém
+			}
+			else if (_input->isKeyPressed(DIK_Z)) //ném
+			{
+				addStatus(eStatus::THROW);
+				appleThrow->addStatus(eStatus::THROW);
+				if (getScale().x > 0)
+				{
+					appleThrow->movingRight(this->getPositionX(), this->getPositionY());
+				}
+				else if (getScale().x < 0)
+				{
+					appleThrow->movingLeft(this->getPositionX(), this->getPositionY());
+				}
+			}
+			else if (_input->isKeyPressed(DIK_C))
+			{
+				jump(eStatus::JUMPING);
+			}
+			break;
+			}
 		case(eStatus::NORMAL1):
 		{
 			//Line Below: Change normal to free animation after 5 second		
@@ -792,135 +782,135 @@ void Aladdin::UpdateInput(float dt)
 		}
 		break;
 	}
-	case(eStatus::CLIMB):
-	{
-		if (_input->isKeyDown(DIK_UP))
+		case(eStatus::CLIMB):
 		{
-			if (_canUp == false)
+			if (_input->isKeyDown(DIK_UP))
 			{
-				Stop();
-				return;
-			}
-			_animations[_currentAnimateIndex]->Start();
-			_animations[_currentAnimateIndex]->Update(dt);
-			climbUp(dt);
-		}
-		else if (_input->isKeyDown(DIK_DOWN))
-		{
-			_canUp = true;
-			_animations[_currentAnimateIndex]->Start();
-			_animations[_currentAnimateIndex]->UpdatePreFrame(dt);
-			climbDown(dt);
-		}
-		else if (_input->isKeyPressed(DIK_LEFT))
-		{
-			Vector2 temp = getScale();
-			if (temp.x > 0)
-				setScaleX(-temp.x);
-		}
-		else if (_input->isKeyPressed(DIK_RIGHT))
-		{
-			_animations[_currentAnimateIndex]->setIndex(9);
-			Vector2 temp = getScale();
-			if (temp.x < 0)
-				setScaleX(-temp.x);
-		}
-		else if (_input->isKeyPressed(DIK_X))
-		{
-			addStatus(eStatus::ATTACK);
-		}
-		else if (_input->isKeyPressed(DIK_Z))
-		{
-			addStatus(eStatus::THROW);
-			appleThrow->addStatus(eStatus::THROW);
-			if (getScale().x > 0)
-			{
-				appleThrow->movingRight(this->getPositionX(), this->getPositionY());
-			}
-			else if (getScale().x < 0)
-			{
-				appleThrow->movingLeft(this->getPositionX(), this->getPositionY());
-			}
-		}
-		else if (_input->isKeyPressed(DIK_C))
-		{
-			addStatus(eStatus::JUMPING);
-			climbJump();
-		}
-		else standing();
-		break;
-	}
-	case(eStatus::SWING):
-	{
-		if (_input->isKeyDown(DIK_LEFT))
-		{
-			if (_sprite->getScale() > 0)
+				if (_canUp == false)
+				{
+					Stop();
+					return;
+				}
+				_animations[_currentAnimateIndex]->Start();
 				_animations[_currentAnimateIndex]->Update(dt);
-			else _animations[_currentAnimateIndex]->UpdatePreFrame(dt);
-		}
-		else if (_input->isKeyDown(DIK_RIGHT))
-		{
-			if (_sprite->getScale() > 0)
-				_animations[_currentAnimateIndex]->Update(dt);
-			else
+				climbUp(dt);
+			}
+			else if (_input->isKeyDown(DIK_DOWN))
+			{
+				_canUp = true;
+				_animations[_currentAnimateIndex]->Start();
 				_animations[_currentAnimateIndex]->UpdatePreFrame(dt);
-		}
-		else if (_input->isKeyPressed(DIK_X))
-		{
-			addStatus(eStatus::ATTACK);
-		}
-		else if (_input->isKeyPressed(DIK_Z))
-		{
-			addStatus(eStatus::THROW);
-			appleThrow->addStatus(eStatus::THROW);
-			if (getScale().x > 0)
-			{
-				appleThrow->movingRight(this->getPositionX(), this->getPositionY());
+				climbDown(dt);
 			}
-			else if (getScale().x < 0)
+			else if (_input->isKeyPressed(DIK_LEFT))
 			{
-				appleThrow->movingLeft(this->getPositionX(), this->getPositionY());
+				Vector2 temp = getScale();
+				if (temp.x > 0)
+					setScaleX(-temp.x);
 			}
+			else if (_input->isKeyPressed(DIK_RIGHT))
+			{
+				_animations[_currentAnimateIndex]->setIndex(9);
+				Vector2 temp = getScale();
+				if (temp.x < 0)
+					setScaleX(-temp.x);
+			}
+			else if (_input->isKeyPressed(DIK_X))
+			{
+				addStatus(eStatus::ATTACK);
+			}
+			else if (_input->isKeyPressed(DIK_Z))
+			{
+				addStatus(eStatus::THROW);
+				appleThrow->addStatus(eStatus::THROW);
+				if (getScale().x > 0)
+				{
+					appleThrow->movingRight(this->getPositionX(), this->getPositionY());
+				}
+				else if (getScale().x < 0)
+				{
+					appleThrow->movingLeft(this->getPositionX(), this->getPositionY());
+				}
+			}
+			else if (_input->isKeyPressed(DIK_C))
+			{
+				addStatus(eStatus::JUMPING);
+				climbJump();
+			}
+			else standing();
+			break;
 		}
-		else if (_input->isKeyDown(DIK_C))
+		case(eStatus::SWING):
 		{
-			//removeStatus(eStatus::SWING);
-			addStatus(eStatus::JUMPING);
-			swingJump();
+			if (_input->isKeyDown(DIK_LEFT))
+			{
+				if (_sprite->getScale() > 0)
+					_animations[_currentAnimateIndex]->Update(dt);
+				else _animations[_currentAnimateIndex]->UpdatePreFrame(dt);
+			}
+			else if (_input->isKeyDown(DIK_RIGHT))
+			{
+				if (_sprite->getScale() > 0)
+					_animations[_currentAnimateIndex]->Update(dt);
+				else
+					_animations[_currentAnimateIndex]->UpdatePreFrame(dt);
+			}
+			else if (_input->isKeyPressed(DIK_X))
+			{
+				addStatus(eStatus::ATTACK);
+			}
+			else if (_input->isKeyPressed(DIK_Z))
+			{
+				addStatus(eStatus::THROW);
+				appleThrow->addStatus(eStatus::THROW);
+				if (getScale().x > 0)
+				{
+					appleThrow->movingRight(this->getPositionX(), this->getPositionY());
+				}
+				else if (getScale().x < 0)
+				{
+					appleThrow->movingLeft(this->getPositionX(), this->getPositionY());
+				}
+			}
+			else if (_input->isKeyDown(DIK_C))
+			{
+				//removeStatus(eStatus::SWING);
+				addStatus(eStatus::JUMPING);
+				swingJump();
+			}
+			break;
 		}
-		break;
-	}
-	case(eStatus::BEHIT):
-	{
-		Stop(false);
-		//Làm ảnh mờ khi bị đánh
-		this->setOpacity(0.7);
-		//Tự hủy khi đế một bức ảnh n
-		if (_animations[_currentAnimateIndex]->getIndex() == 4)
+		case(eStatus::BEHIT):
 		{
-			_animations[_currentAnimateIndex]->setIndex(0);
-			this->setStatus(_preStatus);
-			this->setOpacity(1.0f);
+			Stop(false);
+			//Làm ảnh mờ khi bị đánh
+			this->setOpacity(0.7);
+			//Tự hủy khi đế một bức ảnh n
+			if (_animations[_currentAnimateIndex]->getIndex() == 4)
+			{
+				_animations[_currentAnimateIndex]->setIndex(0);
+				this->setStatus(_preStatus);
+				this->setOpacity(1.0f);
+			}
+			break;
 		}
-		break;
-	}
-	case(eStatus::REVIVAL):
-	{
-		if (_animations[REVIVAL]->getIndex()>= 13)
+		case(eStatus::REVIVAL):
 		{
-			_animations[_currentAnimateIndex]->setIndex(0);
-			setPosition(_restartPoint->getPosition().x, _restartPoint->getPosition().y - 15);
-			_restartPoint->setStatus(NORMAL);
-			setStatus(NORMAL);
+			if (_animations[REVIVAL]->getIndex()>= 13)
+			{
+				_animations[_currentAnimateIndex]->setIndex(0);
+				setPosition(_restartPoint->getPosition().x, _restartPoint->getPosition().y - 15);
+				_restartPoint->setStatus(NORMAL);
+				setStatus(NORMAL);
 
-			__hook(&CollisionBody::onCollisionBegin, (CollisionBody*)_listComponent["CollisionBody"], &Aladdin::onCollisionBegin);
-			__hook(&CollisionBody::onCollisionEnd, (CollisionBody*)_listComponent["CollisionBody"], &Aladdin::onCollisionEnd);
+				__hook(&CollisionBody::onCollisionBegin, (CollisionBody*)_listComponent["CollisionBody"], &Aladdin::onCollisionBegin);
+				__hook(&CollisionBody::onCollisionEnd, (CollisionBody*)_listComponent["CollisionBody"], &Aladdin::onCollisionEnd);
 			
-			auto g = (Gravity*)_listComponent["Gravity"];
-			g->setStatus(eGravityStatus::FALLING__DOWN);
+				auto g = (Gravity*)_listComponent["Gravity"];
+				g->setStatus(eGravityStatus::FALLING__DOWN);
+			}
+			break;
 		}
-		break;
-	}
 	}
 	if (isInStatus(eStatus::CLIMB))
 	{
@@ -1643,6 +1633,24 @@ void Aladdin::Stop(bool stopanimation)
 void Aladdin::SetRestartPoint(BaseObject *restartpoint)
 {
 	_restartPoint = restartpoint;
+}
+
+void Aladdin::Revival()
+{
+	if (_restartPoint == NULL)
+	{
+		setPosition(100,100);
+	}
+	else
+	{
+		_restartPoint->clearStatus();
+
+		__unhook((CollisionBody*)_listComponent["CollisionBody"]);
+		__unhook((CollisionBody*)_listComponent["CollisionBody"]);
+
+		setPosition(_restartPoint->getPosition());
+		setStatus(eStatus::REVIVAL);
+	}
 }
 
 void Aladdin::Draw(LPD3DXSPRITE spriteHandle, ViewPort* viewport)

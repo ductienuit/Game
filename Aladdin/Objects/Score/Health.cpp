@@ -1,9 +1,9 @@
 #include "Health.h"
 
-Health::Health(int posX, int posY) :BaseObject(eID::HEALTH)
+Health::Health(BaseObject* aladdin, int posX, int posY) :BaseObject(eID::HEALTH)
 {
 	_sprite = SpriteManager::getInstance()->getSprite(eID::HEALTH);
-
+	_aladdin = (Aladdin*)aladdin;
 	this->setStatus(NORMAL);
 	this->setPosition(posX*SCALECHARACTER.x, posY*SCALECHARACTER.y, 1.0f);
 	this->setOrigin(ORIGINZERO);
@@ -13,15 +13,22 @@ Health::Health(int posX, int posY) :BaseObject(eID::HEALTH)
 
 void Health::InIt()
 {
-	strStatus = ScoreAladdin::getInstance()->getHealth();
+	iStatus = InforAladdin::getInstance()->getHealth();
+
+	_animations[120] = new Animation(_sprite, 0.1f);
+	_animations[120]->addFrameRect(eID::HEALTH, "health_8_0", 4);
+
+	_animations[110] = new Animation(_sprite, 0.1f);
+	_animations[110]->addFrameRect(eID::HEALTH, "health_8_0", 4);
+
 	_animations[100] = new Animation(_sprite, 0.1f);
-	_animations[100]->addFrameRect(eID::HEALTH, "health_8_0", 4);
+	_animations[100]->addFrameRect(eID::HEALTH, "health_7_0", 4);
 
 	_animations[90] = new Animation(_sprite, 0.1f);
-	_animations[90]->addFrameRect(eID::HEALTH, "health_8_0",4);
+	_animations[90]->addFrameRect(eID::HEALTH, "health_7_0",4);
 
 	_animations[80] = new Animation(_sprite, 0.1f);
-	_animations[80]->addFrameRect(eID::HEALTH, "health_7_0", 4); 
+	_animations[80]->addFrameRect(eID::HEALTH, "health_6_0", 4); 
 
 	_animations[70] = new Animation(_sprite, 0.1f);
 	_animations[70]->addFrameRect(eID::HEALTH, "health_6_0", 4);
@@ -50,18 +57,29 @@ void Health::InIt()
 
 void Health::Update(float deltatime)
 {
+	iStatus = InforAladdin::getInstance()->getHealth();
+	if (iStatus <= 0)
+	{
+		if (InforAladdin::getInstance()->getLife() <= 0)
+		{
+			//chuyen scene
+			return;
+		}
+		else
+		{
+			InforAladdin::getInstance()->plusLife(-1);
+			InforAladdin::getInstance()->setHealth(120);
+			_aladdin->Revival();
+		}
+	}
 
-	strStatus = ScoreAladdin::getInstance()->getHealth();
-	if (strStatus < 0)
-		strStatus = 0;
-
-	_animations[strStatus]->Update(deltatime);
+	_animations[iStatus]->Update(deltatime);
 
 }
 
 void Health::Draw(LPD3DXSPRITE spritehandle, ViewPort* viewport)
 {
-	_animations[strStatus]->Draw(spritehandle, viewport);
+	_animations[iStatus]->Draw(spritehandle, viewport);
 }
 
 void Health::Release()
