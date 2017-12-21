@@ -23,10 +23,6 @@ void RestartPoint::InIt()
 	_animations[BEHIT] = new Animation(_sprite, 0.1f);
 	_animations[BEHIT]->addFrameRect(eID::RESTARTPOINT, "genie_restart_point_0", 10);
 
-	/*_animations[BEHIT]->addFrameRect(eID::RESTARTPOINT, "genie_restart_point_00", "genie_restart_point_01", "genie_restart_point_02", "genie_restart_point_03",
-		"genie_restart_point_04", "genie_restart_point_05", "genie_restart_point_06", "genie_restart_point_07", "genie_restart_point_08", "genie_restart_point_09",
-		"genie_restart_point_09", "genie_restart_point_09", "genie_restart_point_09", "genie_restart_point_09", "genie_restart_point_09", "genie_restart_point_09", NULL);
-	*/
 	_animations[FREE] = new Animation(_sprite, 0.1f);
 	_animations[FREE]->addFrameRect(eID::RESTARTPOINT, "genie_restart_point_09", "genie_restart_point_09", "genie_restart_point_09", NULL);
 
