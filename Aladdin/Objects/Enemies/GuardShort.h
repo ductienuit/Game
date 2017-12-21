@@ -38,7 +38,6 @@ private:
 	void movingLeft();
 	void movingRight();
 	void standing();
-	void Throw(float deltatime);
 
 	KnifeShort* knife;
 	map<string, IComponent*> _listComponent;

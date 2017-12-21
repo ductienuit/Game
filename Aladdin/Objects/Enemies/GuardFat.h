@@ -17,7 +17,7 @@ using namespace std;
 class GuardFat : public BaseEnemy
 {
 public:
-	GuardFat(eStatus status, int posX, int posY, eDirection direction);
+	GuardFat(eStatus status, int posX, int posY, eDirection direction, int minMove, int maxMove);
 
 	void InIt() override;
 	void Update(float deltatime) override;
