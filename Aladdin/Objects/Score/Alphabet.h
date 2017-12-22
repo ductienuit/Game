@@ -19,6 +19,11 @@ public:
 	void Draw(LPD3DXSPRITE, ViewPort*) override;
 	void Release() override;
 
+	virtual void setScale(Vector2 scale);
+	virtual void setScale(float scale);
+	virtual void setScaleX(float sx);
+	virtual void setScaleY(float sy);
+
 	void setString(string str,bool isMove);
 
 	~Alphabet();

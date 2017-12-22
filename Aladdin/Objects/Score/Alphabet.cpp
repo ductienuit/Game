@@ -54,6 +54,38 @@ void Alphabet::Release()
 	_listLetter.clear();
 }
 
+void Alphabet::setScale(Vector2 scale)
+{
+	for each (auto c in _listLetter)
+	{
+		c->setScale(scale);
+	}
+}
+
+void Alphabet::setScale(float scale)
+{
+	for each (auto c in _listLetter)
+	{
+		c->setScale(scale);
+	}
+}
+
+void Alphabet::setScaleX(float sx)
+{
+	for each (auto c in _listLetter)
+	{
+		c->setScaleX(sx);
+	}
+}
+
+void Alphabet::setScaleY(float sy)
+{
+	for each (auto c in _listLetter)
+	{
+		c->setScaleY(sy);
+	}
+}
+
 void Alphabet::setString(string str, bool isMove)
 {
 	if (str == _text)

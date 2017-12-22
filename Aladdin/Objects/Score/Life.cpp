@@ -1,4 +1,4 @@
-#include "Life.h"
+﻿#include "Life.h"
 
 Life::Life(int posX, int posY) :BaseObject(eID::LIFE)
 {
@@ -7,6 +7,13 @@ Life::Life(int posX, int posY) :BaseObject(eID::LIFE)
 	this->setPosition(posX*SCALECHARACTER.x, posY*SCALECHARACTER.y, 1.0f);
 	this->setOrigin(ORIGINZERO);
 	setScale(SCALELIFE);
+
+	Vector2 newPosition = ViewPort::getInstance()->getPositionWorld();
+	_countLife = new Alphabet(newPosition.x + 73 , newPosition.y - WINDOWS_HEIGHT + 60);
+	_countLife->setString("3", true);
+
+	_countLife->setScale(3.0f);
+
 	InIt();
 }
 
@@ -23,15 +30,28 @@ void Life::Update(float deltatime)
 
 	_animations[_status]->Update(deltatime);
 
+
+	//Cập nhật lại số táo
+	int life = InforAladdin::getInstance()->getLife();
+	std::string s = std::to_string(life);
+	_countLife->setString(s, true);
+
+
+	_countLife->Update(deltatime);
 }
 
 void Life::Draw(LPD3DXSPRITE spritehandle, ViewPort* viewport)
 {
 	_animations[_status]->Draw(spritehandle, viewport);
+
+	_countLife->Draw(spritehandle, viewport);
 }
 
 void Life::Release()
 {
+	_countLife->Release();
+	SAFE_DELETE(_countLife);
+
 	SAFE_DELETE(this->_sprite);
 }
 
