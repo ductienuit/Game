@@ -6,9 +6,16 @@
 #include"../FrameWork/Manager/SceneManager.h"
 #include"../FrameWork/debug.h"
 #include"../FrameWork/Animation.h"
+#include"../FrameWork/Manager/SoundManager.h"
+#include"../Objects/BaseObject.h"
+#include "../FrameWork/define.h"
+#include"../FrameWork/ViewPort.h"
 
 #include<time.h>
 
+#include"../Objects/GameObjects/Aladdin.h"
+#include"MenuBackground.h"
+#include"../Objects/Score/Alphabet.h"
 
 using namespace std;
 
@@ -26,7 +33,15 @@ public:
 	void Update(float dt) override;
 	void Draw(LPD3DXSPRITE spriteHandle) override;
 	void Release() override;
+
+	void setViewPort(ViewPort* viewport);
+	void UpdateViewport(BaseObject* aladdin);
 private:
+	Aladdin * _aladdin;
+	MenuBackground* _menuBackground;
+	//Chuyển đổi tọa độ word sang viewport
+	static ViewPort* _viewport;
+	
 };
 
 #endif // !__INTRO_SCENE_H__

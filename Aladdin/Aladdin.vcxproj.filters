@@ -321,6 +321,9 @@
     <ClCompile Include="FrameWork\C_Sound.cpp">
       <Filter>Source Files\FrameWork</Filter>
     </ClCompile>
+    <ClCompile Include="Scenes\MenuBackground.cpp">
+      <Filter>Source Files\Scenes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FrameWork\Animation.h">
@@ -581,14 +584,17 @@
     <ClInclude Include="Objects\Score\Letter.h">
       <Filter>Header Files\Score</Filter>
     </ClInclude>
-    <ClInclude Include="Objects\Score\Alphabet.h">
-      <Filter>Source Files\Score</Filter>
-    </ClInclude>
     <ClInclude Include="FrameWork\Manager\SoundManager.h">
       <Filter>Header Files\FrameWork\Manager</Filter>
     </ClInclude>
     <ClInclude Include="FrameWork\C_Sound.h">
       <Filter>Header Files\FrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenes\MenuBackground.h">
+      <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Score\Alphabet.h">
+      <Filter>Header Files\Score</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

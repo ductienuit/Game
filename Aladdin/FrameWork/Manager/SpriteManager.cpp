@@ -74,6 +74,9 @@ void SpriteManager::LoadResource(LPD3DXSPRITE spriteHandle)
 	this->_listSprite.insert(pair<eID, Sprite*>(eID::BACKGROUNDFRONT, sp));
 	this->LoadSpriteInfo(eID::BACKGROUNDFRONT, "Resources//Images//backgroundfront.txt");
 
+	sp = new Sprite(spriteHandle, "Resources//Images//MenuBackGround.png");
+	this->_listSprite.insert(pair<eID, Sprite*>(eID::MENUBACKGROUND, sp));
+	this->LoadSpriteInfo(eID::MENUBACKGROUND, "Resources//Images//menubackground.txt");
 
 	sp = new Sprite(spriteHandle, "Resources//Images//CivilianEnemies.png");
 	this->_listSprite.insert(pair<eID, Sprite*>(eID::GUARDLU, sp));

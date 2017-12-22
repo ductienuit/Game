@@ -1,0 +1,2 @@
+frame_name		left	top	right	bottom
+menu_back_ground	0	0	636	445
