@@ -1,56 +1,81 @@
 ﻿#include "AppleThrow.h"
+extern vector<BaseObject*> listActive;
 
-AppleThrow::AppleThrow(eStatus status, int posX, int posY, eDirection direction)
+AppleThrow::AppleThrow(int posX, int posY,bool isLeft):BaseObject(eID::APPLETHROW)
 {
 	_sprite = SpriteManager::getInstance()->getSprite(eID::APPLETHROW);
-	_sprite->setFrameRect(0, 0, 32.0f, 16.0f);
-	_originPosition = Vector2(posX - 120, posY + 60);
-	_currentPosition = Vector2(_originPosition.x, _originPosition.y);
+	_sprite->setFrameRect(0, 0, 5.0f, 5.0f);
+	_originPosition = Vector2(posX, posY+100);
 
-	_divingSprite = SpriteManager::getInstance()->getSprite(eID::ALADDIN);
-	Vector2 v(direction * APPLETHROW_SPEED, 0);
+	Vector2 v(0, 0);
 	Vector2 a(0, 0);
-	this->_listComponent.insert(pair<string, IComponent*>("Movement", new Movement(a, v, this->_sprite)));
-	this->setStatus(status);
-	this->setPosition(posX, posY, 1.0f);
+
+	auto movement = new Movement(Vector2(0, 0), Vector2(0, 0), _sprite);
+	_listComponent["Movement"] = movement;
+	_listComponent["Gravity"] = new Gravity(Vector2(0, -APPLE_GRAVITY), movement);
+
 	setScale(SCALEAPPLE);
+	this->setStatus(THROW);
 	text = new Text("Arial", "", 10, 25);
+	_isLeft = isLeft;
+	if (isLeft)
+		setPosition(posX - 15, posY+100);
+	else
+		setPosition(posX + 15, posY+100);
+	InIt();
 }
 
 void AppleThrow::InIt()
 {
-
 	auto collisionBody = new CollisionBody(this);
 	_listComponent["CollisionBody"] = collisionBody;
 
 	__hook(&CollisionBody::onCollisionBegin, collisionBody, &AppleThrow::onCollisionBegin);
 	__hook(&CollisionBody::onCollisionEnd, collisionBody, &AppleThrow::onCollisionEnd);
 
-	_animations[THROW] = new Animation(_sprite, 0.5f);
-	_animations[THROW]->addFrameRect(eID::APPLETHROW, "apple_00", "apple_00", "apple_00", NULL);
+	_animations[THROW] = new Animation(_sprite, 0.1f);
+	_animations[THROW]->addFrameRect(eID::APPLETHROW, "apple_00","apple_00", NULL);
 
-	_animations[THROW_LEFT] = new Animation(_sprite, 0.5f);
-	_animations[THROW_LEFT]->addFrameRect(eID::APPLETHROW, "apple_00", "apple_00", "apple_00", NULL);
-
-	_animations[THROW_RIGHT] = new Animation(_sprite, 0.5f);
-	_animations[THROW_RIGHT]->addFrameRect(eID::APPLETHROW, "apple_00", "apple_00", "apple_00", NULL);
+	_animations[DYING] = new Animation(_sprite, 0.1f);
+	_animations[DYING]->addFrameRect(eID::APPLETHROW, "apple_00", "apple_00", NULL);
 
 }
+
 void AppleThrow::Update(float deltatime)
 {
-	_animations[this->getStatus()]->Update(deltatime);
 
 	switch (this->getStatus())
 	{
-	case THROW_RIGHT:
-		throwRight();
-		break;
-	case THROW_LEFT:
-		throwLeft();
-		break;
-	default:
+	case DESTROY:
+		return;
+	case THROW:
+	{
+		float x = this->getPositionX();
+		float y = this->getPositionY();
+
+		if (_isLeft)
+		{
+			movingLeft();
+		}
+		else
+			movingRight();
 		break;
 	}
+	case DYING:
+	{
+		standing();
+		if (_animations[DYING]->getIndex() >= 0)
+		{
+			_animations[DYING]->setIndex(0);
+			this->setStatus(DESTROY);
+			return;
+		}
+		break;
+	}
+	break;
+	}
+
+	_animations[_status]->Update(deltatime);
 
 	// update component để sau cùng để sửa bên trên sau đó nó cập nhật đúng
 	for (auto it = _listComponent.begin(); it != _listComponent.end(); it++)
@@ -61,8 +86,7 @@ void AppleThrow::Update(float deltatime)
 
 void AppleThrow::Draw(LPD3DXSPRITE spritehandle, ViewPort* viewport)
 {
-	_animations[this->getStatus()]->Draw(spritehandle, viewport);
-	//text->Draw();
+	_animations[_status]->Draw(spritehandle, viewport);
 }
 
 void AppleThrow::Release()
@@ -75,16 +99,34 @@ void AppleThrow::Release()
 	SAFE_DELETE(this->_sprite);
 }
 
-void AppleThrow::onCollisionBegin(CollisionEventArg *)
+void AppleThrow::onCollisionBegin(CollisionEventArg *collision_event)
 {
+	eID temp = collision_event->_otherObject->getId();
+	standing();
+	if (temp == APPLEEAT || temp == COINEAT || temp == HEARTEAT || temp == RESTARTPOINT ||
+		temp == ALADDIN|| temp == FIRE || collision_event->_otherObject->getStatus() == DESTROY)
+		return;
+	if (temp == LAND)
+	{
+		setStatus(DYING);
+		return;
+	}
+	collision_event->_otherObject->setStatus(DYING);
+
 }
 
 void AppleThrow::onCollisionEnd(CollisionEventArg *)
 {
 }
 
-float AppleThrow::checkCollision(BaseObject *, float)
+float AppleThrow::checkCollision(BaseObject *object, float dt)
 {
+	auto collisionBody = (CollisionBody*)_listComponent["CollisionBody"];
+	for each(auto object in listActive)
+	{
+		if (collisionBody->checkCollision(object, dt, true))
+			break;
+	}
 	return 0.0f;
 }
 
@@ -97,50 +139,20 @@ AppleThrow::~AppleThrow()
 {
 }
 
-void AppleThrow::movingLeft(float x, float y)
+void AppleThrow::movingLeft()
 {
-	this->setStatus(eStatus::THROW_LEFT);
-	count = 0;
-	_currentPosition.x = x - 60;
-	_currentPosition.y = y + 90;
+	auto move = (Movement*)this->_listComponent["Movement"];
+	move->setVelocity(Vector2(-APPLE_SPEED, move->getVelocity().y));
 }
 
-void AppleThrow::movingRight(float x, float y)
+void AppleThrow::movingRight()
 {
-	this->setStatus(eStatus::THROW_RIGHT);
-	count = 0;
-	_currentPosition.x = x + 60;
-	_currentPosition.y = y + 90;
+	auto move = (Movement*)this->_listComponent["Movement"];
+	move->setVelocity(Vector2(APPLE_SPEED, move->getVelocity().y));
 }
 
-void AppleThrow::throwLeft()
+void AppleThrow::standing()
 {
-	if (count < 25)
-	{
-		_currentPosition.x -= 4;
-		_currentPosition.y += 2;
-	}
-	else
-	{
-		_currentPosition.x -= 8;
-		_currentPosition.y -= 4;
-	};
-	count++;
-	this->setPosition(_currentPosition.x, _currentPosition.y);
-}
-
-void AppleThrow::throwRight()
-{
-	if (count < 25)
-	{
-		_currentPosition.x += 4;
-		_currentPosition.y += 2;
-	}
-	else
-	{
-		_currentPosition.x += 8;
-		_currentPosition.y -= 4;
-	};
-	count++;
-	this->setPosition(_currentPosition.x, _currentPosition.y);
+	auto move = (Movement*)this->_listComponent["Movement"];
+	move->setVelocity(VECTOR2ZERO);
 }

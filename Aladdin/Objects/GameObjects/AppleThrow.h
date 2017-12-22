@@ -9,14 +9,13 @@
 #include"../../FrameWork/CollisionBody.h"
 using namespace std;
 
-#define APPLETHROW_SPEED 300
-#define APPLETHROW_GRAVITY 800
-#define APPLETHROW_JUMP 100
+#define APPLE_SPEED 630
+#define APPLE_GRAVITY 600
 
 class AppleThrow : public BaseObject
 {
 public:
-	AppleThrow(eStatus status, int posX, int posY, eDirection direction);
+	AppleThrow(int posX, int posY,bool isLeft);
 	void InIt() override;
 	void Update(float deltatime) override;
 	void Draw(LPD3DXSPRITE, ViewPort*) override;
@@ -29,18 +28,17 @@ public:
 	IComponent* getComponent(string componentName);
 
 	Text* text;
-	void movingLeft(float x, float y);
-	void movingRight(float x, float y);
-	void throwLeft();
-	void throwRight();
+
+	void movingLeft();
+	void movingRight();
+	void standing();
 	~AppleThrow();
 private:
 
 	int count = 0;
 	map<string, IComponent*> _listComponent;
 	map<int, Animation*> _animations;
-	Sprite *_divingSprite;
 	Vector2 _originPosition;
-	Vector2 _currentPosition;
+	bool _isLeft;
 };
 #endif _APPLETHROW_H

@@ -47,10 +47,8 @@ enum eStatus
 	THROW_LEFT_FAR   =	(1 << 20),		//Trang thai cua knife
 	THROW_RIGHT_FAR  =	(1 << 21),		//Trang thai cua knife
 	THROW			 =  (1 << 22),
-	THROW_LEFT	   	 =	(1 << 23),
-	THROW_RIGHT		 =	(1 << 24),
-	REVIVAL			 =  (1 << 25),      //Hồi Sinh
-	AEROBATIC		 =  (1 << 26)
+	REVIVAL			 =  (1 << 23),      //Hồi Sinh
+	AEROBATIC		 =  (1 << 24)
 };
 
 enum eID
