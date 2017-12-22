@@ -1,20 +1,21 @@
 ﻿#include "GuardFat.h"
 extern vector<BaseObject*> listFireActive;
 
-GuardFat::GuardFat(eStatus status, int posX, int posY, eDirection direction) :BaseEnemy(eID::GUARDFAT)
+GuardFat::GuardFat(eStatus status, int posX, int posY, eDirection direction, int minMove, int maxMove) :BaseEnemy(eID::GUARDFAT)
 {
 	_sprite = SpriteManager::getInstance()->getSprite(eID::GUARDFAT);
 	/*Dòng dưới để set framewidth hoặc height
 	để vừa vào khởi tạo không bị sai collison.
 	Hàm InIt sẽ tự động cập nhật lại khi set status*/
 	_sprite->setFrameRect(0, 0, 5.0f, 5.0f);
-
 	_divingSprite = SpriteManager::getInstance()->getSprite(eID::ALADDIN);
 	Vector2 v(direction * GUARDFAT_SPEED, 0);
 	Vector2 a(0, 0);
 	this->_listComponent.insert(pair<string, IComponent*>("Movement", new Movement(a, v, this->_sprite)));
 	this->setStatus(status);
 	this->setPosition(posX*SCALECHARACTER.x, posY*SCALECHARACTER.y, 1.0f);
+	_minMove = getPositionX() - 250; //- minMove;
+	_maxMove = getPositionX() + 200; //+ maxMove;
 	InIt();
 }
 
@@ -58,7 +59,7 @@ void GuardFat::InIt()
 
 	_sprite->setOrigin(Vector2(0.5, 0));
 
-	_hitpoint = 4;//Số lần đánh
+	_hitpoint = 2;//Số lần đánh
 	_score = 10; //Số điểm được mỗi lần giết enermy
 
 
@@ -79,6 +80,7 @@ void GuardFat::Update(float deltatime)
 
 void GuardFat::UpdateStatus(float dt)
 {
+	float xAla = _divingSprite->getPositionX() + (_divingSprite->getBounding().right - _divingSprite->getBounding().left) / 2;
 	switch (this->getStatus())
 	{
 	case eStatus::DESTROY:
@@ -111,48 +113,72 @@ void GuardFat::UpdateStatus(float dt)
 	}
 	}
 
-	if (distanceBetweenAladdin().y > 0)
-		return;
-	//Aladdin đứng bên trái
-	if (distanceBetweenAladdin().x <= 0)
+	/*if (distanceBetweenAladdin().y > 0)
+		return;*/
+	this->clearStatus();
+	if (_minMove < this->getPositionX() && this->getPositionX() < _maxMove)
 	{
-		float distance = -distanceBetweenAladdin().x;
-		if (distance < 100)
+		if (distanceBetweenAladdin().x < 0)
 		{
-			_sprite->setScaleX(-1.6);
-			this->setStatus(eStatus::ATTACK);
-			standing();
-			return;
+			float distance = -distanceBetweenAladdin().x;
+			if (distance > 300)
+			{
+				this->setStatus(eStatus::FREE);
+				standing();
+			}
+			else if (50 < distance && distance < 300)
+			{
+				this->addStatus(eStatus::MOVING_LEFT);
+				movingLeft();
+			}
+			else if (distance <= 50)
+			{
+				_sprite->setScaleX(-1.6);
+				this->setStatus(eStatus::ATTACK);
+				standing();
+			}
 		}
-		else if (distance >= 100 && distance < 400)
+		else if (distanceBetweenAladdin().x > 0)
 		{
-			this->setStatus(eStatus::MOVING_LEFT);
-			movingLeft();
-			return;
+			float distance = distanceBetweenAladdin().x;
+			if (distance > 300)
+			{
+
+				this->setStatus(eStatus::FREE);
+				standing();
+			}
+			else if (50 < distance && distance < 300)
+			{
+				this->addStatus(eStatus::MOVING_RIGHT);
+				movingRight();
+			}
+			else if (distance <= 50)
+			{
+				_sprite->setScaleX(1.6);
+				this->setStatus(eStatus::ATTACK);
+				standing();
+			}
 		}
-		this->setStatus(eStatus::FREE);
-		standing();
-		return;
 	}
-	else /*if (distanceBetweenAladdin().x > 0)*/
+	else if ((_minMove > this->getPositionX()) && xAla < _minMove)
 	{
-		float distance = distanceBetweenAladdin().x;
-		if (distance < 100)
-		{
-			_sprite->setScaleX(1.6);
-			this->setStatus(eStatus::ATTACK);
-			standing();
-			return;
-		}
-		else if (distance >= 100 && distance < 400)
-		{
-			this->setStatus(eStatus::MOVING_RIGHT);
-			movingRight();
-			return;
-		}
-		this->setStatus(eStatus::FREE);
+		this->addStatus(eStatus::ATTACK);
 		standing();
-		return;
+	}
+	else if (distanceBetweenAladdin().x > 0 && xAla > _minMove && this->getPositionX() < _maxMove)
+	{
+		this->addStatus(eStatus::MOVING_RIGHT);
+		movingRight();
+	}
+	else if ((this->getPositionX() > _maxMove) && xAla > _maxMove)
+	{
+		this->addStatus(eStatus::ATTACK);
+		standing();
+	}
+	else if (distanceBetweenAladdin().x < 0 && xAla < _maxMove)
+	{
+		this->addStatus(eStatus::MOVING_LEFT);
+		movingLeft();
 	}
 }
 

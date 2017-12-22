@@ -40,7 +40,7 @@ ReadMapEditor::ReadMapEditor(const char *filepath, QuadTree *& _quadTree)
 				Tmx::Object* _object = _objectGroup->GetObjects().at(j);
 
 
-				GuardShort* _guardshort = new GuardShort(MOVING_LEFT, _object->GetX(), 688 - _object->GetY() - _object->GetHeight(), NONE, 1000, 1000);
+				GuardShort* _guardshort = new GuardShort(MOVING_LEFT, _object->GetX(), 688 - _object->GetY() - _object->GetHeight(), NONE, 50, 50);
 
 				ListGuardShort.push_back(_guardshort);
 				_QuadTree->InsertStaticObject(_guardshort);
@@ -97,7 +97,7 @@ ReadMapEditor::ReadMapEditor(const char *filepath, QuadTree *& _quadTree)
 				Tmx::Object* _object = _objectGroup->GetObjects().at(j);
 
 
-				GuardFat* _guardFat = new GuardFat(FREE, _object->GetX() , 688 - _object->GetY() - _object->GetHeight(), NONE);
+				GuardFat* _guardFat = new GuardFat(FREE, _object->GetX() , 688 - _object->GetY() - _object->GetHeight(), NONE, 50, 50);
 
 				ListGuardFat.push_back(_guardFat);
 				_QuadTree->InsertStaticObject(_guardFat);
