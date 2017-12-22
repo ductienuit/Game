@@ -309,11 +309,11 @@
     <ClCompile Include="Objects\Score\Apple.cpp">
       <Filter>Source Files\Score</Filter>
     </ClCompile>
-    <ClCompile Include="Objects\Score\Alphabet.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Objects\Score\Letter.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Score</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Score\Alphabet.cpp">
+      <Filter>Source Files\Score</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -572,11 +572,11 @@
     <ClInclude Include="Objects\Score\Apple.h">
       <Filter>Header Files\Score</Filter>
     </ClInclude>
-    <ClInclude Include="Objects\Score\Alphabet.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Objects\Score\Letter.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Score</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Score\Alphabet.h">
+      <Filter>Source Files\Score</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

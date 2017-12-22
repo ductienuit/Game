@@ -32,7 +32,7 @@ void EatApple::Update(float deltatime)
 	if (_animations[BEHIT]->getIndex() >= 6)
 	{
 		_animations[BEHIT]->setIndex(0);
-		//apple+=10;
+		InforAladdin::getInstance()->plusApple(1);
 		setStatus(DESTROY);
 	}
 }
