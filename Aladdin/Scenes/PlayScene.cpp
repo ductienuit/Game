@@ -62,7 +62,7 @@ bool PlayScene::InIt()
 	_aladdin->setPosition(500, 600);
 	_listObject.push_back(_aladdin);
 	//âm thanh
-	SoundManager::getInstance()->PlaySound("Resources/Audio/PrinceAli.mp3", 1);
+	SoundManager::getInstance()->PlaySound("Resources/Audio/PrinceAli_loop.mp3", 1);
 	return true;
 }
 

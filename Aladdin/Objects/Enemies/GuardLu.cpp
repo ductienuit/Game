@@ -106,7 +106,8 @@ void GuardLu::onCollisionBegin(CollisionEventArg *collision_event)
 				&&
 				this->_animations[ATTACK]->getIndex() == 3)
 			{
-
+				//âm thanh
+				SoundManager::getInstance()->PlaySound("Resources/Audio/CloudPoof.wav", 0);
 				//Lưu trạng thái trước khi hết bị đánh set lại cái trạng thái cũ
 				collision_event->_otherObject->savePreStatus();
 				//Set status aladdin bị đánh

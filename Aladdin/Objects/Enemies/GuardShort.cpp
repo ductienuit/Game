@@ -11,8 +11,8 @@ GuardShort::GuardShort(eStatus status, int posX, int posY, eDirection direction,
 	this->_listComponent.insert(pair<string, IComponent*>("Movement", new Movement(a, v, this->_sprite)));
 	this->setStatus(status);
 	this->setPosition(posX*SCALECHARACTER.x, posY*SCALECHARACTER.y, 1.0f);
-	_minMove = minMove;
-	_maxMove = maxMove;
+	_minMove = getPositionX() - 50; //-minMove;
+	_maxMove = getPositionX() + 50; //+maxMove;
 	text = new Text("Arial", "", 10, 25);
 	InIt();
 }
@@ -194,7 +194,7 @@ void GuardShort::UpdateStatus(float dt)
 				if (_animations[_status]->getIndex() == 2)
 				{
 					////âm thanh
-					//SoundManager::getInstance()->PlaySound("Resources/Audio/HighSword.wav", 0);
+					SoundManager::getInstance()->PlaySound("Resources/Audio/ObjectThrow.wav", 0);
 					knife->movingLeft(this->getPositionX(), this->getPositionY());
 					
 				}
@@ -214,7 +214,7 @@ void GuardShort::UpdateStatus(float dt)
 				if (_animations[_status]->getIndex() == 2)
 				{
 					////âm thanh
-					//SoundManager::getInstance()->PlaySound("Resources/Audio/HighSword.wav", 0);
+					SoundManager::getInstance()->PlaySound("Resources/Audio/ObjectThrow.wav", 0);
 					knife->movingRight(this->getPositionX(), this->getPositionY());
 				}
 				_canThrow = true;
@@ -234,7 +234,7 @@ void GuardShort::UpdateStatus(float dt)
 		if (_animations[_status]->getIndex() == 2)
 		{
 			//âm thanh
-			SoundManager::getInstance()->PlaySound("Resources/Audio/HighSword.wav", 0);
+			SoundManager::getInstance()->PlaySound("Resources/Audio/ObjectThrow.wav", 0);
 			knife->movingLeft(this->getPositionX(), this->getPositionY());
 		}
 		_canThrow = true;
@@ -252,7 +252,7 @@ void GuardShort::UpdateStatus(float dt)
 		if (_animations[_status]->getIndex() == 2)
 		{
 			//âm thanh
-			SoundManager::getInstance()->PlaySound("Resources/Audio/HighSword.wav", 0);
+			SoundManager::getInstance()->PlaySound("Resources/Audio/ObjectThrow.wav", 0);
 			knife->movingRight(this->getPositionX(), this->getPositionY());
 		}
 		_canThrow = true;

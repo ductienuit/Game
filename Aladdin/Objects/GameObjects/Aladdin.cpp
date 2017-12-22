@@ -278,10 +278,14 @@ void Aladdin::UpdateInput(float dt)
 		}
 		else if (_input->isKeyPressed(DIK_X))
 		{
+			//âm thanh
+			SoundManager::getInstance()->PlaySound("Resources/Audio/HighSword.wav",0);
 			addStatus(eStatus::ATTACK);  //chém
 		}
 		else if (_input->isKeyPressed(DIK_Z)) //ném
 		{
+			//âm thanh
+			SoundManager::getInstance()->PlaySound("Resources/Audio/HighSword.wav", 0);
 			addStatus(eStatus::THROW);
 			appleThrow->addStatus(eStatus::THROW);
 			if (getScale().x > 0)
@@ -330,11 +334,15 @@ void Aladdin::UpdateInput(float dt)
 		}
 		else if (_input->isKeyPressed(DIK_X))
 		{
+			//âm thanh
+			SoundManager::getInstance()->PlaySound("Resources/Audio/HighSword.wav", 0);
 			removeStatus(eStatus::NORMAL1);
 			addStatus(eStatus::ATTACK);  //chém
 		}
 		else if (_input->isKeyPressed(DIK_Z)) //ném
 		{
+			//âm thanh
+			SoundManager::getInstance()->PlaySound("Resources/Audio/HighSword.wav", 0);
 			removeStatus(eStatus::NORMAL1);
 			addStatus(eStatus::THROW);
 			appleThrow->addStatus(eStatus::THROW);
@@ -383,11 +391,15 @@ void Aladdin::UpdateInput(float dt)
 		}
 		else if (_input->isKeyPressed(DIK_X)) //chém
 		{
+			//âm thanh
+			SoundManager::getInstance()->PlaySound("Resources/Audio/HighSword.wav", 0);
 			removeStatus(eStatus::FREE);
 			addStatus(eStatus::ATTACK);  //chém
 		}
 		else if (_input->isKeyDown(DIK_Z)) //ném
 		{
+			//âm thanh
+			SoundManager::getInstance()->PlaySound("Resources/Audio/HighSword.wav", 0);
 			removeStatus(eStatus::FREE);
 			addStatus(eStatus::THROW);
 			appleThrow->addStatus(eStatus::THROW);
@@ -445,11 +457,16 @@ void Aladdin::UpdateInput(float dt)
 		}
 		else if (_input->isKeyPressed(DIK_X)) //chém
 		{
+			//âm thanh
+			SoundManager::getInstance()->PlaySound("Resources/Audio/HighSword.wav", 0);
 			removeStatus(eStatus::STOPWALK);
 			addStatus(eStatus::ATTACK);  //chém
+			
 		}
 		else if (_input->isKeyDown(DIK_Z)) //ném
 		{
+			//âm thanh
+			SoundManager::getInstance()->PlaySound("Resources/Audio/HighSword.wav", 0);
 			removeStatus(eStatus::STOPWALK);
 			addStatus(eStatus::THROW);
 			appleThrow->addStatus(eStatus::THROW);
@@ -544,7 +561,8 @@ void Aladdin::UpdateInput(float dt)
 		}
 		else if (_input->isKeyPressed(DIK_X))
 		{
-
+			//âm thanh
+			SoundManager::getInstance()->PlaySound("Resources/Audio/HighSword.wav", 0);
 			addStatus(eStatus::ATTACK);
 			/*if (_input->isKeyDown(DIK_LEFT))
 			{
@@ -570,6 +588,8 @@ void Aladdin::UpdateInput(float dt)
 		}
 		else if (_input->isKeyPressed(DIK_Z))
 		{
+			//âm thanh
+			SoundManager::getInstance()->PlaySound("Resources/Audio/HighSword.wav", 0);
 			addStatus(eStatus::THROW);
 			appleThrow->addStatus(eStatus::THROW);
 			if (getScale().x > 0)
@@ -590,6 +610,8 @@ void Aladdin::UpdateInput(float dt)
 		}
 		else if (_input->isKeyPressed(DIK_X))
 		{
+			//âm thanh
+			SoundManager::getInstance()->PlaySound("Resources/Audio/HighSword.wav", 0);
 			addStatus(eStatus::ATTACK);
 			if (_input->isKeyDown(DIK_RIGHT))
 			{
@@ -612,6 +634,8 @@ void Aladdin::UpdateInput(float dt)
 
 		else if (_input->isKeyPressed(DIK_Z))
 		{
+			//âm thanh
+			SoundManager::getInstance()->PlaySound("Resources/Audio/HighSword.wav", 0);
 			addStatus(eStatus::THROW);
 			appleThrow->addStatus(eStatus::THROW);
 			if (getScale().x > 0)
@@ -626,6 +650,8 @@ void Aladdin::UpdateInput(float dt)
 		}
 		else if (_input->isKeyPressed(DIK_X))
 		{
+			//âm thanh
+			SoundManager::getInstance()->PlaySound("Resources/Audio/HighSword.wav", 0);
 			addStatus(eStatus::ATTACK);
 		}
 		break;
@@ -675,10 +701,14 @@ void Aladdin::UpdateInput(float dt)
 		}
 		else if (_input->isKeyPressed(DIK_X))
 		{
+			//âm thanh
+			SoundManager::getInstance()->PlaySound("Resources/Audio/HighSword.wav", 0);
 			addStatus(eStatus::ATTACK);  //chém
 		}
 		else if (_input->isKeyPressed(DIK_Z)) //ném
 		{
+			//âm thanh
+			SoundManager::getInstance()->PlaySound("Resources/Audio/HighSword.wav", 0);
 			addStatus(eStatus::THROW);
 			appleThrow->addStatus(eStatus::THROW);
 			if (getScale().x > 0)
@@ -722,10 +752,14 @@ void Aladdin::UpdateInput(float dt)
 		}
 		else if (_input->isKeyDown(DIK_X))
 		{
+			//âm thanh
+			SoundManager::getInstance()->PlaySound("Resources/Audio/HighSword.wav", 0);
 			addStatus(eStatus::ATTACK);  //chém
 		}
 		else if (_input->isKeyDown(DIK_Z)) //ném
 		{
+			//âm thanh
+			SoundManager::getInstance()->PlaySound("Resources/Audio/HighSword.wav", 0);
 			removeStatus(eStatus::LOOKING_UP);
 			addStatus(eStatus::THROW);
 			appleThrow->addStatus(eStatus::THROW);
@@ -756,6 +790,8 @@ void Aladdin::UpdateInput(float dt)
 
 		else if (_input->isKeyPressed(DIK_Z))
 		{
+			//âm thanh
+			SoundManager::getInstance()->PlaySound("Resources/Audio/HighSword.wav", 0);
 			removeStatus(eStatus::CLIMB_JUMP);
 			addStatus(eStatus::JUMPING);
 			addStatus(eStatus::THROW);
@@ -771,6 +807,8 @@ void Aladdin::UpdateInput(float dt)
 		}
 		else if (_input->isKeyPressed(DIK_X))
 		{
+			//âm thanh
+			SoundManager::getInstance()->PlaySound("Resources/Audio/HighSword.wav", 0);
 			removeStatus(eStatus::CLIMB_JUMP);
 			addStatus(eStatus::JUMPING);
 			addStatus(eStatus::ATTACK);
@@ -812,10 +850,14 @@ void Aladdin::UpdateInput(float dt)
 		}
 		else if (_input->isKeyPressed(DIK_X))
 		{
+			//âm thanh
+			SoundManager::getInstance()->PlaySound("Resources/Audio/HighSword.wav", 0);
 			addStatus(eStatus::ATTACK);
 		}
 		else if (_input->isKeyPressed(DIK_Z))
 		{
+			//âm thanh
+			SoundManager::getInstance()->PlaySound("Resources/Audio/HighSword.wav", 0);
 			addStatus(eStatus::THROW);
 			appleThrow->addStatus(eStatus::THROW);
 			if (getScale().x > 0)
@@ -1342,15 +1384,9 @@ void Aladdin::updateStatus(float dt)
 		if (isInStatus(eStatus::THROW) && isInStatus(ATTACK))
 			removeStatus(THROW);
 	}
-	////set preority
-	//if (isInStatus(eStatus(BEHIT | CLIMB_JUMP)))
-	//{
-	//	setStatus(BEHIT);
-	//}
-	//if (isInStatus(eStatus(MOVING_LEFT | CLIMB_JUMP)))
-	//{
-	//	setStatus(BEHIT);
-	//}
+	if (isInStatus(CLIMB_JUMP))
+		if (isInStatus(BEHIT))
+			removeStatus(BEHIT);
 }
 
 void Aladdin::updateStatusOneAction(float deltatime)

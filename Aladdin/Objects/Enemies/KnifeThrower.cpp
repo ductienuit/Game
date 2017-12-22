@@ -115,7 +115,10 @@ float KnifeThrower::checkCollision(BaseObject *object, float dt)
 	//Check collision enermy(this) với aladdin(object)
 	/*Ưu tiên check KnifeThrower trước, sau đó đến knife*/
 	if (!collisionBody->checkCollision(object, dt, true))
+	{
+		
 		knife->checkCollision(object, dt);
+	}
 	return 0.0f;
 }
 
@@ -155,12 +158,16 @@ void KnifeThrower::UpdateStatus(float dt)
 		{
 			if (-distanceBetweenAladdin() < 300)
 			{
+				//âm thanh
+				SoundManager::getInstance()->PlaySound("Resources/Audio/HighSword.wav", 0);
 				knife->setStatus(eStatus::THROW_LEFT_NEAR);
 			}
 
 
-			if (-distanceBetweenAladdin() > 350)
+			if (-distanceBetweenAladdin() > 300)
 			{
+				//âm thanh
+				SoundManager::getInstance()->PlaySound("Resources/Audio/HighSword.wav", 0);
 				knife->setStatus(eStatus::THROW_LEFT_FAR);
 			}
 		}
@@ -176,12 +183,16 @@ void KnifeThrower::UpdateStatus(float dt)
 		{
 			if (distanceBetweenAladdin() < 300)
 			{
+				//âm thanh
+				SoundManager::getInstance()->PlaySound("Resources/Audio/HighSword.wav", 0);
 				knife->setStatus(eStatus::THROW_RIGHT_NEAR);
 			}
 
 			
-			if(distanceBetweenAladdin() > 350)
+			if(distanceBetweenAladdin() > 300)
 			{
+				//âm thanh
+				SoundManager::getInstance()->PlaySound("Resources/Audio/HighSword.wav", 0);
 				knife->setStatus(eStatus::THROW_RIGHT_FAR);
 			}
 		}
