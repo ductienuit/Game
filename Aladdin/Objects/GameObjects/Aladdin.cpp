@@ -631,8 +631,8 @@ void Aladdin::UpdateInput(float dt)
 			}
 			break;
 		}
-		case (eStatus::JUMPING):
-		{
+	case (eStatus::JUMPING):
+	{
 			if (_input->isKeyDown(DIK_LEFT))
 				moveLeftJump();
 			if (_input->isKeyDown(DIK_RIGHT))
@@ -934,6 +934,34 @@ void Aladdin::UpdateInput(float dt)
 			_animations[_currentAnimateIndex]->setIndex(0);
 			this->setStatus(_preStatus);
 			this->setOpacity(1.0f);
+		}
+		break;
+	}
+	case(eStatus::AEROBATIC):
+	{
+		if (_input->isKeyDown(DIK_LEFT))
+		{
+			moveLeft();
+		}
+		else if (_input->isKeyDown(DIK_RIGHT))
+		{
+			moveRight();
+		}
+	}
+	case(eStatus::REVIVAL):
+	{
+		if (_animations[REVIVAL]->getIndex() >= 13)
+		{
+			_animations[_currentAnimateIndex]->setIndex(0);
+			setPosition(_restartPoint->getPosition().x, _restartPoint->getPosition().y - 15);
+			_restartPoint->setStatus(NORMAL);
+			setStatus(NORMAL);
+
+			__hook(&CollisionBody::onCollisionBegin, (CollisionBody*)_listComponent["CollisionBody"], &Aladdin::onCollisionBegin);
+			__hook(&CollisionBody::onCollisionEnd, (CollisionBody*)_listComponent["CollisionBody"], &Aladdin::onCollisionEnd);
+
+			auto g = (Gravity*)_listComponent["Gravity"];
+			g->setStatus(eGravityStatus::FALLING__DOWN);
 		}
 		break;
 	}
