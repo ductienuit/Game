@@ -911,6 +911,17 @@ void Aladdin::UpdateInput(float dt)
 			}
 			break;
 		}
+		case(eStatus::AEROBATIC):
+		{
+			if (_input->isKeyDown(DIK_LEFT))
+			{
+				moveLeft();
+			}
+			else if (_input->isKeyDown(DIK_RIGHT))
+			{
+				moveRight();
+			}
+		}
 	}
 	if (isInStatus(eStatus::CLIMB))
 	{
