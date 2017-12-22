@@ -42,6 +42,7 @@ void Camel::Update(float deltatime)
 		
 		it->second->Update(deltatime);
 	}
+	bulletCamel->checkCollision(this, deltatime);
 }
 
 void Camel::Draw(LPD3DXSPRITE spritehandle, ViewPort* viewport)
@@ -99,12 +100,6 @@ void Camel::onCollisionEnd(CollisionEventArg *)
 
 float Camel::checkCollision(BaseObject *object, float dt)
 {
-	//if (object == this)
-	//	return 0.0f;
-	//auto collisionBody = (CollisionBody*)_listComponent["CollisionBody"];
-
-	////Check collision enermy(this) với aladdin(object)
-	//collisionBody->checkCollision(object, dt, true);
 	return 0.0f;
 }
 

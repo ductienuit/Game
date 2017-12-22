@@ -50,8 +50,8 @@ bool PlayScene::InIt()
 
     _aladdin = new Aladdin();
 	_aladdin->InIt();
-	_aladdin->setPosition(7100, 1000);
-
+	_aladdin->setPosition(1000, 200);
+	//_aladdin->setPosition(7100, 1000);
 	_listObject.push_back(_aladdin);
 
 	_listScore.push_back(new Health(_aladdin));

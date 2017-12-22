@@ -11,7 +11,6 @@ using namespace std;
 
 #define BULLETCAMEL_SPEED 300
 #define BULLETCAMEL_GRAVITY 800
-#define BULLETCAMEL_JUMP 0
 
 class BulletCamel : public BaseObject
 {
@@ -31,6 +30,7 @@ public:
 	Text* text;
 
 	void Shoot(float x, float y);
+	void standing();
 	~BulletCamel();
 private:
 
