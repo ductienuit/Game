@@ -297,7 +297,7 @@ void Animation::EnableFlashes(bool enable)
 {
 	if (_canFlashes == enable)
 		return;
-
+	_numbRepeatFlashes = 5;
 	_canFlashes = enable;
 	_spriteSheet->setColor(D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));
 }

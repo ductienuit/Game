@@ -925,15 +925,13 @@ void Aladdin::UpdateInput(float dt)
 	}
 	case(eStatus::BEHIT):
 	{
-		//Stop(false);
-		//Làm ảnh mờ khi bị đánh
-		this->setOpacity(0.7);
+		_animations[BEHIT]->EnableFlashes(true);
+
 		//Tự hủy khi đế một bức ảnh n
 		if (_animations[_currentAnimateIndex]->getIndex()== 4)
 		{
 			_animations[_currentAnimateIndex]->setIndex(0);
 			this->setStatus(_preStatus);
-			this->setOpacity(1.0f);
 		}
 		break;
 	}

@@ -142,5 +142,6 @@ private:
 	bool					_canFlashes;
 	float					_valueFlashes;
 	D3DXCOLOR				_flashColor;
+	int						_numbRepeatFlashes;
 };
 #endif // !__ANIMATION_H__
