@@ -46,8 +46,8 @@ void GuardShort::InIt()
 	_animations[BEHIT] = new Animation(_sprite, 0.15f);
 	_animations[BEHIT]->addFrameRect(eID::GUARDSHORT, "guardsShort_dying_0", 7);
 
-	_animations[DYING] = new Animation(_sprite, 0.2f);
-	_animations[DYING]->addFrameRect(eID::GUARDSHORT, "destroy_enermy_", 10);
+	_animations[DYING] = new Animation(_sprite, 0.1f);
+	_animations[DYING]->addFrameRect(eID::GUARDSHORT, "destroy_enermy_00_0", 10);
 
 	_canThrow = false;
 	_hitpoint = 2;// Chú ý 2 lần đánh chứ không phải 3

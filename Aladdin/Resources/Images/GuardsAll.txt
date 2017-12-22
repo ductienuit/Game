@@ -190,12 +190,21 @@ guardsShort_dying_06	18	916	119	977
 
 
 destroy_enermy_00_00	20	1020	32	1030
+
 destroy_enermy_00_01	54	1005	95	1032
+
 destroy_enermy_00_02	102	1003	148	1033
+
 destroy_enermy_00_03	148	1003	206	1032
+
 destroy_enermy_00_04	209	1002	254	1032
+
 destroy_enermy_00_05	257	1002	294	1032
+
 destroy_enermy_00_06	305	1012	329	1033
+
 destroy_enermy_00_07	355	1013	378	1033
+
 destroy_enermy_00_08	405	1014	428	1033
+
 destroy_enermy_00_09	454	1014	475	1033

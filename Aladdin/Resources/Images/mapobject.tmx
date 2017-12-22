@@ -209,7 +209,7 @@
  </objectgroup>
  <objectgroup color="#55557f" name="bar">
   <object id="294" x="4401" y="305.333" width="364" height="10"/>
-  <object id="295" x="4354.67" y="79.6667" width="205" height="10"/>
+  <object id="295" x="4354.67" y="79.6667" width="163.667" height="10"/>
  </objectgroup>
  <objectgroup color="#00ff7f" name="rope">
   <object id="135" x="1545" y="202" width="5" height="145"/>

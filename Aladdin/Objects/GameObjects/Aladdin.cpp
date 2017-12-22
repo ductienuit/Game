@@ -97,10 +97,10 @@ void Aladdin::InIt()
 	_animations[eStatus::ATTACK | eStatus::SITTING_DOWN] = new Animation(_sprite, 0.1f);
 	_animations[eStatus::ATTACK | eStatus::SITTING_DOWN]->addFrameRect(eID::ALADDIN, "swing_sword_", 5);
 
-	_animations[eStatus::MOVING_RIGHT] = new Animation(_sprite, 0.1f);
+	_animations[eStatus::MOVING_RIGHT] = new Animation(_sprite, 0.08f);
 	_animations[eStatus::MOVING_RIGHT]->addFrameRect(eID::ALADDIN, "walk_", 11);
 
-	_animations[eStatus::MOVING_LEFT] = new Animation(_sprite, 0.1f);
+	_animations[eStatus::MOVING_LEFT] = new Animation(_sprite, 0.08f);
 	_animations[eStatus::MOVING_LEFT]->addFrameRect(eID::ALADDIN, "walk_", 11);
 
 	_animations[eStatus::THROW | eStatus::MOVING_LEFT] = new Animation(_sprite, 0.1f);
@@ -110,7 +110,7 @@ void Aladdin::InIt()
 	_animations[eStatus::THROW | eStatus::MOVING_RIGHT]->addFrameRect(eID::ALADDIN, "run_throw_0", 6);
 
 	//cầm kiếm chém
-	_animations[eStatus::ATTACK] = new Animation(_sprite, 0.1f);
+	_animations[eStatus::ATTACK] = new Animation(_sprite, 0.07f);
 	_animations[eStatus::ATTACK]->addFrameRect(eID::ALADDIN, "attack_0", 5);
 	//sit_attack ngồi đâm
 	_animations[eStatus::SITTING_DOWN | eStatus::ATTACK] = new Animation(_sprite, 0.1f);
@@ -1079,7 +1079,11 @@ void Aladdin::onCollisionBegin(CollisionEventArg * collision_event)
 		{
 			auto move = (Movement*)_listComponent["Movement"];
 			move->setVelocity(Vector2(0, move->getVelocity().y));
-
+			if (isInStatus(SWING))
+			{
+				_stopLeft = true;
+				break;
+			}
 			//set trạng thái chỉ khi đi ngược hướng va chạm mới set lại trạng thái khác
 			this->setStatus(eStatus::STOPWALK);
 			break;
@@ -1369,7 +1373,15 @@ void Aladdin::onCollisionEnd(CollisionEventArg * collision_event)
 				case(eLandType::BAR):
 				{
 					eStatus temp = (eStatus)(JUMPING | JUMPING_LEFT | JUMPING_RIGHT);
+					float distance = abs(collision_event->_otherObject->getBounding().left - collision_event->_otherObject->getBounding().right);
 					if (getPositionX() < collision_event->_otherObject->getPositionX())
+					{
+						if (!isExist(temp))
+							setStatus(DROP);
+						auto g = (Gravity*)_listComponent["Gravity"];
+						g->setStatus(eGravityStatus::FALLING__DOWN);
+					}
+					else if (getPositionX() > collision_event->_otherObject->getPositionX() + distance)
 					{
 						if (!isExist(temp))
 							setStatus(DROP);
@@ -1412,11 +1424,13 @@ void Aladdin::updateStatus(float dt)
 		}
 		if (_input->isKeyDown(DIK_LEFT))
 		{
-			swingLeft(dt);
+			if(!_stopLeft)
+				swingLeft(dt);
 		}
 		else if (_input->isKeyDown(DIK_RIGHT))
 		{
 			swingRight(dt);
+			_stopLeft = false;
 		}
 		else
 		{

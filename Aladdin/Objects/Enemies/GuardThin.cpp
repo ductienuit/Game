@@ -37,8 +37,8 @@ void GuardThin::InIt()
 	_animations[BEHIT] = new Animation(_sprite, 0.2f);
 	_animations[BEHIT]->addFrameRect(eID::GUARDTHIN, "guards_being_attack_0", 9);
 
-	_animations[DYING] = new Animation(_sprite, 0.2f);
-	_animations[DYING]->addFrameRect(eID::GUARDTHIN, "destroy_enermy_", 10);
+	_animations[DYING] = new Animation(_sprite, 0.1f);
+	_animations[DYING]->addFrameRect(eID::GUARDTHIN, "destroy_enermy_00_0", 10);
 
 	_sprite->setOrigin(Vector2(0.5, 0));
 
@@ -149,27 +149,49 @@ void GuardThin::onCollisionBegin(CollisionEventArg *collision_event)
 	{
 		case eID::ALADDIN:
 		{
+			if (_hitpoint == 0)
+			{
+				setStatus(DYING);
+				return;
+			}
 			if (collision_event->_otherObject->isInStatus(ATTACK))
 			{
 				//mạng sống còn 1 và bức ảnh ATTACK của aladdin bằng 1
-				if (collision_event->_otherObject->getIndex() == 1 && _hitpoint >= 1)
+				if (collision_event->_otherObject->getIndex() == 2 && _hitpoint >= 1)
 				{
 					_hitpoint -= 1;
 					this->setStatus(eStatus::BEHIT);
+					if (_hitpoint == 0)
+						setStatus(DYING);
 				}
 				break;
 			}
 			else
 				/*DK1:Aladdin đang không bị đánh
 				  DK2 bức ảnh status Attack của guarthin hiện tại là 5*/
-				if (collision_event->_otherObject->isInStatus(eStatus::BEHIT) == false 
-					&&
-					this->_animations[ATTACK]->getIndex() == 5)
+			if (collision_event->_otherObject->isInStatus(eStatus::BEHIT) == false 
+				&&
+				this->_animations[ATTACK]->getIndex() == 5)
 			{
-					//âm thanh
-					SoundManager::getInstance()->PlaySound("Resources/Audio/HighSword.wav", 0);
-					//Lưu trạng thái trước khi hết bị đánh set lại cái trạng thái cũ
-					collision_event->_otherObject->savePreStatus();
+
+				if (collision_event->_otherObject->isInStatus(ATTACK))
+				{
+					//mạng sống còn 1 và bức ảnh ATTACK của aladdin bằng 1
+					if (collision_event->_otherObject->getIndex() == 1 && _hitpoint >= 1)
+					{
+						_hitpoint -= 1;
+						this->setStatus(eStatus::BEHIT);
+						if (_hitpoint == 0)
+							setStatus(DYING);
+					}
+					return;
+				}
+
+
+				//âm thanh
+				SoundManager::getInstance()->PlaySound("Resources/Audio/HighSword.wav", 0);
+				//Lưu trạng thái trước khi hết bị đánh set lại cái trạng thái cũ
+				collision_event->_otherObject->savePreStatus();
 				//Set status aladdin bị đánh
 				collision_event->_otherObject->setStatus(eStatus::BEHIT);
 				InforAladdin::getInstance()->plusHealth(-10);

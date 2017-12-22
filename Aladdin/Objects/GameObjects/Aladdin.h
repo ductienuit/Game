@@ -18,7 +18,7 @@
 
 using namespace std;
 
-#define ALADDIN_MOVE_SPEED 250
+#define ALADDIN_MOVE_SPEED 270
 #define ALADDIN_MOVE_JUMP_SPEED 200
 #define ALADDIN_JUMP_VEL 500
 #define ALADDIN_AEROBATIC_VEL 600
@@ -96,6 +96,7 @@ private:
 	void swingLeft(float dt);
 	void swingRight(float dt);
 	void swingJump();
+	bool _stopLeft;
 
 	//Dong ho dem
 	StopWatch* _firstAnimateStopWatch;

@@ -21,7 +21,6 @@ GuardFat::GuardFat(eStatus status, int posX, int posY, eDirection direction, int
 
 void GuardFat::InIt()
 {
-
 	auto movement = new Movement(Vector2(0, 0), Vector2(0, 0), _sprite);
 	_listComponent["Movement"] = movement;
 
@@ -30,6 +29,9 @@ void GuardFat::InIt()
 
 	__hook(&CollisionBody::onCollisionBegin, collisionBody, &GuardFat::onCollisionBegin);
 	__hook(&CollisionBody::onCollisionEnd, collisionBody, &GuardFat::onCollisionEnd);
+
+	_animations[NORMAL] = new Animation(_sprite, 0.15f);
+	_animations[NORMAL]->addFrameRect(eID::GUARDFAT, "guardsFat_Near_0", 6);
 
 	_animations[FREE] = new Animation(_sprite, 0.15f);
 	_animations[FREE]->addFrameRect(eID::GUARDFAT, "guardsFat_Near_0", 6);
@@ -50,7 +52,7 @@ void GuardFat::InIt()
 	_animations[BEHIT]->addFrameRect(eID::GUARDFAT, "guardsFat_beingAttack_0", 6);
 
 	_animations[DYING] = new Animation(_sprite, 0.1f);
-	_animations[DYING]->addFrameRect(eID::GUARDFAT, "destroy_enermy_", 10);
+	_animations[DYING]->addFrameRect(eID::GUARDFAT, "destroy_enermy_00_0", 10);
 
 	//guardsFat_burn_0
 	//bị bỏng
@@ -204,6 +206,11 @@ void GuardFat::onCollisionBegin(CollisionEventArg *collision_event)
 	{
 		case eID::ALADDIN:
 		{
+			if (_hitpoint == 0)
+			{
+				setStatus(DYING);
+				return;
+			}
 			if (collision_event->_otherObject->isInStatus(SITTING_DOWN) && this->isInStatus(DYING) && isInStatus(DESTROY))
 			{
 				this->setStatus(eStatus(SITTING_DOWN | ATTACK));
@@ -212,8 +219,7 @@ void GuardFat::onCollisionBegin(CollisionEventArg *collision_event)
 			{
 				//mạng sống còn 1 và bức ảnh ATTACK của aladdin bằng 1
 				if (collision_event->_otherObject->getIndex() == 1 && _hitpoint >= 1)
-				{
-					
+				{					
 					_hitpoint -= 1;
 					this->setStatus(eStatus::BEHIT);
 				}
