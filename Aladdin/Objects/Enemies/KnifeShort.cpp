@@ -7,15 +7,21 @@ KnifeShort::KnifeShort(eStatus status, int posX, int posY, eDirection direction)
 	để vừa vào khởi tạo không bị sai collison.
 	Hàm InIt sẽ tự động cập nhật lại khi set status*/
 	_sprite->setFrameRect(0, 0, 5.0f, 5.0f);
-	_originPosition = Vector2(posX - 120, posY + 60);
+	_originPosition = Vector2(posX, posY);
 
 	_divingSprite = SpriteManager::getInstance()->getSprite(eID::ALADDIN);
 	Vector2 v(direction * KNIFE_SHORT_SPEED, 0);
 	Vector2 a(0, 0);
-	this->_listComponent.insert(pair<string, IComponent*>("Movement", new Movement(a, v, this->_sprite)));
+
+	auto movement = new Movement(Vector2(0, 0), Vector2(0, 0), _sprite);
+	_listComponent["Movement"] = movement;
+	_listComponent["Gravity"] = new Gravity(Vector2(0, -KNIFE_SHORT_GRAVITY), movement);
+
+
 	this->setStatus(status);
 	this->setPosition(posX, -posY, 1.0f);
 	text = new Text("Arial", "", 10, 25);
+	_isLeft = true;
 	InIt();
 }
 
@@ -28,13 +34,36 @@ void KnifeShort::InIt()
 	__hook(&CollisionBody::onCollisionBegin, collisionBody, &KnifeShort::onCollisionBegin);
 	__hook(&CollisionBody::onCollisionEnd, collisionBody, &KnifeShort::onCollisionEnd);
 
+	_animations[NORMAL] = new Animation(_sprite, 0.1f);
+	_animations[NORMAL]->addFrameRect(eID::KNIFE, "donothing",NULL);
+
+
 	_animations[THROW] = new Animation(_sprite, 0.1f);
 	_animations[THROW]->addFrameRect(eID::KNIFE, "guardsShort_throw_01", "guardsShort_throw_02", "guardsShort_throw_03", "guardsShort_throw_04"
 		, "guardsShort_throw_05", "guardsShort_throw_06", "guardsShort_throw_07", NULL);
 
 }
+
 void KnifeShort::Update(float deltatime)
 {
+
+	switch (_status)
+	{
+		case NORMAL:
+		{
+			return;
+		}
+		case THROW:
+		{
+			if (_isLeft)
+			{
+				movingLeft();
+			}
+			else
+				movingRight();
+		}
+	}
+
 	_animations[this->getStatus()]->Update(deltatime);
 
 	// update component để sau cùng để sửa bên trên sau đó nó cập nhật đúng
@@ -108,23 +137,28 @@ KnifeShort::~KnifeShort()
 {
 }
 
-void KnifeShort::movingLeft(float x, float y)
+void KnifeShort::Restart(float x, float y, bool isleft)
 {
-	_sprite->setScaleX(-1.6);
-	auto move = (Movement*)this->_listComponent["Movement"];
-	move->setVelocity(Vector2(-KNIFE_SHORT_SPEED, -KNIFE_SHORT_JUMP));
-	x = x - 80;
-	y = y + 60;
-	this->setPosition(x, y);
+	_isLeft = isleft;
+	if (isleft)
+		setPosition(x - 15, y);
+	else
+		setPosition(x + 15, y);
+	setStatus(THROW);
 }
 
-void KnifeShort::movingRight(float x, float y)
+void KnifeShort::movingLeft()
 {
-	_sprite->setScaleX(1.6);
 	auto move = (Movement*)this->_listComponent["Movement"];
-	move->setVelocity(Vector2(KNIFE_SHORT_SPEED, -KNIFE_SHORT_JUMP));
+	move->setVelocity(Vector2(-KNIFE_SHORT_SPEED, KNIFE_SHORT_JUMP));
+	auto g = (Gravity*)_listComponent["Gravity"];
+	g->setStatus(eGravityStatus::FALLING__DOWN);
+}
 
-	x = x + 80;
-	y = y + 60;
-	this->setPosition(x, y);
+void KnifeShort::movingRight()
+{
+	auto move = (Movement*)this->_listComponent["Movement"];
+	move->setVelocity(Vector2(KNIFE_SHORT_SPEED, KNIFE_SHORT_JUMP));
+	auto g = (Gravity*)_listComponent["Gravity"];
+	g->setStatus(eGravityStatus::FALLING__DOWN);
 }

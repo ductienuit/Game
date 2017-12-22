@@ -276,9 +276,6 @@
     <ClCompile Include="FrameWork\Manager\SoundManager.cpp">
       <Filter>Source Files\FrameWork\Manager</Filter>
     </ClCompile>
-    <ClCompile Include="FrameWork\C_Sound.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Objects\GameObjects\EatHeart.cpp">
       <Filter>Source Files\Object\GameObjects</Filter>
     </ClCompile>
@@ -320,6 +317,9 @@
     </ClCompile>
     <ClCompile Include="Objects\Score\Alphabet.cpp">
       <Filter>Source Files\Score</Filter>
+    </ClCompile>
+    <ClCompile Include="FrameWork\C_Sound.cpp">
+      <Filter>Source Files\FrameWork</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

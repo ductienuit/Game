@@ -11,15 +11,15 @@ GuardShort::GuardShort(eStatus status, int posX, int posY, eDirection direction,
 	this->_listComponent.insert(pair<string, IComponent*>("Movement", new Movement(a, v, this->_sprite)));
 	this->setStatus(status);
 	this->setPosition(posX*SCALECHARACTER.x, posY*SCALECHARACTER.y, 1.0f);
-	_minMove = getPositionX() - 50; //- minMove;
-	_maxMove = getPositionX() + 50; //+ maxMove;
+	_minMove = 300; //- minMove;
+	_maxMove = 300; //+ maxMove;
 	text = new Text("Arial", "", 10, 25);
 	InIt();
 }
 
 void GuardShort::InIt()
 {
-	knife = new KnifeShort(eStatus::THROW, getPositionX(), getPositionY(), eDirection::NONE);
+	knife = new KnifeShort(eStatus::NORMAL, getPositionX(), getPositionY(), eDirection::NONE);
 	knife->InIt();
 
 	auto movement = new Movement(Vector2(0, 0), Vector2(0, 0), _sprite);
@@ -38,8 +38,7 @@ void GuardShort::InIt()
 	_animations[MOVING_RIGHT]->addFrameRect(eID::GUARDSHORT, "guardsShort_Moving_0", 8);
 
 	_animations[THROW] = new Animation(_sprite, 0.2f);
-	_animations[THROW]->addFrameRect(eID::GUARDSHORT, "guardsShort_attack_00" , "guardsShort_attack_01" , "guardsShort_attack_02"
-		, "guardsShort_attack_03" , "guardsShort_attack_04" , "guardsShort_attack_00", "guardsShort_attack_00", NULL);
+	_animations[THROW]->addFrameRect(eID::GUARDSHORT, "guardsShort_attack_",5);
 
 	_animations[FREE] = new Animation(_sprite, 0.2f);
 	_animations[FREE]->addFrameRect(eID::GUARDSHORT, "guardsShort_free_0", 5);
@@ -59,9 +58,11 @@ void GuardShort::InIt()
 void GuardShort::Update(float deltatime)
 {
 	_animations[this->getStatus()]->Update(deltatime);
-	knife->Update(deltatime);
+
+
 
 	this->UpdateStatus(deltatime);
+	knife->Update(deltatime);
 	
 	// update component để sau cùng để sửa bên trên sau đó nó cập nhật đúng
 	for (auto it = _listComponent.begin(); it != _listComponent.end(); it++)
@@ -74,8 +75,7 @@ void GuardShort::Draw(LPD3DXSPRITE spritehandle, ViewPort* viewport)
 {
 	_animations[this->getStatus()]->Draw(spritehandle, viewport);
 
-	if (_canThrow)
-		knife->Draw(spritehandle, viewport);
+	knife->Draw(spritehandle, viewport);
 }
 
 void GuardShort::Release()
@@ -128,11 +128,15 @@ float GuardShort::checkCollision(BaseObject *object, float dt)
 	return 0.0f;
 }
 
-float GuardShort::distanceBetweenAladdin()
+Vector2 GuardShort::distanceBetweenAladdin()
 {
-	float xAla = _divingSprite->getPositionX() +(_divingSprite->getBounding().right - _divingSprite->getBounding().left) / 2;
+	float xAla = _divingSprite->getPositionX() + (_divingSprite->getBounding().right - _divingSprite->getBounding().left) / 2;
 	float x = this->getPositionX();
-	return xAla - x;
+
+	float yAla = _divingSprite->getPositionY();
+	float y = this->getPositionY();
+
+	return Vector2(xAla - x, yAla - y);
 }
 
 void GuardShort::UpdateStatus(float dt)
@@ -168,98 +172,75 @@ void GuardShort::UpdateStatus(float dt)
 			}
 			return;
 		}
-	}
-	this->clearStatus();
-
-
-
-	if (_minMove < this->getPositionX() && this->getPositionX() < _maxMove)
-	{
-		if (distanceBetweenAladdin() < 0)
+		case eStatus::FREE:
 		{
-			float distance = -distanceBetweenAladdin();
-			if (distance > 200)
-			{
-				this->clearStatus();
-				this->addStatus(eStatus::MOVING_LEFT);
-				movingLeft();
-			}
-			else if (distance <= 200)
-			{
-				_sprite->setScaleX(-1.6);
-				this->addStatus(eStatus::THROW);
-				standing();
-				knife->addStatus(eStatus::THROW);
-				if (_animations[_status]->getIndex() == 2)
-				{
-					////âm thanh
-					SoundManager::getInstance()->PlaySound("Resources/Audio/ObjectThrow.wav", 0);
-					knife->movingLeft(this->getPositionX(), this->getPositionY());
-					
-				}
-				_canThrow = true;
-			}
+			standing();
+			break;
 		}
-		else if (distanceBetweenAladdin() > 0)
+		case eStatus::THROW:
 		{
-			float distance = distanceBetweenAladdin();
+			standing();
 
-			if (distance <= 200)
+			if (_animations[THROW]->getIndex() == 3)
 			{
-				_sprite->setScaleX(1.6);
-				this->addStatus(eStatus::THROW);
-				standing();
-				knife->addStatus(eStatus::THROW);
-				if (_animations[_status]->getIndex() == 2)
-				{
-					////âm thanh
-					SoundManager::getInstance()->PlaySound("Resources/Audio/ObjectThrow.wav", 0);
-					knife->movingRight(this->getPositionX(), this->getPositionY());
-				}
-				_canThrow = true;
+				knife->Restart(getPositionX(), getPositionY() + 60, (getScale().x < 0));
+				_animations[this->getStatus()]->NextFrame();
 			}
-			else if (distance > 200)
-			{
-				this->addStatus(eStatus::MOVING_RIGHT);
-				movingRight();
-			}
+			break;
+		}
+		case eStatus::MOVING_LEFT:
+		{
+			movingLeft();
+			break;
+		}
+		case eStatus::MOVING_RIGHT:
+		{
+			movingRight();
+			break;
 		}
 	}
-	else if ((_minMove > this->getPositionX()) && xAla < _minMove)
+	Vector2 distance = distanceBetweenAladdin();
+	float x = getPositionX();
+	float y = getPositionY();
+
+
+	//Aladdin bên trái enermy
+	if (distance.x <= 0)
 	{
-		this->addStatus(eStatus::THROW);
-		standing();
-		knife->addStatus(eStatus::THROW);
-		if (_animations[_status]->getIndex() == 2)
+		distance.x = (-1)*distance.x;
+		if (distance.x > _minMove)
 		{
-			//âm thanh
-			SoundManager::getInstance()->PlaySound("Resources/Audio/ObjectThrow.wav", 0);
-			knife->movingLeft(this->getPositionX(), this->getPositionY());
+			setStatus(FREE);
 		}
-		_canThrow = true;
-	}
-	else if (distanceBetweenAladdin() > 0 && xAla > _minMove && this->getPositionX() < _maxMove)
-	{
-		this->addStatus(eStatus::MOVING_RIGHT);
-		movingRight();
-	}
-	else if ((this->getPositionX() > _maxMove) && xAla > _maxMove)
-	{
-		this->addStatus(eStatus::THROW);
-		standing();
-		knife->addStatus(eStatus::THROW);
-		if (_animations[_status]->getIndex() == 2)
+		else if(distance.x < 320 && distance.x > 200)
 		{
-			//âm thanh
-			SoundManager::getInstance()->PlaySound("Resources/Audio/ObjectThrow.wav", 0);
-			knife->movingRight(this->getPositionX(), this->getPositionY());
+			setStatus(MOVING_LEFT);
+			setScaleX(-SCALECHARACTER.x);
 		}
-		_canThrow = true;
+		else if (distance.x < 200 && distance.x>=0)
+		{
+			setStatus(THROW);
+			setScaleX(-SCALECHARACTER.x);
+
+		}
 	}
-	else if (distanceBetweenAladdin() < 0 && xAla < _maxMove)
+	//Aladdin bên phải enermy
+	else if (distance.x > 0)
 	{
-		this->addStatus(eStatus::MOVING_LEFT);
-		movingLeft();
+		if (distance.x > _minMove)
+		{
+			setStatus(FREE);
+		}
+		else if (distance.x < 320 && distance.x > 200)
+		{
+			setStatus(MOVING_RIGHT);
+			setScaleX(SCALECHARACTER.x);
+		}
+		else if (distance.x < 200 && distance.x >= 0)
+		{
+			setStatus(THROW);
+			setScaleX(SCALECHARACTER.x);
+		}
 	}
 }
 

@@ -169,15 +169,15 @@ guardsShort_Moving_06	180	788	217	836
 guardsShort_Moving_07	141	785	175	836
 
 
-guardsShort_attack_00	402	848	464	906
+guardsShort_attack_0		402	848	464	906
 
-guardsShort_attack_01	326	851	370	907
+guardsShort_attack_1		326	851	370	907
 
-guardsShort_attack_02	204	854	298	904
+guardsShort_attack_2		204	854	298	904
 
-guardsShort_attack_03	127	855	192	899
+guardsShort_attack_3		127	855	192	899
 
-guardsShort_attack_04	70	847	114	899
+guardsShort_attack_4		70	847	114	899
 
 
 guardsShort_dying_00	647	919	702	971

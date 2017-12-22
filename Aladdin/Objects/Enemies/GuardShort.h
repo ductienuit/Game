@@ -8,6 +8,8 @@
 #include "../../FrameWork/Text.h"
 #include "../Enemies/KnifeShort.h"
 #include "BaseEnemy.h"
+#include	<math.h>
+
 using namespace std;
 
 #define GUARDSHORT_SPEED 30
@@ -27,7 +29,7 @@ public:
 	void onCollisionEnd(CollisionEventArg*);
 	float checkCollision(BaseObject*, float);
 
-	float distanceBetweenAladdin();
+	Vector2 distanceBetweenAladdin();
 	void UpdateStatus(float dt);
 
 	IComponent* getComponent(string componentName);

@@ -10,8 +10,8 @@
 using namespace std;
 
 #define KNIFE_SHORT_SPEED 500
-#define KNIFE_SHORT_GRAVITY 800
-#define KNIFE_SHORT_JUMP 100
+#define KNIFE_SHORT_GRAVITY 3000
+#define KNIFE_SHORT_JUMP -100
 
 class KnifeShort : public BaseEnemy
 {
@@ -29,8 +29,10 @@ public:
 	IComponent* getComponent(string componentName);
 
 	Text* text;
-	void movingLeft(float x, float y);
-	void movingRight(float x, float y);
+	void Restart(float x, float y, bool isleft);
+
+	void movingLeft();
+	void movingRight();
 	~KnifeShort();
 private:
 
@@ -38,5 +40,6 @@ private:
 	map<int, Animation*> _animations;
 	Sprite *_divingSprite;
 	Vector2 _originPosition;
+	bool _isLeft;
 };
 #endif _KNIFE_SHORT_H
