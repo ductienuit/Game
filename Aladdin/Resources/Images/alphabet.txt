@@ -1,73 +1,81 @@
 frame_name	left	top	right	bottom
-alphabet_0		26	16	33	23
+alphabet_0	219	214	233	228
 
-alphabet_1		38	16	45	23
+alphabet_1	237	214	251	228
 
-alphabet_2		50	16	57	23
+alphabet_2	255	214	269	228
+alphabet_3	273	214	287	228
 
-alphabet_3		62	16	69	23
+alphabet_4	291	214	305	228
 
-alphabet_4		74	16	81	23
+alphabet_5	309	214	323	230
 
-alphabet_5		86	16	93	24
+alphabet_6	327	214	341	228
 
-alphabet_6		98	16	105	23
+alphabet_7	345	214	359	228
 
-alphabet_7		110	16	117	23
+alphabet_8	365	214	371	230
 
-alphabet_8		122	16	125	24
+alphabet_9	381	214	389	230
 
-alphabet_9		130	16	134	24
+alphabet_10	399	214	413	230
 
-alphabet_10	139	16	146	24
+alphabet_11	417	214	431	228
 
-alphabet_11	151	16	158	23
+alphabet_12	435	214	449	228
 
-alphabet_12	163	16	170	23
+alphabet_13	453	214	467	228
 
-alphabet_13	27	31	34	38
+alphabet_14	471	214	485	228
 
-alphabet_14	39	31	46	38
+alphabet_15	489	214	503	228
 
-alphabet_15	51	31	58	38
+alphabet_16	507	214	521	230
 
-alphabet_16	63	31	70	39
+alphabet_17	525	214	539	230
 
-alphabet_17	75	31	82	39
+alphabet_18	543	214	555	230
 
-alphabet_18	87	31	93	39
+alphabet_19	563	214	575	228
 
-alphabet_19	98	31	104	38
+alphabet_20	579	214	593	230
 
-alphabet_20	109	31	116	39
+alphabet_21	597	214	611	228
 
-alphabet_21	121	31	128	38
+alphabet_22	615	214	629	228
 
-alphabet_22	133	31	140	38
-alphabet_23	145	31	152	38
+alphabet_23	633	214	647	228
 
-alphabet_24	157	31	164	38
+alphabet_24	651	214	665	228
 
-alphabet_25	169	31	175	38
-alphabet_26	26	44	33	51
+alphabet_25	669	214	681	228
 
-alphabet_27	38	44	41	51
+alphabet_26	39	175	55	191
 
-alphabet_28	46	44	51	51
+alphabet_27	59	175	71	191
 
-alphabet_29	56	44	60	51
+alphabet_28	75	175	91	191
 
-alphabet_30	65	44	71	51
+alphabet_29	93	175	110	191
 
-alphabet_31	76	44	81	51
+alphabet_30	110	175	127	191
 
-alphabet_32	86	44	92	51
+alphabet_31	129	175	145	191
 
-alphabet_33	97	44	102	51
+alphabet_32	147	175	163	191
 
-alphabet_34	106	44	111	51
+alphabet_33	165	175	181	191
 
-alphabet_35	116	44	122	51
+alphabet_34	183	175	199	191
 
-alphabet_36	126	49	128	51
+alphabet_35	201	175	217	191
+
+alphabet_36	689	224	693	228
+
+
+
+
+
+
+
 
