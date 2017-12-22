@@ -32,7 +32,8 @@
 #include"../Objects/Enemies/GuardFat.h"
 #include"../Objects/GameObjects/Camel.h"
 #include"../Objects/GameObjects/EatApple.h"
-#include"../Objects/GameObjects/RestartPoint.h"
+#include"../Objects/GameObjects/EatHeart.h"
+
 
 #include<time.h>
 

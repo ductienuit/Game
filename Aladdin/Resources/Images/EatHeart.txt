@@ -1,0 +1,35 @@
+frame_name	left	top	right	bottom
+eat_heart_00	128	46	145	67
+
+eat_heart_01	107	46	123	67
+
+eat_heart_02	86	44	103	67
+
+eat_heart_03	64	43	83	67
+
+eat_heart_04	28	49	39	61
+
+
+item_spark_00	423	31	429	37
+
+item_spark_01	373	27	391	37
+
+item_spark_02	385	21	393	27
+
+item_spark_03	329	19	349	37
+
+item_spark_04	289	7	307	35
+
+item_spark_05	245	5	259	23
+
+item_spark_06	221	1	235	23
+
+item_spark_07	179	5	189	19
+
+item_spark_08	137	9	145	17
+
+item_spark_09	99	11	111	29
+
+item_spark_10	55	13	65	29
+
+item_spark_11	13	19	19	25

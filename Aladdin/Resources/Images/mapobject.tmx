@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-down" width="1" height="1" tilewidth="4771" tileheight="688" nextobjectid="410">
+<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-down" width="1" height="1" tilewidth="4771" tileheight="688" nextobjectid="381">
  <objectgroup name="heart">
-  <object id="312" x="2378" y="638.5" width="20" height="20"/>
-  <object id="313" x="3211" y="379.333" width="20" height="20"/>
+  <object id="393" x="2390" y="628" width="17" height="18"/>
+  <object id="396" x="1928" y="173" width="17" height="18"/>
  </objectgroup>
  <objectgroup name="guardshort">
   <object id="329" x="4600.33" y="164.667" width="35" height="50"/>
@@ -31,18 +31,6 @@
  </objectgroup>
  <objectgroup name="camel">
   <object id="354" x="1535.33" y="631" width="65" height="30"/>
- </objectgroup>
- <objectgroup name="facesmile">
-  <object id="390" x="2537" y="81" width="30" height="40"/>
-  <object id="391" x="1631" y="387.5" width="30" height="40"/>
-  <object id="393" x="2248" y="594" width="30" height="40"/>
-  <object id="399" x="3111.5" y="190.5" width="30" height="40"/>
-  <object id="401" x="4141.33" y="372.667" width="30" height="40"/>
- </objectgroup>
- <objectgroup name="restartpoint">
-  <object id="397" x="2685.67" y="476.667" width="30" height="40"/>
-  <object id="400" x="3667" y="172" width="30" height="40"/>
-  <object id="402" x="3492.67" y="446" width="30" height="40"/>
  </objectgroup>
  <objectgroup color="#ffff7f" name="solid">
   <object id="1" x="2" y="630" width="1150" height="10"/>
@@ -84,18 +72,6 @@
   <object id="378" x="2818.5" y="299.667" width="375" height="10"/>
   <object id="379" x="3185.5" y="324.5" width="440" height="10"/>
   <object id="380" x="4354.5" y="219" width="425" height="10"/>
- </objectgroup>
- <objectgroup name="coin">
-  <object id="403" x="2638.5" y="263.5" width="15" height="15"/>
-  <object id="404" x="2640" y="238" width="15" height="15"/>
-  <object id="405" x="2699.5" y="622.5" width="15" height="15"/>
-  <object id="406" x="2645" y="623" width="15" height="15"/>
-  <object id="407" x="2336.5" y="633.5" width="15" height="15"/>
- </objectgroup>
- <objectgroup name="boom">
-  <object id="385" x="1988.67" y="427" width="20" height="10"/>
-  <object id="388" x="3050.67" y="410.333" width="20" height="10"/>
-  <object id="395" x="2430.33" y="531.333" width="20" height="10"/>
  </objectgroup>
  <objectgroup color="#ff557f" name="spring">
   <object id="165" x="3436" y="256" width="60" height="7"/>
@@ -205,8 +181,8 @@
   <object id="293" x="4333" y="15.5" width="14" height="14"/>
  </objectgroup>
  <objectgroup color="#55557f" name="bar">
-  <object id="294" x="4401" y="305.333" width="364" height="10"/>
-  <object id="295" x="4354.67" y="79.6667" width="205" height="10"/>
+  <object id="294" x="4401" y="300.333" width="364" height="10"/>
+  <object id="295" x="4354.67" y="75.6667" width="205" height="10"/>
  </objectgroup>
  <objectgroup color="#00ff7f" name="rope">
   <object id="135" x="1545" y="202" width="5" height="145"/>
@@ -241,7 +217,7 @@
   <object id="164" x="2242" y="487" width="10" height="90"/>
  </objectgroup>
  <objectgroup name="guardlu">
-  <object id="351" x="2831" y="381.5" width="35" height="40"/>
+  <object id="351" x="2849.5" y="384.5" width="35" height="40"/>
  </objectgroup>
  <objectgroup color="#00557f" name="wall">
   <object id="142" x="1437" y="586" width="35" height="80"/>
@@ -295,7 +271,6 @@
  </objectgroup>
  <objectgroup name="guardthin">
   <object id="314" x="656" y="568.833" width="40" height="60"/>
-  <object id="409" x="2717" y="346" width="40" height="60"/>
  </objectgroup>
  <objectgroup color="#ff0000" name="fire">
   <object id="46" x="466" y="608" width="40" height="20"/>

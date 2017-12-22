@@ -273,6 +273,9 @@
     <ClCompile Include="FrameWork\C_Sound.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Objects\GameObjects\EatHeart.cpp">
+      <Filter>Source Files\Object\GameObjects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FrameWork\Animation.h">
@@ -491,8 +494,11 @@
     <ClInclude Include="Objects\GameObjects\BulletCamel.h">
       <Filter>Header Files\Object\GameObjects</Filter>
     </ClInclude>
+    <ClInclude Include="Objects\GameObjects\EatHeart.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="Objects\GameObjects\RestartPoint.h">
-      <Filter>Header Files\Object\GameObjects</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FrameWork\Manager\SoundManager.h">
       <Filter>Header Files\FrameWork\Manager</Filter>

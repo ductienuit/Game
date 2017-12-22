@@ -6,6 +6,7 @@
 #define FPS 60
 #define MAX_KEYS 256
 
+
 #include <d3d9.h>		// d3d9.lib
 #include <d3dx9.h>		// d3dx9.lib
 #include <dinput.h>		// dinput8.lib, dxguid.lib
@@ -72,6 +73,7 @@ enum eID
 	BULLETCAMEL,
 	SAND,
 	APPLEEAT,
+	HEARTEAT,
 	ITEMSPARK,
 
 	RESTARTPOINT,
@@ -119,6 +121,7 @@ enum eLandType
 #define COLOR_KEY D3DXCOLOR(1.0f, 0.0f, 1.0f, 1.0f)				// màu khi mà load hình nó bỏ qua > trong suốt
 #define SCALEFACTOR D3DXVECTOR2(1.6f,1.92f)
 #define SCALEAPPLE D3DXVECTOR2(2.0f,2.0f)
+#define SCALEHEART D3DXVECTOR2(2.0f,2.0f)
 #define SCALECHARACTER D3DXVECTOR2(1.6f,1.92f)
 #define SCALEALADDIN D3DXVECTOR2(1.8f,2.16f)
 #define SCALEMAP D3DXVECTOR2(1.6f,1.92f)
