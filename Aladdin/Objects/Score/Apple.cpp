@@ -11,6 +11,7 @@ Apple::Apple(int posX, int posY) :BaseObject(eID::APPLE)
 	Vector2 newPosition = ViewPort::getInstance()->getPositionWorld();
 	_countApple = new Alphabet(newPosition.x + WINDOWS_WIDTH - 35, newPosition.y - WINDOWS_HEIGHT + 33);
 	_countApple->setString("15",true);
+
 	InIt();
 }
 

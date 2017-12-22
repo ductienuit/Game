@@ -7,6 +7,7 @@
 #include"../../FrameWork/Animation.h"
 #include"../../FrameWork/ViewPort.h"
 #include"../Score/Alphabet.h"
+#include"InforAladdin.h"
 
 class Coin :public BaseObject
 {
