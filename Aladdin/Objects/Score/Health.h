@@ -7,6 +7,7 @@
 #include"../Score/InforAladdin.h"
 #include"../GameObjects/Aladdin.h"
 #include"../../FrameWork/ViewPort.h"
+#include"../Score/Alphabet.h"
 
 class Health :public BaseObject
 {
@@ -24,5 +25,6 @@ private:
 	map<int, Animation*> _animations;
 	int iStatus;
 	Aladdin* _aladdin;   //Set status for aladdin
+	Alphabet* _countHealth;
 };
 #endif _HEALTH_H

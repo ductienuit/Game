@@ -6,6 +6,7 @@
 #include"../Score/InforAladdin.h"
 #include"../../FrameWork/Animation.h"
 #include"../../FrameWork/ViewPort.h"
+#include"../Score/Alphabet.h"
 
 class Life :public BaseObject
 {
@@ -21,5 +22,6 @@ public:
 	~Life();
 private:
 	map<eStatus, Animation*> _animations;
+	Alphabet* _countLife;
 };
 #endif _LIFE_H

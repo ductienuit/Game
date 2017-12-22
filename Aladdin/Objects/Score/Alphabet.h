@@ -8,22 +8,24 @@
 #include"../../FrameWork/ViewPort.h"
 #include"../Score/Letter.h"
 
-#define SCALEALPHABET D3DXVECTOR2(1.0f,1.0f)
+#define SCALEALPHABET D3DXVECTOR2(2.0f,2.0f)
 
 class Alphabet :public BaseObject
 {
 public:
-	Alphabet(int posX = 100, int posY = 100);
+	Alphabet(int posInCameraX, int posInCameraY);
 	void InIt() override;
 	void Update(float deltatime) override;
 	void Draw(LPD3DXSPRITE, ViewPort*) override;
 	void Release() override;
 
-	void setString(string str);
+	void setString(string str,bool isMove);
 
 	~Alphabet();
 private:
 	vector<BaseObject*> _listLetter;
+	Vector2 _distance;
 	string _text;
+	bool _isMove;
 };
 #endif _ALPHABET_H

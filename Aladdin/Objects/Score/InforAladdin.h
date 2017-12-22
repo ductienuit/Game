@@ -6,6 +6,9 @@
 GAME_FRAMEWORK
 GAME_FRAMEWORK_BEGIN
 
+#define MAXAPPLE 100
+#define MAXLIFE 20
+
 
 class InforAladdin
 {

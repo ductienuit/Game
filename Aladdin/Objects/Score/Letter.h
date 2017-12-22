@@ -7,7 +7,7 @@
 #include"../../FrameWork/Animation.h"
 #include"../../FrameWork/ViewPort.h"
 
-#define SCALELETTER D3DXVECTOR2(2.0f,2.0f)
+#define SCALELETTER D3DXVECTOR2(2.3f,2.3f)
 
 class Letter :public BaseObject
 {
@@ -18,11 +18,12 @@ public:
 	void Draw(LPD3DXSPRITE, ViewPort*) override;
 	void Release() override;
 
-	void setCharater(string str);
 
 	~Letter();
 private:
-	string _text;
-	map<string, Animation*> _animations;
+	char _text;
+	Vector2 posInCamera;
+	map<char, Animation*> _animations;
+	bool _isMove;
 };
 #endif _LETTER_H

@@ -40,7 +40,7 @@
 #include"../Objects/Score/Life.h"
 #include"../Objects/Score/Coin.h"
 #include"../Objects/Score/Apple.h"
-#include"../Objects/Score/Letter.h"
+#include"../Objects/Score/Alphabet.h"
 
 
 

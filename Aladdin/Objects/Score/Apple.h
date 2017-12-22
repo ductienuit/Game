@@ -6,6 +6,9 @@
 #include"../Score/InforAladdin.h"
 #include"../../FrameWork/Animation.h"
 #include"../../FrameWork/ViewPort.h"
+#include"../Score/Alphabet.h"
+#include"InforAladdin.h"
+#include<string.h>
 
 #define SCALEAPPLE2 D3DXVECTOR2(2.2f,2.2f)
 
@@ -23,5 +26,6 @@ public:
 	~Apple();
 private:
 	map<eStatus, Animation*> _animations;
+	Alphabet* _countApple;
 };
 #endif _APPLE_H
