@@ -9,10 +9,10 @@ Life::Life(int posX, int posY) :BaseObject(eID::LIFE)
 	setScale(SCALELIFE);
 
 	Vector2 newPosition = ViewPort::getInstance()->getPositionWorld();
-	_countLife = new Alphabet(newPosition.x + 73 , newPosition.y - WINDOWS_HEIGHT + 60);
+	_countLife = new Alphabet(newPosition.x + 73 , newPosition.y - WINDOWS_HEIGHT + 52);
 	_countLife->setString("3", true);
 
-	_countLife->setScale(3.0f);
+	_countLife->setScale(SCALETEXTLIFE);
 
 	InIt();
 }

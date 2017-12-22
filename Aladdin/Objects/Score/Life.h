@@ -9,6 +9,9 @@
 #include"../Score/Alphabet.h"
 #include"InforAladdin.h"
 
+#define SCALELIFE D3DXVECTOR2(2.0f, 2.0f)
+#define SCALETEXTLIFE D3DXVECTOR2(1.0f, 1.0f)
+
 class Life :public BaseObject
 {
 public:

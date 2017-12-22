@@ -7,7 +7,7 @@
 #include"../../FrameWork/Animation.h"
 #include"../../FrameWork/ViewPort.h"
 
-#define SCALELETTER D3DXVECTOR2(2.3f,2.3f)
+#define SCALELETTER D3DXVECTOR2(1.0f,1.0f)
 
 class Letter :public BaseObject
 {
