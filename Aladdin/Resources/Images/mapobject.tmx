@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-down" width="1" height="1" tilewidth="4771" tileheight="688" nextobjectid="417">
+<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-down" width="1" height="1" tilewidth="4771" tileheight="688" nextobjectid="425">
  <objectgroup name="heart">
   <object id="312" x="2378" y="638.5" width="20" height="20"/>
   <object id="313" x="3211" y="379.333" width="20" height="20"/>
@@ -63,7 +63,7 @@
   <object id="123" x="3186" y="322" width="440" height="10"/>
   <object id="124" x="3050.67" y="489.333" width="785" height="10"/>
   <object id="131" x="3602.67" y="217.667" width="702" height="10"/>
-  <object id="132" x="4301.33" y="472.667" width="95" height="10"/>
+  <object id="132" x="4301.33" y="467.667" width="95" height="10"/>
   <object id="133" x="4605" y="506.667" width="80" height="10"/>
   <object id="134" x="4354.67" y="213.667" width="425" height="10"/>
   <object id="355" x="2596.67" y="521.333" width="149.333" height="10"/>
@@ -79,6 +79,14 @@
   <object id="378" x="2818.5" y="299.667" width="375" height="10"/>
   <object id="379" x="3185.5" y="324.5" width="440" height="10"/>
   <object id="380" x="4354.5" y="219" width="425" height="10"/>
+  <object id="417" x="1751.5" y="443.667" width="295" height="10"/>
+  <object id="418" x="1476" y="438.333" width="100" height="10"/>
+  <object id="419" x="1476" y="389.667" width="40" height="10"/>
+  <object id="420" x="2754.67" y="574" width="84.6667" height="10"/>
+  <object id="421" x="2523" y="164" width="130" height="10"/>
+  <object id="422" x="2811.25" y="422" width="270" height="10"/>
+  <object id="423" x="3050.5" y="486" width="785" height="10"/>
+  <object id="424" x="4301.83" y="474" width="95" height="10"/>
  </objectgroup>
  <objectgroup name="coin">
   <object id="403" x="2638.5" y="263.5" width="15" height="15"/>
