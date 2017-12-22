@@ -34,11 +34,12 @@ void Camel::Update(float deltatime)
 {
 	_animations[this->getStatus()]->Update(deltatime);
 	bulletCamel->Update(deltatime);
-
+	
 	UpdateStatus();
 
 	for (auto it = _listComponent.begin(); it != _listComponent.end(); it++)
 	{
+		
 		it->second->Update(deltatime);
 	}
 }

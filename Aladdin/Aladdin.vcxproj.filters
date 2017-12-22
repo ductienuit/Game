@@ -273,6 +273,12 @@
     <ClCompile Include="Objects\GameObjects\RestartPoint.cpp">
       <Filter>Source Files\Object\GameObjects</Filter>
     </ClCompile>
+    <ClCompile Include="FrameWork\Manager\SoundManager.cpp">
+      <Filter>Source Files\FrameWork\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="FrameWork\C_Sound.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="Objects\GameObjects\EatHeart.cpp">
       <Filter>Source Files\Object\GameObjects</Filter>
     </ClCompile>
@@ -577,6 +583,12 @@
     </ClInclude>
     <ClInclude Include="Objects\Score\Alphabet.h">
       <Filter>Source Files\Score</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameWork\Manager\SoundManager.h">
+      <Filter>Header Files\FrameWork\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameWork\C_Sound.h">
+      <Filter>Header Files\FrameWork</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

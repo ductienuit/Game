@@ -1,6 +1,7 @@
 ﻿#ifndef __BASEOBJECT_H__
 #define __BASEOBJECT_H__
 #include"../FrameWork/define.h"
+#include"../FrameWork/Manager/SoundManager.h"
 #include"../FrameWork/Manager/SpriteManager.h"
 #include"../FrameWork/Sprite.h"
 #include"../FrameWork/ViewPort.h"

@@ -91,7 +91,7 @@ void GuardFat::UpdateStatus(float dt)
 			_animations[BEHIT]->setIndex(0);
 			removeStatus(BEHIT);
 			setStatus(ATTACK);
-
+		
 			if (_hitpoint <= 0)
 			{
 				InforAladdin::getInstance()->plusScore(10);
@@ -187,7 +187,8 @@ void GuardFat::onCollisionBegin(CollisionEventArg *collision_event)
 				//mạng sống còn 1 và bức ảnh ATTACK của aladdin bằng 1
 				if (collision_event->_otherObject->getIndex() == 1 && _hitpoint >= 1)
 				{
-					_hitpoint -= 2;
+					
+					_hitpoint -= 1;
 					this->setStatus(eStatus::BEHIT);
 				}
 				break;
@@ -199,7 +200,8 @@ void GuardFat::onCollisionBegin(CollisionEventArg *collision_event)
 					&&
 					this->_animations[ATTACK]->getIndex() == 4)
 				{
-
+					//âm thanh
+					SoundManager::getInstance()->PlaySound("Resources/Audio/HighSword.wav", 0);
 					//Lưu trạng thái trước khi hết bị đánh set lại cái trạng thái cũ
 					collision_event->_otherObject->savePreStatus();
 					//Set status aladdin bị đánh

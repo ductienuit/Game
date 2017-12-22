@@ -39,7 +39,6 @@ bool PlayScene::InIt()
 	Enter[1] = false;  //Check 2
 	CheckOn[2].push_back(new Land(2245, 688 - 86 - 492, 5, 86, eDirection::TOP, eLandType::CHECKSTAIR3));
 	CheckOn[3].push_back(new Land(2269, 688 - 83 - 493, 5, 83, eDirection::TOP, eLandType::CHECKSTAIR4));
-
 	//Background
 	_background = new BackGround();
 	_background->InIt();
@@ -60,6 +59,8 @@ bool PlayScene::InIt()
 	_listScore.push_back(new Coin());
 	_listScore.push_back(new Apple());
 
+	//âm thanh
+	SoundManager::getInstance()->PlaySound("Resources/Audio/PrinceAli_loop.mp3", 1);
 	return true;
 }
 

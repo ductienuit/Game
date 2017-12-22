@@ -86,7 +86,7 @@
       <CallingConvention>StdCall</CallingConvention>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>d3d9.lib;d3dx9.lib;dinput8.lib;dxguid.lib;dsound.lib;dxerr.lib;winmm.lib;zlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>legacy_stdio_definitions.lib;zlib.lib;gdi32.lib;d3d9.lib;d3dx9.lib;dxguid.lib;dinput8.lib;dsound.lib;winmm.lib;dxerr.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -137,6 +137,7 @@
     <ClCompile Include="Scenes\BossScene.cpp" />
     <ClCompile Include="Scenes\EndScene.cpp" />
     <ClCompile Include="Scenes\IntroScene.cpp" />
+    <ClCompile Include="FrameWork\C_Sound.cpp" />
     <ClCompile Include="Objects\GameObjects\EatHeart.cpp" />
     <ClCompile Include="Objects\GameObjects\EatCoin.cpp" />
     <ClCompile Include="Objects\GameObjects\BulletCamel.cpp" />
@@ -207,6 +208,7 @@
     <ClCompile Include="FrameWork\QuadTree.cpp" />
     <ClCompile Include="FrameWork\Utils.cpp" />
     <ClCompile Include="Objects\Score\InforAladdin.cpp" />
+    <ClCompile Include="FrameWork\Manager\SoundManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AladdinGame.h" />
@@ -220,6 +222,7 @@
     <ClInclude Include="Scenes\BossScene.h" />
     <ClInclude Include="Scenes\EndScene.h" />
     <ClInclude Include="Scenes\IntroScene.h" />
+    <ClInclude Include="FrameWork\C_Sound.h" />
     <ClInclude Include="Objects\GameObjects\EatHeart.h" />
     <ClInclude Include="Objects\GameObjects\EatCoin.h" />
     <ClInclude Include="Objects\GameObjects\BulletCamel.h" />
@@ -295,6 +298,7 @@
     <ClInclude Include="FrameWork\QuadTree.h" />
     <ClInclude Include="FrameWork\Utils.h" />
     <ClInclude Include="Objects\Score\InforAladdin.h" />
+    <ClInclude Include="FrameWork\Manager\SoundManager.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Cach code.txt" />

@@ -70,10 +70,10 @@ enum eID
 	GUARDFAT,
 	FIRE,
 	FALLINGPLATFORM,
-	
+	SKY,
 	CAMEL,
 	BULLETCAMEL,
-
+	SAND,
 	APPLEEAT,
 	HEARTEAT,
 	ITEMSPARK,
@@ -91,6 +91,15 @@ enum eID
 	APPLE,
 	ALPHABET,
 	LETTER
+};
+
+enum eSoundId
+{
+	// Nhạc nền map 1
+	BACKGROUND_STAGE,
+
+	// Nhạc nền map boss
+	BACKGROUND_BOSS,
 };
 
 enum eDirection
@@ -191,6 +200,7 @@ if(p) \
 #define M_2_SQRTPI 1.12837916709551257390   // 2/sqrt(pi)
 #define M_SQRT2    1.41421356237309504880   // sqrt(2)
 #define M_SQRT1_2  0.707106781186547524401  // 1/sqrt(2)
+//#define UNICODE		1
 #endif
 
 #endif __GAME_FRAMEWORK__

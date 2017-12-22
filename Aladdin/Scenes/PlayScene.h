@@ -15,6 +15,8 @@
 #include"../FrameWork/Animation.h"
 #include"../FrameWork/QuadTree.h"
 #include"../FrameWork/ReadMapEditor.h"
+#include"../FrameWork/Manager/SoundManager.h"
+
 
 #include"../Objects/GameObjects/Aladdin.h"
 #include"../Objects/GameObjects/Land.h"
@@ -91,7 +93,7 @@ private:
 	static ViewPort* _viewport;
 
 	Sprite* sprite;
-
+	
 	Animation* _animation;
 	//map object
 	ReadMapEditor* mMap;

@@ -2,7 +2,8 @@
 #define __ALADDIN_H__
 
 #include "../../FrameWork/define.h"
-#include "../../FrameWork/Animation.h"
+#include"../../FrameWork/Manager/SoundManager.h"
+#include"../../FrameWork/Animation.h"
 #include "../../FrameWork/InputController.h"
 #include "../../FrameWork/IComponent.h"
 #include "../../FrameWork/StopWatch.h"

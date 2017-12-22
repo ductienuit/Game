@@ -28,6 +28,11 @@ void EatHeart::InIt()
 void EatHeart::Update(float deltatime)
 {
 	_animations[this->getStatus()]->Update(deltatime);
+	//xét âm thanh
+	if (_animations[BEHIT]->getIndex() == 3)
+	{
+		SoundManager::getInstance()->PlaySound("Resources/Audio/ExtraHealth.wav", 0);
+	}
 
 	if (_animations[BEHIT]->getIndex() >= 6)
 	{

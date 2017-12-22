@@ -32,6 +32,9 @@ void RestartPoint::InIt()
 void RestartPoint::Update(float deltatime)
 {
 	_animations[this->getStatus()]->Update(deltatime);
+	//xet âm thanh
+	if (_animations[BEHIT]->getIndex() == 3)
+		SoundManager::getInstance()->PlaySound("Resources/Audio/ExtraHealth.wav", 0);
 
 	if (_animations[BEHIT]->getIndex() >= 8)
 	{
