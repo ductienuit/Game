@@ -185,6 +185,8 @@ void GuardShort::UpdateStatus(float dt)
 			{
 				knife->Restart(getPositionX(), getPositionY() + 60, (getScale().x < 0));
 				_animations[this->getStatus()]->NextFrame();
+				////âm thanh
+				SoundManager::getInstance()->PlaySound("Resources/Audio/ObjectThrow.wav", 0);
 			}
 			break;
 		}

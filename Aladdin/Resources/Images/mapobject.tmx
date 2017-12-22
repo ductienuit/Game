@@ -16,7 +16,6 @@
   <object id="338" x="2961.67" y="374" width="35" height="50"/>
   <object id="339" x="3426.67" y="275" width="35" height="50"/>
   <object id="346" x="2782" y="515.333" width="35" height="50"/>
-  <object id="411" x="728" y="568.5" width="36" height="59.5"/>
  </objectgroup>
  <objectgroup color="#aaffff" name="guardthrowjar">
   <object id="301" x="1779.5" y="469.5" width="20" height="30"/>
