@@ -6,7 +6,7 @@
 #include "../../FrameWork/StopWatch.h"
 #include "../../FrameWork/IComponent.h"
 #include "../../FrameWork/Text.h"
-#include"../Score/InforAladdin.h"
+#include"../Enemies/BaseEnemy.h"
 #include"../GameObjects/Aladdin.h"
 
 using namespace std;
@@ -17,7 +17,7 @@ using namespace std;
 class GuardThin : public BaseEnemy
 {
 public:
-	GuardThin(eStatus status, int posX,int posY, eDirection direction);
+	GuardThin(eStatus status, int posX, int posY, eDirection direction, int minMove, int maxMove);
 
 	void InIt() override;
 	void Update(float deltatime) override;
@@ -28,13 +28,16 @@ public:
 	void onCollisionEnd(CollisionEventArg*);
 	float checkCollision(BaseObject*, float);
 
-	float distanceBetweenAladdin();
+	RECT getBounding() override;
+
+	Vector2 distanceBetweenAladdin();
 	void UpdateStatus(float dt);
 
 	IComponent* getComponent(string componentName);
 	Text* text;
 	~GuardThin();
 private:
+	Aladdin * aladdin;
 	void movingLeft();
 	void movingRight();
 	void standing();
@@ -43,3 +46,4 @@ private:
 	Sprite *_divingSprite;
 };
 #endif _GUARDTHIN_H
+

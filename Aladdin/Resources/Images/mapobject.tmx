@@ -279,7 +279,6 @@
   <object id="349" x="2549" y="107.333" width="40" height="60"/>
  </objectgroup>
  <objectgroup name="guardbig">
-  <object id="319" x="967.333" y="577.333" width="40" height="50"/>
   <object id="320" x="1650" y="227" width="40" height="50"/>
   <object id="322" x="3284" y="610.167" width="40" height="50"/>
   <object id="324" x="3753.5" y="610.5" width="40" height="50"/>
