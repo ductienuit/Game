@@ -114,8 +114,6 @@ float PeddlerShop::checkCollision(BaseObject *object, float dt)
 RECT PeddlerShop::getBounding()
 {
 	RECT rect = BaseObject::getBounding();
-	rect.right -= 200;
-	rect.top -= 100;
 
 	return rect;
 }

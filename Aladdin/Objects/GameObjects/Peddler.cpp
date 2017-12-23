@@ -73,8 +73,6 @@ float Peddler::checkCollision(BaseObject *object, float dt)
 RECT Peddler::getBounding()
 {
 	RECT rect = BaseObject::getBounding();
-	rect.right -= 90;
-	rect.top -= 50;
 
 	return rect;
 }
