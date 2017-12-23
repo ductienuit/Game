@@ -1,0 +1,18 @@
+frame_name	left	top	right	bottom
+apple_0	8	18	19	30
+
+apple_1	35	19	46	30
+
+apple_2	62	19	73	31
+
+apple_3	87	19	99	30
+
+apple_destroy_0	113	20	120	30
+
+apple_destroy_1	133	15	153	33
+
+apple_destroy_2	163	13	192	35
+
+apple_destroy_3	204	11	235	36
+
+apple_destroy_4	251	10	281	37

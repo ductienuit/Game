@@ -35,6 +35,7 @@ void BulletCamel::InIt()
 	_animations[THROW]->addFrameRect(eID::BULLETCAMEL, "bullet_camel_1", "bullet_camel_1", "bullet_camel_1", "bullet_camel_1", NULL);
 
 }
+
 void BulletCamel::Update(float deltatime)
 {
 	_animations[this->getStatus()]->Update(deltatime);
@@ -64,9 +65,12 @@ void BulletCamel::Release()
 
 void BulletCamel::onCollisionBegin(CollisionEventArg *collision_event)
 {
-	collision_event->_otherObject->setStatus(DYING);
 	standing();
 	this->setPosition(_originPosition);
+	if (collision_event->_otherObject->getId() == FIRE)
+		return;
+	collision_event->_otherObject->setStatus(DYING);
+
 	setStatus(NORMAL);
 }
 
@@ -97,7 +101,14 @@ void BulletCamel::Shoot(float x, float y)
 	setStatus(THROW);
 	x = x + 100;
 	y = y + 45;
-	this->setPosition(x, y);
+	if (x > _originPosition.x + 400)
+	{
+		standing();
+		this->setPosition(_originPosition);
+		setStatus(NORMAL);
+	}
+	else this->setPosition(x, y);
+
 }
 
 void BulletCamel::standing()

@@ -64,7 +64,6 @@ public:
 private:
 	map<int, Animation*> _animations;
 	map<string, IComponent*> _listComponent;
-	vector<AppleThrow*> _listApple;
 	RECT _boundAla;
 	BaseObject* landstop;
 	BaseObject* _preObjectColli;  //Đối tượng va chạm trước đó

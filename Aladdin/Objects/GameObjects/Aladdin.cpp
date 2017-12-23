@@ -2,6 +2,7 @@
 bool Enter[3];
 bool TurnOn[4];
 vector<BaseObject*> _listObject;
+vector<BaseObject*> listApple;
 
 Aladdin::Aladdin() : BaseObject(eID::ALADDIN)
 {
@@ -226,16 +227,16 @@ void Aladdin::Update(float deltatime)
 	updateStatus(deltatime);
 
 	#pragma region UpdateListApple
-	for (int i = 0; i < _listApple.size(); i++)
+	for (int i = 0; i < listApple.size(); i++)
 	{
-		if (_listApple[i]->isInStatus(DYING))
+		if (listApple[i]->isInStatus(DESTROY))
 		{
-			_listApple[i]->Release();
-			delete _listApple[i];
-			_listApple.erase(_listApple.begin() + i);
+			listApple[i]->Release();
+			delete listApple[i];
+			listApple.erase(listApple.begin() + i);
 		}
 		else
-			_listApple[i]->Update(deltatime);
+			listApple[i]->Update(deltatime);
 	}
 	#pragma endregion
 
@@ -305,7 +306,7 @@ void Aladdin::UpdateInput(float dt)
 			SoundManager::getInstance()->PlaySound("Resources/Audio/HighSword.wav", 0);
 			addStatus(eStatus::THROW);
 			Vector2 position = getPosition();
-			_listApple.push_back(new AppleThrow(position.x, position.y, (getScale().x < 0)));
+			listApple.push_back(new AppleThrow(position.x, position.y, (getScale().x < 0)));
 		}
 		else if (_input->isKeyPressed(DIK_C))
 		{
@@ -356,7 +357,7 @@ void Aladdin::UpdateInput(float dt)
 			removeStatus(eStatus::NORMAL1);
 			addStatus(eStatus::THROW);
 			Vector2 position = getPosition();
-			_listApple.push_back(new AppleThrow(position.x, position.y, (getScale().x < 0)));
+			listApple.push_back(new AppleThrow(position.x, position.y, (getScale().x < 0)));
 		}
 		else if (_input->isKeyPressed(DIK_C))
 		{
@@ -406,7 +407,7 @@ void Aladdin::UpdateInput(float dt)
 			removeStatus(eStatus::FREE);
 			addStatus(eStatus::THROW);
 			Vector2 position = getPosition();
-			_listApple.push_back(new AppleThrow(position.x, position.y, (getScale().x < 0)));
+			listApple.push_back(new AppleThrow(position.x, position.y, (getScale().x < 0)));
 		}
 		else if (_input->isKeyPressed(DIK_C))
 		{
@@ -466,7 +467,7 @@ void Aladdin::UpdateInput(float dt)
 			removeStatus(eStatus::STOPWALK);
 			addStatus(eStatus::THROW);
 			Vector2 position = getPosition();
-			_listApple.push_back(new AppleThrow(position.x, position.y, (getScale().x < 0)));
+			listApple.push_back(new AppleThrow(position.x, position.y, (getScale().x < 0)));
 		}
 		else if (_input->isKeyPressed(DIK_C))
 		{
@@ -490,7 +491,7 @@ void Aladdin::UpdateInput(float dt)
 		{
 			addStatus(eStatus::THROW);
 			Vector2 position = getPosition();
-			_listApple.push_back(new AppleThrow(position.x, position.y, (getScale().x < 0)));
+			listApple.push_back(new AppleThrow(position.x, position.y, (getScale().x < 0)));
 		}
 		break;
 	}
@@ -505,7 +506,7 @@ void Aladdin::UpdateInput(float dt)
 		{
 			addStatus(eStatus::THROW);
 			Vector2 position = getPosition();
-			_listApple.push_back(new AppleThrow(position.x, position.y, (getScale().x < 0)));
+			listApple.push_back(new AppleThrow(position.x, position.y, (getScale().x < 0)));
 		}
 		break;
 	}
@@ -525,7 +526,7 @@ void Aladdin::UpdateInput(float dt)
 		{
 			addStatus(eStatus::THROW);
 			Vector2 position = getPosition();
-			_listApple.push_back(new AppleThrow(position.x, position.y, (getScale().x < 0)));
+			listApple.push_back(new AppleThrow(position.x, position.y, (getScale().x < 0)));
 		}
 		else if (_input->isKeyPressed(DIK_X))
 		{
@@ -560,7 +561,7 @@ void Aladdin::UpdateInput(float dt)
 			SoundManager::getInstance()->PlaySound("Resources/Audio/HighSword.wav", 0);
 			addStatus(eStatus::THROW);
 			Vector2 position = getPosition();
-			_listApple.push_back(new AppleThrow(position.x, position.y, (getScale().x < 0)));
+			listApple.push_back(new AppleThrow(position.x, position.y, (getScale().x < 0)));
 			/*if (_input->isKeyDown(DIK_RIGHT))
 			{
 				removeStatus(eStatus::THROW);
@@ -599,7 +600,7 @@ void Aladdin::UpdateInput(float dt)
 			SoundManager::getInstance()->PlaySound("Resources/Audio/HighSword.wav", 0);
 			addStatus(eStatus::THROW);
 			Vector2 position = getPosition();
-			_listApple.push_back(new AppleThrow(position.x, position.y, (getScale().x < 0)));
+			listApple.push_back(new AppleThrow(position.x, position.y, (getScale().x < 0)));
 
 		}
 		else if (_input->isKeyPressed(DIK_X))
@@ -621,7 +622,7 @@ void Aladdin::UpdateInput(float dt)
 			removeStatus(DROP);
 			setStatus((eStatus)(JUMPING|THROW));
 			Vector2 position = getPosition();
-			_listApple.push_back(new AppleThrow(position.x, position.y, (getScale().x < 0)));
+			listApple.push_back(new AppleThrow(position.x, position.y, (getScale().x < 0)));
 		}
 		else if (_input->isKeyPressed(DIK_X))
 		{
@@ -657,7 +658,7 @@ void Aladdin::UpdateInput(float dt)
 			SoundManager::getInstance()->PlaySound("Resources/Audio/HighSword.wav", 0);
 			addStatus(eStatus::THROW);
 			Vector2 position = getPosition();
-			_listApple.push_back(new AppleThrow(position.x, position.y, (getScale().x < 0)));
+			listApple.push_back(new AppleThrow(position.x, position.y, (getScale().x < 0)));
 		}
 		else if (_input->isKeyPressed(DIK_C))
 		{
@@ -702,7 +703,7 @@ void Aladdin::UpdateInput(float dt)
 			removeStatus(eStatus::LOOKING_UP);
 			addStatus(eStatus::THROW);
 			Vector2 position = getPosition();
-			_listApple.push_back(new AppleThrow(position.x, position.y, (getScale().x < 0)));
+			listApple.push_back(new AppleThrow(position.x, position.y, (getScale().x < 0)));
 		}
 		else if (_input->isKeyPressed(DIK_C))
 		{
@@ -728,7 +729,7 @@ void Aladdin::UpdateInput(float dt)
 			addStatus(eStatus::JUMPING);
 			addStatus(eStatus::THROW);
 			Vector2 position = getPosition();
-			_listApple.push_back(new AppleThrow(position.x, position.y, (getScale().x < 0)));
+			listApple.push_back(new AppleThrow(position.x, position.y, (getScale().x < 0)));
 		}
 		else if (_input->isKeyPressed(DIK_X))
 		{
@@ -785,7 +786,7 @@ void Aladdin::UpdateInput(float dt)
 			SoundManager::getInstance()->PlaySound("Resources/Audio/HighSword.wav", 0);
 			addStatus(eStatus::THROW);
 			Vector2 position = getPosition();
-			_listApple.push_back(new AppleThrow(position.x, position.y, (getScale().x < 0)));
+			listApple.push_back(new AppleThrow(position.x, position.y, (getScale().x < 0)));
 		}
 		else if (_input->isKeyPressed(DIK_C))
 		{
@@ -818,7 +819,7 @@ void Aladdin::UpdateInput(float dt)
 		{
 			addStatus(eStatus::THROW);
 			Vector2 position = getPosition();
-			_listApple.push_back(new AppleThrow(position.x, position.y, (getScale().x < 0)));
+			listApple.push_back(new AppleThrow(position.x, position.y, (getScale().x < 0)));
 		}
 		else if (_input->isKeyDown(DIK_C))
 		{
@@ -1315,8 +1316,8 @@ float Aladdin::checkCollision(BaseObject * object, float dt)
 	collisionBody->checkCollision(object, dt);
 
 
-	for (int i = 0; i < _listApple.size(); i++)
-		_listApple[i]->checkCollision(object, dt);
+	for (int i = 0; i < listApple.size(); i++)
+		listApple[i]->checkCollision(object, dt);
 
 	return 0.0f;
 }
@@ -1633,16 +1634,16 @@ void Aladdin::Revival()
 void Aladdin::Draw(LPD3DXSPRITE spriteHandle, ViewPort* viewport)
 {
 	_animations[_currentAnimateIndex]->Draw(spriteHandle, viewport);
-	for (int i = 0; i < _listApple.size(); i++)
+	for (int i = 0; i < listApple.size(); i++)
 	{
-		if (_listApple[i]->isInStatus(DESTROY))
+		if (listApple[i]->isInStatus(DESTROY))
 		{
-			_listApple[i]->Release();
-			delete _listApple[i];
-			_listApple.erase(_listApple.begin() + i);
+			listApple[i]->Release();
+			delete listApple[i];
+			listApple.erase(listApple.begin() + i);
 		}
 		else
-			_listApple[i]->Draw(spriteHandle, viewport);
+			listApple[i]->Draw(spriteHandle, viewport);
 	}
 }
 
@@ -1650,12 +1651,12 @@ void Aladdin::Release()
 {
 	_sprite->Release();
 	_animations.clear();
-	for (int i = 0; i < _listApple.size(); i++)
+	for (int i = 0; i < listApple.size(); i++)
 	{
-		_listApple[i]->Release();
-		delete _listApple[i];
+		listApple[i]->Release();
+		delete listApple[i];
 	}
-	_listApple.clear();
+	listApple.clear();
 }
 
 void Aladdin::standing()

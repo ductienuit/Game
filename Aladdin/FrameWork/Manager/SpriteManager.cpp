@@ -62,9 +62,9 @@ void SpriteManager::LoadResource(LPD3DXSPRITE spriteHandle)
 	this->_listSprite.insert(pair<eID, Sprite*>(eID::KNIFE, sp));
 	this->LoadSpriteInfo(eID::KNIFE, "Resources//Images//GuardsAll.txt");
 
-	sp = new Sprite(spriteHandle, "Resources//Images//AladdinAnimation.png");
+	sp = new Sprite(spriteHandle, "Resources//Images//Apple.png");
 	this->_listSprite.insert(pair<eID, Sprite*>(eID::APPLETHROW, sp));
-	this->LoadSpriteInfo(eID::APPLETHROW, "Resources//Images//AladdinAnimation.txt");
+	this->LoadSpriteInfo(eID::APPLETHROW, "Resources//Images//Apple.txt");
 
 	sp = new Sprite(spriteHandle, "Resources//Images//background.png");
 	this->_listSprite.insert(pair<eID, Sprite*>(eID::BACKGROUND, sp));

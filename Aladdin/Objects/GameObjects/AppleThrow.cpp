@@ -14,7 +14,7 @@ AppleThrow::AppleThrow(int posX, int posY,bool isLeft):BaseObject(eID::APPLETHRO
 	_listComponent["Movement"] = movement;
 	_listComponent["Gravity"] = new Gravity(Vector2(0, -APPLE_GRAVITY), movement);
 
-	setScale(SCALEAPPLE);
+	setScale(SCALEONE);
 	this->setStatus(THROW);
 	text = new Text("Arial", "", 10, 25);
 	_isLeft = isLeft;
@@ -33,12 +33,11 @@ void AppleThrow::InIt()
 	__hook(&CollisionBody::onCollisionBegin, collisionBody, &AppleThrow::onCollisionBegin);
 	__hook(&CollisionBody::onCollisionEnd, collisionBody, &AppleThrow::onCollisionEnd);
 
-	_animations[THROW] = new Animation(_sprite, 0.1f);
-	_animations[THROW]->addFrameRect(eID::APPLETHROW, "apple_00","apple_00", NULL);
+	_animations[THROW] = new Animation(_sprite, 0.05f);
+	_animations[THROW]->addFrameRect(eID::APPLETHROW, "apple_",4);
 
-	_animations[DYING] = new Animation(_sprite, 0.1f);
-	_animations[DYING]->addFrameRect(eID::APPLETHROW, "apple_00", "apple_00", NULL);
-
+	_animations[DYING] = new Animation(_sprite, 0.05f);
+	_animations[DYING]->addFrameRect(eID::APPLETHROW, "apple_destroy_",5);
 }
 
 void AppleThrow::Update(float deltatime)
@@ -64,7 +63,7 @@ void AppleThrow::Update(float deltatime)
 	case DYING:
 	{
 		standing();
-		if (_animations[DYING]->getIndex() >= 0)
+		if (_animations[DYING]->getIndex() >= 4)
 		{
 			_animations[DYING]->setIndex(0);
 			this->setStatus(DESTROY);
@@ -102,13 +101,12 @@ void AppleThrow::Release()
 void AppleThrow::onCollisionBegin(CollisionEventArg *collision_event)
 {
 	eID temp = collision_event->_otherObject->getId();
+
 	standing();
-	if (temp == APPLEEAT || temp == COINEAT || temp == HEARTEAT || temp == RESTARTPOINT ||
-		temp == ALADDIN|| temp == FIRE || collision_event->_otherObject->getStatus() == DESTROY)
-		return;
-	if (temp == LAND)
+	if (temp == LAND || temp ==CAMEL || temp==FALLINGPLATFORM)
 	{
-		setStatus(DYING);
+		if(!isInStatus(DESTROY))
+			setStatus(DYING);
 		return;
 	}
 	collision_event->_otherObject->setStatus(DYING);
@@ -122,8 +120,19 @@ void AppleThrow::onCollisionEnd(CollisionEventArg *)
 float AppleThrow::checkCollision(BaseObject *object, float dt)
 {
 	auto collisionBody = (CollisionBody*)_listComponent["CollisionBody"];
+	if (isInStatus(DYING) || isInStatus(DESTROY))
+		return 0.0f;
 	for each(auto object in listActive)
 	{
+		eID temp = object->getId();
+		float yapple = getPositionY();
+		float yobject = object->getPositionY();
+		if (yobject > yapple)
+			continue;
+		if (temp == APPLEEAT || temp == COINEAT || temp == HEARTEAT || temp == RESTARTPOINT ||
+			temp == ALADDIN || object->getStatus() == DESTROY || temp == FIRE ||temp==BOOM)
+			continue;
+
 		if (collisionBody->checkCollision(object, dt, true))
 			break;
 	}

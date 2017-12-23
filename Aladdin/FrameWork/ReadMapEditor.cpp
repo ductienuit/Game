@@ -1,5 +1,6 @@
 ﻿#include "ReadMapEditor.h"
 extern 	vector<BaseObject*> Stair[2];
+extern vector<BaseObject*> listApple;
 vector<BaseObject*> listFireActive;
 vector<BaseObject*> listActive;
 map<int, int> distanceThrowJar;
@@ -487,135 +488,21 @@ void ReadMapEditor::ListObject(RECT * rect)
 			GetList.push_back(ListSpring[i]);
 		}
 	}
+	for (size_t i = 0; i < listApple.size(); i++)
+	{
+		RECT apple = listApple[i]->getBounding();
+		RECT temp = *rect;
+		temp.top = apple.bottom;
+
+		if (!isContain(listApple[i], temp))
+		{
+			listApple[i]->Release();
+			delete listApple[i];
+			listApple.erase(listApple.begin() + i);
+		}
+	}
 	listActive = GetList;
 }
-//đệ quy sai
-//vector<BaseObject*> ReadMapEditor::GetList(RECT * rect)
-//{
-//	kiem tra listguardshort
-//	size_t x = ListGuardShort.size();
-//	for (size_t i = 0; i < ListGuardShort.size(); i++)
-//	{
-//		kiem tra co trong rect camera khong
-//		bool check1 = ListGuardShort[i]->getPositionX() > rect->left;
-//		bool check2 = ListGuardShort[i]->getPositionX() < rect->right;
-//		bool check3 = ListGuardShort[i]->getPositionY() < rect->top;
-//		bool check4 = ListGuardShort[i]->getPositionY() > rect->bottom;
-//
-//		/*if (ListGuardShort[i]->getPositionX() > rect->left&&ListGuardShort[i]->getPositionX() < rect->right
-//			&&ListGuardShort[i]->getPositionY() < rect->top&&ListGuardShort[i]->getPositionY() > rect->bottom)
-//		{
-//			GetList(rect).push_back(ListGuardShort[i]);
-//		}*/
-//
-//		if (check1 && check2	&& check3 && check4)
-//		{
-//		GetList(rect).push_back(ListGuardShort[i]);
-//		}
-//	}
-//
-//	for (size_t i = 0; i < ListGuardLu.size(); i++)
-//	{
-//		if (ListGuardLu[i]->getPositionX() > rect->left&&ListGuardLu[i]->getPositionX() < rect->right
-//			&&ListGuardLu[i]->getPositionY() < rect->top&&ListGuardLu[i]->getPositionY() > rect->bottom)
-//		{
-//			GetList(rect).push_back(ListGuardLu[i]);
-//		}
-//	}
-//
-//	for (size_t i = 0; i < ListGuardThin.size(); i++)
-//	{
-//		if (ListGuardThin[i]->getPositionX() > rect->left&&ListGuardThin[i]->getPositionX() < rect->right
-//			&&ListGuardThin[i]->getPositionY() < rect->top&&ListGuardThin[i]->getPositionY() > rect->bottom)
-//		{
-//
-//			GetList(rect).push_back(ListGuardThin[i]);
-//		}
-//	}
-//
-//	for (size_t i = 0; i < ListGuardFat.size(); i++)
-//	{
-//		if (ListGuardFat[i]->getPositionX() > rect->left&&ListGuardFat[i]->getPositionX() < rect->right
-//			&&ListGuardFat[i]->getPositionY() < rect->top&&ListGuardFat[i]->getPositionY() > rect->bottom)
-//		{
-//
-//			GetList(rect).push_back(ListGuardFat[i]);
-//		}
-//	}
-//
-//	for (size_t i = 0; i < ListGuardThrowJar.size(); i++)
-//	{
-//		if (ListGuardThrowJar[i]->getPositionX() > rect->left&&ListGuardThrowJar[i]->getPositionX() < rect->right
-//			&&ListGuardThrowJar[i]->getPositionY() < rect->top&&ListGuardThrowJar[i]->getPositionY() > rect->bottom)
-//		{
-//
-//			GetList(rect).push_back(ListGuardThrowJar[i]);
-//		}
-//	}
-//
-//	for (size_t i = 0; i < ListKnifeThrower.size(); i++)
-//	{
-//		if (ListKnifeThrower[i]->getPositionX() > rect->left&&ListKnifeThrower[i]->getPositionX() < rect->right
-//			&&ListKnifeThrower[i]->getPositionY() < rect->top&&ListKnifeThrower[i]->getPositionY() > rect->bottom)
-//		{
-//
-//			GetList(rect).push_back(ListKnifeThrower[i]);
-//		}
-//	}
-//
-//	for (size_t i = 0; i < ListFire.size(); i++)
-//	{
-//		if (ListFire[i]->getPositionX() > rect->left&&ListFire[i]->getPositionX() < rect->right
-//			&&ListFire[i]->getPositionY() < rect->top&&ListFire[i]->getPositionY() > rect->bottom)
-//		{
-//
-//			GetList(rect).push_back(ListFire[i]);
-//		}
-//	}
-//
-//	for (size_t i = 0; i < ListLand.size(); i++)
-//	{
-//		if (ListLand[i]->getPositionX() > rect->left&&ListLand[i]->getPositionX() < rect->right
-//			&&ListLand[i]->getPositionY() < rect->top&&ListLand[i]->getPositionY() > rect->bottom)
-//		{
-//
-//			GetList(rect).push_back(ListLand[i]);
-//		}
-//	}
-//
-//	for (size_t i = 0; i < ListEatApple.size(); i++)
-//	{
-//		if (ListEatApple[i]->getPositionX() > rect->left&&ListEatApple[i]->getPositionX() < rect->right
-//			&&ListEatApple[i]->getPositionY() < rect->top&&ListEatApple[i]->getPositionY() > rect->bottom)
-//		{
-//
-//			GetList(rect).push_back(ListEatApple[i]);
-//		}
-//	}
-//
- /*   for (size_t i = 0; i < ListEatHeart.size(); i++)
-	{
-		if (ListEatHeart[i]->getPositionX() > rect->left&&ListEatHeart[i]->getPositionX() < rect->right
-			&&ListEatHeart[i]->getPositionY() < rect->top&&ListEatHeart[i]->getPositionY() > rect->bottom)
-		{
-
-			GetList(rect).push_back(ListEatHeart[i]);
-		}
-	}*/
-//
-//	for (size_t i = 0; i < ListCamel.size(); i++)
-//	{
-//		if (ListCamel[i]->getPositionX() > rect->left&&ListCamel[i]->getPositionX() < rect->right
-//			&&ListCamel[i]->getPositionY() < rect->top&&ListCamel[i]->getPositionY() > rect->bottom)
-//		{
-//
-//			GetList(rect).push_back(ListCamel[i]);
-//		}
-//	}
-//
-//	return GetList(rect);
-//}
-
 void ReadMapEditor::UpDate(float detatime)
 {
 

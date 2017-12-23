@@ -9,7 +9,7 @@
 #include"../../FrameWork/CollisionBody.h"
 using namespace std;
 
-#define APPLE_SPEED 630
+#define APPLE_SPEED 700
 #define APPLE_GRAVITY 600
 
 class AppleThrow : public BaseObject
