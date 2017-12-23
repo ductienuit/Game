@@ -10,7 +10,7 @@
 #include"../Objects/Enemies/GuardThrowJar.h"
 #include"../Objects/Enemies/Fire.h"
 #include"../Objects/Enemies/GuardFat.h"
-#include"../Objects/Enemies/KnifeThrower.h"
+#include"../Objects/Enemies/GuardKnifeThrower.h"
 #include"../Objects/GameObjects/EatApple.h"
 #include"../Objects/GameObjects/EatHeart.h"
 #include"../Objects/GameObjects/Land.h"

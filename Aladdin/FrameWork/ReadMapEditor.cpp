@@ -125,7 +125,7 @@ ReadMapEditor::ReadMapEditor(const char *filepath, QuadTree *& _quadTree)
 			{
 				Tmx::Object* _object = _objectGroup->GetObjects().at(j);
 
-				KnifeThrower* _knifeThrower = new KnifeThrower(MOVING_LEFT, _object->GetX(), 688 - _object->GetY() - _object->GetHeight(), NONE);
+				GuardKnifeThrower* _knifeThrower = new GuardKnifeThrower(MOVING_LEFT, _object->GetX(), 688 - _object->GetY() - _object->GetHeight(), NONE);
 
 				ListKnifeThrower.push_back(_knifeThrower);
 				_QuadTree->InsertStaticObject(_knifeThrower);

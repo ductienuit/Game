@@ -155,7 +155,7 @@
     <ClCompile Include="Objects\Enemies\KnifeShort.cpp" />
     <ClCompile Include="Objects\Enemies\GuardThrowJar.cpp" />
     <ClCompile Include="Objects\Enemies\Jar.cpp" />
-    <ClCompile Include="Objects\Enemies\KnifeThrower.cpp" />
+    <ClCompile Include="Objects\Enemies\GuardKnifeThrower.cpp" />
     <ClCompile Include="Objects\Enemies\GuardLu.cpp" />
     <ClCompile Include="Objects\GameObjects\Aladdin.cpp" />
     <ClCompile Include="Objects\GameObjects\AppleThrow.cpp" />
@@ -240,7 +240,7 @@
     <ClInclude Include="Objects\Enemies\KnifeShort.h" />
     <ClInclude Include="Objects\Enemies\GuardThrowJar.h" />
     <ClInclude Include="Objects\Enemies\Jar.h" />
-    <ClInclude Include="Objects\Enemies\KnifeThrower.h" />
+    <ClInclude Include="Objects\Enemies\GuardKnifeThrower.h" />
     <ClInclude Include="Objects\Enemies\GuardLu.h" />
     <ClInclude Include="Objects\GameObjects\Aladdin.h" />
     <ClInclude Include="Objects\GameObjects\AppleThrow.h" />

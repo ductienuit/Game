@@ -159,9 +159,6 @@
     <ClCompile Include="Scenes\BackGroundFront.cpp">
       <Filter>Source Files\Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="Objects\Enemies\KnifeThrower.cpp">
-      <Filter>Source Files\Object\Enemies</Filter>
-    </ClCompile>
     <ClCompile Include="Objects\Enemies\GuardThrowJar.cpp">
       <Filter>Source Files\Object\Enemies</Filter>
     </ClCompile>
@@ -321,6 +318,9 @@
     <ClCompile Include="FrameWork\C_Sound.cpp">
       <Filter>Source Files\FrameWork</Filter>
     </ClCompile>
+    <ClCompile Include="Objects\Enemies\GuardKnifeThrower.cpp">
+      <Filter>Source Files\Object\Enemies</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FrameWork\Animation.h">
@@ -415,9 +415,6 @@
     </ClInclude>
     <ClInclude Include="Scenes\BackGroundFront.h">
       <Filter>Header Files\Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="Objects\Enemies\KnifeThrower.h">
-      <Filter>Header Files\Object\Enemies</Filter>
     </ClInclude>
     <ClInclude Include="Objects\Enemies\GuardThrowJar.h">
       <Filter>Header Files\Object\Enemies</Filter>
@@ -589,6 +586,9 @@
     </ClInclude>
     <ClInclude Include="FrameWork\C_Sound.h">
       <Filter>Header Files\FrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Enemies\GuardKnifeThrower.h">
+      <Filter>Header Files\Object\Enemies</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

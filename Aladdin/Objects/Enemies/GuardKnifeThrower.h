@@ -13,10 +13,10 @@ using namespace std;
 #define KNIFETHROWER_SPEED 0
 #define KNIFETHROWER_SCORE 100
 
-class KnifeThrower : public BaseEnemy
+class GuardKnifeThrower : public BaseEnemy
 {
 public:
-	KnifeThrower(eStatus status, int posX, int posY, eDirection direction);
+	GuardKnifeThrower(eStatus status, int posX, int posY, eDirection direction);
 
 	void InIt() override;
 	void Update(float deltatime) override;
@@ -33,7 +33,7 @@ public:
 	IComponent* getComponent(string componentName);
 
 	Text* text;
-	~KnifeThrower();
+	~GuardKnifeThrower();
 private:
 	void movingLeft();
 	void movingRight();

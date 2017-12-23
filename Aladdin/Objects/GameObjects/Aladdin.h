@@ -11,6 +11,7 @@
 #include "../../FrameWork/CollisionBody.h"
 #include "AppleThrow.h"
 #include"RestartPoint.h"
+#include"../Score/InforAladdin.h"
 
 #include"Land.h"
 #include"FallingPlatform.h"

@@ -1,6 +1,6 @@
-﻿#include "KnifeThrower.h"
+﻿#include "GuardKnifeThrower.h"
 
-KnifeThrower::KnifeThrower(eStatus status, int posX, int posY, eDirection direction) :BaseEnemy(eID::KNIFETHROWER)
+GuardKnifeThrower::GuardKnifeThrower(eStatus status, int posX, int posY, eDirection direction) :BaseEnemy(eID::KNIFETHROWER)
 {
 	_sprite = SpriteManager::getInstance()->getSprite(eID::KNIFETHROWER);
 	/*Dòng dưới để set framewidth hoặc height
@@ -18,7 +18,7 @@ KnifeThrower::KnifeThrower(eStatus status, int posX, int posY, eDirection direct
 	InIt();
 }
 
-void KnifeThrower::InIt()
+void GuardKnifeThrower::InIt()
 {
 	auto movement = new Movement(Vector2(0, 0), Vector2(0, 0), _sprite);
 	_listComponent["Movement"] = movement;
@@ -29,8 +29,8 @@ void KnifeThrower::InIt()
 	auto collisionBody = new CollisionBody(this);
 	_listComponent["CollisionBody"] = collisionBody;
 
-	__hook(&CollisionBody::onCollisionBegin, collisionBody, &KnifeThrower::onCollisionBegin);
-	__hook(&CollisionBody::onCollisionEnd, collisionBody, &KnifeThrower::onCollisionEnd);
+	__hook(&CollisionBody::onCollisionBegin, collisionBody, &GuardKnifeThrower::onCollisionBegin);
+	__hook(&CollisionBody::onCollisionEnd, collisionBody, &GuardKnifeThrower::onCollisionEnd);
 
 	_animations[MOVING_LEFT] = new Animation(_sprite, 0.11f);
 	_animations[MOVING_LEFT]->addFrameRect(eID::KNIFETHROWER, "knifeThrowers_attack_0", 10);
@@ -48,7 +48,7 @@ void KnifeThrower::InIt()
 	_score = 10; //Số điểm được mỗi lần giết enermy
 }
 
-void KnifeThrower::Update(float deltatime)
+void GuardKnifeThrower::Update(float deltatime)
 {
 	_animations[this->getStatus()]->Update(deltatime);
 	knife->Update(deltatime);
@@ -63,13 +63,13 @@ void KnifeThrower::Update(float deltatime)
 	}
 }
 
-void KnifeThrower::Draw(LPD3DXSPRITE spritehandle, ViewPort* viewport)
+void GuardKnifeThrower::Draw(LPD3DXSPRITE spritehandle, ViewPort* viewport)
 {
 	_animations[this->getStatus()]->Draw(spritehandle, viewport);
 	knife->Draw(spritehandle, viewport);
 }
 
-void KnifeThrower::Release()
+void GuardKnifeThrower::Release()
 {
 	for (auto component : _listComponent)
 	{
@@ -80,7 +80,7 @@ void KnifeThrower::Release()
 	knife->Release();
 }
 
-void KnifeThrower::onCollisionBegin(CollisionEventArg *collision_event)
+void GuardKnifeThrower::onCollisionBegin(CollisionEventArg *collision_event)
 {
 	eID objectID = collision_event->_otherObject->getId();
 	switch (objectID)
@@ -104,17 +104,17 @@ void KnifeThrower::onCollisionBegin(CollisionEventArg *collision_event)
 	}
 }
 
-void KnifeThrower::onCollisionEnd(CollisionEventArg *)
+void GuardKnifeThrower::onCollisionEnd(CollisionEventArg *)
 {
 }
 
-float KnifeThrower::checkCollision(BaseObject *object, float dt)
+float GuardKnifeThrower::checkCollision(BaseObject *object, float dt)
 {
 	if (object == this)
 		return 0.0f;
 	auto collisionBody = (CollisionBody*)_listComponent["CollisionBody"];
 	//Check collision enermy(this) với aladdin(object)
-	/*Ưu tiên check KnifeThrower trước, sau đó đến knife*/
+	/*Ưu tiên check GuardKnifeThrower trước, sau đó đến knife*/
 	if (!collisionBody->checkCollision(object, dt, true))
 	{
 		
@@ -123,14 +123,14 @@ float KnifeThrower::checkCollision(BaseObject *object, float dt)
 	return 0.0f;
 }
 
-float KnifeThrower::distanceBetweenAladdin()
+float GuardKnifeThrower::distanceBetweenAladdin()
 {
 	float xAla = _divingSprite->getPositionX() + (_divingSprite->getBounding().right - _divingSprite->getBounding().left) / 2;
 	float x = this->getPositionX();
 	return xAla - x;
 }
 
-void KnifeThrower::UpdateStatus(float dt)
+void GuardKnifeThrower::UpdateStatus(float dt)
 {
 	switch (this->getStatus())
 	{
@@ -201,21 +201,21 @@ void KnifeThrower::UpdateStatus(float dt)
 	}
 }
 
-IComponent* KnifeThrower::getComponent(string componentName)
+IComponent* GuardKnifeThrower::getComponent(string componentName)
 {
 	return _listComponent.find(componentName)->second;
 }
 
-KnifeThrower::~KnifeThrower()
+GuardKnifeThrower::~GuardKnifeThrower()
 {
 }
 
-void KnifeThrower::movingLeft()
+void GuardKnifeThrower::movingLeft()
 {
 	_sprite->setScaleX(-1.6);
 }
 
-void KnifeThrower::movingRight()
+void GuardKnifeThrower::movingRight()
 {
 	_sprite->setScaleX(1.6);
 }

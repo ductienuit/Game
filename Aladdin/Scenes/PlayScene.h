@@ -23,7 +23,7 @@
 #include"../Objects/Enemies/GuardThin.h"
 #include"../Objects/Enemies/GuardShort.h"
 #include"../Objects/Enemies/GuardLu.h"
-#include"../Objects/Enemies/KnifeThrower.h"
+#include"../Objects/Enemies/GuardKnifeThrower.h"
 #include"../Objects/Enemies/Knife.h"
 #include"../Objects/Enemies/Jar.h"
 #include"../Objects/Enemies/GuardThrowJar.h"
