@@ -1,4 +1,5 @@
 ﻿#include "Knife.h"
+extern vector<BaseObject*> listApple;
 
 Knife::Knife(eStatus status, int posX, int posY, eDirection direction) :BaseEnemy(eID::KNIFE)
 {
@@ -43,8 +44,7 @@ void Knife::InIt()
 	_animations[THROW_RIGHT_FAR] = new Animation(_sprite, 0.1f);
 	_animations[THROW_RIGHT_FAR]->addFrameRect(eID::KNIFE, "guardsShort_throw_01", "guardsShort_throw_02", "guardsShort_throw_03", "guardsShort_throw_04"
 		, "guardsShort_throw_05", "guardsShort_throw_06", "guardsShort_throw_07", NULL);
-	//_sprite->drawBounding(false);
-	//_sprite->setOrigin(Vector2(0, 0));
+
 }
 
 void Knife::Update(float deltatime)
@@ -102,13 +102,51 @@ void Knife::onCollisionBegin(CollisionEventArg *collision_event)
 	eID objectID = collision_event->_otherObject->getId();
 	switch (objectID)
 	{
+	case eID::APPLETHROW:
+	{
+		switch (this->getStatus())
+		{
+		case THROW_LEFT_NEAR:
+			setStatus(THROW_RIGHT_NEAR);
+			break;
+		case THROW_LEFT_FAR:
+			setStatus(THROW_RIGHT_NEAR);
+			break;
+		case THROW_RIGHT_NEAR:
+			setStatus(THROW_LEFT_NEAR);
+			break;
+		case THROW_RIGHT_FAR:
+			setStatus(THROW_LEFT_NEAR);
+			break;
+		default:
+			break;
+		}
+
+		collision_event->_otherObject->setStatus(DYING);
+		return;
+	}
 	case eID::ALADDIN:
 	{
-		/*DK1:Aladdin đang không bị đánh*/
 		if (collision_event->_otherObject->isInStatus(eStatus::ATTACK))
 		{
-			//#1 giao bay nguoc
-			break;
+			switch (this->getStatus())
+			{
+			case THROW_LEFT_NEAR:
+				setStatus(THROW_RIGHT_NEAR);
+				break;
+			case THROW_LEFT_FAR:
+				setStatus(THROW_RIGHT_NEAR);
+				break;
+			case THROW_RIGHT_NEAR:
+				setStatus(THROW_LEFT_NEAR);
+				break;
+			case THROW_RIGHT_FAR:
+				setStatus(THROW_LEFT_NEAR);
+				break;
+			default:
+				break;
+			}
+			return;
 		}
 		/*DK1:Aladdin đang không bị đánh*/
 		if (collision_event->_otherObject->isInStatus(eStatus::BEHIT) == false && !isInStatus(DESTROY))
@@ -138,7 +176,14 @@ float Knife::checkCollision(BaseObject *object, float dt)
 	auto collisionBody = (CollisionBody*)_listComponent["CollisionBody"];
 
 	//Check collision enermy(this) với aladdin(object)
-	collisionBody->checkCollision(object, dt, true);
+	if (collisionBody->checkCollision(object, dt, true))
+		return 0.0f;
+	//Apple vs Knife
+	for each(auto apple in listApple)
+	{
+		if (collisionBody->checkCollision(apple, dt, true))
+			return 0.0f;
+	}
 	return 0.0f;
 }
 

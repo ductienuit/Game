@@ -1,4 +1,6 @@
 ﻿#include "KnifeShort.h"
+extern vector<BaseObject*> listApple;
+
 
 KnifeShort::KnifeShort(eStatus status, int posX, int posY, eDirection direction)
 {
@@ -46,7 +48,6 @@ void KnifeShort::InIt()
 
 void KnifeShort::Update(float deltatime)
 {
-
 	switch (_status)
 	{
 		case NORMAL:
@@ -94,8 +95,24 @@ void KnifeShort::onCollisionBegin(CollisionEventArg *collision_event)
 	eID objectID = collision_event->_otherObject->getId();
 	switch (objectID)
 	{
+	case eID::APPLETHROW:
+	{
+		if (_isLeft)
+			_isLeft = false;
+		else _isLeft = true;
+		collision_event->_otherObject->setStatus(DYING);
+		break;
+	}
 	case eID::ALADDIN:
 	{
+		if (collision_event->_otherObject->isInStatus(eStatus::ATTACK))
+		{
+			if(_isLeft)
+				_isLeft = false;
+			else _isLeft = true;
+			break;
+		}
+		else 
 		/*DK1:Aladdin đang không bị đánh*/
 		if (collision_event->_otherObject->isInStatus(eStatus::BEHIT) == false && !isInStatus(DESTROY))
 		{
@@ -124,7 +141,17 @@ float KnifeShort::checkCollision(BaseObject *object, float dt)
 	auto collisionBody = (CollisionBody*)_listComponent["CollisionBody"];
 
 	//Check collision enermy(this) với aladdin(object)
-	collisionBody->checkCollision(object, dt, true);
+	if (collisionBody->checkCollision(object, dt, true))
+		return 0.0f;
+
+
+	//Apple vs Knife
+	for each(auto apple in listApple)
+	{
+		if (collisionBody->checkCollision(apple, dt, true))
+			return 0.0f;
+	}
+
 	return 0.0f;
 }
 
