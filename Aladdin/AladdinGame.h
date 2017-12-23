@@ -4,6 +4,7 @@
 #include"../Aladdin/FrameWork/Game.h"
 #include"../Aladdin/FrameWork/Manager/SceneManager.h"
 #include"Scenes\PlayScene.h"
+#include"Scenes\IntroScene.h"
 
 using namespace std;
 USEGAME_FRAMEWORK

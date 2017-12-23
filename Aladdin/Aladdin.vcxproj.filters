@@ -132,9 +132,6 @@
     <ClCompile Include="Objects\Enemies\GuardThin.cpp">
       <Filter>Source Files\Object\Enemies</Filter>
     </ClCompile>
-    <ClCompile Include="Objects\BaseObject.cpp">
-      <Filter>Source Files\Object</Filter>
-    </ClCompile>
     <ClCompile Include="Objects\Enemies\GuardShort.cpp">
       <Filter>Source Files\Object\Enemies</Filter>
     </ClCompile>
@@ -318,6 +315,15 @@
     <ClCompile Include="FrameWork\C_Sound.cpp">
       <Filter>Source Files\FrameWork</Filter>
     </ClCompile>
+    <ClCompile Include="Scenes\MenuBackground.cpp">
+      <Filter>Source Files\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\BaseObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Score\Choose.cpp">
+      <Filter>Source Files\Score</Filter>
+    </ClCompile>
     <ClCompile Include="Objects\Enemies\GuardKnifeThrower.cpp">
       <Filter>Source Files\Object\Enemies</Filter>
     </ClCompile>
@@ -388,9 +394,6 @@
     </ClInclude>
     <ClInclude Include="Objects\Enemies\GuardThin.h">
       <Filter>Header Files\Object\Enemies</Filter>
-    </ClInclude>
-    <ClInclude Include="Objects\BaseObject.h">
-      <Filter>Header Files\Object</Filter>
     </ClInclude>
     <ClInclude Include="Objects\Enemies\GuardShort.h">
       <Filter>Header Files\Object\Enemies</Filter>
@@ -578,14 +581,23 @@
     <ClInclude Include="Objects\Score\Letter.h">
       <Filter>Header Files\Score</Filter>
     </ClInclude>
-    <ClInclude Include="Objects\Score\Alphabet.h">
-      <Filter>Source Files\Score</Filter>
-    </ClInclude>
     <ClInclude Include="FrameWork\Manager\SoundManager.h">
       <Filter>Header Files\FrameWork\Manager</Filter>
     </ClInclude>
     <ClInclude Include="FrameWork\C_Sound.h">
       <Filter>Header Files\FrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenes\MenuBackground.h">
+      <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Score\Alphabet.h">
+      <Filter>Header Files\Score</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\BaseObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Score\Choose.h">
+      <Filter>Header Files\Score</Filter>
     </ClInclude>
     <ClInclude Include="Objects\Enemies\GuardKnifeThrower.h">
       <Filter>Header Files\Object\Enemies</Filter>

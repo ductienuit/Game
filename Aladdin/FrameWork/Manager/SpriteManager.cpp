@@ -74,6 +74,9 @@ void SpriteManager::LoadResource(LPD3DXSPRITE spriteHandle)
 	this->_listSprite.insert(pair<eID, Sprite*>(eID::BACKGROUNDFRONT, sp));
 	this->LoadSpriteInfo(eID::BACKGROUNDFRONT, "Resources//Images//backgroundfront.txt");
 
+	sp = new Sprite(spriteHandle, "Resources//Images//MenuBackGround.png");
+	this->_listSprite.insert(pair<eID, Sprite*>(eID::MENUBACKGROUND, sp));
+	this->LoadSpriteInfo(eID::MENUBACKGROUND, "Resources//Images//menubackground.txt");
 
 	sp = new Sprite(spriteHandle, "Resources//Images//CivilianEnemies.png");
 	this->_listSprite.insert(pair<eID, Sprite*>(eID::GUARDLU, sp));
@@ -160,6 +163,10 @@ void SpriteManager::LoadResource(LPD3DXSPRITE spriteHandle)
 	sp = new Sprite(spriteHandle, "Resources//Images//alphabet.png");
 	this->_listSprite.insert(pair<eID, Sprite*>(eID::ALPHABET, sp));
 	this->LoadSpriteInfo(eID::ALPHABET, "Resources//Images//alphabet.txt");
+
+	sp = new Sprite(spriteHandle, "Resources//Images//Items.png");
+	this->_listSprite.insert(pair<eID, Sprite*>(eID::CHOOSE, sp));
+	this->LoadSpriteInfo(eID::CHOOSE, "Resources//Images//Items.txt");
 }
 
 Sprite * SpriteManager::getSprite(eID id)
