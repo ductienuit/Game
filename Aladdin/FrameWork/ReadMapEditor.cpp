@@ -4,10 +4,11 @@ extern vector<BaseObject*> listApple;
 vector<BaseObject*> listFireActive;
 vector<BaseObject*> listActive;
 map<int, int> distanceThrowJar;
+
+struct MaxMin;
 map<int, MaxMin> distanceGuardThin;
 
 
-struct MaxMin;
 ReadMapEditor::ReadMapEditor(const char *filepath, QuadTree *& _quadTree)
 {
 	#pragma region DistanceBrokenJar
@@ -23,10 +24,10 @@ ReadMapEditor::ReadMapEditor(const char *filepath, QuadTree *& _quadTree)
 	distanceThrowJar[9] = 106 * 1.92;
 #pragma endregion
 
-	#pragma region DistanceGuardThin
-	distanceGuardThin[0] = MaxMin(136, 60);
-	distanceGuardThin[1] = MaxMin(9, 98);
-	#pragma endregion
+	//#pragma region DistanceGuardThin
+	//distanceGuardThin[0] = MaxMin(136, 60);
+	//distanceGuardThin[1] = MaxMin(9, 98);
+	//#pragma endregion
 
 	maps = new Tmx::Map();
 	maps->ParseFile(filepath);
