@@ -67,24 +67,17 @@ void Choose::onKeyReleased(KeyEventArg * key_event)
 	{
 	case DIK_DOWN:
 	{
-		//setPosition(120, 150, 1.0f);
 		break;
 	}
 	case DIK_UP:
 	{
-		//setPosition(120, 190, 1.0f);
 		break;
 	}
 	case DIK_SPACE:
 	{
-		//SceneManager::getInstance()->ReplaceScene(new PlayScene());
 		break;
 	}
 	default:
 		break;
 	}
-	//if (isInStatus(eStatus::NORMAL))  //Restart stop watch to count time change state normal2 of Aladdin
-	//{
-	//	//_firstAnimateStopWatch->restart();
-	//}
 }

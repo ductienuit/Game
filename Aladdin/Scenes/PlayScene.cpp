@@ -12,7 +12,7 @@ using namespace std;
 ViewPort* PlayScene::_viewport = ViewPort::getInstance();
 PlayScene::PlayScene()
 {
-	
+	InIt();
 }
 
 PlayScene::~PlayScene()
@@ -50,7 +50,7 @@ bool PlayScene::InIt()
 
     _aladdin = new Aladdin();
 	_aladdin->InIt();
-	_aladdin->setPosition(7000, 600);
+	_aladdin->setPosition(100, 700);
 
 	_listObject.push_back(_aladdin);
 

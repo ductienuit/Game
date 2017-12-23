@@ -327,9 +327,6 @@
     <ClCompile Include="Objects\Score\Choose.cpp">
       <Filter>Source Files\Score</Filter>
     </ClCompile>
-    <ClCompile Include="Scenes\MenuSelect.cpp">
-      <Filter>Source Files\Scenes</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FrameWork\Animation.h">
@@ -604,9 +601,6 @@
     </ClInclude>
     <ClInclude Include="Objects\Score\Choose.h">
       <Filter>Header Files\Score</Filter>
-    </ClInclude>
-    <ClInclude Include="Scenes\MenuSelect.h">
-      <Filter>Header Files\Scenes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
