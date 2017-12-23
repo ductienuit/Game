@@ -61,10 +61,8 @@ void GuardFat::InIt()
 
 	_sprite->setOrigin(Vector2(0.5, 0));
 
-	_hitpoint = 2;//Số lần đánh
+	_hitpoint = 4;//Số lần đánh
 	_score = 10; //Số điểm được mỗi lần giết enermy
-
-
 }
 
 void GuardFat::Update(float deltatime)
@@ -115,8 +113,7 @@ void GuardFat::UpdateStatus(float dt)
 	}
 	}
 
-	/*if (distanceBetweenAladdin().y > 0)
-		return;*/
+
 	this->clearStatus();
 	if (_minMove < this->getPositionX() && this->getPositionX() < _maxMove)
 	{

@@ -103,14 +103,29 @@ void AppleThrow::onCollisionBegin(CollisionEventArg *collision_event)
 	eID temp = collision_event->_otherObject->getId();
 
 	standing();
-	if (temp == LAND || temp ==CAMEL || temp==FALLINGPLATFORM)
+
+
+	if (temp == LAND || temp == CAMEL || temp == FALLINGPLATFORM)
 	{
-		if(!isInStatus(DESTROY))
+		if (!isInStatus(DESTROY))
 			setStatus(DYING);
 		return;
 	}
-	collision_event->_otherObject->setStatus(DYING);
+	setStatus(DYING);
+	auto enermy = (BaseEnemy*)collision_event->_otherObject;
+	if (temp == GUARDTHROWJAR || temp == GUARDLU)
+	{
+		enermy->setStatus(DYING);
+		return;
+	}
 
+	if (enermy->getHitpoint() == 2)
+	{
+		enermy->setStatus(DYING);
+		return;
+	}
+	enermy->setStatus(BEHIT);
+	enermy->plusHitpoint(-2);
 }
 
 void AppleThrow::onCollisionEnd(CollisionEventArg *)

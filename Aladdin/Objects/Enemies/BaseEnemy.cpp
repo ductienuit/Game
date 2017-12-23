@@ -16,6 +16,11 @@ void BaseEnemy::setHitpoint(int hitpoint)
 	_hitpoint = hitpoint;
 }
 
+void BaseEnemy::plusHitpoint(int value)
+{
+	_hitpoint += value;
+}
+
 void BaseEnemy::setScore(int score)
 {
 	_score = score;

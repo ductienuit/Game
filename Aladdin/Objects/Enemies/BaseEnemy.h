@@ -14,8 +14,11 @@ public:
 
 	int getHitpoint();
 	void setHitpoint(int);
+	void plusHitpoint(int);
+
 	int getScore();
 	void setScore(int);
+
 	virtual void dropHitpoint();
 	virtual void dropHitpoint(int damage);
 

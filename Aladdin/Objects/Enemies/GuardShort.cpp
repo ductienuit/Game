@@ -50,7 +50,7 @@ void GuardShort::InIt()
 	_animations[DYING]->addFrameRect(eID::GUARDSHORT, "destroy_enermy_00_0", 10);
 
 	_canThrow = false;
-	_hitpoint = 2;// Chú ý 2 lần đánh chứ không phải 3
+	_hitpoint = 4;// Chú ý 2 lần đánh chứ không phải 3
 	_score = 10; //Số điểm được mỗi lần giết enermy
 
 }

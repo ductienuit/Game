@@ -6,6 +6,7 @@
 #include "../../FrameWork/IComponent.h"
 #include "../../FrameWork/Text.h"
 #include "../BaseObject.h"
+#include"../Enemies/BaseEnemy.h"
 #include"../../FrameWork/CollisionBody.h"
 using namespace std;
 
