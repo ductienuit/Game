@@ -16,6 +16,7 @@
 #include"../Objects/GameObjects/Aladdin.h"
 #include"MenuBackground.h"
 #include"../Objects/Score/Alphabet.h"
+#include"../Objects/Score/Choose.h"
 
 using namespace std;
 
@@ -37,7 +38,7 @@ public:
 	void setViewPort(ViewPort* viewport);
 	void UpdateViewport(BaseObject* aladdin);
 private:
-	Aladdin * _aladdin;
+	Choose* _choose;
 	MenuBackground* _menuBackground;
 	//Chuyển đổi tọa độ word sang viewport
 	static ViewPort* _viewport;

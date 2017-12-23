@@ -25,28 +25,31 @@ bool IntroScene::InIt()
 	_menuBackground = new MenuBackground();
 	_menuBackground->InIt();
 
+	_choose	= (new Choose(120,190));
+
 	return true;
 }
 
 void IntroScene::UpdateInput(float dt)
 {
-	//_aladdin->UpdateInput(dt);
+	_choose->UpdateInput(dt);
 }
 
 void IntroScene::Update(float dt)
 {
-	//_aladdin->Update(dt);
+	_choose->Update(dt);
 }
 
 void IntroScene::Draw(LPD3DXSPRITE spriteHandle)
 {
 	_menuBackground->Draw(spriteHandle, _viewport);
-	//_aladdin->Draw(spriteHandle, _viewport);
+	_choose->Draw(spriteHandle, _viewport);
 }
 
 void IntroScene::Release()
 {
 	_menuBackground->Release();
+	_choose->Release();
 }
 
 void IntroScene::UpdateViewport(BaseObject * aladdin)

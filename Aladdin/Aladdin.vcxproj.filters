@@ -132,9 +132,6 @@
     <ClCompile Include="Objects\Enemies\GuardThin.cpp">
       <Filter>Source Files\Object\Enemies</Filter>
     </ClCompile>
-    <ClCompile Include="Objects\BaseObject.cpp">
-      <Filter>Source Files\Object</Filter>
-    </ClCompile>
     <ClCompile Include="Objects\Enemies\GuardShort.cpp">
       <Filter>Source Files\Object\Enemies</Filter>
     </ClCompile>
@@ -324,6 +321,15 @@
     <ClCompile Include="Scenes\MenuBackground.cpp">
       <Filter>Source Files\Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="Objects\BaseObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Score\Choose.cpp">
+      <Filter>Source Files\Score</Filter>
+    </ClCompile>
+    <ClCompile Include="Scenes\MenuSelect.cpp">
+      <Filter>Source Files\Scenes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FrameWork\Animation.h">
@@ -391,9 +397,6 @@
     </ClInclude>
     <ClInclude Include="Objects\Enemies\GuardThin.h">
       <Filter>Header Files\Object\Enemies</Filter>
-    </ClInclude>
-    <ClInclude Include="Objects\BaseObject.h">
-      <Filter>Header Files\Object</Filter>
     </ClInclude>
     <ClInclude Include="Objects\Enemies\GuardShort.h">
       <Filter>Header Files\Object\Enemies</Filter>
@@ -595,6 +598,15 @@
     </ClInclude>
     <ClInclude Include="Objects\Score\Alphabet.h">
       <Filter>Header Files\Score</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\BaseObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Score\Choose.h">
+      <Filter>Header Files\Score</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenes\MenuSelect.h">
+      <Filter>Header Files\Scenes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

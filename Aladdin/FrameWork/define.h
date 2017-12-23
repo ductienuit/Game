@@ -91,7 +91,9 @@ enum eID
 	BOOM,
 	APPLE,
 	ALPHABET,
-	LETTER
+	LETTER,
+
+	CHOOSE
 };
 
 enum eSoundId

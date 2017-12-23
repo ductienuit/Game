@@ -127,6 +127,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AladdinGame.cpp" />
+    <ClCompile Include="Scenes\MenuSelect.cpp" />
+    <ClCompile Include="Objects\Score\Choose.cpp" />
     <ClCompile Include="Scenes\MenuBackground.cpp" />
     <ClCompile Include="Objects\Score\Letter.cpp" />
     <ClCompile Include="Objects\Score\Alphabet.cpp" />
@@ -213,6 +215,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AladdinGame.h" />
+    <ClInclude Include="Scenes\MenuSelect.h" />
+    <ClInclude Include="Objects\Score\Choose.h" />
     <ClInclude Include="Scenes\MenuBackground.h" />
     <ClInclude Include="Objects\Score\Letter.h" />
     <ClInclude Include="Objects\Score\Alphabet.h" />
