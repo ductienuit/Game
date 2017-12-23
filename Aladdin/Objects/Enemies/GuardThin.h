@@ -28,8 +28,6 @@ public:
 	void onCollisionEnd(CollisionEventArg*);
 	float checkCollision(BaseObject*, float);
 
-	RECT getBounding() override;
-
 	Vector2 distanceBetweenAladdin();
 	void UpdateStatus(float dt);
 

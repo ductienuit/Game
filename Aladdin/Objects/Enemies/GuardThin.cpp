@@ -43,7 +43,7 @@ void GuardThin::InIt()
 	_animations[DYING]->addFrameRect(eID::GUARDTHIN, "destroy_enermy_00_0", 10);
 
 	_animations[FREE] = new Animation(_sprite, 0.2f);
-	_animations[FREE]->addFrameRect(eID::GUARDTHIN, "free_0", "free_0", NULL);
+	_animations[FREE]->addFrameRect(eID::GUARDTHIN, "guards_thin_free_0", "guards_thin_free_0", NULL);
 
 	_sprite->setOrigin(Vector2(0.5, 0));
 
@@ -252,19 +252,6 @@ float GuardThin::checkCollision(BaseObject *object, float dt)
 
 	return 0.0f;
 
-}
-
-RECT GuardThin::getBounding()
-{
-	RECT r = BaseObject::getBounding();
-	//if (isInStatus(FREE))
-	//{
-
-	//	float distancex = abs(r.right - r.left) / 3.0f;
-	//	r.left = r.left + distancex;
-	//	r.right = r.right - distancex;
-	//}
-	return r;
 }
 
 

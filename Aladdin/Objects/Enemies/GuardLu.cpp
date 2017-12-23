@@ -97,6 +97,7 @@ void GuardLu::onCollisionBegin(CollisionEventArg *collision_event)
 			//mạng sống còn 1 và bức ảnh ATTACK của aladdin bằng 1
 			if (collision_event->_otherObject->getIndex() == 3)
 			{
+				InforAladdin::getInstance()->plusScore(10);
 				_hitpoint -= 1;
 				this->setStatus(eStatus::DYING);
 			}
@@ -115,6 +116,7 @@ void GuardLu::onCollisionBegin(CollisionEventArg *collision_event)
 				collision_event->_otherObject->savePreStatus();
 				//Set status aladdin bị đánh
 				collision_event->_otherObject->setStatus(eStatus::BEHIT);
+				InforAladdin::getInstance()->plusHealth(-10);
 			}
 		break;
 	}

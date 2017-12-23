@@ -25,6 +25,7 @@ guardsThin_attack_05	37	95	86	156
 
 
 
+guards_thin_free_0	42	96	83	156
 guards_being_attack_00	446	175	490	233
 
 guards_being_attack_01	399	185	439	233
