@@ -1,13 +1,13 @@
-
 #ifndef _GUARDLU_H
 #define _GUARDLU_H
-
+#include "BaseEnemy.h"
 #include "../../FrameWork/Animation.h"
 #include "../../FrameWork/StopWatch.h"
 #include "../../FrameWork/IComponent.h"
 #include "../../FrameWork/Text.h"
-#include"../Score/InforAladdin.h"
-#include "BaseEnemy.h"
+#include"../Enemies/BaseEnemy.h"
+#include"../GameObjects/Aladdin.h"
+
 using namespace std;
 
 #define GUARDLU_SPEED 30
@@ -16,7 +16,7 @@ using namespace std;
 class GuardLu : public BaseEnemy
 {
 public:
-	GuardLu(eStatus status, int posX, int posY, eDirection direction);
+	GuardLu(eStatus status, int posX, int posY, eDirection direction, int minMove, int maxMove);
 
 	void InIt() override;
 	void Update(float deltatime) override;
@@ -27,7 +27,9 @@ public:
 	void onCollisionEnd(CollisionEventArg*);
 	float checkCollision(BaseObject*, float);
 
-	float distanceBetweenAladdin();
+	RECT getBounding() override;
+
+	Vector2 distanceBetweenAladdin();
 	void UpdateStatus(float dt);
 
 	IComponent* getComponent(string componentName);
@@ -35,6 +37,7 @@ public:
 	Text* text;
 	~GuardLu();
 private:
+	Aladdin * aladdin;
 	void movingLeft();
 	void movingRight();
 	void standing();

@@ -1,6 +1,6 @@
 ﻿#include "GuardLu.h"
 
-GuardLu::GuardLu(eStatus status, int posX, int posY, eDirection direction) :BaseEnemy(eID::GUARDLU)
+GuardLu::GuardLu(eStatus status, int posX, int posY, eDirection direction, int minMove, int maxMove) :BaseEnemy(eID::GUARDLU)
 {
 	_sprite = SpriteManager::getInstance()->getSprite(eID::GUARDLU);
 	/*Dòng dưới để set framewidth hoặc height
@@ -14,6 +14,8 @@ GuardLu::GuardLu(eStatus status, int posX, int posY, eDirection direction) :Base
 	this->setStatus(status);
 	this->setPosition(posX*SCALECHARACTER.x, posY*SCALECHARACTER.y, 1.0f);
 	text = new Text("Arial", "", 10, 25);
+	_minMove = getPositionX() - 20; //- minMove;
+	_maxMove = getPositionX() + 350; //+ maxMove;
 	InIt();
 }
 
@@ -95,7 +97,7 @@ void GuardLu::onCollisionBegin(CollisionEventArg *collision_event)
 			//mạng sống còn 1 và bức ảnh ATTACK của aladdin bằng 1
 			if (collision_event->_otherObject->getIndex() == 3)
 			{
-				InforAladdin::getInstance()->plusScore(10);
+				_hitpoint -= 1;
 				this->setStatus(eStatus::DYING);
 			}
 			break;
@@ -113,7 +115,6 @@ void GuardLu::onCollisionBegin(CollisionEventArg *collision_event)
 				collision_event->_otherObject->savePreStatus();
 				//Set status aladdin bị đánh
 				collision_event->_otherObject->setStatus(eStatus::BEHIT);
-				InforAladdin::getInstance()->plusHealth(-10);
 			}
 		break;
 	}
@@ -135,24 +136,34 @@ float GuardLu::checkCollision(BaseObject *object, float dt)
 	collisionBody->checkCollision(object, dt, true);
 	return 0.0f;
 }
+RECT GuardLu::getBounding()
+{
+	RECT r = BaseObject::getBounding();
+	//if (isInStatus(FREE))
+	//{
 
-float GuardLu::distanceBetweenAladdin()
+	//	float distancex = abs(r.right - r.left) / 3.0f;
+	//	r.left = r.left + distancex;
+	//	r.right = r.right - distancex;
+	//}
+	return r;
+}
+
+Vector2 GuardLu::distanceBetweenAladdin()
 {
 	float xAla = _divingSprite->getPositionX() + (_divingSprite->getBounding().right - _divingSprite->getBounding().left) / 2;
 	float x = this->getPositionX();
 
-#pragma region Test
-	char str[100];
-	sprintf(str, "khoang cach voi aladdin: %f", xAla - x);
-	text->setText(str);
-#pragma endregion
+	float yAla = _divingSprite->getPositionY();
+	float y = this->getPositionY();
 
-
-	return xAla - x;
+	return Vector2(xAla - x, yAla - y);
 }
+
 
 void GuardLu::UpdateStatus(float dt)
 {
+	float xAla = _divingSprite->getPositionX() + (_divingSprite->getBounding().right - _divingSprite->getBounding().left) / 2;
 	switch (this->getStatus())
 	{
 		case eStatus::DESTROY:
@@ -170,57 +181,85 @@ void GuardLu::UpdateStatus(float dt)
 		}
 	}
 
+	this->clearStatus();
 
-
-	if (distanceBetweenAladdin() < 0)
+	if (_minMove < this->getPositionX() && this->getPositionX() < _maxMove)
 	{
-		float distance = -distanceBetweenAladdin();
-		if (distance < 25 && distance > 2.5)
+		if (distanceBetweenAladdin().x < 0)
 		{
-			this->clearStatus();
-			this->addStatus(eStatus::ATTACK);
-			standing();
-			return;
-		}
-		this->clearStatus();
-		this->addStatus(eStatus::MOVING_LEFT);
-		movingLeft();
-		if (distance < 25)
-		{
-			this->setStatus(eStatus::MOVING_RIGHT);
-			movingRight();
-		}
-		if (distance > 300)
-		{
-			standing();
-			this->setStatus(eStatus::FREE);
-			return;
-		}
-	}
-	else if (distanceBetweenAladdin() > 0)
-	{
-		float distance = distanceBetweenAladdin();
-		if (distance < 70 && distance > 10)
-		{
-			this->clearStatus();
-			this->addStatus(eStatus::ATTACK);
-			standing();
-			return;
-		}
-		this->clearStatus();
-		this->addStatus(eStatus::MOVING_RIGHT);
-		movingRight();
-		if (distance < 50)
-		{
+			float distance = -distanceBetweenAladdin().x;
+			if (distance < 25 && distance > 2.5)
+			{
+				this->clearStatus();
+				this->addStatus(eStatus::ATTACK);
+				standing();
+				return;
+			}
 			this->clearStatus();
 			this->addStatus(eStatus::MOVING_LEFT);
 			movingLeft();
+			if (distance < 25)
+			{
+				this->setStatus(eStatus::MOVING_RIGHT);
+				movingRight();
+			}
+			/*if (distance > 300)
+			{
+				standing();
+				this->setStatus(eStatus::FREE);
+				return;
+			}*/
 		}
-		if (distance>250)
+		else if (distanceBetweenAladdin() > 0)
 		{
-			standing();
-			this->setStatus(eStatus::FREE);
+			float distance = distanceBetweenAladdin().x;
+			if (distance < 70 && distance > 10)
+			{
+				this->clearStatus();
+				this->addStatus(eStatus::ATTACK);
+				standing();
+				return;
+			}
+			this->clearStatus();
+			this->addStatus(eStatus::MOVING_RIGHT);
+			movingRight();
+			if (distance < 50)
+			{
+				this->clearStatus();
+				this->addStatus(eStatus::MOVING_LEFT);
+				movingLeft();
+			}
+			/*if (distance > 250)
+			{
+				standing();
+				this->setStatus(eStatus::FREE);
+			}*/
 		}
+	}
+	else if ((_minMove > this->getPositionX()) && xAla < _minMove)
+	{
+		this->addStatus(eStatus::FREE);
+		standing();
+	}
+	else if (distanceBetweenAladdin().x > 0 && xAla > _minMove && this->getPositionX() < _maxMove)
+	{
+		this->addStatus(eStatus::MOVING_RIGHT);
+		movingRight();
+	}
+	else if ((this->getPositionX() > _maxMove) && xAla > _maxMove)
+	{
+		this->addStatus(eStatus::FREE);
+		standing();
+	}
+	else if (distanceBetweenAladdin().x < 0 && xAla < _maxMove)
+	{
+		this->addStatus(eStatus::MOVING_LEFT);
+		movingLeft();
+	}
+	else if (_minMove < this->getPositionX() < _maxMove)
+	{
+		this->setStatus(eStatus::FREE);
+		standing();
 	}
 }
 
