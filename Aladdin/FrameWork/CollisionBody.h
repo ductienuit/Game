@@ -70,6 +70,7 @@ public:
 private:
 	BaseObject* _target;
 	BaseObject* _preObject;
+	vector<CollisionEventArg*> _lastCollideObject;
 	float	_dxEntry, //Khoảng cách cần đi để bắt đầu va chạm
 			_dyEntry, //Khoảng cách cần đi để bắt đầu va chạm
 			_dxExit,  // Khoảng cách cần đi kể từ lúc này để khi hết va chạm

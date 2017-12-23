@@ -16,13 +16,8 @@ void CollisionBody::checkCollision(BaseObject * otherObject, float dt)
 	eDirection direction;
 	RECT myRect = _target->getBounding();
 	RECT otherRect;
-	/*if (otherObject->getId() == eID::LAND)
-	{
-		auto land = (Land*)otherObject;
-		otherRect = land->getBounding();
-	}
-	else*/ 
-		otherRect = otherObject->getBounding();
+		
+	otherRect = otherObject->getBounding();
 	/*Có được thời gian rồi thì mình bắt đầu xét va chạm:
 
 	time > 1.0f: frame tiếp theo nó vẫn chưa thể va chạm.
@@ -31,6 +26,7 @@ void CollisionBody::checkCollision(BaseObject * otherObject, float dt)
 	Khi có thể va chạm mình sẽ trả về thời gian va chạm đó, còn không trả về 1.0f*/
 
 	RECT broadphaseRect = getBroadphaseRect(_target, dt);
+	DrawRect(broadphaseRect);
 	if (AABB(broadphaseRect, otherRect)==true)
 	{
 		float time = SweptAABB(myRect, otherRect, direction, dt);
@@ -40,29 +36,29 @@ void CollisionBody::checkCollision(BaseObject * otherObject, float dt)
 		{
 			CollisionEventArg* e = new CollisionEventArg(otherObject);
 			e->_sideCollision = direction;
-			_preObject = otherObject;
+			_lastCollideObject.push_back(e);
 			__raise onCollisionBegin(e);
-			_flagEnd = true;
 		}
 		if (land->getType() == eLandType::STOP)
 			_target->StopUp();
-		_isColliding = true;
 	}
 	else
 	{
-		if (_preObject == NULL)
+		if (_lastCollideObject.size() == 0)
 			return;
-		if (AABB(_target->getSprite()->getBounding(),_preObject->getBounding()) == false )
-		{
-			_isColliding = false;
-		}
-	}
 
-	if (_isColliding == false && _flagEnd==true)
-	 {
-			CollisionEventArg* e = new CollisionEventArg(_preObject); //Đối số PreObject thứ 2 không sử dụng
-			__raise onCollisionEnd(e);
-			_flagEnd = false;
+		RECT target;
+		RECT object;
+		for(size_t i=0;i< _lastCollideObject.size();i++)
+		{
+			target = _target->getSprite()->getBounding();
+			object = _lastCollideObject[i]->_otherObject->getBounding();
+			if (AABB(target, object) == false)
+			{
+				__raise onCollisionEnd(_lastCollideObject[i]);
+				_lastCollideObject.erase(i + _lastCollideObject.begin());
+			}
+		}
 	}
 }
 
@@ -79,12 +75,13 @@ bool CollisionBody::checkCollision(BaseObject* otherObject, float dt, bool isEne
 	{
 		CollisionEventArg* e = new CollisionEventArg(otherObject);
 		e->_sideCollision = NONE; //Enermy không cần hướng va chạm
+		_preObject = otherObject;
 		__raise onCollisionBegin(e);
 		return true;
 	}
 	else {
 		CollisionEventArg* e = new CollisionEventArg(_preObject); //Đối số PreObject thứ 2 không sử dụng
-		__raise onCollisionEnd(e);
+		__raise onCollisionEnd(e); 
 	}
 	return false;
 }

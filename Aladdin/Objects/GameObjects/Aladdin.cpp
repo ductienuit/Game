@@ -919,7 +919,7 @@ void Aladdin::UpdateInput(float dt)
 				InforAladdin::getInstance()->plusApple(-1);
 			}
 		}
-		else if (_input->isKeyDown(DIK_C))
+		else if (_input->isKeyPressed(DIK_C))
 		{
 			//removeStatus(eStatus::SWING);
 			addStatus(eStatus::JUMPING);
@@ -1000,6 +1000,8 @@ void Aladdin::UpdateInput(float dt)
 		if (_input->isKeyDown(DIK_RIGHT))
 			moveRight();
 	}
+	if (_input->isKeyPressed(DIK_Q))
+		InforAladdin::getInstance()->plusHealth(100);
 }
 
 void Aladdin::onKeyReleased(KeyEventArg * key_event)
@@ -1135,11 +1137,9 @@ void Aladdin::onCollisionBegin(CollisionEventArg * collision_event)
 			{
 			case (eLandType::BAR):
 			{
-				if (isInStatus(eStatus(JUMPING | SWING)))
-					return;
 				setStatus(SWING);
 				float y = land->getPositionY();
-				setPositionY(y - 150); //set cứng khi va chạm với Bar thì cho giảm y
+				setPositionY(y - 100); //set cứng khi va chạm với Bar thì cho giảm y
 				swing();
 				break;
 			}
@@ -1231,7 +1231,6 @@ void Aladdin::onCollisionBegin(CollisionEventArg * collision_event)
 		}
 	}
 	}
-
 
 	switch (collision_event->_otherObject->getId())
 	{
@@ -1337,29 +1336,51 @@ void Aladdin::onCollisionEnd(CollisionEventArg * collision_event)
 	{
 		auto land = (Land*)collision_event->_otherObject;
 		auto type = land->getType();
-
+		eDirection side = collision_event->_sideCollision;
 			switch (type)
 			{
 				case (eLandType::ROPE):
 				{
-					if (isInStatus(eStatus::JUMPING))
+					_status;
+					if (isInStatus(eStatus::JUMPING) || isInStatus(eStatus::SWING))
 					{
 						removeStatus(CLIMB_JUMP);
 						return;
 					}
-					removeStatus(eStatus::CLIMB);
-					addStatus(eStatus::CLIMB_JUMP);
+					setStatus(eStatus::CLIMB_JUMP);
 					auto g = (Gravity*)_listComponent["Gravity"];
 					g->setStatus(eGravityStatus::FALLING__DOWN); 
+					_preStatus = CLIMB;
 					break;
 				}
 				case (eLandType::SOLID):
 				{
-					eStatus temp = (eStatus)(JUMPING|JUMPING_LEFT|JUMPING_RIGHT);
-					if (!isExist(temp))				
-						setStatus(DROP);
-					auto g = (Gravity*)_listComponent["Gravity"];
-					g->setStatus(eGravityStatus::FALLING__DOWN);
+					switch (side)
+					{
+					case TOP:
+					{
+						eStatus temp = (eStatus)(JUMPING | JUMPING_LEFT | JUMPING_RIGHT);
+						if (!isExist(temp))
+							setStatus(DROP);
+						auto g = (Gravity*)_listComponent["Gravity"];
+						g->setStatus(eGravityStatus::FALLING__DOWN);
+						break; 
+					}
+					case BOTTOM:
+					{
+						break;
+					}
+					case LEFT:
+					{
+						break; 
+					}
+					case RIGHT:
+					{
+						break;
+					}
+					default:
+						break;
+					}
 					break;
 				}
 				case( eLandType::STOP):
@@ -1377,21 +1398,11 @@ void Aladdin::onCollisionEnd(CollisionEventArg * collision_event)
 				case(eLandType::BAR):
 				{
 					eStatus temp = (eStatus)(JUMPING | JUMPING_LEFT | JUMPING_RIGHT);
-					float distance = abs(collision_event->_otherObject->getBounding().left - collision_event->_otherObject->getBounding().right);
-					if (getPositionX() < collision_event->_otherObject->getPositionX())
-					{
-						if (!isExist(temp))
-							setStatus(DROP);
-						auto g = (Gravity*)_listComponent["Gravity"];
-						g->setStatus(eGravityStatus::FALLING__DOWN);
-					}
-					else if (getPositionX() > collision_event->_otherObject->getPositionX() + distance)
-					{
-						if (!isExist(temp))
-							setStatus(DROP);
-						auto g = (Gravity*)_listComponent["Gravity"];
-						g->setStatus(eGravityStatus::FALLING__DOWN);
-					}
+					_status;
+					if (!isExist(temp))
+						setStatus(DROP);
+					auto g = (Gravity*)_listComponent["Gravity"];
+					g->setStatus(eGravityStatus::FALLING__DOWN);
 					break;
 				}
 			}
@@ -1458,9 +1469,6 @@ void Aladdin::updateStatus(float dt)
 		if (isInStatus(eStatus::THROW) && isInStatus(ATTACK))
 			removeStatus(THROW);
 	}
-
-	if (isInStatus(CLIMB_JUMP))
-		removeStatus(BEHIT);
 }
 
 void Aladdin::updateStatusOneAction(float deltatime)
@@ -1679,6 +1687,8 @@ void Aladdin::setBounding(RECT r)
 		temp.top = r.top - distancey;
 		temp.bottom = r.bottom + distancey;
 	}
+	__debugoutput(temp.top);
+
 	_boundAla = temp;
 }
 

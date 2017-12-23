@@ -50,8 +50,9 @@ bool PlayScene::InIt()
 
     _aladdin = new Aladdin();
 	_aladdin->InIt();
-	_aladdin->setPosition(3169*1.6, (688-376)*1.92);
-	//_aladdin->setPosition(7100, 1000);
+	//_aladdin->setPosition(100,100);
+	//_aladdin->setPosition(3169*1.6, (688-376)*1.92);
+	_aladdin->setPosition(7100, 1000);
 	_listObject.push_back(_aladdin);
 
 	_listScore.push_back(new Health(_aladdin));
@@ -60,7 +61,7 @@ bool PlayScene::InIt()
 	_listScore.push_back(new Apple());
 
 	//âm thanh
-	SoundManager::getInstance()->PlaySound("Resources/Audio/PrinceAli_loop.mp3", 1);
+	//SoundManager::getInstance()->PlaySound("Resources/Audio/PrinceAli_loop.mp3", 1);
 	return true;
 }
 
@@ -238,8 +239,8 @@ void PlayScene::Draw(LPD3DXSPRITE spriteHandle)
 	#pragma region F1 to show all bounding box
 	//Vẽ bounding
 	auto _input = InputController::getInstance();
-	if (_input->isKeyDown(DIK_F1))
-	{
+	/*if (_input->isKeyDown(DIK_F1))
+	{*/
 		for each (auto object in _activeObject)
 		{
 			if (object == nullptr || object->isInStatus(DESTROY))
@@ -269,7 +270,7 @@ void PlayScene::Draw(LPD3DXSPRITE spriteHandle)
 		if (TurnOn[3]) {
 			CheckOn[3].back()->ShowBB();
 		}
-	}
+	//}
 
 #pragma endregion
 

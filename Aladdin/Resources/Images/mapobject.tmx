@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-down" width="1" height="1" tilewidth="4771" tileheight="688" nextobjectid="431">
+<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-down" width="1" height="1" tilewidth="4771" tileheight="688" nextobjectid="436">
  <objectgroup name="heart">
   <object id="312" x="2378" y="638.5" width="20" height="20"/>
   <object id="313" x="3211" y="379.333" width="20" height="20"/>
@@ -64,7 +64,7 @@
   <object id="124" x="3050.67" y="489.333" width="785" height="10"/>
   <object id="131" x="3602.67" y="217.667" width="702" height="10"/>
   <object id="132" x="4301.33" y="467.667" width="95" height="10"/>
-  <object id="133" x="4605" y="506.667" width="80" height="10"/>
+  <object id="133" x="4605" y="506.667" width="60.6667" height="10"/>
   <object id="134" x="4354.67" y="213.667" width="425" height="10"/>
   <object id="355" x="2596.67" y="521.333" width="149.333" height="10"/>
   <object id="84" x="2241" y="580" width="45" height="15"/>
@@ -105,12 +105,7 @@
   <object id="167" x="3459.67" y="178.333" width="60" height="7"/>
   <object id="170" x="4219" y="140" width="60" height="7"/>
  </objectgroup>
- <objectgroup name="stop">
-  <object id="370" x="2085" y="311" width="13" height="15"/>
-  <object id="372" x="1540" y="126.5" width="16" height="23.5"/>
-  <object id="373" x="2690.67" y="70.6667" width="19.3333" height="15.3333"/>
-  <object id="374" x="4708" y="339" width="14.5" height="13"/>
- </objectgroup>
+ <objectgroup name="stop"/>
  <objectgroup color="#ffaa7f" name="apple">
   <object id="177" x="481.5" y="549" width="14" height="14"/>
   <object id="178" x="512" y="536.5" width="14" height="14"/>
@@ -208,14 +203,14 @@
   <object id="293" x="4333" y="15.5" width="14" height="14"/>
  </objectgroup>
  <objectgroup color="#55557f" name="bar">
-  <object id="294" x="4401" y="305.333" width="364" height="10"/>
-  <object id="295" x="4354.67" y="79.6667" width="163.667" height="10"/>
+  <object id="294" x="4401" y="317.333" width="364" height="20"/>
+  <object id="295" x="4354.67" y="97.6667" width="163.667" height="10"/>
  </objectgroup>
  <objectgroup color="#00ff7f" name="rope">
-  <object id="135" x="1545" y="202" width="5" height="145"/>
-  <object id="136" x="2088.67" y="372.667" width="5" height="197"/>
-  <object id="138" x="2696" y="137.667" width="5" height="183.333"/>
-  <object id="139" x="4712.67" y="391.5" width="5" height="162.167"/>
+  <object id="135" x="1545" y="219" width="5" height="118.5"/>
+  <object id="136" x="2088.67" y="385.667" width="5" height="168"/>
+  <object id="138" x="2696" y="154.334" width="5" height="144.333"/>
+  <object id="139" x="4712.67" y="418.833" width="5" height="111.5"/>
  </objectgroup>
  <objectgroup name="stair1">
   <object id="83" x="2289" y="589" width="30" height="10"/>
@@ -276,9 +271,9 @@
   <object id="115" x="2642" y="411" width="172" height="10"/>
  </objectgroup>
  <objectgroup color="#5032c8" name="fallingplatform">
-  <object id="298" x="1621.33" y="434.667" width="50" height="15"/>
-  <object id="299" x="4198.67" y="445.667" width="50" height="15"/>
-  <object id="300" x="4104.33" y="461" width="50" height="15"/>
+  <object id="298" x="1639.33" y="436.667" width="50" height="15"/>
+  <object id="299" x="4205.67" y="445.667" width="50" height="15"/>
+  <object id="300" x="4103.33" y="461" width="50" height="15"/>
  </objectgroup>
  <objectgroup name="knifethrower">
   <object id="342" x="1311" y="523" width="40" height="60"/>
