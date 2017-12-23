@@ -11,6 +11,9 @@ class Land : public BaseObject
 {
 public:
 	Land(int x, int y, int width, int height, eDirection physicBodyDirection, eLandType type);
+	//BOSSSCENE
+	Land(int x, int y, int width, int height, eLandType typ, Vector2 scale = SCALEBOSSFRONT);
+
 	~Land();
 
 	// Các phương thức override từ BaseObject.

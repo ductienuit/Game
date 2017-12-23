@@ -13,7 +13,10 @@ using namespace std;
 class Fire : public BaseEnemy
 {
 public:
+	//for level 1
 	Fire(eStatus, int , int, eDirection direction);
+	//for scene boss
+	Fire(eStatus, int, int, Vector2);
 	void InIt() override;
 	void Update(float deltatime) override;
 	void Draw(LPD3DXSPRITE, ViewPort*) override;

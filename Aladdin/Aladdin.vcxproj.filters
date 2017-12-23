@@ -327,6 +327,12 @@
     <ClCompile Include="Objects\Enemies\GuardKnifeThrower.cpp">
       <Filter>Source Files\Object\Enemies</Filter>
     </ClCompile>
+    <ClCompile Include="Scenes\BackGroundBossFront.cpp">
+      <Filter>Source Files\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Scenes\BackGroundBoss.cpp">
+      <Filter>Source Files\Scenes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FrameWork\Animation.h">
@@ -601,6 +607,12 @@
     </ClInclude>
     <ClInclude Include="Objects\Enemies\GuardKnifeThrower.h">
       <Filter>Header Files\Object\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenes\BackGroundBossFront.h">
+      <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenes\BackGroundBoss.h">
+      <Filter>Header Files\Scenes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

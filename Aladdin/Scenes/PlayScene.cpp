@@ -73,27 +73,29 @@ void PlayScene::Update(float dt)
 {
 	this->UpdateViewport(_aladdin);
 
+	#pragma region  Update list object in camera
 	Vector2 viewport_position = _viewport->getPositionWorld();
 	RECT viewport_in_transform = _viewport->getBounding();
 	//// Hàm getlistobject của quadtree yêu cầu truyền vào một hình chữ nhật theo hệ top left, nên cần tính lại khung màn hình
-	
+
 	RECT screenx;
 	screenx.top = viewport_in_transform.bottom;
 	screenx.bottom = viewport_in_transform.top;
 	screenx.left = viewport_in_transform.left;
 	screenx.right = viewport_in_transform.left + WINDOWS_WIDTH;
 
-//#if _DEBUG									 // clock_t để test thời gian chạy đoạn code update (milisecond)
-//	clock_t t;
-//	t = clock();
-//#endif
+	//#if _DEBUG									 // clock_t để test thời gian chạy đoạn code update (milisecond)
+	//	clock_t t;
+	//	t = clock();
+	//#endif
 	_activeObject.clear();
-	mMap->ListObject(&screenx);	
+	mMap->ListObject(&screenx);
 	_activeObject = mMap->GetList;
-//#if _DEBUG
-//	t = clock() - t;
-//	__debugoutput((float)t / CLOCKS_PER_SEC);
-//#endif
+
+	//	t = clock() - t;
+	//	__debugoutput((float)t / CLOCKS_PER_SEC);
+	//#endif
+#pragma endregion
 
 	_aladdin->Update(dt);
 
@@ -105,6 +107,8 @@ void PlayScene::Update(float dt)
 		object->Update(dt);
 	}
 
+	#pragma region Check collision witch land and enermy
+
 	/*Check collision aladdin with land*/
 	for (auto i : _activeObject)
 	{
@@ -113,13 +117,13 @@ void PlayScene::Update(float dt)
 			continue;
 		eID temp = i->getId();
 
-		/*Fallingplatform cần kiểm tra riêng 
+		/*Fallingplatform cần kiểm tra riêng
 		aladdin với nó và ngược lại ở for dưới*/
-		if (temp == eID::FALLINGPLATFORM) 
+		if (temp == eID::FALLINGPLATFORM)
 			_aladdin->checkCollision(i, dt);
 		if (temp == eID::CAMEL)
 			_aladdin->checkCollision(i, dt);
-		if(temp==eID::SPRING)
+		if (temp == eID::SPRING)
 			_aladdin->checkCollision(i, dt);
 		if (i->getId() != eID::LAND || _aladdin->getId() == temp)
 			continue;
@@ -135,12 +139,17 @@ void PlayScene::Update(float dt)
 			continue;
 
 		eID temp = obj->getId();
-		if (temp == LAND || temp == ALADDIN || obj->getStatus()==DESTROY)
-			continue;	
+		if (temp == LAND || temp == ALADDIN || obj->getStatus() == DESTROY)
+			continue;
 		obj->checkCollision(_aladdin, dt);
 	}
 
-	
+
+#pragma endregion
+
+
+	#pragma region Flag check stair
+
 	if (Enter[0])
 	{
 		for (auto i : Stair[0])
@@ -179,6 +188,10 @@ void PlayScene::Update(float dt)
 #pragma endregion
 
 
+#pragma endregion
+
+
+	//Cập nhật điểm, máu, táo, mạng sống trên màn hình
 	for each(auto score in _listScore)
 		score->Update(dt);
 }
@@ -191,42 +204,74 @@ void PlayScene::Draw(LPD3DXSPRITE spriteHandle)
 		if (object == nullptr || object->isInStatus(DESTROY))
 			continue;
 		object->Draw(spriteHandle, _viewport);
-		object->ShowBB();
 	}
 	_aladdin->Draw(spriteHandle, _viewport);
-	_aladdin->ShowBB();
 
 	for each(auto object in Stair[0])
 	{
 		object->Draw(spriteHandle, _viewport);
-		object->ShowBB();
 	}
 	for each(auto object in Stair[1])
 	{
 		object->Draw(spriteHandle, _viewport);
-		object->ShowBB();
 	}
 
-#pragma region Draw check stair
+	#pragma region Draw check stair
 	if (TurnOn[0]) {
 		CheckOn[0].back()->Draw(spriteHandle, _viewport);
-		CheckOn[0].back()->ShowBB();
 	}
 	if (TurnOn[1]) {
 		CheckOn[1].back()->Draw(spriteHandle, _viewport);
-		CheckOn[1].back()->ShowBB();
 	}
 	if (TurnOn[2]) {
 		CheckOn[2].back()->Draw(spriteHandle, _viewport);
-		CheckOn[2].back()->ShowBB();
 	}
 	if (TurnOn[3]) {
 		CheckOn[3].back()->Draw(spriteHandle, _viewport);
-		CheckOn[3].back()->ShowBB();
 	}
 
 #pragma endregion
+
 	_backgroundfront->Draw(spriteHandle, _viewport);
+
+
+	#pragma region F1 to show all bounding box
+	//Vẽ bounding
+	auto _input = InputController::getInstance();
+	if (_input->isKeyDown(DIK_F1))
+	{
+		for each (auto object in _activeObject)
+		{
+			if (object == nullptr || object->isInStatus(DESTROY))
+				continue;
+			object->ShowBB();
+		}
+		_aladdin->ShowBB();
+
+		for each(auto object in Stair[0])
+		{
+			object->ShowBB();
+		}
+		for each(auto object in Stair[1])
+		{
+			object->ShowBB();
+		}
+
+		if (TurnOn[0]) {
+			CheckOn[0].back()->ShowBB();
+		}
+		if (TurnOn[1]) {
+			CheckOn[1].back()->ShowBB();
+		}
+		if (TurnOn[2]) {
+			CheckOn[2].back()->ShowBB();
+		}
+		if (TurnOn[3]) {
+			CheckOn[3].back()->ShowBB();
+		}
+	}
+
+#pragma endregion
 
 	for each(auto score in _listScore)
 		score->Draw(spriteHandle, _viewport);
@@ -237,18 +282,29 @@ void PlayScene::Release()
 	for each (auto object in _listObject)
 	{
 		object->Release();
+		delete object;
 	}
-
+	_listObject.clear();
 	for each (auto object in _activeObject)
 	{
 		object->Release();
+
+		delete object;
 	}
+	_activeObject.clear();
+
 	_background->Release();
+	delete _background;
 	_backgroundfront->Release();
+	delete _backgroundfront;
+
 	for each (auto object in _listScore)
 	{
 		object->Release();
+
+		delete object;
 	}
+	_listScore.clear();
 }
 
 void PlayScene::UpdateViewport(BaseObject * aladdin)

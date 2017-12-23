@@ -1,0 +1,2 @@
+frame_name	left	top	right	bottom
+palace_back	0	0	1504	691

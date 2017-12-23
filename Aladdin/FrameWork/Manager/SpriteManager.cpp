@@ -167,6 +167,15 @@ void SpriteManager::LoadResource(LPD3DXSPRITE spriteHandle)
 	sp = new Sprite(spriteHandle, "Resources//Images//Items.png");
 	this->_listSprite.insert(pair<eID, Sprite*>(eID::CHOOSE, sp));
 	this->LoadSpriteInfo(eID::CHOOSE, "Resources//Images//Items.txt");
+
+
+	sp = new Sprite(spriteHandle, "Resources//Images//Boss//palace_back.png");
+	this->_listSprite.insert(pair<eID, Sprite*>(eID::BACKGROUNDBOSS, sp));
+	this->LoadSpriteInfo(eID::BACKGROUNDBOSS, "Resources//Images//Boss//palace_back.txt");
+
+	sp = new Sprite(spriteHandle, "Resources//Images//Boss//pillars.png");
+	this->_listSprite.insert(pair<eID, Sprite*>(eID::BACKGROUNDBOSSFRONT, sp));
+	this->LoadSpriteInfo(eID::BACKGROUNDBOSSFRONT, "Resources//Images//Boss//pillars.txt");
 }
 
 Sprite * SpriteManager::getSprite(eID id)

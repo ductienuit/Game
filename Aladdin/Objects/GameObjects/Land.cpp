@@ -5,7 +5,16 @@
 Land::Land(int x, int y, int width, int height, eDirection physicBodyDirection, eLandType type) : BaseObject(eID::LAND)
 {
 	_sprite = new Sprite(x, y, width,height);
-	_sprite->setFrameRect(0, 0,width, height);
+	_sprite->setFrameRect(0, 0, width, height);
+	_width = width;
+	_height = height;
+	_type = type;
+}
+
+Land::Land(int x, int y, int width, int height, eLandType type, Vector2 scale)
+{
+	_sprite = new Sprite(x, y, width, height,scale);
+	_sprite->setFrameRect(0, 0, width, height);
 	_width = width;
 	_height = height;
 	_type = type;

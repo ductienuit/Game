@@ -1,0 +1,2 @@
+frame_name	left	top	right	bottom
+pillars	0	0	1024	542

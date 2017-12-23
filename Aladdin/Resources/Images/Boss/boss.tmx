@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-down" width="1" height="1" tilewidth="1504" tileheight="691" nextobjectid="470">
+ <objectgroup color="#ffff7f" name="solid">
+  <object id="431" x="16.4242" y="677.364" width="1478.79" height="18.1818"/>
+  <object id="437" x="81.3333" y="559.333" width="189.333" height="73.3333"/>
+  <object id="438" x="464" y="562" width="189.333" height="73.3333"/>
+  <object id="439" x="849.333" y="560.667" width="189.333" height="73.3333"/>
+  <object id="440" x="1233.33" y="566" width="189.333" height="73.3333"/>
+ </objectgroup>
+ <objectgroup color="#00557f" name="wall">
+  <object id="453" x="0" y="-6.06061" width="27.2727" height="709.091"/>
+  <object id="454" x="1457.58" y="18.1818" width="33.3333" height="672.727"/>
+ </objectgroup>
+ <objectgroup color="#ff0000" name="fire">
+  <object id="441" x="105" y="522.5" width="31" height="19.5"/>
+  <object id="459" x="153.5" y="521.75" width="31" height="19.5"/>
+  <object id="460" x="211.5" y="521.25" width="31" height="19.5"/>
+  <object id="461" x="493.25" y="525.875" width="31" height="19.5"/>
+  <object id="462" x="599.75" y="524.625" width="31" height="19.5"/>
+  <object id="463" x="541.75" y="525.125" width="31" height="19.5"/>
+  <object id="464" x="878.25" y="528.375" width="31" height="19.5"/>
+  <object id="465" x="984.75" y="527.125" width="31" height="19.5"/>
+  <object id="466" x="926.75" y="527.625" width="31" height="19.5"/>
+  <object id="467" x="1260.75" y="530.375" width="31" height="19.5"/>
+  <object id="468" x="1367.25" y="529.125" width="31" height="19.5"/>
+  <object id="469" x="1309.25" y="529.625" width="31" height="19.5"/>
+ </objectgroup>
+ <layer name="Tile Layer 1" width="1" height="1">
+  <data encoding="csv">
+0
+</data>
+ </layer>
+ <imagelayer name="Image Layer 2"/>
+ <imagelayer name="Image Layer 1">
+  <image source="palace_back.png" width="1503" height="691"/>
+ </imagelayer>
+</map>

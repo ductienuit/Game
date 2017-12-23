@@ -50,11 +50,11 @@ Sprite::Sprite(LPD3DXSPRITE spriteHandle, LPCSTR filePath, int totalFrames, int 
 Sprite::Sprite(int x, int y, int w, int h, Vector2 scale, int totalFrames, int cols)
 {
 	_origin = ORIGINZERO;
-	_scale = Vector2(1.6f, 1.92f);
+	_scale = scale;
 	_zIndex = 0;
 	_rotate = 0.0f;
-	_position.x = x*SCALEFACTOR.x; //Phải nhân để ra đúng tọa độ scale
-	_position.y = y*SCALEFACTOR.y; //background và character nhân nên position cũng vậy
+	_position.x = x*scale.x; //Phải nhân để ra đúng tọa độ scale
+	_position.y = y*scale.y; //background và character nhân nên position cũng vậy
 
 	_totalFrames = totalFrames;
 	_columns = cols;
@@ -81,6 +81,7 @@ Sprite::Sprite(int x, int y, int w, int h, Vector2 scale, int totalFrames, int c
 		NULL
 	);
 }
+
 void Sprite::Release()
 {
 	this->_texture.Release();

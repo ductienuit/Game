@@ -281,8 +281,7 @@ ReadMapEditor::ReadMapEditor(const char *filepath, QuadTree *& _quadTree)
 				_QuadTree->InsertStaticObject(_apple);
 			}
 		}
-
-
+		
 		if (_objectGroup->GetName() == "heart")
 		{
 			for (size_t j = 0; j < _objectGroup->GetNumObjects(); j++)
@@ -350,6 +349,81 @@ ReadMapEditor::ReadMapEditor(const char *filepath, QuadTree *& _quadTree)
 	}
 }
 
+ReadMapEditor::ReadMapEditor(const char * filepath, QuadTree *& _quadTree, bool isBossScene)
+{
+#pragma region DistanceBrokenJar
+	distanceThrowJar[0] = 148 * 1.92;
+	distanceThrowJar[1] = 116 * 1.92;
+	distanceThrowJar[2] = 88 * 1.92;
+	distanceThrowJar[3] = 88 * 1.92;
+	distanceThrowJar[4] = 102 * 1.92;
+	distanceThrowJar[5] = 102 * 1.92;
+	distanceThrowJar[6] = 102 * 1.92;
+	distanceThrowJar[7] = 97 * 1.92;
+	distanceThrowJar[8] = 98 * 1.92;
+	distanceThrowJar[9] = 106 * 1.92;
+#pragma endregion
+
+	//#pragma region DistanceGuardThin
+	//distanceGuardThin[0] = MaxMin(136, 60);
+	//distanceGuardThin[1] = MaxMin(9, 98);
+	//#pragma endregion
+
+	maps = new Tmx::Map();
+	maps->ParseFile(filepath);
+	RECT rect;
+	rect.left = 0;
+	rect.right = maps->GetWidth();
+	rect.bottom = maps->GetHeight();
+	rect.top = 0;
+	_quadTree = new QuadTree(rect, 1);
+	_QuadTree = _quadTree;
+	int x = maps->GetNumObjectGroups();
+	for (size_t i = 0; i < maps->GetNumObjectGroups(); i++)
+	{
+		const Tmx::ObjectGroup *_objectGroup = maps->GetObjectGroup(i);
+
+		if (_objectGroup->GetName() == "fire")
+		{
+			for (size_t j = 0; j < _objectGroup->GetNumObjects(); j++)
+			{
+				Tmx::Object* _object = _objectGroup->GetObjects().at(j);
+
+
+				Fire* _fire = new Fire(BEHIT, _object->GetX(), 691 - _object->GetY() - _object->GetHeight(),SCALEBOSSFRONT);
+
+				ListFire.push_back(_fire);
+				_QuadTree->InsertStaticObject(_fire);
+			}
+		}
+
+		if (_objectGroup->GetName() == "wall")
+		{
+			for (size_t j = 0; j < _objectGroup->GetNumObjects(); j++)
+			{
+				Tmx::Object* _object = _objectGroup->GetObjects().at(j);
+
+				Land* _wall = new Land(_object->GetX(), 691 - _object->GetY() - _object->GetHeight(), _object->GetWidth(), _object->GetHeight(), WALL, SCALEBOSSFRONT);
+
+				ListLand.push_back(_wall);
+				_QuadTree->InsertStaticObject(_wall);
+			}
+		}
+
+		if (_objectGroup->GetName() == "solid")
+		{
+			for (size_t j = 0; j < _objectGroup->GetNumObjects(); j++)
+			{
+				Tmx::Object* _object = _objectGroup->GetObjects().at(j);
+
+				Land* _solid = new Land(_object->GetX(), 691 - _object->GetY() - _object->GetHeight(), _object->GetWidth(), _object->GetHeight(), SOLID,SCALEBOSSFRONT);
+
+				ListLand.push_back(_solid);
+				_QuadTree->InsertStaticObject(_solid);
+			}
+		}
+	}
+}
 
 ReadMapEditor::~ReadMapEditor()
 {

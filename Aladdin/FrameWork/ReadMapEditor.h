@@ -26,6 +26,7 @@ class ReadMapEditor
 {
 public:
 	ReadMapEditor(const char* filepath,QuadTree* &_quadTree);
+	ReadMapEditor(const char* filepath, QuadTree* &_quadTree, bool isBossScene);
 	~ReadMapEditor();
 	Tmx::Map* maps;
 	vector <BaseObject*>     GetList;
