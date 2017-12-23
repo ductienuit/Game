@@ -88,7 +88,10 @@ enum eID
 	BOOM,
 	APPLE,
 	ALPHABET,
-	LETTER
+	LETTER,
+
+	PEDDLER,
+	PEDDLERSHOP
 };
 
 enum eSoundId

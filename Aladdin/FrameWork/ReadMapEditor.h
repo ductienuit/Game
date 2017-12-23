@@ -20,6 +20,8 @@
 #include"../Objects/GameObjects/Spring.h"
 #include"../Objects/GameObjects/Boom.h"
 #include"../Objects/GameObjects/EatCoin.h"
+#include"../Objects/GameObjects/Peddler.h"
+#include"../Objects/GameObjects/PeddlerShop.h"
 
 
 class ReadMapEditor
@@ -46,6 +48,7 @@ public:
 	vector <BaseObject*>	 ListRestartPoint;
 	vector <BaseObject*>	 ListFallingPlatform;
 	vector <BaseObject*>	 ListSpring;
+	vector <BaseObject*>	 ListPeddlerShop;
 
 	void ListObject(RECT *rect);
 	QuadTree* _QuadTree;

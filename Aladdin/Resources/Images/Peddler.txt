@@ -1,0 +1,89 @@
+frame_name	left	top	right	bottom
+
+peddler_00	5	8	31	60
+
+peddler_01	38	6	65	60
+
+peddler_02	73	5	101	60
+
+peddler_03	108	4	136	60
+
+peddler_04	146	4	174	60
+
+peddler_05	183	4	211	60
+
+peddler_06	219	4	247	60
+
+peddler_07	254	12	289	60
+
+peddler_08	295	14	345	60
+
+peddler_09	355	10	422	60
+
+peddler_10	436	11	494	61
+
+peddler_11	505	10	557	60
+
+peddler_12	565	10	617	60
+
+peddler_13	627	10	679	60
+
+
+peddler_shop_00	5	102	59	157
+
+peddler_shop_01	75	92	135	157
+
+peddler_shop_02	154	73	213	157
+
+peddler_shop_03	227	71	310	157
+
+peddler_shop_04	325	71	413	157
+
+peddler_shop_05	416	69	508	157
+
+peddler_shop_06	513	69	606	157
+
+peddler_shop_07	613	86	690	157
+peddler_shop_08	701	85	799	156
+
+peddler_shop_09	809	85	910	155
+
+peddler_shop_10	6	191	106	264
+
+peddler_shop_11	122	190	225	267
+
+peddler_shop_12	246	188	352	266
+
+peddler_shop_13	364	188	472	267
+
+peddler_shop_14	490	193	618	271
+
+peddler_shop_15	633	202	763	275
+
+peddler_shop_16	779	202	912	277
+
+peddler_shop_17	13	304	156	361
+
+peddler_shop_18	180	306	311	371
+
+peddler_shop_19	339	307	445	366
+
+peddler_shop_20	490	312	598	364
+
+peddler_shop_21	617	315	733	363
+
+peddler_shop_22	751	304	873	364
+
+peddler_shop_23	10	410	133	471
+
+peddler_shop_24	152	416	213	470
+
+peddler_shop_25	233	412	337	470
+
+peddler_shop_26	354	388	447	470
+
+peddler_shop_27	465	398	547	469
+
+peddler_shop_28	567	400	647	468
+
+peddler_shop_29	660	400	740	468
