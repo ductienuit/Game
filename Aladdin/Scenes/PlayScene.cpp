@@ -51,7 +51,7 @@ bool PlayScene::InIt()
 
     _aladdin = new Aladdin();
 	_aladdin->InIt();
-	_aladdin->setPosition(100, 600);
+	_aladdin->setPosition(100, 200);
 	_listObject.push_back(_aladdin);
 
 	_health = new Health(_aladdin);
