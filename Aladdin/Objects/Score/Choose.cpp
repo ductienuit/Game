@@ -2,7 +2,6 @@
 Choose::Choose(int posX, int posY) :BaseObject(eID::CHOOSE)
 {
 	auto _input = InputController::getInstance();
-	__hook(&InputController::__eventkeyReleased, _input, &Choose::onKeyReleased);
 
 	_sprite = SpriteManager::getInstance()->getSprite(eID::CHOOSE);
 	this->setStatus(NORMAL);
@@ -59,25 +58,4 @@ void Choose::Release()
 
 Choose::~Choose()
 {
-}
-
-void Choose::onKeyReleased(KeyEventArg * key_event)
-{
-	switch (key_event->_key)
-	{
-	case DIK_DOWN:
-	{
-		break;
-	}
-	case DIK_UP:
-	{
-		break;
-	}
-	case DIK_SPACE:
-	{
-		break;
-	}
-	default:
-		break;
-	}
 }

@@ -36,11 +36,10 @@ public:
 	void Release() override;
 
 	void setViewPort(ViewPort* viewport);
-	void UpdateViewport(BaseObject* aladdin);
 private:
 	Choose* _choose;
 	MenuBackground* _menuBackground;
-	//Chuyển đổi tọa độ word sang viewport
+	/*Chuyển đổi tọa độ word sang viewport*/
 	static ViewPort* _viewport;
 	
 };

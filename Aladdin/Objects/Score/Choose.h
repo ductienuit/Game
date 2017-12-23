@@ -31,6 +31,5 @@ private:
 	map<string, IComponent*> _listComponent;
 	map<int, Animation*> _animations;
 
-	void onKeyReleased(KeyEventArg * key_event);
 };
 #endif //_CHOOSE_H_

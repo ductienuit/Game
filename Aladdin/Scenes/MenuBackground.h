@@ -1,6 +1,6 @@
 #ifndef __MENUBACKGROUND_H__
 #define __MENUBACKGROUND_H__
-#define SCALEMENUBACKGROUND D3DXVECTOR2(1.01f, 1.1f)
+#define SCALEMENUBACKGROUND D3DXVECTOR2(1.52f, 1.88f)
 
 #include"../Objects/BaseObject.h"
 #include "../FrameWork/define.h"
