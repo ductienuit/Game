@@ -2,6 +2,8 @@
 #include<iostream>
 using namespace std;
 
+extern vector<BaseObject*> listActive;
+vector<BaseObject*>	listStrip;
 
 ViewPort* BossScene::_viewport = ViewPort::getInstance();
 BossScene::BossScene()
@@ -19,9 +21,7 @@ bool BossScene::InIt()
 {
 	mMap = new ReadMapEditor("Resources/Images/Boss/boss.tmx", _root,true);
 
-	//Background
-	_back = new BackGroundBoss();
-	_back->InIt();
+	_back = new BackGroundBossBack();
 
 	_front = new BackGroundBossFront();
 	_front->InIt();
@@ -32,13 +32,16 @@ bool BossScene::InIt()
 	_aladdin->InIt();
 	_aladdin->setPosition(100, 300);
 
+	_boss = new Boss(PULL_LEFT, 757, (691-492-148), _aladdin);
+	_boss->InIt();
+
 	_listScore.push_back(new Health(_aladdin));
 	_listScore.push_back(new Life());
 	_listScore.push_back(new Coin());
 	_listScore.push_back(new Apple());
 
 	//âm thanh
-	SoundManager::getInstance()->PlaySound("Resources/Audio/PrinceAli_loop.mp3", 1);
+	//SoundManager::getInstance()->PlaySound("Resources/Audio/PrinceAli_loop.mp3", 1);
 	return true;
 }
 
@@ -49,6 +52,7 @@ void BossScene::UpdateInput(float dt)
 
 void BossScene::Update(float dt)
 {
+	InforAladdin::getInstance()->Infinity();
 	this->UpdateViewport(_aladdin);
 
 	#pragma region  Update list object in camera
@@ -65,10 +69,14 @@ void BossScene::Update(float dt)
 	_activeObject.clear();
 	mMap->ListObject(&screenx);
 	_activeObject = mMap->GetList;
+	listActive.push_back(_boss);
 
 #pragma endregion
 
+
 	_aladdin->Update(dt);
+
+	_boss->Update(dt);
 
 
 	for each (auto object in _activeObject)
@@ -112,6 +120,8 @@ void BossScene::Update(float dt)
 	//Cập nhật điểm, máu, táo, mạng sống trên màn hình
 	for each(auto score in _listScore)
 		score->Update(dt);
+
+	_back->Update(dt);
 }
 
 void BossScene::Draw(LPD3DXSPRITE spriteHandle)
@@ -124,8 +134,9 @@ void BossScene::Draw(LPD3DXSPRITE spriteHandle)
 			continue;
 		object->Draw(spriteHandle, _viewport);
 	}
+	
 	_aladdin->Draw(spriteHandle, _viewport);	
-
+	_boss->Draw(spriteHandle, _viewport);
 
 	#pragma region F1 to show all bounding box
 	//Vẽ bounding
@@ -139,6 +150,7 @@ void BossScene::Draw(LPD3DXSPRITE spriteHandle)
 			object->ShowBB();
 		}
 		_aladdin->ShowBB();
+		_boss->ShowBB();
 	}
 
 #pragma endregion
@@ -159,8 +171,15 @@ void BossScene::Release()
 
 	_back->Release();
 	delete _back;
+
 	_front->Release();
 	delete _front;
+
+	_aladdin->Release();
+	delete _aladdin;
+
+	_boss->Release();
+	delete _boss;
 
 	for each (auto object in _listScore)
 	{

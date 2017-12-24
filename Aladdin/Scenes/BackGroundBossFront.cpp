@@ -1,7 +1,7 @@
 ﻿#include "BackGroundBossFront.h".
 
 
-BackGroundBossFront::BackGroundBossFront() :BaseObject(eID::BACKGROUNDBOSS)
+BackGroundBossFront::BackGroundBossFront() :BaseObject(eID::BACKGROUNDBOSSFRONT)
 {
 }
 
@@ -11,7 +11,7 @@ BackGroundBossFront::~BackGroundBossFront()
 
 void BackGroundBossFront::InIt()
 {
-	_sprite = SpriteManager::getInstance()->getSprite(eID::BACKGROUNDBOSS);
+	_sprite = SpriteManager::getInstance()->getSprite(eID::BACKGROUNDBOSSFRONT);
 	this->setOrigin(ORIGINZERO);//Set top left dưới 0 0
 	this->setScale(SCALEBOSSFRONT);
 	this->setPosition(0, 0);

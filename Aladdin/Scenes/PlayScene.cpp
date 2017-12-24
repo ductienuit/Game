@@ -4,7 +4,9 @@ extern bool Enter[3];
 extern bool TurnOn[4];
 extern vector<BaseObject*> _listObject;
 extern vector<BaseObject*> listFireActive;
-
+extern vector<BaseObject*> listApple;
+void OptimizeApple(RECT* rect);
+bool isContain(BaseObject*object, RECT rect1);
 vector<BaseObject*> Stair[2];
 using namespace std;
 
@@ -50,9 +52,9 @@ bool PlayScene::InIt()
 
     _aladdin = new Aladdin();
 	_aladdin->InIt();
-	//_aladdin->setPosition(100,100);
+	_aladdin->setPosition(100,100);
 	//_aladdin->setPosition(3169*1.6, (688-376)*1.92);
-	_aladdin->setPosition(7100, 1000);
+	//_aladdin->setPosition(7100, 1000);
 	_listObject.push_back(_aladdin);
 
 	_listScore.push_back(new Health(_aladdin));
@@ -97,6 +99,12 @@ void PlayScene::Update(float dt)
 	//	__debugoutput((float)t / CLOCKS_PER_SEC);
 	//#endif
 #pragma endregion
+
+
+	#pragma region Optimize apple in camera
+	OptimizeApple(&screenx);
+	#pragma endregion
+
 
 	_aladdin->Update(dt);
 
@@ -239,8 +247,8 @@ void PlayScene::Draw(LPD3DXSPRITE spriteHandle)
 	#pragma region F1 to show all bounding box
 	//Vẽ bounding
 	auto _input = InputController::getInstance();
-	/*if (_input->isKeyDown(DIK_F1))
-	{*/
+	if (_input->isKeyDown(DIK_F1))
+	{
 		for each (auto object in _activeObject)
 		{
 			if (object == nullptr || object->isInStatus(DESTROY))
@@ -270,7 +278,7 @@ void PlayScene::Draw(LPD3DXSPRITE spriteHandle)
 		if (TurnOn[3]) {
 			CheckOn[3].back()->ShowBB();
 		}
-	//}
+	}
 
 #pragma endregion
 
@@ -332,4 +340,29 @@ void PlayScene::UpdateViewport(BaseObject * aladdin)
 		new_position.y = worldsize.y;
 	}
 	_viewport->setPositionWorld(new_position);
+}
+
+void OptimizeApple(RECT* rect)
+{
+	for (size_t i = 0; i < listApple.size(); i++)
+	{
+		RECT apple = listApple[i]->getBounding();
+		RECT temp = *rect;
+		temp.top = apple.bottom;
+
+		if (!isContain(listApple[i], temp))
+		{
+			listApple[i]->Release();
+			delete listApple[i];
+			listApple.erase(listApple.begin() + i);
+		}
+	}
+}
+
+bool isContain(BaseObject*object, RECT rect1)
+{
+	/*25/11 Đức Tiến đã sửa*/
+	RECT rect2 = object->getBounding();
+	swap(rect2.top, rect2.bottom);
+	return !(rect2.left > rect1.right || rect2.right < rect1.left || rect2.top > rect1.bottom || rect2.bottom < rect1.top);
 }

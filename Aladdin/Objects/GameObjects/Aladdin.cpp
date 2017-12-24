@@ -931,7 +931,7 @@ void Aladdin::UpdateInput(float dt)
 	{
 		_animations[BEHIT]->EnableFlashes(true);
 
-		//Tự hủy khi đế một bức ảnh n
+		//Tự hủy khi đế một bức ảnh thứ n
 		if (_animations[_currentAnimateIndex]->getIndex()== 4)
 		{
 			_animations[_currentAnimateIndex]->setIndex(0);
@@ -1936,6 +1936,12 @@ Vector2 Aladdin::getVelocity()
 	return move->getVelocity();
 }
 
+void Aladdin::addVelocity(float value)
+{
+	auto move = (Movement*)_listComponent["Movement"];
+	move->setVelocity(Vector2(move->getVelocity().x +value, move->getVelocity().y));
+}
+
 void Aladdin::unHookInputEvent()
 {
 	if (_input != nullptr)
@@ -1954,10 +1960,6 @@ void Aladdin::removeStatus(eStatus status)
 	setStatus(eStatus(getStatus() & ~status));
 }
 
-bool Aladdin::isInStatus(eStatus status)
-{
-	return (_status & status) == status;
-}
 
 bool Aladdin::isExist(eStatus status)
 {

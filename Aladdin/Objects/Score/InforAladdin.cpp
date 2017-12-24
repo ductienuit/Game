@@ -8,6 +8,7 @@ int InforAladdin::_health = 120;
 int InforAladdin::_life = 3;
 int InforAladdin::_coin = 0;
 int InforAladdin::_apple = 15;
+bool InforAladdin::_infinity = false;
 
 InforAladdin::~InforAladdin()
 {
@@ -27,6 +28,11 @@ void InforAladdin::plusScore(int value)
 
 void InforAladdin::plusHealth(int value)
 {
+	if (_infinity)
+	{
+		_health = 120;
+		return;
+	}
 	_health += value;
 	if (_health>120)
 	{
@@ -75,12 +81,22 @@ int InforAladdin::getCoin()
 
 void InforAladdin::plusApple(int value)
 {
+	if (_infinity)
+	{
+		_apple = 99;
+		return;
+	}
 	_apple += value;
 }
 
 int InforAladdin::getApple()
 {
 	return _apple;
+}
+
+void InforAladdin::Infinity()
+{
+	_infinity = true;
 }
 
 void InforAladdin::Release()

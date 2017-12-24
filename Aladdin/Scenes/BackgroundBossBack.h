@@ -1,16 +1,16 @@
-#ifndef __BACKGROUNDBOSS_H__
-#define __BACKGROUNDBOSS_H__
+#ifndef __BACKGROUNDBOSSBACK_H__
+#define __BACKGROUNDBOSSBACK_H__
 
 #include"../Objects/BaseObject.h"
 #include "../FrameWork/define.h"
 #include"../FrameWork/ViewPort.h"
 
 
-class BackGroundBoss :public BaseObject
+class BackGroundBossBack :public BaseObject
 {
 public:
-	BackGroundBoss();
-	~BackGroundBoss();
+	BackGroundBossBack(int posX=0, int posY=0);
+	~BackGroundBossBack();
 
 	void InIt();
 	void Update(float deltatime);
@@ -18,4 +18,4 @@ public:
 	void Release();
 
 };
-#endif __BACKGROUNDBOSS_H__
+#endif __BACKGROUNDBOSSBACK_H__

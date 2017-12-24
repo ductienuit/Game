@@ -48,7 +48,13 @@ enum eStatus
 	THROW_RIGHT_FAR  =	(1 << 21),		//Trang thai cua knife
 	THROW			 =  (1 << 22),
 	REVIVAL			 =  (1 << 23),      //Hồi Sinh
-	AEROBATIC		 =  (1 << 24)
+	AEROBATIC		 =  (1 << 24),
+
+	//boss
+	PULL_LEFT	     = (1 << 25),  //kéo lại 
+	PULL_RIGHT		 = (1 << 26),  //kéo lại
+	ATTACK_LEFT		 = (1 << 27),  //đánh trái
+	ATTACK_RIGHT	 = (1 << 28),  //đánh phải
 };
 
 enum eID
@@ -96,7 +102,11 @@ enum eID
 
 
 	BACKGROUNDBOSSFRONT,
-	BACKGROUNDBOSS
+	BACKGROUNDBOSSBACK,
+	BOSS, 
+	STRIP_BOSS,
+	STRIP_ALADDIN,
+	STAR
 };
 
 enum eSoundId

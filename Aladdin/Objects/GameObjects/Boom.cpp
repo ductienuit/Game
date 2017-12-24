@@ -22,7 +22,7 @@ void Boom::InIt()
 	_animations[NORMAL]->addFrameRect(eID::BOOM, "Boom_00", "Boom_00",NULL);
 
 	_animations[BEHIT] = new Animation(_sprite, 0.1f);
-	_animations[BEHIT]->addFrameRect(eID::BOOM, "item_spark__0", 15);
+	_animations[BEHIT]->addFrameRect(eID::BOOM, "item_spark__", 15);
 }
 
 void Boom::Update(float deltatime)
@@ -69,7 +69,7 @@ void Boom::onCollisionBegin(CollisionEventArg *collision_event)
 
 			eID temp = object->getId();
 			if (temp == APPLEEAT || temp == COINEAT ||temp == HEARTEAT|| temp == LAND ||temp==RESTARTPOINT ||
-				temp == ALADDIN || object->getStatus() == DESTROY)
+				temp == ALADDIN || object->getStatus() == DESTROY || temp==SPRING)
 				continue;
 			object->setStatus(DYING);
 		}

@@ -32,6 +32,9 @@ public:
 	static void				plusApple(int value);
 	static int				getApple();
 
+	static void				Infinity();
+	static void				NonInfinity();
+
 	void					Release();
 private:
 	static InforAladdin*    _instance;
@@ -40,6 +43,7 @@ private:
 	static int _coin;
 	static int _apple;
 	static int _life;
+	static bool _infinity;
 };
 typedef InforAladdin *pInforAladdin;
 GAME_FRAMEWORK_END

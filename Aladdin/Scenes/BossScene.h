@@ -18,6 +18,10 @@
 #include"../FrameWork/Manager/SoundManager.h"
 
 #include"../Objects/GameObjects/Aladdin.h"
+#include"../Objects/Enemies/Boss/Boss.h"
+
+
+
 #include"../Objects/GameObjects/Land.h"
 #include"../Objects/Enemies/Fire.h"
 
@@ -32,7 +36,7 @@
 
 #include<time.h>
 
-#include"BackGroundBoss.h"
+#include"BackGroundBossBack.h"
 #include"BackGroundBossFront.h"
 using namespace std;
 #define SIZEMAPBOSS	D3DXVECTOR2(1504*1.2,691*1.2)
@@ -56,6 +60,11 @@ public:
 
 	void UpdateViewport(BaseObject* aladdin);
 private:
+
+	Aladdin*				 _aladdin;
+	Boss*					 _boss;
+
+
 	//Quadtree
 	QuadTree*				 _root;
 	//Danh sách các đối tượng dùng để tạo trong quadtree
@@ -64,13 +73,12 @@ private:
 	/*Danh sách các đối tượng nằm trong camera
 	Mỗi vòng lặp sẽ truyền vào rect camera và trả về các object nằm trong*/
 	vector<BaseObject*>		 _activeObject;
-	Aladdin*				 _aladdin;
 	InforAladdin*			 _scoreAla;
 
-	//Main background
-	BackGroundBoss*				 _back;
 	//Front background
 	BackGroundBossFront*		 _front;
+	BackGroundBossBack*			 _back;
+
 	vector<BaseObject*>		_listScore;
 
 	//Chuyển đổi tọa độ word sang viewport

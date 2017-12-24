@@ -134,7 +134,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AladdinGame.cpp" />
-    <ClCompile Include="Scenes\BackGroundBoss.cpp" />
+    <ClCompile Include="Objects\Enemies\Boss\Boss.cpp" />
+    <ClCompile Include="Scenes\BackgroundBossBack.cpp" />
     <ClCompile Include="Scenes\BackGroundBossFront.cpp" />
     <ClCompile Include="Objects\Score\Choose.cpp" />
     <ClCompile Include="Scenes\MenuBackground.cpp" />
@@ -220,10 +221,14 @@
     <ClCompile Include="FrameWork\Utils.cpp" />
     <ClCompile Include="Objects\Score\InforAladdin.cpp" />
     <ClCompile Include="FrameWork\Manager\SoundManager.cpp" />
+    <ClCompile Include="Objects\Enemies\Boss\StripBoss.cpp" />
+    <ClCompile Include="Objects\Enemies\Boss\StripAladdin.cpp" />
+    <ClCompile Include="Objects\Enemies\Boss\Star.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AladdinGame.h" />
-    <ClInclude Include="Scenes\BackGroundBoss.h" />
+    <ClInclude Include="Objects\Enemies\Boss\Boss.h" />
+    <ClInclude Include="Scenes\BackgroundBossBack.h" />
     <ClInclude Include="Scenes\BackGroundBossFront.h" />
     <ClInclude Include="Objects\Score\Choose.h" />
     <ClInclude Include="Scenes\MenuBackground.h" />
@@ -314,6 +319,9 @@
     <ClInclude Include="FrameWork\Utils.h" />
     <ClInclude Include="Objects\Score\InforAladdin.h" />
     <ClInclude Include="FrameWork\Manager\SoundManager.h" />
+    <ClInclude Include="Objects\Enemies\Boss\StripBoss.h" />
+    <ClInclude Include="Objects\Enemies\Boss\StripAladdin.h" />
+    <ClInclude Include="Objects\Enemies\Boss\Star.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Cach code.txt" />

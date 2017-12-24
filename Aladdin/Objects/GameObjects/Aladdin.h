@@ -62,6 +62,10 @@ public:
 	void SetRestartPoint(BaseObject*) override;
 	void Revival();
 
+	void addVelocity(float);
+	Vector2 getVelocity() override;
+	void standing();
+
 private:
 	map<int, Animation*> _animations;
 	map<string, IComponent*> _listComponent;
@@ -72,7 +76,7 @@ private:
 
 	void onKeyReleased(KeyEventArg* key_event);
 
-	void standing();
+	
 	void moveLeft();
 	void moveRight();
 	void jump(eStatus status);
@@ -106,11 +110,8 @@ private:
 	//void setState(int state);
 	void addStatus(eStatus status);
 	void removeStatus(eStatus status);
-	bool isInStatus(eStatus status);
 	bool isExist(eStatus status);
 
-
-	Vector2 getVelocity();
 	void updateStatus(float dt);
 	//Kiểm tra loại trạng thái và cho thực hiện đến những ảnh cuối cùng
 	void updateStatusOneAction(float deltatime); 

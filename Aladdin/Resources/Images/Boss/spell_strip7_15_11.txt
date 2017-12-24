@@ -1,0 +1,8 @@
+frame_name	left	top	right	bottom
+star_0		0	0	30	23
+star_1		30	0	60	23
+star_2		60	0	90	23
+spell_0		90	0	120	23
+spell_1		120	0	150	23
+spell_2		150	0	180	23
+spell_3		210	0	210	23

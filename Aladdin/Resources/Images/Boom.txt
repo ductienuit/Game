@@ -2,25 +2,25 @@ frame_name	left	top	right	bottom
 Boom_00		21	31	53	47
 
 
-item_spark__00	8	180	34	204
+item_spark__0	8	180	34	204
 
-item_spark__01	48	155	108	204
+item_spark__1	48	155	108	204
 
-item_spark__02	120	118	201	204
+item_spark__2	120	118	201	204
 
-item_spark__03	208	123	291	204
+item_spark__3	208	123	291	204
 
-item_spark__04	304	124	386	204
+item_spark__4	304	124	386	204
 
-item_spark__05	400	128	483	204
+item_spark__5	400	128	483	204
 
-item_spark__06	496	131	579	204
+item_spark__6	496	131	579	204
 
-item_spark__07	8	214	88	284
+item_spark__7	8	214	88	284
 
-item_spark__08	96	217	178	284
+item_spark__8	96	217	178	284
 
-item_spark__09	192	222	275	284
+item_spark__9	192	222	275	284
 
 item_spark__10	288	231	369	284
 

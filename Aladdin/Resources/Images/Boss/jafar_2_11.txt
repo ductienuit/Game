@@ -1,1 +1,12 @@
 frame_name	left	top	right	bottom
+jafar_2_0		0	0	111	86
+jafar_2_1		111	0	222	86
+jafar_2_2		222	0	333	86
+jafar_2_3		333	0	444	86
+jafar_2_4		444	0	555	86
+jafar_2_5		555	0	666	86
+jafar_2_6		666	0	777	86
+jafar_2_7		777	0	888	86
+jafar_2_8		888	0	999	86
+jafar_2_9		999	0	1110	86
+jafar_2_10		1110	0	1221	86
