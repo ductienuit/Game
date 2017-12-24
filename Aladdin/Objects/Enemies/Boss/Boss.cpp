@@ -139,121 +139,121 @@ void Boss::onCollisionBegin(CollisionEventArg *collision_event)
 	eStatus status = getStatus();
 	switch (status)
 	{
-	case eStatus::DESTROY:
-		return;
-	case eStatus::ATTACK_RIGHT:
-	{
-		#pragma region Kiểm tra điều kiện aladdin bị trừ máu
-		bool isBeAttack = !collision_event->_otherObject->isInStatus(eStatus::BEHIT) && !collision_event->_otherObject->isFlashing();
-		/*DK1:Aladdin đang không bị đánh*/
-		if (isBeAttack)
+		case eStatus::DESTROY:
+			return;
+		case eStatus::ATTACK_RIGHT:
 		{
-			bool isStanding = collision_event->_otherObject->isInStatus(NORMAL) || collision_event->_otherObject->isInStatus(NORMAL1) || collision_event->_otherObject->isInStatus(FREE);
-			_aladdin->Stop(true);
-			//âm thanh
-			//SoundManager::getInstance()->PlaySound("Resources/Audio/CloudPoof.wav", 0);
-			InforAladdin::getInstance()->plusHealth(-10);
-			if (isStanding)
+			#pragma region Kiểm tra điều kiện aladdin bị trừ máu
+			bool isBeAttack = !collision_event->_otherObject->isInStatus(eStatus::BEHIT) && !collision_event->_otherObject->isFlashing();
+			/*DK1:Aladdin đang không bị đánh*/
+			if (isBeAttack)
 			{
-				//Set status aladdin bị đánh
-				collision_event->_otherObject->setStatus(eStatus::BEHIT);
+				bool isStanding = collision_event->_otherObject->isInStatus(NORMAL) || collision_event->_otherObject->isInStatus(NORMAL1) || collision_event->_otherObject->isInStatus(FREE);
+				_aladdin->Stop(true);
+				//âm thanh
+				//SoundManager::getInstance()->PlaySound("Resources/Audio/CloudPoof.wav", 0);
+				InforAladdin::getInstance()->plusHealth(-10);
+				if (isStanding)
+				{
+					//Set status aladdin bị đánh
+					collision_event->_otherObject->setStatus(eStatus::BEHIT);
+				}
+				else
+				{
+					//Set status aladdin bị đánh
+					collision_event->_otherObject->StartFlash();
+				}
 			}
-			else
-			{
-				//Set status aladdin bị đánh
-				collision_event->_otherObject->StartFlash();
-			}
+			break;
+			#pragma endregion
 		}
-		break;
-		#pragma endregion
-	}
-	case eStatus::ATTACK_LEFT:
-	{
-		#pragma region Kiểm tra điều kiện aladdin bị trừ máu
-		bool isBeAttack = !collision_event->_otherObject->isInStatus(eStatus::BEHIT) && !collision_event->_otherObject->isFlashing();
-		/*DK1:Aladdin đang không bị đánh*/
-		if (isBeAttack)
+		case eStatus::ATTACK_LEFT:
 		{
-			bool isStanding = collision_event->_otherObject->isInStatus(NORMAL) || collision_event->_otherObject->isInStatus(NORMAL1) || collision_event->_otherObject->isInStatus(FREE);
-			_aladdin->Stop(true);
-			//âm thanh
-			//SoundManager::getInstance()->PlaySound("Resources/Audio/CloudPoof.wav", 0);
-			InforAladdin::getInstance()->plusHealth(-10);
-			if (isStanding)
+			#pragma region Kiểm tra điều kiện aladdin bị trừ máu
+			bool isBeAttack = !collision_event->_otherObject->isInStatus(eStatus::BEHIT) && !collision_event->_otherObject->isFlashing();
+			/*DK1:Aladdin đang không bị đánh*/
+			if (isBeAttack)
 			{
-				//Set status aladdin bị đánh
-				collision_event->_otherObject->setStatus(eStatus::BEHIT);
+				bool isStanding = collision_event->_otherObject->isInStatus(NORMAL) || collision_event->_otherObject->isInStatus(NORMAL1) || collision_event->_otherObject->isInStatus(FREE);
+				_aladdin->Stop(true);
+				//âm thanh
+				//SoundManager::getInstance()->PlaySound("Resources/Audio/CloudPoof.wav", 0);
+				InforAladdin::getInstance()->plusHealth(-10);
+				if (isStanding)
+				{
+					//Set status aladdin bị đánh
+					collision_event->_otherObject->setStatus(eStatus::BEHIT);
+				}
+				else
+				{
+					//Set status aladdin bị đánh
+					collision_event->_otherObject->StartFlash();
+				}
 			}
-			else
-			{
-				//Set status aladdin bị đánh
-				collision_event->_otherObject->StartFlash();
-			}
+			break;
+			#pragma endregion
 		}
-		break;
-		#pragma endregion
-	}
-	case eStatus::THROW_LEFT_FAR:
-	{
+		case eStatus::THROW_LEFT_FAR:
+		{
 
-		//if (_animations[THROW_LEFT_FAR]->getIndex() == 4 || _animations[THROW_LEFT_FAR]->getIndex() == 10)
-		//{
-		//	if (!_aladdin->isInStatus(BEHIT))
-		//	{
-		//		_aladdin->Stop(true);
-		//		_aladdin->setStatus(BEHIT);
-		//		InforAladdin::getInstance()->plusHealth(-10);
-		//	}
-		//}
+			//if (_animations[THROW_LEFT_FAR]->getIndex() == 4 || _animations[THROW_LEFT_FAR]->getIndex() == 10)
+			//{
+			//	if (!_aladdin->isInStatus(BEHIT))
+			//	{
+			//		_aladdin->Stop(true);
+			//		_aladdin->setStatus(BEHIT);
+			//		InforAladdin::getInstance()->plusHealth(-10);
+			//	}
+			//}
 
-		#pragma region Kiểm tra điều kiện aladdin bị trừ máu
-		bool isBeAttack = !collision_event->_otherObject->isInStatus(eStatus::BEHIT) && !collision_event->_otherObject->isFlashing();
-		/*DK1:Aladdin đang không bị đánh*/
-		if (isBeAttack)
-		{
-			bool isStanding = collision_event->_otherObject->isInStatus(NORMAL) || collision_event->_otherObject->isInStatus(NORMAL1) || collision_event->_otherObject->isInStatus(FREE);
-			//âm thanh
-			//SoundManager::getInstance()->PlaySound("Resources/Audio/CloudPoof.wav", 0);
-			InforAladdin::getInstance()->plusHealth(-10);
-			if (isStanding)
+			#pragma region Kiểm tra điều kiện aladdin bị trừ máu
+			bool isBeAttack = !collision_event->_otherObject->isInStatus(eStatus::BEHIT) && !collision_event->_otherObject->isFlashing();
+			/*DK1:Aladdin đang không bị đánh*/
+			if (isBeAttack)
 			{
-				//Set status aladdin bị đánh
-				collision_event->_otherObject->setStatus(eStatus::BEHIT);
+				bool isStanding = collision_event->_otherObject->isInStatus(NORMAL) || collision_event->_otherObject->isInStatus(NORMAL1) || collision_event->_otherObject->isInStatus(FREE);
+				//âm thanh
+				//SoundManager::getInstance()->PlaySound("Resources/Audio/CloudPoof.wav", 0);
+				InforAladdin::getInstance()->plusHealth(-10);
+				if (isStanding)
+				{
+					//Set status aladdin bị đánh
+					collision_event->_otherObject->setStatus(eStatus::BEHIT);
+				}
+				else
+				{
+					//Set status aladdin bị đánh
+					collision_event->_otherObject->StartFlash();
+				}
 			}
-			else
-			{
-				//Set status aladdin bị đánh
-				collision_event->_otherObject->StartFlash();
-			}
+			#pragma endregion
+			break;
 		}
-		#pragma endregion
-		break;
-	}
-	case eStatus::THROW_RIGHT_FAR:
-	{
-		#pragma region Kiểm tra điều kiện aladdin bị trừ máu
-		bool isBeAttack = !collision_event->_otherObject->isInStatus(eStatus::BEHIT) && !collision_event->_otherObject->isFlashing();
-		/*DK1:Aladdin đang không bị đánh*/
-		if (isBeAttack)
+		case eStatus::THROW_RIGHT_FAR:
 		{
-			bool isStanding = collision_event->_otherObject->isInStatus(NORMAL) || collision_event->_otherObject->isInStatus(NORMAL1) || collision_event->_otherObject->isInStatus(FREE);
-			//âm thanh
-			//SoundManager::getInstance()->PlaySound("Resources/Audio/CloudPoof.wav", 0);
-			InforAladdin::getInstance()->plusHealth(-10);
-			if (isStanding)
+			#pragma region Kiểm tra điều kiện aladdin bị trừ máu
+			bool isBeAttack = !collision_event->_otherObject->isInStatus(eStatus::BEHIT) && !collision_event->_otherObject->isFlashing();
+			/*DK1:Aladdin đang không bị đánh*/
+			if (isBeAttack)
 			{
-				//Set status aladdin bị đánh
-				collision_event->_otherObject->setStatus(eStatus::BEHIT);
+				bool isStanding = collision_event->_otherObject->isInStatus(NORMAL) || collision_event->_otherObject->isInStatus(NORMAL1) || collision_event->_otherObject->isInStatus(FREE);
+				//âm thanh
+				//SoundManager::getInstance()->PlaySound("Resources/Audio/CloudPoof.wav", 0);
+				InforAladdin::getInstance()->plusHealth(-10);
+				if (isStanding)
+				{
+					//Set status aladdin bị đánh
+					collision_event->_otherObject->setStatus(eStatus::BEHIT);
+				}
+				else
+				{
+					//Set status aladdin bị đánh
+					collision_event->_otherObject->StartFlash();
+				}
 			}
-			else
-			{
-				//Set status aladdin bị đánh
-				collision_event->_otherObject->StartFlash();
-			}
+			#pragma endregion
+			break;
 		}
-		#pragma endregion
-		break;
-	}
 	}
 }
 
@@ -298,7 +298,7 @@ void Boss::UpdateStatus(float dt)
 				_animations[BEHIT]->setIndex(0);
 				if (_hitpoint <= 16)
 				{
-					isVersion2 = true;
+					isversion2 = true;
 					this->setStatus(THROW_LEFT_FAR);
 					return;
 				}
@@ -366,7 +366,7 @@ void Boss::UpdateStatus(float dt)
 	
 
 	Vector2 distance = distanceBetweenAladdin();
-	if (isVersion2)
+	if (isversion2)
 	{
 		//Aladdin bên trái enermy
 		if (distance.x <= 0)
@@ -443,6 +443,11 @@ void Boss::OptimizeFire(RECT* rect)
 			_listFireBoss.erase(_listFireBoss.begin() + i);
 		}
 	}
+}
+
+bool Boss::isVersion2()
+{
+	return isversion2;
 }
 
 bool Boss::isContain(BaseObject*object, RECT rect1)

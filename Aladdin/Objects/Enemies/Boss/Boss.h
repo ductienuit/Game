@@ -36,6 +36,8 @@ public:
 
 	void OptimizeFire(RECT* rect);
 
+	bool isVersion2();
+
 	Text* text;
 	~Boss();
 private:
@@ -43,7 +45,7 @@ private:
 	map<int, Animation*> _animations;
 	vector<BaseObject*> _listStar;
 	Aladdin* _aladdin;
-	bool isVersion2;
+	bool isversion2;
 	Sprite *_divingSprite;
 	vector<BaseObject*> _listFireBoss;
 	StopWatch* _frequency;

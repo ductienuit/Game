@@ -1750,7 +1750,7 @@ void Aladdin::Revival()
 
 		__unhook((CollisionBody*)_listComponent["CollisionBody"]);
 		__unhook((CollisionBody*)_listComponent["CollisionBody"]);
-
+		swing();
 		setPosition(_restartPoint->getPosition());
 		setStatus(eStatus::REVIVAL);
 	}
