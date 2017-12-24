@@ -177,9 +177,9 @@ void SpriteManager::LoadResource(LPD3DXSPRITE spriteHandle)
 	this->_listSprite.insert(pair<eID, Sprite*>(eID::BACKGROUNDBOSSFRONT, sp));
 	this->LoadSpriteInfo(eID::BACKGROUNDBOSSFRONT, "Resources//Images//Boss//palace_back.txt");
 
-	sp = new Sprite(spriteHandle, "Resources//Images//Boss//jafar_8.png");
+	sp = new Sprite(spriteHandle, "Resources//Images//Boss//Boss.png");
 	this->_listSprite.insert(pair<eID, Sprite*>(eID::BOSS, sp));
-	this->LoadSpriteInfo(eID::BOSS, "Resources//Images//Boss//jafar_8.txt");
+	this->LoadSpriteInfo(eID::BOSS, "Resources//Images//Boss//Boss.txt");
 
 	sp = new Sprite(spriteHandle, "Resources//Images//Boss//enemy_explosion.png");
 	this->_listSprite.insert(pair<eID, Sprite*>(eID::STRIP_BOSS, sp));
@@ -193,6 +193,9 @@ void SpriteManager::LoadResource(LPD3DXSPRITE spriteHandle)
 	this->_listSprite.insert(pair<eID, Sprite*>(eID::STAR, sp));
 	this->LoadSpriteInfo(eID::STAR, "Resources//Images//Boss//spell_strip7_15_11.txt");
 
+	sp = new Sprite(spriteHandle, "Resources//Images//Boss//movingflame_strip8.png");
+	this->_listSprite.insert(pair<eID, Sprite*>(eID::FIRE_BOSS, sp));
+	this->LoadSpriteInfo(eID::FIRE_BOSS, "Resources//Images//Boss//movingflame_strip8.txt");
 }
 
 Sprite * SpriteManager::getSprite(eID id)

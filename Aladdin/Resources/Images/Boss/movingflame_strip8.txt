@@ -1,1 +1,9 @@
 frame_name	left	top	right	bottom
+movingflame_0	0	0	101	53
+movingflame_1	101	0	202	53
+movingflame_2	202	0	303	53
+movingflame_3	303	0	404	53
+movingflame_4	404	0	505	53
+movingflame_5	505	0	606	53
+movingflame_6	606	0	707	53
+movingflame_7	707	0	808	53

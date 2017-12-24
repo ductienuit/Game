@@ -943,6 +943,7 @@ void Aladdin::UpdateInput(float dt)
 				return;
 			}
 			this->setStatus(_preStatus);
+			_preStatus = NORMAL;
 		}
 		break;
 	}

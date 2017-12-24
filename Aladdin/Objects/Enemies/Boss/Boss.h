@@ -12,6 +12,7 @@
 #include	<math.h>
 #include"StripBoss.h"
 #include"Star.h"
+#include"FireBoss.h"
 
 
 using namespace std;
@@ -42,6 +43,8 @@ private:
 	Aladdin* _aladdin;
 	bool isVersion2;
 	Sprite *_divingSprite;
+	vector<BaseObject*> _listFireBoss;
 	StopWatch* _frequency;
+	StopWatch* _frequencyFireBoss;
 };
 #endif

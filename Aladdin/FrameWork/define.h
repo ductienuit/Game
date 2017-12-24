@@ -106,7 +106,9 @@ enum eID
 	BOSS, 
 	STRIP_BOSS,
 	STRIP_ALADDIN,
-	STAR
+	STAR,
+	BOSS2,
+	FIRE_BOSS
 };
 
 enum eSoundId

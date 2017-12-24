@@ -134,6 +134,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AladdinGame.cpp" />
+    <ClCompile Include="Objects\Enemies\Boss\FireBoss.cpp" />
     <ClCompile Include="Objects\Enemies\Boss\Boss.cpp" />
     <ClCompile Include="Scenes\BackgroundBossBack.cpp" />
     <ClCompile Include="Scenes\BackGroundBossFront.cpp" />
@@ -227,6 +228,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AladdinGame.h" />
+    <ClInclude Include="Objects\Enemies\Boss\FireBoss.h" />
     <ClInclude Include="Objects\Enemies\Boss\Boss.h" />
     <ClInclude Include="Scenes\BackgroundBossBack.h" />
     <ClInclude Include="Scenes\BackGroundBossFront.h" />

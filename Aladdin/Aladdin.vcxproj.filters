@@ -345,6 +345,9 @@
     <ClCompile Include="Objects\Enemies\Boss\Star.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Objects\Enemies\Boss\FireBoss.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FrameWork\Animation.h">
@@ -636,6 +639,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Objects\Enemies\Boss\Star.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Enemies\Boss\FireBoss.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -42,16 +42,17 @@ void Boss::InIt()
 	_animations[ATTACK_RIGHT]->addFrameRect(eID::BOSS, "jafar_1_4", "jafar_1_5", "jafar_1_6", "jafar_1_7","jafar_1_4", "jafar_1_5", "jafar_1_6", "jafar_1_7", NULL);
 
 	_animations[THROW_RIGHT_FAR] = new Animation(_sprite, 0.2f);
-	_animations[THROW_RIGHT_FAR]->addFrameRect(eID::BOSS, "jafar_1_4", "jafar_1_5", "jafar_1_6", "jafar_1_7", NULL);
+	_animations[THROW_RIGHT_FAR]->addFrameRect(eID::BOSS, "jafar_2_",11);
 
 	_animations[THROW_LEFT_FAR] = new Animation(_sprite, 0.15f);
-	_animations[THROW_LEFT_FAR]->addFrameRect(eID::BOSS, "jafar_1_4", "jafar_1_5", "jafar_1_6", "jafar_1_7", NULL);
+	_animations[THROW_LEFT_FAR]->addFrameRect(eID::BOSS, "jafar_2_", 11);
 
 	_animations[DYING] = new Animation(_sprite, 0.1f);
 	_animations[DYING]->addFrameRect(eID::BOSS, "destroy_enermy_00_0", 10);
 
 	_hitpoint = 50;
 	_frequency = new StopWatch();
+	_frequencyFireBoss = new StopWatch();
 }
 
 void Boss::Update(float deltatime)
@@ -128,6 +129,34 @@ void Boss::onCollisionBegin(CollisionEventArg *collision_event)
 		{
 			_animations[ATTACK_LEFT]->setIndex(0);
 			if (!_aladdin->isInStatus(BEHIT))
+			{
+				_aladdin->Stop(true);
+				_aladdin->setStatus(BEHIT);
+				InforAladdin::getInstance()->plusHealth(-10);
+			}
+		}
+		break;
+	}
+	case eStatus::THROW_LEFT_FAR:
+	{
+		setScaleX(-SCALECHARACTER.x);
+		if (_animations[THROW_LEFT_FAR]->getIndex() == 4 || _animations[THROW_LEFT_FAR]->getIndex() == 10)
+		{
+			if (!_aladdin->isInStatus(BEHIT))
+			{
+				_aladdin->Stop(true);
+				_aladdin->setStatus(BEHIT);
+				InforAladdin::getInstance()->plusHealth(-10);
+			}
+		}
+		break;
+	}
+	case eStatus::THROW_RIGHT_FAR:
+	{
+		setScaleX(SCALECHARACTER.x);
+		if (_animations[THROW_RIGHT_FAR]->getIndex() == 4 || _animations[THROW_RIGHT_FAR]->getIndex() == 10)
+		{
+			if (!_aladdin->isExist((eStatus)(BEHIT | JUMPING | JUMPING_LEFT | JUMPING_RIGHT)))
 			{
 				_aladdin->Stop(true);
 				_aladdin->setStatus(BEHIT);
@@ -218,6 +247,26 @@ void Boss::UpdateStatus(float dt)
 			// new star
 			break;
 		}
+		case eStatus::THROW_LEFT_FAR:
+		{
+			if (_animations[THROW_LEFT_FAR]->getIndex() == 0 || _animations[THROW_LEFT_FAR]->getIndex() == 4 || _animations[THROW_LEFT_FAR]->getIndex() == 10)
+			{
+				float x = getPositionX();
+				float y = getPositionY();
+				_listFireBoss.push_back(new FireBoss(x,y,true));
+			}
+			break;
+		}
+		case eStatus::THROW_RIGHT_FAR:
+		{
+			if (_animations[THROW_LEFT_FAR]->getIndex() == 4 || _animations[THROW_LEFT_FAR]->getIndex() == 10)
+			{
+				float x = getPositionX();
+				float y = getPositionY();
+				_listFireBoss.push_back(new FireBoss(x, y, false));
+			}
+			break;
+		}
 	}
 	
 
@@ -227,37 +276,13 @@ void Boss::UpdateStatus(float dt)
 		//Aladdin bên trái enermy
 		if (distance.x <= 0)
 		{
-			distance.x = (-1)*distance.x;
-			if (distance.x < 90)
-			{
-				_aladdin->Stop(true);
-				if (!_aladdin->isInStatus(BEHIT))
-				{
-					_aladdin->setStatus(BEHIT);
-					InforAladdin::getInstance()->plusHealth(-10);
-				}
-			}
-			else
-			{
-				setStatus(THROW_LEFT_FAR);
-				setScaleX(-SCALECHARACTER.x);
-			}
+			setStatus(THROW_LEFT_FAR);
+			setScaleX(-SCALECHARACTER.x);
 		}
 		else
 		{
-			if (distance.x < 90)
-			{
-				if (!_aladdin->isInStatus(BEHIT))
-				{
-					_aladdin->setStatus(BEHIT);
-					InforAladdin::getInstance()->plusHealth(-10);
-				}
-			}
-			else
-			{
-				setStatus(THROW_RIGHT_FAR);
-				setScaleX(SCALECHARACTER.x);
-			}
+			setStatus(THROW_RIGHT_FAR);
+			setScaleX(SCALECHARACTER.x);
 		}
 	}
 	else
