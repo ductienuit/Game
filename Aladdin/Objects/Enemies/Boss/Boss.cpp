@@ -1,5 +1,6 @@
 ﻿#include "Boss.h"
 
+extern vector<BaseObject*>	listStrip;
 
 Boss::Boss(eStatus status, int posX, int posY, Aladdin* aladdin) :BaseEnemy(eID::BOSS)
 {
@@ -34,11 +35,11 @@ void Boss::InIt()
 	_animations[PULL_RIGHT] = new Animation(_sprite, 0.15f);
 	_animations[PULL_RIGHT]->addFrameRect(eID::BOSS, "jafar_1_", 8);
 
-	_animations[ATTACK_LEFT] = new Animation(_sprite, 0.15f);
-	_animations[ATTACK_LEFT]->addFrameRect(eID::BOSS, "jafar_1_4", "jafar_1_5", "jafar_1_6", "jafar_1_7", NULL);
+	_animations[ATTACK_LEFT] = new Animation(_sprite, 0.16f);
+	_animations[ATTACK_LEFT]->addFrameRect(eID::BOSS, "jafar_1_4", "jafar_1_5", "jafar_1_6", "jafar_1_7", "jafar_1_4", "jafar_1_5", "jafar_1_6", "jafar_1_7", NULL);
 
-	_animations[ATTACK_RIGHT] = new Animation(_sprite, 0.15f);
-	_animations[ATTACK_RIGHT]->addFrameRect(eID::BOSS, "jafar_1_4", "jafar_1_5", "jafar_1_6", "jafar_1_7", NULL);
+	_animations[ATTACK_RIGHT] = new Animation(_sprite, 0.16f);
+	_animations[ATTACK_RIGHT]->addFrameRect(eID::BOSS, "jafar_1_4", "jafar_1_5", "jafar_1_6", "jafar_1_7","jafar_1_4", "jafar_1_5", "jafar_1_6", "jafar_1_7", NULL);
 
 	_animations[THROW_RIGHT_FAR] = new Animation(_sprite, 0.2f);
 	_animations[THROW_RIGHT_FAR]->addFrameRect(eID::BOSS, "jafar_1_4", "jafar_1_5", "jafar_1_6", "jafar_1_7", NULL);
@@ -100,21 +101,38 @@ void Boss::Release()
 
 void Boss::onCollisionBegin(CollisionEventArg *collision_event)
 {
-	eID objectID = collision_event->_otherObject->getId();
-	switch (objectID)
+	eStatus status = getStatus();
+	switch (status)
 	{
-	case eID::ALADDIN:
+	case eStatus::DESTROY:
+		return;
+	case eStatus::ATTACK_RIGHT:
 	{
-		if (collision_event->_otherObject->isInStatus(ATTACK))
+		setScaleX(SCALECHARACTER.x);
+		if (_animations[ATTACK_RIGHT]->getIndex() >= 3)
 		{
-			//mạng sống còn 1 và bức ảnh ATTACK của aladdin bằng 1
-			if (collision_event->_otherObject->getIndex() == 4 && _hitpoint >= 1)
+			_animations[ATTACK_RIGHT]->setIndex(0);
+			if (!_aladdin->isExist((eStatus)(BEHIT | JUMPING | JUMPING_LEFT | JUMPING_RIGHT)))
 			{
-				_hitpoint = 0;
-				this->setStatus(eStatus::DYING);
+				_aladdin->Stop(true);
+				_aladdin->setStatus(BEHIT);
+				InforAladdin::getInstance()->plusHealth(-10);
 			}
-			break;
-
+		}
+		break;
+	}
+	case eStatus::ATTACK_LEFT:
+	{
+		setScaleX(-SCALECHARACTER.x);
+		if (_animations[ATTACK_LEFT]->getIndex() >= 3)
+		{
+			_animations[ATTACK_LEFT]->setIndex(0);
+			if (!_aladdin->isInStatus(BEHIT))
+			{
+				_aladdin->Stop(true);
+				_aladdin->setStatus(BEHIT);
+				InforAladdin::getInstance()->plusHealth(-10);
+			}
 		}
 		break;
 	}
@@ -127,12 +145,8 @@ void Boss::onCollisionEnd(CollisionEventArg *)
 
 float Boss::checkCollision(BaseObject *object, float dt)
 {
-	//if (object == this)
-	//	return 0.0f;
-	//auto collisionBody = (CollisionBody*)_listComponent["CollisionBody"];
-	////Check collision enermy(this) với aladdin(object)
-	///*Ưu tiên check Boss trước, sau đó đến knife*/
-	//collisionBody->checkCollision(object, dt, true);
+	auto collisionBody = (CollisionBody*)_listComponent["CollisionBody"];
+	collisionBody->checkCollision(_aladdin , dt, true);
 	return 0.0f;
 }
 
@@ -156,6 +170,9 @@ void Boss::UpdateStatus(float dt)
 		{
 			if (_animations[BEHIT]->getIndex() >= 2)
 			{
+				float x = getPositionX();
+				float y = getPositionY();
+				listStrip.push_back(new StripBoss(x,y));
 				_animations[BEHIT]->setIndex(0);
 				if (_hitpoint <= 16)
 				{
@@ -165,6 +182,7 @@ void Boss::UpdateStatus(float dt)
 				}
 				this->setStatus(PULL_LEFT);
 			}
+			return;
 		}
 		case eStatus::PULL_LEFT:
 		{
@@ -201,9 +219,7 @@ void Boss::UpdateStatus(float dt)
 			break;
 		}
 	}
-
-
-
+	
 
 	Vector2 distance = distanceBetweenAladdin();
 	if (isVersion2)
@@ -253,13 +269,6 @@ void Boss::UpdateStatus(float dt)
 			if (distance.x < 90)
 			{
 				setStatus(ATTACK_LEFT);
-				setScaleX(-SCALECHARACTER.x);
-				_aladdin->Stop(true);
-				/*if (!_aladdin->isInStatus(BEHIT))
-				{
-					_aladdin->setStatus(BEHIT);
-					InforAladdin::getInstance()->plusHealth(-10);
-				}*/
 			}
 			else
 			{
@@ -272,13 +281,6 @@ void Boss::UpdateStatus(float dt)
 			if (distance.x < 90)
 			{
 				setStatus(ATTACK_RIGHT);
-				setScaleX(SCALECHARACTER.x);
-				_aladdin->Stop(true);
-				/*if (!_aladdin->isInStatus(BEHIT))
-				{
-					_aladdin->setStatus(BEHIT);
-					InforAladdin::getInstance()->plusHealth(-10);
-				}*/
 			}
 			else
 			{

@@ -145,7 +145,7 @@ void Aladdin::InIt()
 	_animations[eStatus::DYING] = new Animation(_sprite, 0.1f);
 	_animations[eStatus::DYING]->addFrameRect(eID::ALADDIN, "die_", 28);
 
-	_animations[eStatus::BEHIT] = new Animation(_sprite, 0.07f);
+	_animations[eStatus::BEHIT] = new Animation(_sprite, 0.05f);
 	_animations[eStatus::BEHIT]->addFrameRect(eID::ALADDIN, "burn_", 6); //6
 
 	_animations[eStatus::SWING] = new Animation(_sprite, 0.1f);
@@ -932,9 +932,16 @@ void Aladdin::UpdateInput(float dt)
 		_animations[BEHIT]->EnableFlashes(true);
 
 		//Tự hủy khi đế một bức ảnh thứ n
-		if (_animations[_currentAnimateIndex]->getIndex()== 4)
+		if (_animations[_currentAnimateIndex]->getIndex() >= 4)
 		{
 			_animations[_currentAnimateIndex]->setIndex(0);
+			if (_preStatus == JUMPING || _preStatus == JUMPING_LEFT || _preStatus == JUMPING_RIGHT || _preStatus == DROP || _preStatus == BEHIT)
+			{
+				auto move = (Movement*)_listComponent["Movement"];
+				move->setVelocity(Vector2(move->getVelocity().x, 120));
+				setStatus(NORMAL);
+				return;
+			}
 			this->setStatus(_preStatus);
 		}
 		break;
@@ -1000,8 +1007,13 @@ void Aladdin::UpdateInput(float dt)
 		if (_input->isKeyDown(DIK_RIGHT))
 			moveRight();
 	}
+	
+	
+	
 	if (_input->isKeyPressed(DIK_Q))
 		InforAladdin::getInstance()->plusHealth(100);
+	if (_input->isKeyPressed(DIK_9))
+		clearStatus();
 }
 
 void Aladdin::onKeyReleased(KeyEventArg * key_event)
@@ -1350,7 +1362,6 @@ void Aladdin::onCollisionEnd(CollisionEventArg * collision_event)
 					setStatus(eStatus::CLIMB_JUMP);
 					auto g = (Gravity*)_listComponent["Gravity"];
 					g->setStatus(eGravityStatus::FALLING__DOWN); 
-					_preStatus = CLIMB;
 					break;
 				}
 				case (eLandType::SOLID):

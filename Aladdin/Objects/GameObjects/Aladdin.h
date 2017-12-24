@@ -62,6 +62,7 @@ public:
 	void SetRestartPoint(BaseObject*) override;
 	void Revival();
 
+	bool isExist(eStatus status);
 	void addVelocity(float);
 	Vector2 getVelocity() override;
 	void standing();
@@ -110,7 +111,7 @@ private:
 	//void setState(int state);
 	void addStatus(eStatus status);
 	void removeStatus(eStatus status);
-	bool isExist(eStatus status);
+
 
 	void updateStatus(float dt);
 	//Kiểm tra loại trạng thái và cho thực hiện đến những ảnh cuối cùng

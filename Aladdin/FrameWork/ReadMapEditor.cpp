@@ -1,7 +1,9 @@
 ﻿#include "ReadMapEditor.h"
 extern 	vector<BaseObject*> Stair[2];
+
 vector<BaseObject*> listFireActive;
 vector<BaseObject*> listActive;
+
 map<int, int> distanceThrowJar;
 
 struct MaxMin;

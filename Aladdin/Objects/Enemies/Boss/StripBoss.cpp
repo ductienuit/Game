@@ -1,38 +1,55 @@
 ﻿#include "StripBoss.h"
 extern vector<BaseObject*> listActive;
-StripBoss::StripBoss(int posX, int posY) : BaseObject(eID::STRIP_BOSS)
+
+StripBoss::StripBoss(int posX, int posY) :BaseObject(eID::STRIP_BOSS)
 {
 	_sprite = SpriteManager::getInstance()->getSprite(eID::STRIP_BOSS);
 	_sprite->setFrameRect(0, 0, 5.0f, 5.0f);
+
+	this->setPosition(posX, posY, 1.0f);
 	this->setStatus(BEHIT);
-	setScale(SCALEAPPLE);
-	this->setPosition(posX*SCALEFACTOR.x, posY*SCALEFACTOR.y, 1.0f);
 	text = new Text("Arial", "", 10, 25);
+
 	InIt();
 }
 
 void StripBoss::InIt()
 {
+
 	_animations[BEHIT] = new Animation(_sprite, 0.01f);
 	_animations[BEHIT]->addFrameRect(eID::STRIP_BOSS, "explosion_", 26);
 }
 
 void StripBoss::Update(float deltatime)
 {
-	_animations[this->getStatus()]->Update(deltatime);
+	_animations[_status]->Update(deltatime);
 
-	if (_animations[BEHIT]->getIndex() >= 25)
+	switch (this->getStatus())
 	{
-		_animations[BEHIT]->setIndex(0);
-		setStatus(DESTROY);
-		this->Release();
-		delete this;
+		case DESTROY:
+			return;
+		case BEHIT:
+		{
+			setScale(SCALEAPPLE);
+			if (_animations[BEHIT]->getIndex() >= 25)
+			{
+				_animations[BEHIT]->setIndex(0);
+				setStatus(DESTROY);
+			}
+		}
+	}
+
+
+	// update component để sau cùng để sửa bên trên sau đó nó cập nhật đúng
+	for (auto it = _listComponent.begin(); it != _listComponent.end(); it++)
+	{
+		it->second->Update(deltatime);
 	}
 }
 
 void StripBoss::Draw(LPD3DXSPRITE spritehandle, ViewPort* viewport)
 {
-	_animations[this->getStatus()]->Draw(spritehandle, viewport);
+	_animations[_status]->Draw(spritehandle, viewport);
 }
 
 void StripBoss::Release()
@@ -47,7 +64,6 @@ void StripBoss::Release()
 
 void StripBoss::onCollisionBegin(CollisionEventArg *collision_event)
 {
-
 }
 
 void StripBoss::onCollisionEnd(CollisionEventArg *)

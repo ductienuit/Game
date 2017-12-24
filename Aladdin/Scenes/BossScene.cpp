@@ -117,6 +117,14 @@ void BossScene::Update(float dt)
 
 #pragma endregion
 
+	_boss->checkCollision(_aladdin, dt);
+
+
+	//Object nổ khi táo va chạm 
+	for each(auto strip in listStrip)
+		strip->Update(dt);
+	
+
 	//Cập nhật điểm, máu, táo, mạng sống trên màn hình
 	for each(auto score in _listScore)
 		score->Update(dt);
@@ -134,9 +142,11 @@ void BossScene::Draw(LPD3DXSPRITE spriteHandle)
 			continue;
 		object->Draw(spriteHandle, _viewport);
 	}
-	
-	_aladdin->Draw(spriteHandle, _viewport);	
 	_boss->Draw(spriteHandle, _viewport);
+	_aladdin->Draw(spriteHandle, _viewport);
+
+
+	
 
 	#pragma region F1 to show all bounding box
 	//Vẽ bounding
@@ -157,6 +167,17 @@ void BossScene::Draw(LPD3DXSPRITE spriteHandle)
 
 	for each(auto score in _listScore)
 		score->Draw(spriteHandle, _viewport);
+
+	for (int i = 0; i<listStrip.size(); i++)
+	{
+		if (listStrip[i]->isInStatus(DESTROY))
+		{
+			listStrip[i]->Release();
+			delete listStrip[i];
+			listStrip.erase(i + listStrip.begin());
+		}
+		else listStrip[i]->Draw(spriteHandle, _viewport);
+	}
 }
 
 void BossScene::Release()
