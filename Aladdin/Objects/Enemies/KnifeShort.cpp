@@ -112,16 +112,26 @@ void KnifeShort::onCollisionBegin(CollisionEventArg *collision_event)
 			else _isLeft = true;
 			break;
 		}
-		else 
-		/*DK1:Aladdin đang không bị đánh*/
-		if (collision_event->_otherObject->isInStatus(eStatus::BEHIT) == false && !isInStatus(DESTROY))
-		{
-
-			//Lưu trạng thái trước khi hết bị đánh set lại cái trạng thái cũ
-			collision_event->_otherObject->savePreStatus();
-			//Set status aladdin bị đánh
-			collision_event->_otherObject->setStatus(eStatus::BEHIT);
-			InforAladdin::getInstance()->plusHealth(-10);
+		else {
+			#pragma region Kiểm tra điều kiện aladdin bị trừ máu
+			bool isBeAttack = !collision_event->_otherObject->isInStatus(eStatus::BEHIT) && !collision_event->_otherObject->isFlashing();
+			/*DK1:Aladdin đang không bị đánh*/
+			if (isBeAttack)
+			{
+				bool isStanding = collision_event->_otherObject->isInStatus(NORMAL) || collision_event->_otherObject->isInStatus(NORMAL1) || collision_event->_otherObject->isInStatus(FREE);
+				InforAladdin::getInstance()->plusHealth(-10);
+				if (isStanding)
+				{
+					//Set status aladdin bị đánh
+					collision_event->_otherObject->setStatus(eStatus::BEHIT);
+				}
+				else
+				{
+					//Set status aladdin bị đánh
+					collision_event->_otherObject->StartFlash();
+				}
+			}
+			#pragma endregion
 		}
 		break;
 	}

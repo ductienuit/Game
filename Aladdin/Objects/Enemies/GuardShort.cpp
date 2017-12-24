@@ -99,7 +99,7 @@ void GuardShort::onCollisionBegin(CollisionEventArg *collision_event)
 			if (collision_event->_otherObject->isInStatus(ATTACK))
 			{
 				//mạng sống còn 1 và bức ảnh ATTACK của aladdin bằng 1
-				if (collision_event->_otherObject->getIndex() == 4 && _hitpoint >= 1)
+				if (collision_event->_otherObject->getIndex() == 2 && _hitpoint >= 1)
 				{
 					_hitpoint = 0;
 					this->setStatus(eStatus::DYING);

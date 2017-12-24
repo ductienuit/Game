@@ -208,36 +208,49 @@ void GuardFat::onCollisionBegin(CollisionEventArg *collision_event)
 				setStatus(DYING);
 				return;
 			}
-			if (collision_event->_otherObject->isInStatus(SITTING_DOWN) && this->isInStatus(DYING) && isInStatus(DESTROY))
+
+			if (collision_event->_otherObject->isInStatus(SITTING_DOWN))
 			{
 				this->setStatus(eStatus(SITTING_DOWN | ATTACK));
 			}
+
+
 			if (collision_event->_otherObject->isInStatus(ATTACK))
 			{
 				//mạng sống còn 1 và bức ảnh ATTACK của aladdin bằng 1
 				if (collision_event->_otherObject->getIndex() == 1 && _hitpoint >= 1)
-				{					
+				{
 					_hitpoint -= 1;
 					this->setStatus(eStatus::BEHIT);
 				}
 				break;
 			}
 			else
-				/*DK1:Aladdin đang không bị đánh
-				DK2 bức ảnh status Attack của guardFat hiện tại là 4*/
-				if (collision_event->_otherObject->isInStatus(eStatus::BEHIT) == false
-					&&
-					this->_animations[ATTACK]->getIndex() == 4)
+			{					
+				bool isBeAttack = !collision_event->_otherObject->isInStatus(eStatus::BEHIT) && !collision_event->_otherObject->isFlashing();
+				if (isBeAttack)
 				{
-					//âm thanh
-					SoundManager::getInstance()->PlaySound("Resources/Audio/HighSword.wav", 0);
-					//Lưu trạng thái trước khi hết bị đánh set lại cái trạng thái cũ
-					collision_event->_otherObject->savePreStatus();
-					//Set status aladdin bị đánh
-					collision_event->_otherObject->setStatus(eStatus::BEHIT);
-					InforAladdin::getInstance()->plusHealth(-10);
-
+					bool isStanding = collision_event->_otherObject->isInStatus(NORMAL) || collision_event->_otherObject->isInStatus(NORMAL1) || collision_event->_otherObject->isInStatus(FREE);
+					if (_animations[BEHIT]->getIndex() == 4)
+					{
+						//âm thanh
+						SoundManager::getInstance()->PlaySound("Resources/Audio/HighSword.wav", 0);
+						InforAladdin::getInstance()->plusHealth(-10);
+						if (isStanding)
+						{
+							//Set status aladdin bị đánh
+							collision_event->_otherObject->setStatus(eStatus::BEHIT);
+						}
+						else
+						{
+							//Set status aladdin bị đánh
+							collision_event->_otherObject->StartFlash();
+						}
+					}
 				}
+				break;
+			}
+
 			break;
 		}
 		case eID::FIRE:

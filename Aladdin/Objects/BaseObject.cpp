@@ -271,3 +271,13 @@ void BaseObject::SetRestartPoint(BaseObject *)
 {
 	//do nothing
 }
+
+void BaseObject::StartFlash()
+{
+}
+
+bool BaseObject::isFlashing()
+{
+	return false;
+}
+

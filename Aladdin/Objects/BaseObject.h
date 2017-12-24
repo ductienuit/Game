@@ -89,12 +89,18 @@ public:
 
 	virtual void		setPhysicsBodySide(eDirection side);
 	virtual eDirection  getPhysicsBodySide();
+
 	virtual void		ShowBB();
 	virtual void		StopUp();
 	virtual int			getIndex(); //Index of Animations
 	
 	// Hồi Sinh
 	virtual void SetRestartPoint(BaseObject*);
+
+
+	//Nhấp nháy khi bị đánh
+	virtual	void		StartFlash();
+	virtual bool		isFlashing();
 protected:
 	Sprite*		_sprite;
 	// nếu muốn dùng animation thì class kế thừa khai báo animation
@@ -103,7 +109,7 @@ protected:
 	eStatus		_status;
 	eStatus		_preStatus;
 	eDirection	_physicsSide;
-	//FLAG
+ 	//FLAG
 	bool		_canUp;
 };
 #endif __BASEOBJECT_H__

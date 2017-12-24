@@ -29,6 +29,7 @@ public:
 	bool isStart();
 	bool isTimeLoop(float time);
 	bool isStopWatch(float time);
+	bool isLoopInTime();
 	void timeLoopAction(float milisecond, pFunction action);
 	void restart();
 private:

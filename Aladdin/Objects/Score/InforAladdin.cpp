@@ -72,6 +72,8 @@ InforAladdin::InforAladdin(void)
 void InforAladdin::plusCoin(int value)
 {
 	_coin += value;
+	if (_coin < 0)
+		_coin = 0;
 }
 
 int InforAladdin::getCoin()
@@ -87,6 +89,8 @@ void InforAladdin::plusApple(int value)
 		return;
 	}
 	_apple += value;
+	if (_apple < 0)
+		_apple = 0;
 }
 
 int InforAladdin::getApple()

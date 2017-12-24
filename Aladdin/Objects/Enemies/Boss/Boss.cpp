@@ -27,25 +27,25 @@ void Boss::InIt()
 	__hook(&CollisionBody::onCollisionEnd, collisionBody, &Boss::onCollisionEnd);
 
 	_animations[BEHIT] = new Animation(_sprite, 0.1f);
-	_animations[BEHIT]->addFrameRect(eID::BOSS, "jafar_1_4", "jafar_1_3", "jafar_1_2", NULL);
+	_animations[BEHIT]->addFrameRect(eID::BOSS, "jafar_04", "jafar_03", "jafar_02", NULL);
 
 	_animations[PULL_LEFT] = new Animation(_sprite, 0.15f);
-	_animations[PULL_LEFT]->addFrameRect(eID::BOSS, "jafar_1_", 8);
+	_animations[PULL_LEFT]->addFrameRect(eID::BOSS, "jafar_0", 8);
 
 	_animations[PULL_RIGHT] = new Animation(_sprite, 0.15f);
-	_animations[PULL_RIGHT]->addFrameRect(eID::BOSS, "jafar_1_", 8);
+	_animations[PULL_RIGHT]->addFrameRect(eID::BOSS, "jafar_0", 8);
 
 	_animations[ATTACK_LEFT] = new Animation(_sprite, 0.16f);
-	_animations[ATTACK_LEFT]->addFrameRect(eID::BOSS, "jafar_1_4", "jafar_1_5", "jafar_1_6", "jafar_1_7", "jafar_1_4", "jafar_1_5", "jafar_1_6", "jafar_1_7", NULL);
+	_animations[ATTACK_LEFT]->addFrameRect(eID::BOSS, "jafar_04", "jafar_05", "jafar_06", "jafar_07", "jafar_04", "jafar_05", "jafar_06", "jafar_07", NULL);
 
 	_animations[ATTACK_RIGHT] = new Animation(_sprite, 0.16f);
-	_animations[ATTACK_RIGHT]->addFrameRect(eID::BOSS, "jafar_1_4", "jafar_1_5", "jafar_1_6", "jafar_1_7","jafar_1_4", "jafar_1_5", "jafar_1_6", "jafar_1_7", NULL);
+	_animations[ATTACK_RIGHT]->addFrameRect(eID::BOSS, "jafar_04", "jafar_05", "jafar_06", "jafar_07","jafar_04", "jafar_05", "jafar_06", "jafar_07", NULL);
 
 	_animations[THROW_RIGHT_FAR] = new Animation(_sprite, 0.2f);
-	_animations[THROW_RIGHT_FAR]->addFrameRect(eID::BOSS, "jafar_2_",11);
+	_animations[THROW_RIGHT_FAR]->addFrameRect(eID::BOSS, "jafar_snake_",11);
 
 	_animations[THROW_LEFT_FAR] = new Animation(_sprite, 0.15f);
-	_animations[THROW_LEFT_FAR]->addFrameRect(eID::BOSS, "jafar_2_", 11);
+	_animations[THROW_LEFT_FAR]->addFrameRect(eID::BOSS, "jafar_snake_", 11);
 
 	_animations[DYING] = new Animation(_sprite, 0.1f);
 	_animations[DYING]->addFrameRect(eID::BOSS, "destroy_enermy_00_0", 10);
@@ -64,6 +64,11 @@ void Boss::Update(float deltatime)
 	for (int i = 0; i < _listStar.size(); i++)
 	{
 		_listStar[i]->Update(deltatime);
+	}
+
+	for (int i = 0; i < _listFireBoss.size(); i++)
+	{
+		_listFireBoss[i]->Update(deltatime);
 	}
 
 	// update component để sau cùng để sửa bên trên sau đó nó cập nhật đúng
@@ -87,6 +92,18 @@ void Boss::Draw(LPD3DXSPRITE spritehandle, ViewPort* viewport)
 		}
 		else
 			_listStar[i]->Draw(spritehandle, viewport);
+	}
+
+	for (int i = 0; i < _listFireBoss.size(); i++)
+	{
+		if (_listFireBoss[i]->isInStatus(DESTROY))
+		{
+			_listFireBoss[i]->Release();
+			delete  _listStar[i];
+			_listFireBoss.erase(_listStar.begin() + i);
+		}
+		else
+			_listFireBoss[i]->Draw(spritehandle, viewport);
 	}
 }
 
@@ -249,21 +266,23 @@ void Boss::UpdateStatus(float dt)
 		}
 		case eStatus::THROW_LEFT_FAR:
 		{
-			if (_animations[THROW_LEFT_FAR]->getIndex() == 0 || _animations[THROW_LEFT_FAR]->getIndex() == 4 || _animations[THROW_LEFT_FAR]->getIndex() == 10)
+			if(_frequencyFireBoss->isStopWatch(1000))
 			{
 				float x = getPositionX();
 				float y = getPositionY();
 				_listFireBoss.push_back(new FireBoss(x,y,true));
+				_frequencyFireBoss->restart();
 			}
 			break;
 		}
 		case eStatus::THROW_RIGHT_FAR:
 		{
-			if (_animations[THROW_LEFT_FAR]->getIndex() == 4 || _animations[THROW_LEFT_FAR]->getIndex() == 10)
+			if (_frequencyFireBoss->isStopWatch(1000))
 			{
 				float x = getPositionX();
 				float y = getPositionY();
 				_listFireBoss.push_back(new FireBoss(x, y, false));
+				_frequencyFireBoss->restart();
 			}
 			break;
 		}

@@ -214,10 +214,14 @@ void Aladdin::InIt()
 
 	_canUp = true;
 	setStatus(eStatus::NORMAL);
+
+
 	//create stopwatch to wait time state normal or free of aladdin
 	_normalAnimateStopWatch = new StopWatch();
-	_firstAnimateStopWatch = new StopWatch();
-	_beAttackSW = new StopWatch();
+	_firstAnimateStopWatch  = new StopWatch();
+	_beAttackSW				= new StopWatch();
+	_EnableFlashes			= new StopWatch();
+
 	this->setScale(SCALEALADDIN);
 	_restartPoint = nullptr;
 }
@@ -262,6 +266,18 @@ void Aladdin::Update(float deltatime)
 
 	//Set lại bounding của aladdin
 	setBounding(_sprite->getBounding());
+
+	
+	//Kiểm tra thời gian nhấp nháy khi bị đánh
+	if (_EnableFlashes->isTimeLoop(1000))
+	{
+		_animations[_currentAnimateIndex]->EnableFlashes(true);
+	}
+	else
+	{
+		_animations[_currentAnimateIndex]->EnableFlashes(false);
+	}
+
 }
 
 void Aladdin::UpdateInput(float dt)
@@ -929,21 +945,12 @@ void Aladdin::UpdateInput(float dt)
 	}
 	case(eStatus::BEHIT):
 	{
-		_animations[BEHIT]->EnableFlashes(true);
-
 		//Tự hủy khi đế một bức ảnh thứ n
+		_EnableFlashes->restart();
 		if (_animations[_currentAnimateIndex]->getIndex() >= 4)
 		{
 			_animations[_currentAnimateIndex]->setIndex(0);
-			if (_preStatus == JUMPING || _preStatus == JUMPING_LEFT || _preStatus == JUMPING_RIGHT || _preStatus == DROP || _preStatus == BEHIT)
-			{
-				auto move = (Movement*)_listComponent["Movement"];
-				move->setVelocity(Vector2(move->getVelocity().x, 120));
-				setStatus(NORMAL);
-				return;
-			}
-			this->setStatus(_preStatus);
-			_preStatus = NORMAL;
+			setStatus(NORMAL);	
 		}
 		break;
 	}
@@ -963,9 +970,8 @@ void Aladdin::UpdateInput(float dt)
 		if (_animations[REVIVAL]->getIndex() >= 13)
 		{
 			_animations[_currentAnimateIndex]->setIndex(0);
-			setPosition(_restartPoint->getPosition().x, _restartPoint->getPosition().y - 15);
+			setPosition(_restartPoint->getPosition().x, _restartPoint->getPosition().y + 15);
 			_restartPoint->setStatus(NORMAL);
-			setStatus(NORMAL);
 
 			__hook(&CollisionBody::onCollisionBegin, (CollisionBody*)_listComponent["CollisionBody"], &Aladdin::onCollisionBegin);
 			__hook(&CollisionBody::onCollisionEnd, (CollisionBody*)_listComponent["CollisionBody"], &Aladdin::onCollisionEnd);
@@ -1699,7 +1705,6 @@ void Aladdin::setBounding(RECT r)
 		temp.top = r.top - distancey;
 		temp.bottom = r.bottom + distancey;
 	}
-	__debugoutput(temp.top);
 
 	_boundAla = temp;
 }
@@ -1783,6 +1788,16 @@ void Aladdin::standing()
 {
 	auto move = (Movement*)_listComponent["Movement"];
 	move->setVelocity(Vector2(0, 0));
+}
+
+void Aladdin::StartFlash()
+{
+	_EnableFlashes->restart();
+}
+
+bool Aladdin::isFlashing()
+{
+	return !_EnableFlashes->isFinish();
 }
 
 void Aladdin::moveLeft()
@@ -1971,7 +1986,6 @@ void Aladdin::removeStatus(eStatus status)
 {
 	setStatus(eStatus(getStatus() & ~status));
 }
-
 
 bool Aladdin::isExist(eStatus status)
 {

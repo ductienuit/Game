@@ -25,20 +25,24 @@ bool StopWatch::isStart()
 // milisecond
 bool StopWatch::isTimeLoop(float time)
 {
+	if (_isFinish == true)
+		return false;
+
 	float _totalgametime = GameTime::getInstance()->getTotalGameTime();
+
 	if (_isStart == false)
 	{
 		_stopwatch = time + _totalgametime;
 		_isStart = true;
-		return false;
+		return true;
 	}
 	float delta = _stopwatch - _totalgametime;
 	if (delta <= 0)
 	{
-		_stopwatch = time + delta + _totalgametime;
-		return true;
+		_isFinish = true;
+		return false;
 	}
-	return false;
+	return true;
 }
 
 bool StopWatch::isStopWatch(float time)

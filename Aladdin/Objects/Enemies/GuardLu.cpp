@@ -90,38 +90,47 @@ void GuardLu::onCollisionBegin(CollisionEventArg *collision_event)
 	eID objectID = collision_event->_otherObject->getId();
 	switch (objectID)
 	{
-	case eID::ALADDIN:
-	{
-		if (collision_event->_otherObject->isInStatus(ATTACK))
+		case eID::ALADDIN:
 		{
-			//mạng sống còn 1 và bức ảnh ATTACK của aladdin bằng 1
-			if (collision_event->_otherObject->getIndex() == 3)
+			if (collision_event->_otherObject->isInStatus(ATTACK))
 			{
-				InforAladdin::getInstance()->plusScore(10);
-				_hitpoint -= 1;
-				this->setStatus(eStatus::DYING);
+				//mạng sống còn 1 và bức ảnh ATTACK của aladdin bằng 1
+				if (collision_event->_otherObject->getIndex() == 3)
+				{
+					InforAladdin::getInstance()->plusScore(10);
+					_hitpoint -= 1;
+					this->setStatus(eStatus::DYING);
+				}
+				break;
+			}
+			else
+			{
+					bool isBeAttack = !collision_event->_otherObject->isInStatus(eStatus::BEHIT) && !collision_event->_otherObject->isFlashing();
+					/*DK1:Aladdin đang không bị đánh*/
+					if (isBeAttack)
+					{
+						bool isStanding = collision_event->_otherObject->isInStatus(NORMAL) || collision_event->_otherObject->isInStatus(NORMAL1) || collision_event->_otherObject->isInStatus(FREE);
+						if (_animations[ATTACK]->getIndex() == 3)
+						{
+							//âm thanh
+							SoundManager::getInstance()->PlaySound("Resources/Audio/CloudPoof.wav", 0);
+							InforAladdin::getInstance()->plusApple(-5);
+							if (isStanding)
+							{
+								//Set status aladdin bị đánh
+								collision_event->_otherObject->setStatus(eStatus::BEHIT);
+							}
+							else
+							{
+								//Set status aladdin bị đánh
+								collision_event->_otherObject->StartFlash();
+							}
+						}
+					}
+					break;
 			}
 			break;
 		}
-		else
-			/*DK1:Aladdin đang không bị đánh
-			DK2 bức ảnh status Attack của guartlu hiện tại là 3*/
-			if (collision_event->_otherObject->isInStatus(eStatus::BEHIT) == false
-				&&
-				this->_animations[ATTACK]->getIndex() == 3)
-			{
-				//âm thanh
-				SoundManager::getInstance()->PlaySound("Resources/Audio/CloudPoof.wav", 0);
-				//Lưu trạng thái trước khi hết bị đánh set lại cái trạng thái cũ
-				collision_event->_otherObject->savePreStatus();
-				//Set status aladdin bị đánh
-				collision_event->_otherObject->setStatus(eStatus::BEHIT);
-				InforAladdin::getInstance()->plusHealth(-10);
-			}
-		break;
-	}
-	default:
-		break;
 	}
 }
 

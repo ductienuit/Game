@@ -62,10 +62,15 @@ public:
 	void SetRestartPoint(BaseObject*) override;
 	void Revival();
 
-	bool isExist(eStatus status);
-	void addVelocity(float);
 	Vector2 getVelocity() override;
+	void addVelocity(float);
+
+	bool isExist(eStatus status);
+
 	void standing();
+
+	void		StartFlash() override;
+	bool		isFlashing() override;
 
 private:
 	map<int, Animation*> _animations;
@@ -107,6 +112,7 @@ private:
 	StopWatch* _firstAnimateStopWatch;
 	StopWatch* _normalAnimateStopWatch;
 	StopWatch* _beAttackSW;
+	StopWatch* _EnableFlashes;
 
 	//void setState(int state);
 	void addStatus(eStatus status);
