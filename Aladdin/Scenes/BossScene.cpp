@@ -74,6 +74,9 @@ void BossScene::Update(float dt)
 #pragma endregion
 
 
+	_boss->OptimizeFire(&screenx);
+
+
 	_aladdin->Update(dt);
 
 	_boss->Update(dt);

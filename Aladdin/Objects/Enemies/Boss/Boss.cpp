@@ -35,13 +35,13 @@ void Boss::InIt()
 	_animations[PULL_RIGHT] = new Animation(_sprite, 0.15f);
 	_animations[PULL_RIGHT]->addFrameRect(eID::BOSS, "jafar_0", 8);
 
-	_animations[ATTACK_LEFT] = new Animation(_sprite, 0.16f);
-	_animations[ATTACK_LEFT]->addFrameRect(eID::BOSS, "jafar_04", "jafar_05", "jafar_06", "jafar_07", "jafar_04", "jafar_05", "jafar_06", "jafar_07", NULL);
+	_animations[ATTACK_LEFT] = new Animation(_sprite, 0.12f);
+	_animations[ATTACK_LEFT]->addFrameRect(eID::BOSS, "jafar_04", "jafar_05", "jafar_06", "jafar_07", NULL);
 
-	_animations[ATTACK_RIGHT] = new Animation(_sprite, 0.16f);
-	_animations[ATTACK_RIGHT]->addFrameRect(eID::BOSS, "jafar_04", "jafar_05", "jafar_06", "jafar_07","jafar_04", "jafar_05", "jafar_06", "jafar_07", NULL);
+	_animations[ATTACK_RIGHT] = new Animation(_sprite, 0.12f);
+	_animations[ATTACK_RIGHT]->addFrameRect(eID::BOSS, "jafar_04", "jafar_05", "jafar_06", "jafar_07", NULL);
 
-	_animations[THROW_RIGHT_FAR] = new Animation(_sprite, 0.2f);
+	_animations[THROW_RIGHT_FAR] = new Animation(_sprite, 0.15f);
 	_animations[THROW_RIGHT_FAR]->addFrameRect(eID::BOSS, "jafar_snake_",11);
 
 	_animations[THROW_LEFT_FAR] = new Animation(_sprite, 0.15f);
@@ -113,6 +113,23 @@ void Boss::Release()
 	{
 		delete component.second;
 	}
+
+	for (int i = 0; i < _listStar.size(); i++)
+	{
+		_listStar[i]->Release();
+		delete  _listStar[i];
+		_listStar.erase(_listStar.begin() + i);
+	}
+	_listStar.clear();
+
+	for (int i = 0; i < _listFireBoss.size(); i++)
+	{
+		_listFireBoss[i]->Release();
+		delete  _listFireBoss[i];
+		_listFireBoss.erase(_listFireBoss.begin() + i);
+	}
+	_listFireBoss.clear();
+
 	_listComponent.clear();
 	SAFE_DELETE(this->_sprite);
 }
@@ -126,60 +143,115 @@ void Boss::onCollisionBegin(CollisionEventArg *collision_event)
 		return;
 	case eStatus::ATTACK_RIGHT:
 	{
-		setScaleX(SCALECHARACTER.x);
-		if (_animations[ATTACK_RIGHT]->getIndex() >= 3)
+		#pragma region Kiểm tra điều kiện aladdin bị trừ máu
+		bool isBeAttack = !collision_event->_otherObject->isInStatus(eStatus::BEHIT) && !collision_event->_otherObject->isFlashing();
+		/*DK1:Aladdin đang không bị đánh*/
+		if (isBeAttack)
 		{
-			_animations[ATTACK_RIGHT]->setIndex(0);
-			if (!_aladdin->isExist((eStatus)(BEHIT | JUMPING | JUMPING_LEFT | JUMPING_RIGHT)))
+			bool isStanding = collision_event->_otherObject->isInStatus(NORMAL) || collision_event->_otherObject->isInStatus(NORMAL1) || collision_event->_otherObject->isInStatus(FREE);
+			_aladdin->Stop(true);
+			//âm thanh
+			//SoundManager::getInstance()->PlaySound("Resources/Audio/CloudPoof.wav", 0);
+			InforAladdin::getInstance()->plusHealth(-10);
+			if (isStanding)
 			{
-				_aladdin->Stop(true);
-				_aladdin->setStatus(BEHIT);
-				InforAladdin::getInstance()->plusHealth(-10);
+				//Set status aladdin bị đánh
+				collision_event->_otherObject->setStatus(eStatus::BEHIT);
+			}
+			else
+			{
+				//Set status aladdin bị đánh
+				collision_event->_otherObject->StartFlash();
 			}
 		}
 		break;
+		#pragma endregion
 	}
 	case eStatus::ATTACK_LEFT:
 	{
-		setScaleX(-SCALECHARACTER.x);
-		if (_animations[ATTACK_LEFT]->getIndex() >= 3)
+		#pragma region Kiểm tra điều kiện aladdin bị trừ máu
+		bool isBeAttack = !collision_event->_otherObject->isInStatus(eStatus::BEHIT) && !collision_event->_otherObject->isFlashing();
+		/*DK1:Aladdin đang không bị đánh*/
+		if (isBeAttack)
 		{
-			_animations[ATTACK_LEFT]->setIndex(0);
-			if (!_aladdin->isInStatus(BEHIT))
+			bool isStanding = collision_event->_otherObject->isInStatus(NORMAL) || collision_event->_otherObject->isInStatus(NORMAL1) || collision_event->_otherObject->isInStatus(FREE);
+			_aladdin->Stop(true);
+			//âm thanh
+			//SoundManager::getInstance()->PlaySound("Resources/Audio/CloudPoof.wav", 0);
+			InforAladdin::getInstance()->plusHealth(-10);
+			if (isStanding)
 			{
-				_aladdin->Stop(true);
-				_aladdin->setStatus(BEHIT);
-				InforAladdin::getInstance()->plusHealth(-10);
+				//Set status aladdin bị đánh
+				collision_event->_otherObject->setStatus(eStatus::BEHIT);
+			}
+			else
+			{
+				//Set status aladdin bị đánh
+				collision_event->_otherObject->StartFlash();
 			}
 		}
 		break;
+		#pragma endregion
 	}
 	case eStatus::THROW_LEFT_FAR:
 	{
-		setScaleX(-SCALECHARACTER.x);
-		if (_animations[THROW_LEFT_FAR]->getIndex() == 4 || _animations[THROW_LEFT_FAR]->getIndex() == 10)
+
+		//if (_animations[THROW_LEFT_FAR]->getIndex() == 4 || _animations[THROW_LEFT_FAR]->getIndex() == 10)
+		//{
+		//	if (!_aladdin->isInStatus(BEHIT))
+		//	{
+		//		_aladdin->Stop(true);
+		//		_aladdin->setStatus(BEHIT);
+		//		InforAladdin::getInstance()->plusHealth(-10);
+		//	}
+		//}
+
+		#pragma region Kiểm tra điều kiện aladdin bị trừ máu
+		bool isBeAttack = !collision_event->_otherObject->isInStatus(eStatus::BEHIT) && !collision_event->_otherObject->isFlashing();
+		/*DK1:Aladdin đang không bị đánh*/
+		if (isBeAttack)
 		{
-			if (!_aladdin->isInStatus(BEHIT))
+			bool isStanding = collision_event->_otherObject->isInStatus(NORMAL) || collision_event->_otherObject->isInStatus(NORMAL1) || collision_event->_otherObject->isInStatus(FREE);
+			//âm thanh
+			//SoundManager::getInstance()->PlaySound("Resources/Audio/CloudPoof.wav", 0);
+			InforAladdin::getInstance()->plusHealth(-10);
+			if (isStanding)
 			{
-				_aladdin->Stop(true);
-				_aladdin->setStatus(BEHIT);
-				InforAladdin::getInstance()->plusHealth(-10);
+				//Set status aladdin bị đánh
+				collision_event->_otherObject->setStatus(eStatus::BEHIT);
+			}
+			else
+			{
+				//Set status aladdin bị đánh
+				collision_event->_otherObject->StartFlash();
 			}
 		}
+		#pragma endregion
 		break;
 	}
 	case eStatus::THROW_RIGHT_FAR:
 	{
-		setScaleX(SCALECHARACTER.x);
-		if (_animations[THROW_RIGHT_FAR]->getIndex() == 4 || _animations[THROW_RIGHT_FAR]->getIndex() == 10)
+		#pragma region Kiểm tra điều kiện aladdin bị trừ máu
+		bool isBeAttack = !collision_event->_otherObject->isInStatus(eStatus::BEHIT) && !collision_event->_otherObject->isFlashing();
+		/*DK1:Aladdin đang không bị đánh*/
+		if (isBeAttack)
 		{
-			if (!_aladdin->isExist((eStatus)(BEHIT | JUMPING | JUMPING_LEFT | JUMPING_RIGHT)))
+			bool isStanding = collision_event->_otherObject->isInStatus(NORMAL) || collision_event->_otherObject->isInStatus(NORMAL1) || collision_event->_otherObject->isInStatus(FREE);
+			//âm thanh
+			//SoundManager::getInstance()->PlaySound("Resources/Audio/CloudPoof.wav", 0);
+			InforAladdin::getInstance()->plusHealth(-10);
+			if (isStanding)
 			{
-				_aladdin->Stop(true);
-				_aladdin->setStatus(BEHIT);
-				InforAladdin::getInstance()->plusHealth(-10);
+				//Set status aladdin bị đánh
+				collision_event->_otherObject->setStatus(eStatus::BEHIT);
+			}
+			else
+			{
+				//Set status aladdin bị đánh
+				collision_event->_otherObject->StartFlash();
 			}
 		}
+		#pragma endregion
 		break;
 	}
 	}
@@ -193,6 +265,10 @@ float Boss::checkCollision(BaseObject *object, float dt)
 {
 	auto collisionBody = (CollisionBody*)_listComponent["CollisionBody"];
 	collisionBody->checkCollision(_aladdin , dt, true);
+
+	for (int i = 0; i < _listFireBoss.size(); i++)
+		_listFireBoss[i]->checkCollision(object, dt);
+
 	return 0.0f;
 }
 
@@ -313,6 +389,7 @@ void Boss::UpdateStatus(float dt)
 			if (distance.x < 90)
 			{
 				setStatus(ATTACK_LEFT);
+				setScaleX(-SCALECHARACTER.x);
 			}
 			else
 			{
@@ -325,6 +402,7 @@ void Boss::UpdateStatus(float dt)
 			if (distance.x < 90)
 			{
 				setStatus(ATTACK_RIGHT);
+				setScaleX(SCALECHARACTER.x);
 			}
 			else
 			{
@@ -348,4 +426,29 @@ Vector2 Boss::distanceBetweenAladdin()
 	float y = this->getPositionY();
 
 	return Vector2(xAla - x, yAla - y);
+}
+
+void Boss::OptimizeFire(RECT* rect)
+{
+	for (size_t i = 0; i < _listFireBoss.size(); i++)
+	{
+		RECT apple = _listFireBoss[i]->getBounding();
+		RECT temp = *rect;
+		temp.top = apple.bottom;
+
+		if (!isContain(_listFireBoss[i], temp))
+		{
+			_listFireBoss[i]->Release();
+			delete _listFireBoss[i];
+			_listFireBoss.erase(_listFireBoss.begin() + i);
+		}
+	}
+}
+
+bool Boss::isContain(BaseObject*object, RECT rect1)
+{
+	/*25/11 Đức Tiến đã sửa*/
+	RECT rect2 = object->getBounding();
+	swap(rect2.top, rect2.bottom);
+	return !(rect2.left > rect1.right || rect2.right < rect1.left || rect2.top > rect1.bottom || rect2.bottom < rect1.top);
 }

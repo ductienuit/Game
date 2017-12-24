@@ -34,6 +34,8 @@ public:
 	Vector2 distanceBetweenAladdin();
 	void UpdateStatus(float dt);
 
+	void OptimizeFire(RECT* rect);
+
 	Text* text;
 	~Boss();
 private:
@@ -46,5 +48,7 @@ private:
 	vector<BaseObject*> _listFireBoss;
 	StopWatch* _frequency;
 	StopWatch* _frequencyFireBoss;
+
+	bool isContain(BaseObject*object, RECT rect1);
 };
 #endif

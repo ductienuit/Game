@@ -124,6 +124,7 @@ void Jar::onCollisionBegin(CollisionEventArg *collision_event)
 			}
 		}
 		#pragma endregion
+
 		break;
 	}
 	}

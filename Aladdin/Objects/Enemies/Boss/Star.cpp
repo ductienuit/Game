@@ -64,7 +64,7 @@ void Star::Update(float deltatime)
 				//listStrip.push_back(new StripAladdin(posAla.x, posAla.y+h));
 
 				setPosition(posAla.x, posAla.y + h);
-				//_aladdin->addVelocity(100);
+				_aladdin->addVelocity(100);
 				setStatus(DESTROY);
 				return;
 			}
@@ -96,7 +96,7 @@ void Star::Update(float deltatime)
 
 				setStatus(DESTROY);
 
-				//_aladdin->addVelocity(-100);
+				_aladdin->addVelocity(-100);
 				return;
 			}
 			

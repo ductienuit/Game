@@ -214,7 +214,6 @@ void GuardFat::onCollisionBegin(CollisionEventArg *collision_event)
 				this->setStatus(eStatus(SITTING_DOWN | ATTACK));
 			}
 
-
 			if (collision_event->_otherObject->isInStatus(ATTACK))
 			{
 				//mạng sống còn 1 và bức ảnh ATTACK của aladdin bằng 1
@@ -231,7 +230,7 @@ void GuardFat::onCollisionBegin(CollisionEventArg *collision_event)
 				if (isBeAttack)
 				{
 					bool isStanding = collision_event->_otherObject->isInStatus(NORMAL) || collision_event->_otherObject->isInStatus(NORMAL1) || collision_event->_otherObject->isInStatus(FREE);
-					if (_animations[BEHIT]->getIndex() == 4)
+					if (_animations[ATTACK]->getIndex() == 4)
 					{
 						//âm thanh
 						SoundManager::getInstance()->PlaySound("Resources/Audio/HighSword.wav", 0);

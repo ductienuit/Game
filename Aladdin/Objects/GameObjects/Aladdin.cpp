@@ -269,7 +269,7 @@ void Aladdin::Update(float deltatime)
 
 	
 	//Kiểm tra thời gian nhấp nháy khi bị đánh
-	if (_EnableFlashes->isTimeLoop(1000))
+	if (_EnableFlashes->isTimeLoop(700))
 	{
 		_animations[_currentAnimateIndex]->EnableFlashes(true);
 	}
