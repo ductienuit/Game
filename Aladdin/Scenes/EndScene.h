@@ -15,6 +15,8 @@
 #include"../FrameWork/Animation.h"
 #include"../FrameWork/ViewPort.h"
 #include"../Scenes/EndSceneBackground.h"
+#include"../Objects/GameObjects/Aladdin.h"
+#include"../Objects/Enemies/Monkey.h"
 #include<time.h>
 using namespace std;
 
@@ -33,6 +35,9 @@ public:
 	void Draw(LPD3DXSPRITE spriteHandle) override;
 	void Release() override;
 private:
+	Aladdin * _aladdin;
+	Monkey * _monkey;
+	Land * _land;
 	EndSceneBackground * _endSceneBackground;
 	static ViewPort* _viewport;
 };

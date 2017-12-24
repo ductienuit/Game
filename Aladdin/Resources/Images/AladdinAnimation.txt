@@ -425,3 +425,14 @@ Aerobatic_05	306	1158	343	1196
 
 Aerobatic_06	362	1161	401	1196
 Aerobatic_07	417	1156	460	1198
+
+aladin_endScene_00	20	2876	55	2933
+aladin_endScene_01	65	2873	101	2933
+aladin_endScene_02	111	2870	149	2933
+aladin_endScene_03	159	2874	207	2933
+aladin_endScene_04	217	2872	257	2933
+aladin_endScene_05	267	2872	304	2933
+aladin_endScene_06	314	2874	351	2933
+aladin_endScene_07	361	2871	405	2933
+aladin_endScene_08	415	2874	464	2933
+aladin_endScene_09	474	2872	514	2933

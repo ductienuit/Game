@@ -207,6 +207,9 @@ void Aladdin::InIt()
 	_animations[REVIVAL] = new Animation(_sprite, 0.12f);
 	_animations[REVIVAL]->addFrameRect(eID::ALADDIN, "restart_point_", 14);
 
+	_animations[ENDSCENE] = new Animation(_sprite, 0.08f);
+	_animations[ENDSCENE]->addFrameRect(eID::ALADDIN, "aladin_endScene_0", 10);
+
 	_sprite->drawBounding(false);
 
 	//Set lại bouding cho riêng aladdin để xét va chạm
@@ -226,7 +229,7 @@ void Aladdin::Update(float deltatime)
 {
 	updateStatus(deltatime);
 
-	#pragma region UpdateListApple
+#pragma region UpdateListApple
 	for (int i = 0; i < listApple.size(); i++)
 	{
 		if (listApple[i]->isInStatus(DESTROY))
@@ -238,7 +241,7 @@ void Aladdin::Update(float deltatime)
 		else
 			listApple[i]->Update(deltatime);
 	}
-	#pragma endregion
+#pragma endregion
 
 	//Loc dieu kien
 	updateCurrentAnimateIndex();
@@ -275,7 +278,7 @@ void Aladdin::UpdateInput(float dt)
 		{
 			addStatus(eStatus::NORMAL1);
 			_normalAnimateStopWatch->restart();  //Chuyển sang trạng thái normal1 thì mình khởi động lại đồng hồ đếm
-			
+
 		}
 
 		if (_input->isKeyDown(DIK_LEFT))
@@ -297,7 +300,7 @@ void Aladdin::UpdateInput(float dt)
 		else if (_input->isKeyPressed(DIK_X))
 		{
 			//âm thanh
-			SoundManager::getInstance()->PlaySound("Resources/Audio/HighSword.wav",0);
+			SoundManager::getInstance()->PlaySound("Resources/Audio/HighSword.wav", 0);
 			addStatus(eStatus::ATTACK);  //chém
 		}
 		else if (_input->isKeyPressed(DIK_Z)) //ném
@@ -434,13 +437,13 @@ void Aladdin::UpdateInput(float dt)
 	}
 	case(eStatus::STOPWALK):
 	{
-		if (_input->isKeyDown(DIK_LEFT)) 
+		if (_input->isKeyDown(DIK_LEFT))
 		{
 			/*1. Nhấn LeftArrow
-			  2. Hướng aladdin là right 
+			  2. Hướng aladdin là right
 			  => scale.x > 0
 			  3. Hủy StopWalk và chuyển sang moving left*/
-			if (getScale().x > 0) 
+			if (getScale().x > 0)
 			{
 				removeStatus(eStatus::STOPWALK);
 				addStatus(eStatus::MOVING_LEFT);
@@ -474,7 +477,7 @@ void Aladdin::UpdateInput(float dt)
 			SoundManager::getInstance()->PlaySound("Resources/Audio/HighSword.wav", 0);
 			removeStatus(eStatus::STOPWALK);
 			addStatus(eStatus::ATTACK);  //chém
-			
+
 		}
 		else if (_input->isKeyDown(DIK_Z)) //ném
 		{
@@ -483,7 +486,7 @@ void Aladdin::UpdateInput(float dt)
 			removeStatus(eStatus::STOPWALK);
 			addStatus(eStatus::THROW);
 			Vector2 position = getPosition();
-			
+
 			int apple = InforAladdin::getInstance()->getApple();
 			if (apple > 0)
 			{
@@ -534,7 +537,7 @@ void Aladdin::UpdateInput(float dt)
 		{
 			addStatus(eStatus::THROW);
 			Vector2 position = getPosition();
-			
+
 
 			int apple = InforAladdin::getInstance()->getApple();
 			if (apple > 0)
@@ -561,7 +564,7 @@ void Aladdin::UpdateInput(float dt)
 		{
 			addStatus(eStatus::THROW);
 			Vector2 position = getPosition();
-			
+
 
 			int apple = InforAladdin::getInstance()->getApple();
 			if (apple > 0)
@@ -603,7 +606,7 @@ void Aladdin::UpdateInput(float dt)
 			SoundManager::getInstance()->PlaySound("Resources/Audio/HighSword.wav", 0);
 			addStatus(eStatus::THROW);
 			Vector2 position = getPosition();
-			
+
 
 			int apple = InforAladdin::getInstance()->getApple();
 			if (apple > 0)
@@ -630,18 +633,18 @@ void Aladdin::UpdateInput(float dt)
 				removeStatus(eStatus::THROW);
 				moveRight();
 
-					addStatus(eStatus::JUMPING_RIGHT);
+				addStatus(eStatus::JUMPING_RIGHT);
 
-				}
 			}
-			break;
 		}
+		break;
+	}
 	case (eStatus::JUMPING):
 	{
-			if (_input->isKeyDown(DIK_LEFT))
-				moveLeftJump();
-			if (_input->isKeyDown(DIK_RIGHT))
-				moveRightJump();
+		if (_input->isKeyDown(DIK_LEFT))
+			moveLeftJump();
+		if (_input->isKeyDown(DIK_RIGHT))
+			moveRightJump();
 
 		else if (_input->isKeyPressed(DIK_Z))
 		{
@@ -649,7 +652,7 @@ void Aladdin::UpdateInput(float dt)
 			SoundManager::getInstance()->PlaySound("Resources/Audio/HighSword.wav", 0);
 			addStatus(eStatus::THROW);
 			Vector2 position = getPosition();
-			
+
 
 			int apple = InforAladdin::getInstance()->getApple();
 			if (apple > 0)
@@ -676,9 +679,9 @@ void Aladdin::UpdateInput(float dt)
 		else if (_input->isKeyPressed(DIK_Z))
 		{
 			removeStatus(DROP);
-			setStatus((eStatus)(JUMPING|THROW));
+			setStatus((eStatus)(JUMPING | THROW));
 			Vector2 position = getPosition();
-			
+
 
 			int apple = InforAladdin::getInstance()->getApple();
 			if (apple > 0)
@@ -721,7 +724,7 @@ void Aladdin::UpdateInput(float dt)
 			SoundManager::getInstance()->PlaySound("Resources/Audio/HighSword.wav", 0);
 			addStatus(eStatus::THROW);
 			Vector2 position = getPosition();
-			
+
 
 			int apple = InforAladdin::getInstance()->getApple();
 			if (apple > 0)
@@ -773,7 +776,7 @@ void Aladdin::UpdateInput(float dt)
 			removeStatus(eStatus::LOOKING_UP);
 			addStatus(eStatus::THROW);
 			Vector2 position = getPosition();
-			
+
 
 			int apple = InforAladdin::getInstance()->getApple();
 			if (apple > 0)
@@ -806,7 +809,7 @@ void Aladdin::UpdateInput(float dt)
 			addStatus(eStatus::JUMPING);
 			addStatus(eStatus::THROW);
 			Vector2 position = getPosition();
-			
+
 
 			int apple = InforAladdin::getInstance()->getApple();
 			if (apple > 0)
@@ -870,7 +873,7 @@ void Aladdin::UpdateInput(float dt)
 			SoundManager::getInstance()->PlaySound("Resources/Audio/HighSword.wav", 0);
 			addStatus(eStatus::THROW);
 			Vector2 position = getPosition();
-			
+
 
 			int apple = InforAladdin::getInstance()->getApple();
 			if (apple > 0)
@@ -910,7 +913,7 @@ void Aladdin::UpdateInput(float dt)
 		{
 			addStatus(eStatus::THROW);
 			Vector2 position = getPosition();
-			
+
 
 			int apple = InforAladdin::getInstance()->getApple();
 			if (apple > 0)
@@ -932,7 +935,7 @@ void Aladdin::UpdateInput(float dt)
 		_animations[BEHIT]->EnableFlashes(true);
 
 		//Tự hủy khi đế một bức ảnh n
-		if (_animations[_currentAnimateIndex]->getIndex()== 4)
+		if (_animations[_currentAnimateIndex]->getIndex() == 4)
 		{
 			_animations[_currentAnimateIndex]->setIndex(0);
 			this->setStatus(_preStatus);
@@ -965,6 +968,13 @@ void Aladdin::UpdateInput(float dt)
 			auto g = (Gravity*)_listComponent["Gravity"];
 			g->setStatus(eGravityStatus::FALLING__DOWN);
 		}
+		break;
+	}
+	case(eStatus::ENDSCENE):
+	{
+		_sprite->setScaleX(-SCALEALADDIN.x);
+		auto move = (Movement*)_listComponent["Movement"];
+		move->setVelocity(Vector2(-ALADDIN_MOVE_SPEED/5, 0));
 		break;
 	}
 	}
@@ -1301,12 +1311,12 @@ void Aladdin::onCollisionBegin(CollisionEventArg * collision_event)
 	{
 		switch (collision_event->_sideCollision)
 		{
-			case TOP:
-			{
-				collision_event->_otherObject->setStatus(eStatus::BEHIT);
-				jumpDouble();
-				return;
-			}
+		case TOP:
+		{
+			collision_event->_otherObject->setStatus(eStatus::BEHIT);
+			jumpDouble();
+			return;
+		}
 		}
 		break;
 	}
@@ -1315,14 +1325,14 @@ void Aladdin::onCollisionBegin(CollisionEventArg * collision_event)
 	{
 		switch (collision_event->_sideCollision)
 		{
-			case TOP:
-			{
-				collision_event->_otherObject->setStatus(eStatus::BEHIT);
-				SoundManager::getInstance()->PlaySound("Resources/Audio/CamelSpit.wav", 0);
+		case TOP:
+		{
+			collision_event->_otherObject->setStatus(eStatus::BEHIT);
+			SoundManager::getInstance()->PlaySound("Resources/Audio/CamelSpit.wav", 0);
 
-				aerobatic();
-				return;
-			}
+			aerobatic();
+			return;
+		}
 		}
 		break;
 	}
@@ -1338,71 +1348,71 @@ void Aladdin::onCollisionEnd(CollisionEventArg * collision_event)
 		auto land = (Land*)collision_event->_otherObject;
 		auto type = land->getType();
 
-			switch (type)
+		switch (type)
+		{
+		case (eLandType::ROPE):
+		{
+			if (isInStatus(eStatus::JUMPING))
 			{
-				case (eLandType::ROPE):
-				{
-					if (isInStatus(eStatus::JUMPING))
-					{
-						removeStatus(CLIMB_JUMP);
-						return;
-					}
-					removeStatus(eStatus::CLIMB);
-					addStatus(eStatus::CLIMB_JUMP);
-					auto g = (Gravity*)_listComponent["Gravity"];
-					g->setStatus(eGravityStatus::FALLING__DOWN); 
-					break;
-				}
-				case (eLandType::SOLID):
-				{
-					eStatus temp = (eStatus)(JUMPING|JUMPING_LEFT|JUMPING_RIGHT);
-					if (!isExist(temp))				
-						setStatus(DROP);
-					auto g = (Gravity*)_listComponent["Gravity"];
-					g->setStatus(eGravityStatus::FALLING__DOWN);
-					break;
-				}
-				case( eLandType::STOP):
-				{
-					_animations[_currentAnimateIndex]->Start();
-					_canUp = true;
-					break;
-				}
-				case (eLandType::STAIR):
-				{
-					auto g = (Gravity*)_listComponent["Gravity"];
-					g->setStatus(eGravityStatus::FALLING__DOWN);
-					break;
-				}
-				case(eLandType::BAR):
-				{
-					eStatus temp = (eStatus)(JUMPING | JUMPING_LEFT | JUMPING_RIGHT);
-					float distance = abs(collision_event->_otherObject->getBounding().left - collision_event->_otherObject->getBounding().right);
-					if (getPositionX() < collision_event->_otherObject->getPositionX())
-					{
-						if (!isExist(temp))
-							setStatus(DROP);
-						auto g = (Gravity*)_listComponent["Gravity"];
-						g->setStatus(eGravityStatus::FALLING__DOWN);
-					}
-					else if (getPositionX() > collision_event->_otherObject->getPositionX() + distance)
-					{
-						if (!isExist(temp))
-							setStatus(DROP);
-						auto g = (Gravity*)_listComponent["Gravity"];
-						g->setStatus(eGravityStatus::FALLING__DOWN);
-					}
-					break;
-				}
+				removeStatus(CLIMB_JUMP);
+				return;
 			}
+			removeStatus(eStatus::CLIMB);
+			addStatus(eStatus::CLIMB_JUMP);
+			auto g = (Gravity*)_listComponent["Gravity"];
+			g->setStatus(eGravityStatus::FALLING__DOWN);
 			break;
 		}
-		case eID::FALLINGPLATFORM:
+		case (eLandType::SOLID):
+		{
+			eStatus temp = (eStatus)(JUMPING | JUMPING_LEFT | JUMPING_RIGHT);
+			if (!isExist(temp))
+				setStatus(DROP);
+			auto g = (Gravity*)_listComponent["Gravity"];
+			g->setStatus(eGravityStatus::FALLING__DOWN);
+			break;
+		}
+		case(eLandType::STOP):
+		{
+			_animations[_currentAnimateIndex]->Start();
+			_canUp = true;
+			break;
+		}
+		case (eLandType::STAIR):
 		{
 			auto g = (Gravity*)_listComponent["Gravity"];
 			g->setStatus(eGravityStatus::FALLING__DOWN);
 			break;
 		}
+		case(eLandType::BAR):
+		{
+			eStatus temp = (eStatus)(JUMPING | JUMPING_LEFT | JUMPING_RIGHT);
+			float distance = abs(collision_event->_otherObject->getBounding().left - collision_event->_otherObject->getBounding().right);
+			if (getPositionX() < collision_event->_otherObject->getPositionX())
+			{
+				if (!isExist(temp))
+					setStatus(DROP);
+				auto g = (Gravity*)_listComponent["Gravity"];
+				g->setStatus(eGravityStatus::FALLING__DOWN);
+			}
+			else if (getPositionX() > collision_event->_otherObject->getPositionX() + distance)
+			{
+				if (!isExist(temp))
+					setStatus(DROP);
+				auto g = (Gravity*)_listComponent["Gravity"];
+				g->setStatus(eGravityStatus::FALLING__DOWN);
+			}
+			break;
+		}
+		}
+		break;
+	}
+	case eID::FALLINGPLATFORM:
+	{
+		auto g = (Gravity*)_listComponent["Gravity"];
+		g->setStatus(eGravityStatus::FALLING__DOWN);
+		break;
+	}
 	}
 }
 
@@ -1432,7 +1442,7 @@ void Aladdin::updateStatus(float dt)
 		}
 		if (_input->isKeyDown(DIK_LEFT))
 		{
-			if(!_stopLeft)
+			if (!_stopLeft)
 				swingLeft(dt);
 		}
 		else if (_input->isKeyDown(DIK_RIGHT))
@@ -1623,8 +1633,8 @@ void Aladdin::updateStatusOneAction(float deltatime)
 		_animations[_currentAnimateIndex]->setIndex(6);
 		removeStatus(eStatus::ATTACK);
 		addStatus(eStatus::JUMPING_LEFT);
-	}	
-	
+	}
+
 
 
 	//XỬ LÍ NGOẠI LỆ
@@ -1642,10 +1652,10 @@ void Aladdin::updateStatusOneAction(float deltatime)
 void Aladdin::updateCurrentAnimateIndex()
 {
 
-	eStatus temp = (eStatus)(LOOKING_UP	 | SITTING_DOWN | MOVING_LEFT
-						| MOVING_RIGHT	 | JUMPING_LEFT | JUMPING_RIGHT
-						| JUMPING		 | CLIMB		| SWING
-						| ATTACK		 | DROP			| DYING| THROW |AEROBATIC);
+	eStatus temp = (eStatus)(LOOKING_UP | SITTING_DOWN | MOVING_LEFT
+		| MOVING_RIGHT | JUMPING_LEFT | JUMPING_RIGHT
+		| JUMPING | CLIMB | SWING
+		| ATTACK | DROP | DYING | THROW | AEROBATIC);
 	if (isInStatus(NORMAL1) && isExist(temp))
 	{
 		removeStatus(eStatus::NORMAL1);
@@ -1666,11 +1676,11 @@ void Aladdin::setBounding(RECT r)
 	RECT temp;
 	temp.left = r.left + distancex;
 	temp.right = r.right - distancex;
-	if (isExist((eStatus)(CLIMB | CLIMB_JUMP | JUMPING |SWING)))
+	if (isExist((eStatus)(CLIMB | CLIMB_JUMP | JUMPING | SWING)))
 	{
 		distancey = 170;
 
-		temp.top = r.bottom+ distancey;
+		temp.top = r.bottom + distancey;
 		temp.bottom = r.bottom;
 	}
 	else
@@ -1703,7 +1713,7 @@ void Aladdin::Stop()
 void Aladdin::Stop(bool stopanimation)
 {
 	auto move = (Movement*)_listComponent["Movement"];
-	move->setVelocity(Vector2(0,this->getVelocity().y));
+	move->setVelocity(Vector2(0, this->getVelocity().y));
 }
 
 void Aladdin::SetRestartPoint(BaseObject *restartpoint)
@@ -1715,7 +1725,7 @@ void Aladdin::Revival()
 {
 	if (_restartPoint == NULL)
 	{
-		setPosition(100,100);
+		setPosition(100, 100);
 	}
 	else
 	{

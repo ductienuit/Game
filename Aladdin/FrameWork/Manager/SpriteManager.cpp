@@ -86,6 +86,10 @@ void SpriteManager::LoadResource(LPD3DXSPRITE spriteHandle)
 	this->_listSprite.insert(pair<eID, Sprite*>(eID::GUARDLU, sp));
 	this->LoadSpriteInfo(eID::GUARDLU, "Resources//Images//CivilianEnemies.txt");
 
+	sp = new Sprite(spriteHandle, "Resources//Images//Monkey.png");
+	this->_listSprite.insert(pair<eID, Sprite*>(eID::MONKEY, sp));
+	this->LoadSpriteInfo(eID::MONKEY, "Resources//Images//Monkey.txt");
+
 	sp = new Sprite(spriteHandle, "Resources//Images//CivilianEnemies.png");
 	this->_listSprite.insert(pair<eID, Sprite*>(eID::KNIFETHROWER, sp));
 	this->LoadSpriteInfo(eID::KNIFETHROWER, "Resources//Images//CivilianEnemies.txt");

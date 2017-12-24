@@ -330,6 +330,9 @@
     <ClCompile Include="Scenes\EndSceneBackground.cpp">
       <Filter>Source Files\Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="Objects\Enemies\Monkey.cpp">
+      <Filter>Source Files\Object\Enemies</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FrameWork\Animation.h">
@@ -607,6 +610,9 @@
     </ClInclude>
     <ClInclude Include="Scenes\EndSceneBackground.h">
       <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Enemies\Monkey.h">
+      <Filter>Header Files\Object\Enemies</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

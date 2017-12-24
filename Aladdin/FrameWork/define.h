@@ -48,7 +48,8 @@ enum eStatus
 	THROW_RIGHT_FAR  =	(1 << 21),		//Trang thai cua knife
 	THROW			 =  (1 << 22),
 	REVIVAL			 =  (1 << 23),      //Hồi Sinh
-	AEROBATIC		 =  (1 << 24)
+	AEROBATIC		 =  (1 << 24),
+	ENDSCENE		 =  (1 << 25),
 };
 
 enum eID
@@ -60,6 +61,7 @@ enum eID
 	KNIFETHROWER,
 	GUARDLU,
 	KNIFE,
+	MONKEY,
 
 	BACKGROUND,
 	BACKGROUNDFRONT,
