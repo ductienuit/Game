@@ -974,7 +974,7 @@ void Aladdin::UpdateInput(float dt)
 	{
 		_sprite->setScaleX(-SCALEALADDIN.x);
 		auto move = (Movement*)_listComponent["Movement"];
-		move->setVelocity(Vector2(-ALADDIN_MOVE_SPEED/5, 0));
+		move->setVelocity(Vector2(-120, 2));
 		break;
 	}
 	}

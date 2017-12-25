@@ -9,6 +9,8 @@
 #include"../Enemies/BaseEnemy.h"
 #include"../GameObjects/Aladdin.h"
 
+#define MONKEY_SPEED 120
+
 using namespace std;
 
 class Monkey : public BaseEnemy
@@ -20,6 +22,9 @@ public:
 	void Update(float deltatime) override;
 	void Draw(LPD3DXSPRITE, ViewPort*) override;
 	void Release() override;
+
+	void movingLeft();
+
 	IComponent* getComponent(string componentName);
 	Text* text;
 	~Monkey();

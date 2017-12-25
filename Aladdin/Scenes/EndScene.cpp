@@ -17,10 +17,10 @@ bool EndScene::InIt()
 
 	_aladdin = new Aladdin();
 	_aladdin->InIt();
-	_aladdin->setPosition(500, 100);
+	_aladdin->setPosition(800, 100);
 	_aladdin->setStatus(eStatus::ENDSCENE);
 
-	_monkey = new Monkey(eStatus::ENDSCENE, 400, 100, eDirection::LEFT);
+	_monkey = new Monkey(eStatus::ENDSCENE, 700, 70, eDirection::LEFT);
 
 	return true;
 }
