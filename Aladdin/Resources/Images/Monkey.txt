@@ -1,0 +1,10 @@
+frame_name	left	top	right	bottom
+monkey_07	457	17	503	48
+monkey_06	395	14	445	48
+monkey_05	331	12	376	48
+monkey_04	276	12	311	48
+monkey_03	208	11	248	48
+monkey_02	137	15	189	47
+monkey_01	81	15	123	48
+monkey_00	33	15	59	48
+

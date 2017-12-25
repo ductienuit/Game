@@ -6,6 +6,7 @@
 #include"Scenes\PlayScene.h"
 #include"Scenes\IntroScene.h"
 #include"Scenes\BossScene.h"
+#include"Scenes\EndScene.h"
 
 using namespace std;
 USEGAME_FRAMEWORK

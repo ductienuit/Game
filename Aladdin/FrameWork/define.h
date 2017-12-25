@@ -49,12 +49,13 @@ enum eStatus
 	THROW			 =  (1 << 22),
 	REVIVAL			 =  (1 << 23),      //Hồi Sinh
 	AEROBATIC		 =  (1 << 24),
+	ENDSCENE		 =	(1 << 25),
 
 	//boss
-	PULL_LEFT	     = (1 << 25),  //kéo lại 
-	PULL_RIGHT		 = (1 << 26),  //kéo lại
-	ATTACK_LEFT		 = (1 << 27),  //đánh trái
-	ATTACK_RIGHT	 = (1 << 28),  //đánh phải
+	PULL_LEFT	     = (1 << 26),  //kéo lại 
+	PULL_RIGHT		 = (1 << 27),  //kéo lại
+	ATTACK_LEFT		 = (1 << 28),  //đánh trái
+	ATTACK_RIGHT	 = (1 << 29),  //đánh phải
 };
 
 enum eID
@@ -66,9 +67,13 @@ enum eID
 	KNIFETHROWER,
 	GUARDLU,
 	KNIFE,
+	MONKEY,
+
 	BACKGROUND,
 	BACKGROUNDFRONT,
 	MENUBACKGROUND,
+	ENDSCENE_BACKGROUND,
+
 	JAR,
 	GUARDTHROWJAR,
 	APPLETHROW,
