@@ -75,6 +75,7 @@ void GuardThrowJar::UpdateStatus(float dt)
 			{
 				_animations[DYING]->setIndex(0);
 				//SOUNDDDDDD
+				SoundManager::getInstance()->PlaySound("Resources/Audio/CloudPoof.wav", 0);
 				//Nhạc khi object bị destroy
 				this->setStatus(DESTROY);
 				//score+=10;

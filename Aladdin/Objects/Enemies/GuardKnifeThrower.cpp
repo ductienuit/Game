@@ -142,6 +142,7 @@ void GuardKnifeThrower::UpdateStatus(float dt)
 			_animations[DYING]->setIndex(0);
 			//SOUNDDDDDD
 			//Nhạc khi object bị destroy
+			SoundManager::getInstance()->PlaySound("Resources/Audio/CloudPoof.wav", 0);
 			this->setStatus(DESTROY);
 			//score+=10;
 		}
