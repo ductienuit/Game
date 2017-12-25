@@ -26,7 +26,6 @@ void CollisionBody::checkCollision(BaseObject * otherObject, float dt)
 	Khi có thể va chạm mình sẽ trả về thời gian va chạm đó, còn không trả về 1.0f*/
 
 	RECT broadphaseRect = getBroadphaseRect(_target, dt);
-	DrawRect(broadphaseRect);
 	if (AABB(broadphaseRect, otherRect)==true)
 	{
 		float time = SweptAABB(myRect, otherRect, direction, dt);
@@ -363,12 +362,10 @@ RECT CollisionBody::getBroadphaseRect(BaseObject* object, float dt)  //object da
 	auto velocity = Vector2(object->getVelocity().x * dt/300, object->getVelocity().y * dt/300);
 	auto myRect = object->getBounding();
 	RECT rect;
-	DrawRect(myRect);
 	rect.left = velocity.x > 0 ? myRect.left : myRect.left + velocity.x;
 	rect.right = velocity.x > 0 ? myRect.right + velocity.x : myRect.right;
 	rect.top = velocity.y > 0 ? velocity.y + myRect.top: myRect.top;
 	rect.bottom = velocity.y > 0 ? myRect.bottom : myRect.bottom + velocity.y;
-	DrawRect(rect);
 	return rect;
 }
 
