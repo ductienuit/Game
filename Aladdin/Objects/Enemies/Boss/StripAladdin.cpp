@@ -5,15 +5,14 @@ StripAladdin::StripAladdin(int posX, int posY) : BaseObject(eID::STRIP_ALADDIN)
 	_sprite = SpriteManager::getInstance()->getSprite(eID::STRIP_ALADDIN);
 	_sprite->setFrameRect(0, 0, 5.0f, 5.0f);
 	this->setStatus(BEHIT);
-	setScale(SCALEAPPLE);
-	this->setPosition(posX*SCALEFACTOR.x, posY*SCALEFACTOR.y, 1.0f);
+	this->setPosition(posX, posY, 1.0f);
 	text = new Text("Arial", "", 10, 25);
 	InIt();
 }
 
 void StripAladdin::InIt()
 {
-	_animations[BEHIT] = new Animation(_sprite, 0.1f);
+	_animations[BEHIT] = new Animation(_sprite, 0.06f);
 	_animations[BEHIT]->addFrameRect(eID::STRIP_ALADDIN, "spell_", 4);
 }
 
@@ -21,10 +20,19 @@ void StripAladdin::Update(float deltatime)
 {
 	_animations[this->getStatus()]->Update(deltatime);
 
-	if (_animations[BEHIT]->getIndex() >= 3)
+	switch (_status)
 	{
-		_animations[BEHIT]->setIndex(0);
-		setStatus(DESTROY);
+	case DESTROY:
+		return;
+	case BEHIT:
+	{
+		setScale(SCALEAPPLE);
+		if (_animations[BEHIT]->getIndex() >= 3)
+		{
+			_animations[BEHIT]->setIndex(0);
+			setStatus(DESTROY);
+		}
+	}
 	}
 }
 

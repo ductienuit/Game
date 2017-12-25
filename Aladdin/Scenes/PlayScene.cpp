@@ -88,9 +88,6 @@ void PlayScene::Update(float dt)
 		return;
 	}
 
-
-
-
 	this->UpdateViewport(_aladdin);
 
 	#pragma region  Update list object in camera
@@ -220,6 +217,28 @@ void PlayScene::Update(float dt)
 	//Cập nhật điểm, máu, táo, mạng sống trên màn hình
 	for each(auto score in _listScore)
 		score->Update(dt);
+
+
+
+#pragma region Hack Game
+	auto input = InputController::getInstance();
+	if (input->isKeyDown(DIK_1))
+	{
+		InforAladdin::getInstance()->plusApple(100);
+	}
+	if (input->isKeyDown(DIK_2))
+	{
+		InforAladdin::getInstance()->plusHealth(100);
+	}
+	if (input->isKeyDown(DIK_3))
+	{
+		InforAladdin::getInstance()->plusCoin(100);
+	}
+	if (input->isKeyDown(DIK_4))
+	{
+		InforAladdin::getInstance()->plusLife(3);
+	}
+#pragma endregion
 }
 
 void PlayScene::Draw(LPD3DXSPRITE spriteHandle)

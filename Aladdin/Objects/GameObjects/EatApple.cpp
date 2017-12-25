@@ -11,6 +11,17 @@ EatApple::EatApple(int posX, int posY) :BaseObject(eID::APPLEEAT)
 	InIt();
 }
 
+EatApple::EatApple(int posX, int posY, bool isBoss) :BaseObject(eID::APPLEEAT)
+{
+	_sprite = SpriteManager::getInstance()->getSprite(eID::APPLEEAT);
+	_sprite->setFrameRect(0, 0, 5.0f, 5.0f);
+	this->setStatus(NORMAL);
+	this->setPosition(posX*SCALEBOSSFRONT.x, posY*SCALEBOSSFRONT.y, 1.0f);
+	setScale(SCALEAPPLE);
+	text = new Text("Arial", "", 10, 25);
+	InIt();
+}
+
 void EatApple::InIt()
 {
 	auto collisionBody = new CollisionBody(this);
@@ -34,9 +45,6 @@ void EatApple::Update(float deltatime)
 	{
 		_animations[BEHIT]->setIndex(0);
 		InforAladdin::getInstance()->plusApple(1);
-
-		//âm thanh
-		SoundManager::getInstance()->PlaySound("Resources/Audio/AppleCollect.wav", 0);
 		//apple+=10;
 		setStatus(DESTROY);
 	}
@@ -59,12 +67,16 @@ void EatApple::Release()
 
 void EatApple::onCollisionBegin(CollisionEventArg *collision_event)
 {
+	if (isInStatus(BEHIT))
+		return;
 	eID objectID = collision_event->_otherObject->getId();
 	switch (objectID)
 	{
 		case eID::ALADDIN:
 		{
 			setStatus(BEHIT);
+			//âm thanh
+			SoundManager::getInstance()->PlaySound("Resources/Audio/AppleCollect.wav", 0);
 			break;
 		}
 	}

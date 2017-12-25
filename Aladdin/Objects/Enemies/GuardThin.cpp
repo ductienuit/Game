@@ -49,8 +49,6 @@ void GuardThin::InIt()
 
 	_hitpoint = 4;//Số lần đánh
 	_score = 10; //Số điểm được mỗi lần giết enermy
-
-
 }
 
 void GuardThin::Update(float deltatime)

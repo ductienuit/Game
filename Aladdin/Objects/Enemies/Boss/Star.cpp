@@ -61,7 +61,7 @@ void Star::Update(float deltatime)
 				setPosition(posAla);
 
 				int h = rand() % 50 + 1;
-				//listStrip.push_back(new StripAladdin(posAla.x, posAla.y+h));
+				listStrip.push_back(new StripAladdin(posAla.x, posAla.y+h));
 
 				setPosition(posAla.x, posAla.y + h);
 				_aladdin->addVelocity(100);
@@ -92,14 +92,13 @@ void Star::Update(float deltatime)
 				setPosition(posAla);
 
 				int h = rand() % 50 + 1;
-				//listStrip.push_back(new StripAladdin(posAla.x, posAla.y + h));
+				listStrip.push_back(new StripAladdin(posAla.x, posAla.y + h));
 
 				setStatus(DESTROY);
 
 				_aladdin->addVelocity(-100);
 				return;
 			}
-			
 
 			if (abs(x - posAla.x)<200)
 			{

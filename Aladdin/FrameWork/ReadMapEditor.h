@@ -20,6 +20,7 @@
 #include"../Objects/GameObjects/Spring.h"
 #include"../Objects/GameObjects/Boom.h"
 #include"../Objects/GameObjects/EatCoin.h"
+#include"../FrameWork/StopWatch.h"
 
 
 class ReadMapEditor
@@ -53,7 +54,7 @@ public:
 	//GetList for Scene Boss
 	void ListObject(RECT *rect, bool isVersion2);
 	QuadTree* _QuadTree;
-
+	StopWatch* _frequentAppleBoss;
 	
 	void UpDate(float detatime);
 	bool isContain(BaseObject*object, RECT rect);

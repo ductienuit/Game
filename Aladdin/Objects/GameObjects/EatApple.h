@@ -15,6 +15,7 @@ class EatApple : public BaseObject
 {
 public:
 	EatApple(int posX, int posY);
+	EatApple(int posX, int posY,bool isBoss);
 	void InIt() override;
 	void Update(float deltatime) override;
 	void Draw(LPD3DXSPRITE, ViewPort*) override;

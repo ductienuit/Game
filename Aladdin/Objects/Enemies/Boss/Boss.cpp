@@ -48,7 +48,7 @@ void Boss::InIt()
 	_animations[DYING] = new Animation(_sprite, 0.1f);
 	_animations[DYING]->addFrameRect(eID::BOSS, "destroy_enermy_00_0", 10);
 
-	_hitpoint = 30;
+	_hitpoint = 36;
 	_frequency = new StopWatch();
 	_frequencyFireBoss = new StopWatch();
 }
@@ -259,7 +259,7 @@ void Boss::onCollisionBegin(CollisionEventArg *collision_event)
 	{
 		if (collision_event->_otherObject->getIndex() == 2 && _hitpoint >= 1)
 		{
-			_hitpoint -= 4;
+			_hitpoint -= 1;
 			this->setStatus(eStatus::BEHIT);
 		}
 	}
@@ -339,7 +339,7 @@ void Boss::UpdateStatus(float dt)
 			else _animations[PULL_RIGHT]->Start();
 
 
-			if (_frequency->isStopWatch(90))
+			if (_frequency->isStopWatch(130))
 			{
 				_listStar.push_back(new Star(getPositionX() + 10, getPositionY(), false, _aladdin));
 
@@ -350,11 +350,11 @@ void Boss::UpdateStatus(float dt)
 		}
 		case eStatus::THROW_LEFT_FAR:
 		{
-			if(_frequencyFireBoss->isStopWatch(1000))
+			if(_frequencyFireBoss->isStopWatch(1700))
 			{
 				float x = getPositionX();
 				float y = getPositionY();
-				_listFireBoss.push_back(new FireBoss(x,y,true));
+				_listFireBoss.push_back(new FireBoss(x,y-45,true));
 				_frequencyFireBoss->restart();
 			}
 			break;
@@ -365,7 +365,7 @@ void Boss::UpdateStatus(float dt)
 			{
 				float x = getPositionX();
 				float y = getPositionY();
-				_listFireBoss.push_back(new FireBoss(x, y, false));
+				_listFireBoss.push_back(new FireBoss(x, y-45, false));
 				_frequencyFireBoss->restart();
 			}
 			break;

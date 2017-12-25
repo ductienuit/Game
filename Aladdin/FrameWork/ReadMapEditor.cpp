@@ -3,7 +3,6 @@ extern 	vector<BaseObject*> Stair[2];
 
 vector<BaseObject*> listFireActive;
 vector<BaseObject*> listActive;
-
 map<int, int> distanceThrowJar;
 
 struct MaxMin;
@@ -58,7 +57,7 @@ ReadMapEditor::ReadMapEditor(BaseObject* aladdin, const char *filepath, QuadTree
 			}
 		}
 
-		if (_objectGroup->GetName() == "guardthin")
+		else if (_objectGroup->GetName() == "guardthin")
 		{
 			for (size_t j = 0; j < _objectGroup->GetNumObjects(); j++)
 			{
@@ -72,7 +71,7 @@ ReadMapEditor::ReadMapEditor(BaseObject* aladdin, const char *filepath, QuadTree
 			}
 		}
 
-		if (_objectGroup->GetName() == "guardlu")
+		else if (_objectGroup->GetName() == "guardlu")
 		{
 
 			for (size_t j = 0; j < _objectGroup->GetNumObjects(); j++)
@@ -87,7 +86,7 @@ ReadMapEditor::ReadMapEditor(BaseObject* aladdin, const char *filepath, QuadTree
 			}
 		}
 
-		if (_objectGroup->GetName() == "fire")
+		else if (_objectGroup->GetName() == "fire")
 		{
 			for (size_t j = 0; j < _objectGroup->GetNumObjects(); j++)
 			{
@@ -101,7 +100,7 @@ ReadMapEditor::ReadMapEditor(BaseObject* aladdin, const char *filepath, QuadTree
 			}
 		}
 
-		if (_objectGroup->GetName() == "guardbig")
+		else if (_objectGroup->GetName() == "guardbig")
 		{
 			for (size_t j = 0; j < _objectGroup->GetNumObjects(); j++)
 			{
@@ -115,7 +114,7 @@ ReadMapEditor::ReadMapEditor(BaseObject* aladdin, const char *filepath, QuadTree
 			}
 		}
 
-		if (_objectGroup->GetName() == "guardthrowjar")
+		else if (_objectGroup->GetName() == "guardthrowjar")
 		{
 			for (size_t j = 0; j < _objectGroup->GetNumObjects(); j++)
 			{
@@ -129,7 +128,7 @@ ReadMapEditor::ReadMapEditor(BaseObject* aladdin, const char *filepath, QuadTree
 			}
 		}
 
-		if (_objectGroup->GetName() == "knifethrower")
+		else if (_objectGroup->GetName() == "knifethrower")
 		{
 			for (size_t j = 0; j < _objectGroup->GetNumObjects(); j++)
 			{
@@ -142,7 +141,7 @@ ReadMapEditor::ReadMapEditor(BaseObject* aladdin, const char *filepath, QuadTree
 			}
 		}
 
-		if (_objectGroup->GetName() == "stair")
+		else if (_objectGroup->GetName() == "stair")
 		{
 				for (size_t j = 0; j < _objectGroup->GetNumObjects(); j++)
 				{
@@ -155,7 +154,7 @@ ReadMapEditor::ReadMapEditor(BaseObject* aladdin, const char *filepath, QuadTree
 				}
 		}
 
-		if (_objectGroup->GetName() == "stair1")
+		else if (_objectGroup->GetName() == "stair1")
 		{
 			for (size_t j = 0; j < _objectGroup->GetNumObjects(); j++)
 			{
@@ -168,7 +167,7 @@ ReadMapEditor::ReadMapEditor(BaseObject* aladdin, const char *filepath, QuadTree
 			}
 		}
 
-		if (_objectGroup->GetName() == "stair2")
+		else if (_objectGroup->GetName() == "stair2")
 		{
 			for (size_t j = 0; j < _objectGroup->GetNumObjects(); j++)
 			{
@@ -181,7 +180,7 @@ ReadMapEditor::ReadMapEditor(BaseObject* aladdin, const char *filepath, QuadTree
 			}
 		}
 
-		if (_objectGroup->GetName() == "wall")
+		else if (_objectGroup->GetName() == "wall")
 		{
 			for (size_t j = 0; j < _objectGroup->GetNumObjects(); j++)
 			{
@@ -194,7 +193,7 @@ ReadMapEditor::ReadMapEditor(BaseObject* aladdin, const char *filepath, QuadTree
 			}
 		}
 
-		if (_objectGroup->GetName() == "fallingplatform")
+		else if (_objectGroup->GetName() == "fallingplatform")
 		{
 			for (size_t j = 0; j < _objectGroup->GetNumObjects(); j++)
 			{
@@ -206,7 +205,7 @@ ReadMapEditor::ReadMapEditor(BaseObject* aladdin, const char *filepath, QuadTree
 			}
 		}
 
-		if (_objectGroup->GetName() == "rope")
+		else if (_objectGroup->GetName() == "rope")
 		{
 			for (size_t j = 0; j < _objectGroup->GetNumObjects(); j++)
 			{
@@ -218,7 +217,7 @@ ReadMapEditor::ReadMapEditor(BaseObject* aladdin, const char *filepath, QuadTree
 			}
 		}
 
-		if (_objectGroup->GetName() == "stop")
+		else if (_objectGroup->GetName() == "stop")
 		{
 			for (size_t j = 0; j < _objectGroup->GetNumObjects(); j++)
 			{
@@ -230,7 +229,7 @@ ReadMapEditor::ReadMapEditor(BaseObject* aladdin, const char *filepath, QuadTree
 			}
 		}
 
-		if (_objectGroup->GetName() == "bar")
+		else if (_objectGroup->GetName() == "bar")
 		{
 			for (size_t j = 0; j < _objectGroup->GetNumObjects(); j++)
 			{
@@ -243,7 +242,7 @@ ReadMapEditor::ReadMapEditor(BaseObject* aladdin, const char *filepath, QuadTree
 			}
 		}
 
-		if (_objectGroup->GetName() == "spring")
+		else if (_objectGroup->GetName() == "spring")
 		{
 			for (size_t j = 0; j < _objectGroup->GetNumObjects(); j++)
 			{
@@ -256,7 +255,7 @@ ReadMapEditor::ReadMapEditor(BaseObject* aladdin, const char *filepath, QuadTree
 			}
 		}
 
-		if (_objectGroup->GetName() == "solid")
+		else if (_objectGroup->GetName() == "solid")
 		{
 			for (size_t j = 0; j < _objectGroup->GetNumObjects(); j++)
 			{
@@ -269,7 +268,7 @@ ReadMapEditor::ReadMapEditor(BaseObject* aladdin, const char *filepath, QuadTree
 			}
 		}
 
-		if (_objectGroup->GetName() == "apple")
+		else if (_objectGroup->GetName() == "apple")
 		{
 			for (size_t j = 0; j < _objectGroup->GetNumObjects(); j++)
 			{
@@ -283,7 +282,7 @@ ReadMapEditor::ReadMapEditor(BaseObject* aladdin, const char *filepath, QuadTree
 			}
 		}
 		
-		if (_objectGroup->GetName() == "heart")
+		else if (_objectGroup->GetName() == "heart")
 		{
 			for (size_t j = 0; j < _objectGroup->GetNumObjects(); j++)
 			{
@@ -298,7 +297,7 @@ ReadMapEditor::ReadMapEditor(BaseObject* aladdin, const char *filepath, QuadTree
 		}
 
 
-		if (_objectGroup->GetName() == "coin")
+		else if (_objectGroup->GetName() == "coin")
 		{
 			for (size_t j = 0; j < _objectGroup->GetNumObjects(); j++)
 			{
@@ -309,7 +308,7 @@ ReadMapEditor::ReadMapEditor(BaseObject* aladdin, const char *filepath, QuadTree
 			}
 		}
 
-		if (_objectGroup->GetName() == "camel")
+		else if (_objectGroup->GetName() == "camel")
 		{
 			for (size_t j = 0; j < _objectGroup->GetNumObjects(); j++)
 			{
@@ -323,7 +322,7 @@ ReadMapEditor::ReadMapEditor(BaseObject* aladdin, const char *filepath, QuadTree
 			}
 		}
 
-		if (_objectGroup->GetName() == "restartpoint")
+		else if (_objectGroup->GetName() == "restartpoint")
 		{
 			for (size_t j = 0; j < _objectGroup->GetNumObjects(); j++)
 			{
@@ -337,7 +336,7 @@ ReadMapEditor::ReadMapEditor(BaseObject* aladdin, const char *filepath, QuadTree
 			}
 		}
 
-		if (_objectGroup->GetName() == "boom")
+		else if (_objectGroup->GetName() == "boom")
 		{
 			for (size_t j = 0; j < _objectGroup->GetNumObjects(); j++)
 			{
@@ -384,7 +383,20 @@ ReadMapEditor::ReadMapEditor(BaseObject* aladdin, const char * filepath, QuadTre
 	{
 		const Tmx::ObjectGroup *_objectGroup = maps->GetObjectGroup(i);
 
-		if (_objectGroup->GetName() == "fire")
+		if (_objectGroup->GetName() == "apple")
+		{
+			for (size_t j = 0; j < _objectGroup->GetNumObjects(); j++)
+			{
+				Tmx::Object* _object = _objectGroup->GetObjects().at(j);
+
+
+				EatApple* _apple = new EatApple(_object->GetX(), 688 - _object->GetY() - _object->GetHeight(),true);
+
+				ListEatApple.push_back(_apple);
+				_QuadTree->InsertStaticObject(_apple);
+			}
+		}
+		else if (_objectGroup->GetName() == "fire")
 		{
 			for (size_t j = 0; j < _objectGroup->GetNumObjects(); j++)
 			{
@@ -398,7 +410,7 @@ ReadMapEditor::ReadMapEditor(BaseObject* aladdin, const char * filepath, QuadTre
 			}
 		}
 
-		if (_objectGroup->GetName() == "wall")
+		else if (_objectGroup->GetName() == "wall")
 		{
 			for (size_t j = 0; j < _objectGroup->GetNumObjects(); j++)
 			{
@@ -411,7 +423,7 @@ ReadMapEditor::ReadMapEditor(BaseObject* aladdin, const char * filepath, QuadTre
 			}
 		}
 
-		if (_objectGroup->GetName() == "solid")
+		else if (_objectGroup->GetName() == "solid")
 		{
 			for (size_t j = 0; j < _objectGroup->GetNumObjects(); j++)
 			{
@@ -424,6 +436,7 @@ ReadMapEditor::ReadMapEditor(BaseObject* aladdin, const char * filepath, QuadTre
 			}
 		}
 	}
+	_frequentAppleBoss = new StopWatch();
 }
 
 ReadMapEditor::~ReadMapEditor()
@@ -589,6 +602,24 @@ void ReadMapEditor::ListObject(RECT * rect, bool isVersion2)
 				listFireActive.push_back(ListFire[i]);
 				GetList.push_back(ListFire[i]);
 			}
+		}
+		if (_frequentAppleBoss->isStopWatch(6000))
+		{
+			for (size_t i = 0; i < ListEatApple.size(); i++)
+				if (isContain(ListEatApple[i], *rect))
+				{
+					ListEatApple[i]->setStatus(NORMAL);
+					GetList.push_back(ListEatApple[i]);
+					_frequentAppleBoss->restart();
+				}
+		}
+		else
+		{
+			for (size_t i = 0; i < ListEatApple.size(); i++)
+				if (isContain(ListEatApple[i], *rect))
+				{
+					GetList.push_back(ListEatApple[i]);
+				}
 		}
 	}
 

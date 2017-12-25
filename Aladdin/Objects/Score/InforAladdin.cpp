@@ -38,6 +38,10 @@ void InforAladdin::plusHealth(int value)
 	{
 		_health = 120;
 	}
+	if (_health<0)
+	{
+		_health = 0;
+	}
 }
 
 void InforAladdin::setHealth(int value)

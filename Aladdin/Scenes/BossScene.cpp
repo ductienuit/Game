@@ -2,7 +2,8 @@
 #include<iostream>
 using namespace std;
 
-extern vector<BaseObject*> listActive;
+extern vector<BaseObject*> listActive; 
+extern vector<BaseObject*> _listObject;
 vector<BaseObject*>	listStrip;
 
 ViewPort* BossScene::_viewport = ViewPort::getInstance();
@@ -11,7 +12,7 @@ BossScene::BossScene()
 	ViewPort::getInstance()->setPositionWorld(Vector2(0, 480));
 
 	InforAladdin::getInstance()->NonInfinity();
-
+	_listObject.clear();
 }
 
 BossScene::~BossScene()
@@ -63,7 +64,6 @@ void BossScene::Update(float dt)
 		SceneManager::getInstance()->ReplaceScene(new PlayScene());
 		return;
 	}
-	InforAladdin::getInstance()->Infinity();
 	this->UpdateViewport(_aladdin);
 
 	#pragma region  Update list object in camera
@@ -84,8 +84,12 @@ void BossScene::Update(float dt)
 
 #pragma endregion
 
-
-	_boss->OptimizeFire(&screenx);
+	RECT sizeMap;
+	sizeMap.left = 0;
+	sizeMap.top = 0;
+	sizeMap.bottom = SIZEMAPBOSS.y;
+	sizeMap.right = SIZEMAPBOSS.x;
+	_boss->OptimizeFire(&sizeMap);
 
 
 	_aladdin->Update(dt);
@@ -135,8 +139,17 @@ void BossScene::Update(float dt)
 
 
 	//Object nổ khi táo va chạm 
-	for each(auto strip in listStrip)
-		strip->Update(dt);
+	for (int i = 0; i < listStrip.size(); i++)
+	{
+		if (listStrip[i]->isInStatus(DESTROY))
+		{
+			listStrip[i]->Release();
+			delete listStrip[i];
+			listStrip.erase(listStrip.begin() + i);
+		}
+		else
+			listStrip[i]->Update(dt);
+	}
 	
 
 	//Cập nhật điểm, máu, táo, mạng sống trên màn hình
@@ -144,6 +157,33 @@ void BossScene::Update(float dt)
 		score->Update(dt);
 
 	_back->Update(dt);
+
+
+
+	#pragma region Hack Game
+	auto input = InputController::getInstance();
+	if (input->isKeyDown(DIK_1))
+	{
+		InforAladdin::getInstance()->plusApple(100);
+	}
+	if (input->isKeyDown(DIK_2))
+	{
+		InforAladdin::getInstance()->plusHealth(100);
+	}
+	if (input->isKeyDown(DIK_3))
+	{
+		InforAladdin::getInstance()->plusCoin(100);
+	}
+	if (input->isKeyDown(DIK_4))
+	{
+		InforAladdin::getInstance()->plusLife(3);
+	}
+	if (input->isKeyDown(DIK_5))
+	{
+		InforAladdin::getInstance()->Infinity();
+	}
+	#pragma endregion
+
 }
 
 void BossScene::Draw(LPD3DXSPRITE spriteHandle)

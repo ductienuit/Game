@@ -114,16 +114,16 @@ void Aladdin::InIt()
 	_animations[eStatus::SITTING_DOWN | eStatus::ATTACK] = new Animation(_sprite, 0.1f);
 	_animations[eStatus::SITTING_DOWN | eStatus::ATTACK]->addFrameRect(eID::ALADDIN, "sit_attack_", 7);
 
-	_animations[eStatus::SITTING_DOWN | eStatus::THROW] = new Animation(_sprite, 0.1f);
+	_animations[eStatus::SITTING_DOWN | eStatus::THROW] = new Animation(_sprite, 0.06f);
 	_animations[eStatus::SITTING_DOWN | eStatus::THROW]->addFrameRect(eID::ALADDIN, "sit_throw_", 5);
 
-	_animations[eStatus::JUMPING | eStatus::THROW] = new Animation(_sprite, 0.1f);
+	_animations[eStatus::JUMPING | eStatus::THROW] = new Animation(_sprite, 0.06f);
 	_animations[eStatus::JUMPING | eStatus::THROW]->addFrameRect(eID::ALADDIN, "jump_throw_", 5);
 
-	_animations[eStatus::JUMPING_RIGHT | eStatus::THROW] = new Animation(_sprite, 0.1f);
+	_animations[eStatus::JUMPING_RIGHT | eStatus::THROW] = new Animation(_sprite, 0.06f);
 	_animations[eStatus::JUMPING_RIGHT | eStatus::THROW]->addFrameRect(eID::ALADDIN, "jump_throw_", 5);
 
-	_animations[eStatus::JUMPING_LEFT | eStatus::THROW] = new Animation(_sprite, 0.1f);
+	_animations[eStatus::JUMPING_LEFT | eStatus::THROW] = new Animation(_sprite, 0.06f);
 	_animations[eStatus::JUMPING_LEFT | eStatus::THROW]->addFrameRect(eID::ALADDIN, "jump_throw_", 5);
 
 	_animations[eStatus::JUMPING_RIGHT | eStatus::ATTACK] = new Animation(_sprite, 0.1f);
