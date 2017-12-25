@@ -5,7 +5,19 @@ vector<BaseObject*> listFireActive;
 vector<BaseObject*> listActive;
 map<int, int> distanceThrowJar;
 
-struct MaxMin;
+struct maxmin
+{
+	maxmin() {}
+	maxmin(float left ,float right)
+	{
+		_left = left*1.6f;
+		_right = right*1.6f;
+	}
+	float _left;
+	float _right;
+};
+typedef struct maxmin MaxMin;
+
 map<int, MaxMin> distanceGuardThin;
 
 
@@ -24,10 +36,16 @@ ReadMapEditor::ReadMapEditor(BaseObject* aladdin, const char *filepath, QuadTree
 	distanceThrowJar[9] = 106 * 1.92;
 #pragma endregion
 
-	//#pragma region DistanceGuardThin
-	//distanceGuardThin[0] = MaxMin(136, 60);
-	//distanceGuardThin[1] = MaxMin(9, 98);
-	//#pragma endregion
+	#pragma region DistanceGuardThin
+	distanceGuardThin[0] = MaxMin(60, 136);
+	distanceGuardThin[1] = MaxMin(98, 9);
+	#pragma endregion
+
+	////Nếu object khác. Thì tạo list cho object đó
+	//distanceGuardLu
+	//	distanceGuardFat ....... OKKKKKKKKKKKKKKK
+	/*Tạo distance toàn bộ object có yêu cầu nhập maxmin*/
+
 	GetList.clear();
 	maps = new Tmx::Map();
 	maps->ParseFile(filepath);
@@ -64,7 +82,7 @@ ReadMapEditor::ReadMapEditor(BaseObject* aladdin, const char *filepath, QuadTree
 				Tmx::Object* _object = _objectGroup->GetObjects().at(j);
 
 
-				GuardThin* _guardthin = new GuardThin(MOVING_LEFT, _object->GetX(), 688 - _object->GetY() - _object->GetHeight(), aladdin,60*1.6 , 136*1.6);
+				GuardThin* _guardthin = new GuardThin(MOVING_LEFT, _object->GetX(), 688 - _object->GetY() - _object->GetHeight(), aladdin, distanceGuardThin[j]._left, distanceGuardThin[j]._right);
 
 				ListGuardThin.push_back(_guardthin);
 				_QuadTree->InsertStaticObject(_guardthin);
@@ -713,13 +731,3 @@ bool ReadMapEditor::isContain(BaseObject*object, RECT rect1)
 }
 
 
-struct MaxMin
-{
-	MaxMin(float max, float min)
-	{
-		_min = min*1.6f;
-		_max = max*1.6f;
-	}
-	float _max;
-	float _min;
-};
