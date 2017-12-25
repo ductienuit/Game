@@ -207,9 +207,6 @@ void Aladdin::InIt()
 	_animations[REVIVAL] = new Animation(_sprite, 0.12f);
 	_animations[REVIVAL]->addFrameRect(eID::ALADDIN, "restart_point_", 14);
 
-	_animations[ENDSCENE] = new Animation(_sprite, 0.08f);
-	_animations[ENDSCENE]->addFrameRect(eID::ALADDIN, "aladin_endScene_0", 10);
-
 	_sprite->drawBounding(false);
 
 	//Set lại bouding cho riêng aladdin để xét va chạm
@@ -221,9 +218,9 @@ void Aladdin::InIt()
 
 	//create stopwatch to wait time state normal or free of aladdin
 	_normalAnimateStopWatch = new StopWatch();
-	_firstAnimateStopWatch  = new StopWatch();
-	_beAttackSW				= new StopWatch();
-	_EnableFlashes			= new StopWatch();
+	_firstAnimateStopWatch = new StopWatch();
+	_beAttackSW = new StopWatch();
+	_EnableFlashes = new StopWatch();
 
 	this->setScale(SCALEALADDIN);
 	_restartPoint = nullptr;
@@ -270,7 +267,7 @@ void Aladdin::Update(float deltatime)
 	//Set lại bounding của aladdin
 	setBounding(_sprite->getBounding());
 
-	
+
 	//Kiểm tra thời gian nhấp nháy khi bị đánh
 	if (_EnableFlashes->isTimeLoop(700))
 	{
@@ -688,7 +685,7 @@ void Aladdin::UpdateInput(float dt)
 		{
 			addStatus(eStatus::THROW);
 			Vector2 position = getPosition();
-			
+
 
 			int apple = InforAladdin::getInstance()->getApple();
 			if (apple > 0)
@@ -715,7 +712,7 @@ void Aladdin::UpdateInput(float dt)
 		{
 			addStatus(eStatus::THROW);
 			Vector2 position = getPosition();
-			
+
 
 			int apple = InforAladdin::getInstance()->getApple();
 			if (apple > 0)
@@ -731,10 +728,10 @@ void Aladdin::UpdateInput(float dt)
 			addStatus(eStatus::ATTACK);
 			/*if (_input->isKeyDown(DIK_LEFT))
 			{
-				moveLeft();
-				removeStatus(eStatus::ATTACK);
-				removeStatus(eStatus::THROW);
-				addStatus(eStatus::JUMPING_LEFT);
+			moveLeft();
+			removeStatus(eStatus::ATTACK);
+			removeStatus(eStatus::THROW);
+			addStatus(eStatus::JUMPING_LEFT);
 			}*/
 		}
 		break;
@@ -757,7 +754,7 @@ void Aladdin::UpdateInput(float dt)
 			SoundManager::getInstance()->PlaySound("Resources/Audio/HighSword.wav", 0);
 			addStatus(eStatus::THROW);
 			Vector2 position = getPosition();
-			
+
 
 			int apple = InforAladdin::getInstance()->getApple();
 			if (apple > 0)
@@ -767,9 +764,9 @@ void Aladdin::UpdateInput(float dt)
 			}
 			/*if (_input->isKeyDown(DIK_RIGHT))
 			{
-				removeStatus(eStatus::THROW);
-				moveRight();
-				addStatus(eStatus::JUMPING_RIGHT);
+			removeStatus(eStatus::THROW);
+			moveRight();
+			addStatus(eStatus::JUMPING_RIGHT);
 
 			}*/
 		}
@@ -1083,13 +1080,12 @@ void Aladdin::UpdateInput(float dt)
 	}
 	case(eStatus::BEHIT):
 	{
-		_animations[BEHIT]->EnableFlashes(true);
-
-		//Tự hủy khi đế một bức ảnh n
-		if (_animations[_currentAnimateIndex]->getIndex()== 4)
+		//Tự hủy khi đế một bức ảnh thứ n
+		_EnableFlashes->restart();
+		if (_animations[_currentAnimateIndex]->getIndex() >= 4)
 		{
 			_animations[_currentAnimateIndex]->setIndex(0);
-			setStatus(NORMAL);	
+			setStatus(NORMAL);
 		}
 		break;
 	}
@@ -1160,9 +1156,9 @@ void Aladdin::UpdateInput(float dt)
 		if (_input->isKeyDown(DIK_RIGHT))
 			moveRight();
 	}
-	
-	
-	
+
+
+
 	if (_input->isKeyPressed(DIK_Q))
 		InforAladdin::getInstance()->plusHealth(100);
 	if (_input->isKeyPressed(DIK_9))
@@ -1246,7 +1242,7 @@ void Aladdin::onCollisionBegin(CollisionEventArg * collision_event)
 	{
 		auto land = (Land*)collision_event->_otherObject;
 		eLandType type = land->getType();
-		
+
 		if (type == VICTORY)
 		{
 			Enter[2] = true;
@@ -1541,72 +1537,83 @@ void Aladdin::onCollisionEnd(CollisionEventArg * collision_event)
 	{
 		auto land = (Land*)collision_event->_otherObject;
 		auto type = land->getType();
-
-			switch (type)
+		eDirection side = collision_event->_sideCollision;
+		switch (type)
+		{
+		case (eLandType::ROPE):
+		{
+			_status;
+			if (isInStatus(eStatus::JUMPING) || isInStatus(eStatus::SWING))
 			{
-				case (eLandType::ROPE):
-				{
-					if (isInStatus(eStatus::JUMPING))
-					{
-						removeStatus(CLIMB_JUMP);
-						return;
-					}
-					removeStatus(eStatus::CLIMB);
-					addStatus(eStatus::CLIMB_JUMP);
-					auto g = (Gravity*)_listComponent["Gravity"];
-					g->setStatus(eGravityStatus::FALLING__DOWN); 
-					break;
-				}
-				case (eLandType::SOLID):
-				{
-					eStatus temp = (eStatus)(JUMPING|JUMPING_LEFT|JUMPING_RIGHT);
-					if (!isExist(temp))				
-						setStatus(DROP);
-					auto g = (Gravity*)_listComponent["Gravity"];
-					g->setStatus(eGravityStatus::FALLING__DOWN);
-					break;
-				}
-				case( eLandType::STOP):
-				{
-					_animations[_currentAnimateIndex]->Start();
-					_canUp = true;
-					break;
-				}
-				case (eLandType::STAIR):
-				{
-					auto g = (Gravity*)_listComponent["Gravity"];
-					g->setStatus(eGravityStatus::FALLING__DOWN);
-					break;
-				}
-				case(eLandType::BAR):
-				{
-					eStatus temp = (eStatus)(JUMPING | JUMPING_LEFT | JUMPING_RIGHT);
-					float distance = abs(collision_event->_otherObject->getBounding().left - collision_event->_otherObject->getBounding().right);
-					if (getPositionX() < collision_event->_otherObject->getPositionX())
-					{
-						if (!isExist(temp))
-							setStatus(DROP);
-						auto g = (Gravity*)_listComponent["Gravity"];
-						g->setStatus(eGravityStatus::FALLING__DOWN);
-					}
-					else if (getPositionX() > collision_event->_otherObject->getPositionX() + distance)
-					{
-						if (!isExist(temp))
-							setStatus(DROP);
-						auto g = (Gravity*)_listComponent["Gravity"];
-						g->setStatus(eGravityStatus::FALLING__DOWN);
-					}
-					break;
-				}
+				removeStatus(CLIMB_JUMP);
+				return;
+			}
+			setStatus(eStatus::CLIMB_JUMP);
+			auto g = (Gravity*)_listComponent["Gravity"];
+			g->setStatus(eGravityStatus::FALLING__DOWN);
+			break;
+		}
+		case (eLandType::SOLID):
+		{
+			switch (side)
+			{
+			case TOP:
+			{
+				eStatus temp = (eStatus)(JUMPING | JUMPING_LEFT | JUMPING_RIGHT);
+				if (!isExist(temp))
+					setStatus(DROP);
+				auto g = (Gravity*)_listComponent["Gravity"];
+				g->setStatus(eGravityStatus::FALLING__DOWN);
+				break;
+			}
+			case BOTTOM:
+			{
+				break;
+			}
+			case LEFT:
+			{
+				break;
+			}
+			case RIGHT:
+			{
+				break;
+			}
+			default:
+				break;
 			}
 			break;
 		}
-		case eID::FALLINGPLATFORM:
+		case(eLandType::STOP):
+		{
+			_animations[_currentAnimateIndex]->Start();
+			_canUp = true;
+			break;
+		}
+		case (eLandType::STAIR):
 		{
 			auto g = (Gravity*)_listComponent["Gravity"];
 			g->setStatus(eGravityStatus::FALLING__DOWN);
 			break;
 		}
+		case(eLandType::BAR):
+		{
+			eStatus temp = (eStatus)(JUMPING | JUMPING_LEFT | JUMPING_RIGHT);
+			_status;
+			if (!isExist(temp))
+				setStatus(DROP);
+			auto g = (Gravity*)_listComponent["Gravity"];
+			g->setStatus(eGravityStatus::FALLING__DOWN);
+			break;
+		}
+		}
+		break;
+	}
+	case eID::FALLINGPLATFORM:
+	{
+		auto g = (Gravity*)_listComponent["Gravity"];
+		g->setStatus(eGravityStatus::FALLING__DOWN);
+		break;
+	}
 	}
 }
 
@@ -2145,7 +2152,7 @@ Vector2 Aladdin::getVelocity()
 void Aladdin::addVelocity(float value)
 {
 	auto move = (Movement*)_listComponent["Movement"];
-	move->setVelocity(Vector2(move->getVelocity().x +value, move->getVelocity().y));
+	move->setVelocity(Vector2(move->getVelocity().x + value, move->getVelocity().y));
 }
 
 void Aladdin::unHookInputEvent()
@@ -2172,3 +2179,4 @@ bool Aladdin::isExist(eStatus status)
 		return true;
 	return false;
 }
+
