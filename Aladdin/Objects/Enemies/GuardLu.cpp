@@ -187,6 +187,7 @@ void GuardLu::UpdateStatus(float dt)
 			{
 				//SOUNDDDDDD
 				//Nhạc khi object bị destroy
+				SoundManager::getInstance()->PlaySound("Resources/Audio/CloudPoof.wav", 0);
 				_animations[DYING]->setIndex(0);
 				this->setStatus(DESTROY);
 				//score+=10;

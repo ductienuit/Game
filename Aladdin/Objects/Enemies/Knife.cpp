@@ -160,7 +160,7 @@ void Knife::onCollisionBegin(CollisionEventArg *collision_event)
 			bool isStanding = collision_event->_otherObject->isInStatus(NORMAL1) || collision_event->_otherObject->isInStatus(FREE);
 			//SOUNDDDDDDDDDD
 			//Bỏ lại nhạc chổ này
-			SoundManager::getInstance()->PlaySound("Resources/Audio/FireFromCoal.wav", 0);
+			SoundManager::getInstance()->PlaySound("Resources/Audio/ObjectThrow.wav", 0);
 			InforAladdin::getInstance()->plusHealth(-10);
 			if (isStanding)
 			{

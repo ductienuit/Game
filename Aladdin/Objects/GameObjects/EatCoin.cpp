@@ -62,7 +62,7 @@ void EatCoin::onCollisionBegin(CollisionEventArg *collision_event)
 	case eID::ALADDIN:
 	{
 		//SOUNDDDDDDDDDDDDDDDDDDDDDDD THAY NHẠC< NHẠC SAI< CÁI NÀY T MỚI BỎ VÀO
-		SoundManager::getInstance()->PlaySound("Resources/Audio/AppleCollect.wav", 0);
+		SoundManager::getInstance()->PlaySound("Resources/Audio/ExtraHealth.wav", 0);
 		setStatus(BEHIT);
 		break;
 	}

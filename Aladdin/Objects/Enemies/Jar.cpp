@@ -57,6 +57,8 @@ void Jar::Update(float deltatime)
 			{
 				_animations[DYING]->setIndex(0);
 				this->setStatus(DESTROY);
+				//âm thanh
+				SoundManager::getInstance()->PlaySound("Resources/Audio/ClayPot.wav", 0);
 				//score+=10;
 				return;
 			}
@@ -111,9 +113,10 @@ void Jar::onCollisionBegin(CollisionEventArg *collision_event)
 			
 
 			//SOUNDDDDDDDDDDDDDDDDDD
+
 			//Bỏ lại nhạc chổ này
 
-			SoundManager::getInstance()->PlaySound("Resources/Audio/FireFromCoal.wav", 0);
+			SoundManager::getInstance()->PlaySound("Resources/Audio/ClayPot.wav", 0);
 			InforAladdin::getInstance()->plusHealth(-10);
 			if (isStanding)
 			{

@@ -66,6 +66,7 @@ void AppleThrow::Update(float deltatime)
 		if (_animations[DYING]->getIndex() >= 4)
 		{
 			_animations[DYING]->setIndex(0);
+			SoundManager::getInstance()->PlaySound("Resources/Audio/AppleSplat.wav", 0);
 			this->setStatus(DESTROY);
 			return;
 		}
