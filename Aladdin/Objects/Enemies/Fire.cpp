@@ -19,9 +19,10 @@ Fire::Fire(eStatus status, int posX, int posY, Vector2 scale) :BaseEnemy(eID::FI
 	để vừa vào khởi tạo không bị sai collison.
 	Hàm InIt sẽ tự động cập nhật lại khi set status*/
 	//	_sprite->setFrameRect(0, 0, 5.0f, 5.0f);
-	setScale(scale);
+	
 	this->setStatus(status);
 	this->setPosition(posX*scale.x, posY*scale.y, 1.0f);
+	setScale(SCALEALADDIN);
 	text = new Text("Arial", "", 10, 25);
 	InIt();
 }
