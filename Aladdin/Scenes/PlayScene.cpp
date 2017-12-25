@@ -14,13 +14,13 @@ using namespace std;
 ViewPort* PlayScene::_viewport = ViewPort::getInstance();
 PlayScene::PlayScene()
 {
-	
+	ViewPort::getInstance()->setPositionWorld(Vector2(0, 480));
+
+	InforAladdin::getInstance()->NonInfinity();
 }
 
 PlayScene::~PlayScene()
 {
-	delete _viewport;
-	_viewport = nullptr;
 }
 
 void PlayScene::setViewPort(ViewPort * viewport)
@@ -31,7 +31,11 @@ void PlayScene::setViewPort(ViewPort * viewport)
 
 bool PlayScene::InIt()
 {
-	mMap = new ReadMapEditor("Resources/Images/mapobject.tmx", _root);
+	_aladdin = new Aladdin();
+	_aladdin->InIt();
+	_aladdin->setPosition(100, 100);
+
+	mMap = new ReadMapEditor(_aladdin,"Resources/Images/mapobject.tmx", _root);
 	TurnOn[0] = true;	
 	//Bật thang 2
 	Enter[0] = false; //Check 1
@@ -50,9 +54,7 @@ bool PlayScene::InIt()
 
 	_scoreAla = InforAladdin::getInstance();
 
-    _aladdin = new Aladdin();
-	_aladdin->InIt();
-	_aladdin->setPosition(100,100);
+
 	//_aladdin->setPosition(3169*1.6, (688-376)*1.92);
 	//_aladdin->setPosition(7100, 1000);
 	_listObject.push_back(_aladdin);
@@ -314,6 +316,10 @@ void PlayScene::Release()
 		delete object;
 	}
 	_listScore.clear();
+
+	auto _input = InputController::getInstance();
+	if (_input != nullptr)
+		__unhook(_input);
 }
 
 void PlayScene::UpdateViewport(BaseObject * aladdin)

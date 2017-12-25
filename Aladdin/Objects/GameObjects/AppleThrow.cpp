@@ -121,6 +121,7 @@ void AppleThrow::onCollisionBegin(CollisionEventArg *collision_event)
 
 	if (enermy->getHitpoint() == 2)
 	{
+		enermy->plusHitpoint(-2);
 		enermy->setStatus(DYING);
 		return;
 	}

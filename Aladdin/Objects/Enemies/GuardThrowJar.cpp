@@ -1,12 +1,12 @@
 ﻿#include "GuardThrowJar.h"
 
-GuardThrowJar::GuardThrowJar(eStatus status, int posX, int posY, int distancebroken) :BaseEnemy(eID::GUARDTHROWJAR)
+GuardThrowJar::GuardThrowJar(eStatus status, int posX, int posY, int distancebroken, BaseObject* aladdin) :BaseEnemy(eID::GUARDTHROWJAR)
 {
 	_distancebroken = distancebroken;
 	_sprite = SpriteManager::getInstance()->getSprite(eID::GUARDTHROWJAR);
 	_sprite->setFrameRect(0, 0, 32.0f, 16.0f);
 
-	_divingSprite = SpriteManager::getInstance()->getSprite(eID::ALADDIN);
+	_aladdin = aladdin;
 
 	this->setStatus(status);
 	this->setPosition(posX*SCALECHARACTER.x, posY*SCALECHARACTER.y, 1.0f);
@@ -92,7 +92,7 @@ void GuardThrowJar::UpdateStatus(float dt)
 		{
 			_animations[this->getStatus()]->setIndex(0);
 			setStatus(FREE);
-			_listJar.push_back(new Jar(eStatus::DROP, this->getPositionX(), this->getPositionY(), eDirection::BOTTOM,_distancebroken));
+			_listJar.push_back(new Jar(eStatus::DROP, this->getPositionX(), this->getPositionY(),_distancebroken));
 		}
 		return;
 	}
@@ -190,10 +190,10 @@ float GuardThrowJar::checkCollision(BaseObject *object, float dt)
 
 Vector2 GuardThrowJar::distanceBetweenAladdin()
 {
-	float xAla = _divingSprite->getPositionX() + (_divingSprite->getBounding().right - _divingSprite->getBounding().left) / 2;
+	float xAla = _aladdin->getPositionX() + (_aladdin->getBounding().right - _aladdin->getBounding().left) / 2;
 	float x = this->getPositionX();
 
-	float yAla = _divingSprite->getPositionY();
+	float yAla = _aladdin->getPositionY();
 	float y = this->getPositionY();
 
 	return Vector2(xAla - x,yAla-y);

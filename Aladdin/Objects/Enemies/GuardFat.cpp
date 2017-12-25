@@ -1,15 +1,15 @@
 ﻿#include "GuardFat.h"
 extern vector<BaseObject*> listFireActive;
 
-GuardFat::GuardFat(eStatus status, int posX, int posY, eDirection direction, int minMove, int maxMove) :BaseEnemy(eID::GUARDFAT)
+GuardFat::GuardFat(eStatus status, int posX, int posY, BaseObject* aladdin, int minMove, int maxMove) :BaseEnemy(eID::GUARDFAT)
 {
 	_sprite = SpriteManager::getInstance()->getSprite(eID::GUARDFAT);
+	_aladdin = aladdin;
 	/*Dòng dưới để set framewidth hoặc height
 	để vừa vào khởi tạo không bị sai collison.
 	Hàm InIt sẽ tự động cập nhật lại khi set status*/
 	_sprite->setFrameRect(0, 0, 5.0f, 5.0f);
-	_divingSprite = SpriteManager::getInstance()->getSprite(eID::ALADDIN);
-	Vector2 v(direction * GUARDFAT_SPEED, 0);
+	Vector2 v(0, 0);
 	Vector2 a(0, 0);
 	this->_listComponent.insert(pair<string, IComponent*>("Movement", new Movement(a, v, this->_sprite)));
 	this->setStatus(status);
@@ -80,7 +80,7 @@ void GuardFat::Update(float deltatime)
 
 void GuardFat::UpdateStatus(float dt)
 {
-	float xAla = _divingSprite->getPositionX() + (_divingSprite->getBounding().right - _divingSprite->getBounding().left) / 2;
+	float xAla = _aladdin->getPositionX() + (_aladdin->getBounding().right - _aladdin->getBounding().left) / 2;
 	switch (this->getStatus())
 	{
 	case eStatus::DESTROY:
@@ -299,10 +299,10 @@ RECT GuardFat::getBounding()
 
 Vector2 GuardFat::distanceBetweenAladdin()
 {
-	float xAla = _divingSprite->getPositionX() + (_divingSprite->getBounding().right - _divingSprite->getBounding().left) / 2;
+	float xAla = _aladdin->getPositionX() + (_aladdin->getBounding().right - _aladdin->getBounding().left) / 2;
 	float x = this->getPositionX();
 
-	float yAla = _divingSprite->getPositionY();
+	float yAla = _aladdin->getPositionY();
 	float y = this->getPositionY();
 
 	return Vector2(xAla - x, yAla - y);

@@ -103,6 +103,16 @@ void InforAladdin::Infinity()
 	_infinity = true;
 }
 
+void InforAladdin::NonInfinity()
+{
+	_infinity = false;
+	_score = 100;
+	InforAladdin::_health = 120;
+	InforAladdin::_life = 3;
+	InforAladdin::_coin = 0;
+	InforAladdin::_apple = 15;
+}
+
 void InforAladdin::Release()
 {
 	delete _instance;

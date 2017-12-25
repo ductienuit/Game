@@ -8,18 +8,27 @@ vector<BaseObject*>	listStrip;
 ViewPort* BossScene::_viewport = ViewPort::getInstance();
 BossScene::BossScene()
 {
+	ViewPort::getInstance()->setPositionWorld(Vector2(0, 480));
+
+	InforAladdin::getInstance()->NonInfinity();
 
 }
 
 BossScene::~BossScene()
 {
-	delete _viewport;
-	_viewport = nullptr;
+	
+	//delete _viewport;
+	//_viewport = nullptr;
 }
 
 bool BossScene::InIt()
 {
-	mMap = new ReadMapEditor("Resources/Images/Boss/boss.tmx", _root,true);
+
+	_aladdin = new Aladdin();
+	_aladdin->InIt();
+	_aladdin->setPosition(100, 300);
+
+	mMap = new ReadMapEditor(_aladdin,"Resources/Images/Boss/boss.tmx", _root,true);
 
 	_back = new BackGroundBossBack();
 
@@ -28,9 +37,6 @@ bool BossScene::InIt()
 
 	_scoreAla = InforAladdin::getInstance();
 
-	_aladdin = new Aladdin();
-	_aladdin->InIt();
-	_aladdin->setPosition(100, 300);
 
 	_boss = new Boss(PULL_LEFT, 757, (691-492-148), _aladdin);
 	_boss->InIt();
@@ -52,6 +58,11 @@ void BossScene::UpdateInput(float dt)
 
 void BossScene::Update(float dt)
 {
+	if (_boss->getHitpoint() <= 0)
+	{
+		SceneManager::getInstance()->ReplaceScene(new PlayScene());
+		return;
+	}
 	InforAladdin::getInstance()->Infinity();
 	this->UpdateViewport(_aladdin);
 
@@ -67,7 +78,7 @@ void BossScene::Update(float dt)
 	screenx.right = viewport_in_transform.left + WINDOWS_WIDTH;
 
 	_activeObject.clear();
-	mMap->ListObject(&screenx);
+	mMap->ListObject(&screenx,_boss->isVersion2());
 	_activeObject = mMap->GetList;
 	listActive.push_back(_boss);
 
@@ -200,7 +211,7 @@ void BossScene::Release()
 	delete _front;
 
 	_aladdin->Release();
-	delete _aladdin;
+	delete  _aladdin;
 
 	_boss->Release();
 	delete _boss;
@@ -212,6 +223,12 @@ void BossScene::Release()
 		delete object;
 	}
 	_listScore.clear();
+
+
+
+	auto _input= InputController::getInstance();
+	if (_input != nullptr)
+		__unhook(_input);
 }
 
 void BossScene::UpdateViewport(BaseObject * aladdin)

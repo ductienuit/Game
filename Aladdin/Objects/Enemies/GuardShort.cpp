@@ -1,12 +1,11 @@
 ﻿#include "GuardShort.h"
 
-GuardShort::GuardShort(eStatus status, int posX, int posY, eDirection direction, int minMove, int maxMove) :BaseEnemy(eID::GUARDSHORT)
+GuardShort::GuardShort(eStatus status, int posX, int posY, BaseObject* aladdin, int minMove, int maxMove) :BaseEnemy(eID::GUARDSHORT)
 {
 	_sprite = SpriteManager::getInstance()->getSprite(eID::GUARDSHORT);
 	_sprite->setFrameRect(0, 0, 32.0f, 16.0f);
-
-	_divingSprite = SpriteManager::getInstance()->getSprite(eID::ALADDIN);
-	Vector2 v(direction * GUARDSHORT_SPEED, 0);
+	_aladdin = aladdin;
+	Vector2 v(0 * GUARDSHORT_SPEED, 0);
 	Vector2 a(0, 0);
 	this->_listComponent.insert(pair<string, IComponent*>("Movement", new Movement(a, v, this->_sprite)));
 	this->setStatus(status);
@@ -19,7 +18,7 @@ GuardShort::GuardShort(eStatus status, int posX, int posY, eDirection direction,
 
 void GuardShort::InIt()
 {
-	knife = new KnifeShort(eStatus::NORMAL, getPositionX(), getPositionY(), eDirection::NONE);
+	knife = new KnifeShort(eStatus::NORMAL, getPositionX(), getPositionY());
 	knife->InIt();
 
 	auto movement = new Movement(Vector2(0, 0), Vector2(0, 0), _sprite);
@@ -130,10 +129,10 @@ float GuardShort::checkCollision(BaseObject *object, float dt)
 
 Vector2 GuardShort::distanceBetweenAladdin()
 {
-	float xAla = _divingSprite->getPositionX() + (_divingSprite->getBounding().right - _divingSprite->getBounding().left) / 2;
+	float xAla = _aladdin->getPositionX() + (_aladdin->getBounding().right - _aladdin->getBounding().left) / 2;
 	float x = this->getPositionX();
 
-	float yAla = _divingSprite->getPositionY();
+	float yAla = _aladdin->getPositionY();
 	float y = this->getPositionY();
 
 	return Vector2(xAla - x, yAla - y);
@@ -141,7 +140,7 @@ Vector2 GuardShort::distanceBetweenAladdin()
 
 void GuardShort::UpdateStatus(float dt)
 {
-	float xAla = _divingSprite->getPositionX() + (_divingSprite->getBounding().right - _divingSprite->getBounding().left) / 2;
+	float xAla = _aladdin->getPositionX() + (_aladdin->getBounding().right - _aladdin->getBounding().left) / 2;
 	switch (this->getStatus())
 	{
 		case eStatus::DESTROY:

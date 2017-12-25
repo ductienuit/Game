@@ -48,7 +48,8 @@ HRESULT Texture::LoadFromFile(LPD3DXSPRITE spriteHandle, LPCSTR filePath, D3DXCO
 }
 void Texture::Release()
 {
-	this->_texture->Release();
+	/*this->_texture->Release();
+	delete _texture;*/
 }
 void Texture::Render(LPD3DXSPRITE spriteHandle, const RECT* rect, const Vector3* center, const Vector3* position)
 {

@@ -80,6 +80,8 @@ private:
 	BaseObject* _preObjectColli;  //Đối tượng va chạm trước đó
 	BaseObject* _restartPoint;
 
+	eDirection _sideColliWall;
+
 	void onKeyReleased(KeyEventArg* key_event);
 
 	

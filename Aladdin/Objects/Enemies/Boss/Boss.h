@@ -46,7 +46,6 @@ private:
 	vector<BaseObject*> _listStar;
 	Aladdin* _aladdin;
 	bool isversion2;
-	Sprite *_divingSprite;
 	vector<BaseObject*> _listFireBoss;
 	StopWatch* _frequency;
 	StopWatch* _frequencyFireBoss;

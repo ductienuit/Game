@@ -1782,6 +1782,10 @@ void Aladdin::Release()
 		delete listApple[i];
 	}
 	listApple.clear();
+
+	auto _input = InputController::getInstance();
+	if (_input != nullptr)
+		__unhook(_input);
 }
 
 void Aladdin::standing()

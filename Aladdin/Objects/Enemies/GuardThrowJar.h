@@ -16,7 +16,7 @@ using namespace std;
 class GuardThrowJar : public BaseEnemy
 {
 public:
-	GuardThrowJar(eStatus status, int posX, int posY,int distancebroken);
+	GuardThrowJar(eStatus status, int posX, int posY,int distancebroken, BaseObject* aladdin);
 
 	void InIt() override;
 	void Update(float deltatime) override;
@@ -36,12 +36,13 @@ public:
 	~GuardThrowJar();
 private:
 	void standing();
+
+	BaseObject* _aladdin;
 	//void Throw(float deltatime);
 	int _distancebroken;
 	vector<Jar*> _listJar;
 	map<string, IComponent*> _listComponent;
 	map<int, Animation*> _animations;
-	Sprite *_divingSprite;
 	vector<BaseObject*> _listobject;
 	vector<IControlable*> _listControlObject;
 	eStatus _currentAnimateIndex;

@@ -2,7 +2,7 @@
 extern vector<BaseObject*> listApple;
 
 
-KnifeShort::KnifeShort(eStatus status, int posX, int posY, eDirection direction)
+KnifeShort::KnifeShort(eStatus status, int posX, int posY)
 {
 	_sprite = SpriteManager::getInstance()->getSprite(eID::KNIFE);
 	/*Dòng dưới để set framewidth hoặc height
@@ -11,8 +11,7 @@ KnifeShort::KnifeShort(eStatus status, int posX, int posY, eDirection direction)
 	_sprite->setFrameRect(0, 0, 5.0f, 5.0f);
 	_originPosition = Vector2(posX, posY);
 
-	_divingSprite = SpriteManager::getInstance()->getSprite(eID::ALADDIN);
-	Vector2 v(direction * KNIFE_SHORT_SPEED, 0);
+	Vector2 v(0 * KNIFE_SHORT_SPEED, 0);
 	Vector2 a(0, 0);
 
 	auto movement = new Movement(Vector2(0, 0), Vector2(0, 0), _sprite);

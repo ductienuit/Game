@@ -16,7 +16,7 @@ using namespace std;
 class KnifeShort : public BaseEnemy
 {
 public:
-	KnifeShort(eStatus status, int posX, int posY, eDirection direction);
+	KnifeShort(eStatus status, int posX, int posY);
 	void InIt() override;
 	void Update(float deltatime) override;
 	void Draw(LPD3DXSPRITE, ViewPort*) override;
@@ -38,7 +38,6 @@ private:
 
 	map<string, IComponent*> _listComponent;
 	map<int, Animation*> _animations;
-	Sprite *_divingSprite;
 	Vector2 _originPosition;
 	bool _isLeft;
 };

@@ -16,7 +16,7 @@ using namespace std;
 class GuardKnifeThrower : public BaseEnemy
 {
 public:
-	GuardKnifeThrower(eStatus status, int posX, int posY, eDirection direction);
+	GuardKnifeThrower(eStatus status, int posX, int posY, BaseObject* aladdin);
 
 	void InIt() override;
 	void Update(float deltatime) override;
@@ -35,13 +35,14 @@ public:
 	Text* text;
 	~GuardKnifeThrower();
 private:
+	BaseObject* _aladdin;
+
 	void movingLeft();
 	void movingRight();
 
 	Knife* knife;
 	map<string, IComponent*> _listComponent;
 	map<int, Animation*> _animations;
-	Sprite *_divingSprite;
 	vector<BaseObject*> _listobject;
 	vector<IControlable*> _listControlObject;
 	bool _canThrow;

@@ -17,7 +17,7 @@ using namespace std;
 class GuardThin : public BaseEnemy
 {
 public:
-	GuardThin(eStatus status, int posX, int posY, eDirection direction, int minMove, int maxMove);
+	GuardThin(eStatus status, int posX, int posY,BaseObject* aladdin, int minMove, int maxMove);
 
 	void InIt() override;
 	void Update(float deltatime) override;
@@ -35,13 +35,12 @@ public:
 	Text* text;
 	~GuardThin();
 private:
-	Aladdin * aladdin;
+	BaseObject * _aladdin;
 	void movingLeft();
 	void movingRight();
 	void standing();
 	map<string, IComponent*> _listComponent;
 	map<int, Animation*> _animations;
-	Sprite *_divingSprite;
 };
 #endif _GUARDTHIN_H
 

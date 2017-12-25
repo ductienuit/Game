@@ -18,7 +18,7 @@ using namespace std;
 class GuardShort : public BaseEnemy
 {
 public:
-	GuardShort(eStatus status, int posX, int posY, eDirection direction, int minMove, int maxMove);
+	GuardShort(eStatus status, int posX, int posY, BaseObject* aladdin, int minMove, int maxMove);
 
 	void InIt() override;
 	void Update(float deltatime) override;
@@ -45,7 +45,7 @@ private:
 	KnifeShort* knife;
 	map<string, IComponent*> _listComponent;
 	map<int, Animation*> _animations;
-	Sprite *_divingSprite;
+	BaseObject* _aladdin;
 	vector<BaseObject*> _listObject;
 	vector<IControlable*> _listControlObject;
 	bool _canThrow;

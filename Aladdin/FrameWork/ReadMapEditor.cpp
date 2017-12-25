@@ -10,7 +10,7 @@ struct MaxMin;
 map<int, MaxMin> distanceGuardThin;
 
 
-ReadMapEditor::ReadMapEditor(const char *filepath, QuadTree *& _quadTree)
+ReadMapEditor::ReadMapEditor(BaseObject* aladdin, const char *filepath, QuadTree *& _quadTree)
 {
 	#pragma region DistanceBrokenJar
 	distanceThrowJar[0] = 148 * 1.92;
@@ -51,7 +51,7 @@ ReadMapEditor::ReadMapEditor(const char *filepath, QuadTree *& _quadTree)
 				Tmx::Object* _object = _objectGroup->GetObjects().at(j);
 
 
-				GuardShort* _guardshort = new GuardShort(MOVING_LEFT, _object->GetX(), 688 - _object->GetY() - _object->GetHeight(), NONE, 50, 50);
+				GuardShort* _guardshort = new GuardShort(MOVING_LEFT, _object->GetX(), 688 - _object->GetY() - _object->GetHeight(), aladdin, 50, 50);
 
 				ListGuardShort.push_back(_guardshort);
 				_QuadTree->InsertStaticObject(_guardshort);
@@ -65,7 +65,7 @@ ReadMapEditor::ReadMapEditor(const char *filepath, QuadTree *& _quadTree)
 				Tmx::Object* _object = _objectGroup->GetObjects().at(j);
 
 
-				GuardThin* _guardthin = new GuardThin(MOVING_LEFT, _object->GetX(), 688 - _object->GetY() - _object->GetHeight(), NONE,60*1.6 , 136*1.6);
+				GuardThin* _guardthin = new GuardThin(MOVING_LEFT, _object->GetX(), 688 - _object->GetY() - _object->GetHeight(), aladdin,60*1.6 , 136*1.6);
 
 				ListGuardThin.push_back(_guardthin);
 				_QuadTree->InsertStaticObject(_guardthin);
@@ -80,7 +80,7 @@ ReadMapEditor::ReadMapEditor(const char *filepath, QuadTree *& _quadTree)
 				Tmx::Object* _object = _objectGroup->GetObjects().at(j);
 
 
-				GuardLu* _guardlu = new GuardLu(FREE, _object->GetX(), 688 - _object->GetY() - _object->GetHeight(), NONE, 1000, 1000);
+				GuardLu* _guardlu = new GuardLu(FREE, _object->GetX(), 688 - _object->GetY() - _object->GetHeight(), aladdin, 1000, 1000);
 
 				ListGuardLu.push_back(_guardlu);
 				_QuadTree->InsertStaticObject(_guardlu);
@@ -94,7 +94,7 @@ ReadMapEditor::ReadMapEditor(const char *filepath, QuadTree *& _quadTree)
 				Tmx::Object* _object = _objectGroup->GetObjects().at(j);
 
 
-				Fire* _fire = new Fire(BEHIT, _object->GetX(), 688 - _object->GetY() - _object->GetHeight(), NONE);
+				Fire* _fire = new Fire(BEHIT, _object->GetX(), 688 - _object->GetY() - _object->GetHeight(),NONE);
 
 				ListFire.push_back(_fire);
 				_QuadTree->InsertStaticObject(_fire);
@@ -108,7 +108,7 @@ ReadMapEditor::ReadMapEditor(const char *filepath, QuadTree *& _quadTree)
 				Tmx::Object* _object = _objectGroup->GetObjects().at(j);
 
 
-				GuardFat* _guardFat = new GuardFat(FREE, _object->GetX() , 688 - _object->GetY() - _object->GetHeight(), NONE, 50, 50);
+				GuardFat* _guardFat = new GuardFat(FREE, _object->GetX() , 688 - _object->GetY() - _object->GetHeight(), aladdin, 50, 50);
 
 				ListGuardFat.push_back(_guardFat);
 				_QuadTree->InsertStaticObject(_guardFat);
@@ -122,7 +122,7 @@ ReadMapEditor::ReadMapEditor(const char *filepath, QuadTree *& _quadTree)
 				Tmx::Object* _object = _objectGroup->GetObjects().at(j);
 
 
-				GuardThrowJar* _guardThrowJar = new GuardThrowJar(FREE, _object->GetX()+16, 688 - _object->GetY() - _object->GetHeight(),distanceThrowJar[(int)(j)]);
+				GuardThrowJar* _guardThrowJar = new GuardThrowJar(FREE, _object->GetX()+16, 688 - _object->GetY() - _object->GetHeight(),distanceThrowJar[(int)(j)], aladdin);
 
 				ListGuardThrowJar.push_back(_guardThrowJar);
 				_QuadTree->InsertStaticObject(_guardThrowJar);
@@ -135,7 +135,7 @@ ReadMapEditor::ReadMapEditor(const char *filepath, QuadTree *& _quadTree)
 			{
 				Tmx::Object* _object = _objectGroup->GetObjects().at(j);
 
-				GuardKnifeThrower* _knifeThrower = new GuardKnifeThrower(MOVING_LEFT, _object->GetX(), 688 - _object->GetY() - _object->GetHeight(), NONE);
+				GuardKnifeThrower* _knifeThrower = new GuardKnifeThrower(MOVING_LEFT, _object->GetX(), 688 - _object->GetY() - _object->GetHeight(), aladdin);
 
 				ListKnifeThrower.push_back(_knifeThrower);
 				_QuadTree->InsertStaticObject(_knifeThrower);
@@ -350,7 +350,7 @@ ReadMapEditor::ReadMapEditor(const char *filepath, QuadTree *& _quadTree)
 	}
 }
 
-ReadMapEditor::ReadMapEditor(const char * filepath, QuadTree *& _quadTree, bool isBossScene)
+ReadMapEditor::ReadMapEditor(BaseObject* aladdin, const char * filepath, QuadTree *& _quadTree, bool isBossScene)
 {
 #pragma region DistanceBrokenJar
 	distanceThrowJar[0] = 148 * 1.92;
@@ -574,6 +574,35 @@ void ReadMapEditor::ListObject(RECT * rect)
 	}
 	listActive = GetList;
 }
+
+void ReadMapEditor::ListObject(RECT * rect, bool isVersion2)
+{
+	GetList.clear();
+	listFireActive.clear();
+
+	if (isVersion2)
+	{
+		for (size_t i = 0; i < ListFire.size(); i++)
+		{
+			if (isContain(ListFire[i], *rect))
+			{
+				listFireActive.push_back(ListFire[i]);
+				GetList.push_back(ListFire[i]);
+			}
+		}
+	}
+
+	for (size_t i = 0; i < ListLand.size(); i++)
+	{
+		if (isContain(ListLand[i], *rect))
+		{
+			GetList.push_back(ListLand[i]);
+		}
+	}
+
+	listActive = GetList;
+}
+
 void ReadMapEditor::UpDate(float detatime)
 {
 

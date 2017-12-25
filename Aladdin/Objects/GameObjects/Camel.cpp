@@ -17,7 +17,7 @@ void Camel::InIt()
 	auto collisionBody = new CollisionBody(this);
 	_listComponent["CollisionBody"] = collisionBody;
 
-	bulletCamel = new BulletCamel(eStatus::THROW, this->getPositionX(), this->getPositionY() + 500, eDirection::RIGHT);
+	bulletCamel = new BulletCamel(eStatus::THROW, this->getPositionX(), this->getPositionY() + 500);
 	bulletCamel->InIt();
 
 	__hook(&CollisionBody::onCollisionBegin, collisionBody, &Camel::onCollisionBegin);

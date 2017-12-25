@@ -1,6 +1,6 @@
 ﻿#include "Jar.h"
 
-Jar::Jar(eStatus status, int posX, int posY, eDirection direction, int distancebroken) :BaseEnemy(eID::JAR)
+Jar::Jar(eStatus status, int posX, int posY, int distancebroken) :BaseEnemy(eID::JAR)
 {
 	_distancebroken = distancebroken;
 	_sprite = SpriteManager::getInstance()->getSprite(eID::JAR);
@@ -11,7 +11,6 @@ Jar::Jar(eStatus status, int posX, int posY, eDirection direction, int distanceb
 	Hàm InIt sẽ tự động cập nhật lại khi set status*/
 	_sprite->setFrameRect(0, 0, 10.0f, 10.0f);
 
-	_divingSprite = SpriteManager::getInstance()->getSprite(eID::ALADDIN);
 	this->setStatus(status);
 	this->setPosition(posX, posY, 1.0f);
 	text = new Text("Arial", "", 10, 25);

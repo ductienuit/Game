@@ -7,8 +7,6 @@ Boss::Boss(eStatus status, int posX, int posY, Aladdin* aladdin) :BaseEnemy(eID:
 	_sprite = SpriteManager::getInstance()->getSprite(eID::BOSS);
 	_sprite->setFrameRect(0, 0, 32.0f, 16.0f);
 
-	_divingSprite = SpriteManager::getInstance()->getSprite(eID::ALADDIN);
-
 	_aladdin = aladdin;
 
 	this->setStatus(status);
@@ -50,7 +48,7 @@ void Boss::InIt()
 	_animations[DYING] = new Animation(_sprite, 0.1f);
 	_animations[DYING]->addFrameRect(eID::BOSS, "destroy_enermy_00_0", 10);
 
-	_hitpoint = 50;
+	_hitpoint = 30;
 	_frequency = new StopWatch();
 	_frequencyFireBoss = new StopWatch();
 }
@@ -255,6 +253,16 @@ void Boss::onCollisionBegin(CollisionEventArg *collision_event)
 			break;
 		}
 	}
+
+
+	if (collision_event->_otherObject->isInStatus(ATTACK))
+	{
+		if (collision_event->_otherObject->getIndex() == 2 && _hitpoint >= 1)
+		{
+			_hitpoint -= 4;
+			this->setStatus(eStatus::BEHIT);
+		}
+	}
 }
 
 void Boss::onCollisionEnd(CollisionEventArg *)
@@ -284,7 +292,7 @@ void Boss::UpdateStatus(float dt)
 			if (_animations[DYING]->getIndex() == 9)
 			{
 				_animations[DYING]->setIndex(0);
-				this->setStatus(DESTROY);
+				_hitpoint;
 			}
 			return;
 		}
@@ -419,10 +427,10 @@ Boss::~Boss()
 
 Vector2 Boss::distanceBetweenAladdin()
 {
-	float xAla = _divingSprite->getPositionX();
+	float xAla = _aladdin->getPositionX();
 	float x = this->getPositionX();
 
-	float yAla = _divingSprite->getPositionY();
+	float yAla = _aladdin->getPositionY();
 	float y = this->getPositionY();
 
 	return Vector2(xAla - x, yAla - y);

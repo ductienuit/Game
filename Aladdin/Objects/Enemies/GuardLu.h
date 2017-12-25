@@ -16,7 +16,7 @@ using namespace std;
 class GuardLu : public BaseEnemy
 {
 public:
-	GuardLu(eStatus status, int posX, int posY, eDirection direction, int minMove, int maxMove);
+	GuardLu(eStatus status, int posX, int posY, BaseObject* aladdin, int minMove, int maxMove);
 
 	void InIt() override;
 	void Update(float deltatime) override;
@@ -37,14 +37,13 @@ public:
 	Text* text;
 	~GuardLu();
 private:
-	Aladdin * aladdin;
+	BaseObject * _aladdin;
 	void movingLeft();
 	void movingRight();
 	void standing();
 
 	map<string, IComponent*> _listComponent;
 	map<int, Animation*> _animations;
-	Sprite *_divingSprite;
 	vector<BaseObject*> _listObject;
 	vector<IControlable*> _listControlObject;
 };

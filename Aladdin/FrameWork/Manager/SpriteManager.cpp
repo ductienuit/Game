@@ -201,9 +201,7 @@ void SpriteManager::LoadResource(LPD3DXSPRITE spriteHandle)
 Sprite * SpriteManager::getSprite(eID id)
 {
 	Sprite *it = this->_listSprite.find(id)->second;
-	if (id == ALADDIN)
-		return it;
-	return new Sprite(*it);				// get the version of Sprite
+		return new Sprite(*it);				// get the new version of Sprite
 }
 
 

@@ -1,15 +1,14 @@
 ﻿#include "GuardKnifeThrower.h"
 
-GuardKnifeThrower::GuardKnifeThrower(eStatus status, int posX, int posY, eDirection direction) :BaseEnemy(eID::KNIFETHROWER)
+GuardKnifeThrower::GuardKnifeThrower(eStatus status, int posX, int posY, BaseObject* aladdin) :BaseEnemy(eID::KNIFETHROWER)
 {
 	_sprite = SpriteManager::getInstance()->getSprite(eID::KNIFETHROWER);
 	/*Dòng dưới để set framewidth hoặc height
 	để vừa vào khởi tạo không bị sai collison.
 	Hàm InIt sẽ tự động cập nhật lại khi set status*/
 	_sprite->setFrameRect(0, 0, 5.0f, 5.0f);
-
-	_divingSprite = SpriteManager::getInstance()->getSprite(eID::ALADDIN);
-	Vector2 v(direction * KNIFETHROWER_SPEED, 0);
+	_aladdin = aladdin;
+	Vector2 v(0 * KNIFETHROWER_SPEED, 0);
 	Vector2 a(0, 0);
 	this->_listComponent.insert(pair<string, IComponent*>("Movement", new Movement(a, v, this->_sprite)));
 	this->setStatus(status);
@@ -125,7 +124,7 @@ float GuardKnifeThrower::checkCollision(BaseObject *object, float dt)
 
 float GuardKnifeThrower::distanceBetweenAladdin()
 {
-	float xAla = _divingSprite->getPositionX() + (_divingSprite->getBounding().right - _divingSprite->getBounding().left) / 2;
+	float xAla = _aladdin->getPositionX() + (_aladdin->getBounding().right - _aladdin->getBounding().left) / 2;
 	float x = this->getPositionX();
 	return xAla - x;
 }

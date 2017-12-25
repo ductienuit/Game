@@ -32,7 +32,7 @@
 #include"../Objects/Score/Apple.h"
 #include"../Objects/Score/Alphabet.h"
 
-
+#include"../Scenes/PlayScene.h"
 
 #include<time.h>
 

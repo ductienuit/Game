@@ -1,12 +1,12 @@
 ﻿#include "GuardThin.h"
 
-GuardThin::GuardThin(eStatus status, int posX, int posY, eDirection direction, int minMove, int maxMove) :BaseEnemy(eID::GUARDTHIN)
+GuardThin::GuardThin(eStatus status, int posX, int posY, BaseObject* aladdin, int minMove, int maxMove) :BaseEnemy(eID::GUARDTHIN)
 {
 	_sprite = SpriteManager::getInstance()->getSprite(eID::GUARDTHIN);
 	_sprite->setFrameRect(0, 0, 32.0f, 16.0f);
 	
-	_divingSprite = SpriteManager::getInstance()->getSprite(eID::ALADDIN);
-	Vector2 v(direction * GUARDTHIN_SPEED, 0);
+	_aladdin = aladdin;
+	Vector2 v(0 * GUARDTHIN_SPEED, 0);
 	Vector2 a(0, 0);
 	this->_listComponent.insert(pair<string, IComponent*>("Movement", new Movement(a, v, this->_sprite)));
 	this->setStatus(status);
@@ -71,7 +71,7 @@ void GuardThin::Update(float deltatime)
 
 void GuardThin::UpdateStatus(float dt)
 {
-	float xAla = _divingSprite->getPositionX() + (_divingSprite->getBounding().right - _divingSprite->getBounding().left) / 2;
+	float xAla = _aladdin->getPositionX() + (_aladdin->getBounding().right - _aladdin->getBounding().left) / 2;
 	switch (this->getStatus())
 	{
 	case eStatus::DESTROY:
@@ -268,10 +268,10 @@ float GuardThin::checkCollision(BaseObject *object, float dt)
 
 Vector2 GuardThin::distanceBetweenAladdin()
 {
-	float xAla = _divingSprite->getPositionX() + (_divingSprite->getBounding().right - _divingSprite->getBounding().left) / 2;
+	float xAla = _aladdin->getPositionX() + (_aladdin->getBounding().right - _aladdin->getBounding().left) / 2;
 	float x = this->getPositionX();
 
-	float yAla = _divingSprite->getPositionY();
+	float yAla = _aladdin->getPositionY();
 	float y = this->getPositionY();
 
 	return Vector2(xAla - x, yAla - y);

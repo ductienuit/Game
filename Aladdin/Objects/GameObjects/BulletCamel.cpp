@@ -1,15 +1,15 @@
 ﻿#include "BulletCamel.h"
 extern vector<BaseObject*> listActive;
 
-BulletCamel::BulletCamel(eStatus status, int posX, int posY, eDirection direction)
+BulletCamel::BulletCamel(eStatus status, int posX, int posY)
 {
 	_sprite = SpriteManager::getInstance()->getSprite(eID::BULLETCAMEL);
 	_sprite->setFrameRect(0, 0, 32.0f, 16.0f);
 	_originPosition = Vector2(posX - 120, posY + 60);
 	_currentPosition = Vector2(_originPosition.x, _originPosition.y);
 
-	_divingSprite = SpriteManager::getInstance()->getSprite(eID::ALADDIN);
-	Vector2 v(direction * BULLETCAMEL_SPEED, 0);
+	_aladdin = SpriteManager::getInstance()->getSprite(eID::ALADDIN);
+	Vector2 v(0 * BULLETCAMEL_SPEED, 0);
 	Vector2 a(0, 0);
 	this->_listComponent.insert(pair<string, IComponent*>("Movement", new Movement(a, v, this->_sprite)));
 	this->setStatus(status);

@@ -15,7 +15,7 @@ using namespace std;
 class BulletCamel : public BaseObject
 {
 public:
-	BulletCamel(eStatus status, int posX, int posY, eDirection direction);
+	BulletCamel(eStatus status, int posX, int posY);
 	void InIt() override;
 	void Update(float deltatime) override;
 	void Draw(LPD3DXSPRITE, ViewPort*) override;
@@ -36,7 +36,7 @@ private:
 
 	map<string, IComponent*> _listComponent;
 	map<int, Animation*> _animations;
-	Sprite *_divingSprite;
+	Sprite *_aladdin;
 	Vector2 _originPosition;
 	Vector2 _currentPosition;
 };

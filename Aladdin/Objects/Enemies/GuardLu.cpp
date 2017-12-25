@@ -1,14 +1,15 @@
 ﻿#include "GuardLu.h"
 
-GuardLu::GuardLu(eStatus status, int posX, int posY, eDirection direction, int minMove, int maxMove) :BaseEnemy(eID::GUARDLU)
+GuardLu::GuardLu(eStatus status, int posX, int posY, BaseObject* aladdin, int minMove, int maxMove) :BaseEnemy(eID::GUARDLU)
 {
 	_sprite = SpriteManager::getInstance()->getSprite(eID::GUARDLU);
 	/*Dòng dưới để set framewidth hoặc height
 	để vừa vào khởi tạo không bị sai collison.
 	Hàm InIt sẽ tự động cập nhật lại khi set status*/
+
+	_aladdin = aladdin;
 	_sprite->setFrameRect(0, 0, 5.0f, 5.0f);
-	_divingSprite = SpriteManager::getInstance()->getSprite(eID::ALADDIN);
-	Vector2 v(direction * GUARDLU_SPEED, 0);
+	Vector2 v(0 * GUARDLU_SPEED, 0);
 	Vector2 a(0, 0);
 	this->_listComponent.insert(pair<string, IComponent*>("Movement", new Movement(a, v, this->_sprite)));
 	this->setStatus(status);
@@ -162,10 +163,10 @@ RECT GuardLu::getBounding()
 
 Vector2 GuardLu::distanceBetweenAladdin()
 {
-	float xAla = _divingSprite->getPositionX() + (_divingSprite->getBounding().right - _divingSprite->getBounding().left) / 2;
+	float xAla = _aladdin->getPositionX() + (_aladdin->getBounding().right - _aladdin->getBounding().left) / 2;
 	float x = this->getPositionX();
 
-	float yAla = _divingSprite->getPositionY();
+	float yAla = _aladdin->getPositionY();
 	float y = this->getPositionY();
 
 	return Vector2(xAla - x, yAla - y);
@@ -174,7 +175,7 @@ Vector2 GuardLu::distanceBetweenAladdin()
 
 void GuardLu::UpdateStatus(float dt)
 {
-	float xAla = _divingSprite->getPositionX() + (_divingSprite->getBounding().right - _divingSprite->getBounding().left) / 2;
+	float xAla = _aladdin->getPositionX() + (_aladdin->getBounding().right - _aladdin->getBounding().left) / 2;
 	switch (this->getStatus())
 	{
 		case eStatus::DESTROY:

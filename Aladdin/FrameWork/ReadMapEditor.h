@@ -25,8 +25,8 @@
 class ReadMapEditor
 {
 public:
-	ReadMapEditor(const char* filepath,QuadTree* &_quadTree);
-	ReadMapEditor(const char* filepath, QuadTree* &_quadTree, bool isBossScene);
+	ReadMapEditor(BaseObject* aladdin, const char* filepath, QuadTree* &_quadTree);
+	ReadMapEditor(BaseObject* aladdin, const char* filepath, QuadTree* &_quadTree, bool isBossScene);
 	~ReadMapEditor();
 	Tmx::Map* maps;
 	vector <BaseObject*>     GetList;
@@ -48,7 +48,10 @@ public:
 	vector <BaseObject*>	 ListFallingPlatform;
 	vector <BaseObject*>	 ListSpring;
 
+	//GetList for Scene 1
 	void ListObject(RECT *rect);
+	//GetList for Scene Boss
+	void ListObject(RECT *rect, bool isVersion2);
 	QuadTree* _QuadTree;
 
 	
