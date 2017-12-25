@@ -52,12 +52,12 @@
   <object id="111" x="1751" y="439" width="295" height="10"/>
   <object id="112" x="1591" y="277" width="685" height="10"/>
   <object id="114" x="2739.67" y="569" width="98.6667" height="10"/>
-  <object id="118" x="2744" y="168" width="85" height="10"/>
-  <object id="119" x="2818" y="294" width="375" height="10"/>
+  <object id="118" x="2744" y="166.667" width="85" height="10"/>
+  <object id="119" x="2817.33" y="295.333" width="375" height="10"/>
   <object id="120" x="2967" y="167" width="200" height="10"/>
   <object id="122" x="3504" y="123" width="110" height="10"/>
   <object id="131" x="3602.67" y="217.667" width="702" height="10"/>
-  <object id="133" x="4605" y="506.667" width="55.1667" height="10"/>
+  <object id="133" x="4605" y="506.667" width="71.1667" height="16"/>
   <object id="355" x="2596.67" y="521.333" width="149.333" height="10"/>
   <object id="356" x="4341" y="671" width="429" height="9"/>
   <object id="363" x="3" y="637.5" width="1150" height="5.625"/>
@@ -69,9 +69,9 @@
   <object id="380" x="4354.5" y="219" width="425" height="10"/>
   <object id="418" x="1476" y="440.333" width="100" height="10"/>
   <object id="419" x="1476" y="389.667" width="40" height="10"/>
-  <object id="421" x="2523" y="164" width="130" height="10"/>
-  <object id="422" x="2816.46" y="419" width="264.788" height="10"/>
-  <object id="424" x="4300.33" y="471" width="94" height="14"/>
+  <object id="421" x="2522.33" y="166.667" width="130" height="10"/>
+  <object id="422" x="2816.46" y="422.333" width="264.788" height="14"/>
+  <object id="424" x="4300.33" y="471" width="94" height="16"/>
  </objectgroup>
  <objectgroup name="coin">
   <object id="403" x="2638.5" y="263.5" width="15" height="15"/>
@@ -251,7 +251,7 @@
   <object id="104" x="4336" y="648" width="48" height="20"/>
   <object id="105" x="4388" y="640" width="38" height="16"/>
   <object id="106" x="4430" y="633" width="35" height="16"/>
-  <object id="107" x="4471" y="626" width="299" height="11"/>
+  <object id="107" x="4471" y="626" width="299" height="16.3333"/>
   <object id="129" x="3927" y="440" width="150" height="10"/>
   <object id="475" x="3848.5" y="458.5" width="40" height="15"/>
   <object id="476" x="3807.5" y="467.5" width="40" height="15"/>
@@ -259,7 +259,7 @@
   <object id="479" x="3766.5" y="475.5" width="40" height="15"/>
   <object id="480" x="2643.5" y="409" width="173" height="15"/>
   <object id="481" x="2243.25" y="579.75" width="44.75" height="15"/>
-  <object id="423" x="3050.5" y="486" width="715" height="10"/>
+  <object id="423" x="3050.5" y="487.667" width="715" height="9.33333"/>
  </objectgroup>
  <objectgroup color="#5032c8" name="fallingplatform">
   <object id="298" x="1639.33" y="436.667" width="50" height="15"/>

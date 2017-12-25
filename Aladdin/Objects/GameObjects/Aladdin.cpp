@@ -1151,8 +1151,6 @@ void Aladdin::UpdateInput(float dt)
 			moveRight();
 	}
 
-
-
 	if (_input->isKeyPressed(DIK_Q))
 		InforAladdin::getInstance()->plusHealth(100);
 	if (_input->isKeyPressed(DIK_9))
@@ -1558,9 +1556,6 @@ void Aladdin::onCollisionEnd(CollisionEventArg * collision_event)
 			{
 			case TOP:
 			{
-				eStatus temp = (eStatus)(JUMPING | JUMPING_LEFT | JUMPING_RIGHT);
-				if (!isExist(temp))
-					setStatus(DROP);
 				auto g = (Gravity*)_listComponent["Gravity"];
 				g->setStatus(eGravityStatus::FALLING__DOWN);
 				break;
@@ -1793,37 +1788,31 @@ void Aladdin::updateStatusOneAction(float deltatime)
 	{
 		_animations[_currentAnimateIndex]->setIndex(0);
 		removeStatus(eStatus::THROW);
-		addStatus(eStatus::JUMPING);
 	}
 	else if (isInStatus(eStatus(THROW | JUMPING_LEFT)) && _animations[_currentAnimateIndex]->getIndex() >= 4)
 	{
 		_animations[_currentAnimateIndex]->setIndex(0);
 		removeStatus(eStatus::THROW);
-		addStatus(eStatus::JUMPING_LEFT);
 	}
 	else if (isInStatus(eStatus(THROW | JUMPING_RIGHT)) && _animations[_currentAnimateIndex]->getIndex() >= 4)
 	{
 		_animations[_currentAnimateIndex]->setIndex(0);
 		removeStatus(eStatus::THROW);
-		addStatus(eStatus::JUMPING_RIGHT);
 	}
-	else if (isInStatus(eStatus(ATTACK | JUMPING)) && !isInStatus(CLIMB_JUMP) && _animations[_currentAnimateIndex]->getIndex() >= 5)
+	else if (isInStatus(eStatus(ATTACK | JUMPING)) && _animations[_currentAnimateIndex]->getIndex() >= 5)
 	{
 		_animations[_currentAnimateIndex]->setIndex(0);
 		removeStatus(eStatus::ATTACK);
-		addStatus(eStatus::JUMPING);
 	}
 	else if (isInStatus(eStatus(ATTACK | JUMPING_RIGHT)) && _animations[_currentAnimateIndex]->getIndex() >= 5)
 	{
 		_animations[_currentAnimateIndex]->setIndex(0);
 		removeStatus(eStatus::ATTACK);
-		addStatus(eStatus::JUMPING_RIGHT);
 	}
 	else if (isInStatus(eStatus(ATTACK | JUMPING_LEFT)) && _animations[_currentAnimateIndex]->getIndex() >= 5)
 	{
 		_animations[_currentAnimateIndex]->setIndex(6);
 		removeStatus(eStatus::ATTACK);
-		addStatus(eStatus::JUMPING_LEFT);
 	}
 
 	//Chạy chém
