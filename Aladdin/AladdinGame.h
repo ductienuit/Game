@@ -7,6 +7,7 @@
 #include"Scenes\IntroScene.h"
 #include"Scenes\BossScene.h"
 #include"Scenes\EndScene.h"
+#include"Scenes\DefeatScene.h"
 
 using namespace std;
 USEGAME_FRAMEWORK

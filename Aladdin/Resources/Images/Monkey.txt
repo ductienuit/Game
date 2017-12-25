@@ -8,3 +8,14 @@ monkey_02	137	15	189	47
 monkey_01	81	15	123	48
 monkey_00	33	15	59	48
 
+monkey_revival_05	403	80	466	128
+
+monkey_revival_04	344	75	395	128
+
+monkey_revival_03	267	74	325	128
+
+monkey_revival_02	198	84	255	128
+
+monkey_revival_01	127	92	184	128
+
+monkey_revival_00	48	99	116	128

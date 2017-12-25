@@ -360,11 +360,11 @@
     <ClCompile Include="Scenes\BackGround\BackgroundMenu.cpp">
       <Filter>Source Files\Scenes\BackGround</Filter>
     </ClCompile>
-    <ClCompile Include="Scenes\DefeatScene.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Objects\GameObjects\Monkey.cpp">
       <Filter>Source Files\Object\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="Scenes\DefeatScene.cpp">
+      <Filter>Source Files\Scenes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -665,11 +665,11 @@
     <ClInclude Include="Scenes\BackGround\BackgroundMenu.h">
       <Filter>Header Files\Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="Scenes\DefeatScene.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Objects\GameObjects\Monkey.h">
       <Filter>Header Files\Object\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenes\DefeatScene.h">
+      <Filter>Header Files\Scenes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
