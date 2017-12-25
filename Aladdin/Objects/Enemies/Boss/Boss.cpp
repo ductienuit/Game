@@ -311,12 +311,19 @@ void Boss::UpdateStatus(float dt)
 				float y = getPositionY();
 				listStrip.push_back(new StripBoss(x,y));
 				_animations[BEHIT]->setIndex(0);
+				
 				if (_hitpoint <= 16)
 				{
 					isversion2 = true;
+					//SOUNDBOSS
+					//âm thanh
+					SoundManager::getInstance()->PlaySound("Resources/Audio/JafarSnake.wav", 0);
 					this->setStatus(THROW_LEFT_FAR);
 					return;
 				}
+				//SOUNDBOSS
+				//âm thanh
+				SoundManager::getInstance()->PlaySound("Resources/Audio/JafarLaugh.wav", 0);
 				this->setStatus(PULL_LEFT);
 			}
 			return;

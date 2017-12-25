@@ -2,6 +2,8 @@
 ViewPort* IntroScene::_viewport = ViewPort::getInstance();
 IntroScene::IntroScene()
 {
+	//âm thanh
+	SoundManager::getInstance()->StopAllSound();
 }
 
 IntroScene::~IntroScene()
@@ -21,7 +23,10 @@ bool IntroScene::InIt()
 	_menuBackground->InIt();
 
 	_choose	= (new Choose(120,190));
+	
 
+	//âm thanh
+	SoundManager::getInstance()->PlaySound("Resources/Audio/AWholeNewWorld.mp3", 1);
 	return true;
 }
 

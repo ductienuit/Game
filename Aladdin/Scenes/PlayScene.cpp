@@ -17,6 +17,8 @@ PlayScene::PlayScene()
 	ViewPort::getInstance()->setPositionWorld(Vector2(0, 480));
 
 	InforAladdin::getInstance()->NonInfinity();
+	//âm thanh
+	SoundManager::getInstance()->StopAllSound();
 }
 
 PlayScene::~PlayScene()

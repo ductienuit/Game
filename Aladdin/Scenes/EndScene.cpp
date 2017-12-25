@@ -5,6 +5,8 @@ ViewPort* EndScene::_viewport = ViewPort::getInstance();
 EndScene::EndScene()
 {
 	ViewPort::getInstance()->setPositionWorld(Vector2(0, 480));
+	//âm thanh
+	SoundManager::getInstance()->StopAllSound();
 }
 
 EndScene::~EndScene()
@@ -21,6 +23,8 @@ bool EndScene::InIt()
 	_aladdin->setStatus(eStatus::ENDSCENE);
 
 	_monkey = new Monkey(eStatus::ENDSCENE, 700, 70, eDirection::LEFT);
+	//âm thanh
+	SoundManager::getInstance()->PlaySound("Resources/Audio/LevelComplete.mp3", 1); 
 
 	return true;
 }

@@ -13,6 +13,8 @@ BossScene::BossScene()
 
 	InforAladdin::getInstance()->NonInfinity();
 	_listObject.clear();
+	//âm thanh
+	SoundManager::getInstance()->StopAllSound();
 }
 
 BossScene::~BossScene()
@@ -48,7 +50,7 @@ bool BossScene::InIt()
 	_listScore.push_back(new Apple());
 
 	//âm thanh
-	//SoundManager::getInstance()->PlaySound("Resources/Audio/PrinceAli_loop.mp3", 1);
+	SoundManager::getInstance()->PlaySound("Resources/Audio/BossTune.mp3", 1);
 	return true;
 }
 
@@ -59,7 +61,7 @@ void BossScene::UpdateInput(float dt)
 
 void BossScene::Update(float dt)
 {
-	if (_boss->getHitpoint() <= 0)
+	if (_boss->getHitpoint() <= 1)
 	{
 		SceneManager::getInstance()->ReplaceScene(new EndScene());
 		return;

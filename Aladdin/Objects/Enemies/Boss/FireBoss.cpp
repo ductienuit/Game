@@ -109,9 +109,19 @@ void FireBoss::onCollisionBegin(CollisionEventArg *collision_event)
 				{
 					//Set status aladdin bị đánh
 					collision_event->_otherObject->setStatus(eStatus::BEHIT);
+					//SOUNDBOSS
+					//Aladdin bị đánh
+					SoundManager::getInstance()->PlaySound("Resources/Audio/AladdinHurt.wav", 0);
+
+
 				}
 				else
 				{
+					//SOUNDBOSS
+					//Aladdin bị đánh
+					SoundManager::getInstance()->PlaySound("Resources/Audio/AladdinHurt.wav", 0);
+					//âm thanh
+					SoundManager::getInstance()->PlaySound("Resources/Audio/FireFromCoal.wav", 0);
 					//Set status aladdin bị đánh
 					collision_event->_otherObject->StartFlash();
 				}

@@ -25,10 +25,14 @@ void Choose::UpdateInput(float dt)
 	if(_input->isKeyDown(DIK_DOWN))
 	{
 		setPosition(120, 150, 1.0f);
+		//âm thanh
+		SoundManager::getInstance()->PlaySound("Resources/Audio/MenuChange.wav", 0);
 	}
 	else if (_input->isKeyDown(DIK_UP))
 	{
 		setPosition(120, 190, 1.0f);
+		//âm thanh
+		SoundManager::getInstance()->PlaySound("Resources/Audio/MenuChange.wav", 0);
 	}
 	else if (_input->isKeyDown(DIK_SPACE))
 	{
@@ -36,6 +40,8 @@ void Choose::UpdateInput(float dt)
 			SceneManager::getInstance()->ReplaceScene(new PlayScene());
 		else
 			SceneManager::getInstance()->ReplaceScene(new BossScene());
+		//âm thanh
+		SoundManager::getInstance()->PlaySound("Resources/Audio/MenuSelect.wav", 0);
 	}
 }
 
