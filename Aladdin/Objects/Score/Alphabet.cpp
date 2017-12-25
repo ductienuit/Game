@@ -33,7 +33,7 @@ void Alphabet::Update(float deltatime)
 	for each(auto letter in _listLetter)
 	{
 		letter->setPosition(Vector2(posX+distance,posY));
-		distance += 10;
+		distance += 15;
 	}
 }
 

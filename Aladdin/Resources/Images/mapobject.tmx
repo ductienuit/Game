@@ -74,7 +74,7 @@
   <object id="421" x="2523" y="164" width="130" height="10"/>
   <object id="422" x="2811.25" y="417" width="270" height="10"/>
   <object id="423" x="3050.5" y="486" width="785" height="10"/>
-  <object id="424" x="4301.83" y="474" width="95" height="10"/>
+  <object id="424" x="4300.33" y="476" width="94" height="14"/>
  </objectgroup>
  <objectgroup name="coin">
   <object id="403" x="2638.5" y="263.5" width="15" height="15"/>
