@@ -684,7 +684,11 @@ void Aladdin::UpdateInput(float dt)
 			removeStatus(eStatus::MOVING_RIGHT);
 			jump(eStatus::JUMPING_RIGHT);
 		}
-		if (_input->isKeyPressed(DIK_Z))
+		else if (_input->isKeyPressed(DIK_X))
+		{
+			addStatus(eStatus::ATTACK);
+		}
+		else if (_input->isKeyPressed(DIK_Z))
 		{
 			addStatus(eStatus::THROW);
 			Vector2 position = getPosition();
@@ -839,7 +843,6 @@ void Aladdin::UpdateInput(float dt)
 			removeStatus(DROP);
 			setStatus((eStatus)(JUMPING | ATTACK));
 		}
-		break;
 		break;
 	}
 	case(eStatus::SITTING_DOWN):
@@ -1731,18 +1734,16 @@ void Aladdin::updateStatusOneAction(float deltatime)
 		removeStatus(eStatus::THROW);
 	}
 	else if (isInStatus(eStatus(ATTACK | MOVING_LEFT))
-		&& _animations[_currentAnimateIndex]->getIndex() >= 7)
+		&& _animations[_currentAnimateIndex]->getIndex() >= 5)
 	{
 		_animations[_currentAnimateIndex]->setIndex(8);
 		removeStatus(eStatus::ATTACK);
-		removeStatus(eStatus::MOVING_LEFT);
 	}
 	else if (isInStatus(eStatus(ATTACK | MOVING_RIGHT))
-		&& _animations[_currentAnimateIndex]->getIndex() >= 7)
+		&& _animations[_currentAnimateIndex]->getIndex() >= 5)
 	{
 		_animations[_currentAnimateIndex]->setIndex(8);
 		removeStatus(eStatus::ATTACK);
-		removeStatus(eStatus::MOVING_RIGHT);
 	}
 	else if (isInStatus(eStatus(ATTACK | LOOKING_UP))
 		&& _animations[_currentAnimateIndex]->getIndex() >= 20)
@@ -1789,11 +1790,7 @@ void Aladdin::updateStatusOneAction(float deltatime)
 		_animations[_currentAnimateIndex]->setIndex(0);
 		removeStatus(eStatus::ATTACK);
 	}
-	//else if (isInStatus(eStatus(JUMPING | SWING)) && _animations[_currentAnimateIndex]->getIndex() >= 6)
-	//{
-	//	_animations[_currentAnimateIndex]->setIndex(0);
-	//	removeStatus(eStatus::JUMPING);
-	//}
+
 	//JUMP
 
 	else if (isInStatus(eStatus(THROW | JUMPING)) && _animations[_currentAnimateIndex]->getIndex() >= 4)
@@ -1832,6 +1829,8 @@ void Aladdin::updateStatusOneAction(float deltatime)
 		removeStatus(eStatus::ATTACK);
 		addStatus(eStatus::JUMPING_LEFT);
 	}
+
+	//Chạy chém
 
 
 
