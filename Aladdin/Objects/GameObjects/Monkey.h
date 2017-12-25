@@ -23,6 +23,7 @@ public:
 	void Release() override;
 
 	void movingLeft();
+	void standing();
 
 	IComponent* getComponent(string componentName);
 	Text* text;

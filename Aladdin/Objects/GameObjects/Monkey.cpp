@@ -22,16 +22,22 @@ void Monkey::InIt()
 	_animations[ENDSCENE] = new Animation(_sprite, 0.1f);
 	_animations[ENDSCENE]->addFrameRect(eID::MONKEY, "monkey_0", 8);
 
-
 	//Chổ này t ko chỉnh ảnh đc. m chỉnh hộ phát :3
+	//OK
 	_animations[FREE] = new Animation(_sprite, 0.1f);
-	_animations[FREE]->addFrameRect(eID::MONKEY, "monkey_0", 8);
+	_animations[FREE]->addFrameRect(eID::MONKEY, "monkey_revival_0", 6);
 }
 
 void Monkey::Update(float deltatime)
 {
-	movingLeft();
-
+	if (this->getStatus() == eStatus::ENDSCENE)
+	{
+		movingLeft();
+	}
+	else
+	{
+		standing();
+	}
 	_animations[this->getStatus()]->Update(deltatime);
 
 	// update component để sau cùng để sửa bên trên sau đó nó cập nhật đúng
@@ -61,6 +67,13 @@ void Monkey::movingLeft()
 	_sprite->setScaleX(1.6);
 	auto move = (Movement*)this->_listComponent["Movement"];
 	move->setVelocity(Vector2(-MONKEY_SPEED, 0));
+}
+
+void Monkey::standing()
+{
+	_sprite->setScaleX(1.6);
+	auto move = (Movement*)this->_listComponent["Movement"];
+	move->setVelocity(Vector2(0, 0));
 }
 
 Monkey::~Monkey()

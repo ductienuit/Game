@@ -1117,6 +1117,13 @@ void Aladdin::UpdateInput(float dt)
 		move->setVelocity(Vector2(-120, 2));
 		break;
 	}
+	case(eStatus::DYING):
+	{
+		_sprite->setScaleX(SCALEALADDIN.x);
+		auto move = (Movement*)_listComponent["Movement"];
+		move->setVelocity(Vector2(0, 12));
+		break;
+	}
 	}
 
 	if (isInStatus(eStatus::CLIMB))

@@ -17,11 +17,11 @@ bool DefeatScene::InIt()
 {
 	_aladdin = new Aladdin();
 	_aladdin->InIt();
-	_aladdin->setPosition(800, 100);
-	_aladdin->setStatus(eStatus::ENDSCENE);
+	_aladdin->setPosition(300, 200);
+	_aladdin->setStatus(eStatus::DYING);
 
 
-	_monkey = new Monkey(eStatus::ENDSCENE, 700, 70, eDirection::LEFT);
+	_monkey = new Monkey(eStatus::FREE, 450, 150, eDirection::NONE);
 	//âm thanh
 	SoundManager::getInstance()->PlaySound("Resources/Audio/LevelComplete.mp3", 1);
 
@@ -36,6 +36,7 @@ void DefeatScene::UpdateInput(float dt)
 void DefeatScene::Update(float dt)
 {
 	_aladdin->Update(dt);
+	_monkey->Update(dt);
 	if (_aladdin->getPositionX() < 0)
 	{
 		auto scene = new IntroScene();
@@ -46,14 +47,17 @@ void DefeatScene::Update(float dt)
 void DefeatScene::Draw(LPD3DXSPRITE spriteHandle)
 {
 	_aladdin->Draw(spriteHandle, _viewport);
+	_monkey->Draw(spriteHandle, _viewport);
 }
 
 void DefeatScene::Release()
 {
 
 	_aladdin->Release();
+	_monkey->Release();
 	delete _aladdin;
-	
+	delete _monkey;
+
 	auto _input = InputController::getInstance();
 	if (_input != nullptr)
 		__unhook(_input);
