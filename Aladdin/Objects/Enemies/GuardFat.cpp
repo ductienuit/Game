@@ -112,7 +112,11 @@ void GuardFat::UpdateStatus(float dt)
 		return;
 	}
 	}
-
+	if (_hitpoint <= 0)
+	{
+		setStatus(DYING);
+		return;
+	}
 
 	this->clearStatus();
 	if (_minMove < this->getPositionX() && this->getPositionX() < _maxMove)
@@ -198,17 +202,16 @@ void GuardFat::Release()
 
 void GuardFat::onCollisionBegin(CollisionEventArg *collision_event)
 {
+	if (_hitpoint <= 0)
+	{
+		setStatus(DYING);
+		return;
+	}
 	eID objectID = collision_event->_otherObject->getId();
 	switch (objectID)
 	{
 		case eID::ALADDIN:
 		{
-			if (_hitpoint == 0)
-			{
-				setStatus(DYING);
-				return;
-			}
-
 			if (collision_event->_otherObject->isInStatus(SITTING_DOWN))
 			{
 				this->setStatus(eStatus(SITTING_DOWN | ATTACK));
@@ -217,9 +220,9 @@ void GuardFat::onCollisionBegin(CollisionEventArg *collision_event)
 			if (collision_event->_otherObject->isInStatus(ATTACK))
 			{
 				//mạng sống còn 1 và bức ảnh ATTACK của aladdin bằng 1
-				if (collision_event->_otherObject->getIndex() == 1 && _hitpoint >= 1)
+				if (collision_event->_otherObject->getIndex() == 2 && _hitpoint >= 1)
 				{
-					_hitpoint -= 1;
+					_hitpoint -= 2;
 					this->setStatus(eStatus::BEHIT);
 				}
 				break;

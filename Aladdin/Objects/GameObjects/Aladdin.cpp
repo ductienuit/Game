@@ -450,67 +450,202 @@ void Aladdin::UpdateInput(float dt)
 	}
 	case(eStatus::STOPWALK):
 	{
-		if (_input->isKeyDown(DIK_LEFT)) 
+		if (_sideColliWall == RIGHT)
 		{
-			/*1. Nhấn LeftArrow
-			  2. Hướng aladdin là right 
-			  => scale.x > 0
-			  3. Hủy StopWalk và chuyển sang moving left*/
-			if (getScale().x > 0) 
+			if (_input->isKeyDown(DIK_LEFT))
 			{
-				removeStatus(eStatus::STOPWALK);
-				addStatus(eStatus::MOVING_LEFT);
+				/*1. Nhấn LeftArrow
+				2. Hướng aladdin là right
+				=> scale.x > 0
+				3. Hủy StopWalk và chuyển sang moving left*/
+				if (getScale().x > 0)
+				{
+					removeStatus(eStatus::STOPWALK); _sideColliWall = NONE;
+					_sideColliWall = NONE;
+					addStatus(eStatus::MOVING_LEFT);
+				}
+			}
+			else if (_input->isKeyDown(DIK_RIGHT))
+			{
+				/*1. Nhấn RightArrow
+				2. Hướng aladdin là left
+				=> scale.x < 0
+				3. Hủy StopWalk và chuyển sang moving right*/
+				if (getScale().x < 0)
+				{
+					removeStatus(eStatus::STOPWALK); _sideColliWall = NONE;
+					addStatus(eStatus::MOVING_RIGHT);
+				}
+			}
+			else if (_input->isKeyDown(DIK_DOWN))
+			{
+				removeStatus(eStatus::STOPWALK); _sideColliWall = NONE;
+				addStatus(eStatus::SITTING_DOWN);
+			}
+			else if (_input->isKeyDown(DIK_UP))
+			{
+				removeStatus(eStatus::STOPWALK); _sideColliWall = NONE;
+				addStatus(eStatus::LOOKING_UP);
+			}
+			else if (_input->isKeyPressed(DIK_X)) //chém
+			{
+				//âm thanh
+				SoundManager::getInstance()->PlaySound("Resources/Audio/HighSword.wav", 0);
+				removeStatus(eStatus::STOPWALK); _sideColliWall = NONE;
+				addStatus(eStatus::ATTACK);  //chém
+
+			}
+			else if (_input->isKeyDown(DIK_Z)) //ném
+			{
+				//âm thanh
+				SoundManager::getInstance()->PlaySound("Resources/Audio/HighSword.wav", 0);
+				removeStatus(eStatus::STOPWALK); _sideColliWall = NONE;
+				addStatus(eStatus::THROW);
+				Vector2 position = getPosition();
+
+				int apple = InforAladdin::getInstance()->getApple();
+				if (apple > 0)
+				{
+					listApple.push_back(new AppleThrow(position.x, position.y, (getScale().x < 0)));
+					InforAladdin::getInstance()->plusApple(-1);
+				}
+			}
+			else if (_input->isKeyPressed(DIK_C))
+			{
+				removeStatus(eStatus::STOPWALK); _sideColliWall = NONE;
+				jump(eStatus::JUMPING);
 			}
 		}
-		else if (_input->isKeyDown(DIK_RIGHT))
+		else if (_sideColliWall == LEFT)
 		{
-			/*1. Nhấn RightArrow
-			2. Hướng aladdin là left
-			=> scale.x < 0
-			3. Hủy StopWalk và chuyển sang moving right*/
-			if (getScale().x < 0)
+			if (_input->isKeyDown(DIK_LEFT))
 			{
-				removeStatus(eStatus::STOPWALK);
-				addStatus(eStatus::MOVING_RIGHT);
+				/*1. Nhấn LeftArrow
+				2. Hướng aladdin là right
+				=> scale.x > 0
+				3. Hủy StopWalk và chuyển sang moving left*/
+				if (getScale().x > 0)
+				{
+					removeStatus(eStatus::STOPWALK); _sideColliWall = NONE;
+					_sideColliWall = NONE;
+					addStatus(eStatus::MOVING_LEFT);
+				}
+			}
+			else if (_input->isKeyDown(DIK_RIGHT))
+			{
+				/*1. Nhấn RightArrow
+				2. Hướng aladdin là RIGHT
+				=> scale.x > 0
+				3. Hủy StopWalk và chuyển sang moving right*/
+				if (getScale().x < 0)
+				{
+					removeStatus(eStatus::STOPWALK); _sideColliWall = NONE;
+					addStatus(eStatus::MOVING_RIGHT);
+				}
+			}
+			else if (_input->isKeyDown(DIK_DOWN))
+			{
+				removeStatus(eStatus::STOPWALK); _sideColliWall = NONE;
+				addStatus(eStatus::SITTING_DOWN);
+			}
+			else if (_input->isKeyDown(DIK_UP))
+			{
+				removeStatus(eStatus::STOPWALK); _sideColliWall = NONE;
+				addStatus(eStatus::LOOKING_UP);
+			}
+			else if (_input->isKeyPressed(DIK_X)) //chém
+			{
+				//âm thanh
+				SoundManager::getInstance()->PlaySound("Resources/Audio/HighSword.wav", 0);
+				removeStatus(eStatus::STOPWALK); _sideColliWall = NONE;
+				addStatus(eStatus::ATTACK);  //chém
+
+			}
+			else if (_input->isKeyDown(DIK_Z)) //ném
+			{
+				//âm thanh
+				SoundManager::getInstance()->PlaySound("Resources/Audio/HighSword.wav", 0);
+				removeStatus(eStatus::STOPWALK); _sideColliWall = NONE;
+				addStatus(eStatus::THROW);
+				Vector2 position = getPosition();
+
+				int apple = InforAladdin::getInstance()->getApple();
+				if (apple > 0)
+				{
+					listApple.push_back(new AppleThrow(position.x, position.y, (getScale().x < 0)));
+					InforAladdin::getInstance()->plusApple(-1);
+				}
+			}
+			else if (_input->isKeyPressed(DIK_C))
+			{
+				removeStatus(eStatus::STOPWALK); _sideColliWall = NONE;
+				jump(eStatus::JUMPING);
 			}
 		}
-		else if (_input->isKeyDown(DIK_DOWN))
+		else
 		{
-			removeStatus(eStatus::STOPWALK);
-			addStatus(eStatus::SITTING_DOWN);
-		}
-		else if (_input->isKeyDown(DIK_UP))
-		{
-			removeStatus(eStatus::STOPWALK);
-			addStatus(eStatus::LOOKING_UP);
-		}
-		else if (_input->isKeyPressed(DIK_X)) //chém
-		{
-			//âm thanh
-			SoundManager::getInstance()->PlaySound("Resources/Audio/HighSword.wav", 0);
-			removeStatus(eStatus::STOPWALK);
-			addStatus(eStatus::ATTACK);  //chém
-			
-		}
-		else if (_input->isKeyDown(DIK_Z)) //ném
-		{
-			//âm thanh
-			SoundManager::getInstance()->PlaySound("Resources/Audio/HighSword.wav", 0);
-			removeStatus(eStatus::STOPWALK);
-			addStatus(eStatus::THROW);
-			Vector2 position = getPosition();
-			
-			int apple = InforAladdin::getInstance()->getApple();
-			if (apple > 0)
+			if (_input->isKeyDown(DIK_LEFT))
 			{
-				listApple.push_back(new AppleThrow(position.x, position.y, (getScale().x < 0)));
-				InforAladdin::getInstance()->plusApple(-1);
+				/*1. Nhấn LeftArrow
+				2. Hướng aladdin là right
+				=> scale.x > 0
+				3. Hủy StopWalk và chuyển sang moving left*/
+				if (getScale().x > 0)
+				{
+					removeStatus(eStatus::STOPWALK); _sideColliWall = NONE;
+					addStatus(eStatus::MOVING_LEFT);
+				}
 			}
-		}
-		else if (_input->isKeyPressed(DIK_C))
-		{
-			removeStatus(eStatus::STOPWALK);
-			jump(eStatus::JUMPING);
+			else if (_input->isKeyDown(DIK_RIGHT))
+			{
+				/*1. Nhấn RightArrow
+				2. Hướng aladdin là left
+				=> scale.x < 0
+				3. Hủy StopWalk và chuyển sang moving right*/
+				if (getScale().x < 0)
+				{
+					removeStatus(eStatus::STOPWALK); _sideColliWall = NONE;
+					addStatus(eStatus::MOVING_RIGHT);
+				}
+			}
+			else if (_input->isKeyDown(DIK_DOWN))
+			{
+				removeStatus(eStatus::STOPWALK); _sideColliWall = NONE;
+				addStatus(eStatus::SITTING_DOWN);
+			}
+			else if (_input->isKeyDown(DIK_UP))
+			{
+				removeStatus(eStatus::STOPWALK); _sideColliWall = NONE;
+				addStatus(eStatus::LOOKING_UP);
+			}
+			else if (_input->isKeyPressed(DIK_X)) //chém
+			{
+				//âm thanh
+				SoundManager::getInstance()->PlaySound("Resources/Audio/HighSword.wav", 0);
+				removeStatus(eStatus::STOPWALK); _sideColliWall = NONE;
+				addStatus(eStatus::ATTACK);  //chém
+
+			}
+			else if (_input->isKeyDown(DIK_Z)) //ném
+			{
+				//âm thanh
+				SoundManager::getInstance()->PlaySound("Resources/Audio/HighSword.wav", 0);
+				removeStatus(eStatus::STOPWALK); _sideColliWall = NONE;
+				addStatus(eStatus::THROW);
+				Vector2 position = getPosition();
+
+				int apple = InforAladdin::getInstance()->getApple();
+				if (apple > 0)
+				{
+					listApple.push_back(new AppleThrow(position.x, position.y, (getScale().x < 0)));
+					InforAladdin::getInstance()->plusApple(-1);
+				}
+			}
+			else if (_input->isKeyPressed(DIK_C))
+			{
+				removeStatus(eStatus::STOPWALK); _sideColliWall = NONE;
+				jump(eStatus::JUMPING);
+			}
 		}
 		break;
 	}
@@ -1100,25 +1235,36 @@ void Aladdin::onCollisionBegin(CollisionEventArg * collision_event)
 	{
 		auto land = (Land*)collision_event->_otherObject;
 		eLandType type = land->getType();
-		if (type == eLandType::WALL)
+		
+		if (type == VICTORY)
 		{
-			auto move = (Movement*)_listComponent["Movement"];
-			move->setVelocity(Vector2(0, move->getVelocity().y));
-			if (isInStatus(SWING))
-			{
-				_stopLeft = true;
-				break;
-			}
-			//set trạng thái chỉ khi đi ngược hướng va chạm mới set lại trạng thái khác
-			this->setStatus(eStatus::STOPWALK);
-			break;
+			Enter[2] = true;
 		}
+
+
 		switch (collision_event->_sideCollision)
 		{
 		case(eDirection::TOP):
 		{
 			switch (type)
 			{
+			case(eLandType::WALL):
+			{
+				if (type == eLandType::WALL)
+				{
+					auto move = (Movement*)_listComponent["Movement"];
+					move->setVelocity(Vector2(0, move->getVelocity().y));
+					if (isInStatus(SWING))
+					{
+						_stopLeft = true;
+						break;
+					}
+					//set trạng thái chỉ khi đi ngược hướng va chạm mới set lại trạng thái khác
+					this->setStatus(eStatus::STOPWALK);
+					break;
+				}
+				break;
+			}
 			case (eLandType::SOLID):
 			{
 				//Chạm đất
@@ -1184,6 +1330,20 @@ void Aladdin::onCollisionBegin(CollisionEventArg * collision_event)
 		{
 			switch (type)
 			{
+			case(eLandType::WALL):
+			{
+				auto move = (Movement*)_listComponent["Movement"];
+				move->setVelocity(Vector2(0, move->getVelocity().y));
+				if (isInStatus(SWING))
+				{
+					_stopLeft = true;
+					break;
+				}
+				_sideColliWall = LEFT;
+				//set trạng thái chỉ khi đi ngược hướng va chạm mới set lại trạng thái khác
+				this->setStatus(eStatus::STOPWALK);
+				break;
+			}
 			case (eLandType::ROPE):
 			{
 				clearStatus();
@@ -1208,6 +1368,21 @@ void Aladdin::onCollisionBegin(CollisionEventArg * collision_event)
 		{
 			switch (type)
 			{
+			case(eLandType::WALL):
+			{
+
+				auto move = (Movement*)_listComponent["Movement"];
+				move->setVelocity(Vector2(0, move->getVelocity().y));
+				if (isInStatus(SWING))
+				{
+					_stopLeft = true;
+					break;
+				}
+				_sideColliWall = RIGHT;
+				//set trạng thái chỉ khi đi ngược hướng va chạm mới set lại trạng thái khác
+				this->setStatus(eStatus::STOPWALK);
+				break;
+			}
 			case (eLandType::ROPE):
 			{
 				clearStatus();

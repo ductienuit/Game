@@ -35,6 +35,10 @@ bool PlayScene::InIt()
 	_aladdin->InIt();
 	_aladdin->setPosition(100, 100);
 
+	//_aladdin->setPosition(3169*1.6, (688-376)*1.92);
+   // _aladdin->setPosition(7100, 1000);
+	_listObject.push_back(_aladdin);
+
 	mMap = new ReadMapEditor(_aladdin,"Resources/Images/mapobject.tmx", _root);
 	TurnOn[0] = true;	
 	//Bật thang 2
@@ -45,6 +49,9 @@ bool PlayScene::InIt()
 	Enter[1] = false;  //Check 2
 	CheckOn[2].push_back(new Land(2245, 688 - 86 - 492, 5, 86, eDirection::TOP, eLandType::CHECKSTAIR3));
 	CheckOn[3].push_back(new Land(2269, 688 - 83 - 493, 5, 83, eDirection::TOP, eLandType::CHECKSTAIR4));
+
+	Vitory = new Land(4721, 688 - 11 - 200, 11, 11, eDirection::TOP, eLandType::VICTORY);
+
 	//Background
 	_background = new BackGround();
 	_background->InIt();
@@ -55,9 +62,6 @@ bool PlayScene::InIt()
 	_scoreAla = InforAladdin::getInstance();
 
 
-	//_aladdin->setPosition(3169*1.6, (688-376)*1.92);
-	//_aladdin->setPosition(7100, 1000);
-	_listObject.push_back(_aladdin);
 
 	_listScore.push_back(new Health(_aladdin));
 	_listScore.push_back(new Life());
@@ -76,6 +80,17 @@ void PlayScene::UpdateInput(float dt)
 
 void PlayScene::Update(float dt)
 {
+	//Kiem tra win game
+	_aladdin->checkCollision(Vitory, dt);
+	if (Enter[2])
+	{
+		SceneManager::getInstance()->ReplaceScene(new BossScene());
+		return;
+	}
+
+
+
+
 	this->UpdateViewport(_aladdin);
 
 	#pragma region  Update list object in camera
@@ -320,6 +335,14 @@ void PlayScene::Release()
 	auto _input = InputController::getInstance();
 	if (_input != nullptr)
 		__unhook(_input);
+
+	TurnOn[0] = true;
+	TurnOn[1] = false;
+	TurnOn[2] = false;
+	TurnOn[3] = false;
+	Enter[0] = false;
+	Enter[1] = false;
+	Enter[2] = false;
 }
 
 void PlayScene::UpdateViewport(BaseObject * aladdin)

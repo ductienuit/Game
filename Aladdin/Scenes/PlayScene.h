@@ -44,7 +44,7 @@
 #include"../Objects/Score/Apple.h"
 #include"../Objects/Score/Alphabet.h"
 
-
+#include"BossScene.h"
 
 #include<time.h>
 
@@ -82,6 +82,7 @@ private:
 	InforAladdin*			 _scoreAla;
 	BaseObject*				 _weaponmanager;
 	vector<BaseObject*>		 CheckOn[4];
+	Land* Vitory;
 
 	//Main background
 	BackGround*				 _background;
