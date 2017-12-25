@@ -30,6 +30,7 @@ public:
 	static int				getCoin();
 
 	static void				plusApple(int value);
+	static void				setApple(int value);
 	static int				getApple();
 
 	static void				Infinity();

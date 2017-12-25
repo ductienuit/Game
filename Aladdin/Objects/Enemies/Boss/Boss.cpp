@@ -51,6 +51,7 @@ void Boss::InIt()
 	_hitpoint = 36;
 	_frequency = new StopWatch();
 	_frequencyFireBoss = new StopWatch();
+	_alarmSetAppleAladdin = new StopWatch();
 }
 
 void Boss::Update(float deltatime)
@@ -157,7 +158,7 @@ void Boss::onCollisionBegin(CollisionEventArg *collision_event)
 				_aladdin->Stop(true);
 				//âm thanh
 				//SoundManager::getInstance()->PlaySound("Resources/Audio/CloudPoof.wav", 0);
-				InforAladdin::getInstance()->plusHealth(-10);
+				InforAladdin::getInstance()->plusHealth(-40);
 				if (isStanding)
 				{
 					//Set status aladdin bị đánh
@@ -315,6 +316,10 @@ void Boss::UpdateStatus(float dt)
 				if (_hitpoint <= 16)
 				{
 					isversion2 = true;
+
+					if (_alarmSetAppleAladdin->isStopWatch(1000))
+						InforAladdin::getInstance()->setApple(15);
+
 					//SOUNDBOSS
 					//âm thanh
 					SoundManager::getInstance()->PlaySound("Resources/Audio/JafarSnake.wav", 0);
@@ -404,6 +409,7 @@ void Boss::UpdateStatus(float dt)
 	}
 	else
 	{
+		InforAladdin::getInstance()->setApple(99);
 		//Aladdin bên trái enermy
 		if (distance.x <= 0)
 		{

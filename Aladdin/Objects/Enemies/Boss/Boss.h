@@ -50,6 +50,7 @@ private:
 	
 	StopWatch* _frequency;
 	StopWatch* _frequencyFireBoss;
+	StopWatch* _alarmSetAppleAladdin;
 
 	bool isContain(BaseObject*object, RECT rect1);
 };

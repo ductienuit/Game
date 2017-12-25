@@ -12,6 +12,7 @@ BossScene::BossScene()
 	ViewPort::getInstance()->setPositionWorld(Vector2(0, 480));
 
 	InforAladdin::getInstance()->NonInfinity();
+	InforAladdin::getInstance()->setApple(99);
 	_listObject.clear();
 	//âm thanh
 	SoundManager::getInstance()->StopAllSound();

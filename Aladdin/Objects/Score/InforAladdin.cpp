@@ -97,6 +97,11 @@ void InforAladdin::plusApple(int value)
 		_apple = 0;
 }
 
+void InforAladdin::setApple(int value)
+{
+	_apple = value;
+}
+
 int InforAladdin::getApple()
 {
 	return _apple;
