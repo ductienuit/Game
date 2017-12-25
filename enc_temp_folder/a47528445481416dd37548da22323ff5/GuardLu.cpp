@@ -185,8 +185,6 @@ void GuardLu::UpdateStatus(float dt)
 			standing();
 			if (_animations[DYING]->getIndex() >= 9)
 			{
-				//SOUNDDDDDD
-				//Nhạc khi object bị destroy
 				_animations[DYING]->setIndex(0);
 				this->setStatus(DESTROY);
 				//score+=10;

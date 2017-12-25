@@ -28,11 +28,7 @@ void EatHeart::InIt()
 void EatHeart::Update(float deltatime)
 {
 	_animations[this->getStatus()]->Update(deltatime);
-	//xét âm thanh
-	if (_animations[BEHIT]->getIndex() == 6)
-	{
-		SoundManager::getInstance()->PlaySound("Resources/Audio/ExtraHealth.wav", 0);
-	}
+
 
 	if (_animations[BEHIT]->getIndex() >= 6)
 	{
@@ -60,11 +56,15 @@ void EatHeart::Release()
 
 void EatHeart::onCollisionBegin(CollisionEventArg *collision_event)
 {
+	if (isInStatus(BEHIT))
+		return;
 	eID objectID = collision_event->_otherObject->getId();
 	switch (objectID)
 	{
 	case eID::ALADDIN:
 	{
+
+		SoundManager::getInstance()->PlaySound("Resources/Audio/ExtraHealth.wav", 0);
 		setStatus(BEHIT);
 		break;
 	}

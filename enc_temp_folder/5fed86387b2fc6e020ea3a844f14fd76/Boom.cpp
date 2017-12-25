@@ -54,16 +54,11 @@ void Boom::Release()
 
 void Boom::onCollisionBegin(CollisionEventArg *collision_event)
 {
-	if (isInStatus(BEHIT))
-		return;
 	eID objectID = collision_event->_otherObject->getId();
 	switch (objectID)
 	{
 	case eID::ALADDIN:
 	{
-		//SOUNDDDDDDDDDDDDDDDDDDDDDDD
-		//Bỏ nhạc chổ này
-
 		vector<BaseObject*> _listActive;
 		_listActive = listActive;
 		for each(auto object in _listActive)

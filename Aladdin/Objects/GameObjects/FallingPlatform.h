@@ -9,7 +9,7 @@
 #include "../BaseObject.h"
 using namespace std;
 
-#define FALLING_SPEED 80
+#define FALLING_SPEED 110
 #define GRAVITY 800
 
 class FallingPlatform : public BaseObject

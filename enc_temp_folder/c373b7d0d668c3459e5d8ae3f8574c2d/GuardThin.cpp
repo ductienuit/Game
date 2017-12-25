@@ -96,9 +96,6 @@ void GuardThin::UpdateStatus(float dt)
 			if (_animations[DYING]->getIndex() == 9)
 			{
 				_animations[DYING]->setIndex(0);
-				//SOUNDDDDDD
-				//Nhạc khi object bị destroy
-
 				this->setStatus(DESTROY);
 			}
 			return;

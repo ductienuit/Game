@@ -67,6 +67,12 @@
     <Filter Include="Source Files\Score">
       <UniqueIdentifier>{3d8f4f6d-1899-4908-bf20-85001f80621a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Object\Enemies\Boss">
+      <UniqueIdentifier>{36d620ee-7075-4b80-a95c-675224df596b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Object\Enemies\Boss">
+      <UniqueIdentifier>{73477c93-e23f-4720-b0b6-13d2fd57e6fc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -333,26 +339,26 @@
     <ClCompile Include="Scenes\BackgroundBossBack.cpp">
       <Filter>Source Files\Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="Objects\Enemies\Boss\Boss.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Objects\Enemies\Boss\StripBoss.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Objects\Enemies\Boss\StripAladdin.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Objects\Enemies\Boss\Star.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Objects\Enemies\Boss\FireBoss.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Scenes\EndSceneBackground.cpp">
       <Filter>Source Files\Scenes</Filter>
     </ClCompile>
     <ClCompile Include="Objects\Enemies\Monkey.cpp">
       <Filter>Source Files\Object\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Enemies\Boss\Boss.cpp">
+      <Filter>Source Files\Object\Enemies\Boss</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Enemies\Boss\FireBoss.cpp">
+      <Filter>Source Files\Object\Enemies\Boss</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Enemies\Boss\Star.cpp">
+      <Filter>Source Files\Object\Enemies\Boss</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Enemies\Boss\StripAladdin.cpp">
+      <Filter>Source Files\Object\Enemies\Boss</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Enemies\Boss\StripBoss.cpp">
+      <Filter>Source Files\Object\Enemies\Boss</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -635,26 +641,26 @@
     <ClInclude Include="Scenes\BackgroundBossBack.h">
       <Filter>Header Files\Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="Objects\Enemies\Boss\Boss.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Objects\Enemies\Boss\StripBoss.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Objects\Enemies\Boss\StripAladdin.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Objects\Enemies\Boss\Star.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Objects\Enemies\Boss\FireBoss.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Scenes\EndSceneBackground.h">
       <Filter>Header Files\Scenes</Filter>
     </ClInclude>
     <ClInclude Include="Objects\Enemies\Monkey.h">
       <Filter>Header Files\Object\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Enemies\Boss\StripBoss.h">
+      <Filter>Header Files\Object\Enemies\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Enemies\Boss\StripAladdin.h">
+      <Filter>Header Files\Object\Enemies\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Enemies\Boss\Star.h">
+      <Filter>Header Files\Object\Enemies\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Enemies\Boss\FireBoss.h">
+      <Filter>Header Files\Object\Enemies\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Enemies\Boss\Boss.h">
+      <Filter>Header Files\Object\Enemies\Boss</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

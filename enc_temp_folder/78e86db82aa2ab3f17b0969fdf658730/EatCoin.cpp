@@ -54,15 +54,11 @@ void EatCoin::Release()
 
 void EatCoin::onCollisionBegin(CollisionEventArg *collision_event)
 {
-	if (isInStatus(BEHIT))
-		return;
 	eID objectID = collision_event->_otherObject->getId();
 	switch (objectID)
 	{
 	case eID::ALADDIN:
 	{
-		//SOUNDDDDDDDDDDDDDDDDDDDDDDD THAY NHẠC< NHẠC SAI< CÁI NÀY T MỚI BỎ VÀO
-		SoundManager::getInstance()->PlaySound("Resources/Audio/AppleCollect.wav", 0);
 		setStatus(BEHIT);
 		break;
 	}

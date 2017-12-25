@@ -604,7 +604,7 @@ void ReadMapEditor::ListObject(RECT * rect)
 	{
 		if (isContain(ListEatHeart[i], *rect))
 		{
-			if (ListBoom[i]->isInStatus(DESTROY))
+			if (ListEatHeart[i]->isInStatus(DESTROY))
 			{
 				ListEatHeart[i]->Release();
 				delete  ListEatHeart[i];

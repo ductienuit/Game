@@ -32,9 +32,6 @@ void RestartPoint::InIt()
 void RestartPoint::Update(float deltatime)
 {
 	_animations[this->getStatus()]->Update(deltatime);
-	//xet âm thanh
-	if (_animations[BEHIT]->getIndex() == 3)
-		SoundManager::getInstance()->PlaySound("Resources/Audio/ExtraHealth.wav", 0);
 
 	if (_animations[BEHIT]->getIndex() >= 8)
 	{
@@ -60,6 +57,8 @@ void RestartPoint::Release()
 
 void RestartPoint::onCollisionBegin(CollisionEventArg *collision_event)
 {
+	if (isInStatus(BEHIT))
+		return;
 	eID objectID = collision_event->_otherObject->getId();
 	 switch (objectID)
 	{
@@ -67,6 +66,8 @@ void RestartPoint::onCollisionBegin(CollisionEventArg *collision_event)
 	{
 		if (_canTurn)
 		{
+			SoundManager::getInstance()->PlaySound("Resources/Audio/ExtraHealth.wav", 0);
+
 			setStatus(BEHIT);
 			collision_event->_otherObject->SetRestartPoint(this);
 		}
