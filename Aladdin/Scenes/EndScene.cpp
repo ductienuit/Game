@@ -1,10 +1,10 @@
 #include "EndScene.h"
-
+#include"IntroScene.h"
 
 ViewPort* EndScene::_viewport = ViewPort::getInstance();
 EndScene::EndScene()
 {
-	InIt();
+	ViewPort::getInstance()->setPositionWorld(Vector2(0, 480));
 }
 
 EndScene::~EndScene()
@@ -34,6 +34,11 @@ void EndScene::Update(float dt)
 {
 	_aladdin->Update(dt);
 	_monkey->Update(dt);
+	if (_aladdin->getPositionX() < 0)
+	{
+		auto scene = new IntroScene();
+		SceneManager::getInstance()->ReplaceScene(scene);
+	}
 }
 
 void EndScene::Draw(LPD3DXSPRITE spriteHandle)
@@ -46,6 +51,16 @@ void EndScene::Draw(LPD3DXSPRITE spriteHandle)
 void EndScene::Release()
 {
 	_endSceneBackground->Release();
+	delete _endSceneBackground;
+
 	_aladdin->Release();
+	delete _aladdin;
+
 	_monkey->Release();
+	delete _monkey;
+
+	auto _input = InputController::getInstance();
+	if (_input != nullptr)
+		__unhook(_input);
+	SoundManager::getInstance()->StopAllSound();
 }

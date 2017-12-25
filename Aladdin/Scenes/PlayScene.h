@@ -44,7 +44,7 @@
 #include"../Objects/Score/Apple.h"
 #include"../Objects/Score/Alphabet.h"
 
-#include"BossScene.h"
+#include"EndScene.h"
 
 #include<time.h>
 

@@ -31,6 +31,7 @@ void PlayScene::setViewPort(ViewPort * viewport)
 
 bool PlayScene::InIt()
 {
+	Enter[2] = true;
 	_aladdin = new Aladdin();
 	_aladdin->InIt();
 	_aladdin->setPosition(100, 100);
@@ -69,7 +70,7 @@ bool PlayScene::InIt()
 	_listScore.push_back(new Apple());
 
 	//âm thanh
-	//SoundManager::getInstance()->PlaySound("Resources/Audio/PrinceAli_loop.mp3", 1);
+	SoundManager::getInstance()->PlaySound("Resources/Audio/PrinceAli_loop.mp3", 1);
 	return true;
 }
 
@@ -84,7 +85,7 @@ void PlayScene::Update(float dt)
 	_aladdin->checkCollision(Vitory, dt);
 	if (Enter[2])
 	{
-		SceneManager::getInstance()->ReplaceScene(new BossScene());
+		SceneManager::getInstance()->ReplaceScene(new EndScene());
 		return;
 	}
 
@@ -362,6 +363,8 @@ void PlayScene::Release()
 	Enter[0] = false;
 	Enter[1] = false;
 	Enter[2] = false;
+
+	SoundManager::getInstance()->StopAllSound();
 }
 
 void PlayScene::UpdateViewport(BaseObject * aladdin)

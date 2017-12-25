@@ -207,6 +207,9 @@ void Aladdin::InIt()
 	_animations[REVIVAL] = new Animation(_sprite, 0.12f);
 	_animations[REVIVAL]->addFrameRect(eID::ALADDIN, "restart_point_", 14);
 
+	_animations[ENDSCENE] = new Animation(_sprite, 0.08f);
+	_animations[ENDSCENE]->addFrameRect(eID::ALADDIN, "aladin_endScene_0", 10);
+
 	_sprite->drawBounding(false);
 
 	//Set lại bouding cho riêng aladdin để xét va chạm

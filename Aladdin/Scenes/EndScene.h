@@ -17,6 +17,8 @@
 #include"../Scenes/EndSceneBackground.h"
 #include"../Objects/GameObjects/Aladdin.h"
 #include"../Objects/Enemies/Monkey.h"
+
+class IntroScene;
 #include<time.h>
 using namespace std;
 

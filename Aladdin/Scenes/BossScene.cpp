@@ -61,7 +61,7 @@ void BossScene::Update(float dt)
 {
 	if (_boss->getHitpoint() <= 0)
 	{
-		SceneManager::getInstance()->ReplaceScene(new PlayScene());
+		SceneManager::getInstance()->ReplaceScene(new EndScene());
 		return;
 	}
 	this->UpdateViewport(_aladdin);
@@ -269,6 +269,8 @@ void BossScene::Release()
 	auto _input= InputController::getInstance();
 	if (_input != nullptr)
 		__unhook(_input);
+
+	SoundManager::getInstance()->StopAllSound();
 }
 
 void BossScene::UpdateViewport(BaseObject * aladdin)

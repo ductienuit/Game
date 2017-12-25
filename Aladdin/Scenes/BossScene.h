@@ -8,6 +8,7 @@
 + Danh sách đối tượng nằm trong vùng active.
 + Map
 */
+
 #include"../FrameWork/Scene.h"
 #include"../FrameWork/Manager/SpriteManager.h"
 #include"../FrameWork/Manager/SceneManager.h"
@@ -32,8 +33,7 @@
 #include"../Objects/Score/Apple.h"
 #include"../Objects/Score/Alphabet.h"
 
-#include"../Scenes/PlayScene.h"
-
+#include"EndScene.h"
 #include<time.h>
 
 #include"BackGroundBossBack.h"
