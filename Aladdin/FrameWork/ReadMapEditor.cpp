@@ -451,7 +451,14 @@ void ReadMapEditor::ListObject(RECT * rect)
 	{
 		if (isContain(ListGuardShort[i], *rect))
 		{
-			GetList.push_back(ListGuardShort[i]);
+			if (ListGuardShort[i]->isInStatus(DESTROY))
+			{
+				ListGuardShort[i]->Release();
+				delete  ListGuardShort[i];
+				ListGuardShort.erase(ListGuardShort.begin() + i);
+			}
+			else
+				GetList.push_back(ListGuardShort[i]);			
 		}
 	}
 
@@ -459,16 +466,30 @@ void ReadMapEditor::ListObject(RECT * rect)
 	{
 		if (isContain(ListGuardLu[i], *rect))
 		{
-			GetList.push_back(ListGuardLu[i]);
+			if (ListGuardLu[i]->isInStatus(DESTROY))
+			{
+				ListGuardLu[i]->Release();
+				delete  ListGuardLu[i];
+				ListGuardLu.erase(ListGuardLu.begin() + i);
+			}
+			else
+				GetList.push_back(ListGuardLu[i]);
 		}
+
 	}
 
 	for (size_t i = 0; i < ListGuardThin.size(); i++)
 	{
 		if (isContain(ListGuardThin[i], *rect))
 		{
-
-			GetList.push_back(ListGuardThin[i]);
+			if (ListGuardThin[i]->isInStatus(DESTROY))
+			{
+				ListGuardThin[i]->Release();
+				delete  ListGuardThin[i];
+				ListGuardThin.erase(ListGuardThin.begin() + i);
+			}
+			else
+				GetList.push_back(ListGuardThin[i]);
 		}
 	}
 
@@ -476,8 +497,14 @@ void ReadMapEditor::ListObject(RECT * rect)
 	{
 		if (isContain(ListGuardFat[i], *rect))
 		{
-
-			GetList.push_back(ListGuardFat[i]);
+			if (ListGuardFat[i]->isInStatus(DESTROY))
+			{
+				ListGuardFat[i]->Release();
+				delete  ListGuardFat[i];
+				ListGuardFat.erase(ListGuardFat.begin() + i);
+			}
+			else
+				GetList.push_back(ListGuardFat[i]);
 		}
 	}
 
@@ -485,8 +512,14 @@ void ReadMapEditor::ListObject(RECT * rect)
 	{
 		if (isContain(ListGuardThrowJar[i], *rect))
 		{
-
-			GetList.push_back(ListGuardThrowJar[i]);
+			if (ListGuardThrowJar[i]->isInStatus(DESTROY))
+			{
+				ListGuardThrowJar[i]->Release();
+				delete  ListGuardThrowJar[i];
+				ListGuardThrowJar.erase(ListGuardThrowJar.begin() + i);
+			}
+			else
+				GetList.push_back(ListGuardThrowJar[i]);
 		}
 	}
 
@@ -494,8 +527,14 @@ void ReadMapEditor::ListObject(RECT * rect)
 	{
 		if (isContain(ListKnifeThrower[i], *rect))
 		{
-
-			GetList.push_back(ListKnifeThrower[i]);
+			if (ListKnifeThrower[i]->isInStatus(DESTROY))
+			{
+				ListKnifeThrower[i]->Release();
+				delete  ListKnifeThrower[i];
+				ListKnifeThrower.erase(ListKnifeThrower.begin() + i);
+			}
+			else
+				GetList.push_back(ListKnifeThrower[i]);
 		}
 	}
 
@@ -520,7 +559,14 @@ void ReadMapEditor::ListObject(RECT * rect)
 	{
 		if (isContain(ListEatApple[i], *rect))
 		{
-			GetList.push_back(ListEatApple[i]);
+			if (ListEatApple[i]->isInStatus(DESTROY))
+			{
+				ListEatApple[i]->Release();
+				delete  ListEatApple[i];
+				ListEatApple.erase(ListEatApple.begin() + i);
+			}
+			else
+				GetList.push_back(ListEatApple[i]);
 		}
 	}
 
@@ -528,7 +574,14 @@ void ReadMapEditor::ListObject(RECT * rect)
 	{
 		if (isContain(ListEatCoin[i], *rect))
 		{
-			GetList.push_back(ListEatCoin[i]);
+			if (ListEatCoin[i]->isInStatus(DESTROY))
+			{
+				ListEatCoin[i]->Release();
+				delete  ListEatCoin[i];
+				ListEatCoin.erase(ListEatCoin.begin() + i);
+			}
+			else
+				GetList.push_back(ListEatCoin[i]);
 		}
 	}
 
@@ -536,8 +589,14 @@ void ReadMapEditor::ListObject(RECT * rect)
 	{
 		if (isContain(ListBoom[i], *rect))
 		{
-
-			GetList.push_back(ListBoom[i]);
+			if (ListBoom[i]->isInStatus(DESTROY))
+			{
+				ListBoom[i]->Release();
+				delete  ListBoom[i];
+				ListBoom.erase(ListBoom.begin() + i);
+			}
+			else
+				GetList.push_back(ListBoom[i]);
 		}
 	}
 
@@ -545,8 +604,14 @@ void ReadMapEditor::ListObject(RECT * rect)
 	{
 		if (isContain(ListEatHeart[i], *rect))
 		{
-
-			GetList.push_back(ListEatHeart[i]);
+			if (ListBoom[i]->isInStatus(DESTROY))
+			{
+				ListEatHeart[i]->Release();
+				delete  ListEatHeart[i];
+				ListEatHeart.erase(ListEatHeart.begin() + i);
+			}
+			else
+				GetList.push_back(ListEatHeart[i]);
 		}
 	}
 

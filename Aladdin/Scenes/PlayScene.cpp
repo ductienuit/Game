@@ -31,7 +31,6 @@ void PlayScene::setViewPort(ViewPort * viewport)
 
 bool PlayScene::InIt()
 {
-	Enter[2] = true;
 	_aladdin = new Aladdin();
 	_aladdin->InIt();
 	_aladdin->setPosition(100, 100);

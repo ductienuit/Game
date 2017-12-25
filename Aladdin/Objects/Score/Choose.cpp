@@ -32,7 +32,10 @@ void Choose::UpdateInput(float dt)
 	}
 	else if (_input->isKeyDown(DIK_SPACE))
 	{
-		SceneManager::getInstance()->ReplaceScene(new PlayScene());
+		if(getPositionY()==190)
+			SceneManager::getInstance()->ReplaceScene(new PlayScene());
+		else
+			SceneManager::getInstance()->ReplaceScene(new BossScene());
 	}
 }
 

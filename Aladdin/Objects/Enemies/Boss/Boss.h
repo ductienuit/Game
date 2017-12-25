@@ -39,6 +39,7 @@ public:
 	bool isVersion2();
 
 	Text* text;
+	vector<BaseObject*> _listFireBoss;
 	~Boss();
 private:
 	map<string, IComponent*> _listComponent;
@@ -46,7 +47,7 @@ private:
 	vector<BaseObject*> _listStar;
 	Aladdin* _aladdin;
 	bool isversion2;
-	vector<BaseObject*> _listFireBoss;
+	
 	StopWatch* _frequency;
 	StopWatch* _frequencyFireBoss;
 

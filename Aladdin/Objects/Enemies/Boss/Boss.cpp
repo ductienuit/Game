@@ -59,9 +59,22 @@ void Boss::Update(float deltatime)
 
 	this->UpdateStatus(deltatime);
 
-	for (int i = 0; i < _listStar.size(); i++)
+	if (isversion2)
 	{
-		_listStar[i]->Update(deltatime);
+		for (int i = 0; i < _listStar.size(); i++)
+		{
+			_listStar[i]->Release();
+			delete  _listStar[i];
+			_listStar.erase(_listStar.begin() + i);
+		}
+		_listStar.clear();
+	}
+	else
+	{
+		for (int i = 0; i < _listStar.size(); i++)
+		{
+			_listStar[i]->Update(deltatime);
+		}
 	}
 
 	for (int i = 0; i < _listFireBoss.size(); i++)
@@ -112,13 +125,7 @@ void Boss::Release()
 		delete component.second;
 	}
 
-	for (int i = 0; i < _listStar.size(); i++)
-	{
-		_listStar[i]->Release();
-		delete  _listStar[i];
-		_listStar.erase(_listStar.begin() + i);
-	}
-	_listStar.clear();
+
 
 	for (int i = 0; i < _listFireBoss.size(); i++)
 	{
@@ -146,7 +153,7 @@ void Boss::onCollisionBegin(CollisionEventArg *collision_event)
 			/*DK1:Aladdin đang không bị đánh*/
 			if (isBeAttack)
 			{
-				bool isStanding = collision_event->_otherObject->isInStatus(NORMAL) || collision_event->_otherObject->isInStatus(NORMAL1) || collision_event->_otherObject->isInStatus(FREE);
+				bool isStanding =  collision_event->_otherObject->isInStatus(NORMAL1) || collision_event->_otherObject->isInStatus(FREE);
 				_aladdin->Stop(true);
 				//âm thanh
 				//SoundManager::getInstance()->PlaySound("Resources/Audio/CloudPoof.wav", 0);
@@ -172,7 +179,7 @@ void Boss::onCollisionBegin(CollisionEventArg *collision_event)
 			/*DK1:Aladdin đang không bị đánh*/
 			if (isBeAttack)
 			{
-				bool isStanding = collision_event->_otherObject->isInStatus(NORMAL) || collision_event->_otherObject->isInStatus(NORMAL1) || collision_event->_otherObject->isInStatus(FREE);
+				bool isStanding =  collision_event->_otherObject->isInStatus(NORMAL1) || collision_event->_otherObject->isInStatus(FREE);
 				_aladdin->Stop(true);
 				//âm thanh
 				//SoundManager::getInstance()->PlaySound("Resources/Audio/CloudPoof.wav", 0);
@@ -209,7 +216,7 @@ void Boss::onCollisionBegin(CollisionEventArg *collision_event)
 			/*DK1:Aladdin đang không bị đánh*/
 			if (isBeAttack)
 			{
-				bool isStanding = collision_event->_otherObject->isInStatus(NORMAL) || collision_event->_otherObject->isInStatus(NORMAL1) || collision_event->_otherObject->isInStatus(FREE);
+				bool isStanding =  collision_event->_otherObject->isInStatus(NORMAL1) || collision_event->_otherObject->isInStatus(FREE);
 				//âm thanh
 				//SoundManager::getInstance()->PlaySound("Resources/Audio/CloudPoof.wav", 0);
 				InforAladdin::getInstance()->plusHealth(-10);
@@ -234,7 +241,7 @@ void Boss::onCollisionBegin(CollisionEventArg *collision_event)
 			/*DK1:Aladdin đang không bị đánh*/
 			if (isBeAttack)
 			{
-				bool isStanding = collision_event->_otherObject->isInStatus(NORMAL) || collision_event->_otherObject->isInStatus(NORMAL1) || collision_event->_otherObject->isInStatus(FREE);
+				bool isStanding =  collision_event->_otherObject->isInStatus(NORMAL1) || collision_event->_otherObject->isInStatus(FREE);
 				//âm thanh
 				//SoundManager::getInstance()->PlaySound("Resources/Audio/CloudPoof.wav", 0);
 				InforAladdin::getInstance()->plusHealth(-10);
@@ -361,7 +368,7 @@ void Boss::UpdateStatus(float dt)
 		}
 		case eStatus::THROW_RIGHT_FAR:
 		{
-			if (_frequencyFireBoss->isStopWatch(1000))
+			if (_frequencyFireBoss->isStopWatch(1700))
 			{
 				float x = getPositionX();
 				float y = getPositionY();

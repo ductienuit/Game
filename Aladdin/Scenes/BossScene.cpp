@@ -215,6 +215,8 @@ void BossScene::Draw(LPD3DXSPRITE spriteHandle)
 		}
 		_aladdin->ShowBB();
 		_boss->ShowBB();
+		for each(auto object in _boss->_listFireBoss)
+			object->ShowBB();
 	}
 
 #pragma endregion

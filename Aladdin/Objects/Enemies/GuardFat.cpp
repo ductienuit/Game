@@ -232,12 +232,14 @@ void GuardFat::onCollisionBegin(CollisionEventArg *collision_event)
 				bool isBeAttack = !collision_event->_otherObject->isInStatus(eStatus::BEHIT) && !collision_event->_otherObject->isFlashing();
 				if (isBeAttack)
 				{
-					bool isStanding = collision_event->_otherObject->isInStatus(NORMAL) || collision_event->_otherObject->isInStatus(NORMAL1) || collision_event->_otherObject->isInStatus(FREE);
+					
 					if (_animations[ATTACK]->getIndex() == 4)
 					{
 						//âm thanh
 						SoundManager::getInstance()->PlaySound("Resources/Audio/HighSword.wav", 0);
 						InforAladdin::getInstance()->plusHealth(-10);
+
+						bool isStanding =  collision_event->_otherObject->isInStatus(NORMAL1) || collision_event->_otherObject->isInStatus(FREE);
 						if (isStanding)
 						{
 							//Set status aladdin bị đánh

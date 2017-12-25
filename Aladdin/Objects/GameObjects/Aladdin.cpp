@@ -703,13 +703,13 @@ void Aladdin::UpdateInput(float dt)
 	{
 		if (_input->isKeyDown(DIK_LEFT))
 		{
-			if (_input->isKeyDown(DIK_RIGHT))
-			{
-				break;
-			}
 			moveLeftJump();
 			removeStatus(eStatus::JUMPING_RIGHT);
 			addStatus(eStatus::JUMPING_LEFT);
+		}
+		else if (_input->isKeyDown(DIK_RIGHT))
+		{
+			moveRightJump();
 		}
 		else if (_input->isKeyPressed(DIK_Z))
 		{
@@ -729,13 +729,6 @@ void Aladdin::UpdateInput(float dt)
 			//âm thanh
 			SoundManager::getInstance()->PlaySound("Resources/Audio/HighSword.wav", 0);
 			addStatus(eStatus::ATTACK);
-			/*if (_input->isKeyDown(DIK_LEFT))
-			{
-			moveLeft();
-			removeStatus(eStatus::ATTACK);
-			removeStatus(eStatus::THROW);
-			addStatus(eStatus::JUMPING_LEFT);
-			}*/
 		}
 		break;
 	}
@@ -743,13 +736,13 @@ void Aladdin::UpdateInput(float dt)
 	{
 		if (_input->isKeyDown(DIK_RIGHT))
 		{
-			if (_input->isKeyDown(DIK_LEFT))
-			{
-				break;
-			}
 			moveRightJump();
 			removeStatus(eStatus::JUMPING_LEFT);
 			addStatus(eStatus::JUMPING_RIGHT);
+		}
+		else if (_input->isKeyDown(DIK_LEFT))
+		{
+			moveLeftJump();
 		}
 		else if (_input->isKeyPressed(DIK_Z))
 		{

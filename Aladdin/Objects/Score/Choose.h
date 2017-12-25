@@ -12,7 +12,7 @@
 #include "../BaseObject.h"
 
 #include "../../Scenes/PlayScene.h"
-
+#include"../../Scenes/BossScene.h"
 
 using namespace std;
 

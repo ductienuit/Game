@@ -110,7 +110,7 @@ void GuardLu::onCollisionBegin(CollisionEventArg *collision_event)
 					/*DK1:Aladdin đang không bị đánh*/
 					if (isBeAttack)
 					{
-						bool isStanding = collision_event->_otherObject->isInStatus(NORMAL) || collision_event->_otherObject->isInStatus(NORMAL1) || collision_event->_otherObject->isInStatus(FREE);
+						bool isStanding =  collision_event->_otherObject->isInStatus(NORMAL1) || collision_event->_otherObject->isInStatus(FREE);
 						if (_animations[ATTACK]->getIndex() == 3)
 						{
 							//âm thanh
