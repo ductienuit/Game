@@ -38,6 +38,8 @@ public:
 	void setViewPort(ViewPort* viewport);
 private:
 	Choose* _choose;
+	Alphabet* _strScene1;
+	Alphabet* _strSceneBoss;
 	MenuBackground* _menuBackground;
 	/*Chuyển đổi tọa độ word sang viewport*/
 	static ViewPort* _viewport;
