@@ -9,7 +9,7 @@ AladdinGame::~AladdinGame()
 void AladdinGame::InIt()
 {
 	Game::InIt();
-	SceneManager::getInstance()->AddScene(new  PlayScene());
+	SceneManager::getInstance()->AddScene(new IntroScene());
 }
 
 void AladdinGame::Release()

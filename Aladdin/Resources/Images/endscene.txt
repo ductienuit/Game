@@ -1,0 +1,2 @@
+frame_name		left	top	right	bottom
+end_scene_back_ground	0	0	636	445
