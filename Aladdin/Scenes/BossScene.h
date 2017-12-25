@@ -36,8 +36,8 @@
 #include"EndScene.h"
 #include<time.h>
 
-#include"BackGroundBossBack.h"
-#include"BackGroundBossFront.h"
+#include"BackGround/BackGroundBossBack.h"
+#include"BackGround/BackGroundBossFront.h"
 using namespace std;
 #define SIZEMAPBOSS	D3DXVECTOR2(1504*1.2,691*1.2)
 

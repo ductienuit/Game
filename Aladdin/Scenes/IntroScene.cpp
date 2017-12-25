@@ -19,7 +19,7 @@ void IntroScene::setViewPort(ViewPort * viewport)
 
 bool IntroScene::InIt()
 {
-	_menuBackground = new MenuBackground();
+	_menuBackground = new BackgroundMenu();
 	_menuBackground->InIt();
 
 	_choose	= (new Choose(120,190));

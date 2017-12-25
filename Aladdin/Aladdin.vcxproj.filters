@@ -73,6 +73,9 @@
     <Filter Include="Header Files\Object\Enemies\Boss">
       <UniqueIdentifier>{73477c93-e23f-4720-b0b6-13d2fd57e6fc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Scenes\BackGround">
+      <UniqueIdentifier>{072ae49d-0b36-4156-80da-796c6888ee85}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -153,13 +156,7 @@
     <ClCompile Include="FrameWork\QuadTree.cpp">
       <Filter>Source Files\FrameWork</Filter>
     </ClCompile>
-    <ClCompile Include="Scenes\BackGround.cpp">
-      <Filter>Source Files\Scenes</Filter>
-    </ClCompile>
     <ClCompile Include="Scenes\PlayScene.cpp">
-      <Filter>Source Files\Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="Scenes\BackGroundFront.cpp">
       <Filter>Source Files\Scenes</Filter>
     </ClCompile>
     <ClCompile Include="Objects\Enemies\GuardThrowJar.cpp">
@@ -321,9 +318,6 @@
     <ClCompile Include="FrameWork\C_Sound.cpp">
       <Filter>Source Files\FrameWork</Filter>
     </ClCompile>
-    <ClCompile Include="Scenes\MenuBackground.cpp">
-      <Filter>Source Files\Scenes</Filter>
-    </ClCompile>
     <ClCompile Include="Objects\BaseObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -331,18 +325,6 @@
       <Filter>Source Files\Score</Filter>
     </ClCompile>
     <ClCompile Include="Objects\Enemies\GuardKnifeThrower.cpp">
-      <Filter>Source Files\Object\Enemies</Filter>
-    </ClCompile>
-    <ClCompile Include="Scenes\BackGroundBossFront.cpp">
-      <Filter>Source Files\Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="Scenes\BackgroundBossBack.cpp">
-      <Filter>Source Files\Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="Scenes\EndSceneBackground.cpp">
-      <Filter>Source Files\Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="Objects\Enemies\Monkey.cpp">
       <Filter>Source Files\Object\Enemies</Filter>
     </ClCompile>
     <ClCompile Include="Objects\Enemies\Boss\Boss.cpp">
@@ -359,6 +341,30 @@
     </ClCompile>
     <ClCompile Include="Objects\Enemies\Boss\StripBoss.cpp">
       <Filter>Source Files\Object\Enemies\Boss</Filter>
+    </ClCompile>
+    <ClCompile Include="Scenes\BackGround\BackGround.cpp">
+      <Filter>Source Files\Scenes\BackGround</Filter>
+    </ClCompile>
+    <ClCompile Include="Scenes\BackGround\BackgroundBossBack.cpp">
+      <Filter>Source Files\Scenes\BackGround</Filter>
+    </ClCompile>
+    <ClCompile Include="Scenes\BackGround\BackGroundBossFront.cpp">
+      <Filter>Source Files\Scenes\BackGround</Filter>
+    </ClCompile>
+    <ClCompile Include="Scenes\BackGround\BackgroundEndScene.cpp">
+      <Filter>Source Files\Scenes\BackGround</Filter>
+    </ClCompile>
+    <ClCompile Include="Scenes\BackGround\BackGroundFront.cpp">
+      <Filter>Source Files\Scenes\BackGround</Filter>
+    </ClCompile>
+    <ClCompile Include="Scenes\BackGround\BackgroundMenu.cpp">
+      <Filter>Source Files\Scenes\BackGround</Filter>
+    </ClCompile>
+    <ClCompile Include="Scenes\DefeatScene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\GameObjects\Monkey.cpp">
+      <Filter>Source Files\Object\Enemies</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -443,13 +449,7 @@
     <ClInclude Include="FrameWork\QuadTree.h">
       <Filter>Header Files\FrameWork</Filter>
     </ClInclude>
-    <ClInclude Include="Scenes\BackGround.h">
-      <Filter>Header Files\Scenes</Filter>
-    </ClInclude>
     <ClInclude Include="Scenes\PlayScene.h">
-      <Filter>Header Files\Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="Scenes\BackGroundFront.h">
       <Filter>Header Files\Scenes</Filter>
     </ClInclude>
     <ClInclude Include="Objects\Enemies\GuardThrowJar.h">
@@ -620,9 +620,6 @@
     <ClInclude Include="FrameWork\C_Sound.h">
       <Filter>Header Files\FrameWork</Filter>
     </ClInclude>
-    <ClInclude Include="Scenes\MenuBackground.h">
-      <Filter>Header Files\Scenes</Filter>
-    </ClInclude>
     <ClInclude Include="Objects\Score\Alphabet.h">
       <Filter>Header Files\Score</Filter>
     </ClInclude>
@@ -633,18 +630,6 @@
       <Filter>Header Files\Score</Filter>
     </ClInclude>
     <ClInclude Include="Objects\Enemies\GuardKnifeThrower.h">
-      <Filter>Header Files\Object\Enemies</Filter>
-    </ClInclude>
-    <ClInclude Include="Scenes\BackGroundBossFront.h">
-      <Filter>Header Files\Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="Scenes\BackgroundBossBack.h">
-      <Filter>Header Files\Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="Scenes\EndSceneBackground.h">
-      <Filter>Header Files\Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="Objects\Enemies\Monkey.h">
       <Filter>Header Files\Object\Enemies</Filter>
     </ClInclude>
     <ClInclude Include="Objects\Enemies\Boss\StripBoss.h">
@@ -661,6 +646,30 @@
     </ClInclude>
     <ClInclude Include="Objects\Enemies\Boss\Boss.h">
       <Filter>Header Files\Object\Enemies\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenes\BackGround\BackGround.h">
+      <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenes\BackGround\BackgroundBossBack.h">
+      <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenes\BackGround\BackGroundBossFront.h">
+      <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenes\BackGround\BackgroundEndScene.h">
+      <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenes\BackGround\BackGroundFront.h">
+      <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenes\BackGround\BackgroundMenu.h">
+      <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenes\DefeatScene.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\GameObjects\Monkey.h">
+      <Filter>Header Files\Object\Enemies</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

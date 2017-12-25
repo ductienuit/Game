@@ -48,8 +48,8 @@
 
 #include<time.h>
 
-#include"BackGround.h"
-#include"BackGroundFront.h"
+#include"BackGround/BackGround.h"
+#include"BackGround/BackGroundFront.h"
 using namespace std;
 
 USEGAME_FRAMEWORK

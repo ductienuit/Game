@@ -134,14 +134,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AladdinGame.cpp" />
-    <ClCompile Include="Objects\Enemies\Monkey.cpp" />
-    <ClCompile Include="Scenes\EndSceneBackground.cpp" />
+    <ClCompile Include="Scenes\DefeatScene.cpp" />
+    <ClCompile Include="Objects\GameObjects\Monkey.cpp" />
+    <ClCompile Include="Scenes\BackGround\BackgroundEndScene.cpp" />
     <ClCompile Include="Objects\Enemies\Boss\FireBoss.cpp" />
     <ClCompile Include="Objects\Enemies\Boss\Boss.cpp" />
-    <ClCompile Include="Scenes\BackgroundBossBack.cpp" />
-    <ClCompile Include="Scenes\BackGroundBossFront.cpp" />
+    <ClCompile Include="Scenes\BackGround\BackgroundBossBack.cpp" />
+    <ClCompile Include="Scenes\BackGround\BackGroundBossFront.cpp" />
     <ClCompile Include="Objects\Score\Choose.cpp" />
-    <ClCompile Include="Scenes\MenuBackground.cpp" />
+    <ClCompile Include="Scenes\BackGround\BackgroundMenu.cpp" />
     <ClCompile Include="Objects\Score\Letter.cpp" />
     <ClCompile Include="Objects\Score\Alphabet.cpp" />
     <ClCompile Include="Objects\Score\Apple.cpp" />
@@ -192,7 +193,7 @@
     <ClCompile Include="Resources\MapReader\TmxTileset.cpp" />
     <ClCompile Include="Resources\MapReader\TmxUtil.cpp" />
     <ClCompile Include="Objects\GameObjects\RestartPoint.cpp" />
-    <ClCompile Include="Scenes\BackGround.cpp" />
+    <ClCompile Include="Scenes\BackGround\BackGround.cpp" />
     <ClCompile Include="Objects\Enemies\GuardShort.cpp" />
     <ClCompile Include="Objects\Enemies\BaseEnemy.cpp" />
     <ClCompile Include="FrameWork\CollisionBody.cpp" />
@@ -215,7 +216,7 @@
     <ClCompile Include="FrameWork\Transformable.cpp" />
     <ClCompile Include="FrameWork\ViewPort.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Scenes\BackGroundFront.cpp" />
+    <ClCompile Include="Scenes\BackGround\BackGroundFront.cpp" />
     <ClCompile Include="Scenes\PlayScene.cpp" />
     <ClCompile Include="FrameWork\StopWatch.cpp" />
     <ClCompile Include="FrameWork\Text.cpp" />
@@ -230,14 +231,15 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AladdinGame.h" />
-    <ClInclude Include="Objects\Enemies\Monkey.h" />
-    <ClInclude Include="Scenes\EndSceneBackground.h" />
+    <ClInclude Include="Scenes\DefeatScene.h" />
+    <ClInclude Include="Objects\GameObjects\Monkey.h" />
+    <ClInclude Include="Scenes\BackGround\BackgroundEndScene.h" />
     <ClInclude Include="Objects\Enemies\Boss\FireBoss.h" />
     <ClInclude Include="Objects\Enemies\Boss\Boss.h" />
-    <ClInclude Include="Scenes\BackgroundBossBack.h" />
-    <ClInclude Include="Scenes\BackGroundBossFront.h" />
+    <ClInclude Include="Scenes\BackGround\BackgroundBossBack.h" />
+    <ClInclude Include="Scenes\BackGround\BackGroundBossFront.h" />
     <ClInclude Include="Objects\Score\Choose.h" />
-    <ClInclude Include="Scenes\MenuBackground.h" />
+    <ClInclude Include="Scenes\BackGround\BackgroundMenu.h" />
     <ClInclude Include="Objects\Score\Letter.h" />
     <ClInclude Include="Objects\Score\Alphabet.h" />
     <ClInclude Include="Objects\Score\Apple.h" />
@@ -292,7 +294,7 @@
     <ClInclude Include="Resources\MapReader\zconf.h" />
     <ClInclude Include="Resources\MapReader\zlib.h" />
     <ClInclude Include="Objects\GameObjects\RestartPoint.h" />
-    <ClInclude Include="Scenes\BackGround.h" />
+    <ClInclude Include="Scenes\BackGround\BackGround.h" />
     <ClInclude Include="Objects\Enemies\GuardShort.h" />
     <ClInclude Include="Objects\Enemies\BaseEnemy.h" />
     <ClInclude Include="FrameWork\CollisionBody.h" />
@@ -316,7 +318,7 @@
     <ClInclude Include="FrameWork\TimeSpan.h" />
     <ClInclude Include="FrameWork\Transformable.h" />
     <ClInclude Include="FrameWork\ViewPort.h" />
-    <ClInclude Include="Scenes\BackGroundFront.h" />
+    <ClInclude Include="Scenes\BackGround\BackGroundFront.h" />
     <ClInclude Include="Scenes\PlayScene.h" />
     <ClInclude Include="FrameWork\StopWatch.h" />
     <ClInclude Include="FrameWork\Text.h" />

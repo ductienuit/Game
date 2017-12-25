@@ -21,6 +21,11 @@ void Monkey::InIt()
 
 	_animations[ENDSCENE] = new Animation(_sprite, 0.1f);
 	_animations[ENDSCENE]->addFrameRect(eID::MONKEY, "monkey_0", 8);
+
+
+	//Chổ này t ko chỉnh ảnh đc. m chỉnh hộ phát :3
+	_animations[FREE] = new Animation(_sprite, 0.1f);
+	_animations[FREE]->addFrameRect(eID::MONKEY, "monkey_0", 8);
 }
 
 void Monkey::Update(float deltatime)

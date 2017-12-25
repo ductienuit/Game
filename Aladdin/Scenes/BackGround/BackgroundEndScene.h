@@ -3,17 +3,17 @@
 
 #define SCALE_END_SCENE_BACKGROUND D3DXVECTOR2(1.02f, 1.1f)
 
-#include"../Objects/BaseObject.h"
-#include "../FrameWork/define.h"
-#include"../FrameWork/ViewPort.h"
-#include"../FrameWork/Manager/SoundManager.h"
+#include"../../Objects/BaseObject.h"
+#include "../../FrameWork/define.h"
+#include"../../FrameWork/ViewPort.h"
+#include"../../FrameWork/Manager/SoundManager.h"
 
-class EndSceneBackground :public BaseObject
+class BackgroundEndScene :public BaseObject
 {
 public:
-	EndSceneBackground();
+	BackgroundEndScene();
 
-	~EndSceneBackground();
+	~BackgroundEndScene();
 
 	void InIt();
 	void Update(float deltatime);

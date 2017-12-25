@@ -394,11 +394,6 @@ void Aladdin::UpdateInput(float dt)
 			removeStatus(eStatus::NORMAL1);
 			jump(eStatus::JUMPING);
 		}
-		else if (_input->isKeyPressed(DIK_S))
-		{
-			unHookInputEvent();
-			addStatus(eStatus::DYING);
-		}
 		break;
 	}
 	case(eStatus::FREE):
@@ -1853,7 +1848,7 @@ void Aladdin::updateCurrentAnimateIndex()
 	eStatus temp = (eStatus)(LOOKING_UP | SITTING_DOWN | MOVING_LEFT
 		| MOVING_RIGHT | JUMPING_LEFT | JUMPING_RIGHT
 		| JUMPING | CLIMB | SWING
-		| ATTACK | DROP | DYING | THROW | AEROBATIC);
+		| ATTACK | DROP | THROW | AEROBATIC);
 	if (isInStatus(NORMAL1) && isExist(temp))
 	{
 		removeStatus(eStatus::NORMAL1);

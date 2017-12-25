@@ -1,43 +1,41 @@
-#include "EndScene.h"
+#include "DefeatScene.h"
 #include"IntroScene.h"
 
-ViewPort* EndScene::_viewport = ViewPort::getInstance();
-EndScene::EndScene()
+ViewPort* DefeatScene::_viewport = ViewPort::getInstance();
+DefeatScene::DefeatScene()
 {
 	ViewPort::getInstance()->setPositionWorld(Vector2(0, 480));
 	//âm thanh
 	SoundManager::getInstance()->StopAllSound();
 }
 
-EndScene::~EndScene()
+DefeatScene::~DefeatScene()
 {
 }
 
-bool EndScene::InIt()
+bool DefeatScene::InIt()
 {
-	_endSceneBackground = new BackgroundEndScene();
-
 	_aladdin = new Aladdin();
 	_aladdin->InIt();
 	_aladdin->setPosition(800, 100);
 	_aladdin->setStatus(eStatus::ENDSCENE);
 
+
 	_monkey = new Monkey(eStatus::ENDSCENE, 700, 70, eDirection::LEFT);
 	//âm thanh
-	SoundManager::getInstance()->PlaySound("Resources/Audio/LevelComplete.mp3", 1); 
+	SoundManager::getInstance()->PlaySound("Resources/Audio/LevelComplete.mp3", 1);
 
 	return true;
 }
 
-void EndScene::UpdateInput(float dt)
+void DefeatScene::UpdateInput(float dt)
 {
 	_aladdin->UpdateInput(dt);
 }
 
-void EndScene::Update(float dt)
+void DefeatScene::Update(float dt)
 {
 	_aladdin->Update(dt);
-	_monkey->Update(dt);
 	if (_aladdin->getPositionX() < 0)
 	{
 		auto scene = new IntroScene();
@@ -45,24 +43,17 @@ void EndScene::Update(float dt)
 	}
 }
 
-void EndScene::Draw(LPD3DXSPRITE spriteHandle)
+void DefeatScene::Draw(LPD3DXSPRITE spriteHandle)
 {
-	_endSceneBackground->Draw(spriteHandle, _viewport);
 	_aladdin->Draw(spriteHandle, _viewport);
-	_monkey->Draw(spriteHandle, _viewport);
 }
 
-void EndScene::Release()
+void DefeatScene::Release()
 {
-	_endSceneBackground->Release();
-	delete _endSceneBackground;
 
 	_aladdin->Release();
 	delete _aladdin;
-
-	_monkey->Release();
-	delete _monkey;
-
+	
 	auto _input = InputController::getInstance();
 	if (_input != nullptr)
 		__unhook(_input);

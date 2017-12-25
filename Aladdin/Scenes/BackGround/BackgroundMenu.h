@@ -2,17 +2,17 @@
 #define __MENUBACKGROUND_H__
 #define SCALEMENUBACKGROUND D3DXVECTOR2(1.52f, 1.88f)
 
-#include"../Objects/BaseObject.h"
-#include "../FrameWork/define.h"
-#include"../FrameWork/ViewPort.h"
-#include"../FrameWork/Manager/SoundManager.h"
+#include"../../Objects/BaseObject.h"
+#include "../../FrameWork/define.h"
+#include"../../FrameWork/ViewPort.h"
+#include"../../FrameWork/Manager/SoundManager.h"
 
-class MenuBackground :public BaseObject
+class BackgroundMenu :public BaseObject
 {
 public:
-	MenuBackground();
+	BackgroundMenu();
 
-	~MenuBackground();
+	~BackgroundMenu();
 
 	void InIt();
 	void Update(float deltatime);

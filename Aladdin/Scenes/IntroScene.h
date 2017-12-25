@@ -14,7 +14,7 @@
 #include<time.h>
 
 #include"../Objects/GameObjects/Aladdin.h"
-#include"MenuBackground.h"
+#include "BackGround/BackgroundMenu.h"
 #include"../Objects/Score/Alphabet.h"
 #include"../Objects/Score/Choose.h"
 
@@ -40,7 +40,7 @@ private:
 	Choose* _choose;
 	Alphabet* _strScene1;
 	Alphabet* _strSceneBoss;
-	MenuBackground* _menuBackground;
+	BackgroundMenu* _menuBackground;
 	/*Chuyển đổi tọa độ word sang viewport*/
 	static ViewPort* _viewport;
 	

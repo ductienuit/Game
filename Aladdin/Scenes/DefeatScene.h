@@ -1,19 +1,13 @@
-﻿#ifndef __END_SCENE_H__
-#define __END_SCENE_H__
-/*Phần chưa làm
-+ Quadtree
-+ text
-+ help
-+ Danh sách đối tượng nằm trong vùng active.
-+ Map
-*/
+﻿#pragma once
+#ifndef _DEFEAT_SCENE_H_
+#define _DEFEAT_SCENE_H_
+
 #include"../FrameWork/Scene.h"
 #include"../FrameWork/Manager/SpriteManager.h"
 #include"../FrameWork/Manager/SceneManager.h"
 #include"../FrameWork/debug.h"
 #include"../FrameWork/Animation.h"
 #include"../FrameWork/ViewPort.h"
-#include"../Scenes/BackGround/BackgroundEndScene.h"
 #include"../Objects/GameObjects/Aladdin.h"
 #include"../Objects/GameObjects/Monkey.h"
 
@@ -24,11 +18,11 @@ using namespace std;
 USEGAME_FRAMEWORK
 
 [event_receiver(native)]
-class EndScene :public Scene
+class DefeatScene :public Scene
 {
 public:
-	EndScene();
-	~EndScene();
+	DefeatScene();
+	~DefeatScene();
 
 	bool InIt() override;
 	void UpdateInput(float dt) override;
@@ -37,12 +31,10 @@ public:
 	void Release() override;
 private:
 	Aladdin * _aladdin;
-	Monkey * _monkey;
-	Land * _land;
-	BackgroundEndScene * _endSceneBackground;
+	Monkey* _monkey;
 	static ViewPort* _viewport;
 };
 
-#endif // !__END_SCENE_H__
+#endif // !_DEFEAT_SCENE_H_
 
 

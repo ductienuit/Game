@@ -52,7 +52,6 @@ void Jar::Update(float deltatime)
 		}
 		case DYING:
 		{
-			standing();
 			if (_animations[DYING]->getIndex() >= 8)
 			{
 				_animations[DYING]->setIndex(0);
@@ -100,8 +99,9 @@ void Jar::onCollisionBegin(CollisionEventArg *collision_event)
 	{
 		if (collision_event->_otherObject->isInStatus(eStatus::ATTACK))
 		{
+			SoundManager::getInstance()->PlaySound("Resources/Audio/ClayPot.wav", 0);
 			this->setStatus(DYING);
-			break;
+			return;
 		}
 
 		#pragma region Kiểm tra điều kiện aladdin bị trừ máu
@@ -110,7 +110,6 @@ void Jar::onCollisionBegin(CollisionEventArg *collision_event)
 		if (isBeAttack)
 		{
 			bool isStanding =  collision_event->_otherObject->isInStatus(NORMAL1) || collision_event->_otherObject->isInStatus(FREE);
-			
 
 			//SOUNDDDDDDDDDDDDDDDDDD
 
@@ -128,6 +127,8 @@ void Jar::onCollisionBegin(CollisionEventArg *collision_event)
 				//Set status aladdin bị đánh
 				collision_event->_otherObject->StartFlash();
 			}
+
+			this->setStatus(DYING);
 		}
 		#pragma endregion
 
@@ -165,8 +166,8 @@ Jar::~Jar()
 
 void Jar::standing()
 {
-	/*auto move = (Movement*)this->_listComponent["Movement"];
-	move->setVelocity(VECTOR2ZERO);*/
+	auto move = (Movement*)this->_listComponent["Movement"];
+	move->setVelocity(VECTOR2ZERO);
 }
 
 void Jar::movingDown()

@@ -1,19 +1,18 @@
 #pragma once
 #ifndef _MONKEY_H
 #define _MONKEY_H
-#include "BaseEnemy.h"
 #include "../../FrameWork/Animation.h"
 #include "../../FrameWork/StopWatch.h"
 #include "../../FrameWork/IComponent.h"
 #include "../../FrameWork/Text.h"
-#include"../Enemies/BaseEnemy.h"
+#include "../BaseObject.h"
 #include"../GameObjects/Aladdin.h"
 
 #define MONKEY_SPEED 120
 
 using namespace std;
 
-class Monkey : public BaseEnemy
+class Monkey : public BaseObject
 {
 public:
 	Monkey(eStatus status, int posX, int posY, eDirection direction);

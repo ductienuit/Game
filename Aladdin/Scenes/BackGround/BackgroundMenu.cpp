@@ -1,13 +1,13 @@
-﻿#include "MenuBackground.h"
-MenuBackground::MenuBackground() :BaseObject(eID::BACKGROUND)
+﻿#include "BackgroundMenu.h"
+BackgroundMenu::BackgroundMenu() :BaseObject(eID::BACKGROUND)
 {
 }
 
-MenuBackground::~MenuBackground()
+BackgroundMenu::~BackgroundMenu()
 {
 }
 
-void MenuBackground::InIt()
+void BackgroundMenu::InIt()
 {
 	_sprite = SpriteManager::getInstance()->getSprite(eID::MENUBACKGROUND);
 	this->setOrigin(ORIGINZERO);//Set top left dưới 0 0
@@ -16,17 +16,17 @@ void MenuBackground::InIt()
 	//SoundManager::getInstance()->PlaySound("Resources/Audio/PrinceAli.wav", 1);
 }
 
-void MenuBackground::Update(float deltatime)
+void BackgroundMenu::Update(float deltatime)
 {
 
 }
 
-void MenuBackground::Draw(LPD3DXSPRITE spriteHandle, ViewPort *viewport)
+void BackgroundMenu::Draw(LPD3DXSPRITE spriteHandle, ViewPort *viewport)
 {
 	_sprite->Render(spriteHandle, viewport);
 }
 
-void MenuBackground::Release()
+void BackgroundMenu::Release()
 {
 	_sprite->Release();
 	_sprite = nullptr;

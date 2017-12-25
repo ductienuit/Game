@@ -56,7 +56,7 @@
   <object id="119" x="2818" y="294" width="375" height="10"/>
   <object id="120" x="2967" y="167" width="200" height="10"/>
   <object id="122" x="3504" y="123" width="110" height="10"/>
-  <object id="131" x="3602.67" y="214.667" width="702" height="10"/>
+  <object id="131" x="3602.67" y="217.667" width="702" height="10"/>
   <object id="133" x="4605" y="506.667" width="55.1667" height="10"/>
   <object id="355" x="2596.67" y="521.333" width="149.333" height="10"/>
   <object id="356" x="4341" y="671" width="429" height="9"/>
@@ -66,7 +66,7 @@
   <object id="367" x="2817.67" y="675.334" width="1511" height="7.33333"/>
   <object id="368" x="4303" y="64" width="52" height="12"/>
   <object id="379" x="3185.5" y="324.5" width="440" height="10"/>
-  <object id="380" x="4354.5" y="216" width="425" height="10"/>
+  <object id="380" x="4354.5" y="219" width="425" height="10"/>
   <object id="418" x="1476" y="440.333" width="100" height="10"/>
   <object id="419" x="1476" y="389.667" width="40" height="10"/>
   <object id="421" x="2523" y="164" width="130" height="10"/>
@@ -189,7 +189,7 @@
  </objectgroup>
  <objectgroup color="#55557f" name="bar">
   <object id="294" x="4401" y="317.333" width="347" height="20"/>
-  <object id="471" x="4355.17" y="100.333" width="161" height="10"/>
+  <object id="471" x="4355.17" y="93.3333" width="161" height="20"/>
  </objectgroup>
  <objectgroup color="#00ff7f" name="rope">
   <object id="135" x="1545" y="219" width="5" height="118.5"/>
@@ -257,7 +257,7 @@
   <object id="476" x="3807.5" y="467.5" width="40" height="15"/>
   <object id="478" x="3889.5" y="451.5" width="40" height="15"/>
   <object id="479" x="3766.5" y="475.5" width="40" height="15"/>
-  <object id="480" x="2642.5" y="406" width="173" height="15"/>
+  <object id="480" x="2643.5" y="409" width="173" height="15"/>
   <object id="481" x="2243.25" y="579.75" width="44.75" height="15"/>
   <object id="423" x="3050.5" y="486" width="715" height="10"/>
  </objectgroup>
