@@ -76,6 +76,9 @@
     <Filter Include="Source Files\Scenes\BackGround">
       <UniqueIdentifier>{072ae49d-0b36-4156-80da-796c6888ee85}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Scenes\BackGround">
+      <UniqueIdentifier>{f1e69bf9-a600-4245-93f9-16ee7168a42a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -315,9 +318,6 @@
     <ClCompile Include="FrameWork\C_Sound.cpp">
       <Filter>Source Files\FrameWork</Filter>
     </ClCompile>
-    <ClCompile Include="Objects\BaseObject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Objects\Score\Choose.cpp">
       <Filter>Source Files\Score</Filter>
     </ClCompile>
@@ -357,14 +357,17 @@
     <ClCompile Include="Scenes\BackGround\BackgroundMenu.cpp">
       <Filter>Source Files\Scenes\BackGround</Filter>
     </ClCompile>
-    <ClCompile Include="Scenes\DefeatScene.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Objects\GameObjects\Monkey.cpp">
       <Filter>Source Files\Object\Enemies</Filter>
     </ClCompile>
     <ClCompile Include="Scenes\VictoryScene.cpp">
       <Filter>Source Files\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Scenes\DefeatScene.cpp">
+      <Filter>Source Files\Scenes\BackGround</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\BaseObject.cpp">
+      <Filter>Source Files\Object</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -620,9 +623,6 @@
     <ClInclude Include="Objects\Score\Alphabet.h">
       <Filter>Header Files\Score</Filter>
     </ClInclude>
-    <ClInclude Include="Objects\BaseObject.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Objects\Score\Choose.h">
       <Filter>Header Files\Score</Filter>
     </ClInclude>
@@ -644,32 +644,35 @@
     <ClInclude Include="Objects\Enemies\Boss\Boss.h">
       <Filter>Header Files\Object\Enemies\Boss</Filter>
     </ClInclude>
-    <ClInclude Include="Scenes\BackGround\BackGround.h">
-      <Filter>Header Files\Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="Scenes\BackGround\BackgroundBossBack.h">
-      <Filter>Header Files\Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="Scenes\BackGround\BackGroundBossFront.h">
-      <Filter>Header Files\Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="Scenes\BackGround\BackgroundEndScene.h">
-      <Filter>Header Files\Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="Scenes\BackGround\BackGroundFront.h">
-      <Filter>Header Files\Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="Scenes\BackGround\BackgroundMenu.h">
-      <Filter>Header Files\Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="Scenes\DefeatScene.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Objects\GameObjects\Monkey.h">
       <Filter>Header Files\Object\Enemies</Filter>
     </ClInclude>
     <ClInclude Include="Scenes\VictoryScene.h">
       <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenes\DefeatScene.h">
+      <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\BaseObject.h">
+      <Filter>Header Files\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenes\BackGround\BackGround.h">
+      <Filter>Header Files\Scenes\BackGround</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenes\BackGround\BackgroundBossBack.h">
+      <Filter>Header Files\Scenes\BackGround</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenes\BackGround\BackGroundBossFront.h">
+      <Filter>Header Files\Scenes\BackGround</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenes\BackGround\BackgroundEndScene.h">
+      <Filter>Header Files\Scenes\BackGround</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenes\BackGround\BackGroundFront.h">
+      <Filter>Header Files\Scenes\BackGround</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenes\BackGround\BackgroundMenu.h">
+      <Filter>Header Files\Scenes\BackGround</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
