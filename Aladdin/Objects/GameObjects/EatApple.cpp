@@ -67,8 +67,6 @@ void EatApple::Release()
 
 void EatApple::onCollisionBegin(CollisionEventArg *collision_event)
 {
-	if (isInStatus(BEHIT))
-		return;
 	eID objectID = collision_event->_otherObject->getId();
 	switch (objectID)
 	{
@@ -90,6 +88,8 @@ void EatApple::onCollisionEnd(CollisionEventArg *)
 float EatApple::checkCollision(BaseObject *object, float dt)
 {
 	if (object == this)
+		return 0.0f;
+	if (isInStatus(BEHIT))
 		return 0.0f;
 	auto collisionBody = (CollisionBody*)_listComponent["CollisionBody"];
 

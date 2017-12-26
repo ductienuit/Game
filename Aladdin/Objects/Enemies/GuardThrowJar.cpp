@@ -74,9 +74,6 @@ void GuardThrowJar::UpdateStatus(float dt)
 			if (_animations[DYING]->getIndex() == 9)
 			{
 				_animations[DYING]->setIndex(0);
-				//SOUNDDDDDD
-				SoundManager::getInstance()->PlaySound("Resources/Audio/CloudPoof.wav", 0);
-				//Nhạc khi object bị destroy
 				this->setStatus(DESTROY);
 				//score+=10;
 			}
@@ -160,6 +157,9 @@ void GuardThrowJar::onCollisionBegin(CollisionEventArg *collision_event)
 			if (collision_event->_otherObject->getIndex() == 3)
 			{
 				this->setStatus(eStatus::DYING);
+				//SOUNDDDDDD
+				SoundManager::getInstance()->PlaySound("Resources/Audio/CloudPoof.wav", 0);
+				//Nhạc khi object bị destroy
 			}
 			break;
 		}
@@ -176,6 +176,8 @@ void GuardThrowJar::onCollisionEnd(CollisionEventArg *)
 
 float GuardThrowJar::checkCollision(BaseObject *object, float dt)
 {
+	if (isInStatus(DYING))
+		return 0.0f;
 	if (object == this)
 		return 0.0f;
 	auto collisionBody = (CollisionBody*)_listComponent["CollisionBody"];

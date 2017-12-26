@@ -53,8 +53,6 @@ void GuardLu::InIt()
 
 	_hitpoint = 2;//1 lần đánh
 	_score = 10; //Số điểm được mỗi lần giết enermy
-
-
 }
 
 void GuardLu::Update(float deltatime)
@@ -101,6 +99,9 @@ void GuardLu::onCollisionBegin(CollisionEventArg *collision_event)
 					InforAladdin::getInstance()->plusScore(10);
 					_hitpoint -= 1;
 					this->setStatus(eStatus::DYING);
+					//SOUNDDDDDD
+					//Nhạc khi object bị destroy
+					SoundManager::getInstance()->PlaySound("Resources/Audio/CloudPoof.wav", 0);
 				}
 				break;
 			}
@@ -113,8 +114,6 @@ void GuardLu::onCollisionBegin(CollisionEventArg *collision_event)
 						bool isStanding =  collision_event->_otherObject->isInStatus(NORMAL1) || collision_event->_otherObject->isInStatus(FREE);
 						if (_animations[ATTACK]->getIndex() == 3)
 						{
-							//âm thanh
-							SoundManager::getInstance()->PlaySound("Resources/Audio/CloudPoof.wav", 0);
 							InforAladdin::getInstance()->plusApple(-5);
 							if (isStanding)
 							{
@@ -143,11 +142,14 @@ float GuardLu::checkCollision(BaseObject *object, float dt)
 {
 	if (object == this)
 		return 0.0f;
+	if (isInStatus(DYING))
+		return 0.0f;
 	auto collisionBody = (CollisionBody*)_listComponent["CollisionBody"];
 	//Check collision enermy(this) với aladdin(object)
 	collisionBody->checkCollision(object, dt, true);
 	return 0.0f;
 }
+
 RECT GuardLu::getBounding()
 {
 	RECT r = BaseObject::getBounding();
@@ -172,7 +174,6 @@ Vector2 GuardLu::distanceBetweenAladdin()
 	return Vector2(xAla - x, yAla - y);
 }
 
-
 void GuardLu::UpdateStatus(float dt)
 {
 	float xAla = _aladdin->getPositionX() + (_aladdin->getBounding().right - _aladdin->getBounding().left) / 2;
@@ -185,9 +186,6 @@ void GuardLu::UpdateStatus(float dt)
 			standing();
 			if (_animations[DYING]->getIndex() >= 9)
 			{
-				//SOUNDDDDDD
-				//Nhạc khi object bị destroy
-				SoundManager::getInstance()->PlaySound("Resources/Audio/CloudPoof.wav", 0);
 				_animations[DYING]->setIndex(0);
 				this->setStatus(DESTROY);
 				//score+=10;

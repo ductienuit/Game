@@ -6,7 +6,7 @@
 #include"Scenes\PlayScene.h"
 #include"Scenes\IntroScene.h"
 #include"Scenes\BossScene.h"
-#include"Scenes\EndScene.h"
+#include"Scenes\VictoryScene.h"
 #include"Scenes\DefeatScene.h"
 
 using namespace std;

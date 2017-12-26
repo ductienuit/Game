@@ -37,7 +37,7 @@ void DefeatScene::Update(float dt)
 {
 	_aladdin->Update(dt);
 	_monkey->Update(dt);
-	if (_aladdin->getPositionX() < 0)
+	if (_aladdin->getIndexImageStatus(DYING) >=27)
 	{
 		auto scene = new IntroScene();
 		SceneManager::getInstance()->ReplaceScene(scene);

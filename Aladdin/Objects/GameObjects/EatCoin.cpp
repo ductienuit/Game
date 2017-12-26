@@ -54,8 +54,6 @@ void EatCoin::Release()
 
 void EatCoin::onCollisionBegin(CollisionEventArg *collision_event)
 {
-	if (isInStatus(BEHIT))
-		return;
 	eID objectID = collision_event->_otherObject->getId();
 	switch (objectID)
 	{
@@ -77,6 +75,8 @@ void EatCoin::onCollisionEnd(CollisionEventArg *)
 float EatCoin::checkCollision(BaseObject *object, float dt)
 {
 	if (object == this)
+		return 0.0f;
+	if (isInStatus(BEHIT))
 		return 0.0f;
 	auto collisionBody = (CollisionBody*)_listComponent["CollisionBody"];
 

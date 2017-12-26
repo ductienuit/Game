@@ -3,7 +3,7 @@
 using namespace std;
 
 extern vector<BaseObject*> listActive; 
-extern vector<BaseObject*> _listObject;
+extern vector<BaseObject*> listObject;
 vector<BaseObject*>	listStrip;
 
 ViewPort* BossScene::_viewport = ViewPort::getInstance();
@@ -13,7 +13,7 @@ BossScene::BossScene()
 
 	InforAladdin::getInstance()->NonInfinity();
 	InforAladdin::getInstance()->setApple(99);
-	_listObject.clear();
+	listObject.clear();
 	//âm thanh
 	SoundManager::getInstance()->StopAllSound();
 }
@@ -62,11 +62,24 @@ void BossScene::UpdateInput(float dt)
 
 void BossScene::Update(float dt)
 {
+
+	#pragma region Kiểm tra chuyển scene victory hoặc defeat scene
 	if (_boss->getHitpoint() <= 1)
 	{
-		SceneManager::getInstance()->ReplaceScene(new EndScene());
+		SceneManager::getInstance()->ReplaceScene(new VictoryScene());
 		return;
 	}
+
+	if (InforAladdin::getInstance()->getLife() == 0)
+	{
+		SceneManager::getInstance()->ReplaceScene(new DefeatScene());
+		return;
+	}
+#pragma endregion
+
+
+
+
 	this->UpdateViewport(_aladdin);
 
 	#pragma region  Update list object in camera

@@ -93,10 +93,11 @@ void GuardFat::UpdateStatus(float dt)
 			_animations[BEHIT]->setIndex(0);
 			removeStatus(BEHIT);
 			setStatus(ATTACK);
-		
 			if (_hitpoint <= 0)
 			{
-				InforAladdin::getInstance()->plusScore(10);
+				//InforAladdin::getInstance()->plusScore(10);
+				//SOUNDDDDDD
+				SoundManager::getInstance()->PlaySound("Resources/Audio/CloudPoof.wav", 0);
 				this->setStatus(DYING);
 			}
 		}
@@ -107,18 +108,12 @@ void GuardFat::UpdateStatus(float dt)
 		if (_animations[DYING]->getIndex() == 9)
 		{
 			_animations[DYING]->setIndex(0);
-			//SOUNDDDDDD
-			SoundManager::getInstance()->PlaySound("Resources/Audio/CloudPoof.wav", 0);
+
 			//Nhạc khi object bị destroy
 			this->setStatus(DESTROY);
 		}
 		return;
 	}
-	}
-	if (_hitpoint <= 0)
-	{
-		setStatus(DYING);
-		return;
 	}
 
 	this->clearStatus();
@@ -205,11 +200,6 @@ void GuardFat::Release()
 
 void GuardFat::onCollisionBegin(CollisionEventArg *collision_event)
 {
-	if (_hitpoint <= 0)
-	{
-		setStatus(DYING);
-		return;
-	}
 	eID objectID = collision_event->_otherObject->getId();
 	switch (objectID)
 	{
@@ -277,6 +267,10 @@ float GuardFat::checkCollision(BaseObject *object, float dt)
 {
 	if (object == this)
 		return 0.0f;
+	if (isInStatus(DYING))
+	{
+		return 0.0f;
+	}
 	auto collisionBody = (CollisionBody*)_listComponent["CollisionBody"];
 
 	if(!isInStatus(ATTACK))

@@ -66,7 +66,6 @@ void GuardThin::Update(float deltatime)
 	}
 }
 
-
 void GuardThin::UpdateStatus(float dt)
 {
 	float xAla = _aladdin->getPositionX() + (_aladdin->getBounding().right - _aladdin->getBounding().left) / 2;
@@ -85,6 +84,9 @@ void GuardThin::UpdateStatus(float dt)
 
 				if (_hitpoint <= 0)
 				{
+					//SOUNDDDDDD
+					//Nhạc khi object bị destroy
+					SoundManager::getInstance()->PlaySound("Resources/Audio/CloudPoof.wav", 0);
 					InforAladdin::getInstance()->plusScore(10);
 					this->setStatus(DYING);
 				}
@@ -96,9 +98,6 @@ void GuardThin::UpdateStatus(float dt)
 			if (_animations[DYING]->getIndex() == 9)
 			{
 				_animations[DYING]->setIndex(0);
-				//SOUNDDDDDD
-				//Nhạc khi object bị destroy
-				SoundManager::getInstance()->PlaySound("Resources/Audio/CloudPoof.wav", 0);
 				this->setStatus(DESTROY);
 			}
 			return;
@@ -196,11 +195,6 @@ void GuardThin::Release()
 
 void GuardThin::onCollisionBegin(CollisionEventArg *collision_event)
 {
-	if (_hitpoint <= 0)
-	{
-		setStatus(DYING);
-		return;
-	}
 	eID objectID = collision_event->_otherObject->getId();
 	switch (objectID)
 	{
@@ -257,6 +251,8 @@ void GuardThin::onCollisionEnd(CollisionEventArg *)
 float GuardThin::checkCollision(BaseObject *object, float dt)
 {
 	if (object == this)
+		return 0.0f;
+	if (isInStatus(DYING))
 		return 0.0f;
 	auto collisionBody = (CollisionBody*)_listComponent["CollisionBody"];
 	//Check collision enermy(this) với aladdin(object)

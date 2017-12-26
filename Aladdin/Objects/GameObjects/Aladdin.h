@@ -53,6 +53,7 @@ public:
 
 			//get index Animation Attack
 	int		getIndex() override;
+	int		getIndexImageStatus(eStatus);
 
 	void	Stop() override;
 	void	Stop(bool);

@@ -33,7 +33,8 @@
 #include"../Objects/Score/Apple.h"
 #include"../Objects/Score/Alphabet.h"
 
-#include"EndScene.h"
+#include"VictoryScene.h"
+#include "DefeatScene.h"
 #include<time.h>
 
 #include"BackGround/BackGroundBossBack.h"

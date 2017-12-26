@@ -1,13 +1,21 @@
 ﻿#include "PlayScene.h"
 #include<iostream>
+
+/*Kiểm tra và cờ để lên cầu thang */
 extern bool Enter[3];
 extern bool TurnOn[4];
-extern vector<BaseObject*> _listObject;
+
+extern vector<BaseObject*> listObject;
 extern vector<BaseObject*> listFireActive;
 extern vector<BaseObject*> listApple;
+vector<BaseObject*>		   listStair[2];
+
+
 void OptimizeApple(RECT* rect);
 bool isContain(BaseObject*object, RECT rect1);
-vector<BaseObject*> Stair[2];
+
+
+
 using namespace std;
 
 
@@ -39,7 +47,7 @@ bool PlayScene::InIt()
 
 	_aladdin->setPosition(3169*1.6, (688-376)*1.92);
    // _aladdin->setPosition(7100, 1000);
-	_listObject.push_back(_aladdin);
+	listObject.push_back(_aladdin);
 
 	mMap = new ReadMapEditor(_aladdin,"Resources/Images/mapobject.tmx", _root);
 	TurnOn[0] = true;	
@@ -82,44 +90,49 @@ void PlayScene::UpdateInput(float dt)
 
 void PlayScene::Update(float dt)
 {
+	#pragma region Kiểm tra chuyển scene victory hoặc defeat scene
 	//Kiem tra win game
 	_aladdin->checkCollision(Vitory, dt);
+
 	if (Enter[2])
 	{
-		SceneManager::getInstance()->ReplaceScene(new EndScene());
+		SceneManager::getInstance()->ReplaceScene(new VictoryScene());
 		return;
 	}
+
+	if (InforAladdin::getInstance()->getLife()==0)
+	{
+		SceneManager::getInstance()->ReplaceScene(new DefeatScene());
+		return;
+	}
+	#pragma endregion
+
+	
+
 
 	this->UpdateViewport(_aladdin);
 
 	#pragma region  Update list object in camera
-	Vector2 viewport_position = _viewport->getPositionWorld();
-	RECT viewport_in_transform = _viewport->getBounding();
+	Vector2 posViewport = _viewport->getPositionWorld();
+	RECT boundViewport = _viewport->getBounding();
 	//// Hàm getlistobject của quadtree yêu cầu truyền vào một hình chữ nhật theo hệ top left, nên cần tính lại khung màn hình
 
 	RECT screenx;
-	screenx.top = viewport_in_transform.bottom;
-	screenx.bottom = viewport_in_transform.top;
-	screenx.left = viewport_in_transform.left;
-	screenx.right = viewport_in_transform.left + WINDOWS_WIDTH;
+	screenx.top = boundViewport.bottom;
+	screenx.bottom = boundViewport.top;
+	screenx.left = boundViewport.left;
+	screenx.right = boundViewport.left + WINDOWS_WIDTH;
 
-	//#if _DEBUG									 // clock_t để test thời gian chạy đoạn code update (milisecond)
-	//	clock_t t;
-	//	t = clock();
-	//#endif
+
 	_activeObject.clear();
 	mMap->ListObject(&screenx);
 	_activeObject = mMap->GetList;
 
-	//	t = clock() - t;
-	//	__debugoutput((float)t / CLOCKS_PER_SEC);
-	//#endif
-#pragma endregion
-
-
-	#pragma region Optimize apple in camera
-	OptimizeApple(&screenx);
 	#pragma endregion
+
+
+	//Optimize apple in camera
+	OptimizeApple(&screenx);
 
 
 	_aladdin->Update(dt);
@@ -170,14 +183,14 @@ void PlayScene::Update(float dt)
 	}
 
 
-#pragma endregion
+	#pragma endregion
 
 
 	#pragma region Flag check stair
 
 	if (Enter[0])
 	{
-		for (auto i : Stair[0])
+		for (auto i : listStair[0])
 		{
 			// i la Enermy va aladdin
 			if (i == nullptr)
@@ -187,7 +200,7 @@ void PlayScene::Update(float dt)
 	}
 	if (Enter[1])
 	{
-		for (auto i : Stair[1])
+		for (auto i : listStair[1])
 		{
 			// i la Enermy va aladdin
 			if (i == nullptr)
@@ -210,7 +223,7 @@ void PlayScene::Update(float dt)
 		_aladdin->checkCollision(CheckOn[3].back(), dt);
 	}
 
-#pragma endregion
+	#pragma endregion
 
 
 #pragma endregion
@@ -226,7 +239,8 @@ void PlayScene::Update(float dt)
 	auto input = InputController::getInstance();
 	if (input->isKeyDown(DIK_1))
 	{
-		InforAladdin::getInstance()->plusApple(100);
+		InforAladdin::getInstance()->plusLife(3);
+		
 	}
 	if (input->isKeyDown(DIK_2))
 	{
@@ -238,7 +252,7 @@ void PlayScene::Update(float dt)
 	}
 	if (input->isKeyDown(DIK_4))
 	{
-		InforAladdin::getInstance()->plusLife(3);
+		InforAladdin::getInstance()->plusApple(100);
 	}
 #pragma endregion
 }
@@ -254,11 +268,11 @@ void PlayScene::Draw(LPD3DXSPRITE spriteHandle)
 	}
 	_aladdin->Draw(spriteHandle, _viewport);
 
-	for each(auto object in Stair[0])
+	for each(auto object in listStair[0])
 	{
 		object->Draw(spriteHandle, _viewport);
 	}
-	for each(auto object in Stair[1])
+	for each(auto object in listStair[1])
 	{
 		object->Draw(spriteHandle, _viewport);
 	}
@@ -295,11 +309,11 @@ void PlayScene::Draw(LPD3DXSPRITE spriteHandle)
 		}
 		_aladdin->ShowBB();
 
-		for each(auto object in Stair[0])
+		for each(auto object in listStair[0])
 		{
 			object->ShowBB();
 		}
-		for each(auto object in Stair[1])
+		for each(auto object in listStair[1])
 		{
 			object->ShowBB();
 		}
@@ -326,12 +340,12 @@ void PlayScene::Draw(LPD3DXSPRITE spriteHandle)
 
 void PlayScene::Release()
 {
-	for each (auto object in _listObject)
+	for each (auto object in listObject)
 	{
 		object->Release();
 		delete object;
 	}
-	_listObject.clear();
+	listObject.clear();
 	for each (auto object in _activeObject)
 	{
 		object->Release();

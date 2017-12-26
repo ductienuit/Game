@@ -1,19 +1,19 @@
-#include "EndScene.h"
+#include "VictoryScene.h"
 #include"IntroScene.h"
 
-ViewPort* EndScene::_viewport = ViewPort::getInstance();
-EndScene::EndScene()
+ViewPort* VictoryScene::_viewport = ViewPort::getInstance();
+VictoryScene::VictoryScene()
 {
 	ViewPort::getInstance()->setPositionWorld(Vector2(0, 480));
 	//âm thanh
 	SoundManager::getInstance()->StopAllSound();
 }
 
-EndScene::~EndScene()
+VictoryScene::~VictoryScene()
 {
 }
 
-bool EndScene::InIt()
+bool VictoryScene::InIt()
 {
 	_endSceneBackground = new BackgroundEndScene();
 
@@ -29,12 +29,12 @@ bool EndScene::InIt()
 	return true;
 }
 
-void EndScene::UpdateInput(float dt)
+void VictoryScene::UpdateInput(float dt)
 {
 	_aladdin->UpdateInput(dt);
 }
 
-void EndScene::Update(float dt)
+void VictoryScene::Update(float dt)
 {
 	_aladdin->Update(dt);
 	_monkey->Update(dt);
@@ -45,14 +45,14 @@ void EndScene::Update(float dt)
 	}
 }
 
-void EndScene::Draw(LPD3DXSPRITE spriteHandle)
+void VictoryScene::Draw(LPD3DXSPRITE spriteHandle)
 {
 	_endSceneBackground->Draw(spriteHandle, _viewport);
 	_aladdin->Draw(spriteHandle, _viewport);
 	_monkey->Draw(spriteHandle, _viewport);
 }
 
-void EndScene::Release()
+void VictoryScene::Release()
 {
 	_endSceneBackground->Release();
 	delete _endSceneBackground;

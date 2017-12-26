@@ -1,7 +1,7 @@
 ﻿#include "ALADDIN.h"
 bool Enter[3];
 bool TurnOn[4];
-vector<BaseObject*> _listObject;
+vector<BaseObject*> listObject;
 vector<BaseObject*> listApple;
 
 Aladdin::Aladdin() : BaseObject(eID::ALADDIN)
@@ -142,7 +142,7 @@ void Aladdin::InIt()
 	_animations[eStatus::MOVING_LEFT | eStatus::ATTACK] = new Animation(_sprite, 0.1f);
 	_animations[eStatus::MOVING_LEFT | eStatus::ATTACK]->addFrameRect(eID::ALADDIN, "run_attack_0", 6);
 
-	_animations[eStatus::DYING] = new Animation(_sprite, 0.1f);
+	_animations[eStatus::DYING] = new Animation(_sprite, 0.2f);
 	_animations[eStatus::DYING]->addFrameRect(eID::ALADDIN, "die_", 28);
 
 	_animations[eStatus::BEHIT] = new Animation(_sprite, 0.05f);
@@ -699,9 +699,13 @@ void Aladdin::UpdateInput(float dt)
 		break;
 	}
 	case (eStatus::JUMPING_RIGHT):
-	{
+ 	{
 		if (_input->isKeyDown(DIK_LEFT))
 		{
+			if (_input->isKeyDown(DIK_RIGHT))
+			{
+				break;
+			}
 			moveLeftJump();
 			removeStatus(eStatus::JUMPING_RIGHT);
 			addStatus(eStatus::JUMPING_LEFT);
@@ -709,25 +713,25 @@ void Aladdin::UpdateInput(float dt)
 		else if (_input->isKeyDown(DIK_RIGHT))
 		{
 			moveRightJump();
-		}
-		else if (_input->isKeyPressed(DIK_Z))
-		{
-			addStatus(eStatus::THROW);
-			Vector2 position = getPosition();
-
-
-			int apple = InforAladdin::getInstance()->getApple();
-			if (apple > 0)
+			if (_input->isKeyPressed(DIK_Z))
 			{
-				listApple.push_back(new AppleThrow(position.x, position.y, (getScale().x < 0)));
-				InforAladdin::getInstance()->plusApple(-1);
+				addStatus(eStatus::THROW);
+				Vector2 position = getPosition();
+
+
+				int apple = InforAladdin::getInstance()->getApple();
+				if (apple > 0)
+				{
+					listApple.push_back(new AppleThrow(position.x, position.y, (getScale().x < 0)));
+					InforAladdin::getInstance()->plusApple(-1);
+				}
 			}
-		}
-		else if (_input->isKeyPressed(DIK_X))
-		{
-			//âm thanh
-			SoundManager::getInstance()->PlaySound("Resources/Audio/HighSword.wav", 0);
-			addStatus(eStatus::ATTACK);
+			else if (_input->isKeyPressed(DIK_X))
+			{
+				//âm thanh
+				SoundManager::getInstance()->PlaySound("Resources/Audio/HighSword.wav", 0);
+				addStatus(eStatus::ATTACK);
+			}
 		}
 		break;
 	}
@@ -735,6 +739,10 @@ void Aladdin::UpdateInput(float dt)
 	{
 		if (_input->isKeyDown(DIK_RIGHT))
 		{
+			if (_input->isKeyDown(DIK_LEFT))
+			{
+				break;
+			}
 			moveRightJump();
 			removeStatus(eStatus::JUMPING_LEFT);
 			addStatus(eStatus::JUMPING_RIGHT);
@@ -742,42 +750,40 @@ void Aladdin::UpdateInput(float dt)
 		else if (_input->isKeyDown(DIK_LEFT))
 		{
 			moveLeftJump();
-		}
-		else if (_input->isKeyPressed(DIK_Z))
-		{
-			//âm thanh
-			SoundManager::getInstance()->PlaySound("Resources/Audio/HighSword.wav", 0);
-			addStatus(eStatus::THROW);
-			Vector2 position = getPosition();
-
-
-			int apple = InforAladdin::getInstance()->getApple();
-			if (apple > 0)
+			if (_input->isKeyPressed(DIK_Z))
 			{
-				listApple.push_back(new AppleThrow(position.x, position.y, (getScale().x < 0)));
-				InforAladdin::getInstance()->plusApple(-1);
+				//âm thanh
+				SoundManager::getInstance()->PlaySound("Resources/Audio/HighSword.wav", 0);
+				addStatus(eStatus::THROW);
+				Vector2 position = getPosition();
+
+
+				int apple = InforAladdin::getInstance()->getApple();
+				if (apple > 0)
+				{
+					listApple.push_back(new AppleThrow(position.x, position.y, (getScale().x < 0)));
+					InforAladdin::getInstance()->plusApple(-1);
+				}
+				if (_input->isKeyDown(DIK_RIGHT))
+				{
+					removeStatus(eStatus::THROW);
+					moveRight();
+					addStatus(eStatus::JUMPING_RIGHT);
+				}
 			}
-			/*if (_input->isKeyDown(DIK_RIGHT))
+			else if (_input->isKeyPressed(DIK_X))
 			{
-			removeStatus(eStatus::THROW);
-			moveRight();
-			addStatus(eStatus::JUMPING_RIGHT);
+				//âm thanh
+				SoundManager::getInstance()->PlaySound("Resources/Audio/HighSword.wav", 0);
+				addStatus(eStatus::ATTACK);
+				if (_input->isKeyDown(DIK_RIGHT))
+				{
+					removeStatus(eStatus::ATTACK);
+					removeStatus(eStatus::THROW);
+					moveRight();
 
-			}*/
-		}
-		else if (_input->isKeyPressed(DIK_X))
-		{
-			//âm thanh
-			SoundManager::getInstance()->PlaySound("Resources/Audio/HighSword.wav", 0);
-			addStatus(eStatus::ATTACK);
-			if (_input->isKeyDown(DIK_RIGHT))
-			{
-				removeStatus(eStatus::ATTACK);
-				removeStatus(eStatus::THROW);
-				moveRight();
-
-				addStatus(eStatus::JUMPING_RIGHT);
-
+					addStatus(eStatus::JUMPING_RIGHT);
+				}
 			}
 		}
 		break;
@@ -1818,7 +1824,7 @@ void Aladdin::updateStatusOneAction(float deltatime)
 	}
 	else if (isInStatus(eStatus(ATTACK | JUMPING_LEFT)) && _animations[_currentAnimateIndex]->getIndex() >= 5)
 	{
-		_animations[_currentAnimateIndex]->setIndex(6);
+		_animations[_currentAnimateIndex]->setIndex(0);
 		removeStatus(eStatus::ATTACK);
 	}
 
@@ -1882,6 +1888,11 @@ void Aladdin::setBounding(RECT r)
 	_boundAla = temp;
 }
 
+
+int Aladdin::getIndexImageStatus(eStatus status)
+{
+	return _animations[status]->getIndex();
+}
 int Aladdin::getIndex()
 {
 	//_currentAnimateIndex is in eStatus::ATTACK

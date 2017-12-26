@@ -24,11 +24,11 @@ using namespace std;
 USEGAME_FRAMEWORK
 
 [event_receiver(native)]
-class EndScene :public Scene
+class VictoryScene :public Scene
 {
 public:
-	EndScene();
-	~EndScene();
+	VictoryScene();
+	~VictoryScene();
 
 	bool InIt() override;
 	void UpdateInput(float dt) override;

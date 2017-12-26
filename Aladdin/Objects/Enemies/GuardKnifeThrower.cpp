@@ -92,7 +92,9 @@ void GuardKnifeThrower::onCollisionBegin(CollisionEventArg *collision_event)
 			if (collision_event->_otherObject->getIndex() == 3)
 			{
 				this->setStatus(eStatus::DYING);
-				InforAladdin::getInstance()->plusScore(10);
+				//InforAladdin::getInstance()->plusScore(10);
+				//SOUNDDDDDD
+				SoundManager::getInstance()->PlaySound("Resources/Audio/CloudPoof.wav", 0);
 			}
 			break;
 		}
@@ -111,6 +113,10 @@ float GuardKnifeThrower::checkCollision(BaseObject *object, float dt)
 {
 	if (object == this)
 		return 0.0f;
+	if (isInStatus(DYING))
+	{
+		return 0.0f;
+	}
 	auto collisionBody = (CollisionBody*)_listComponent["CollisionBody"];
 	//Check collision enermy(this) với aladdin(object)
 	/*Ưu tiên check GuardKnifeThrower trước, sau đó đến knife*/
@@ -140,11 +146,7 @@ void GuardKnifeThrower::UpdateStatus(float dt)
 		if (_animations[DYING]->getIndex() == 9)
 		{
 			_animations[DYING]->setIndex(0);
-			//SOUNDDDDDD
-			//Nhạc khi object bị destroy
-			SoundManager::getInstance()->PlaySound("Resources/Audio/CloudPoof.wav", 0);
 			this->setStatus(DESTROY);
-			//score+=10;
 		}
 		return;
 	}

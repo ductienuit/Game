@@ -1,5 +1,5 @@
 ﻿#include "ReadMapEditor.h"
-extern 	vector<BaseObject*> Stair[2];
+extern 	vector<BaseObject*> listStair[2];
 
 vector<BaseObject*> listFireActive;
 vector<BaseObject*> listActive;
@@ -180,7 +180,7 @@ ReadMapEditor::ReadMapEditor(BaseObject* aladdin, const char *filepath, QuadTree
 
 				Land* _stair = new Land(_object->GetX(), 688 - _object->GetY() - _object->GetHeight(), _object->GetWidth(), _object->GetHeight(), NONE, STAIR);
 
-				Stair[0].push_back(_stair);
+				listStair[0].push_back(_stair);
 				_QuadTree->InsertStaticObject(_stair);
 			}
 		}
@@ -193,7 +193,7 @@ ReadMapEditor::ReadMapEditor(BaseObject* aladdin, const char *filepath, QuadTree
 
 				Land* _stair = new Land(_object->GetX(), 688 - _object->GetY() - _object->GetHeight(), _object->GetWidth(), _object->GetHeight(), NONE, STAIR);
 
-				Stair[1].push_back(_stair);
+				listStair[1].push_back(_stair);
 				_QuadTree->InsertStaticObject(_stair);
 			}
 		}

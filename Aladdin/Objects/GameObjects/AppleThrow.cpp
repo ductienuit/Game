@@ -120,10 +120,13 @@ void AppleThrow::onCollisionBegin(CollisionEventArg *collision_event)
 		return;
 	}
 
-	 if (enermy->getHitpoint() >= 0 && enermy->getHitpoint() <= 3)
+	 if (enermy->getHitpoint() >= 0 && enermy->getHitpoint() <= 2)
 	{
 		enermy->plusHitpoint(-2);
 		enermy->setStatus(DYING);
+		//SOUNDDDDDD
+		//Nhạc khi object bị destroy
+		SoundManager::getInstance()->PlaySound("Resources/Audio/CloudPoof.wav", 0);
 		return;
 	}
 	 enermy->plusHitpoint(-2);
