@@ -2,7 +2,7 @@
 ===
    **Hello everyone.**
 
-My name is ***Le Duc Tien***. The first thing,  I apologize for my English, it's not my best. I and my team do our project in many day, about 4 months to release the first version. This project is a assignement of Nhap Mon Game, Beginning Game C++ and DirectX
+My name is ***Le Duc Tien***. The first thing,  I apologize for my English, it's not my best. I and my team do our project in many day, about 4 months to release the first version. This project is a assignment of Nhap Mon Game, Beginning Game C++ and DirectX
    
 **Introduce my team:**
 
