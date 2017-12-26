@@ -30,7 +30,7 @@ bool BossScene::InIt()
 
 	_aladdin = new Aladdin();
 	_aladdin->InIt();
-	_aladdin->setPosition(100, 300);
+	_aladdin->setPosition(100, 100);
 
 	mMap = new ReadMapEditor(_aladdin,"Resources/Images/Boss/boss.tmx", _root,true);
 

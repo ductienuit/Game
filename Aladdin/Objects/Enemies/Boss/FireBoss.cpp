@@ -104,7 +104,7 @@ void FireBoss::onCollisionBegin(CollisionEventArg *collision_event)
 				bool isStanding =  collision_event->_otherObject->isInStatus(NORMAL1) || collision_event->_otherObject->isInStatus(FREE);
 				//âm thanh
 				//SoundManager::getInstance()->PlaySound("Resources/Audio/FireFromCoal.wav", 0);
-				InforAladdin::getInstance()->plusHealth(-10);
+				InforAladdin::getInstance()->plusHealth(-30);
 				if (isStanding)
 				{
 					//Set status aladdin bị đánh

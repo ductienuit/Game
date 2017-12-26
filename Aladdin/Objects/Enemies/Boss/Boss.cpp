@@ -48,7 +48,7 @@ void Boss::InIt()
 	_animations[DYING] = new Animation(_sprite, 0.1f);
 	_animations[DYING]->addFrameRect(eID::BOSS, "destroy_enermy_00_0", 10);
 
-	_hitpoint = 36;
+	_hitpoint = 48;
 	_frequency = new StopWatch();
 	_frequencyFireBoss = new StopWatch();
 	_alarmSetAppleAladdin = new StopWatch();
@@ -184,7 +184,7 @@ void Boss::onCollisionBegin(CollisionEventArg *collision_event)
 				_aladdin->Stop(true);
 				//âm thanh
 				//SoundManager::getInstance()->PlaySound("Resources/Audio/CloudPoof.wav", 0);
-				InforAladdin::getInstance()->plusHealth(-10);
+				InforAladdin::getInstance()->plusHealth(-40);
 				if (isStanding)
 				{
 					//Set status aladdin bị đánh
@@ -220,7 +220,7 @@ void Boss::onCollisionBegin(CollisionEventArg *collision_event)
 				bool isStanding =  collision_event->_otherObject->isInStatus(NORMAL1) || collision_event->_otherObject->isInStatus(FREE);
 				//âm thanh
 				//SoundManager::getInstance()->PlaySound("Resources/Audio/CloudPoof.wav", 0);
-				InforAladdin::getInstance()->plusHealth(-10);
+				InforAladdin::getInstance()->plusHealth(-40);
 				if (isStanding)
 				{
 					//Set status aladdin bị đánh
@@ -245,7 +245,7 @@ void Boss::onCollisionBegin(CollisionEventArg *collision_event)
 				bool isStanding =  collision_event->_otherObject->isInStatus(NORMAL1) || collision_event->_otherObject->isInStatus(FREE);
 				//âm thanh
 				//SoundManager::getInstance()->PlaySound("Resources/Audio/CloudPoof.wav", 0);
-				InforAladdin::getInstance()->plusHealth(-10);
+				InforAladdin::getInstance()->plusHealth(-40);
 				if (isStanding)
 				{
 					//Set status aladdin bị đánh
@@ -313,7 +313,7 @@ void Boss::UpdateStatus(float dt)
 				listStrip.push_back(new StripBoss(x,y));
 				_animations[BEHIT]->setIndex(0);
 				
-				if (_hitpoint <= 16)
+				if (_hitpoint <= 26)
 				{
 					isversion2 = true;
 
