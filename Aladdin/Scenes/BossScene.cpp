@@ -180,11 +180,7 @@ void BossScene::Update(float dt)
 	auto input = InputController::getInstance();
 	if (input->isKeyDown(DIK_1))
 	{
-		InforAladdin::getInstance()->plusApple(100);
-	}
-	if (input->isKeyDown(DIK_2))
-	{
-		InforAladdin::getInstance()->plusHealth(100);
+		InforAladdin::getInstance()->plusLife(3);
 	}
 	if (input->isKeyDown(DIK_3))
 	{
@@ -192,11 +188,15 @@ void BossScene::Update(float dt)
 	}
 	if (input->isKeyDown(DIK_4))
 	{
-		InforAladdin::getInstance()->plusLife(3);
+		InforAladdin::getInstance()->plusApple(100);
 	}
 	if (input->isKeyDown(DIK_5))
 	{
 		InforAladdin::getInstance()->Infinity();
+	}
+	if (input->isKeyDown(DIK_6))
+	{
+		InforAladdin::getInstance()->NonInfinity();
 	}
 	#pragma endregion
 

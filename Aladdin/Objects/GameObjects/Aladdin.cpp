@@ -1527,9 +1527,7 @@ void Aladdin::onCollisionBegin(CollisionEventArg * collision_event)
 			collision_event->_otherObject->setStatus(eStatus::BEHIT);
 			//SOUNDDDDDDD
 			//Chắc chắn âm thanh này chứ, nghe tởm bà chó, 
-			//cái này là ông nào add zô chứ dung mia gi
 			SoundManager::getInstance()->PlaySound("Resources/Audio/Flagpole.wav", 0);
-
 			aerobatic();
 			return;
 		}

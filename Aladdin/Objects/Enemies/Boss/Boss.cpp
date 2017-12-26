@@ -163,11 +163,13 @@ void Boss::onCollisionBegin(CollisionEventArg *collision_event)
 				{
 					//Set status aladdin bị đánh
 					collision_event->_otherObject->setStatus(eStatus::BEHIT);
+					SoundManager::getInstance()->PlaySound("Resources/Audio/AladdinHurt.wav", 0);
 				}
 				else
 				{
 					//Set status aladdin bị đánh
 					collision_event->_otherObject->StartFlash();
+					SoundManager::getInstance()->PlaySound("Resources/Audio/AladdinHurt.wav", 0);
 				}
 			}
 			break;
@@ -189,11 +191,13 @@ void Boss::onCollisionBegin(CollisionEventArg *collision_event)
 				{
 					//Set status aladdin bị đánh
 					collision_event->_otherObject->setStatus(eStatus::BEHIT);
+					SoundManager::getInstance()->PlaySound("Resources/Audio/AladdinHurt.wav", 0);
 				}
 				else
 				{
 					//Set status aladdin bị đánh
 					collision_event->_otherObject->StartFlash();
+					SoundManager::getInstance()->PlaySound("Resources/Audio/AladdinHurt.wav", 0);
 				}
 			}
 			break;
@@ -225,11 +229,15 @@ void Boss::onCollisionBegin(CollisionEventArg *collision_event)
 				{
 					//Set status aladdin bị đánh
 					collision_event->_otherObject->setStatus(eStatus::BEHIT);
+					SoundManager::getInstance()->PlaySound("Resources/Audio/AladdinHurt.wav", 0);
+					//Set status aladdin bị đánh
 				}
 				else
 				{
 					//Set status aladdin bị đánh
 					collision_event->_otherObject->StartFlash();
+					//Set status aladdin bị đánh
+					SoundManager::getInstance()->PlaySound("Resources/Audio/AladdinHurt.wav", 0);
 				}
 			}
 			#pragma endregion
@@ -250,11 +258,13 @@ void Boss::onCollisionBegin(CollisionEventArg *collision_event)
 				{
 					//Set status aladdin bị đánh
 					collision_event->_otherObject->setStatus(eStatus::BEHIT);
+					SoundManager::getInstance()->PlaySound("Resources/Audio/AladdinHurt.wav", 0);
 				}
 				else
 				{
 					//Set status aladdin bị đánh
 					collision_event->_otherObject->StartFlash();
+					SoundManager::getInstance()->PlaySound("Resources/Audio/AladdinHurt.wav", 0);
 				}
 			}
 			#pragma endregion

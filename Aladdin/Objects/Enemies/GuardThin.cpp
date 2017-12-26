@@ -228,11 +228,13 @@ void GuardThin::onCollisionBegin(CollisionEventArg *collision_event)
 						{
 							//Set status aladdin bị đánh
 							collision_event->_otherObject->setStatus(eStatus::BEHIT);
+							SoundManager::getInstance()->PlaySound("Resources/Audio/AladdinHurt.wav", 0);
 						}
 						else
 						{
 							//Set status aladdin bị đánh
 							collision_event->_otherObject->StartFlash();
+							SoundManager::getInstance()->PlaySound("Resources/Audio/AladdinHurt.wav", 0);
 						}
 					}
 				}					

@@ -93,16 +93,19 @@ void Fire::onCollisionBegin(CollisionEventArg *collision_event)
 				{
 					//âm thanh
 					SoundManager::getInstance()->PlaySound("Resources/Audio/FireFromCoal.wav", 0);
+					SoundManager::getInstance()->PlaySound("Resources/Audio/AladdinHurt.wav", 0); 
 					InforAladdin::getInstance()->plusHealth(-10);
 					if (isStanding)
 					{
 						//Set status aladdin bị đánh
 						collision_event->_otherObject->setStatus(eStatus::BEHIT);
+						SoundManager::getInstance()->PlaySound("Resources/Audio/AladdinHurt.wav", 0);
 					}
 					else
 					{
 						//Set status aladdin bị đánh
 						collision_event->_otherObject->StartFlash();
+						SoundManager::getInstance()->PlaySound("Resources/Audio/AladdinHurt.wav", 0);
 					}
 				}
 			}

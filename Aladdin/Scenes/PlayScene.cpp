@@ -235,16 +235,11 @@ void PlayScene::Update(float dt)
 
 
 
-#pragma region Hack Game
+	#pragma region Hack Game
 	auto input = InputController::getInstance();
 	if (input->isKeyDown(DIK_1))
 	{
 		InforAladdin::getInstance()->plusLife(3);
-		
-	}
-	if (input->isKeyDown(DIK_2))
-	{
-		InforAladdin::getInstance()->plusHealth(100);
 	}
 	if (input->isKeyDown(DIK_3))
 	{
@@ -253,6 +248,10 @@ void PlayScene::Update(float dt)
 	if (input->isKeyDown(DIK_4))
 	{
 		InforAladdin::getInstance()->plusApple(100);
+	}
+	if (input->isKeyDown(DIK_5))
+	{
+		InforAladdin::getInstance()->Infinity();
 	}
 #pragma endregion
 }
