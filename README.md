@@ -37,4 +37,4 @@ and some technical i dont know its name
 
  In this project, i do it is the copy version in Aladdin Genesis. Althougth it not performance but i would like do it. It is the first big project i do in C++ and DirectX 9.0. I weight loss 5 kg for this. Im so thin and i just 50-54 kg. You can visualize me in your mind ✌️  I'M A THIN MAN hahaa.
 
-Ho Chi Minh City University of Information Technology
+#Ho Chi Minh City University of Information Technology
