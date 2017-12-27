@@ -10,8 +10,9 @@ GuardShort::GuardShort(eStatus status, int posX, int posY, BaseObject* aladdin, 
 	this->_listComponent.insert(pair<string, IComponent*>("Movement", new Movement(a, v, this->_sprite)));
 	this->setStatus(status);
 	this->setPosition(posX*SCALECHARACTER.x, posY*SCALECHARACTER.y, 1.0f);
-	_minMove = 300; //- minMove;
-	_maxMove = 300; //+ maxMove;
+	_originPosition = Vector2(posX*SCALECHARACTER.x, posY*SCALECHARACTER.y);
+	_minMove = 186*1.6; //- minMove;
+	_maxMove = 150*1.6; //+ maxMove;
 	text = new Text("Arial", "", 10, 25);
 	InIt();
 }
@@ -220,6 +221,11 @@ void GuardShort::UpdateStatus(float dt)
 		}
 		else if(distance.x < 320 && distance.x > 200)
 		{
+			if (_originPosition.x - _minMove > x)
+			{
+				setStatus(FREE);
+				return;
+			}
 			setStatus(MOVING_LEFT);
 			setScaleX(-SCALECHARACTER.x);
 		}
@@ -239,6 +245,11 @@ void GuardShort::UpdateStatus(float dt)
 		}
 		else if (distance.x < 320 && distance.x > 200)
 		{
+			if (_originPosition.x + _minMove < x)
+			{
+				setStatus(FREE);
+				return;
+			}
 			setStatus(MOVING_RIGHT);
 			setScaleX(SCALECHARACTER.x);
 		}
@@ -248,6 +259,7 @@ void GuardShort::UpdateStatus(float dt)
 			setScaleX(SCALECHARACTER.x);
 		}
 	}
+
 }
 
 IComponent* GuardShort::getComponent(string componentName)

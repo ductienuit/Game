@@ -48,6 +48,7 @@ private:
 	BaseObject* _aladdin;
 	vector<BaseObject*> _listObject;
 	vector<IControlable*> _listControlObject;
+	Vector2 _originPosition;
 	bool _canThrow;
 };
 #endif
