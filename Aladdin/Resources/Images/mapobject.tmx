@@ -4,6 +4,9 @@
   <object id="312" x="2378" y="638.5" width="20" height="20"/>
   <object id="313" x="3211" y="379.333" width="20" height="20"/>
  </objectgroup>
+ <objectgroup name="peddlershop">
+  <object id="429" x="3906.67" y="166.667" width="85.3333" height="52"/>
+ </objectgroup>
  <objectgroup name="guardshort">
   <object id="329" x="4600.33" y="164.667" width="35" height="50"/>
   <object id="330" x="1812.67" y="612.333" width="35" height="50"/>

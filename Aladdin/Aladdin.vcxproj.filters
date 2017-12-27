@@ -369,6 +369,12 @@
     <ClCompile Include="Objects\BaseObject.cpp">
       <Filter>Source Files\Object</Filter>
     </ClCompile>
+    <ClCompile Include="Objects\GameObjects\Peddler.cpp">
+      <Filter>Source Files\Object\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\GameObjects\PeddlerShop.cpp">
+      <Filter>Source Files\Object\GameObjects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FrameWork\Animation.h">
@@ -673,6 +679,12 @@
     </ClInclude>
     <ClInclude Include="Scenes\BackGround\BackgroundMenu.h">
       <Filter>Header Files\Scenes\BackGround</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\GameObjects\Peddler.h">
+      <Filter>Header Files\Object\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\GameObjects\PeddlerShop.h">
+      <Filter>Header Files\Object\GameObjects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

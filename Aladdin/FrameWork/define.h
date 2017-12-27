@@ -113,7 +113,9 @@ enum eID
 	STRIP_ALADDIN,
 	STAR,
 	BOSS2,
-	FIRE_BOSS
+	FIRE_BOSS,
+	PEDDLER,
+	PEDDLERSHOP
 };
 
 enum eSoundId

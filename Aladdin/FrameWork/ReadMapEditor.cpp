@@ -340,6 +340,20 @@ ReadMapEditor::ReadMapEditor(BaseObject* aladdin, const char *filepath, QuadTree
 			}
 		}
 
+		else if (_objectGroup->GetName() == "peddlershop")
+		{
+			for (size_t j = 0; j < _objectGroup->GetNumObjects(); j++)
+			{
+				Tmx::Object* _object = _objectGroup->GetObjects().at(j);
+
+
+				PeddlerShop* _peddlershop = new PeddlerShop(_object->GetX(), 688 - _object->GetY() - _object->GetHeight());
+
+				ListPeddlerShop.push_back(_peddlershop);
+				_QuadTree->InsertStaticObject(_peddlershop);
+			}
+		}
+
 		else if (_objectGroup->GetName() == "restartpoint")
 		{
 			for (size_t j = 0; j < _objectGroup->GetNumObjects(); j++)
@@ -639,6 +653,14 @@ void ReadMapEditor::ListObject(RECT * rect)
 		if (isContain(ListCamel[i], *rect))
 		{
 			GetList.push_back(ListCamel[i]);
+		}
+	}
+
+	for (size_t i = 0; i < ListPeddlerShop.size(); i++)
+	{
+		if (isContain(ListPeddlerShop[i], *rect))
+		{
+			GetList.push_back(ListPeddlerShop[i]);
 		}
 	}
 
