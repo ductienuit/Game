@@ -46,7 +46,7 @@ bool PlayScene::InIt()
 	_aladdin->setPosition(100, 100);
 
 	//_aladdin->setPosition(3169*1.6, (688-376)*1.92);
-   // _aladdin->setPosition(7100, 1000);
+    //_aladdin->setPosition(6100, 1000);
 	listObject.push_back(_aladdin);
 
 	mMap = new ReadMapEditor(_aladdin,"Resources/Images/mapobject.tmx", _root);

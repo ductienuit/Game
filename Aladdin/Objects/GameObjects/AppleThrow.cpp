@@ -149,8 +149,8 @@ float AppleThrow::checkCollision(BaseObject *object, float dt)
 		float yobject = object->getPositionY();
 		if (yobject > yapple)
 			continue;
-		if (temp == APPLEEAT || temp == COINEAT || temp == HEARTEAT || temp == RESTARTPOINT ||
-			temp == ALADDIN || object->getStatus() == DESTROY || temp == FIRE ||temp==BOOM)
+		if (temp == PEDDLER || temp == PEDDLERSHOP || temp == APPLEEAT || temp == COINEAT || temp == HEARTEAT || temp == RESTARTPOINT ||
+			temp == ALADDIN  || temp == FIRE ||temp==BOOM || object->getStatus() == DESTROY)
 			continue;
 
 		if (collisionBody->checkCollision(object, dt, true))

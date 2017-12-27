@@ -56,7 +56,7 @@ public:
 	void ListObject(RECT *rect);
 	//GetList for Scene Boss
 	void ListObject(RECT *rect, bool isVersion2);
-	QuadTree* _QuadTree;
+	QuadTree*  _QuadTree;
 	StopWatch* _frequentAppleBoss;
 	
 	void UpDate(float detatime);

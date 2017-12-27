@@ -357,9 +357,6 @@
     <ClCompile Include="Scenes\BackGround\BackgroundMenu.cpp">
       <Filter>Source Files\Scenes\BackGround</Filter>
     </ClCompile>
-    <ClCompile Include="Objects\GameObjects\Monkey.cpp">
-      <Filter>Source Files\Object\Enemies</Filter>
-    </ClCompile>
     <ClCompile Include="Scenes\VictoryScene.cpp">
       <Filter>Source Files\Scenes</Filter>
     </ClCompile>
@@ -373,6 +370,9 @@
       <Filter>Source Files\Object\GameObjects</Filter>
     </ClCompile>
     <ClCompile Include="Objects\GameObjects\PeddlerShop.cpp">
+      <Filter>Source Files\Object\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\GameObjects\Monkey.cpp">
       <Filter>Source Files\Object\GameObjects</Filter>
     </ClCompile>
   </ItemGroup>
@@ -650,9 +650,6 @@
     <ClInclude Include="Objects\Enemies\Boss\Boss.h">
       <Filter>Header Files\Object\Enemies\Boss</Filter>
     </ClInclude>
-    <ClInclude Include="Objects\GameObjects\Monkey.h">
-      <Filter>Header Files\Object\Enemies</Filter>
-    </ClInclude>
     <ClInclude Include="Scenes\VictoryScene.h">
       <Filter>Header Files\Scenes</Filter>
     </ClInclude>
@@ -684,6 +681,9 @@
       <Filter>Header Files\Object\GameObjects</Filter>
     </ClInclude>
     <ClInclude Include="Objects\GameObjects\PeddlerShop.h">
+      <Filter>Header Files\Object\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\GameObjects\Monkey.h">
       <Filter>Header Files\Object\GameObjects</Filter>
     </ClInclude>
   </ItemGroup>

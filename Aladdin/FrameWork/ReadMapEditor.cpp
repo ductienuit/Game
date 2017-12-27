@@ -314,7 +314,6 @@ ReadMapEditor::ReadMapEditor(BaseObject* aladdin, const char *filepath, QuadTree
 			}
 		}
 
-
 		else if (_objectGroup->GetName() == "coin")
 		{
 			for (size_t j = 0; j < _objectGroup->GetNumObjects(); j++)
@@ -347,7 +346,7 @@ ReadMapEditor::ReadMapEditor(BaseObject* aladdin, const char *filepath, QuadTree
 				Tmx::Object* _object = _objectGroup->GetObjects().at(j);
 
 
-				PeddlerShop* _peddlershop = new PeddlerShop(_object->GetX(), 688 - _object->GetY() - _object->GetHeight());
+				PeddlerShop* _peddlershop = new PeddlerShop(_object->GetX(), 688 - _object->GetY() - _object->GetHeight(),aladdin);
 
 				ListPeddlerShop.push_back(_peddlershop);
 				_QuadTree->InsertStaticObject(_peddlershop);

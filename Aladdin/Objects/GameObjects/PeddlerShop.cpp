@@ -1,9 +1,9 @@
 #include "PeddlerShop.h"
 
-PeddlerShop::PeddlerShop(int posX, int posY) :BaseObject(eID::PEDDLERSHOP)
+PeddlerShop::PeddlerShop(int posX, int posY, BaseObject* aladdin) :BaseObject(eID::PEDDLERSHOP)
 {
 	_sprite = SpriteManager::getInstance()->getSprite(eID::PEDDLERSHOP);
-	_divingSprite = SpriteManager::getInstance()->getSprite(eID::ALADDIN);
+	_aladdin = aladdin;
 
 	this->setStatus(FREE);
 	this->setPosition(posX*SCALECHARACTER.x, posY*SCALECHARACTER.y, 1.0f);
@@ -74,6 +74,17 @@ void PeddlerShop::UpdateStatus()
 	{
 		canDisappear = false;
 		setStatus(NORMAL);
+		auto input = InputController::getInstance();
+		if (input->isKeyPressed(DIK_L))
+		{
+			int coin = InforAladdin::getInstance()->getCoin();
+			if (coin > 5)
+			{
+				InforAladdin::getInstance()->plusLife(1);
+				InforAladdin::getInstance()->plusCoin(-5);
+				SoundManager::getInstance()->PlaySound("Resources/Audio/ExtraHealth.wav", 0);
+			}
+		}
 		if (_animations[NORMAL]->getIndex() == 28)
 		{
 			peddler->setPosition(this->getPositionX() + 145, this->getPositionY());
@@ -120,7 +131,7 @@ RECT PeddlerShop::getBounding()
 
 float PeddlerShop::distanceBetweenAladdin()
 {
-	float xAla = _divingSprite->getPositionX() + (_divingSprite->getBounding().right - _divingSprite->getBounding().left) / 2;
+	float xAla = _aladdin ->getPositionX() + (_aladdin->getBounding().right - _aladdin->getBounding().left) / 2;
 	float x = this->getPositionX();
 	return xAla - x;
 }
