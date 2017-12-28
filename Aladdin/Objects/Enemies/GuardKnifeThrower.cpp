@@ -1,8 +1,8 @@
 ﻿#include "GuardKnifeThrower.h"
 
-GuardKnifeThrower::GuardKnifeThrower(eStatus status, int posX, int posY, BaseObject* aladdin) :BaseEnemy(eID::KNIFETHROWER)
+GuardKnifeThrower::GuardKnifeThrower(eStatus status, int posX, int posY, BaseObject* aladdin) :BaseEnemy(eID::GUARDKNIFETHROWER)
 {
-	_sprite = SpriteManager::getInstance()->getSprite(eID::KNIFETHROWER);
+	_sprite = SpriteManager::getInstance()->getSprite(eID::GUARDKNIFETHROWER);
 	/*Dòng dưới để set framewidth hoặc height
 	để vừa vào khởi tạo không bị sai collison.
 	Hàm InIt sẽ tự động cập nhật lại khi set status*/
@@ -32,10 +32,10 @@ void GuardKnifeThrower::InIt()
 	__hook(&CollisionBody::onCollisionEnd, collisionBody, &GuardKnifeThrower::onCollisionEnd);
 
 	_animations[MOVING_LEFT] = new Animation(_sprite, 0.11f);
-	_animations[MOVING_LEFT]->addFrameRect(eID::KNIFETHROWER, "knifeThrowers_attack_0", 10);
+	_animations[MOVING_LEFT]->addFrameRect(eID::GUARDKNIFETHROWER, "knifeThrowers_attack_0", 10);
 
 	_animations[MOVING_RIGHT] = new Animation(_sprite, 0.11f);
-	_animations[MOVING_RIGHT]->addFrameRect(eID::KNIFETHROWER, "knifeThrowers_attack_0", 10);
+	_animations[MOVING_RIGHT]->addFrameRect(eID::GUARDKNIFETHROWER, "knifeThrowers_attack_0", 10);
 
 	_animations[DYING] = new Animation(_sprite, 0.05f);
 	_animations[DYING]->addFrameRect(eID::GUARDLU, "destroy_enermy_", 10);
@@ -64,7 +64,8 @@ void GuardKnifeThrower::Update(float deltatime)
 
 void GuardKnifeThrower::Draw(LPD3DXSPRITE spritehandle, ViewPort* viewport)
 {
-	_animations[this->getStatus()]->Draw(spritehandle, viewport);
+	eStatus status = this->getStatus();
+	_animations[status]->Draw(spritehandle, viewport);
 	knife->Draw(spritehandle, viewport);
 }
 

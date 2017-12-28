@@ -25,9 +25,9 @@ bool IntroScene::InIt()
 	_choose	= (new Choose(120,190));
 	
 	_strScene1 = new Alphabet(250, 200);
-	_strScene1->setString("LEVEL1",false);
+	_strScene1->setString("AGRABAH MARKET",false);
 	_strSceneBoss = new Alphabet(250, 160);
-	_strSceneBoss->setString("LEVELBOSS",false);
+	_strSceneBoss->setString("JAFAR",false);
 	//âm thanh
 	SoundManager::getInstance()->PlaySound("Resources/Audio/AWholeNewWorld.mp3", 1);
 	return true;

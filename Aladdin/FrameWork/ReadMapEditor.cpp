@@ -3,7 +3,16 @@ extern 	vector<BaseObject*> listStair[2];
 
 vector<BaseObject*> listFireActive;
 vector<BaseObject*> listActive;
+extern vector<BaseObject*> listFireUnderBossVer2;
+
+
+typedef struct maxmin MaxMin;
+
 map<int, int> distanceThrowJar;
+map<int, MaxMin> distanceGuardThin;
+map<int, MaxMin> distanceGuardFat;
+map<int, MaxMin> distanceGuardLu;
+map<int, MaxMin> distanceGuardShort;
 
 struct maxmin
 {
@@ -16,13 +25,6 @@ struct maxmin
 	float _left;
 	float _right;
 };
-typedef struct maxmin MaxMin;
-
-map<int, MaxMin> distanceGuardThin;
-map<int, MaxMin> distanceGuardFat;
-map<int, MaxMin> distanceGuardLu;
-map<int, MaxMin> distanceGuardShort;
-
 
 ReadMapEditor::ReadMapEditor(BaseObject* aladdin, const char *filepath, QuadTree *& _quadTree)
 {
@@ -43,7 +45,8 @@ ReadMapEditor::ReadMapEditor(BaseObject* aladdin, const char *filepath, QuadTree
 	distanceGuardThin[0] = MaxMin(60, 136);
 	distanceGuardThin[1] = MaxMin(98, 9);
 	#pragma endregion
-#pragma region DistanceGuardFat
+
+	#pragma region DistanceGuardFat
 	distanceGuardFat[0] = MaxMin(0, 0);
 	distanceGuardFat[1] = MaxMin(218, 267);
 	distanceGuardFat[2] = MaxMin(50, 102);
@@ -53,11 +56,13 @@ ReadMapEditor::ReadMapEditor(BaseObject* aladdin, const char *filepath, QuadTree
 	distanceGuardFat[6] = MaxMin(25, 82);
 	distanceGuardFat[7] = MaxMin(146, 155);
 #pragma endregion
-#pragma region DistanceGuardLu
+
+	#pragma region DistanceGuardLu
 	distanceGuardLu[0] = MaxMin(0, 182);
 
 #pragma endregion
-#pragma region DistanceGuardShort
+
+	#pragma region DistanceGuardShort
 	distanceGuardShort[0] = MaxMin(243, 84);
 	distanceGuardShort[1] = MaxMin(214 ,150);
 	distanceGuardShort[2] = MaxMin(75, 100);
@@ -425,24 +430,6 @@ ReadMapEditor::ReadMapEditor(BaseObject* aladdin, const char *filepath, QuadTree
 
 ReadMapEditor::ReadMapEditor(BaseObject* aladdin, const char * filepath, QuadTree *& _quadTree, bool isBossScene)
 {
-#pragma region DistanceBrokenJar
-	distanceThrowJar[0] = 148 * 1.92;
-	distanceThrowJar[1] = 116 * 1.92;
-	distanceThrowJar[2] = 88 * 1.92;
-	distanceThrowJar[3] = 88 * 1.92;
-	distanceThrowJar[4] = 102 * 1.92;
-	distanceThrowJar[5] = 102 * 1.92;
-	distanceThrowJar[6] = 102 * 1.92;
-	distanceThrowJar[7] = 97 * 1.92;
-	distanceThrowJar[8] = 98 * 1.92;
-	distanceThrowJar[9] = 106 * 1.92;
-#pragma endregion
-
-	//#pragma region DistanceGuardThin
-	//distanceGuardThin[0] = MaxMin(136, 60);
-	//distanceGuardThin[1] = MaxMin(9, 98);
-	//#pragma endregion
-
 	maps = new Tmx::Map();
 	maps->ParseFile(filepath);
 	RECT rect;
@@ -470,6 +457,7 @@ ReadMapEditor::ReadMapEditor(BaseObject* aladdin, const char * filepath, QuadTre
 				_QuadTree->InsertStaticObject(_apple);
 			}
 		}
+
 		else if (_objectGroup->GetName() == "fire")
 		{
 			for (size_t j = 0; j < _objectGroup->GetNumObjects(); j++)
@@ -507,6 +495,20 @@ ReadMapEditor::ReadMapEditor(BaseObject* aladdin, const char * filepath, QuadTre
 
 				ListLand.push_back(_solid);
 				_QuadTree->InsertStaticObject(_solid);
+			}
+		}
+
+		else if (_objectGroup->GetName() == "fireinboss")
+		{
+			for (size_t j = 0; j < _objectGroup->GetNumObjects(); j++)
+			{
+				Tmx::Object* _object = _objectGroup->GetObjects().at(j);
+
+
+				Fire* _fire = new Fire(BEHIT, _object->GetX(), 691 - _object->GetY() - _object->GetHeight(), SCALEBOSSFRONT);
+
+				ListFireUnderBoss.push_back(_fire);
+				_QuadTree->InsertStaticObject(_fire);
 			}
 		}
 	}
@@ -754,9 +756,18 @@ void ReadMapEditor::ListObject(RECT * rect, bool isVersion2)
 {
 	GetList.clear();
 	listFireActive.clear();
+	listFireUnderBossVer2.clear();
 
 	if (isVersion2)
 	{
+		for (size_t i = 0; i < ListFireUnderBoss.size(); i++)
+		{
+			if (isContain(ListFireUnderBoss[i], *rect))
+			{
+				listFireUnderBossVer2.push_back(ListFireUnderBoss[i]);
+				GetList.push_back(ListFireUnderBoss[i]);
+			}
+		}
 		for (size_t i = 0; i < ListFire.size(); i++)
 		{
 			if (isContain(ListFire[i], *rect))

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-down" width="1" height="1" tilewidth="1504" tileheight="691" nextobjectid="546">
+<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-down" width="1" height="1" tilewidth="1504" tileheight="691" nextobjectid="559">
  <objectgroup color="#ffff7f" name="solid">
   <object id="431" x="16.4242" y="667.364" width="1478.79" height="18.1818"/>
   <object id="437" x="81.3333" y="559.333" width="189.333" height="73.3333"/>
@@ -13,18 +13,18 @@
   <object id="454" x="1457.58" y="18.1818" width="33.3333" height="672.727"/>
  </objectgroup>
  <objectgroup color="#ff0000" name="fire">
-  <object id="478" x="473.333" y="508.417" width="30" height="20"/>
-  <object id="487" x="507.333" y="508.667" width="30" height="20"/>
-  <object id="488" x="542.333" y="508.542" width="30" height="20"/>
-  <object id="489" x="576.333" y="508.792" width="30" height="20"/>
-  <object id="490" x="609" y="508.542" width="30" height="20"/>
-  <object id="491" x="643" y="508.792" width="30" height="20"/>
-  <object id="492" x="88.1665" y="508.479" width="30" height="20"/>
-  <object id="493" x="157.166" y="508.604" width="30" height="20"/>
-  <object id="494" x="191.166" y="508.854" width="30" height="20"/>
-  <object id="495" x="223.833" y="508.604" width="30" height="20"/>
-  <object id="496" x="257.833" y="508.854" width="30" height="20"/>
-  <object id="497" x="122.166" y="508.729" width="30" height="20"/>
+  <object id="478" x="473.333" y="530.417" width="30" height="20"/>
+  <object id="487" x="507.333" y="530.667" width="30" height="20"/>
+  <object id="488" x="542.333" y="530.542" width="30" height="20"/>
+  <object id="489" x="576.333" y="530.792" width="30" height="20"/>
+  <object id="490" x="609" y="530.542" width="30" height="20"/>
+  <object id="491" x="643" y="530.792" width="30" height="20"/>
+  <object id="492" x="88.1665" y="530.479" width="30" height="20"/>
+  <object id="493" x="157.166" y="530.604" width="30" height="20"/>
+  <object id="494" x="191.166" y="530.854" width="30" height="20"/>
+  <object id="495" x="223.833" y="530.604" width="30" height="20"/>
+  <object id="496" x="257.833" y="530.854" width="30" height="20"/>
+  <object id="497" x="122.166" y="530.729" width="30" height="20"/>
   <object id="498" x="858.833" y="534.479" width="30" height="20"/>
   <object id="499" x="927.833" y="534.604" width="30" height="20"/>
   <object id="500" x="961.833" y="534.854" width="30" height="20"/>
@@ -37,6 +37,13 @@
   <object id="508" x="1413.17" y="533.521" width="30" height="20"/>
   <object id="509" x="1277.5" y="533.396" width="30" height="20"/>
   <object id="515" x="1019.67" y="534" width="30" height="20"/>
+ </objectgroup>
+ <objectgroup name="fireinboss">
+  <object id="554" x="812.833" y="614.938" width="30" height="20"/>
+  <object id="555" x="780.166" y="615.188" width="30" height="20"/>
+  <object id="556" x="677.167" y="614.813" width="30" height="20"/>
+  <object id="558" x="711.167" y="615.063" width="30" height="20"/>
+  <object id="557" x="746.166" y="614.938" width="30" height="20"/>
  </objectgroup>
  <objectgroup name="apple">
   <object id="517" x="125.5" y="470.5" width="14" height="14"/>

@@ -72,10 +72,10 @@ void BossScene::Update(float dt)
 
 	if (InforAladdin::getInstance()->getLife() == 0)
 	{
-		SceneManager::getInstance()->ReplaceScene(new DefeatScene());
-		return;
+		if(InforAladdin::getInstance()->getHealth()==0)
+			SceneManager::getInstance()->ReplaceScene(new DefeatScene());
 	}
-#pragma endregion
+	#pragma endregion
 
 
 

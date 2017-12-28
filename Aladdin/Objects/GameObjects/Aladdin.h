@@ -19,7 +19,7 @@
 
 using namespace std;
 
-#define ALADDIN_MOVE_SPEED 250
+#define ALADDIN_MOVE_SPEED 270
 #define ALADDIN_MOVE_JUMP_SPEED 250
 #define ALADDIN_JUMP_VEL 500
 #define ALADDIN_AEROBATIC_VEL 600
@@ -28,6 +28,7 @@ using namespace std;
 #define ALADDIN_ACC_MOVE 300
 #define GRAVITY 800
 #define ALADDIN_CLIMB_SPEED 110 
+#define WHEREALADDINREVIVAL D3DXVECTOR2(100,90)  // Nơi aladdin hồi sinh
 
 
 [event_receiver(native)]

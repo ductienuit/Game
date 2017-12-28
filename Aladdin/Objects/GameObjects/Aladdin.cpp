@@ -1370,7 +1370,7 @@ void Aladdin::onCollisionBegin(CollisionEventArg * collision_event)
 			{
 				/*auto move = (Movement*)_listComponent["Movement"];
 				move->setVelocity(Vector2(0, 170));*/
-				setPositionY(this->getPositionY() + 10);
+				setPositionY(this->getPositionY() + 15);
 				break;
 			}
 			}
@@ -1409,7 +1409,7 @@ void Aladdin::onCollisionBegin(CollisionEventArg * collision_event)
 			{
 				/*auto move = (Movement*)_listComponent["Movement"];
 				move->setVelocity(Vector2(0, 170));*/
-				setPositionY(this->getPositionY() + 10);
+				setPositionY(this->getPositionY() + 15);
 				break;
 			}
 			}
@@ -1924,7 +1924,7 @@ void Aladdin::Revival()
 {
 	if (_restartPoint == NULL)
 	{
-		setPosition(100, 100);
+		setPosition(WHEREALADDINREVIVAL);
 	}
 	else
 	{

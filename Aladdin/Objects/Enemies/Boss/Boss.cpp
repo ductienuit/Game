@@ -1,5 +1,7 @@
 ﻿#include "Boss.h"
 
+
+vector<BaseObject*> listFireUnderBossVer2;
 extern vector<BaseObject*>	listStrip;
 
 Boss::Boss(eStatus status, int posX, int posY, Aladdin* aladdin) :BaseEnemy(eID::BOSS)
@@ -69,6 +71,13 @@ void Boss::Update(float deltatime)
 			_listStar.erase(_listStar.begin() + i);
 		}
 		_listStar.clear();
+
+
+		for (int i = 0; i < listFireUnderBossVer2.size(); i++)
+		{
+			listFireUnderBossVer2[i]->Update(deltatime);
+			listFireUnderBossVer2[i]->setStatus(BEHIT);
+		}
 	}
 	else
 	{
@@ -82,7 +91,6 @@ void Boss::Update(float deltatime)
 	{
 		_listFireBoss[i]->Update(deltatime);
 	}
-
 	// update component để sau cùng để sửa bên trên sau đó nó cập nhật đúng
 	for (auto it = _listComponent.begin(); it != _listComponent.end(); it++)
 	{
@@ -92,6 +100,13 @@ void Boss::Update(float deltatime)
 
 void Boss::Draw(LPD3DXSPRITE spritehandle, ViewPort* viewport)
 {
+
+	for (int i = 0; i < listFireUnderBossVer2.size(); i++)
+	{
+		listFireUnderBossVer2[i]->Draw(spritehandle, viewport);
+		listFireUnderBossVer2[i]->setStatus(BEHIT);
+	}
+
 	_animations[this->getStatus()]->Draw(spritehandle, viewport);
 
 	for (int i = 0; i < _listStar.size(); i++)
@@ -126,7 +141,7 @@ void Boss::Release()
 		delete component.second;
 	}
 
-
+	_listComponent.clear();
 
 	for (int i = 0; i < _listFireBoss.size(); i++)
 	{
@@ -134,9 +149,9 @@ void Boss::Release()
 		delete  _listFireBoss[i];
 		_listFireBoss.erase(_listFireBoss.begin() + i);
 	}
+
 	_listFireBoss.clear();
 
-	_listComponent.clear();
 	SAFE_DELETE(this->_sprite);
 }
 

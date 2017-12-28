@@ -53,6 +53,7 @@ public:
 	vector <BaseObject*>	 ListSpring;
 	vector <BaseObject*>	 ListPeddlerShop;
 	vector <BaseObject*>	 ListFaceSmile;
+	vector <BaseObject*>     ListFireUnderBoss;
 
 	//GetList for Scene 1
 	void ListObject(RECT *rect);
