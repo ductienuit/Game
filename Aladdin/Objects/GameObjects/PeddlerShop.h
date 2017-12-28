@@ -9,6 +9,9 @@
 #include "../BaseObject.h"
 #include "../GameObjects/Peddler.h"
 #include "../Score/InforAladdin.h"
+#include"../../FrameWork/ViewPort.h"
+#include"../Score/Alphabet.h"
+#include<string.h>
 
 
 class PeddlerShop :public BaseObject
@@ -32,10 +35,13 @@ public:
 	~PeddlerShop();
 private:
 	Peddler* peddler;
-	BaseObject* _aladdin;
 	map<string, IComponent*> _listComponent;
 	map<int, Animation*> _animations;
 	Text* text;
+	BaseObject* _aladdin;
 	bool canDisappear = true;
+	bool canBuyItem = true;
+	Alphabet* _buyNotification;
+	Vector2 newPosition;
 };
 #endif _PEDDLER_SHOP_H

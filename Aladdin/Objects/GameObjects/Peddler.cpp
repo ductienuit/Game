@@ -19,9 +19,9 @@ void Peddler::InIt()
 	__hook(&CollisionBody::onCollisionBegin, collisionBody, &Peddler::onCollisionBegin);
 	__hook(&CollisionBody::onCollisionEnd, collisionBody, &Peddler::onCollisionEnd);
 
-	_animations[eStatus::FREE] = new Animation(_sprite, 0.1f);
-	_animations[eStatus::FREE]->addFrameRect(eID::PEDDLER, "peddler_00", "peddler_01", "peddler_02", "peddler_03", "peddler_04", "peddler_05", "peddler_06", "peddler_07", "peddler_08", "peddler_09", "peddler_10", 
-		"peddler_11", "peddler_12", "peddler_13", NULL);
+	_animations[eStatus::FREE] = new Animation(_sprite, 0.15f);
+	_animations[eStatus::FREE]->addFrameRect(eID::PEDDLER, "peddler_00", "peddler_01", "peddler_02", "peddler_03", "peddler_04", "peddler_05", "peddler_06", "peddler_03", "peddler_04", "peddler_05", "peddler_06", "peddler_03", "peddler_04", "peddler_05", "peddler_06", "peddler_07", "peddler_08", "peddler_09", "peddler_10",
+		"peddler_11", "peddler_12", "peddler_13", "peddler_13", "peddler_13", "peddler_13", "peddler_13", "peddler_13", "peddler_13", NULL);
 }
 
 void Peddler::Update(float deltatime)
