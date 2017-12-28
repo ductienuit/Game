@@ -11,7 +11,7 @@ PeddlerShop::PeddlerShop(int posX, int posY, BaseObject* aladdin) :BaseObject(eI
 	text = new Text("Arial", "", 10, 25);
 
 	newPosition = ViewPort::getInstance()->getPositionWorld();
-	_buyNotification = new Alphabet(newPosition.x + WINDOWS_WIDTH - 370, newPosition.y - WINDOWS_HEIGHT + 350);
+	_buyNotification = new Alphabet(newPosition.x + WINDOWS_WIDTH - 500, newPosition.y - WINDOWS_HEIGHT + 350);
 
 	InIt();
 }
