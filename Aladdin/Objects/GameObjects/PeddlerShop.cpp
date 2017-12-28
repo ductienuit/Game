@@ -1,4 +1,4 @@
-#include "PeddlerShop.h"
+﻿#include "PeddlerShop.h"
 
 PeddlerShop::PeddlerShop(int posX, int posY, BaseObject* aladdin) :BaseObject(eID::PEDDLERSHOP)
 {
@@ -125,10 +125,14 @@ void PeddlerShop::onCollisionBegin(CollisionEventArg *collision_event)
 				{
 					InforAladdin::getInstance()->plusLife(1);
 					InforAladdin::getInstance()->plusCoin(-5);
+					//SOUNDDDDDDDDDDDDDDDDDDDDDDD THAY NHẠC< NHẠC SAI< CÁI NÀY T MỚI BỎ VÀO
+					SoundManager::getInstance()->PlaySound("Resources/Audio/ExtraHealth.wav", 0);
 					_buyNotification->setString("I T   I S   A   D E A L", true);
 				}
 				else
 				{
+					//SOUNDDDDDDDDDDDDDDDDDDDDDDD THAY NHẠC< NHẠC SAI< CÁI NÀY T MỚI BỎ VÀO
+					SoundManager::getInstance()->PlaySound("Resources/Audio/ExtraHealth.wav", 0);
 					_buyNotification->setString("F I N D   M O R E   G E M S", true);
 				}
 			}
