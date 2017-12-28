@@ -114,7 +114,7 @@ void AppleThrow::onCollisionBegin(CollisionEventArg *collision_event)
 	}
 	setStatus(DYING);
 	auto enermy = (BaseEnemy*)collision_event->_otherObject;
-	if (temp == GUARDTHROWJAR || temp == GUARDLU)
+	if (temp == GUARDTHROWJAR || temp == GUARDLU | temp== KNIFETHROWER)
 	{
 		enermy->setStatus(DYING);
 		return;

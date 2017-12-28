@@ -14,6 +14,9 @@ Letter::Letter(int posX, int posY, char text) :BaseObject(eID::LETTER)
 
 void Letter::InIt()
 {
+	_animations[' '] = new Animation(_sprite, 0.1f);
+	_animations[' ']->addFrameRect(eID::LETTER, "alphabet_37", "alphabet_37", NULL);
+
 	_animations['A'] = new Animation(_sprite, 0.1f);
 	_animations['A']->addFrameRect(eID::LETTER, "alphabet_0", "alphabet_0", NULL);
 
