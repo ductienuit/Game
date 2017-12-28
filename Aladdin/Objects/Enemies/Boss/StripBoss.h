@@ -1,13 +1,13 @@
 #ifndef _STRIP_BOSS_H_
 #define _STRIP_BOSS_H_
 
-#include "../../FrameWork/Animation.h"
-#include "../../FrameWork/StopWatch.h"
-#include "../../FrameWork/IComponent.h"
-#include "../../FrameWork/Text.h"
-#include"../../FrameWork/CollisionBody.h"
+#include "../../../FrameWork/Animation.h"
+#include "../../../FrameWork/StopWatch.h"
+#include "../../../FrameWork/IComponent.h"
+#include "../../../FrameWork/Text.h"
+#include"../../../FrameWork/CollisionBody.h"
 #include"../../BaseObject.h"
-#include"../../FrameWork/ReadMapEditor.h"
+#include"../../../FrameWork/ReadMapEditor.h"
 
 using namespace std;
 

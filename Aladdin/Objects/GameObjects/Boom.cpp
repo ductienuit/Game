@@ -74,7 +74,7 @@ void Boom::onCollisionBegin(CollisionEventArg *collision_event)
 
 			eID temp = object->getId();
 			if (temp == APPLEEAT || temp == COINEAT ||temp == HEARTEAT|| temp == LAND ||temp==RESTARTPOINT ||
-				temp == ALADDIN || object->getStatus() == DESTROY || temp==SPRING)
+				temp == ALADDIN||temp==FACESMILE || object->getStatus() == DESTROY || temp==SPRING)
 				continue;
 			object->setStatus(DYING);
 		}

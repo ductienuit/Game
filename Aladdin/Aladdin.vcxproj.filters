@@ -375,6 +375,9 @@
     <ClCompile Include="Objects\GameObjects\Monkey.cpp">
       <Filter>Source Files\Object\GameObjects</Filter>
     </ClCompile>
+    <ClCompile Include="Objects\GameObjects\FaceSmile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FrameWork\Animation.h">
@@ -685,6 +688,9 @@
     </ClInclude>
     <ClInclude Include="Objects\GameObjects\Monkey.h">
       <Filter>Header Files\Object\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\GameObjects\FaceSmile.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

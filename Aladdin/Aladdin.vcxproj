@@ -22,7 +22,7 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{F4CF6139-2E28-4211-8EC4-C5CF060A9775}</ProjectGuid>
     <RootNamespace>Aladdin</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -134,6 +134,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AladdinGame.cpp" />
+    <ClCompile Include="Objects\GameObjects\FaceSmile.cpp" />
     <ClCompile Include="Scenes\DefeatScene.cpp" />
     <ClCompile Include="Objects\GameObjects\Monkey.cpp" />
     <ClCompile Include="Scenes\BackGround\BackgroundEndScene.cpp" />
@@ -233,6 +234,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AladdinGame.h" />
+    <ClInclude Include="Objects\GameObjects\FaceSmile.h" />
     <ClInclude Include="Scenes\DefeatScene.h" />
     <ClInclude Include="Objects\GameObjects\Monkey.h" />
     <ClInclude Include="Scenes\BackGround\BackgroundEndScene.h" />

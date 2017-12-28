@@ -14,8 +14,8 @@ GuardFat::GuardFat(eStatus status, int posX, int posY, BaseObject* aladdin, int 
 	this->_listComponent.insert(pair<string, IComponent*>("Movement", new Movement(a, v, this->_sprite)));
 	this->setStatus(status);
 	this->setPosition(posX*SCALECHARACTER.x, posY*SCALECHARACTER.y, 1.0f);
-	_minMove = getPositionX() - 250; //- minMove;
-	_maxMove = getPositionX() + 200; //+ maxMove;
+	_minMove = getPositionX() - minMove;
+	_maxMove = getPositionX()+ maxMove;
 	InIt();
 }
 

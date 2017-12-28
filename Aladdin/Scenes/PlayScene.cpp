@@ -53,7 +53,7 @@ bool PlayScene::InIt()
 	TurnOn[0] = true;	
 	//Bật thang 2
 	Enter[0] = false; //Check 1
-	CheckOn[0].push_back(new Land(2660, 688-67-591, 5, 67, eDirection::TOP, eLandType::CHECKSTAIR1));
+	CheckOn[0].push_back(new Land(2660, 688 - 67 - 591, 5, 67, eDirection::TOP, eLandType::CHECKSTAIR1));
 	CheckOn[1].push_back(new Land(2645, 688 - 67 - 593, 5, 67, eDirection::TOP, eLandType::CHECKSTAIR2));
 	//Bậc thang 3
 	Enter[1] = false;  //Check 2

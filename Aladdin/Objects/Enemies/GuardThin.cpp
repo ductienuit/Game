@@ -33,10 +33,10 @@ void GuardThin::InIt()
 	_animations[MOVING_RIGHT] = new Animation(_sprite, 0.15f);
 	_animations[MOVING_RIGHT]->addFrameRect(eID::GUARDTHIN, "guard_moving_0", 8);
 
-	_animations[ATTACK] = new Animation(_sprite, 0.15f);
+	_animations[ATTACK] = new Animation(_sprite, 0.12f);
 	_animations[ATTACK]->addFrameRect(eID::GUARDTHIN, "guardsThin_attack_0", 6);
 
-	_animations[BEHIT] = new Animation(_sprite, 0.2f);
+	_animations[BEHIT] = new Animation(_sprite, 0.1f);
 	_animations[BEHIT]->addFrameRect(eID::GUARDTHIN, "guards_being_attack_0", 9);
 
 	_animations[DYING] = new Animation(_sprite, 0.1f);

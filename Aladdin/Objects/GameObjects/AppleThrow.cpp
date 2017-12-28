@@ -106,7 +106,7 @@ void AppleThrow::onCollisionBegin(CollisionEventArg *collision_event)
 	standing();
 
 
-	if (temp == LAND || temp == CAMEL || temp == FALLINGPLATFORM)
+	if (temp==BOOM || temp == LAND || temp == CAMEL || temp == FALLINGPLATFORM || temp == FACESMILE || temp == KNIFE)
 	{
 		if (!isInStatus(DESTROY))
 			setStatus(DYING);
@@ -149,7 +149,7 @@ float AppleThrow::checkCollision(BaseObject *object, float dt)
 		float yobject = object->getPositionY();
 		if (yobject > yapple)
 			continue;
-		if (temp == PEDDLER || temp == PEDDLERSHOP || temp == APPLEEAT || temp == COINEAT || temp == HEARTEAT || temp == RESTARTPOINT ||
+		if (temp == PEDDLER || temp == PEDDLERSHOP || temp == FACESMILE || temp == APPLEEAT || temp == COINEAT || temp == HEARTEAT || temp == RESTARTPOINT ||
 			temp == ALADDIN  || temp == FIRE ||temp==BOOM || object->getStatus() == DESTROY)
 			continue;
 
