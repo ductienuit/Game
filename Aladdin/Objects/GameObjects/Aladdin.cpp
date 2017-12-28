@@ -1886,11 +1886,11 @@ void Aladdin::setBounding(RECT r)
 	_boundAla = temp;
 }
 
-
 int Aladdin::getIndexImageStatus(eStatus status)
 {
 	return _animations[status]->getIndex();
 }
+
 int Aladdin::getIndex()
 {
 	//_currentAnimateIndex is in eStatus::ATTACK

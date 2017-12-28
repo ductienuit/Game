@@ -376,7 +376,7 @@
       <Filter>Source Files\Object\GameObjects</Filter>
     </ClCompile>
     <ClCompile Include="Objects\GameObjects\FaceSmile.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Object\GameObjects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -690,7 +690,7 @@
       <Filter>Header Files\Object\GameObjects</Filter>
     </ClInclude>
     <ClInclude Include="Objects\GameObjects\FaceSmile.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Object\GameObjects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

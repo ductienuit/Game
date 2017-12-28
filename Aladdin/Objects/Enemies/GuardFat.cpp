@@ -224,8 +224,7 @@ void GuardFat::onCollisionBegin(CollisionEventArg *collision_event)
 			{					
 				bool isBeAttack = !collision_event->_otherObject->isInStatus(eStatus::BEHIT) && !collision_event->_otherObject->isFlashing();
 				if (isBeAttack)
-				{
-					
+				{					
 					if (_animations[ATTACK]->getIndex() == 4)
 					{
 						//âm thanh

@@ -61,8 +61,9 @@ void Boom::onCollisionBegin(CollisionEventArg *collision_event)
 	{
 	case eID::ALADDIN:
 	{
-		//SOUNDDDDDDDDDDDDDDDDDDDDDDD
-		//Bỏ nhạc chổ này
+		//InforAladdin::getInstance()->plusScore(10);
+		//SOUNDDDDDD
+		SoundManager::getInstance()->PlaySound("Resources/Audio/CloudPoof.wav", 0);
 
 		vector<BaseObject*> _listActive;
 		_listActive = listActive;
