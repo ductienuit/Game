@@ -5,20 +5,30 @@
 My name is ***Le Duc Tien***. The first thing,  I apologize for my English, it's not my best. I and my team do our project in many day, about 4 months to release the first version. This project is a assignment of Nhap Mon Game, Beginning Game C++ and DirectX
    
 **Introduce my team:**
+-
+#Team Leader
+* Lê Đức Tiến
 
-- Lê Đức Tiến
+#Designer + Dev
+* Lê Doãn Cường
 
-- Phan Đức Anh
+#Dev
+* Phan Đức Anh  
 
-- Phạm Nguyên Quốc
+* Phạm Nguyên Quốc
 
-- Lê Doãn Cường
+* Nguyễn Thanh Huy
 
-- Nguyễn Thanh Huy
+* Phạm Tuấn Tài
 
-- Phạm Tuấn Tài
+#Tester
+* Nguyễn Thanh Huy
 
-#***WHAT DO YOU HAVE HERE***				
+* Phạm Tuấn Tài
+
+
+**What do you have here**
+-
 
 ***Environments:*** Visual Studio 2017, github, DirectX 9.0, C++
 
