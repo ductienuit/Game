@@ -19,6 +19,9 @@ struct maxmin
 typedef struct maxmin MaxMin;
 
 map<int, MaxMin> distanceGuardThin;
+map<int, MaxMin> distanceGuardFat;
+map<int, MaxMin> distanceGuardLu;
+map<int, MaxMin> distanceGuardShort;
 
 
 ReadMapEditor::ReadMapEditor(BaseObject* aladdin, const char *filepath, QuadTree *& _quadTree)
@@ -40,6 +43,33 @@ ReadMapEditor::ReadMapEditor(BaseObject* aladdin, const char *filepath, QuadTree
 	distanceGuardThin[0] = MaxMin(60, 136);
 	distanceGuardThin[1] = MaxMin(98, 9);
 	#pragma endregion
+#pragma region DistanceGuardFat
+	distanceGuardFat[0] = MaxMin(0, 0);
+	distanceGuardFat[1] = MaxMin(218, 267);
+	distanceGuardFat[2] = MaxMin(50, 102);
+	distanceGuardFat[3] = MaxMin(391, 0);
+	distanceGuardFat[4] = MaxMin(33, 40);
+	distanceGuardFat[5] = MaxMin(88, 42);
+	distanceGuardFat[6] = MaxMin(25, 82);
+	distanceGuardFat[7] = MaxMin(146, 155);
+#pragma endregion
+#pragma region DistanceGuardLu
+	distanceGuardLu[0] = MaxMin(0, 182);
+
+#pragma endregion
+#pragma region DistanceGuardShort
+	distanceGuardShort[0] = MaxMin(243, 84);
+	distanceGuardShort[1] = MaxMin(214 ,150);
+	distanceGuardShort[2] = MaxMin(75, 100);
+	distanceGuardShort[3] = MaxMin(216, 149);
+	distanceGuardShort[4] = MaxMin(247, 276);
+	distanceGuardShort[5] = MaxMin(121, 84);
+	distanceGuardShort[6] = MaxMin(10, 48);
+	distanceGuardShort[7] = MaxMin(161, 451);
+	distanceGuardShort[8] = MaxMin(146, 52);
+	distanceGuardShort[9] = MaxMin(234, 84);
+	distanceGuardShort[10] = MaxMin(32, 12);
+#pragma endregion
 
 	////Nếu object khác. Thì tạo list cho object đó
 	//distanceGuardLu
@@ -62,16 +92,29 @@ ReadMapEditor::ReadMapEditor(BaseObject* aladdin, const char *filepath, QuadTree
 		const Tmx::ObjectGroup *_objectGroup = maps->GetObjectGroup(i);
 		if (_objectGroup->GetName() == "guardshort")
 		{
-
 			for (size_t j = 0; j < _objectGroup->GetNumObjects(); j++)
 			{
 				Tmx::Object* _object = _objectGroup->GetObjects().at(j);
 
 
-				GuardShort* _guardshort = new GuardShort(MOVING_LEFT, _object->GetX(), 688 - _object->GetY() - _object->GetHeight(), aladdin, 50, 50);
+				GuardShort* _guardshort = new GuardShort(MOVING_LEFT, _object->GetX(), 688 - _object->GetY() - _object->GetHeight(), aladdin, distanceGuardShort[j]._left, distanceGuardShort[j]._right);
 
 				ListGuardShort.push_back(_guardshort);
 				_QuadTree->InsertStaticObject(_guardshort);
+			}
+		}
+
+		else if (_objectGroup->GetName() == "facesmile")
+		{
+			for (size_t j = 0; j < _objectGroup->GetNumObjects(); j++)
+			{
+				Tmx::Object* _object = _objectGroup->GetObjects().at(j);
+
+
+				FaceSmile* _face = new FaceSmile(_object->GetX(), 688 - _object->GetY() - _object->GetHeight());
+
+				ListFaceSmile.push_back(_face);
+				_QuadTree->InsertStaticObject(_face);
 			}
 		}
 
@@ -97,7 +140,7 @@ ReadMapEditor::ReadMapEditor(BaseObject* aladdin, const char *filepath, QuadTree
 				Tmx::Object* _object = _objectGroup->GetObjects().at(j);
 
 
-				GuardLu* _guardlu = new GuardLu(FREE, _object->GetX(), 688 - _object->GetY() - _object->GetHeight(), aladdin, 1000, 1000);
+				GuardLu* _guardlu = new GuardLu(MOVING_LEFT, _object->GetX(), 688 - _object->GetY() - _object->GetHeight(), aladdin, distanceGuardLu[j]._left, distanceGuardLu[j]._right);
 
 				ListGuardLu.push_back(_guardlu);
 				_QuadTree->InsertStaticObject(_guardlu);
@@ -125,7 +168,7 @@ ReadMapEditor::ReadMapEditor(BaseObject* aladdin, const char *filepath, QuadTree
 				Tmx::Object* _object = _objectGroup->GetObjects().at(j);
 
 
-				GuardFat* _guardFat = new GuardFat(FREE, _object->GetX() , 688 - _object->GetY() - _object->GetHeight(), aladdin, 50, 50);
+				GuardFat* _guardFat = new GuardFat(FREE, _object->GetX() , 688 - _object->GetY() - _object->GetHeight(), aladdin, distanceGuardFat[j]._left, distanceGuardFat[j]._right);
 
 				ListGuardFat.push_back(_guardFat);
 				_QuadTree->InsertStaticObject(_guardFat);
@@ -598,6 +641,21 @@ void ReadMapEditor::ListObject(RECT * rect)
 			}
 			else
 				GetList.push_back(ListEatApple[i]);
+		}
+	}
+
+	for (size_t i = 0; i < ListFaceSmile.size(); i++)
+	{
+		if (isContain(ListFaceSmile[i], *rect))
+		{
+			if (ListFaceSmile[i]->isInStatus(DESTROY))
+			{
+				ListFaceSmile[i]->Release();
+				delete  ListFaceSmile[i];
+				ListFaceSmile.erase(ListFaceSmile.begin() + i);
+			}
+			else
+				GetList.push_back(ListFaceSmile[i]);
 		}
 	}
 

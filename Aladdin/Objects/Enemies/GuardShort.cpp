@@ -11,8 +11,8 @@ GuardShort::GuardShort(eStatus status, int posX, int posY, BaseObject* aladdin, 
 	this->setStatus(status);
 	this->setPosition(posX*SCALECHARACTER.x, posY*SCALECHARACTER.y, 1.0f);
 	_originPosition = Vector2(posX*SCALECHARACTER.x, posY*SCALECHARACTER.y);
-	_minMove = 186*1.6; //- minMove;
-	_maxMove = 150*1.6; //+ maxMove;
+	_minMove =  minMove;
+	_maxMove =  maxMove;
 	text = new Text("Arial", "", 10, 25);
 	InIt();
 }
@@ -135,7 +135,7 @@ float GuardShort::checkCollision(BaseObject *object, float dt)
 
 Vector2 GuardShort::distanceBetweenAladdin()
 {
-	float xAla = _aladdin->getPositionX() + (_aladdin->getBounding().right - _aladdin->getBounding().left) / 2;
+	float xAla = _aladdin->getPositionX();
 	float x = this->getPositionX();
 
 	float yAla = _aladdin->getPositionY();
@@ -215,11 +215,8 @@ void GuardShort::UpdateStatus(float dt)
 	if (distance.x <= 0)
 	{
 		distance.x = (-1)*distance.x;
-		if (distance.x > _minMove)
-		{
-			setStatus(FREE);
-		}
-		else if(distance.x < 320 && distance.x > 200)
+
+		if(distance.x < 320 && distance.x > 200)
 		{
 			if (_originPosition.x - _minMove > x)
 			{
@@ -239,13 +236,9 @@ void GuardShort::UpdateStatus(float dt)
 	//Aladdin bên phải enermy
 	else if (distance.x > 0)
 	{
-		if (distance.x > _minMove)
+		 if (distance.x < 320 && distance.x > 200)
 		{
-			setStatus(FREE);
-		}
-		else if (distance.x < 320 && distance.x > 200)
-		{
-			if (_originPosition.x + _minMove < x)
+			if (_originPosition.x + _maxMove < x)
 			{
 				setStatus(FREE);
 				return;

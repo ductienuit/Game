@@ -20,6 +20,7 @@
 #include"../Objects/GameObjects/Spring.h"
 #include"../Objects/GameObjects/Boom.h"
 #include"../Objects/GameObjects/EatCoin.h"
+#include"../Objects/GameObjects/FaceSmile.h"
 #include"../Objects/GameObjects/Peddler.h"
 #include"../Objects/GameObjects/PeddlerShop.h"
 #include"../FrameWork/StopWatch.h"
@@ -51,6 +52,7 @@ public:
 	vector <BaseObject*>	 ListFallingPlatform;
 	vector <BaseObject*>	 ListSpring;
 	vector <BaseObject*>	 ListPeddlerShop;
+	vector <BaseObject*>	 ListFaceSmile;
 
 	//GetList for Scene 1
 	void ListObject(RECT *rect);

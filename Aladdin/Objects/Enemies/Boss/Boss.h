@@ -2,7 +2,7 @@
 #ifndef _BOSS_H
 #define _BOSS_H
 
-#include "../../FrameWork/Animation.h"
+#include "../../../FrameWork/Animation.h"
 #include "../../../FrameWork/StopWatch.h"
 #include "../../../FrameWork/IComponent.h"
 #include "../../../FrameWork/Text.h"

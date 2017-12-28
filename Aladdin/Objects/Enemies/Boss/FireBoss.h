@@ -1,12 +1,12 @@
 #ifndef _FIRE_BOSS_H
 #define _FIRE_BOSS_H
 
-#include "../../FrameWork/Animation.h"
-#include "../../FrameWork/StopWatch.h"
-#include "../../FrameWork/IComponent.h"
-#include "../../FrameWork/Text.h"
+#include "../../../FrameWork/Animation.h"
+#include "../../../FrameWork/StopWatch.h"
+#include "../../../FrameWork/IComponent.h"
+#include "../../../FrameWork/Text.h"
 #include "../../BaseObject.h"
-#include"../../FrameWork/CollisionBody.h"
+#include"../../../FrameWork/CollisionBody.h"
 #include"../../GameObjects/Aladdin.h"
 
 using namespace std;
