@@ -275,16 +275,16 @@ float GuardFat::checkCollision(BaseObject *object, float dt)
 	}
 	auto collisionBody = (CollisionBody*)_listComponent["CollisionBody"];
 
-	if(!isInStatus(ATTACK))
-		//Check guard Fat với lửa
-		for each(auto fire in listFireActive)
-		{
-			collisionBody->checkCollision(fire, dt,true);
-		}
 
 
 	//Check collision enermy(this) với aladdin(object)
-	collisionBody->checkCollision(object, dt, true);
+	if (collisionBody->checkCollision(object, dt, true))
+		return 0.0f;
+
+	//Check guard Fat với lửa
+	for each(auto fire in listFireActive)
+	    collisionBody->checkCollision(fire, dt,true);
+
 
 	return 0.0f;
 }
